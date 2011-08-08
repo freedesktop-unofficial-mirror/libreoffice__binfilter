@@ -67,6 +67,7 @@
 #include "poolfmt.hxx"      // fuer InSetExpField
 #include "poolfmt.hrc"      // fuer InSetExpField
 #include "bf_so3/staticbaseurl.hxx"
+#include <bf_tools/string.hxx>
 namespace binfilter {
 
 #if !defined(UNX) && !defined(MSC) && !defined(PPC) && !defined(CSET) && !defined(__MINGW32__) && !defined(OS2)
@@ -577,7 +578,7 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/       if( !rIo.bInsert ||
 /*N*/           nFldTypeCount != rIo.pDoc->GetFldTypes()->Count() )
 /*N*/       {
-/*N*/           pFldType->SetDelimiter( ByteString::ConvertToUnicode( cDelim,
+/*N*/           pFldType->SetDelimiter( ByteString_ConvertToUnicode( cDelim,
 /*N*/                                                                 rIo.eSrcSet));
 /*N*/           pFldType->SetOutlineLvl( nLevel );
 /*N*/       }
@@ -617,9 +618,9 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
     rIo.CloseFlagRec();
     if( 0 == pFldType->GetEntryCount() || (rIo.bNormal && !rIo.bInsert) )
     {
-        pFldType->SetPreSuffix( ByteString::ConvertToUnicode( cPrefix,
+        pFldType->SetPreSuffix( ByteString_ConvertToUnicode( cPrefix,
                                                               rIo.eSrcSet ),
-                                ByteString::ConvertToUnicode( cSuffix,
+                                ByteString_ConvertToUnicode( cSuffix,
                                                               rIo.eSrcSet ) );
         pFldType->SetSequence( (cFlags & 0x10) != 0 );
         pFldType->SetSortByDocument( (cFlags & 0x20) != 0);

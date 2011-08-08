@@ -33,6 +33,7 @@
 #include <tools/stream.hxx>
 #include "starmath.hrc"
 #include "utility.hxx"
+#include <bf_tools/string.hxx>
 
 namespace binfilter {
 
@@ -219,7 +220,7 @@ int GetTextEncodingTabIndex( const String &rTxt, xub_StrLen nPos )
 /*?*/             {
 /*?*/                 DBG_ASSERT( 0 <= nCharVal  &&  nCharVal <= 256,
 /*?*/                         "character value out of range" );
-/*?*/                 sRepl = ByteString::ConvertToUnicode( nCharVal, nEnc );
+/*?*/                 sRepl = ByteString_ConvertToUnicode( nCharVal, nEnc );
 /*?*/             }
 /*?*/             DBG_ASSERT( sRepl.Len() || !nCharVal, "conversion failed" );
 /*?*/             nReplLen = nPostStart + nPostLen - nPreStart;

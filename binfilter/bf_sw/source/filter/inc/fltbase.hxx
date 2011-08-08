@@ -29,6 +29,7 @@
 #define __FLTBASE_HXX__
 
 #include <tools/stream.hxx>
+#include <bf_tools/string.hxx>
 
 namespace binfilter {
 
@@ -77,7 +78,7 @@ inline void SwFilterBase::ReadUnicode( sal_Unicode &rU )
     {
     sal_Char cC;
     *pIn >> cC;
-    rU = ByteString::ConvertToUnicode(cC, eQuellChar);
+    rU = ByteString_ConvertToUnicode(cC, eQuellChar);
     nBytesLeft--;
     }
 }

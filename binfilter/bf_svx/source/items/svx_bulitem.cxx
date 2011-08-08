@@ -38,6 +38,7 @@
 
 // #90477#
 #include <tools/tenccvt.hxx>
+#include <bf_tools/string.hxx>
 namespace binfilter {
 
 #define BULITEM_VERSION     ((USHORT)2)
@@ -148,7 +149,7 @@ namespace binfilter {
 /*N*/
 /*N*/   char cTmpSymbol;
 /*N*/   rStrm >> cTmpSymbol;
-/*N*/   cSymbol = ByteString::ConvertToUnicode( cTmpSymbol, aFont.GetCharSet() );
+/*N*/   cSymbol = ByteString_ConvertToUnicode( cTmpSymbol, aFont.GetCharSet() );
 /*N*/
 /*N*/   rStrm >> nScale;
 /*N*/

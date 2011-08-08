@@ -88,6 +88,7 @@
 #include <swerror.h>
 #include <SwStyleNameMapper.hxx>
 #include "bf_so3/staticbaseurl.hxx"
+#include <bf_tools/string.hxx>
 namespace binfilter {
 
 #define URL_DECODE  \
@@ -457,7 +458,7 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
 /*N*/               else if( bMathToSymbol )
                         rText += ConvStarMathCharToStarSymbol( c );
 /*N*/               else
-/*N*/                   rText += ByteString::ConvertToUnicode( c,
+/*N*/                   rText += ByteString_ConvertToUnicode( c,
 /*N*/                                       RTL_TEXTENCODING_SYMBOL );
 /*N*/           }
 /*N*/       }
@@ -498,7 +499,7 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
 /*N*/                   // if the assumption is wrong is to not convert a soft
 /*N*/                   // hyphen.
 /*N*/                   if( eEnc == eSrcSet ||
-/*N*/                       CHAR_SOFTHYPHEN == ByteString::ConvertToUnicode( c, eEnc ) )
+/*N*/                       CHAR_SOFTHYPHEN == ByteString_ConvertToUnicode( c, eEnc ) )
 /*N*/                   {
 /*N*/                       if( nCopy < nPos )
 /*N*/                           rText += String( rText8.Copy(nCopy,nPos-nCopy), eEnc );

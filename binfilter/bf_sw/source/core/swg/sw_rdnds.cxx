@@ -61,6 +61,7 @@
 #include <swgpar.hxx>
 #include <swerror.h>
 #include "bf_so3/staticbaseurl.hxx"
+#include <bf_tools/string.hxx>
 namespace binfilter {
 
 
@@ -320,7 +321,7 @@ namespace binfilter {
         if( ch && (symfrom != (xub_StrLen)-1 &&
                    pos >= symfrom && pos < symto) )
         {
-            sal_Unicode cNew = ByteString::ConvertToUnicode( ch, eEnc );
+            sal_Unicode cNew = ByteString_ConvertToUnicode( ch, eEnc );
             if( cNew )
                 rNdText.SetChar( pos, cNew );
         }

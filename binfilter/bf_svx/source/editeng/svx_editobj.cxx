@@ -52,6 +52,7 @@
 #include <bf_svtools/intitem.hxx>
 
 #include <tools/tenccvt.hxx>
+#include <bf_tools/string.hxx>
 namespace binfilter {
 
 DBG_NAME( EE_EditTextObject )
@@ -684,7 +685,7 @@ void BinTextObject::CreateData( SvStream& rIStream )
             {
                 if ( pItem->Which() == EE_FEATURE_NOTCONV )
                 {
-                    pC->GetText().SetChar( nStart, ByteString::ConvertToUnicode( aByteString.GetChar( nStart ), ((SvxCharSetColorItem*)pItem)->GetCharSet() ) );
+                    pC->GetText().SetChar( nStart, ByteString_ConvertToUnicode( aByteString.GetChar( nStart ), ((SvxCharSetColorItem*)pItem)->GetCharSet() ) );
                 }
                 else
                 {

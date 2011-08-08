@@ -58,6 +58,7 @@
 #include "docoptio.hxx"
 #include "globstr.hrc"
 #include "attrib.hxx"
+#include <bf_tools/string.hxx>
 namespace binfilter {
 
 
@@ -1811,7 +1812,7 @@ void ScInterpreter::ScChar()
     else
     {
         String aStr( '0' );
-        aStr.SetChar( 0, ByteString::ConvertToUnicode( (sal_Char) fVal, gsl_getSystemTextEncoding() ) );
+        aStr.SetChar( 0, ByteString_ConvertToUnicode( (sal_Char) fVal, gsl_getSystemTextEncoding() ) );
         PushString( aStr );
     }
 }

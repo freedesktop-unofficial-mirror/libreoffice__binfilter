@@ -49,6 +49,7 @@
 
 #include "unonrule.hxx"
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
+#include <bf_tools/string.hxx>
 namespace binfilter {
 
 #define MM100_TO_TWIP(MM100)    ((MM100*72L+63L)/127L)
@@ -253,7 +254,7 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/   SetShowSymbol((BOOL)nUSHORT);
 /*N*/
 /*N*/   if( nVersion < NUMITEM_VERSION_03 )
-/*N*/       cBullet = ByteString::ConvertToUnicode( cBullet,
+/*N*/       cBullet = ByteString_ConvertToUnicode( cBullet,
 /*N*/                           (pBulletFont&&pBulletFont->GetCharSet()) ?  pBulletFont->GetCharSet()
 /*N*/                                       : RTL_TEXTENCODING_SYMBOL );
 /*N*/     if(pBulletFont)

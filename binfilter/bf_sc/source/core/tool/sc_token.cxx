@@ -39,6 +39,7 @@
 
 #include "compiler.hxx"
 #include "rechead.hxx"
+#include <bf_tools/string.hxx>
 namespace binfilter {
 
 /*N*/ struct ImpTokenIterator
@@ -1370,7 +1371,7 @@ USHORT lcl_ScRawTokenOffset()
 /*?*/                       rStream.Read( c, nOp );
 /*?*/                   CharSet eSrc = rStream.GetStreamCharSet();
 /*?*/                   for ( BYTE j=0; j<nOp; j++ )
-/*?*/                       cStr[j] = ByteString::ConvertToUnicode( c[j], eSrc );
+/*?*/                       cStr[j] = ByteString_ConvertToUnicode( c[j], eSrc );
 /*?*/                   cStr[ nOp ] = 0;
 /*?*/                   break;
 /*N*/               }
@@ -1436,7 +1437,7 @@ USHORT lcl_ScRawTokenOffset()
 /*?*/               rStream.Read( c, nOp );
 /*?*/           CharSet eSrc = rStream.GetStreamCharSet();
 /*?*/           for ( BYTE j=1; j<nOp; j++ )
-/*?*/               cStr[j] = ByteString::ConvertToUnicode( c[j-1], eSrc );
+/*?*/               cStr[j] = ByteString_ConvertToUnicode( c[j-1], eSrc );
 /*?*/           cStr[ 0 ] = 0;      //! parameter count is what?!?
 /*?*/           cStr[ nOp ] = 0;
 /*?*/           break;
@@ -1483,7 +1484,7 @@ USHORT lcl_ScRawTokenOffset()
 /*N*/             //! parameter count is in cByte (cStr[0] little endian)
 /*N*/           CharSet eSrc = rStream.GetStreamCharSet();
 /*N*/           for ( BYTE j=1; j<n+1; j++ )
-/*N*/               cStr[j] = ByteString::ConvertToUnicode( c[j], eSrc );
+/*N*/               cStr[j] = ByteString_ConvertToUnicode( c[j], eSrc );
 /*N*/           cStr[ n+1 ] = 0;
 /*N*/           break;
 /*N*/       }
@@ -1495,7 +1496,7 @@ USHORT lcl_ScRawTokenOffset()
 /*N*/           cStr[ n ] = 0;
 /*N*/           CharSet eSrc = rStream.GetStreamCharSet();
 /*N*/           for ( BYTE j=0; j<n; j++ )
-/*N*/               cStr[j] = ByteString::ConvertToUnicode( c[j], eSrc );
+/*N*/               cStr[j] = ByteString_ConvertToUnicode( c[j], eSrc );
 /*N*/           cStr[ n ] = 0;
 /*N*/           break;
 /*N*/       }

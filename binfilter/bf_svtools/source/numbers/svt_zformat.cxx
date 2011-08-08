@@ -55,6 +55,7 @@
 #include "numhead.hxx"
 
 #include "nfsymbol.hxx"
+#include <bf_tools/string.hxx>
 
 namespace binfilter
 {
@@ -1458,7 +1459,7 @@ void SvNumberformat::LoadString( SvStream& rStream, String& rStr )
             if ( *p == cStream )
                 *pUni = cTarget;
             else
-                *pUni = ByteString::ConvertToUnicode( *p, eStream );
+                *pUni = ByteString_ConvertToUnicode( *p, eStream );
             p++;
             pUni++;
         }

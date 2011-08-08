@@ -163,11 +163,11 @@ void DecryptBlockName_Imp( String& rName );
 /*N*/ {
 /*N*/   nFlags = SvxAutoCorrect::GetDefaultFlags();
 /*N*/
-/*N*/   c1Div2 = ByteString::ConvertToUnicode( '\xBD', RTL_TEXTENCODING_MS_1252 );
-/*N*/   c1Div4 = ByteString::ConvertToUnicode( '\xBC', RTL_TEXTENCODING_MS_1252 );
-/*N*/   c3Div4 = ByteString::ConvertToUnicode( '\xBE', RTL_TEXTENCODING_MS_1252 );
-/*N*/   cEmDash = ByteString::ConvertToUnicode( '\x97', RTL_TEXTENCODING_MS_1252 );
-/*N*/   cEnDash = ByteString::ConvertToUnicode( '\x96', RTL_TEXTENCODING_MS_1252 );
+/*N*/   c1Div2 = ByteString_ConvertToUnicode( '\xBD', RTL_TEXTENCODING_MS_1252 );
+/*N*/   c1Div4 = ByteString_ConvertToUnicode( '\xBC', RTL_TEXTENCODING_MS_1252 );
+/*N*/   c3Div4 = ByteString_ConvertToUnicode( '\xBE', RTL_TEXTENCODING_MS_1252 );
+/*N*/   cEmDash = ByteString_ConvertToUnicode( '\x97', RTL_TEXTENCODING_MS_1252 );
+/*N*/   cEnDash = ByteString_ConvertToUnicode( '\x96', RTL_TEXTENCODING_MS_1252 );
 /*N*/ }
 
 /*N*/ SvxAutoCorrect::SvxAutoCorrect( const SvxAutoCorrect& rCpy )

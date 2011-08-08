@@ -34,6 +34,7 @@
 namespace binfilter
 {
     ByteString ByteString_CreateFromInt32(sal_Int32 n, sal_Int16 nRadix = 10);
+    sal_Unicode ByteString_ConvertToUnicode(sal_Char c, rtl_TextEncoding eTextEncoding);
 }
 
 #endif // _BF_STRING_HXX

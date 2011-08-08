@@ -102,6 +102,7 @@
 #include <swerror.h>
 #include <mdiexp.hxx>          // ...SetPercent()
 #include <statstr.hrc>          // ResId fuer Statusleiste
+#include <bf_tools/string.hxx>
 namespace binfilter {
 
 #define HOR_SICHER 100      // Horizontale Bereiche werden mindestens so
@@ -1341,7 +1342,7 @@ void SwW4WParser::Read_UpperCharSet()           // (UCS)
     while( !nError && W4WR_RED != ( cRet = GetHexByte( c )) )
         if( cRet == W4WR_TXTERM )
         {
-            sal_Unicode cC = ByteString::ConvertToUnicode( c,
+            sal_Unicode cC = ByteString_ConvertToUnicode( c,
                                                 RTL_TEXTENCODING_IBM_437 );
 
             FlushChar( cC );            // z.B. Umlaute
@@ -1416,7 +1417,7 @@ void SwW4WParser::Read_ExtendCharSet()          // (XCS)
             }
         }
 
-        sal_Unicode cC = ByteString::ConvertToUnicode( c, eCodeSet );
+        sal_Unicode cC = ByteString_ConvertToUnicode( c, eCodeSet );
         FlushChar( cC );
 
         // folgt ein UCS-Record oder ein HEX-Record hinter einem XCS-Rec.,
@@ -1437,7 +1438,7 @@ void SwW4WParser::Read_Hex()        // (HEX)
         if( !nError && GetHexByte( c )  &&
             0x15 == c )                     // Juristenparagraph
         {
-            sal_Unicode cC = ByteString::ConvertToUnicode( '\xa7',
+            sal_Unicode cC = ByteString_ConvertToUnicode( '\xa7',
                                         RTL_TEXTENCODING_MS_1252 );
             if( bReadTxtIntoString )
                 *pReadTxtString += cC;

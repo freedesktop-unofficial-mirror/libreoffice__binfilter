@@ -79,6 +79,7 @@
 #include <SwStyleNameMapper.hxx>
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
 #include "bf_so3/staticbaseurl.hxx"
+#include <bf_tools/string.hxx>
 namespace binfilter {
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -985,7 +986,7 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*N*/                                   sal_uInt8 cFillChar;
 /*N*/                                   *pStrm  >> cFillChar;
 /*N*/                                   aToken.cTabFillChar =
-/*N*/                                       ByteString::ConvertToUnicode( cFillChar,
+/*N*/                                       ByteString_ConvertToUnicode( cFillChar,
 /*N*/                                                                     eSrcSet );
 /*N*/                               }
 /*N*/                           }

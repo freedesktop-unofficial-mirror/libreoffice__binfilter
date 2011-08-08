@@ -60,6 +60,7 @@
 #include "ftninfo.hxx"
 #include "pagedesc.hxx"
 #include <SwStyleNameMapper.hxx>
+#include <bf_tools/string.hxx>
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////
@@ -141,7 +142,7 @@ namespace binfilter {
 /*N*/   else if( bMathToSymbol )
             rFmt.SetBulletChar( ConvStarMathCharToStarSymbol( cBullet8 ) );
 /*N*/   else
-/*N*/       rFmt.SetBulletChar( ByteString::ConvertToUnicode( cBullet8, eCharSet ) );
+/*N*/       rFmt.SetBulletChar( ByteString_ConvertToUnicode( cBullet8, eCharSet ) );
 /*N*/   rFmt.SetIncludeUpperLevels( nUpperLevel );
 /*N*/   rFmt.SetStart( nStart );
 /*N*/   rFmt.SetNumAdjust( SvxAdjust( eNumAdjust ));
