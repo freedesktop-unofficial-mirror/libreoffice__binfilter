@@ -229,18 +229,12 @@ StylePool::SfxItemSet_Pointer_t StylePoolImpl::insertItemSet( const SfxItemSet& 
 #ifdef DEBUG
     {
         sal_Int32 nCheck = -1;
-        sal_Int32 nNo = -1;
         IStylePoolIteratorAccess* pIter = createIterator();
         StylePool::SfxItemSet_Pointer_t pTemp;
         do
         {
             ++nCheck;
             pTemp = pIter->getNext();
-            if( pCurNode->hasItemSet() && pTemp.get() == pCurNode->getItemSet().get() )
-            {
-                ::rtl::OUString aStr = pIter->getName();
-                nNo = nCheck;
-            }
         } while( pTemp.get() );
         DBG_ASSERT( nCount == nCheck, "Wrong counting");
         delete pIter;
