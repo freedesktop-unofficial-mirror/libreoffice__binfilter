@@ -374,61 +374,6 @@ namespace binfilter {
 /*N*/   CloseRec( SWG_NODEREDLINE );
 /*N*/ }
 
-/*N*/ void Sw3IoImp::OutNodeRedlines( ULONG nIdx )
-/*N*/ {
-/*N*/   OSL_ENSURE( !IsSw31Or40Export(), "Redlines werden nicht exportiert!" );
-/*N*/
-/*N*/   if( pRedlineMarks )
-/*N*/   {
-/*?*/       for( USHORT nPos = 0; nPos < pRedlineMarks->Count(); ++nPos )
-/*?*/       {
-/*?*/           Sw3Mark *pMark = (*pRedlineMarks)[ nPos ];
-/*?*/           if( pMark->GetNodePos() == nIdx )
-/*?*/           {
-/*?*/               OSL_ENSURE( pMark->GetId() < pRedlines->Count(),
-/*?*/                       "ungeuletige Redline-Id" );
-/*?*/               Sw3MarkType eMarkType = pMark->GetType();
-/*?*/               SwRedline *pRedline = (*pRedlines)[pMark->GetId()];
-/*?*/               const SwNodeIndex *pContentIdx = pRedline->GetContentIdx();
-/*?*/
-/*?*/               OpenRec( SWG_NODEREDLINE );
-/*?*/
-/*?*/               BYTE cFlags = 0x04;
-/*?*/               if( SW3_REDLINE_END == eMarkType )
-/*?*/                   cFlags |= 0x10;
-/*?*/               else if( pContentIdx )
-/*?*/                   cFlags |= 0x20;
-/*?*/
-/*?*/               xub_StrLen nOffs = pMark->GetNodeOff();
-/*?*/               *pStrm  << (BYTE)  cFlags
-/*?*/                       << (UINT16)pMark->GetId()
-/*?*/                       << (UINT16)nOffs;
-/*?*/
-/*?*/               if( pContentIdx )
-/*?*/               {
-/*?*/                   OSL_ENSURE( pContentIdx->GetNode().EndOfSectionIndex() -
-/*?*/                           pContentIdx->GetIndex(),
-/*?*/                           "empty redline section exported" );
-/*?*/                   OutContents( *pContentIdx );
-/*?*/               }
-/*?*/
-/*?*/               CloseRec( SWG_NODEREDLINE );
-/*?*/
-/*?*/               pRedlineMarks->Remove( nPos-- );
-/*?*/               delete pMark;
-/*?*/               if( !pRedlineMarks->Count() )
-/*?*/               {
-/*?*/                   delete pRedlineMarks;
-/*?*/                   pRedlineMarks = NULL;
-/*?*/                   break;
-/*?*/               }
-/*?*/           }
-/*?*/           else if( pMark->GetNodePos() > nIdx )
-/*?*/               break;
-/*?*/       }
-/*N*/   }
-/*N*/ }
-
 /*N*/ namespace
 /*N*/ {
 /*N*/   void CorrRedline( SwRedline& rRedline,

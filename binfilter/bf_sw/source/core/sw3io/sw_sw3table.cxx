@@ -306,70 +306,6 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/ #endif
 /*N*/ }
 
-// Schreiben einer Tabelle
-
-
-/*N*/ void Sw3IoImp::OutTable( const SwTableNode& rNd )
-/*N*/ {
-/*N*/   Sw3FrmFmts *pOldTblLineBoxFmts = pTblLineBoxFmts;
-/*N*/   pTblLineBoxFmts = 0;
-/*N*/
-/*N*/   const SwTable& rTbl = rNd.GetTable();
-/*N*/   const SwTableLines& rLines = rTbl.GetTabLines();
-/*N*/   USHORT nLines = rLines.Count();
-/*N*/   SwTable* pOldTbl = pCurTbl;
-/*N*/   pCurTbl = (SwTable*) &rTbl;
-/*N*/   // 0x04 - Anzahl Boxes, Tabellen-ID
-/*N*/   // 0x10 - Modified
-/*N*/   // 0x20 - HeadLineRepeat
-/*N*/   BYTE   cFlags;
-/*N*/   if( IsSw31Or40Export() )
-/*N*/       cFlags = IsSw31Export() ? 0x04 : 0x05;
-/*N*/   else
-/*N*/       cFlags = 0x03;
-/*N*/   UINT16 nBoxes = 0;
-/*N*/ //JP 16.02.99: ueberflussiges Flag
-/*N*/ //    if( rTbl.IsModified() )
-/*N*/ //        cFlags |= 0x10;
-/*N*/   if( rTbl.IsHeadlineRepeat() )
-/*N*/       cFlags |= 0x20;
-/*N*/   OpenRec( SWG_TABLE );
-/*N*/   *pStrm << (BYTE) cFlags;
-/*N*/   OpenValuePos16( nBoxes );
-/*N*/
-/*N*/   // Im 3.1/4.0-Format stand hier der Index der Section. Bei IDX_NO_VALUE
-/*N*/   // wurde sie beim Laden nicht registriert.
-/*N*/   if( IsSw31Or40Export() )
-/*N*/       *pStrm << (UINT16)IDX_NO_VALUE;
-/*N*/   if( !IsSw31Export() )
-/*N*/       *pStrm << (BYTE)rTbl.GetTblChgMode();
-/*N*/   OutFormat( SWG_FRAMEFMT, *rTbl.GetFrmFmt() );
-/*N*/   // DDE-Tabelle? Dann den DDE-Feldtyp speichern
-/*N*/   if( IS_TYPE(SwDDETable, &rTbl) )
-/*N*/   {
-/*?*/       SwDDETable* pDDE = (SwDDETable*) &rTbl;
-/*?*/       OutFieldType( *pDDE->GetDDEFldType() );
-/*N*/   }
-/*N*/   if( !IsSw31Or40Export() )
-/*N*/   {
-/*N*/       OutNodeRedlines( rNd.GetIndex() );
-/*N*/       OutNodeRedlines( rNd.EndOfSectionIndex() );
-/*N*/   }
-/*N*/
-/*N*/   for( USHORT i = 0; i < nLines && Good(); i++ )
-/*N*/       nBoxes += OutTableLine( *(rLines[ i ]) );
-/*N*/   CloseValuePos16( nBoxes );
-/*N*/   CloseRec( SWG_TABLE );
-/*N*/   pCurTbl = pOldTbl;
-/*N*/   aStat.nTbl++;
-/*N*/
-/*N*/   delete pTblLineBoxFmts;
-/*N*/   pTblLineBoxFmts = pOldTblLineBoxFmts;
-/*N*/ }
-
-/**/
-
-
 // Einlesen einer Zeile
 // Flag-Byte (0)
 //              0x10 - schon immer unbenutzt. Zur Zeit nicht benutzt,
@@ -443,65 +379,6 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/
 /*N*/   return pLast != 0;
 /*N*/ }
-
-// Schreiben einer Tabellenzeile. Red Returnwert ist die Summe
-// aller in der Zeile enthaltenen Zellen.
-
-/*N*/ USHORT Sw3IoImp::OutTableLine( const SwTableLine& rLine )
-/*N*/ {
-/*N*/   USHORT nTotalBoxes = 0;
-/*N*/   const SwTableBoxes& rBoxes = rLine.GetTabBoxes();
-/*N*/   UINT16 nBoxes = rBoxes.Count();
-/*N*/
-/*N*/   // 0x10: Format-Id ist enthalten (nur SW5)
-/*N*/   // 0x20: Format ist geshared (nur SW5)
-/*N*/   BYTE cFlags;
-/*N*/
-/*N*/   SwFrmFmt* pFmt = rLine.GetFrmFmt();
-/*N*/   UINT16 nFmtId(0);
-/*N*/   if( IsSw31Or40Export() )
-/*N*/   {
-/*N*/       cFlags = 0x04;      // keine Flags, Fmt-Id, Anzahl Boxen
-/*N*/       nFmtId = GetTblLineBoxFmtStrPoolId40( pFmt );
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       cFlags = 0x02; // Anzahl Boxen
-/*N*/       if( lcl_sw3io_IsLineFmtShared( *pFmt, rLine ) )
-/*N*/       {
-/*N*/           cFlags += 0x40;     // Shared-Flag
-/*N*/           if( pFmt->IsWritten() )
-/*N*/           {
-/*N*/               cFlags += 0x22; // FmtId-Flag + FmtId
-/*N*/               nFmtId = GetTblLineBoxFmtId( pFmt );
-/*N*/           }
-/*N*/           else
-/*N*/           {
-/*N*/               AddTblLineBoxFmt( pFmt );
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   OpenRec( SWG_TABLELINE );
-/*N*/   *pStrm << (BYTE) cFlags;
-/*N*/   if( IsSw31Or40Export() || (cFlags & 0x20) != 0 )
-/*N*/       *pStrm << nFmtId;
-/*N*/
-/*N*/   *pStrm << nBoxes;
-/*N*/
-/*N*/   // OutFormat schreibt nur noch nicht geschriebene Formate raus,
-/*N*/   // deshalb muss das hier nicht ueberprueft werden.
-/*N*/   OutFormat( SWG_FRAMEFMT, *pFmt );
-/*N*/
-/*N*/   for( USHORT i = 0; i < nBoxes && Good(); i++ )
-/*N*/       nTotalBoxes += OutTableBox( *( rBoxes[ i ]) );
-/*N*/   CloseRec( SWG_TABLELINE );
-/*N*/   return nTotalBoxes;
-/*N*/
-/*N*/ }
-
-/**/
-
 
 // Einlesen einer Zelle
 // BYTE         Flag-Byte
@@ -617,64 +494,6 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/
 /*N*/   return pLast != 0;
 /*N*/ }
-/*N*/
-/*N*/ USHORT Sw3IoImp::OutTableBox( const SwTableBox& rBox )
-/*N*/ {
-/*N*/   const SwTableLines& rLines = rBox.GetTabLines();
-/*N*/   USHORT nLines = rLines.Count();
-/*N*/   USHORT nTotalBoxes = 0;
-/*N*/
-/*N*/   BYTE cFlags;
-/*N*/
-/*N*/   UINT16 nFmtId(0);
-/*N*/   SwFrmFmt* pFmt = rBox.GetFrmFmt();
-/*N*/   if( IsSw31Or40Export() )
-/*N*/   {
-/*N*/       cFlags = 0x02;      // keine Flags, FmtId
-/*N*/       nFmtId = GetTblLineBoxFmtStrPoolId40( pFmt );
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       cFlags = 0x00;      // keine Flags, keine Daten
-/*N*/       if( lcl_sw3io_IsBoxFmtShared( *pFmt, rBox ) )
-/*N*/       {
-/*N*/           cFlags += 0x40; // Format ist geshared
-/*N*/           if( pFmt->IsWritten() )
-/*N*/           {
-/*N*/               cFlags += 0x22; // FmtId-Flag + FmtId
-/*N*/               nFmtId = GetTblLineBoxFmtId( pFmt );
-/*N*/           }
-/*N*/           else
-/*N*/           {
-/*N*/               AddTblLineBoxFmt( pFmt );
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   if( nLines )
-/*N*/       cFlags += 0x12;
-/*N*/   OpenRec( SWG_TABLEBOX );
-/*N*/   *pStrm << (BYTE)   cFlags;
-/*N*/   if( IsSw31Or40Export() || (cFlags & 0x20) != 0 )
-/*N*/       *pStrm << (UINT16) nFmtId;
-/*N*/   if( cFlags & 0x10 )
-/*N*/       *pStrm << (UINT16) nLines;
-/*N*/   OutFormat( SWG_FRAMEFMT, *pFmt );
-/*N*/   if( rBox.GetSttNd() )
-/*N*/       // Inhalt ausgeben
-/*N*/       OutContents( SwNodeIndex( *rBox.GetSttNd() ) );
-/*N*/   if( nLines )
-/*N*/   {
-/*N*/       // Falls Zeilen vorhanden, diese ausgeben
-/*N*/       for( USHORT i = 0; i < nLines; i++)
-/*N*/           nTotalBoxes += OutTableLine( *( rLines[ i ]) );
-/*N*/   }
-/*N*/   else
-/*N*/       nTotalBoxes++;
-/*N*/   CloseRec( SWG_TABLEBOX );
-/*N*/   return nTotalBoxes;
-/*N*/ }
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

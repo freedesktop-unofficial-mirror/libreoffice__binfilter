@@ -641,7 +641,6 @@ public:
     void   ConvertText( SwTxtNode& rNd, const ByteString& rText8,
                         xub_StrLen, SvUShorts*, SvXub_StrLens* );   // I: Zeichensatz-Konversion
     void   InTxtNode( SwTxtNode*, SwNodeIndex&, xub_StrLen, BYTE = 0 );
-    void   OutTxtNode( SwCntntNode&, xub_StrLen, xub_StrLen, ULONG );
     void   OutEmptyTxtNode( ULONG nNodeIdx=0, BOOL bNodeMarks=FALSE );
                                             // I: hartes Attribut
     Sw3ExportTxtAttrs *ExportTxtNode( const SwTxtNode& rNd,
@@ -671,10 +670,7 @@ public:
 
                                             // SW3NUM.CXX
     void   InNumFmt( SwNumFmt& rFmt );      // I: Numerierungs-Format
-    void   OutNumFmt( const SwNumFmt& rFmt,
-                      USHORT nPrvAbsLSpace );// O: Numerierungs-Format
     SwNumRule* InNumRule( BYTE );           // I: Numerierungs-Regelwerk
-    void   OutNumRule( BYTE, const SwNumRule& );
     void   InNumRules();                    // I: NumRules
     void   InOutlineExt();
     void   InNodeNum( SwNodeNum& );         // I: Absatz-Numerierung
@@ -696,28 +692,16 @@ public:
                                             // SW3SECTN.CXX
     void   InContents( SwNodeIndex&, xub_StrLen=0, BOOL=TRUE, BYTE=0, BOOL=FALSE );
     SwStartNode& InContents();              // I: neue Section anlegen
-    void   OutContents( const SwNodeIndex& );   // O: abgeschlossener Bereich
-                                            // O: contents
-    void   OutContents( ULONG,ULONG,xub_StrLen,xub_StrLen, BOOL bTopLevel=FALSE );
-    ULONG  OutNodes( ULONG nCurNode, ULONG nEndNode, xub_StrLen nCurPos,
-                     xub_StrLen nEndPos, BOOL bTopLevel );
     void   InSection( SwNodeIndex& );           // I: SwSection einlesen
-    ULONG  OutSection(const SwSectionNode&);// O: SwSection ausgeben
-    ULONG  OutTOXSection(const SwSectionNode&);// O: TOX SwSection
-
                                             // SW3TABLE.CXX
     void   InTable( SwNodeIndex& rPos );        // I: Tabelle
-    void   OutTable( const SwTableNode& );  // O: Tabelle
     void   InTableLine( SwTableLines&, SwTableBox*, USHORT, SwNodeIndex& );
-    USHORT OutTableLine( const SwTableLine& rLine );
     void   InTableBox( SwTableBoxes&, USHORT, SwTableLine*, SwNodeIndex& );
-    USHORT OutTableBox( const SwTableBox& rBox );
 
                                             // SW3REDLIN.CXX
 /*N*/   void InRedline(); //SW50.SDW                        // I: Redline
 /*N*/   void InRedlines(); //SW50.SDW
 /*N*/   void InNodeRedline( const SwNodeIndex& rNodeIdx, INT32& nOffset, BYTE=0 ); //SW50.SDW
-    void OutNodeRedlines( ULONG );
     void CleanupRedlines();
 
     void InDocStat();
