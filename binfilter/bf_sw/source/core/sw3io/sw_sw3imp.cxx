@@ -312,13 +312,6 @@ public:
 /*N*/ }
 
 #ifdef DBG_UTIL
-/*N*/ sal_Bool Sw3IoImp::IsSw40Export() const
-/*N*/ {
-/*N*/   OSL_ENSURE( !pStrm || pStrm->GetVersion()==pRoot->GetVersion(),
-/*N*/           "Fileformat-Version am Stream stimmt nicht." );
-/*N*/   return pRoot->GetVersion() == SOFFICE_FILEFORMAT_40;
-/*N*/ }
-
 /*N*/ sal_Bool Sw3IoImp::IsSw31Or40Export() const
 /*N*/ {
 /*N*/   OSL_ENSURE( !pStrm || pStrm->GetVersion()==pRoot->GetVersion(),
@@ -897,30 +890,6 @@ void Sw3IoImp::InRecSizes( ULONG nRecPos )
 /*N*/   if( pStrm->Tell() != nFlagRecEnd )
 /*N*/       Warning(),
 /*?*/       pStrm->Seek( nFlagRecEnd );
-/*N*/ }
-
-// Merken der Position fuer einen 16-Bit-Wert, der spaeter dort eingefuegt wird
-// Der Parameter ist nur Dokumentation
-
-/*N*/ void Sw3IoImp::OpenValuePos16( sal_uInt16 )
-/*N*/ {
-/*N*/   sal_uInt16 nLvl = aValPositions.Count();
-/*N*/   if( nLvl >= 31 && IsSw31Or40Export() )
-/*N*/       Error( ERR_SWG_LARGE_DOC_ERROR );
-/*N*/   aValPositions.Insert( pStrm->Tell(), nLvl  );
-/*N*/   *pStrm << (sal_uInt16) 0;
-/*N*/ }
-
-// Merken der Position fuer einen 32-Bit-Wert, der spaeter dort eingefuegt wird
-// Der Parameter ist nur Dokumentation
-
-/*N*/ void Sw3IoImp::OpenValuePos32( sal_uInt32 )
-/*N*/ {
-/*N*/   sal_uInt16 nLvl = aValPositions.Count();
-/*N*/   if( nLvl >= 31 && IsSw31Or40Export() )
-/*N*/       Error( ERR_SWG_LARGE_DOC_ERROR );
-/*N*/   aValPositions.Insert( pStrm->Tell(), nLvl );
-/*N*/   *pStrm << (sal_uInt32) 0;
 /*N*/ }
 
 /*N*/ void Sw3IoImp::CheckIoError( SvStream* p )

@@ -143,44 +143,6 @@ public:
     void OutAttr( Sw3IoImp& rIo, xub_StrLen nStt, xub_StrLen nEnd );
 };
 
-
-////////////////////////////////////////////////////////////////////////////
-
-// Ausgabe von FlyFrames, die an einem Node kleben
-
-/*N*/ void Sw3IoImp::OutNodeFlyFrames( ULONG nNodeId )
-/*N*/ {
-/*N*/   // FlyFrames duerfen Tabellen enthalten, koennen also Tabelle in Tabelle
-/*N*/   // simulieren
-/*N*/   SwTable* pSave = pCurTbl; pCurTbl = NULL;
-/*N*/   SwFmt* pFly;
-/*N*/   while( ( pFly = FindFlyFrm( nNodeId ) ) != NULL )
-/*N*/   {
-/*N*/       if( !pFly->IsDefault() )
-/*N*/       {
-/*N*/           BYTE cType = SWG_FLYFMT;
-/*N*/             // do *not* export drawing objects in header/footer
-/*N*/             bool bExport = true;
-/*N*/             if( RES_DRAWFRMFMT == pFly->Which() )
-/*N*/             {
-/*N*/               cType = SWG_SDRFMT;
-/*N*/                 SwFrmFmt* pDrawFrmFmt = static_cast<SwFrmFmt*>(pFly);
-/*N*/                 const SwFmtAnchor& rFmtAnchor = pDrawFrmFmt->GetAnchor();
-/*N*/                 if ( rFmtAnchor.GetAnchorId() != FLY_PAGE &&
-/*N*/                      pDrawFrmFmt->GetDoc()->IsInHeaderFooter( rFmtAnchor.GetCntntAnchor()->nNode ) )
-/*N*/                 {
-/*N*/                     bExport = false;
-/*N*/                 }
-/*N*/             }
-/*N*/             if ( bExport )
-/*N*/             {
-/*N*/                 OutFormat( cType, *pFly );
-/*N*/             }
-/*N*/       }
-/*N*/   }
-/*N*/   pCurTbl = pSave;
-/*N*/ }
-
 /*N*/ sal_Char Sw3IoImp::ConvStarSymbolCharToStarBats( sal_Unicode c )
 /*N*/ {
 /*N*/   if( !hBatsFontConv )
@@ -1709,37 +1671,6 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/   delete pItem;
 /*N*/ }
 
-// Schreiben aller harten Attributierungen
-
-/*N*/ void Sw3IoImp::OutTxtAttrs( const SwTxtNode& rNd, xub_StrLen nStart,
-/*N*/                           xub_StrLen nEnd )
-/*N*/ {
-/*N*/   USHORT nCntAttr = rNd.HasHints() ? rNd.GetSwpHints().Count() : 0;
-/*N*/   if( nCntAttr )
-/*N*/   {
-/*N*/       for( USHORT n = 0; n < nCntAttr; n++ )
-/*N*/       {
-/*N*/           const SwTxtAttr* pHt = rNd.GetSwpHints()[ n ];
-/*N*/           BOOL   bHtEnd   = BOOL( pHt->GetEnd() != NULL );
-/*N*/           xub_StrLen nHtStart = *pHt->GetStart();
-/*N*/           xub_StrLen nHtEnd   = *pHt->GetAnyEnd();
-/*N*/
-/*N*/           // MIB 11.11.96: Der Bereich des Hints muss sich nur irgendwie
-/*N*/           // mit dem auszugenden Bereich ueberschneiden
-/*N*/           if( (bHtEnd && nHtEnd > nStart && nHtStart < nEnd) ||
-/*N*/               (!bHtEnd && nHtStart >= nStart && nHtStart < nEnd ) )
-/*N*/           {
-/*N*/               // Der Hint liegt zumindest teilweise im Text, also
-/*N*/               // Start und Ende korrigieren und Hint ausgeben
-/*N*/               nHtStart = ( nHtStart < nStart ) ? 0 : ( nHtStart - nStart );
-/*N*/               nHtEnd   = ( nHtEnd > nEnd ? nEnd : nHtEnd ) - nStart;
-/*N*/               const SfxPoolItem& rAttr = pHt->GetAttr();
-/*N*/               OutAttr( rAttr, nHtStart, nHtEnd );
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
 /*N*/ void Sw3IoImp::ExportTxtAttrs( const Sw3ExportTxtAttrs* pInfo,
 /*N*/                              xub_StrLen nStart, xub_StrLen nEnd )
 /*N*/ {
@@ -1926,83 +1857,6 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/   delete pContour;
 /*N*/ }
 
-// Ausgabe eines Grafik-Nodes
-
-/*N*/ void Sw3IoImp::OutGrfNode( const SwNoTxtNode& rNode )
-/*N*/ {
-/*N*/   if( CheckPersist() )
-/*N*/   {
-/*N*/       SwGrfNode& rGrf = (SwGrfNode&) rNode;
-/*N*/
-/*N*/       String aName, sFilterNm;
-/*N*/       BYTE cFlags = 0x00;
-/*N*/       if( !rGrf.IsGrfLink() )     // gelinkte Graphic
-/*N*/       {
-/*N*/           cFlags = 0x10;
-/*N*/           if( GRAPHIC_NONE == rGrf.GetGrf().GetType() )
-/*N*/               cFlags |= 0x20;
-/*N*/           else
-/*N*/           {
-/*N*/               // Falls die Grafik bereits im Storage ist, ist der Stream-Name
-/*N*/               // gesetzt. Dann brauchen wir sie nicht mehr zu speichern.
-/*N*/               // oder es ist ein SaveAs, dann auf jedenfall kopieren
-/*N*/               if( !rGrf.StoreGraphics( pRoot ) )
-/*N*/               {
-/*N*/                   Warning( WARN_SWG_POOR_LOAD );
-/*N*/                   cFlags |= 0x20;     // dann als leere Grf kennzeichnen!
-/*N*/ //                    Error( ERR_SWG_WRITE_ERROR );
-/*N*/               }
-/*N*/               // Den Namen merken
-/*N*/               else
-/*N*/                   aName = rGrf.GetStreamName();
-/*N*/           }
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           nFileFlags |= SWGF_HAS_GRFLNK;
-/*N*/           rGrf.GetFileFilterNms( &aName, &sFilterNm );
-/*N*/           aName = ::binfilter::StaticBaseUrl::AbsToRel( aName );
-/*N*/       }
-/*N*/
-/*N*/       // Beim 31-Export muss die URL noch am Node gespeichert werden
-/*N*/       const SfxPoolItem *pURLItem = 0;
-/*N*/       if( IsSw31Export() &&
-/*N*/           SFX_ITEM_SET == rNode.GetFlyFmt()->GetAttrSet().
-/*N*/                                   GetItemState( RES_URL, FALSE, &pURLItem ) )
-/*N*/       {
-/*N*/           if ( ((SwFmtURL*)pURLItem)->IsServerMap() )
-/*N*/               cFlags |= 0x40;
-/*N*/       }
-/*N*/
-/*N*/       OpenRec( SWG_GRFNODE );
-/*N*/       *pStrm << cFlags;
-/*N*/       OutString( *pStrm, aName );
-/*N*/       OutString( *pStrm, sFilterNm );
-/*N*/       if( !IsSw31Export() )
-/*N*/           OutString( *pStrm, rGrf.GetAlternateText() );
-/*N*/       if( rNode.GetpSwAttrSet() )
-/*N*/           OutAttrSet( *rNode.GetpSwAttrSet() );
-/*N*/
-/*N*/       if( pURLItem )
-/*N*/       {
-/*N*/           const String& rURL = ((SwFmtURL*)pURLItem)->GetURL();
-/*N*/           const String& rTarget = ((SwFmtURL*)pURLItem)->GetTargetFrameName();
-/*N*/           const ImageMap *pIMap = ((SwFmtURL*)pURLItem)->GetMap();
-/*N*/           if( rURL.Len() || rTarget.Len() || pIMap || (cFlags & 0x40) )
-/*N*/               OutImageMap( rURL, rTarget, pIMap, (cFlags & 0x40) );
-/*N*/       }
-/*N*/
-/*N*/       // wegen der while( BytesLeft() )-Schleife beim Einlesen brauchen
-/*N*/       // wir hier einen eigenen Record, der aber auch fuer andere Sachen
-/*N*/       // verwendet werden kann und sollte
-/*N*/       if( !IsSw31Export() && rNode.HasContour() )
-                OutContour( *rNode.HasContour() );
-/*N*/
-/*N*/       CloseRec( SWG_GRFNODE );
-/*N*/       aStat.nGrf++;
-/*N*/   }
-/*N*/ }
-
 // Einlesen eines OLE-Nodes
 
 /*N*/ void Sw3IoImp::InOLENode( SwNodeIndex& rPos )
@@ -2168,39 +2022,6 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/   CloseRec( SWG_OLENODE );
 /*N*/ }
 
-// Ausgabe eines OLE-Nodes
-
-/*N*/ void Sw3IoImp::OutOLENode( const SwNoTxtNode& rNd )
-/*N*/ {
-/*N*/   if( CheckPersist() )
-/*N*/   {
-/*N*/       OpenRec( SWG_OLENODE );
-/*N*/       SwOLENode& rNode = (SwOLENode&) rNd;
-/*N*/       SwOLEObj& rObj = rNode.GetOLEObj();
-/*N*/
-/*N*/       String aName( rObj.GetName() );
-/*N*/       OutString( *pStrm, aName );
-/*N*/       if( !IsSw31Export() )
-/*?*/           OutString( *pStrm, rNode.GetAlternateText() );
-/*N*/       if( rNode.GetpSwAttrSet() )
-/*N*/           OutAttrSet( *rNode.GetpSwAttrSet() );
-/*N*/
-/*N*/       if( rNode.GetChartTblName().Len() )
-/*N*/       {
-/*N*/           OpenRec( SW_OLE_CHARTNAME );
-/*N*/           OutString( *pStrm, rNode.GetChartTblName() );
-/*N*/           CloseRec( SW_OLE_CHARTNAME );
-/*N*/       }
-/*N*/
-/*N*/       if( !IsSw31Export() && rNode.HasContour() )
-                OutContour( *rNode.HasContour() );
-/*N*/
-/*N*/       CloseRec( SWG_OLENODE );
-/*N*/       aStat.nOLE++;
-/*N*/   }
-/*N*/ }
-
-
 // Einlesen eines Text-Wiederholungs-Nodes
 
 /*N*/ void Sw3IoImp::InRepTxtNode( SwNodeIndex& rPos )
@@ -2220,15 +2041,6 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/   CloseRec( SWG_REPTEXTNODE );
 /*N*/ }
 /*N*/
-/*N*/
-/*N*/ // Ausgabe eines Text-Wiederholungs-Nodes
-/*N*/
-/*N*/ void Sw3IoImp::OutRepTxtNode( ULONG nRepetitions )
-/*N*/ {
-/*N*/   OpenRec( SWG_REPTEXTNODE );
-/*N*/   *pStrm << (UINT32)nRepetitions;
-/*N*/   CloseRec( SWG_REPTEXTNODE );
-/*N*/ }
 
 // Der Image-Map-Record war frueher ein SWG_GRAPHIC_EXT-Record.
 // Deshalb enthaelt er immer der URL fuer eine Server-seitige

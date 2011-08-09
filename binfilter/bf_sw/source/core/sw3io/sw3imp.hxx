@@ -484,10 +484,8 @@ public:
     BOOL IsSw31Export() const { return bSw31Export; }
 #ifndef DBG_UTIL
     inline BOOL IsSw31Or40Export() const;
-    inline BOOL IsSw40Export() const;
 #else
     BOOL IsSw31Or40Export() const;
-    BOOL IsSw40Export() const;
 #endif
     void Error( ULONG = 0 );
     void Warning( ULONG = 0 );
@@ -511,8 +509,6 @@ public:
     void InRecSizes( ULONG nRecPos );
     BYTE OpenFlagRec();             // Endeposition eines Flag-Records merken
     void CloseFlagRec();            // Flag-Record schliessen
-    void OpenValuePos16( UINT16 );  // Position fuer UINT16-Wert merken
-    void OpenValuePos32( UINT32 );  // Position fuer UINT32-Wert merken
     ULONG BytesLeft();              // wie viele Bytes hat der Record noch?
     void CheckIoError( SvStream*);  // korrekten E/A-Fehlercode setzen
     static String ConvertStringNoDbDelim( const ByteString& rStr,
@@ -624,7 +620,6 @@ public:
     void   SetPasswd( const String& rPass );// IO: Passwort setzen
                                             // O: TOX- und Bookmark-Bereiche suchen
     void   InNodeMark( const SwNodeIndex&, xub_StrLen nOffset );    // I: Markierung
-    void   OutNodeMarks( ULONG );           // O: Markierung
     void   InBookmarks();                   // I: Bookmarks
     void   InTOXs51();                      // I: TOX-Bereiche
     void   InTOXs();                        // I: TOX-Bereiche
@@ -632,7 +627,6 @@ public:
     void   ConnectTOXs();                   // I: insert TOXs
 
                                             // SW3NODES.CXX
-    void   OutNodeFlyFrames( ULONG nNdId );// O: Absatz- und Zeichen-Flys
     void   ConvertText( SwTxtNode& rNd, const ByteString& rText8,
                         xub_StrLen, SvUShorts*, SvXub_StrLens* );   // I: Zeichensatz-Konversion
     void   InTxtNode( SwTxtNode*, SwNodeIndex&, xub_StrLen, BYTE = 0 );
@@ -644,14 +638,10 @@ public:
     void   InTxtAttr( SwTxtNode&, const ByteString& rText8,
                       xub_StrLen, SvStringsDtor**, SvXub_StrLens**,
                       SvXub_StrLens**, SvUShorts**, SvXub_StrLens** );
-    void   OutTxtAttrs( const SwTxtNode&, xub_StrLen, xub_StrLen);
     void   ExportTxtAttrs( const Sw3ExportTxtAttrs*, xub_StrLen, xub_StrLen);
     void   InGrfNode( SwNodeIndex& rPos );      // I: Grafik-Node
-    void   OutGrfNode( const SwNoTxtNode& );// O: Grafik-Node
     void   InOLENode( SwNodeIndex& rPos );      // I: OLE-Node
-    void   OutOLENode( const SwNoTxtNode& );// O: OLE-Node
     void   InRepTxtNode( SwNodeIndex& );        // I: Textwiederholung
-    void   OutRepTxtNode( ULONG );          // O: Textwiederholung
 
                                             // I/O: ImageMap-Infos
     ImageMap *InImageMap( String& rURL, String& rTarget, BOOL& rIsMap );
@@ -668,7 +658,6 @@ public:
     void   InNumRules();                    // I: NumRules
     void   InOutlineExt();
     void   InNodeNum( SwNodeNum& );         // I: Absatz-Numerierung
-    void   OutNodeNum( const SwNodeNum& );  // O: Absatz-Numerierung
 
     void   InEndNoteInfo( SwEndNoteInfo &rENInf ); // I: globale Endnoten-Info
     void   InEndNoteInfo();                 // I: globale Endnoten-Info
@@ -745,11 +734,6 @@ inline BOOL Sw3IoImp::IsVersion( USHORT nMinVers1, USHORT nMaxVers1,
 }
 
 #ifndef DBG_UTIL
-inline BOOL Sw3IoImp::IsSw40Export() const
-{
-    return pRoot->GetVersion() == SOFFICE_FILEFORMAT_40;
-}
-
 inline BOOL Sw3IoImp::IsSw31Or40Export() const
 {
     return pRoot->GetVersion() <= SOFFICE_FILEFORMAT_40;

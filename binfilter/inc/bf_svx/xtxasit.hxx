@@ -43,7 +43,6 @@ class XTextAttrSetItem : public SfxSetItem
 public:
                             TYPEINFO();
                             XTextAttrSetItem(SfxItemSet* pItemSet );
-                            XTextAttrSetItem(SfxItemPool* pItemPool);
                             XTextAttrSetItem(const XTextAttrSetItem& rAttr);
                             XTextAttrSetItem(const XTextAttrSetItem& rAttr,
                                              SfxItemPool* pItemPool);

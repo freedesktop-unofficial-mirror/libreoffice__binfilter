@@ -584,38 +584,6 @@ void Sw3IoImp::InPasswd()
 /*N*/   }
 /*N*/ }
 
-// Die Marks eines Nodes schreiben
-
-/*N*/ void Sw3IoImp::OutNodeMarks( ULONG nIdx )
-/*N*/ {
-/*N*/   if(pMarks )
-/*N*/   {
-/*N*/       for( sal_uInt16 nPos = 0; nPos < pMarks->Count(); ++nPos )
-/*N*/       {
-/*N*/           Sw3Mark *pMark = (*pMarks)[ nPos ];
-/*N*/           if( pMark->GetNodePos() == nIdx )
-/*N*/           {
-/*N*/               OpenRec( SWG_MARK );
-/*N*/               xub_StrLen nOffs = pMark->GetNodeOff();
-/*N*/               *pStrm << (sal_uInt8) pMark->GetType()
-/*N*/                      << (sal_uInt16) pMark->GetId()
-/*N*/                      << (sal_uInt16) nOffs;
-/*N*/               CloseRec( SWG_MARK );
-/*N*/               pMarks->Remove( nPos-- );
-/*N*/               delete pMark;
-/*N*/               if( !pMarks->Count() )
-/*N*/               {
-/*N*/                   delete pMarks;
-/*N*/                   pMarks = NULL;
-/*N*/                   break;
-/*N*/               }
-/*N*/           }
-/*N*/           else if( pMark->GetNodePos() > nIdx )
-/*N*/               break;
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
 // text::Bookmark einlesen
 
 /*N*/ void Sw3IoImp::InBookmarks()

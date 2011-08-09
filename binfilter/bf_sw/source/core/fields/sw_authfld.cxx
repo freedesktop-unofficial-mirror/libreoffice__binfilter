@@ -649,13 +649,6 @@ void    SwAuthorityField::SetPar1(const String& rStr)
     nHandle = pType3->AddField(rStr);
 }
 
-USHORT  SwAuthorityField::GetHandlePosition() const
-{
-    SwAuthorityFieldType* pAuthType = (SwAuthorityFieldType*)GetTyp();
-    DBG_ASSERT(pAuthType, "no field type");
-    return pAuthType->GetPosition(nHandle);
-}
-
 const char* aFieldNames[] =
 {
     "Identifier",

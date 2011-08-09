@@ -182,9 +182,6 @@ public:
     virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 
     long                GetHandle() const       { return nHandle; }
-
-    //import interface
-    USHORT              GetHandlePosition() const;
 };
 
 // --- inlines -----------------------------------------------------------

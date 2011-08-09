@@ -3901,14 +3901,6 @@ XubString aNameOrIndexEmptyString;
 
 /************************************************************************/
 
-/*N*/ XTextAttrSetItem::XTextAttrSetItem( SfxItemPool* pItemPool ) :
-/*N*/   SfxSetItem( XATTRSET_TEXT,
-/*N*/       new SfxItemSet( *pItemPool, XATTR_TEXT_FIRST, XATTR_TEXT_LAST))
-/*N*/ {
-/*N*/ }
-
-/************************************************************************/
-
 /*?*/ XTextAttrSetItem::XTextAttrSetItem( const XTextAttrSetItem& rTextAttr ) :
 /*?*/   SfxSetItem( rTextAttr )
 /*?*/ {

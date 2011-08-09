@@ -734,39 +734,6 @@ void lcl_sw3io__copyNumRule( const SwNumRule& rSrc, SwNumRule& rDst )
 /*N*/   CloseRec( SWG_NODENUM );
 /*N*/ }
 
-// Absatz-Numerierung ausgeben (seit 5.0)
-
-/*N*/ void Sw3IoImp::OutNodeNum( const SwNodeNum& rNodeNum )
-/*N*/ {
-/*N*/   OpenRec( SWG_NODENUM );
-/*N*/
-/*N*/   BYTE nLevel = rNodeNum.GetLevel();
-/*N*/
-/*N*/   // 0x10: Start-Flag ist gesetzt.
-/*N*/   // 0x20: Start-Wert ist vorhanden.
-/*N*/   BYTE cFlags = rNodeNum.IsStart() ? 0x11 : 0x01;
-/*N*/   if( rNodeNum.GetSetValue() != USHRT_MAX )
-/*N*/       cFlags += 0x22;
-/*N*/
-/*N*/   *pStrm  << (BYTE)   cFlags
-/*N*/           << (BYTE)   nLevel;
-/*N*/   if( (cFlags & 0x20) != 0 )
-/*N*/       *pStrm << (UINT16)rNodeNum.GetSetValue();
-/*N*/
-/*N*/   if( nLevel != NO_NUMBERING )
-/*N*/   {
-/*N*/       BYTE nRealLevel = GetRealLevel( nLevel );
-/*N*/       const USHORT *pLevelVal = rNodeNum.GetLevelVal();
-/*N*/       for( BYTE i=0; i<=nRealLevel; i++ )
-/*N*/       {
-/*N*/           *pStrm << (UINT16)pLevelVal[i];
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   CloseRec( SWG_NODENUM );
-/*N*/ }
-
-
 // globale Fussnoten-Info einlesen
 
 /*N*/ void Sw3IoImp::InEndNoteInfo( SwEndNoteInfo &rENInf )
