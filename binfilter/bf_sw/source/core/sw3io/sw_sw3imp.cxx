@@ -911,23 +911,6 @@ void Sw3IoImp::InRecSizes( ULONG nRecPos )
 /*N*/   *pStrm << (sal_uInt16) 0;
 /*N*/ }
 
-// Einfuegen eines 16-Bit-Werts an der obersten Stack-Position
-
-/*N*/ void Sw3IoImp::CloseValuePos16( sal_uInt16 nVal )
-/*N*/ {
-/*N*/   sal_uInt16 nLvl = aValPositions.Count();
-/*N*/   OSL_ENSURE( nLvl, "Unterlauf ValuePos-Stack" );
-/*N*/   if( nLvl )
-/*N*/   {
-/*N*/       nLvl--;
-/*N*/       sal_uInt32 nPos = pStrm->Tell();
-/*N*/       pStrm->Seek( aValPositions[nLvl] );
-/*N*/       aValPositions.Remove( nLvl, 1 );
-/*N*/       *pStrm << nVal;
-/*N*/       pStrm->Seek( nPos );
-/*N*/   }
-/*N*/ }
-
 // Merken der Position fuer einen 32-Bit-Wert, der spaeter dort eingefuegt wird
 // Der Parameter ist nur Dokumentation
 
@@ -938,23 +921,6 @@ void Sw3IoImp::InRecSizes( ULONG nRecPos )
 /*N*/       Error( ERR_SWG_LARGE_DOC_ERROR );
 /*N*/   aValPositions.Insert( pStrm->Tell(), nLvl );
 /*N*/   *pStrm << (sal_uInt32) 0;
-/*N*/ }
-
-// Einfuegen eines 32-Bit-Werts an der obersten Stack-Position
-
-/*N*/ void Sw3IoImp::CloseValuePos32( sal_uInt32 nVal )
-/*N*/ {
-/*N*/   sal_uInt16 nLvl = aValPositions.Count();
-/*N*/   OSL_ENSURE( nLvl, "Unterlauf ValuePos-Stack" );
-/*N*/   if( nLvl )
-/*N*/   {
-/*N*/       nLvl--;
-/*N*/       sal_uInt32 nPos = pStrm->Tell();
-/*N*/       pStrm->Seek( aValPositions[nLvl] );
-/*N*/       aValPositions.Remove( nLvl, 1 );
-/*N*/       *pStrm << nVal;
-/*N*/       pStrm->Seek( nPos );
-/*N*/   }
 /*N*/ }
 
 /*N*/ void Sw3IoImp::CheckIoError( SvStream* p )

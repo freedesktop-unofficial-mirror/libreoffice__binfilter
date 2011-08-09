@@ -363,34 +363,6 @@ namespace binfilter {
 /*N*/   return *pSttNd;
 /*N*/ }
 
-// Besitzt ein Text-Knoten Markierungen oder FlyFrames?
-/*N*/ BOOL lcl_sw3sectn_NodeHasFlyOrMark( Sw3IoImp& rIo, ULONG nIdx )
-/*N*/ {
-/*N*/   USHORT nPos;
-/*N*/
-/*N*/   if( rIo.pMarks )
-/*N*/       for( nPos = 0; nPos < rIo.pMarks->Count(); ++nPos )
-/*N*/       {
-/*N*/           const Sw3Mark *pMark = (*rIo.pMarks)[ nPos ];
-/*N*/           if( pMark->GetNodePos() == nIdx )
-/*N*/               return TRUE;
-/*N*/           else if( pMark->GetNodePos() > nIdx )
-/*N*/               break;
-/*N*/       }
-/*N*/
-/*N*/   if( rIo.pFlyFrms )
-/*N*/       for( nPos = 0; nPos < rIo.pFlyFrms->Count(); nPos++ )
-/*N*/       {
-/*N*/           ULONG nIdFly = (*rIo.pFlyFrms)[nPos]->GetNdIndex().GetIndex();
-/*N*/           if( nIdFly == nIdx )
-/*N*/               return TRUE;
-/*N*/           else if( nIdFly > nIdx )
-/*N*/               break;
-/*N*/       }
-/*N*/
-/*N*/   return FALSE;
-/*N*/ }
-
 // Einlesen einer "echten" Section innerhalb eines Content-Bereichs
 // Auch hier wird der uebergebene Index weitergefuehrt.
 
@@ -488,20 +460,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   CloseRec( SWG_SECTION );
-/*N*/ }
-
-/*N*/ BOOL lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd )
-/*N*/ {
-/*N*/   BOOL bRet = FALSE;
-/*N*/
-/*N*/   const SwSectionNode *pSectNd = rSttNd.GetSectionNode();
-/*N*/   if( pSectNd &&
-/*N*/       TOX_HEADER_SECTION == pSectNd->GetSection().GetType() )
-/*N*/   {
-/*N*/       bRet = TRUE;
-/*N*/   }
-/*N*/
-/*N*/   return bRet;
 /*N*/ }
 }
 

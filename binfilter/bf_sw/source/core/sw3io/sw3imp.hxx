@@ -512,9 +512,7 @@ public:
     BYTE OpenFlagRec();             // Endeposition eines Flag-Records merken
     void CloseFlagRec();            // Flag-Record schliessen
     void OpenValuePos16( UINT16 );  // Position fuer UINT16-Wert merken
-    void CloseValuePos16( UINT16 ); // UINT16-Wert an Position eintragen
     void OpenValuePos32( UINT32 );  // Position fuer UINT32-Wert merken
-    void CloseValuePos32( UINT32 ); // UINT32-Wert an Position eintragen
     ULONG BytesLeft();              // wie viele Bytes hat der Record noch?
     void CheckIoError( SvStream*);  // korrekten E/A-Fehlercode setzen
     static String ConvertStringNoDbDelim( const ByteString& rStr,
@@ -532,7 +530,6 @@ public:
     inline SvStream& OutString( SvStream& rStrm, const String& rStr );
 
     void AddTblLineBoxFmt( SwFrmFmt *pFmt );
-    USHORT GetTblLineBoxFmtId( SwFrmFmt *pFmt );
     USHORT GetTblLineBoxFmtStrPoolId40( SwFrmFmt *pFmt );
     SwFrmFmt *GetTblLineBoxFmt( USHORT nIdx );
 
@@ -636,12 +633,9 @@ public:
 
                                             // SW3NODES.CXX
     void   OutNodeFlyFrames( ULONG nNdId );// O: Absatz- und Zeichen-Flys
-    void   ExportNodeDrawFrmFmts( const SwTxtNode& rNd, xub_StrLen nStart,
-                            xub_StrLen nEnd, USHORT nCount );
     void   ConvertText( SwTxtNode& rNd, const ByteString& rText8,
                         xub_StrLen, SvUShorts*, SvXub_StrLens* );   // I: Zeichensatz-Konversion
     void   InTxtNode( SwTxtNode*, SwNodeIndex&, xub_StrLen, BYTE = 0 );
-    void   OutEmptyTxtNode( ULONG nNodeIdx=0, BOOL bNodeMarks=FALSE );
                                             // I: hartes Attribut
     Sw3ExportTxtAttrs *ExportTxtNode( const SwTxtNode& rNd,
                                             xub_StrLen nStart, xub_StrLen nEnd,

@@ -181,40 +181,6 @@ public:
 /*N*/   pCurTbl = pSave;
 /*N*/ }
 
-// zeichengebundene Zeichen-Objekte absatzgebunden exportieren
-void Sw3IoImp::ExportNodeDrawFrmFmts( const SwTxtNode& rNd, xub_StrLen nStart,
-                                     xub_StrLen nEnd, USHORT nCount )
-{
-   OSL_ENSURE( pExportInfo, "Wo sind die Export-Informationen???" );
-   if( !pExportInfo || !nCount )
-       return;
-
-   pExportInfo->bDrwFrmFmt31 = TRUE;
-
-   USHORT nCntAttr = rNd.HasHints() ? rNd.GetSwpHints().Count() : 0;
-   USHORT nExported = 0;
-   for( USHORT n = 0; n < nCntAttr && nExported < nCount; n++ )
-   {
-       const SwTxtAttr* pHt = rNd.GetSwpHints()[ n ];
-       BOOL   bHtEnd   = BOOL( pHt->GetEnd() != NULL );
-       xub_StrLen nHtStart = *pHt->GetStart();
-
-       if( !bHtEnd && nHtStart >= nStart && nHtStart < nEnd &&
-           RES_TXTATR_FLYCNT==pHt->GetAttr().Which() )
-       {
-           const SwFmtFlyCnt& rFlyCnt = (const SwFmtFlyCnt&)pHt->GetAttr();
-           const SwFmt *pFmt = rFlyCnt.GetFrmFmt();
-           if( RES_DRAWFRMFMT == pFmt->Which() )
-           {
-               OutFormat( SWG_SDRFMT, *pFmt );
-               nExported++;
-           }
-       }
-   }
-
-   pExportInfo->bDrwFrmFmt31 = FALSE;
-}
-
 /*N*/ sal_Char Sw3IoImp::ConvStarSymbolCharToStarBats( sal_Unicode c )
 /*N*/ {
 /*N*/   if( !hBatsFontConv )
@@ -1210,50 +1176,6 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/   rPos++;
 /*N*/ }
 
-// Zaehlen der Worte eines Nodes
-//!! Wird auch vom SW2-Reader benutzt!!
-
-/*N*/ void sw3io_countwords( const String& rDelimWrd, const String& rStr,
-/*N*/                       ULONG &rWords, ULONG &rChars )
-/*N*/ {
-/*N*/   bool bInWord = FALSE;
-/*N*/   USHORT nSpChars = 0;
-/*N*/
-/*N*/   for( xub_StrLen nPos = 0; nPos < rStr.Len(); nPos++ )
-/*N*/   {
-/*N*/       sal_Unicode c = rStr.GetChar( nPos );
-/*N*/       switch( c )
-/*N*/       {
-/*N*/           case CH_TXTATR_BREAKWORD:
-/*N*/           case CH_TXTATR_INWORD:
-/*N*/               ++nSpChars;
-/*N*/               break;
-/*N*/
-/*N*/           case 0x0A:
-/*N*/               ++nSpChars;
-/*N*/               if ( bInWord )
-/*N*/               {
-/*N*/                   rWords++;
-/*N*/                   bInWord = FALSE;
-/*N*/               }
-/*N*/               break;
-/*N*/
-/*N*/           default:
-/*N*/               if( rDelimWrd.Search( c ) == STRING_NOTFOUND  )
-/*N*/                   bInWord = TRUE;
-/*N*/               else if ( bInWord )
-/*N*/               {
-/*N*/                   rWords++;
-/*N*/                   bInWord = FALSE;
-/*N*/               }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   if( bInWord )
-/*N*/       rWords++;
-/*N*/   rChars += rStr.Len() - nSpChars;
-/*N*/ }
-
 /*N*/ SwInsHardBlankSoftHyph::~SwInsHardBlankSoftHyph()
 /*N*/ {
 /*N*/   for( USHORT n = 0, nCnt = aItems.Count(); n < nCnt; ++n )
@@ -1622,26 +1544,6 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/       lcl_sw3io__ConvertNumTabStop( aTStop, nOffset );
 /*N*/       rItemSet.Put( aTStop );
 /*N*/   }
-/*N*/ }
-
-/*N*/ void Sw3IoImp::OutEmptyTxtNode( ULONG nNodeIdx, BOOL bNodeMarks )
-/*N*/ {
-/*N*/   // 0x0L: length of data
-/*N*/   // 0x20: wrong list is valid
-/*N*/   BYTE   cFlags = 0x24; // CollIdx & CondCollIdx
-/*N*/   USHORT nColl = aStringPool.Add( *SwStyleNameMapper::GetTextUINameArray()
-/*N*/                       [ RES_POOLCOLL_STANDARD - RES_POOLCOLL_TEXT_BEGIN ],
-/*N*/                       RES_POOLCOLL_STANDARD );
-/*N*/
-/*N*/   OpenRec( SWG_TEXTNODE );
-/*N*/   *pStrm << cFlags << nColl << IDX_DFLT_VALUE;
-/*N*/   OutString( *pStrm, aEmptyStr );
-/*N*/
-/*N*/   if( bNodeMarks )
-/*?*/       OutNodeMarks( nNodeIdx );
-/*N*/
-/*N*/   aStat.nPara++;
-/*N*/   CloseRec( SWG_TEXTNODE );
 /*N*/ }
 
 // nOffset ist ungleich Null, wenn innerhalb eines Nodes eingefuegt werden

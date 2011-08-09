@@ -190,13 +190,7 @@ public:
         { return *pRedlineData != rCmp; }
     void SetAutoFmtFlag()               { pRedlineData->SetAutoFmtFlag(); }
 
-    USHORT GetStackCount() const;
     const String& GetAuthorString( USHORT nPos = 0 ) const;
-    const DateTime& GetTimeStamp( USHORT nPos ) const;
-    SwRedlineType GetRealType( USHORT nPos ) const;
-    SwRedlineType GetType( USHORT nPos ) const
-        { return SwRedlineType( GetRealType( nPos ) & REDLINE_NO_FLAG_MASK); }
-    const String& GetComment( USHORT nPos ) const;
 
     const String& GetComment() const    { return pRedlineData->GetComment(); }
     void SetComment( const String& rS ) { pRedlineData->SetComment( rS ); }

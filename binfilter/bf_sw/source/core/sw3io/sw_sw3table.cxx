@@ -116,17 +116,6 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/   pTblLineBoxFmts->Insert( pFmt, pTblLineBoxFmts->Count() );
 /*N*/ }
 
-/*N*/ USHORT Sw3IoImp::GetTblLineBoxFmtId( SwFrmFmt *pFmt )
-/*N*/ {
-/*N*/   USHORT nIdx = pTblLineBoxFmts ? pTblLineBoxFmts->GetPos( pFmt )
-/*N*/                                 : USHRT_MAX;
-/*N*/   OSL_ENSURE( USHRT_MAX != nIdx, "Tabellen-Line/-Box-Format nicht gefunden" );
-/*N*/   if( USHRT_MAX == nIdx )
-/*N*/       Error();
-/*N*/
-/*N*/   return nIdx;
-/*N*/ }
-/*N*/
 /*N*/ USHORT Sw3IoImp::GetTblLineBoxFmtStrPoolId40( SwFrmFmt *pFmt )
 /*N*/ {
 /*N*/   OSL_ENSURE( pExportInfo, "Wo ist die Export-Info?" );
@@ -366,19 +355,6 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/   CloseRec( SWG_TABLELINE );
 /*N*/ }
 /*N*/
-/*N*/ BOOL lcl_sw3io_IsLineFmtShared( SwFrmFmt& rFmt,   const SwTableLine& rLine )
-/*N*/ {
-/*N*/   SwClientIter aIter( rFmt );
-/*N*/
-/*N*/   SwClient* pLast;
-/*N*/
-/*N*/   for( pLast = aIter.First( TYPE( SwTableLine ));
-/*N*/        pLast && pLast == (SwClient *)&rLine;
-/*N*/        pLast = aIter.Next() )
-/*N*/       ;
-/*N*/
-/*N*/   return pLast != 0;
-/*N*/ }
 
 // Einlesen einer Zelle
 // BYTE         Flag-Byte
@@ -479,20 +455,6 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/       Error();    // kein FrmFmt
 /*N*/   }
 /*N*/   CloseRec( SWG_TABLEBOX );
-/*N*/ }
-
-/*N*/ BOOL lcl_sw3io_IsBoxFmtShared( SwFrmFmt& rFmt, const SwTableBox& rBox )
-/*N*/ {
-/*N*/   SwClientIter aIter( rFmt );
-/*N*/
-/*N*/   SwClient* pLast;
-/*N*/
-/*N*/   for( pLast = aIter.First( TYPE( SwTableBox ));
-/*N*/        pLast && pLast == (SwClient *)&rBox;
-/*N*/        pLast = aIter.Next() )
-/*N*/       ;
-/*N*/
-/*N*/   return pLast != 0;
 /*N*/ }
 }
 

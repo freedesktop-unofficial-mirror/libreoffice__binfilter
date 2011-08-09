@@ -67,12 +67,6 @@ namespace binfilter {
 
 /*N*/ SV_IMPL_OP_PTRARR_SORT(Sw3NumRuleInfos, Sw3NumRuleInfoPtr)
 
-// Konvertierung BYTE/BOOL von SwNumFmt::GetUpperLever fuer SW3.1/4.0
-/*N*/ BOOL lcl_sw3io__IsInclUpperLevel( BYTE nUpperLevel )
-/*N*/ {
-/*N*/    return 1 < nUpperLevel;
-/*N*/ }
-/*N*/
 /*N*/ BYTE lcl_sw3io__GetIncludeUpperLevel( BOOL bInclUpperLevel )
 /*N*/ {
 /*N*/   return bInclUpperLevel ? MAXLEVEL : 1;

@@ -500,15 +500,6 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-USHORT SwRedline::GetStackCount() const
-{
-    USHORT nRet = 1;
-    for( SwRedlineData* pCur = pRedlineData; pCur->pNext; ++nRet )
-        pCur = pCur->pNext;
-    return nRet;
-}
-
-
 /*?*/const String& SwRedline::GetAuthorString( USHORT nPos ) const
 /*?*/{
         SwRedlineData* pCur;
@@ -517,30 +508,6 @@ USHORT SwRedline::GetStackCount() const
 /*?*/   OSL_ENSURE( !nPos, "Pos angabe ist zu gross" );
 /*?*/   return SW_MOD()->GetRedlineAuthor(pCur->nAuthor);
 /*?*/}
-
-const DateTime& SwRedline::GetTimeStamp( USHORT nPos ) const
-{
-    SwRedlineData* pCur; for( pCur = pRedlineData; nPos && pCur->pNext; --nPos )
-        pCur = pCur->pNext;
-    OSL_ENSURE( !nPos, "Pos angabe ist zu gross" );
-    return pCur->aStamp;
-}
-
-SwRedlineType SwRedline::GetRealType( USHORT nPos ) const
-{
-    SwRedlineData* pCur; for( pCur = pRedlineData; nPos && pCur->pNext; --nPos )
-        pCur = pCur->pNext;
-    OSL_ENSURE( !nPos, "Pos angabe ist zu gross" );
-    return pCur->eType;
-}
-
-const String& SwRedline::GetComment( USHORT nPos ) const
-{
-    SwRedlineData* pCur; for( pCur = pRedlineData; nPos && pCur->pNext; --nPos )
-        pCur = pCur->pNext;
-    OSL_ENSURE( !nPos, "Pos angabe ist zu gross" );
-    return pCur->sComment;
-}
 
 /*N*/ int SwRedline::operator==( const SwRedline& rCmp ) const
 /*N*/ {
