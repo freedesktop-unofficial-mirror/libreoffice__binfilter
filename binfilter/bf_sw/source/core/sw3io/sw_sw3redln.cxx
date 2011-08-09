@@ -128,54 +128,6 @@ namespace binfilter {
 /*N*/   CloseRec( SWG_REDLINE_LCL );
 /*N*/ }
 
-
-void Sw3IoImp::OutRedline( const SwRedline& rRedline )
-{
-    OSL_ENSURE( !IsSw31Or40Export(), "Redlines werden nicht exportiert!" );
-
-    OpenRec( SWG_REDLINE_LCL );
-
-    BYTE cFlags = 0x02;         // Count
-
-    if( rRedline.IsVisible() )
-        cFlags += 0x10;
-    if( rRedline.IsDelLastPara() )
-        cFlags += 0x20;
-    if( rRedline.IsLastParaDelete() )
-        cFlags += 0x40;
-
-    USHORT i = rRedline.GetStackCount();
-
-    *pStrm  << (BYTE)  cFlags
-            << (UINT16)i;
-
-    // Die Redline-Data-Objekte werden von hinten nach vorne geschrieben,
-    // das macht das Verketten beim Einlesen leichter.
-    while( i )
-    {
-        i--;
-
-        OpenRec( SWG_REDLINEDATA_LCL );
-
-        cFlags = 0x03;  // Type + StrPool-Index des Autors
-        UINT16 nStrIdx = aStringPool.Find( rRedline.GetAuthorString(i),
-                                           USHRT_MAX );
-        *pStrm  << (BYTE)  cFlags
-                << (BYTE)  rRedline.GetType( i )
-                << (UINT16)nStrIdx;
-
-        const DateTime& rDateTime = rRedline.GetTimeStamp( i );
-        *pStrm  << (UINT32)rDateTime.GetDate()
-                << (UINT32)rDateTime.GetTime();
-        OutString( *pStrm, rRedline.GetComment( i ) );
-
-        CloseRec( SWG_REDLINEDATA_LCL );
-    }
-
-    CloseRec( SWG_REDLINE_LCL );
-}
-
-
 // REDLINES:
 // REDLINE*
 

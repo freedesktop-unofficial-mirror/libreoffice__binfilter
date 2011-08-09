@@ -715,7 +715,6 @@ public:
 
                                             // SW3REDLIN.CXX
 /*N*/   void InRedline(); //SW50.SDW                        // I: Redline
-        void OutRedline( const SwRedline& rRedline );
 /*N*/   void InRedlines(); //SW50.SDW
 /*N*/   void InNodeRedline( const SwNodeIndex& rNodeIdx, INT32& nOffset, BYTE=0 ); //SW50.SDW
     void OutNodeRedlines( ULONG );

@@ -445,22 +445,6 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
     return nRet;
 }
 
-
-
-// Wird nach einem SaveAs aufgerufen und setzt die StreamNamen um
-
-
-/*N*/ void SwGrfNode::SaveCompleted( BOOL bClear )
-/*N*/ {
-/*N*/   if( aNewStrmName.Len() )
-/*N*/   {
-/*N*/       if( !bClear )       // der Name wird zum aktuellen
-/*N*/           SetStreamName( aNewStrmName );
-/*N*/       aNewStrmName.Erase();
-/*N*/   }
-/*N*/ }
-
-
 // Falls die Grafik noch nicht im Doc-Storage existiert,
 // wird sie neu geschrieben; falls sie bereits drin ist,
 // wird nicht geschrieben. Wenn der Storage nicht dem

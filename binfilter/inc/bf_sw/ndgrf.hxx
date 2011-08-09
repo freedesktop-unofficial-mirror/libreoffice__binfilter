@@ -142,7 +142,6 @@ public:
     String GetStreamName() const;
     void SetStreamName( const String& r ) { aGrfObj.SetUserData( r ); }
     void SetNewStreamName( const String& r ) { aNewStrmName = r; }
-    void SaveCompleted( BOOL bClear );
     // is this node selected by any shell?
     BOOL IsSelected() const{DBG_BF_ASSERT(0, "STRIP");return FALSE;} ;
 #endif
