@@ -76,12 +76,53 @@ namespace binfilter
         }
     }
 
+    sal_Size ConvertFromUnicode( sal_Unicode c, char* pBuf, sal_Size nBufLen, rtl_TextEncoding eTextEncoding )
+    {
+        // TextEncoding Dontknow wird nicht konvertiert
+        if ( eTextEncoding == RTL_TEXTENCODING_DONTKNOW )
+            return '\0';
+
+        rtl_UnicodeToTextConverter  hConverter;
+        sal_uInt32                  nInfo;
+        sal_Size                    nSrcChars;
+        sal_Size                    nDestBytes;
+        sal_Unicode                 cUni = c;
+        sal_uInt32                  nFlags = RTL_UNICODETOTEXT_FLAGS_NONSPACING_IGNORE |
+                                             RTL_UNICODETOTEXT_FLAGS_CONTROL_IGNORE |
+                                             RTL_UNICODETOTEXT_FLAGS_FLUSH;
+
+        nFlags |= RTL_UNICODETOTEXT_FLAGS_UNDEFINED_DEFAULT |
+                  RTL_UNICODETOTEXT_FLAGS_INVALID_DEFAULT;
+        nFlags |= RTL_UNICODETOTEXT_FLAGS_UNDEFINED_REPLACE;
+        if ( nBufLen > 1 )
+            nFlags |= RTL_UNICODETOTEXT_FLAGS_UNDEFINED_REPLACESTR;
+
+        hConverter = rtl_createUnicodeToTextConverter( eTextEncoding );
+        nDestBytes = rtl_convertUnicodeToText( hConverter, 0,
+                                               &cUni, 1,
+                                               (sal_Char*)pBuf, nBufLen,
+                                               nFlags,
+                                               &nInfo, &nSrcChars );
+        rtl_destroyUnicodeToTextConverter( hConverter );
+        return nDestBytes;
+    }
+
     sal_Unicode ByteString_ConvertToUnicode( char c, rtl_TextEncoding eTextEncoding )
     {
         sal_Size nLen = 1;
         return ConvertToUnicode( &c, &nLen, eTextEncoding );
     }
 
+    char ByteString_ConvertFromUnicode(sal_Unicode c, rtl_TextEncoding eTextEncoding)
+    {
+        sal_Size    nLen;
+        char        aBuf[30];
+        nLen = ConvertFromUnicode(c, aBuf, sizeof( aBuf ), eTextEncoding);
+        if ( nLen == 1 )
+            return aBuf[0];
+        else
+            return 0;
+    }
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

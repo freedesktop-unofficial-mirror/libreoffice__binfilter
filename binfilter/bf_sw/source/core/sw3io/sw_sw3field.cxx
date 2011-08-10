@@ -586,23 +586,6 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/   return pFldType;
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutSetExpFieldType( Sw3IoImp& rIo, SwSetExpFieldType* pType )
-/*N*/ {
-/*N*/   const String& rNm = pType->GetSetRefName();
-/*N*/
-/*N*/   *rIo.pStrm << (UINT16) pType->GetType()
-/*N*/              << (UINT16) rIo.aStringPool.Find( rNm,
-/*N*/                               lcl_sw3io_GetSetExpFieldPoolId( rNm ) );
-/*N*/
-/*N*/   if( !rIo.IsSw31Or40Export() && GSE_SEQ & pType->GetType() )
-/*N*/   {
-/*N*/       sal_Char cDelim = ByteString::ConvertFromUnicode( pType->GetDelimiter(),
-/*N*/                                                         rIo.eSrcSet );
-/*N*/       *rIo.pStrm  << (BYTE)cDelim
-/*N*/                   << (BYTE)pType->GetOutlineLvl();
-/*N*/   }
-/*N*/ }
-
 SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 {
     SwAuthorityFieldType* pFldType = (SwAuthorityFieldType*) rIo.pDoc->
@@ -669,50 +652,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 
     return pFldType;
 }
-
-/*N*/ void lcl_sw3io_OutAuthorityFieldType( Sw3IoImp& rIo,
-/*N*/                                     SwAuthorityFieldType *pType )
-/*N*/ {
-/*?*/   BYTE cFlags = 0x06;
-/*?*/   if( pType->IsSequence() )
-/*?*/       cFlags |= 0x10;
-/*?*/   if( pType->IsSortByDocument() )
-/*?*/       cFlags|= 0x20;
-/*?*/
-/*?*/   USHORT nCount = pType->GetEntryCount();
-/*?*/   *rIo.pStrm  << cFlags
-/*?*/               << (UINT16)nCount
-/*?*/               << (BYTE)ByteString::ConvertFromUnicode( pType->GetPrefix(),
-/*?*/                                                        rIo.eSrcSet )
-/*?*/               << (BYTE)ByteString::ConvertFromUnicode( pType->GetSuffix(),
-/*?*/                                                        rIo.eSrcSet )
-/*?*/               << (UINT16)pType->GetSortKeyCount();
-/*?*/
-/*?*/   USHORT i;
-/*?*/   for( i=0; i<nCount; i++ )
-/*?*/   {
-/*?*/       const SwAuthEntry *pEntry = pType->GetEntryByPosition( i );
-/*?*/       rIo.OpenRec( SWG_AUTHORITY_ENTRY_LCL );
-/*?*/
-/*?*/       USHORT nPos = 0;
-/*?*/       String sEntry;
-/*?*/       BOOL bHasEntry = pEntry->GetFirstAuthorField( nPos, sEntry );
-/*?*/       while( bHasEntry )
-/*?*/       {
-/*?*/           *rIo.pStrm  << (UINT16)nPos;
-/*?*/           rIo.OutString(*rIo.pStrm, sEntry );
-/*?*/           bHasEntry = pEntry->GetNextAuthorField( nPos, sEntry );
-/*?*/       }
-/*?*/
-/*?*/       rIo.CloseRec( SWG_AUTHORITY_ENTRY_LCL );
-/*?*/   }
-/*?*/   for( i=0; i < pType->GetSortKeyCount(); i++ )
-/*?*/   {
-/*?*/       const SwTOXSortKey* pKey = pType->GetSortKey(i);
-/*?*/       *rIo.pStrm  << (BYTE)(pKey->bSortAscending ? 0X01 : 0x00)
-/*?*/                   << (UINT16)pKey->eField;
-/*?*/   }
-/*N*/ }
 
 /*N*/ SwField* lcl_sw3io_InDBField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                               USHORT nSubType, UINT32& rFmt )
@@ -1959,66 +1898,6 @@ static Sw3InFieldFn aInFieldFnTbl[] =
 /*N*/   }
 /*N*/   CloseRec( SWG_FIELDTYPE );
 /*N*/   return p;
-/*N*/ }
-
-// Schreiben eines Feldtyps
-
-
-
-/*N*/ BOOL Sw3IoImp::OutFieldType( const SwFieldType& rType )
-/*N*/ {
-/*N*/   USHORT nFld = rType.Which();
-/*N*/
-/*N*/   if( IsSw31Or40Export() && RES_AUTHORITY == nFld )
-/*N*/   {
-/*N*/       SwSetExpFieldType aType( pDoc,
-/*N*/                                String::CreateFromAscii(sSW3IO_AuthorityField),
-/*N*/                                GSE_STRING );
-/*N*/       return OutFieldType( aType );
-/*N*/   }
-/*N*/     /* #108791# */
-/*N*/     else if (RES_DROPDOWN == nFld)
-/*N*/     {
-/*N*/         SwSetExpFieldType aType( pDoc,
-/*N*/                                  String::CreateFromAscii(sSW3IO_DropDownField),
-/*N*/                                  GSE_STRING );
-/*N*/         return OutFieldType( aType );
-/*N*/     }
-/*N*/
-/*N*/   OpenRec( SWG_FIELDTYPE );
-/*N*/
-/*N*/   *pStrm << (BYTE) ( nFld - RES_FIELDS_BEGIN );
-/*N*/
-/*N*/   switch( nFld )
-/*N*/   {
-/*N*/       case RES_DBFLD:
-/*N*/           lcl_sw3io_OutDBFieldType( *this, (SwDBFieldType*) &rType );
-/*N*/           break;
-/*N*/       case RES_USERFLD:
-/*N*/           if( IsSw31Or40Export() )
-/*N*/               lcl_sw3io_OutUserFieldType40( *this, (SwUserFieldType*) &rType );
-/*N*/           else
-/*N*/               lcl_sw3io_OutUserFieldType( *this, (SwUserFieldType*) &rType );
-/*N*/           break;
-/*N*/       case RES_DDEFLD:
-/*N*/           lcl_sw3io_OutDDEFieldType( *this, (SwDDEFieldType*) &rType );
-/*N*/           nFileFlags |= SWGF_HAS_DDELNK;
-/*N*/           break;
-/*N*/       case RES_SETEXPFLD:
-/*N*/           lcl_sw3io_OutSetExpFieldType( *this, (SwSetExpFieldType*) &rType );
-/*N*/           break;
-/*N*/       case RES_AUTHORITY:
-/*N*/           lcl_sw3io_OutAuthorityFieldType( *this,
-/*N*/                                           (SwAuthorityFieldType *)&rType );
-/*N*/           break;
-/*N*/       default:
-/*N*/           OSL_ENSURE( !this, "Unbekannter Feldtyp" );
-/*N*/           CloseRec( SWG_FIELDTYPE );
-/*N*/           Error();
-/*N*/           return FALSE;
-/*N*/   }
-/*N*/   CloseRec( SWG_FIELDTYPE );
-/*N*/   return TRUE;
 /*N*/ }
 
 }

@@ -1799,7 +1799,7 @@ void ScInterpreter::ScCode()
 {
 //2do: make it full range unicode?
     const String& rStr = GetString();
-    PushInt( (sal_uChar) ByteString::ConvertFromUnicode( rStr.GetChar(0), gsl_getSystemTextEncoding() ) );
+    PushInt( (sal_uChar) ByteString_ConvertFromUnicode( rStr.GetChar(0), gsl_getSystemTextEncoding() ) );
 }
 
 

@@ -592,7 +592,6 @@ public:
                                             // SW3FIELD.CXX
     SwField* InField();                     // I: Feld
     SwFieldType* InFieldType();             // I: ein Feldtyp
-    BOOL   OutFieldType(const SwFieldType&);// O: ein Feldtyp
 
                                             // SW3FMTS.CXX
     SfxPoolItem* InAttr( xub_StrLen&, xub_StrLen&,
