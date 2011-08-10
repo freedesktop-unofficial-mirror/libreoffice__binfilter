@@ -51,8 +51,6 @@ public:
     SwAuthEntry( const SwAuthEntry& rCopy );
     BOOL            operator==(const SwAuthEntry& rComp);
 
-    BOOL                    GetFirstAuthorField(USHORT& nPos, String& rToFill)const;
-    BOOL                    GetNextAuthorField(USHORT& nPos, String& rToFill)const;
     inline const String&    GetAuthorField(ToxAuthorityField ePos)const;
     inline void             SetAuthorField(ToxAuthorityField ePos,
                                             const String& rField);
@@ -121,7 +119,6 @@ public:
     long                GetHandle(USHORT nPos);
 
     USHORT              GetEntryCount() const;
-    const SwAuthEntry*  GetEntryByPosition(USHORT nPos) const;
 
     USHORT              GetSequencePos(long nHandle);
 

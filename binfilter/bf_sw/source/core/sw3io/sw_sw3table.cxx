@@ -116,20 +116,6 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/   pTblLineBoxFmts->Insert( pFmt, pTblLineBoxFmts->Count() );
 /*N*/ }
 
-/*N*/ USHORT Sw3IoImp::GetTblLineBoxFmtStrPoolId40( SwFrmFmt *pFmt )
-/*N*/ {
-/*N*/   OSL_ENSURE( pExportInfo, "Wo ist die Export-Info?" );
-/*N*/   USHORT nPos = pExportInfo->pTblLineBoxFmts40
-/*N*/                       ? pExportInfo->pTblLineBoxFmts40->GetPos( pFmt )
-/*N*/                       : USHRT_MAX;
-/*N*/   OSL_ENSURE( USHRT_MAX != nPos, "Tabellen-Line/-Box-Format nicht gefunden" );
-/*N*/   if( USHRT_MAX == nPos )
-/*N*/       Error();
-/*N*/
-/*N*/   return aStringPool.Find( *((*pExportInfo->pTblLineBoxFmtNames40)[nPos]),
-/*N*/                            pFmt->GetPoolFmtId() );
-/*N*/ }
-/*N*/
 /*N*/ SwFrmFmt *Sw3IoImp::GetTblLineBoxFmt( USHORT nIdx )
 /*N*/ {
 /*N*/   OSL_ENSURE( pTblLineBoxFmts && nIdx < pTblLineBoxFmts->Count(),

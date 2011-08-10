@@ -334,21 +334,6 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/       rName = rIo.aStringPool.Find( nStrId );
 /*N*/ }
 
-/*N*/ USHORT lcl_sw3io_GetSetExpFieldPoolId( const String& rName )
-/*N*/ {
-/*N*/   if( rName == String( SW_RES(STR_POOLCOLL_LABEL_ABB) ) )
-/*N*/       return RES_POOLCOLL_LABEL_ABB;
-/*N*/   else if( rName == String( SW_RES(STR_POOLCOLL_LABEL_TABLE) ) )
-/*N*/       return RES_POOLCOLL_LABEL_TABLE;
-/*N*/   else if( rName == String( SW_RES(STR_POOLCOLL_LABEL_FRAME) ) )
-/*N*/       return RES_POOLCOLL_LABEL_FRAME;
-/*N*/   else if( rName == String( SW_RES(STR_POOLCOLL_LABEL_DRAWING) ) )
-/*N*/       return RES_POOLCOLL_LABEL_DRAWING;
-/*N*/   else
-/*N*/       return USHRT_MAX;
-/*N*/ }
-
-
 //////////////////////////////////////////////////////////////////////////////
 
 // Ausgabe der Feldtypen
@@ -381,20 +366,6 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/   aData.sCommand = aDBName.GetToken(1, DB_DELIM);
 /*N*/   SwDBFieldType aType( rIo.pDoc, aText, aData );
 /*N*/   return (SwDBFieldType*) rIo.pDoc->InsertFldType( aType );
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutDBFieldType( Sw3IoImp& rIo, SwDBFieldType* pType )
-/*N*/ {
-/*N*/   *rIo.pStrm << (UINT16) rIo.aStringPool.Find( pType->GetColumnName(), USHRT_MAX );
-/*N*/
-/*N*/   if( !rIo.IsSw31Export() )
-/*N*/   {
-/*N*/       SwDBData aData = pType->GetDBData();
-/*N*/       String sDBName(aData.sDataSource);
-/*N*/       sDBName += DB_DELIM;
-/*N*/       sDBName += (String)aData.sCommand;
-/*N*/       *rIo.pStrm << (UINT16) rIo.aStringPool.Find( sDBName, IDX_NOCONV_FF );
-/*N*/   }
 /*N*/ }
 
 /*N*/ SwUserFieldType* lcl_sw3io_InUserFieldType40( Sw3IoImp& rIo )
@@ -468,24 +439,6 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/   return p;
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutUserFieldType40( Sw3IoImp& rIo, SwUserFieldType* pType )
-/*N*/ {
-/*N*/     String aValue(String::CreateFromDouble(pType->GetValue()));
-/*N*/   *rIo.pStrm << (UINT16) rIo.aStringPool.Find( pType->GetName(), USHRT_MAX );
-/*N*/       rIo.OutString( *rIo.pStrm, pType->GetContent() );
-/*N*/       rIo.OutString( *rIo.pStrm, aValue );
-/*N*/   *rIo.pStrm << (UINT16) pType->GetType();
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutUserFieldType( Sw3IoImp& rIo, SwUserFieldType* pType )
-/*N*/ {
-/*N*/   *rIo.pStrm << (UINT16) rIo.aStringPool.Find( pType->GetName(), USHRT_MAX );
-/*N*/       rIo.OutString( *rIo.pStrm, pType->GetContent() );
-/*N*/   *rIo.pStrm << (double)pType->GetValue()
-/*N*/              << (UINT16) pType->GetType();
-/*N*/ }
-
-
 /*N*/ SwDDEFieldType* lcl_sw3io_InDDEFieldType( Sw3IoImp& rIo )
 /*N*/ {
 /*N*/   UINT16 nType;
@@ -532,15 +485,6 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/
 /*N*/   SwDDEFieldType aType( aName, aCmd, nType );
 /*N*/   return (SwDDEFieldType*) rIo.pDoc->InsertFldType( aType );
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutDDEFieldType( Sw3IoImp& rIo, SwDDEFieldType* pType )
-/*N*/ {
-/*N*/   *rIo.pStrm << (USHORT) pType->GetType()
-/*N*/              << (UINT16) rIo.aStringPool.Find( pType->GetName(), USHRT_MAX );
-/*N*/     ByteString s8 = rIo.ConvertStringNoDelim( pType->GetCmd(),
-/*N*/                         ::binfilter::cTokenSeperator, '\xff', rIo.eSrcSet );
-/*N*/   rIo.pStrm->WriteByteString( s8 );
 /*N*/ }
 
 /*N*/ SwSetExpFieldType* lcl_sw3io_InSetExpFieldType( Sw3IoImp& rIo )

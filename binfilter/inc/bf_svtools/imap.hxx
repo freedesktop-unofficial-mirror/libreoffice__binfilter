@@ -110,7 +110,6 @@ public:
     void                Scale( const Fraction& rFractX, const Fraction& rFracY );
 
     // Im-/Export
-    void                Write ( SvStream& rOStm, const String& rBaseURL ) const;
     void                Read( SvStream& rIStm, const String& rBaseURL );
 };
 

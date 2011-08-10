@@ -1494,20 +1494,6 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/   return pInfo;
 /*N*/ }
 
-
-/*N*/ void lcl_sw3io__ConvertNumTabStop( const SwCntntNode& rCNd, long nOffset,
-/*N*/                                  SfxItemSet& rItemSet )
-/*N*/ {
-/*N*/   const SfxPoolItem* pItem;
-/*N*/   if( SFX_ITEM_SET == rCNd.GetSwAttrSet().GetItemState(
-/*N*/                                       RES_PARATR_TABSTOP, TRUE, &pItem ))
-/*N*/   {
-/*N*/       SvxTabStopItem aTStop( *(SvxTabStopItem*)pItem );
-/*N*/       lcl_sw3io__ConvertNumTabStop( aTStop, nOffset );
-/*N*/       rItemSet.Put( aTStop );
-/*N*/   }
-/*N*/ }
-
 // nOffset ist ungleich Null, wenn innerhalb eines Nodes eingefuegt werden
 // soll. Dann ist nOffset die Start-Position des Textes.
 
@@ -2081,26 +2067,6 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/   CloseRec( SWG_IMAGEMAP );
 /*N*/
 /*N*/   return pIMap;   // muss ggf. vom Aufrufer geloescht werden!
-/*N*/ }
-
-/*N*/ void lcl_sw3io__ConvertMarkToOutline( String& rURL )
-/*N*/ {
-/*N*/   if( rURL.Len() && '#' == rURL.GetChar( 0 ) )
-/*N*/   {
-/*N*/       String sCmp, sMark( INetURLObject::decode( rURL, INET_HEX_ESCAPE,
-/*N*/                                       INetURLObject::DECODE_WITH_CHARSET,
-/*N*/                                       RTL_TEXTENCODING_UTF8 ));
-/*N*/       xub_StrLen nPos = sMark.SearchBackward( cMarkSeperator );
-/*N*/       if( STRING_NOTFOUND != nPos &&
-/*N*/           ( sCmp = sMark.Copy( nPos + 1 ) ).EraseAllChars().Len() &&
-/*N*/           COMPARE_EQUAL == sCmp.CompareToAscii( pMarkToOutline ) )
-/*N*/       {
-/*N*/           rURL = '#';
-/*N*/           rURL += String(INetURLObject::createFragment( sMark.Copy( 1, nPos-1 ) ));
-/*N*/           rURL += cMarkSeperator;
-/*N*/           rURL.AppendAscii( pMarkToOutline );
-/*N*/       }
-/*N*/   }
 /*N*/ }
 
  PolyPolygon *Sw3IoImp::InContour()

@@ -96,40 +96,6 @@ BOOL    SwAuthEntry::operator==(const SwAuthEntry& rComp)
     return TRUE;
 }
 // --------------------------------------------------------
-BOOL    SwAuthEntry::GetFirstAuthorField(USHORT& nPos, String& rToFill)const
-{
-    BOOL bRet = FALSE;
-        for(USHORT i = 0; i < AUTH_FIELD_END; i++)
-            if(aAuthFields[i].Len())
-            {
-                rToFill = aAuthFields[i];
-                nPos = i;
-                bRet = TRUE;
-                break;
-            }
-    return bRet;
-}
-// --------------------------------------------------------
-BOOL    SwAuthEntry::GetNextAuthorField(USHORT& nPos, String& rToFill)const
-{
-    BOOL bRet = FALSE;
-    if(AUTH_FIELD_END > ++nPos)
-    {
-        for(USHORT i = nPos; i < AUTH_FIELD_END; i++)
-            if(aAuthFields[i].Len())
-            {
-                rToFill = aAuthFields[i];
-                nPos = i;
-                bRet = TRUE;
-                break;
-            }
-    }
-    return bRet;
-}
-
-// --------------------------------------------------------
-
-
 SwAuthorityFieldType::SwAuthorityFieldType(SwDoc* pDoc)
     : SwFieldType( RES_AUTHORITY )
     , m_pDoc(pDoc)
@@ -309,14 +275,6 @@ long    SwAuthorityFieldType::GetHandle(USHORT nPos)
 USHORT  SwAuthorityFieldType::GetEntryCount() const
 {
     return m_pDataArr->Count();
-}
-
-const SwAuthEntry*  SwAuthorityFieldType::GetEntryByPosition(USHORT nPos) const
-{
-    if(nPos < m_pDataArr->Count())
-        return m_pDataArr->GetObject(nPos);
-    OSL_FAIL("wrong index");
-    return 0;
 }
 
 USHORT  SwAuthorityFieldType::GetSequencePos(long nHandle)

@@ -1025,44 +1025,6 @@ void ImageMap::ImpReadImageMap( SvStream& rIStm, USHORT nCount, const String& rB
     }
 }
 
-
-/******************************************************************************
-|*
-|* Binaer speichern
-|*
-\******************************************************************************/
-
-void ImageMap::Write( SvStream& rOStm, const String& rBaseURL ) const
-{
-    IMapCompat*             pCompat;
-    String                  aImageName( GetName() );
-    String                  aDummy;
-    USHORT                  nOldFormat = rOStm.GetNumberFormatInt();
-    UINT16                  nCount = (UINT16) GetIMapObjectCount();
-    const rtl_TextEncoding  eEncoding = gsl_getSystemTextEncoding();
-
-    rOStm.SetNumberFormatInt( NUMBERFORMAT_INT_LITTLEENDIAN );
-
-    // MagicCode schreiben
-    rOStm << IMAPMAGIC;
-    rOStm << GetVersion();
-    rOStm.WriteByteString( ByteString( aImageName, eEncoding ) );
-    rOStm.WriteByteString( ByteString( aDummy, eEncoding ) );
-    rOStm << nCount;
-    rOStm.WriteByteString( ByteString( aImageName, eEncoding ) );
-
-    pCompat = new IMapCompat( rOStm, STREAM_WRITE );
-
-    // hier kann in neueren Versionen eingefuegt werden
-
-    delete pCompat;
-
-    ImpWriteImageMap( rOStm, rBaseURL );
-
-    rOStm.SetNumberFormatInt( nOldFormat );
-}
-
-
 /******************************************************************************
 |*
 |* Binaer laden

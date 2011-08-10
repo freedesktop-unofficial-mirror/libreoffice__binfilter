@@ -526,7 +526,6 @@ public:
     inline SvStream& OutString( SvStream& rStrm, const String& rStr );
 
     void AddTblLineBoxFmt( SwFrmFmt *pFmt );
-    USHORT GetTblLineBoxFmtStrPoolId40( SwFrmFmt *pFmt );
     SwFrmFmt *GetTblLineBoxFmt( USHORT nIdx );
 
     // Ist eingelene Datei neuer oder gleich nMinVers und aelter
@@ -598,7 +597,6 @@ public:
                          const SwTxtNode *pTxtNd=0 );// I: Attribut
     void   OutAttr( const SfxPoolItem&, xub_StrLen nBgn, xub_StrLen nEnd );
     void   InAttrSet( SwAttrSet& rSet );    // I: AttrSet
-    void   OutAttrSet( const SfxItemSet&, BOOL bSFmt=FALSE ); // O: AttrSet
     SwFmt* InFormat( BYTE cKind, SwFmt* );  // I: Format
     void   InFlyFrames();                   // I: globale FlyFrames
 
@@ -751,7 +749,6 @@ void lcl_sw3io__ConvertNumTabStop( SwTxtNode& rTxtNd, long nOffset,
                                    BOOL bDeep );
 void lcl_sw3io__ConvertNumTabStop( SvxTabStopItem& rTStop, long nOffset );
 
-void lcl_sw3io__ConvertMarkToOutline( String& rURL );
 
 } //namespace binfilter
 #endif
