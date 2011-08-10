@@ -601,7 +601,6 @@ public:
     void   InAttrSet( SwAttrSet& rSet );    // I: AttrSet
     void   OutAttrSet( const SfxItemSet&, BOOL bSFmt=FALSE ); // O: AttrSet
     SwFmt* InFormat( BYTE cKind, SwFmt* );  // I: Format
-    void   OutFormat( BYTE, const SwFmt& ); // O: Format
     void   InFlyFrames();                   // I: globale FlyFrames
 
                                             // SW3MISC.CXX
@@ -645,12 +644,9 @@ public:
 
                                             // I/O: ImageMap-Infos
     ImageMap *InImageMap( String& rURL, String& rTarget, BOOL& rIsMap );
-    void OutImageMap( const String& rURL, const String& rTarget,
-                      const ImageMap *pIMap, BOOL bIsMap );
 
                                             // I/O: Contour
     PolyPolygon *InContour();
-    void OutContour( const PolyPolygon& rPoly );
 
                                             // SW3NUM.CXX
     void   InNumFmt( SwNumFmt& rFmt );      // I: Numerierungs-Format

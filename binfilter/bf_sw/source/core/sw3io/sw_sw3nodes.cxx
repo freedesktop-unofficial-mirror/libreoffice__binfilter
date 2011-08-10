@@ -2103,45 +2103,6 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/   }
 /*N*/ }
 
-/*N*/ void Sw3IoImp::OutImageMap( const String& rURL, const String& rTarget,
-/*N*/                           const ImageMap *pIMap, BOOL bIsServerMap )
-/*N*/ {
-/*N*/   // Dieser Record ist fuer den 31-Export ein SWG_GRAPHIC_EXT und
-/*N*/   // enthaelt dann nur eine URL
-/*N*/   OpenRec( SWG_IMAGEMAP );
-/*N*/   BYTE cFlags = 0x00;
-/*N*/   if( !IsSw31Export() && bIsServerMap )
-/*N*/       cFlags += 0x10; // es ist eine Image-Map
-/*N*/   if( !IsSw31Export() && pIMap )
-/*N*/       cFlags += 0x20; // es folgt eine Image-Map
-/*N*/
-/*N*/   *pStrm << cFlags;
-/*N*/
-/*N*/   // Unabhaengigkeit von der AbsToRel-Schnittstelle sicherstellen!
-/*N*/   String aURL( rURL );
-/*N*/   if( aURL.Len() )
-/*N*/   {
-/*N*/       lcl_sw3io__ConvertMarkToOutline( aURL );
-/*N*/       aURL = ::binfilter::StaticBaseUrl::AbsToRel( aURL URL_DECODE);
-/*N*/   }
-/*N*/   OutString( *pStrm, aURL );
-/*N*/
-/*N*/   // bis hier hatten wir frueher einen SWG_GRAPHIC_EXT-Record!
-/*N*/
-/*N*/   if( !IsSw31Export() )
-/*N*/   {
-/*N*/       OutString( *pStrm, rTarget );
-/*N*/       OutString( *pStrm, aEmptyStr );
-/*N*/
-/*N*/       if( pIMap )
-/*?*/         pIMap->Write(
-                *pStrm,
-                ::binfilter::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
-/*N*/   }
-/*N*/
-/*N*/   CloseRec( SWG_IMAGEMAP );
-/*N*/ }
-
  PolyPolygon *Sw3IoImp::InContour()
  {
     PolyPolygon *pContour = 0;
@@ -2160,20 +2121,6 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 
     return pContour;
  }
-
-void Sw3IoImp::OutContour( const PolyPolygon& rPoly )
-{
-   OpenRec( SWG_CONTOUR );
-
-   BYTE cFlags = 0x10; // es folgt ein Contour Poly-Polygon
-   *pStrm << cFlags;
-
-   // das Contour-PolyPolygon rausschreiben
-   *pStrm << rPoly;
-
-   CloseRec( SWG_CONTOUR );
-}
-
 
 }
 

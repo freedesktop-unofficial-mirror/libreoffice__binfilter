@@ -135,11 +135,6 @@ public:
                   BOOL bModify = TRUE );
         // Laden der Grafik unmittelbar vor der Anzeige
     short SwapIn( BOOL bWaitForData = FALSE );
-        // Entfernen der Grafik, um Speicher freizugeben
-        // Schreiben der Grafik
-    BOOL StoreGraphics( SvStorage* pDocStg = NULL );
-        // Zugriff auf den Storage-Streamnamen
-    String GetStreamName() const;
     void SetStreamName( const String& r ) { aGrfObj.SetUserData( r ); }
     void SetNewStreamName( const String& r ) { aNewStrmName = r; }
     // is this node selected by any shell?

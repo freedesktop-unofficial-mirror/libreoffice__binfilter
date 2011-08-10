@@ -306,24 +306,6 @@ long    SwAuthorityFieldType::GetHandle(USHORT nPos)
     return nRet;
 }
 
-USHORT  SwAuthorityFieldType::GetPosition(long nHandle)
-{
-    USHORT j = 0;
-    for( ; j < m_pDataArr->Count(); ++j )
-    {
-        const SwAuthEntry* pTemp = m_pDataArr->GetObject(j);
-        long nTmp = (long)(void*)pTemp;
-        if( nTmp == nHandle )
-            break;
-    }
-    if( j == m_pDataArr->Count() )
-        j = USHRT_MAX;
-
-    OSL_ENSURE( USHRT_MAX != j, "handle not found" );
-    return j;
-}
-
-
 USHORT  SwAuthorityFieldType::GetEntryCount() const
 {
     return m_pDataArr->Count();

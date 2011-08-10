@@ -119,7 +119,6 @@ public:
     // import interface
     USHORT              AppendField(const SwAuthEntry& rInsert);
     long                GetHandle(USHORT nPos);
-    USHORT              GetPosition(long nHandle);
 
     USHORT              GetEntryCount() const;
     const SwAuthEntry*  GetEntryByPosition(USHORT nPos) const;
