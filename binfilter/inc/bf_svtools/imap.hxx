@@ -59,8 +59,7 @@ class  ImageMap
 
 protected:
 
-    // Binaer laden/speichern
-    void                ImpWriteImageMap( SvStream& rOStm, const String& ) const ;
+    // Binaer laden
     void                ImpReadImageMap( SvStream& rIStm, USHORT nCount, const String& );
 
 public:
@@ -98,9 +97,6 @@ public:
 
     // Loescht alle internen Objekte
     void                ClearImageMap();
-
-    // liefert die aktuelle Versionsnummer
-    UINT16              GetVersion() const;
 
     // liefert / setzt den Namen der ImageMap
     const String&       GetName() const { return aName; }

@@ -435,27 +435,6 @@ bool SwFmtFrmSize::PutValue( const uno::Any& rVal, BYTE nMemberId )
     return bRet;
 }
 
-Size  SwFmtFrmSize::GetSizeConvertedToSw31(
-    const SvxLRSpaceItem *pLRSpace,
-    const SvxULSpaceItem *pULSpace ) const
-{
-    // Sw4.0: Groesse enthaelt keine Raender
-    // Sw3.x: Groesse enthaelt Raender
-    // ==> Raender addieren
-    Size aNewSize = GetSize();
-    if( pLRSpace )
-    {
-        aNewSize.Width() += pLRSpace->GetLeft();
-        aNewSize.Width() += pLRSpace->GetRight();
-    }
-    if( pULSpace )
-    {
-        aNewSize.Height() += pULSpace->GetUpper();
-        aNewSize.Height() +=  pULSpace->GetLower();
-    }
-    return aNewSize;
-}
-
 Size  SwFmtFrmSize::GetSizeConvertedFromSw31(
     const SvxLRSpaceItem *pLRSpace,
     const SvxULSpaceItem *pULSpace ) const
@@ -1167,19 +1146,6 @@ SfxPoolItem*  SwFmtVertOrient::Clone( SfxItemPool* ) const
 }
 
 
-SwTwips  SwFmtVertOrient::GetPosConvertedToSw31(
-    const SvxULSpaceItem *pULSpace ) const
-{
-    SwTwips nNewPos = GetPos();
-
-    if( VERT_NONE==GetVertOrient() && pULSpace )
-    {
-        nNewPos -= pULSpace->GetUpper();
-    }
-
-    return nNewPos;
-}
-
 SwTwips  SwFmtVertOrient::GetPosConvertedFromSw31(
     const SvxULSpaceItem *pULSpace ) const
 {
@@ -1308,19 +1274,6 @@ SfxPoolItem*  SwFmtHoriOrient::Clone( SfxItemPool* ) const
     return new SwFmtHoriOrient( nXPos, eOrient, eRelation, bPosToggle );
 }
 
-
-SwTwips  SwFmtHoriOrient::GetPosConvertedToSw31(
-    const SvxLRSpaceItem *pLRSpace ) const
-{
-    SwTwips nNewPos = GetPos();
-
-    if( HORI_NONE==GetHoriOrient() && pLRSpace )
-    {
-        nNewPos -= pLRSpace->GetLeft();
-    }
-
-    return nNewPos;
-}
 
 SwTwips  SwFmtHoriOrient::GetPosConvertedFromSw31(
     const SvxLRSpaceItem *pLRSpace ) const

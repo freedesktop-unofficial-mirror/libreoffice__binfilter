@@ -1245,32 +1245,6 @@ void SvPersist::LoadContent( SvStream & rStm, BOOL bOwner_ )
     // nichts tun bei Fremd-Format
 }
 
-BOOL SvPersist::DoSaveContent( SvStorage * pStor, BOOL bOwner_ )
-{
-    // MAC MPW mag's sonst nicht ...
-    String aPersistStream( bOwner_ ? String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( PERSIST_STREAM ) )
-                                    : String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( SVEXT_PERSIST_STREAM ) ) );
-    SvStorageStreamRef aContStm = pStor->OpenStream( aPersistStream );
-    if( aContStm.Is() )
-    {
-        // Version am Stream setzen
-        aContStm->SetVersion( pStor->GetVersion() );
-        aContStm->SetBufferSize( 8192 );
-#if defined( SOLARIS ) && defined( C40 )
-     // patch to work around Sparc-Compiler bug with virtual multiple inheritance
-     SvEmbeddedObjectRef xSvEmbeddedObjectRef = this;
-     if( xSvEmbeddedObjectRef.Is() )
-         xSvEmbeddedObjectRef->SaveContent( *aContStm, bOwner_ );
-     else
-#else
-        SaveContent( *aContStm, bOwner_ );
-#endif
-        aContStm->SetBufferSize( 0 );
-        return aContStm->GetError() == SVSTREAM_OK;
-    }
-    return FALSE;
-}
-
 void SvPersist::SaveContent( SvStream & rStm, BOOL bOwner_ )
 {
     if( bOwner_ )

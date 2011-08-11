@@ -1321,37 +1321,6 @@ void    SvOutPlaceObject::HandsOff()
     SvInPlaceObject::HandsOff();
 }
 
-BOOL    SvOutPlaceObject::MakeWorkStorageWrap_Impl( SvStorage * pStor )
-{
-    BOOL bResult = FALSE;
-
-    pImpl->xWorkingStg = new SvStorage( FALSE, String(), STREAM_STD_READWRITE, STORAGE_DELETEONRELEASE );
-
-    SetupStorage( pImpl->xWorkingStg );
-    SotStorageStreamRef xOleObjStm = pImpl->xWorkingStg->OpenSotStream(
-                                                String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "Ole-Object" ) ),
-                                                STREAM_STD_READWRITE );
-
-    if( !xOleObjStm->GetError() )
-    {
-        SotStorageRef xOleObjStor = new SotStorage( *xOleObjStm );
-        if( !xOleObjStor->GetError() )
-        {
-            xOleObjStm->SetBufferSize( 0xff00 );
-
-            pStor->CopyTo( xOleObjStor );
-            xOleObjStor->Commit();
-            xOleObjStor.Clear();
-
-            xOleObjStm->Commit();
-
-            bResult = ( xOleObjStm->GetError() == ERRCODE_NONE );
-        }
-    }
-
-    return bResult;
-}
-
 com::sun::star::uno::Reference < ::com::sun::star::lang::XComponent > SvOutPlaceObject::GetUnoComponent() const
 {
 #ifdef WNT

@@ -58,7 +58,6 @@ private:
 
     SO3_DLLPRIVATE void         DataChanged_Impl( BOOL bOnlyEmbedSource );
     SO3_DLLPRIVATE void         LoadSO_Cont();
-    SO3_DLLPRIVATE BOOL         MakeWorkStorageWrap_Impl( SvStorage * pStor );
 
 protected:
     SO3_DLLPRIVATE virtual void    FillClass( SvGlobalName * pClassName,

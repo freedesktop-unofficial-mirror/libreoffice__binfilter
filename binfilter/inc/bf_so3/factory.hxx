@@ -89,8 +89,6 @@ public:
     BOOL                IsRegistered() const { return nRegisterId != 0; }
 
     static SvGlobalName GetAutoConvertTo( const SvGlobalName & rClass );
-    static SvGlobalName GetSvClass( INT32 nFileFormat, const SvGlobalName & rClass );
-    static BOOL         IsIntern31( const SvGlobalName & rClass );
     static BOOL         IsIntern( const SvGlobalName & rClass,
                                      long *pFileFormat  );
     static SvGlobalName GetServerName( long nStorageFormat );

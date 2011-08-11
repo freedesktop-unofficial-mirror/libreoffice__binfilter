@@ -69,7 +69,6 @@ public:
     SwTwips GetPos() const { return nYPos; }
     void    SetPos( SwTwips nNew ) { nYPos = nNew; }
 
-    SwTwips GetPosConvertedToSw31( const SvxULSpaceItem *pULSpace ) const;
     SwTwips GetPosConvertedFromSw31( const SvxULSpaceItem *pULSpace ) const;
 };
 
@@ -108,7 +107,6 @@ public:
     SwTwips GetPos() const { return nXPos; }
     void    SetPos( SwTwips nNew ) { nXPos = nNew; }
 
-    SwTwips GetPosConvertedToSw31( const SvxLRSpaceItem *pLRSpace ) const;
     SwTwips GetPosConvertedFromSw31( const SvxLRSpaceItem *pLRSpace ) const;
 
     BOOL IsPosToggle() const { return bPosToggle; }

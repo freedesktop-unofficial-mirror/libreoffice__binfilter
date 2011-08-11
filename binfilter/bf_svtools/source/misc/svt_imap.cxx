@@ -886,18 +886,6 @@ BOOL ImageMap::operator!=( const ImageMap& rImageMap )
 
 /******************************************************************************
 |*
-|* Freigabe des internen Speichers
-|*
-\******************************************************************************/
-
-UINT16 ImageMap::GetVersion() const
-{
-    return IMAGE_MAP_VERSION;
-}
-
-
-/******************************************************************************
-|*
 |* Einfuegen eines neuen Objekts
 |*
 \******************************************************************************/
@@ -956,26 +944,6 @@ void ImageMap::Scale( const Fraction& rFracX, const Fraction& rFracY )
         }
     }
 }
-
-
-/******************************************************************************
-|*
-|* Objekte nacheinander wegschreiben
-|*
-\******************************************************************************/
-
-void ImageMap::ImpWriteImageMap( SvStream& rOStm, const String& rBaseURL ) const
-{
-    IMapObject* pObj;
-    USHORT      nCount = (USHORT) maList.Count();
-
-    for ( USHORT i = 0; i < nCount; i++ )
-    {
-        pObj = (IMapObject*) maList.GetObject( i );
-        pObj->Write( rOStm, rBaseURL );
-    }
-}
-
 
 /******************************************************************************
 |*

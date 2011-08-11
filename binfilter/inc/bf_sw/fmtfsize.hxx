@@ -98,9 +98,6 @@ public:
     void    SetHeightPercent( BYTE n ) { nHeightPercent = n; }
     void    SetWidthPercent ( BYTE n ) { nWidthPercent  = n; }
 
-    // Umrechnung der Groesse zwischen SW31/SW40
-    Size    GetSizeConvertedToSw31( const SvxLRSpaceItem *pLRSpace,
-                                    const SvxULSpaceItem *pULSpace ) const;
     Size    GetSizeConvertedFromSw31( const SvxLRSpaceItem *pLRSpace,
                                       const SvxULSpaceItem *pULSpace ) const;
 };

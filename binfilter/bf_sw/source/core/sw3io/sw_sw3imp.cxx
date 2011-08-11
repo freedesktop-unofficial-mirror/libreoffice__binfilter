@@ -1334,34 +1334,6 @@ const int RES_POOLCOLL_HTML_DT_40 = 0x3007;
 /*N*/       rName.Erase( nOff );
 /*N*/ }
 
-// Eintragen der Strings eines Formats
-// Falls nId angegeben ist, wird diese Zahl mit einem Hash an den Namen
-// angefuegt, um eine Eindeutigkeit zu gewaehrleisten.
-
-/*N*/ void Sw3StringPool::Setup( SwDoc& rDoc, const SwFmt& rFmt, sal_uInt16 nId )
-/*N*/ {
-/*N*/   // Das Written-Flag wird gleich mit geknackt!
-/*N*/   // Das ist wichtig, da Formate (theoretisch) in verschiedenen
-/*N*/   // Streams landen koennen.
-/*N*/   OSL_ENSURE( !rFmt.IsWritten(), "Written-Flag am Format ist gesetzt" );
-/*N*/
-/*N*/   String aName( rFmt.GetName() );
-/*N*/   if( nId )
-/*N*/   {
-/*N*/       OSL_ENSURE( nId==Count()+1, "id ungleich String-Pool-Pos" );
-/*N*/       aName += EXT_SEPARATOR, aName += String::CreateFromInt32(nId);
-/*N*/       // Kein SetName() wg. Assert
-/*N*/       (String&)((SwFmt&)rFmt).GetName() = aName;
-/*N*/   }
-/*N*/   Add( aName, rFmt.GetPoolFmtId(), nId!=0 );
-/*N*/   if( rFmt.GetPoolHlpFileId() != UCHAR_MAX )
-/*N*/   {
-/*?*/       String* pId = rDoc.GetDocPattern( rFmt.GetPoolHlpFileId() );
-/*?*/       if( pId )
-/*?*/           Add( *pId, 0 );
-/*N*/   }
-/*N*/ }
-
 /*N*/ sal_uInt16 Sw3StringPool::Add( const String& r, sal_uInt16 n, sal_Bool bDontSearch )
 /*N*/ {
 /*N*/   sal_uInt16 i = bDontSearch ? aPool.Count() : 0;
@@ -1387,51 +1359,6 @@ const int RES_POOLCOLL_HTML_DT_40 = 0x3007;
 /*?*/       OSL_ENSURE( !bFixed, "String nicht im Pool eingetragen" );
 /*?*/       return IDX_NO_VALUE;
 /*N*/   }
-/*N*/ }
-
-
-/*N*/ sal_uInt16 Sw3StringPool::Find( const String& r, sal_uInt16 nPoolId )
-/*N*/ {
-/*N*/   OSL_ENSURE( nExpFFVersion, "String-Pool: FF-Version nicht gesetzt" );
-/*N*/   if( nExpFFVersion  <= SOFFICE_FILEFORMAT_40 && nPoolId && nPoolId<IDX_SPEC_VALUE )
-/*N*/       nPoolId = ConvertToOldPoolId( nPoolId, nExpFFVersion );
-/*N*/
-/*N*/   xub_StrLen nOff = r.Search( EXT_SEPARATOR );
-/*N*/   if( nOff != STRING_NOTFOUND )
-/*N*/   {
-/*N*/       xub_StrLen nPos = (xub_StrLen)r.Copy(nOff+1).ToInt32() - 1;
-/*N*/       if( nPos<aPool.Count() )
-/*N*/       {
-/*N*/           const Sw3String* p3Str = aPool.GetObject( nPos );
-/*N*/           if( nPoolId == p3Str->GetPoolId() && r==*p3Str )
-/*N*/               return nPos;
-/*N*/       }
-/*N*/       OSL_ENSURE( !this, "String-Pool-Position ungueltig" );
-/*N*/   }
-/*N*/
-/*N*/   xub_StrLen nLen = r.Len();
-/*N*/   for( sal_uInt16 i = 0; i < aPool.Count(); i++ )
-/*N*/   {
-/*N*/       const Sw3String* p3Str = aPool.GetObject( i );
-/*N*/       if( nPoolId == p3Str->GetPoolId() && nLen==p3Str->Len() )
-/*N*/       {
-/*N*/           xub_StrLen n = nLen;
-/*N*/           sal_Bool bFound = sal_True;
-/*N*/           while( bFound && n )
-/*N*/           {
-/*N*/               n--;
-/*N*/               if( r.GetChar(n) != p3Str->GetChar(n) )
-/*N*/               {
-/*N*/                   bFound = sal_False;
-/*N*/                   break;
-/*N*/               }
-/*N*/           }
-/*N*/
-/*N*/           if( bFound )
-/*N*/               return i;
-/*N*/       }
-/*N*/   }
-/*N*/   return IDX_NO_VALUE;
 /*N*/ }
 
 /*N*/ const String& Sw3StringPool::Find( sal_uInt16 i )
@@ -1572,32 +1499,6 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*N*/                                        rtl_TextEncoding eSource )
 /*N*/ {
 /*N*/   return ConvertStringNoDelim( rStr, '\xff', DB_DELIM, eSource );
-/*N*/ }
-
-/*N*/ ByteString Sw3IoImp::ConvertStringNoDelim( const String& rStr,
-/*N*/                                          sal_Unicode cSrcDelim,
-/*N*/                                          sal_Char cDelim,
-/*N*/                                          rtl_TextEncoding eSource )
-/*N*/ {
-/*N*/   ByteString sDest;
-/*N*/   xub_StrLen nStart = 0;
-/*N*/   xub_StrLen nPos = 0;
-/*N*/   do
-/*N*/   {
-/*N*/       nPos = rStr.Search( cSrcDelim, nStart );
-/*N*/       if( STRING_NOTFOUND == nPos )
-/*N*/           nPos = rStr.Len();
-/*N*/
-/*N*/       if( nStart > 0 )
-/*N*/           sDest += cDelim;
-/*N*/
-/*N*/       if( nPos > nStart )
-/*N*/           sDest += ByteString( rStr.Copy( nStart, nPos-nStart ), eSource );
-/*N*/       nStart = nPos+1;
-/*N*/   }
-/*N*/   while( nPos < rStr.Len() );
-/*N*/
-/*N*/   return sDest;
 /*N*/ }
 
 /*N*/ String Sw3IoImp::ConvertStringNoDelim( const ByteString& rStr,

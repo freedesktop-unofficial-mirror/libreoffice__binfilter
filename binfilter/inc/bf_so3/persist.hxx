@@ -165,7 +165,6 @@ protected:
 
     SO3_DLLPRIVATE BOOL            DoLoadContent( SvStorage *, BOOL bOwner );
     virtual void    LoadContent( SvStream & rStm, BOOL bOwner );
-    SO3_DLLPRIVATE BOOL            DoSaveContent( SvStorage *, BOOL bOwner );
     virtual void    SaveContent( SvStream & rStm, BOOL bOwner );
 
     SO3_DLLPRIVATE BOOL         HasStorage() const { return aStorage.Is(); }

@@ -86,8 +86,6 @@ namespace binfilter {
         void                    ReleaseFromCache();
         String                  GetLink() const;
         void                    SetLink( const String& rLink );
-        BOOL                    SwapOut();
-        BOOL                    SwapOut( SvStream* pOStm );
         BOOL                    SwapIn();
         BOOL                    SwapIn( SvStream* pIStm );
     };

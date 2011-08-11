@@ -259,7 +259,6 @@ class Sw3StringPool
     long nExpFFVersion; // Export: FF-Version (SOFFICE_FILEFORMAT_??)
 
     BOOL bFixed;
-    void Setup( SwDoc& rDoc, const SwFmt& rFmt, USHORT=0 );
     void RemoveExtension( SwFmt& );
 
 public:
@@ -269,7 +268,6 @@ public:
     void   RemoveExtensions( SwDoc& );
     static void RemoveExtension( String& );
     USHORT Add( const String&, USHORT nPoolId /*= 0*/, BOOL bDontSearch=FALSE );
-    USHORT Find( const String&, USHORT nPoolId );
     const  String& Find( USHORT );
     USHORT FindPoolId( USHORT );
 
@@ -513,10 +511,6 @@ public:
     void CheckIoError( SvStream*);  // korrekten E/A-Fehlercode setzen
     static String ConvertStringNoDbDelim( const ByteString& rStr,
                                           rtl_TextEncoding eSource );
-    static ByteString ConvertStringNoDelim( const String& rStr,
-                                            sal_Unicode cSrcDelim,
-                                            sal_Char cDelim,
-                                            rtl_TextEncoding eSource );
     static String ConvertStringNoDelim( const ByteString& rStr,
                                         sal_Char cSrcDelim,
                                         sal_Unicode cDelim,

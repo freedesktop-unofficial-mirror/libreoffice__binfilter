@@ -67,8 +67,6 @@ namespace binfilter {
     void                    BfGraphicObject::ReleaseFromCache() { GraphicObject::ReleaseFromCache(); }
     String                  BfGraphicObject::GetLink() const { return GraphicObject::GetLink(); }
     void                    BfGraphicObject::SetLink( const String& rLink ) { GraphicObject::SetLink( rLink ); }
-    BOOL                    BfGraphicObject::SwapOut() { return GraphicObject::SwapOut(); }
-    BOOL                    BfGraphicObject::SwapOut( SvStream* pOStm ) { return GraphicObject::SwapOut( pOStm ); }
     BOOL                    BfGraphicObject::SwapIn() { return GraphicObject::SwapIn(); }
     BOOL                    BfGraphicObject::SwapIn( SvStream* pIStm ) { return GraphicObject::SwapIn( pIStm ); }
 }//end of namespace binfilter

@@ -247,10 +247,6 @@ public:
                                         return nId && nId <= SFX_WHICH_MAX; }
     static int                      IsSlot(USHORT nId) {
                                         return nId && nId > SFX_WHICH_MAX; }
-
-    static const SfxItemPool*       GetStoringPool();
-    static void                     SetStoringPool( const SfxItemPool * );
-
 private:
     const SfxItemPool&              operator=(const SfxItemPool &);   // n.i.!!
 };

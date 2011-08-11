@@ -46,46 +46,6 @@ namespace binfilter
 
 DBG_NAME(SfxItemPool)
 
-//========================================================================
-
-void SfxItemPool::SetStoringPool( const SfxItemPool *pStoringPool )
-
-/*  [Beschreibung]
-
-    Diese Methode setzt den <SfxItemPool>, der gerade gespeichert wird.
-    Sie sollte nur in Notf"allen verwendet werden, um z.B. File-Format-
-    Kompatibilit"at zu gew"ahrleisten o."o. - z.B. in der "uberladung eines
-    <SfxPoolItem::Store()> zus"atzliche Daten aus dem dazuge"horigen
-    Pool mit <SfxItemPool::GetStoringPool()> zu besorgen.
-
-    Sie wird von <SfxItemPool::Store()> bedient, kann jedoch f"ur nicht
-    poolable Items auch direkt gerufen werden. Bitte m"oglichst nicht
-    f"ur jedes Item einzeln, da 2 Calls!
-*/
-
-{
-    ImpSvtData::GetSvtData().pStoringPool = pStoringPool;
-}
-
-//-------------------------------------------------------------------------
-
-const SfxItemPool* SfxItemPool::GetStoringPool()
-
-/*  [Beschreibung]
-
-    Diese Methode liefert den <SfxItemPool>, der gerade gespeichert wird.
-    Sie sollte nur in Notf"allen verwendet werden, um z.B. File-Format-
-    Kompatibilit"at zu gew"ahrleisten o."o. - z.B. in der "uberladung eines
-    <SfxPoolItem::Store()> zus"atzliche Daten aus dem dazuge"horigen
-    Pool zu besorgen.
-*/
-
-{
-    return ImpSvtData::GetSvtData().pStoringPool;
-}
-
-//-------------------------------------------------------------------------
-
 void SfxItemPool::LoadCompleted()
 
 /*  [Beschreibung]
