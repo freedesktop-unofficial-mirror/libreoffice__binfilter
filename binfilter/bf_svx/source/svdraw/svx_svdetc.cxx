@@ -181,17 +181,6 @@ namespace binfilter {
 /*N*/     return 0;
 /*N*/ }
 
-
-
-/*N*/ void ContainerSorter::DoSort(ULONG a, ULONG b) const
-/*N*/ {
-/*N*/   ULONG nAnz=rCont.Count();
-/*N*/   if (b>nAnz) b=nAnz;
-/*N*/   if (b>0) b--;
-/*N*/   if (a<b) ImpSubSort(a,b);
-/*N*/ }
-
-
 /*?*/ void ContainerSorter::ImpSubSort(long nL, long nR) const
 /*?*/ {
 /*?*/   long i,j;

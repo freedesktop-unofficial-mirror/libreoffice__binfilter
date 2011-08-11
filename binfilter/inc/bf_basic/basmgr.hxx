@@ -205,10 +205,6 @@ public:
     void            SetLibraryContainerInfo( LibraryContainerInfo* pInfo );
 
     BOOL            RemoveLib( USHORT nLib, BOOL bDelBasicFromStorage );
-
-    BOOL            HasErrors();
-    void            ClearErrors();
-
 private:
     BOOL            IsReference( USHORT nLib );
 

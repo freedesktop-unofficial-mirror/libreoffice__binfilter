@@ -272,7 +272,6 @@ class ScTokenArray
 
     ScToken*                Add( ScToken* );
     void                    ImportRecalcMode40( ScRecalcMode40 );
-    ScRecalcMode40          ExportRecalcMode40() const;
     inline  void            SetCombinedBitsRecalcMode( ScRecalcMode nBits )
                             { nMode |= (nBits & ~RECALCMODE_EMASK); }
     inline  ScRecalcMode    GetCombinedBitsRecalcMode() const

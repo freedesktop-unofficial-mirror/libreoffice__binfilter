@@ -347,11 +347,6 @@ namespace binfilter {
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ const char *GetPrepName( const PrepareHint )
-/*N*/ {
-/*N*/   return 0;
-/*N*/ }
-
 /*N*/ const char *GetLangName( const MSHORT )
 /*N*/ {
 /*N*/   return 0;
@@ -430,41 +425,6 @@ namespace binfilter {
 /*N*/ #else
 /*N*/   return 0;
 /*N*/ #endif
-/*N*/ }
-
-/*N*/ CONSTCHAR( pPREP_CLEAR, "CLEAR" );
-/*N*/ CONSTCHAR( pPREP_WIDOWS_ORPHANS, "WIDOWS_ORPHANS" );
-/*N*/ CONSTCHAR( pPREP_FIXSIZE_CHG, "FIXSIZE_CHG" );
-/*N*/ CONSTCHAR( pPREP_FOLLOW_FOLLOWS, "FOLLOW_FOLLOWS" );
-/*N*/ CONSTCHAR( pPREP_ADJUST_FRM, "ADJUST_FRM" );
-/*N*/ CONSTCHAR( pPREP_FREE_SPACE, "FREE_SPACE" );
-/*N*/ CONSTCHAR( pPREP_FLY_CHGD, "FLY_CHGD" );
-/*N*/ CONSTCHAR( pPREP_FLY_ATTR_CHG, "FLY_ATTR_CHG" );
-/*N*/ CONSTCHAR( pPREP_FLY_ARRIVE, "FLY_ARRIVE" );
-/*N*/ CONSTCHAR( pPREP_FLY_LEAVE, "FLY_LEAVE" );
-/*N*/ CONSTCHAR( pPREP_VIEWOPT, "VIEWOPT" );
-/*N*/ CONSTCHAR( pPREP_FTN, "FTN" );
-/*N*/ CONSTCHAR( pPREP_POS_CHGD, "POS" );
-/*N*/ CONSTCHAR( pPREP_UL_SPACE, "UL_SPACE" );
-/*N*/ CONSTCHAR( pPREP_MUST_FIT, "MUST_FIT" );
-/*N*/ CONSTCHAR( pPREP_WIDOWS, "ORPHANS" );
-/*N*/ CONSTCHAR( pPREP_QUOVADIS, "QUOVADIS" );
-/*N*/ CONSTCHAR( pPREP_PAGE, "PAGE" );
-
-/*N*/ const char *GetPrepName( const PrepareHint ePrep )
-/*N*/ {
-/*N*/   // Kurz und schmerzlos:
-/*N*/   const char *ppNameArr[PREP_END] =
-/*N*/   {
-/*N*/       pPREP_CLEAR, pPREP_WIDOWS_ORPHANS, pPREP_FIXSIZE_CHG,
-/*N*/       pPREP_FOLLOW_FOLLOWS, pPREP_ADJUST_FRM, pPREP_FREE_SPACE,
-/*N*/       pPREP_FLY_CHGD, pPREP_FLY_ATTR_CHG, pPREP_FLY_ARRIVE,
-/*N*/       pPREP_FLY_LEAVE, pPREP_VIEWOPT, pPREP_FTN, pPREP_POS_CHGD,
-/*N*/       pPREP_UL_SPACE, pPREP_MUST_FIT, pPREP_WIDOWS, pPREP_QUOVADIS,
-/*N*/       pPREP_PAGE
-/*N*/   };
-/*N*/   OSL_ENSURE( ePrep < PREP_END, "GetPrepName: unknown PrepareHint" );
-/*N*/   return( ppNameArr[ePrep] );
 /*N*/ }
 
 /*N*/ #ifdef USED

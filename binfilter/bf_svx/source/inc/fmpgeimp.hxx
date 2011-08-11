@@ -105,7 +105,6 @@ protected:
     void WriteData(SvStream& ) const {}
     void ReadData(const SdrIOHeader& rHead, SvStream& rIn); //
 
-    void write(const ::com::sun::star::uno::Reference< ::com::sun::star::io::XObjectOutputStream>& OutStream) const;
     void read(const ::com::sun::star::uno::Reference< ::com::sun::star::io::XObjectInputStream>& InStream);
 
     const ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameContainer>& getForms() {return xForms;}

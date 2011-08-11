@@ -76,7 +76,6 @@ public:
                    sal_Bool bShowProgress = TRUE );
 
     sal_Int32 Import();
-    sal_Bool Export();
 };
 
 } //namespace binfilter

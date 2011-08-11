@@ -84,17 +84,6 @@ private:
         ::com::sun::star::uno::Reference<
             ::com::sun::star::beans::XPropertySet > & rPropSet,
         const sal_Char* pComponentName );
-    sal_Bool WriteThroughComponent(
-        SvStorage* pStorage,
-        ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent >
-            xComponent,
-        const sal_Char* pStreamName,
-        ::com::sun::star::uno::Reference<
-            ::com::sun::star::lang::XMultiServiceFactory > & rFactory,
-        ::com::sun::star::uno::Reference<
-            ::com::sun::star::beans::XPropertySet > & rPropSet,
-        const sal_Char* pComponentName,
-        sal_Bool bCompress=sal_True );
 };
 
 

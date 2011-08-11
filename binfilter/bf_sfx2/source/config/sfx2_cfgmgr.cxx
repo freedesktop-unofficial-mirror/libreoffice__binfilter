@@ -470,10 +470,6 @@ static const char pStorageName[] = "Configurations";
          return bRet;
 /*N*/ }
 
-/*?*/ USHORT SfxConfigManagerImExport_Impl::Export( SotStorage* /*pStor*/, SotStorage* /*pOut*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
-
 /*N*/ String SfxConfigManagerImExport_Impl::GetStreamName( USHORT nType )
 /*N*/ {
 /*N*/         if ( 11 == nType )

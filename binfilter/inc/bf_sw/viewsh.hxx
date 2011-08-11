@@ -137,9 +137,6 @@ class ViewShell : public Ring
 
                                 //Device (etwa beim Browsen)
 
-    //Initialisierung, wird von den verschiedenen Konstruktoren gerufen.
-    void Init( const SwViewOption *pNewOpt );
-
     inline void ResetInvalidRect();
 
 

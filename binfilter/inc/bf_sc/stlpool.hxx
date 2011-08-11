@@ -56,9 +56,6 @@ public:
     void                CreateStandardStyles();
     void                UpdateStdNames();
 
-
-
-    void                SetForceStdName( const String* pSet );
     const String*       GetForceStdName() const { return pForceStdName; }
 
     virtual SfxStyleSheetBase& Make( const String&, SfxStyleFamily eFam,

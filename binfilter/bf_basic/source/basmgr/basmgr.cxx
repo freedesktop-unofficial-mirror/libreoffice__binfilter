@@ -378,27 +378,7 @@ public:
     void        InsertError( const BasicError& rError );
 
     BOOL        HasErrors()         { return !aErrorList.empty(); }
-    BasicError* GetFirstError();
-    BasicError* GetNextError();
 };
-
-BasicError* BasicErrorManager::GetFirstError()
-{
-    CurrentError = 0;
-    if ( aErrorList.empty() )
-        return NULL;
-    return aErrorList[ 0 ];
-}
-
-BasicError* BasicErrorManager::GetNextError()
-{
-    if (  aErrorList.empty()
-       || CurrentError + 1 >= aErrorList.size()
-       )
-        return NULL;
-    CurrentError++;
-    return aErrorList[ CurrentError ];
-}
 
 BasicErrorManager::~BasicErrorManager()
 {
@@ -1647,18 +1627,6 @@ BasicLibInfo* BasicManager::FindLibInfo( StarBASIC* pBasic ) const
         pInf = ((BasicManager*)this)->pLibs->Next();
     }
     return 0;
-}
-
-BOOL BasicManager::HasErrors()
-{
-    DBG_CHKTHIS( BasicManager, 0 );
-    return pErrorMgr->HasErrors();
-}
-
-void BasicManager::ClearErrors()
-{
-    DBG_CHKTHIS( BasicManager, 0 );
-    pErrorMgr->Reset();
 }
 
 //=====================================================================

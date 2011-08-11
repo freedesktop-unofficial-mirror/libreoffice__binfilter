@@ -155,7 +155,6 @@ private:
 #endif // __PRIVATE
 public:
     ContainerSorter(Container& rNewCont): rCont(rNewCont) {}
-    void DoSort(ULONG a=0, ULONG b=0xFFFFFFFF) const;
 #ifdef This_Is_Just_For_A_Comment
     Compare() muss returnieren:
       -1 falls *pElem1<*pElem2

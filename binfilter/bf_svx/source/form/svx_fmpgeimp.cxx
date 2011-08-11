@@ -165,41 +165,6 @@ using namespace ::binfilter::svxform;
 /*N*/ }
 
 //------------------------------------------------------------------------------
-/*N*/ void FmFormPageImpl::write(const Reference< ::com::sun::star::io::XObjectOutputStream > & xOutStrm) const
-/*N*/ {
-/*N*/     Reference< ::com::sun::star::io::XMarkableStream >  xMarkStrm(xOutStrm, UNO_QUERY);
-/*N*/     if (!xMarkStrm.is())
-/*N*/         return; // exception
-/*N*/
-/*N*/     //  sortieren der objectlist nach der Reihenfolge
-/*N*/     FmObjectList aList;
-/*N*/     fillList(aList, *pPage, sal_True);
-/*N*/
-/*N*/     // schreiben aller forms
-/*N*/     Reference< ::com::sun::star::io::XPersistObject >  xAsPersist(xForms, UNO_QUERY);
-/*N*/     if (xAsPersist.is())
-/*N*/         xAsPersist->write(xOutStrm);
-/*N*/         // don't use the writeObject of the stream, as this wouldn't be compatible with older documents
-/*N*/
-/*N*/     // objectliste einfuegen
-/*N*/     sal_Int32 nLength = aList.size();
-/*N*/
-/*N*/     // schreiben der laenge
-/*N*/     xOutStrm->writeLong(nLength);
-/*N*/
-/*N*/     for (sal_Int32 i = 0; i < nLength; i++)
-/*N*/     {
-/*N*/         // schreiben des Objects mit Marke
-/*N*/         // Marke um an den Anfang zu springen
-/*N*/         Reference< ::com::sun::star::io::XPersistObject >  xObj(aList[ i ]->GetUnoControlModel(), UNO_QUERY);
-/*N*/         if (xObj.is())
-/*N*/         {
-/*N*/             xOutStrm->writeObject(xObj);
-/*N*/         }
-/*N*/     }
-/*N*/ }
-
-//------------------------------------------------------------------------------
 /*N*/ void FmFormPageImpl::read(const Reference< ::com::sun::star::io::XObjectInputStream > & xInStrm)
 /*N*/ {
 /*N*/     Reference< ::com::sun::star::io::XMarkableStream >  xMarkStrm(xInStrm, UNO_QUERY);

@@ -77,7 +77,6 @@ public:
                     {}
 
     USHORT          Import( SotStorage* pIn, SotStorage* pStor );
-    USHORT          Export( SotStorage* pStor, SotStorage* pOut );
 
     static String   GetStreamName( USHORT nType );
     static USHORT   GetType( const String& rStreamName );

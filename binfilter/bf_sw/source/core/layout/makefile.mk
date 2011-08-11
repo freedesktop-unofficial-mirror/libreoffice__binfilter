@@ -80,7 +80,6 @@ CXXFILES = \
         sw_newfrm.cxx \
         sw_pagechg.cxx \
         sw_pagedesc.cxx \
-        sw_pageiter.cxx \
         sw_paintfrm.cxx \
         sw_sectfrm.cxx \
         sw_ssfrm.cxx \
@@ -111,7 +110,6 @@ SLOFILES =  \
         $(SLO)$/sw_newfrm.obj \
         $(SLO)$/sw_pagechg.obj \
         $(SLO)$/sw_pagedesc.obj \
-        $(SLO)$/sw_pageiter.obj \
         $(SLO)$/sw_paintfrm.obj \
         $(SLO)$/sw_sectfrm.obj \
         $(SLO)$/sw_ssfrm.obj \

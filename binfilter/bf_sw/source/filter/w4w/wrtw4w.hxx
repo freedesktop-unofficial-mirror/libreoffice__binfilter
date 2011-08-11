@@ -47,16 +47,11 @@ class SwFmt;
 class SwFrmFmt;
 class SwGrfNode;
 class SwPageDesc;
-class SwPageIter;
-class SwPosFlyFrms;
 class SwTable;
 class SwTableLine;
 class SwTableNode;
 class SwTxtFmtColl;
 struct SwPosition;
-
-//extern SwAttrFnTab aW4WAttrFnTab;
-//extern SwNodeFnTab aW4WNodeFnTab;
 
 #define cW4W_BEGICF     '\x1b'
 #define cW4W_LED        '\x1d'

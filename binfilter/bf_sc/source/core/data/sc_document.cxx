@@ -2718,27 +2718,11 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return nCellCount;
 /*N*/ }
 
-
-/*N*/ long ScDocument::GetWeightedCount() const
-/*N*/ {
-/*N*/   long nCellCount = 0L;
-/*N*/
-/*N*/   for ( USHORT nTab=0; nTab<=MAXTAB; nTab++ )
-/*N*/       if ( pTab[nTab] )
-/*N*/           nCellCount += pTab[nTab]->GetWeightedCount();
-/*N*/
-/*N*/   return nCellCount;
-/*N*/ }
-
-
-
-
 /*N*/ void ScDocument::SetPageStyle( USHORT nTab, const String& rName )
 /*N*/ {
 /*N*/   if ( nTab <= MAXTAB && pTab[nTab] )
 /*N*/       pTab[nTab]->SetPageStyle( rName );
 /*N*/ }
-
 
 /*N*/ const String& ScDocument::GetPageStyle( USHORT nTab ) const
 /*N*/ {

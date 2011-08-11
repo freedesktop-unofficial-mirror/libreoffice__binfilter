@@ -153,12 +153,8 @@ class SwViewImp
     void StartAction();         //Henkel Anzeigen und verstecken.
     void EndAction();           //gerufen von ViewShell::ImplXXXAction
 
-#ifdef ACCESSIBLE_LAYOUT
-#endif
-
 public:
     ~SwViewImp();
-    void Init( const SwViewOption * );          //nur fuer ViewShell::Init()
 
     const ViewShell *GetShell() const { return pSh; }
           ViewShell *GetShell()       { return pSh; }

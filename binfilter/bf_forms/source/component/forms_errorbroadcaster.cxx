@@ -72,12 +72,6 @@ namespace frm
     }
 
     //------------------------------------------------------------------------------
-    void SAL_CALL OErrorBroadcaster::onError( const SQLException& /*_rException*/, const ::rtl::OUString& /*_rContextDescription*/ )
-    {
-        OSL_FAIL( "OErrorBroadcaster::onError: dead code!" );
-    }
-
-    //------------------------------------------------------------------------------
     void SAL_CALL OErrorBroadcaster::onError( const ::com::sun::star::sdb::SQLErrorEvent& _rError )
     {
         if ( m_aErrorListeners.getLength() )

@@ -69,11 +69,6 @@
 #include <wrong.hxx>        // SwWrongList
 #include <lineinfo.hxx>
 
-#if OSL_DEBUG_LEVEL > 1
-namespace binfilter {
-extern const sal_Char *GetPrepName( const enum PrepareHint ePrep );
-}
-#endif
 namespace binfilter {
 /*N*/ TYPEINIT1( SwTxtFrm, SwCntntFrm );
 

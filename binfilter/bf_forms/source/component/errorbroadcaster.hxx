@@ -58,7 +58,6 @@ namespace frm
 
         void SAL_CALL disposing();
 
-        void SAL_CALL onError( const ::com::sun::star::sdbc::SQLException& _rException, const ::rtl::OUString& _rContextDescription );
         void SAL_CALL onError( const ::com::sun::star::sdb::SQLErrorEvent& _rException );
 
     protected:

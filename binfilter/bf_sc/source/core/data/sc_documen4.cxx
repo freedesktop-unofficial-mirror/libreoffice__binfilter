@@ -438,29 +438,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ScDocument::SetConditionalUsed( ULONG nKey ) // aus dem Speichern der Tabellen
-/*N*/ {
-/*N*/   if ( nKey && pCondFormList )        // nKey==0 -> noop
-/*N*/   {
-/*N*/       ScConditionalFormat* pForm = pCondFormList->GetFormat( nKey );
-/*N*/       if (pForm)
-/*N*/           pForm->SetUsed(TRUE);
-/*N*/   }
-/*N*/ }
-
-/*N*/ void ScDocument::SetValidationUsed( ULONG nKey )  // aus dem Speichern der Tabellen
-/*N*/ {
-/*N*/   if ( nKey && pValidationList )      // nKey==0 -> noop
-/*N*/   {
-/*N*/       ScValidationData* pData = pValidationList->GetData( nKey );
-/*N*/       if (pData)
-/*N*/           pData->SetUsed(TRUE);
-/*N*/   }
-/*N*/ }
-
-
 //------------------------------------------------------------------------
-
 
 /*N*/ void ScDocument::AddDetectiveOperation( const ScDetOpData& rData )
 /*N*/ {

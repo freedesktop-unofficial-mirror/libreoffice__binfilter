@@ -720,69 +720,6 @@ sal_Bool SmXMLWrapper::WriteThroughComponent(
     return pFilter ? pFilter->GetSuccess() : sal_True;
 }
 
-/// export through an XML exporter component (storage version)
-sal_Bool SmXMLWrapper::WriteThroughComponent(
-    SvStorage* pStorage,
-    Reference<XComponent> xComponent,
-    const sal_Char* pStreamName,
-    Reference<lang::XMultiServiceFactory> & rFactory,
-    Reference<beans::XPropertySet> & rPropSet,
-    const sal_Char* pComponentName,
-    sal_Bool bCompress
-    )
-{
-    DBG_ASSERT(NULL != pStorage, "Need storage!");
-    DBG_ASSERT(NULL != pStreamName, "Need stream name!");
-
-    Reference< io::XOutputStream > xOutputStream;
-    SvStorageStreamRef xDocStream;
-
-    // open stream
-    OUString sStreamName = OUString::createFromAscii(pStreamName);
-    xDocStream = pStorage->OpenStream( sStreamName,
-                                       STREAM_WRITE | STREAM_SHARE_DENYWRITE );
-    DBG_ASSERT(xDocStream.Is(), "Can't create output stream in package!");
-    if (! xDocStream.Is())
-        return sal_False;
-
-    xDocStream->SetSize( 0 );
-
-    String aPropName( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM("MediaType") ) );
-    OUString aMime( RTL_CONSTASCII_USTRINGPARAM("text/xml") );
-    uno::Any aAny;
-    aAny <<= aMime;
-    xDocStream->SetProperty( aPropName, aAny );
-
-    if( !bCompress )
-    {
-        aPropName = String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM("Compressed") );
-        sal_Bool bFalse = sal_False;
-        aAny.setValue( &bFalse, ::getBooleanCppuType() );
-        xDocStream->SetProperty( aPropName, aAny );
-    }
-    else
-    {
-        OUString aLclPropName( RTL_CONSTASCII_USTRINGPARAM("Encrypted") );
-        sal_Bool bTrue = sal_True;
-        aAny.setValue( &bTrue, ::getBooleanCppuType() );
-        xDocStream->SetProperty( aLclPropName, aAny );
-    }
-
-    // set buffer and create outputstream
-    xDocStream->SetBufferSize( 16*1024 );
-    xOutputStream = new ::utl::OOutputStreamWrapper( *xDocStream );
-
-    // write the stuff
-    sal_Bool bRet = WriteThroughComponent( xOutputStream, xComponent, rFactory,
-        rPropSet, pComponentName );
-
-    // finally, commit stream.
-    if( bRet )
-        xDocStream->Commit();
-
-    return bRet;
-}
-
 sal_uInt32 SmXMLExport::exportDoc(enum XMLTokenEnum eClass)
 {
     if( (getExportFlags() & EXPORT_CONTENT) == 0 )

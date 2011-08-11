@@ -96,13 +96,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ void ScStyleSheetPool::SetForceStdName( const String* pSet )
-/*N*/ {
-/*N*/   pForceStdName = pSet;
-/*N*/ }
-
-//------------------------------------------------------------------------
-
 /*N*/ SfxStyleSheetBase& ScStyleSheetPool::Make( const String& rName,
 /*N*/                           SfxStyleFamily eFam, USHORT mask, USHORT nPos )
 /*N*/ {

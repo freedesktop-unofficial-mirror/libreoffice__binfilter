@@ -1224,26 +1224,6 @@ USHORT lcl_ScRawTokenOffset()
 /*N*/   }
 /*N*/ }
 
-
-/*N*/ ScRecalcMode40 ScTokenArray::ExportRecalcMode40() const
-/*N*/ {
-/*N*/   //! Reihenfolge ist wichtig
-/*N*/   if ( nMode & RECALCMODE_ALWAYS )
-/*N*/       return RC_ALWAYS;
-/*N*/   if ( nMode & RECALCMODE_ONLOAD )
-/*N*/       return RC_ONLOAD;
-/*N*/   if ( nMode & RECALCMODE_FORCED )
-/*N*/       return RC_FORCED;
-/*N*/   if ( nMode & RECALCMODE_ONREFMOVE )
-/*N*/       return RC_ONREFMOVE;
-/*N*/   // kommt eigentlich nicht vor weil in Calc bereits umgesetzt,
-/*N*/   // und woanders gibt es keinen 4.0-Export, deswegen als letztes
-/*N*/   if ( nMode & RECALCMODE_ONLOAD_ONCE )
-/*N*/       return RC_ONLOAD_ONCE;
-/*N*/   return RC_NORMAL;
-/*N*/ }
-
-
 /*N*/ void ScTokenArray::AddRecalcMode( ScRecalcMode nBits )
 /*N*/ {
 /*N*/   //! Reihenfolge ist wichtig

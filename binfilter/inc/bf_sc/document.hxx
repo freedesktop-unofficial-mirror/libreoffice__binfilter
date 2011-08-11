@@ -445,7 +445,6 @@ private:
 
 public:
     long            GetCellCount() const;       // alle Zellen
-    long            GetWeightedCount() const;   // Formeln und Edit staerker gewichtet
     DECL_LINK( GetUserDefinedColor, USHORT * );
                                                                 // Numberformatter
 
@@ -866,10 +865,8 @@ public:
     void            FindConditionalFormat( ULONG nKey, ScRangeList& rRanges );
     void            FindConditionalFormat( ULONG nKey, ScRangeList& rRanges, USHORT nTab );
     void            ConditionalChanged( ULONG nKey );
-    void            SetConditionalUsed( ULONG nKey );       // beim Speichern
 
     ULONG           AddValidationEntry( const ScValidationData& rNew );
-    void            SetValidationUsed( ULONG nKey );        // beim Speichern
 
     const ScValidationData* GetValidationEntry( ULONG nIndex ) const;
 
