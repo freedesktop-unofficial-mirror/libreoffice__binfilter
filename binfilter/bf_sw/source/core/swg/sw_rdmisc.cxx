@@ -48,7 +48,6 @@
 #include <rdswg.hxx>
 #include <swgpar.hxx>       // SWGRD_xxx-Flags
 #include <frmids.hxx>
-#include <flypos.hxx>
 #include <ndtxt.hxx>        // Zeichen-Konversion
 namespace binfilter {
 

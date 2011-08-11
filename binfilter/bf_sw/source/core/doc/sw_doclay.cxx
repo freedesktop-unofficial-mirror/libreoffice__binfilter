@@ -718,44 +718,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 
 /*************************************************************************
 |*
-|*  SwDoc::GetAllFlyFmts
-|*
-|*************************************************************************/
-
-/* ---------------------------------------------------------------------------
-    paragraph frames - o.k. if the PaM includes the paragraph from the beginning
-                       to the beginning of the next paragraph at least
-    frames at character - o.k. if the pam start at least at the same position
-                         as the frame
- ---------------------------------------------------------------------------*/
-
-
-/*N*/ void SwDoc::GetAllFlyFmts( SwPosFlyFrms& /*rPosFlyFmts*/,
-/*N*/                          const SwPaM* /*pCmpRange*/, sal_Bool /*bDrawAlso*/ ) const
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*************************************************************************
-|*
-|*  SwDoc::InsertLabel()
-|*
-|*************************************************************************/
-
-/* #i6447# changed behaviour if lcl_CpyAttr:
-
-   If the old item set contains the item to set (no inheritance) copy the item
-   into the new set.
-
-   If the old item set contains the item by inheritance and the new set
-   contains the item, too:
-      If the two items differ copy the item from the old set to the new set.
-
-   Otherwise the new set will not be changed.
-*/
-
-/*************************************************************************
-|*
 |*  SwDoc::DoIdleJobs()
 |*
 |*************************************************************************/

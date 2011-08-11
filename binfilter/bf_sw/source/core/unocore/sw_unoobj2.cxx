@@ -101,7 +101,6 @@
 #include <bf_svx/unolingu.hxx>
 #include <bf_svtools/ctrltool.hxx>
 #include <bf_svtools/eitem.hxx>
-#include <flypos.hxx>
 #include <txtftn.hxx>
 #include <section.hxx>
 #include <fmtftn.hxx>
@@ -1992,17 +1991,6 @@ SwXParaFrameEnumeration::SwXParaFrameEnumeration(const SwUnoCrsr& rUnoCrsr,
     {
         if(PARAFRAME_PORTION_TEXTRANGE == nParaFrameMode)
         {
-            SwPosFlyFrms aFlyFrms;
-            //get all frames that are bound at paragraph or at character
-            pDoc->GetAllFlyFmts(aFlyFrms, pUnoCrsr);//, bDraw);
-            for(USHORT i = 0; i < aFlyFrms.Count(); i++)
-            {
-                SwPosFlyFrm* pPosFly = aFlyFrms[i];
-                SwFrmFmt* pFrmFmt = (SwFrmFmt*)&pPosFly->GetFmt();
-                //jetzt einen SwDepend anlegen und in das Array einfuegen
-                SwDepend* pNewDepend = new SwDepend(this, pFrmFmt);
-                aFrameArr.C40_INSERT(SwDepend, pNewDepend, aFrameArr.Count());
-            }
             //created from any text range
             if(pUnoCrsr->HasMark())
             {

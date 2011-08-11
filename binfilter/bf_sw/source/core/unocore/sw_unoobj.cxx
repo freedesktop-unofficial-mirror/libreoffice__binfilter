@@ -101,7 +101,6 @@
 #include <bf_svx/flstitem.hxx>
 #include <bf_svtools/ctrltool.hxx>
 #include <bf_svtools/eitem.hxx>
-#include <flypos.hxx>
 #include <txtftn.hxx>
 #include <section.hxx>
 #include <fmtftn.hxx>

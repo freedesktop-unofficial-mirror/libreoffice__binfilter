@@ -59,7 +59,6 @@
 #include "cntfrm.hxx"
 #include "pam.hxx"
 #include "section.hxx"
-#include "flypos.hxx"
 #include "sw3imp.hxx"
 #include "poolfmt.hxx"
 #include "dcontact.hxx"
@@ -700,50 +699,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/   bInsIntoHdrFtr = bInsIntoHdrFtrSave;
 /*N*/ }
 
-// Freigabe der gesammelten FlyFrame-Infos nach dem Schreiben
-
-/*N*/ void Sw3IoImp::FreeFlyFrms()
-/*N*/ {
-/*N*/   if( pFlyFrms )
-/*N*/   {
-/*N*/       for( USHORT i = 0; i < pFlyFrms->Count(); i++ )
-/*N*/           delete (*pFlyFrms)[ i ];
-/*N*/       delete pFlyFrms;
-/*N*/       pFlyFrms = NULL;
-/*N*/   }
-/*N*/ }
-
-// Suchen eines absatzgebundenen Flys. Wenn gefunden, wird der Fly
-// zurueckgeliefert und das Element aus dem Array entfernt.
-
-/*N*/ SwFmt* Sw3IoImp::FindFlyFrm( ULONG nNodeId )
-/*N*/ {
-/*N*/   SwFmt* pFmt = NULL;
-/*N*/   if( pFlyFrms )
-/*N*/   {
-/*N*/       for( USHORT i = 0; i < pFlyFrms->Count(); i++ )
-/*N*/       {
-/*N*/           ULONG nId = (*pFlyFrms)[ i ]->GetNdIndex().GetIndex();
-/*N*/           if( nNodeId == nId )
-/*N*/           {
-/*N*/               pFmt = (SwFmt*) &(*pFlyFrms)[ i ]->GetFmt();
-/*N*/               pFlyFrms->DeleteAndDestroy( i );
-/*N*/               break;
-/*N*/           }
-/*N*/           if( nId > nNodeId )
-/*N*/               break;
-/*N*/       }
-/*N*/   }
-/*N*/   return pFmt;
-/*N*/ }
-
 ////////////////////////////////////////////////////////////////////////////
 
-
-
-
 }
-
-
-
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

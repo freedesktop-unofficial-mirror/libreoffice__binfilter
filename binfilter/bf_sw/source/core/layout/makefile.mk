@@ -70,7 +70,6 @@ CXXFILES = \
         sw_flycnt.cxx \
         sw_flyincnt.cxx \
         sw_flylay.cxx \
-        sw_flypos.cxx \
         sw_frmtool.cxx \
         sw_ftnfrm.cxx \
         sw_hffrm.cxx \
@@ -100,7 +99,6 @@ SLOFILES =  \
         $(SLO)$/sw_flycnt.obj \
         $(SLO)$/sw_flyincnt.obj \
         $(SLO)$/sw_flylay.obj \
-        $(SLO)$/sw_flypos.obj \
         $(SLO)$/sw_frmtool.obj \
         $(SLO)$/sw_ftnfrm.obj \
         $(SLO)$/sw_hffrm.obj \

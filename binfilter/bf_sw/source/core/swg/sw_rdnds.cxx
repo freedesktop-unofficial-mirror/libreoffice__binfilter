@@ -56,7 +56,6 @@
 #include <ndgrf.hxx>
 #include <ndole.hxx>
 #include <frmatr.hxx>
-#include <flypos.hxx>
 #include <bookmrk.hxx>
 #include <swgpar.hxx>
 #include <swerror.h>

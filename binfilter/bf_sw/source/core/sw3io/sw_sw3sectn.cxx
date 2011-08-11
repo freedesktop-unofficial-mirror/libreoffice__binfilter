@@ -52,7 +52,6 @@
 #include <section.hxx>
 #include <ndtxt.hxx>
 #include <ndnotxt.hxx>
-#include <flypos.hxx>
 #include <swerror.h>
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {

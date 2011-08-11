@@ -169,7 +169,6 @@ public:
 /*N*/   bSw31Export =
 /*N*/   bOrganizer  =
 /*N*/   bInsIntoHdrFtr = sal_False;
-/*N*/   pFlyFrms    = NULL;
 /*N*/   pExportInfo = NULL;
 /*N*/   pCrypter    = NULL;
 /*N*/   pTOXs       = NULL;
@@ -235,7 +234,6 @@ public:
 /*N*/   pBlkList    = NULL;
 /*N*/   bInsIntoHdrFtr = sal_False;
 /*N*/   bSw31Export = sal_False;
-/*N*/   FreeFlyFrms();
 /*N*/   aBlkName.Erase();
 /*N*/   pStrm = 0;  // wg. Assert in IsSw.*Export
 /*N*/   Reset2();

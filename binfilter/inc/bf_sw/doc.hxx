@@ -144,7 +144,6 @@ class SwNodeRange;
 class SwNumRule;
 class SwNumRuleTbl;
 class SwPageDesc;
-class SwPosFlyFrms;
 class SwPagePreViewPrtData;
 class SwRedline;
 class SwRedlineTbl;
@@ -601,14 +600,6 @@ public:
         @return sal_Int8, invisible layer ID corresponding to given layer ID
     */
     SdrLayerID GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLayerId );
-
-    // liefert zu allen fliegenden Rahmen die Position im Dokument.
-    // Wird ein Pam-Pointer uebergeben, muessen die absatzgebundenen
-    // FlyFrames von der ::com::sun::star::awt::Selection vollstaendig umschlossen sein
-    // ( Start < Pos < End ) !!!
-    // (wird fuer die Writer benoetigt)
-    void GetAllFlyFmts( SwPosFlyFrms& rPosFlyFmts, const SwPaM* = 0,
-                        sal_Bool bDrawAlso = sal_False ) const;
 
         // dokumentglobale Macros
   void SetGlobalMacro(sal_uInt16 nEvent, const SvxMacro&);

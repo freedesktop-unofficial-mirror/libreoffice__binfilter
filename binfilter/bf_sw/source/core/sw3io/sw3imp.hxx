@@ -86,7 +86,6 @@ class SwOLENode;
 class SwPaM;
 class SwPageDesc;
 class SwPageFtnInfo;
-class SwPosFlyFrms;
 class SwRedline;
 class SwSectionNode;
 class SwStartNode;
@@ -396,7 +395,6 @@ public:
     SwNumRule*         pCurNumRule; // aktuelle Numerierungsregel
     SwPaM*             pCurNumRange;// aktueller Numerierungsbereich
     SwPaM*             pCurPaM;     // aktueller PaM
-    SwPosFlyFrms*      pFlyFrms;    // alle absatzgebundenen FlyFrames
     Sw3TOXs*           pTOXs;       // I: Liste aller TOX-Bereiche
     Sw3Bookmarks*      pBookmarks;  // I: Liste aller Bookmarks
     Sw3Redlines*       pRedlines;   // I: Liste alle Bookmarks
@@ -599,8 +597,6 @@ public:
     SwFmt* FindNamedFmt( USHORT nIdx, BYTE);// Suchen einer Formatvorlage
     SwTxtFmtColl* FindTxtColl( USHORT n );  // Suchen einer Absatzvorlage
     SwPageDesc* FindPageDesc( USHORT nIdx );// Suchen einer Seitenvorlage
-    void   FreeFlyFrms();                   // nach Ausgabe. Infos freigeben
-    SwFmt* FindFlyFrm( ULONG nNodeId );     // O: absatzgebundenen Fly suchen
     void   InMacroTbl();                    // I: globale Makros
     void   InDictionary();                  // I: Woerterbuecher (Online-Spl.)
     void   InJobSetup();                    // I: Job Setup
