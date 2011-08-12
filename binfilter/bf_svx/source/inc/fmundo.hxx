@@ -36,14 +36,15 @@
 
 #include <cppuhelper/implbase3.hxx>
 
-
-
-
 #include "svdouno.hxx"
 
-#include <comphelper/uno3.hxx>
-FORWARD_DECLARE_INTERFACE(awt,XControl)
-FORWARD_DECLARE_INTERFACE(awt,XControlContainer)
+namespace com { namespace sun { namespace star {
+    namespace awt {
+        class XControl;
+        class XControlContainer;
+    }
+}}}
+
 namespace binfilter {
 
 class FmFormModel;

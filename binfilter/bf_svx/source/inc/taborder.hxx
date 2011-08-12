@@ -46,8 +46,12 @@
 class SdrModel;
 class ImageList;
 
-#include <comphelper/uno3.hxx>
-FORWARD_DECLARE_INTERFACE(beans,XPropertySet)
+namespace com { namespace sun { namespace star {
+    namespace beans {
+        class XPropertySet;
+    }
+}}}
+
 namespace binfilter {
 
 //========================================================================

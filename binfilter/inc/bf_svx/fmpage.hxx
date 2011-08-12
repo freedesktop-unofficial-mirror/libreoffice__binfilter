@@ -33,8 +33,12 @@
 
 #include <bf_svx/svdpage.hxx>
 
-#include <comphelper/uno3.hxx>
-FORWARD_DECLARE_INTERFACE(container,XNameContainer)
+namespace com { namespace sun { namespace star {
+    namespace container {
+        class XNameContainer;
+    }
+}}}
+
 namespace binfilter {
 
 class StarBASIC;

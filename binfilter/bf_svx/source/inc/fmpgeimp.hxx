@@ -38,10 +38,16 @@
 
 #include <vector>
 
-#include <comphelper/uno3.hxx>
-FORWARD_DECLARE_INTERFACE(io,XObjectOutputStream)
-FORWARD_DECLARE_INTERFACE(io,XObjectInputStream)
-FORWARD_DECLARE_INTERFACE(container,XIndexContainer)
+namespace com { namespace sun { namespace star {
+    namespace io {
+        class XObjectOutputStream;
+        class XObjectInputStream;
+    }
+    namespace container {
+        class XIndexContainer;
+    }
+}}}
+
 class SvStream;
 namespace binfilter {
 

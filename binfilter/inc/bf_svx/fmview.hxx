@@ -38,8 +38,15 @@
 #include <bf_svx/view3d.hxx>
 #include <comphelper/uno3.hxx>
 
-FORWARD_DECLARE_INTERFACE(util,XNumberFormats)
-FORWARD_DECLARE_INTERFACE(beans,XPropertySet)
+namespace com { namespace sun { namespace star {
+    namespace util {
+        class XNumberFormats;
+    }
+    namespace beans {
+        class XPropertySet;
+    }
+}}}
+
 class OutputDevice;
 namespace binfilter {
 class ExtOutputDevice;

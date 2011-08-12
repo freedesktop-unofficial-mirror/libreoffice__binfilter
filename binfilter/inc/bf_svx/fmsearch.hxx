@@ -48,13 +48,15 @@
 
 #include <tools/link.hxx>
 
-
-#include <comphelper/uno3.hxx>
 #include <comphelper/stl_types.hxx>
-FORWARD_DECLARE_INTERFACE(util,XNumberFormatsSupplier)
-namespace binfilter {
 
-//FORWARD_DECLARE_INTERFACE(uno,Reference)
+namespace com { namespace sun { namespace star {
+    namespace util {
+        class XNumberFormatsSupplier;
+    }
+}}}
+
+namespace binfilter {
 
 // ===================================================================================================
 // moegliche Rueckgabewerte fuer den Found-Handler

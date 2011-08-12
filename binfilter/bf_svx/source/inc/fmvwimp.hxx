@@ -42,13 +42,22 @@
 
 #include <cppuhelper/implbase1.hxx>
 #include <cppuhelper/implbase3.hxx>
-#include <comphelper/uno3.hxx>
 
 #include "svdmark.hxx"
-FORWARD_DECLARE_INTERFACE(awt,XControl)
-FORWARD_DECLARE_INTERFACE(awt,XWindow)
-FORWARD_DECLARE_INTERFACE(beans,XPropertySet)
-FORWARD_DECLARE_INTERFACE(util,XNumberFormats)
+
+namespace com { namespace sun { namespace star {
+    namespace awt {
+        class XControl;
+        class XWindow;
+    }
+    namespace beans {
+        class XPropertySet;
+    }
+    namespace util {
+        class XNumberFormats;
+    }
+}}}
+
 class Window;
 class OutputDevice;
 namespace binfilter {
