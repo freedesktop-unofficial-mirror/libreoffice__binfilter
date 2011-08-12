@@ -2211,9 +2211,9 @@ void ODatabaseForm::submit_impl(const Reference<XControl>& Control, const ::com:
                 aArgs.getArray()[0].Value <<= aReferer;
 
                 // build a sequence from the to-be-submitted string
-                ByteString a8BitData(aData.getStr(), (sal_uInt16)aData.getLength(), RTL_TEXTENCODING_MS_1252);
+                rtl::OString a8BitData(rtl::OUStringToOString(aData, RTL_TEXTENCODING_MS_1252));
                     // always ANSI #58641
-                Sequence< sal_Int8 > aPostData((sal_Int8*)a8BitData.GetBuffer(), a8BitData.Len());
+                Sequence< sal_Int8 > aPostData((const sal_Int8*)a8BitData.getStr(), a8BitData.getLength());
                 Reference< XInputStream > xPostData = new SequenceInputStream(aPostData);
 
                 aArgs.getArray()[1].Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "PostData" ));
@@ -2291,8 +2291,8 @@ void ODatabaseForm::submit_impl(const Reference<XControl>& Control, const ::com:
             aArgs.getArray()[0].Value <<= aReferer;
 
             // build a sequence from the to-be-submitted string
-            ByteString aSystemEncodedData(aData.getStr(), (sal_uInt16)aData.getLength(), osl_getThreadTextEncoding());
-            Sequence< sal_Int8 > aPostData((sal_Int8*)aSystemEncodedData.GetBuffer(), aSystemEncodedData.Len());
+            rtl::OString aSystemEncodedData(rtl::OUStringToOString(aData, osl_getThreadTextEncoding()));
+            Sequence< sal_Int8 > aPostData((const sal_Int8*)aSystemEncodedData.getStr(), aSystemEncodedData.getLength());
             Reference< XInputStream > xPostData = new SequenceInputStream(aPostData);
 
             aArgs.getArray()[1].Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "PostData" ));
