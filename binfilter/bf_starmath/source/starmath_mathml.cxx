@@ -662,64 +662,6 @@ void SmXMLImport::endDocument(void)
     SvXMLImport::endDocument();
 }
 
-/// export through an XML exporter component (output stream version)
-sal_Bool SmXMLWrapper::WriteThroughComponent(
-    Reference<io::XOutputStream> xOutputStream,
-    Reference<XComponent> xComponent,
-    Reference<lang::XMultiServiceFactory> & rFactory,
-    Reference<beans::XPropertySet> & rPropSet,
-    const sal_Char* pComponentName
-    )
-{
-    DBG_ASSERT(xOutputStream.is(), "I really need an output stream!");
-    DBG_ASSERT(xComponent.is(), "Need component!");
-    DBG_ASSERT(NULL != pComponentName, "Need component name!");
-
-    // get component
-    Reference< io::XActiveDataSource > xSaxWriter(
-        rFactory->createInstance(
-            OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.sax.Writer" )) ),
-        UNO_QUERY );
-    DBG_ASSERT( xSaxWriter.is(), "can't instantiate XML writer" );
-    if(!xSaxWriter.is())
-        return sal_False;
-
-    // connect XML writer to output stream
-    xSaxWriter->setOutputStream( xOutputStream );
-
-    // prepare arguments (prepend doc handler to given arguments)
-    Reference<xml::sax::XDocumentHandler> xDocHandler( xSaxWriter,UNO_QUERY);
-
-    Sequence<Any> aArgs( 2 );
-    aArgs[0] <<= xDocHandler;
-    aArgs[1] <<= rPropSet;
-
-    // get filter component
-    Reference< document::XExporter > xExporter(
-        rFactory->createInstanceWithArguments(
-            OUString::createFromAscii(pComponentName), aArgs), UNO_QUERY);
-    DBG_ASSERT( xExporter.is(),
-            "can't instantiate export filter component" );
-    if( !xExporter.is() )
-        return sal_False;
-
-
-    // connect model and filter
-    xExporter->setSourceDocument( xComponent );
-
-    // filter!
-    Reference < XFilter > xFilter( xExporter, UNO_QUERY );
-    uno::Sequence< PropertyValue > aProps(0);
-    xFilter->filter( aProps );
-
-    uno::Reference<lang::XUnoTunnel> xFilterTunnel;
-    xFilterTunnel = uno::Reference<lang::XUnoTunnel>
-        ( xFilter, uno::UNO_QUERY );
-    SmXMLExport *pFilter = (SmXMLExport *)xFilterTunnel->getSomething(
-        SmXMLExport::getUnoTunnelId() );
-    return pFilter ? pFilter->GetSuccess() : sal_True;
-}
-
 sal_uInt32 SmXMLExport::exportDoc(enum XMLTokenEnum eClass)
 {
     if( (getExportFlags() & EXPORT_CONTENT) == 0 )

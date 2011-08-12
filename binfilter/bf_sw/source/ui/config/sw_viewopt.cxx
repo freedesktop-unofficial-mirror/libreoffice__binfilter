@@ -200,37 +200,12 @@ static const char aPostItStr[] = "  ";
 /*N*/ {
 /*N*/ }
 
-/*************************************************************************
-|*
-|*  ViewOption::Init()
-|*
-|*************************************************************************/
-
-/*N*/ void SwViewOption::Init( Window *pWin )
-/*N*/ {
-/*N*/   if( !nPixelTwips && pWin )
-/*N*/   {
-/*N*/       nPixelTwips = (USHORT)pWin->PixelToLogic( Size(1,1) ).Height();
-/*N*/   }
-/*N*/ }
-
 /*************************************************************************/
 /*N*/ AuthorCharAttr::AuthorCharAttr() :
 /*N*/   nItemId (SID_ATTR_CHAR_UNDERLINE),
 /*N*/   nAttr   (UNDERLINE_SINGLE),
 /*N*/   nColor  (COL_TRANSPARENT)
 /*N*/ {
-/*N*/ }
-
-
-/*************************************************************************/
-/*N*/ USHORT        GetHtmlMode(const SwDocShell* pShell)
-/*N*/ {
-/*N*/   USHORT nRet = 0;
-/*N*/   if(!pShell || PTR_CAST(SwWebDocShell, pShell))
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/   return nRet;
 /*N*/ }
 
 /*************************************************************************/

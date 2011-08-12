@@ -73,17 +73,6 @@ private:
         const sal_Char* pCompatibilityStreamName,
         ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > & rFactory,
         const sal_Char* pFilterName );
-
-    sal_Bool WriteThroughComponent(
-        ::com::sun::star::uno::Reference< ::com::sun::star::io::XOutputStream >
-            xOutputStream,
-        ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent >
-            xComponent,
-        ::com::sun::star::uno::Reference<
-            ::com::sun::star::lang::XMultiServiceFactory > & rFactory,
-        ::com::sun::star::uno::Reference<
-            ::com::sun::star::beans::XPropertySet > & rPropSet,
-        const sal_Char* pComponentName );
 };
 
 

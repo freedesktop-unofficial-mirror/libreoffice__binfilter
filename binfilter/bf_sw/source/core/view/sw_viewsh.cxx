@@ -507,12 +507,6 @@ bool bInSizeNotify = FALSE;
 /*N*/ {
 /*N*/   return GetDoc()->GetRootFrm();
 /*N*/ }
-/*N*/
-/*N*/ SfxPrinter* ViewShell::GetPrt( BOOL bCreate ) const
-/*N*/ {
-/*N*/     return GetDoc()->GetPrt( bCreate );
-/*N*/ }
-
 
 /*N*/ OutputDevice& ViewShell::GetRefDev() const
 /*N*/ {

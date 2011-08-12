@@ -266,7 +266,6 @@ public:
     void   Clear();
     void   RemoveExtensions( SwDoc& );
     static void RemoveExtension( String& );
-    USHORT Add( const String&, USHORT nPoolId /*= 0*/, BOOL bDontSearch=FALSE );
     const  String& Find( USHORT );
     USHORT FindPoolId( USHORT );
 

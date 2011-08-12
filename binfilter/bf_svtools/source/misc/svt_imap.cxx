@@ -87,38 +87,6 @@ UINT16 IMapObject::GetVersion() const
     return IMAP_OBJ_VERSION;
 }
 
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
-
-void IMapObject::Write( SvStream& rOStm, const String& rBaseURL ) const
-{
-    IMapCompat*             pCompat;
-    const rtl_TextEncoding  eEncoding = gsl_getSystemTextEncoding();
-
-    rOStm << GetType();
-    rOStm << GetVersion();
-    rOStm << ( (UINT16) eEncoding );
-
-    const ByteString aRelURL = ByteString( String(::binfilter::simpleNormalizedMakeRelative( rBaseURL, aURL )), eEncoding );
-    rOStm.WriteByteString( aRelURL );
-    rOStm.WriteByteString( ByteString( aAltText, eEncoding ) );
-    rOStm << bActive;
-    rOStm.WriteByteString( ByteString( aTarget, eEncoding ) );
-
-    pCompat = new IMapCompat( rOStm, STREAM_WRITE );
-
-    WriteIMapObject( rOStm );
-    aEventList.Write( rOStm );                                 // V4
-    rOStm.WriteByteString( ByteString( aName, eEncoding ) );   // V5
-
-    delete pCompat;
-}
-
-
 /******************************************************************************
 |*
 |*  Binaer-Import

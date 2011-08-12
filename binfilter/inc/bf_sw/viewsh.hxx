@@ -232,7 +232,6 @@ public:
     // 3. GetRefDev:   Either the printer or the virtual device from the doc
     // 2. GetWin:      Available if we not printing
     // 4. GetOut:      Printer, Window or Virtual device
-    SfxPrinter* GetPrt( sal_Bool bCreate = sal_False ) const;
     VirtualDevice* GetVirDev( sal_Bool bCreate = sal_False ) const;
     OutputDevice& GetRefDev() const;
     inline Window* GetWin()    const { return pWin; }

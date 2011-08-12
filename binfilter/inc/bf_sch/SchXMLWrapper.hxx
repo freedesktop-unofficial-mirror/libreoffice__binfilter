@@ -63,13 +63,6 @@ class SchXMLWrapper
     sal_Bool mbIsDraw : 1;
     sal_Bool mbShowProgress : 1;
 
-    sal_Bool ExportStream(
-        const ::rtl::OUString& rsStreamName,
-        const ::rtl::OUString& rsServiceName,
-        ::com::sun::star::uno::Reference< ::com::sun::star::io::XActiveDataSource >& xDataSource,
-        ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory>& xServiceFactory,
-        ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any >& aArgs );
-
 public:
     SchXMLWrapper( ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel >& xModel,
                    SvStorage& rStorage,

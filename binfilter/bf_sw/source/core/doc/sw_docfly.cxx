@@ -60,8 +60,6 @@
 #include <crstate.hxx>
 namespace binfilter {
 
-extern USHORT GetHtmlMode( const SwDocShell* );
-
 /**********************************************************************/
 /*N*/ USHORT SwDoc::GetFlyCount(FlyCntType eType ) const
 /*N*/ {

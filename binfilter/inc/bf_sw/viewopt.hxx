@@ -186,8 +186,6 @@ public:
             SwViewOption(const SwViewOption&);  //
             ~SwViewOption();                    //
 
-    void   Init( Window *pWin );        // Initialisierung der statischen Daten
-
     USHORT GetPixelTwips() const { return nPixelTwips; }
 
     inline UINT32   GetCoreOptions() const {return nCoreOptions;}
@@ -555,11 +553,6 @@ inline void SwViewOption::SetUIOptions( const SwViewOption& rVOpt )
     nTblDest = rVOpt.nTblDest;
     nShdwCrsrFillMode = rVOpt.nShdwCrsrFillMode;
 }
-
-
-// Hilfsfunktion zur Ermittlung der HTML-Faehigkeiten
-USHORT      GetHtmlMode(const SwDocShell*);
-
 
 } //namespace binfilter
 #endif

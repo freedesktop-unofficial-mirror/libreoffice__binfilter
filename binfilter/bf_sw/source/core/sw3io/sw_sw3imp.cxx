@@ -1332,33 +1332,6 @@ const int RES_POOLCOLL_HTML_DT_40 = 0x3007;
 /*N*/       rName.Erase( nOff );
 /*N*/ }
 
-/*N*/ sal_uInt16 Sw3StringPool::Add( const String& r, sal_uInt16 n, sal_Bool bDontSearch )
-/*N*/ {
-/*N*/   sal_uInt16 i = bDontSearch ? aPool.Count() : 0;
-/*N*/
-/*N*/   OSL_ENSURE( nExpFFVersion, "String-Pool: FF-Version nicht gesetzt" );
-/*N*/   if( nExpFFVersion <= SOFFICE_FILEFORMAT_40 && n && n<IDX_SPEC_VALUE )
-/*N*/       n = ConvertToOldPoolId( n, nExpFFVersion );
-/*N*/
-/*N*/   for( ; i < aPool.Count(); i++ )
-/*N*/   {
-/*N*/       const Sw3String* p3Str = aPool.GetObject( i );
-/*N*/       if( n == p3Str->GetPoolId() && r == *p3Str )
-/*N*/           return i;
-/*N*/   }
-/*N*/   if( !bFixed )
-/*N*/   {
-/*N*/       Sw3String* p = new Sw3String( r, n );
-/*N*/       aPool.Insert( p, i );
-/*N*/       return i;
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*?*/       OSL_ENSURE( !bFixed, "String nicht im Pool eingetragen" );
-/*?*/       return IDX_NO_VALUE;
-/*N*/   }
-/*N*/ }
-
 /*N*/ const String& Sw3StringPool::Find( sal_uInt16 i )
 /*N*/ {
 /*N*/   if( i < IDX_SPEC_VALUE )

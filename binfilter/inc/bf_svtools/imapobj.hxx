@@ -108,7 +108,6 @@ public:
     virtual UINT16      GetType() const = 0;
     virtual BOOL        IsHit( const Point& rPoint ) const = 0;
 
-    void                Write ( SvStream& rOStm, const String& rBaseURL ) const;
     void                Read( SvStream& rIStm, const String& rBaseURL );
 
     virtual Rectangle   GetBoundRect() const = 0;
