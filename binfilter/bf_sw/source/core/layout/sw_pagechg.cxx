@@ -762,27 +762,6 @@ namespace binfilter {
 /*N*/   OSL_ENSURE( pRet, "Kein Descriptor gefunden." );
 /*N*/   return pRet;
 /*N*/ }
-/*************************************************************************
-|*
-|*  SwPageFrm::AdjustRootSize()
-|*
-|*************************************************************************/
-//Wenn der RootFrm seine Groesse aendert muss benachrichtigt werden.
-/*N*/ void AdjustSizeChgNotify( SwRootFrm *pRoot )
-/*N*/ {
-/*N*/   const BOOL bOld = pRoot->IsSuperfluous();
-/*N*/   pRoot->bCheckSuperfluous = FALSE;
-/*N*/   ViewShell *pSh = pRoot->GetCurrShell();
-/*N*/   if ( pSh )
-/*N*/   {
-/*N*/       pSh->Imp()->NotifySizeChg( pRoot->Frm().SSize() );//Einmal fuer das Drawing.
-/*N*/       do
-/*N*/       {   pSh->SizeChgNotify( pRoot->Frm().SSize() );   //Einmal fuer jede Sicht.
-/*N*/           pSh = (ViewShell*)pSh->GetNext();
-/*N*/       } while ( pSh != pRoot->GetCurrShell() );
-/*N*/   }
-/*N*/   pRoot->bCheckSuperfluous = bOld;
-/*N*/ }
 
 /*N*/ void MA_FASTCALL lcl_AdjustRoot( SwFrm *pPage, long nOld )
 /*N*/ {
@@ -888,25 +867,10 @@ namespace binfilter {
 /*N*/       {
 /*N*/           //Seiten vorher kurz aushaengen, weil sonst falsch formatiert wuerde.
 /*N*/           SwFrm *pSibling = GetNext();
-/*N*/           if ( ((SwRootFrm*)pUp)->GetLastPage() == this )
-/*N*/               ::binfilter::SetLastPage( (SwPageFrm*)GetPrev() );
 /*N*/           Remove();
-/*N*/           ::binfilter::AdjustSizeChgNotify( (SwRootFrm*)pUp );
 /*N*/           InsertBefore( pUp, pSibling );
 /*N*/       }
-/*N*/       else
-/*N*/           ::binfilter::AdjustSizeChgNotify( (SwRootFrm*)pUp );
 /*N*/   }
-/*N*/ }
-
-/*************************************************************************
-|*
-|*  SwPageFrm::Cut()
-|*
-|*************************************************************************/
-/*N*/ inline void SetLastPage( SwPageFrm *pPage )
-/*N*/ {
-/*N*/           ((SwRootFrm*)pPage->GetUpper())->pLastPage = pPage;
 /*N*/ }
 
 /*N*/ void SwPageFrm::Cut()
@@ -949,7 +913,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   // die Seitennummer der Root runterzaehlen.
-/*N*/   ((SwRootFrm*)GetUpper())->DecrPhyPageNums();
 /*N*/   SwPageFrm *pPg = (SwPageFrm*)GetNext();
 /*N*/   if ( pPg )
 /*N*/   {
@@ -959,8 +922,6 @@ namespace binfilter {
 /*N*/           pPg = (SwPageFrm*)pPg->GetNext();
 /*N*/       }
 /*N*/   }
-/*N*/   else
-/*N*/       ::binfilter::SetLastPage( (SwPageFrm*)GetPrev() );
 /*N*/
 /*N*/   // Alle Verbindungen kappen.
 /*N*/   Remove();
@@ -986,7 +947,6 @@ namespace binfilter {
 /*N*/   InsertBefore( (SwLayoutFrm*)pParent, pSibling );
 /*N*/
 /*N*/   // die Seitennummer am Root hochzaehlen.
-/*N*/   ((SwRootFrm*)GetUpper())->IncrPhyPageNums();
 /*N*/   if( GetPrev() )
 /*N*/       SetPhyPageNum( ((SwPageFrm*)GetPrev())->GetPhyPageNum() + 1 );
 /*N*/   else
@@ -1002,8 +962,6 @@ namespace binfilter {
 /*N*/           pPg = (SwPageFrm*)pPg->GetNext();
 /*N*/       }
 /*N*/   }
-/*N*/   else
-/*N*/       ::binfilter::SetLastPage( this );
 /*N*/
 /*N*/     if( Frm().Width() != pParent->Prt().Width() )
 /*N*/       _InvalidateSize();
@@ -1247,9 +1205,6 @@ namespace binfilter {
 /*N*/       pPage = (SwPageFrm*)pPage->GetNext();
 /*N*/   }
 /*N*/
-/*N*/   pRoot->SetAssertFlyPages();
-/*N*/   pRoot->AssertPageFlys( pStart );
-/*N*/
 /*N*/   if ( bNotifyFields && (!pImp || !pImp->IsUpdateExpFlds()) )
 /*N*/   {
 /*N*/       SwDocPosUpdate aMsgHnt( nDocPos );
@@ -1315,8 +1270,6 @@ namespace binfilter {
 /*N*/       if ( rDesc.GetNumOffset() )
 /*N*/       {
 /*N*/           bWishedOdd = rDesc.GetNumOffset() % 2 ? TRUE : FALSE;
-/*N*/           //Die Gelegenheit nutzen wir um das Flag an der Root zu pflegen.
-/*N*/           pRoot->SetVirtPageNum( TRUE );
 /*N*/       }
 /*N*/   }
 /*N*/   if ( !pDesc )
@@ -1344,8 +1297,6 @@ namespace binfilter {
 /*N*/       {
 /*N*/           SwPageFrm *pDel = pSibling;
 /*N*/           pSibling = (SwPageFrm*)pSibling->GetNext();
-/*N*/           if ( pDoc->GetFtnIdxs().Count() )
-/*?*/               pRoot->RemoveFtns( pDel, TRUE );
 /*N*/           pDel->Cut();
 /*N*/           delete pDel;
 /*N*/       }
@@ -1364,8 +1315,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       SwPageFrm *pDel = pSibling;
 /*N*/       pSibling = (SwPageFrm*)pSibling->GetNext();
-/*N*/       if ( pDoc->GetFtnIdxs().Count() )
-/*?*/           pRoot->RemoveFtns( pDel, TRUE );
 /*N*/       pDel->Cut();
 /*N*/       delete pDel;
 /*N*/   }
@@ -1388,8 +1337,6 @@ namespace binfilter {
 /*?*/               return pPage;
 /*N*/           }
 /*N*/       }
-/*N*/       else
-/*N*/           pRoot->AssertPageFlys( pSibling );
 /*N*/   }
 /*N*/
 /*N*/   //Fuer das Aktualisieren der Seitennummern-Felder gibt nDocPos
@@ -1402,507 +1349,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   return pPage;
 /*N*/ }
-
-/*************************************************************************
-|*
-|*  SwRootFrm::GrowFrm()
-|*
-|*************************************************************************/
-
-/*N*/ SwTwips SwRootFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL /*bInfo*/ )
-/*N*/ {
-/*N*/   if ( !bTst )
-/*N*/         Frm().SSize().Height() += nDist;
-/*N*/   return nDist;
-/*N*/ }
-/*************************************************************************
-|*
-|*  SwRootFrm::ShrinkFrm()
-|*
-|*************************************************************************/
-/*N*/ SwTwips SwRootFrm::ShrinkFrm( SwTwips nDist, BOOL bTst, BOOL /*bInfo*/ )
-/*N*/ {
-/*N*/   OSL_ENSURE( nDist >= 0, "nDist < 0." );
-/*N*/     OSL_ENSURE( nDist <= Frm().Height(), "nDist > als aktuelle Groesse." );
-/*N*/
-/*N*/   if ( !bTst )
-/*N*/         Frm().SSize().Height() -= nDist;
-/*N*/   return nDist;
-/*N*/ }
-
-/*************************************************************************
-|*
-|*  SwRootFrm::RemoveSuperfluous()
-|*
-|*  Beschreibung:       Entfernung von ueberfluessigen Seiten.
-|*          Arbeitet nur wenn das Flag bCheckSuperfluous gesetzt ist.
-|*          Definition: Eine Seite ist genau dann leer, wenn der
-|*          Body-Textbereich keinen CntntFrm enthaelt, aber nicht, wenn noch
-|*          mindestens ein Fly an der Seite klebt.
-|*          Die Seite ist auch dann nicht leer, wenn sie noch eine
-|*          Fussnote enthaelt.
-|*          Es muss zweimal angesetzt werden um leeren Seiten aufzuspueren:
-|*              - einmal fuer die Endnotenseiten.
-|*              - und einmal fuer die Seiten des Bodytextes.
-|*
-|*************************************************************************/
-void SwRootFrm::RemoveSuperfluous()
-{
-    if ( !IsSuperfluous() )
-        return;
-    bCheckSuperfluous = FALSE;
-
-    SwPageFrm *pPage = GetLastPage();
-    long nDocPos = LONG_MAX;
-
-    //Jetzt wird fuer die jeweils letzte Seite geprueft ob sie leer ist
-    //bei der ersten nicht leeren Seite wird die Schleife beendet.
-    do
-    {
-        bool bExistEssentialObjs = ( 0 != pPage->GetSortedObjs() );
-        if ( bExistEssentialObjs )
-        {
-            //Nur weil die Seite Flys hat sind wir noch lange nicht fertig,
-            //denn wenn alle Flys an generischem Inhalt haengen, so ist sie
-            //trotzdem ueberfluessig (Ueberpruefung auf DocBody sollte reichen).
-            // consider that drawing objects in
-            // header/footer are supported now.
-            bool bOnlySuperfluosObjs = true;
-            SwSortDrawObjs &rObjs = *pPage->GetSortedObjs();
-            for ( USHORT i = 0; bOnlySuperfluosObjs && i < rObjs.Count(); ++i )
-            {
-                SdrObject *pO = rObjs[i];
-                if ( pO->IsWriterFlyFrame() )
-                {
-                    SwFlyFrm* pFly = ((SwVirtFlyDrawObj*)pO)->GetFlyFrm();
-                    if ( !pFly->GetAnchor()->FindFooterOrHeader() )
-                    {
-                        bOnlySuperfluosObjs = false;
-                    }
-                }
-                else
-                {
-                    // determine, if drawing object
-                    // isn't anchored in header/footer frame. If so, drawing
-                    // object isn't superfluos.
-                    SwFrm* pAnchorFrm = 0L;
-                    if ( pO->ISA(SwDrawVirtObj) )
-                    {
-                        pAnchorFrm = static_cast<SwDrawVirtObj*>(pO)->GetAnchorFrm();
-                    }
-                    else
-                    {
-                        SwDrawContact* pDrawContact =
-                                static_cast<SwDrawContact*>(pO->GetUserCall());
-                        pAnchorFrm = pDrawContact ? pDrawContact->GetAnchor() : 0L;
-                    }
-                    if ( pAnchorFrm )
-                    {
-                        if ( !pAnchorFrm->FindFooterOrHeader() )
-                        {
-                            bOnlySuperfluosObjs = false;
-                        }
-                    }
-                }
-            }
-            bExistEssentialObjs = !bOnlySuperfluosObjs;
-        }
-
-        // optimization: check first, if essential objects exists.
-        if ( bExistEssentialObjs || pPage->FindFirstBodyCntnt() || pPage->FindFtnCont() )
-        {
-            if ( pPage->IsFtnPage() )
-            {
-                while ( pPage->IsFtnPage() )
-                {
-                    pPage = (SwPageFrm*)pPage->GetPrev();
-                    OSL_ENSURE( pPage, "Nur noch Endnotenseiten uebrig." );
-                }
-                continue;
-            }
-            else
-                pPage = 0;
-        }
-
-        if ( pPage )
-        {
-            SwPageFrm *pEmpty = pPage;
-            pPage = (SwPageFrm*)pPage->GetPrev();
-            if ( GetFmt()->GetDoc()->GetFtnIdxs().Count() )
-                RemoveFtns( pEmpty, TRUE );
-            pEmpty->Cut();
-            delete pEmpty;
-            nDocPos = pPage ? pPage->Frm().Top() : 0;
-        }
-    } while ( pPage );
-
-    ViewShell *pSh = GetShell();
-    if ( nDocPos != LONG_MAX &&
-         (!pSh || !pSh->Imp()->IsUpdateExpFlds()) )
-    {
-        SwDocPosUpdate aMsgHnt( nDocPos );
-        GetFmt()->GetDoc()->UpdatePageFlds( &aMsgHnt );
-    }
-}
-
-/*************************************************************************
-|*
-|*  SwRootFrm::AssertFlyPages()
-|*
-|*  Beschreibung        Stellt sicher, dass genuegend Seiten vorhanden
-|*      sind, damit alle Seitengebundenen Rahmen und DrawObject
-|*      untergebracht sind.
-|*
-|*************************************************************************/
-/*N*/ void SwRootFrm::AssertFlyPages()
-/*N*/ {
-/*N*/   if ( !IsAssertFlyPages() )
-/*N*/       return;
-/*N*/   bAssertFlyPages = FALSE;
-/*N*/
-/*N*/   SwDoc *pDoc = GetFmt()->GetDoc();
-/*N*/   const SwSpzFrmFmts *pTbl = pDoc->GetSpzFrmFmts();
-/*N*/
-/*N*/   //Auf welche Seite will der 'letzte' Fly?
-/*N*/   USHORT nMaxPg = 0;
-        USHORT i=0;
-/*N*/   for ( i = 0; i < pTbl->Count(); ++i )
-/*N*/   {
-/*N*/       const SwFmtAnchor &rAnch = (*pTbl)[i]->GetAnchor();
-/*N*/       if ( !rAnch.GetCntntAnchor() && nMaxPg < rAnch.GetPageNum() )
-/*N*/           nMaxPg = rAnch.GetPageNum();
-/*N*/   }
-/*N*/   //Wieviele Seiten haben wir derzeit?
-/*N*/   SwPageFrm *pPage = (SwPageFrm*)Lower();
-/*N*/   while ( pPage && pPage->GetNext() &&
-/*N*/           !((SwPageFrm*)pPage->GetNext())->IsFtnPage() )
-/*N*/   {
-/*N*/       pPage = (SwPageFrm*)pPage->GetNext();
-/*N*/   }
-/*N*/
-/*N*/   if ( nMaxPg > pPage->GetPhyPageNum() )
-/*N*/   {
-/*N*/       //Die Seiten werden ausgehend von der letzten Seite konsequent
-/*N*/       //nach den Regeln der PageDescs weitergefuehrt.
-/*N*/       BOOL bOdd = pPage->GetPhyPageNum() % 2 ? TRUE : FALSE;
-/*N*/       SwPageDesc *pDesc = pPage->GetPageDesc();
-/*N*/       SwFrm *pSibling = pPage->GetNext();
-/*N*/       for ( i = pPage->GetPhyPageNum(); i < nMaxPg; ++i  )
-/*N*/       {
-/*N*/           if ( !(bOdd ? pDesc->GetRightFmt() : pDesc->GetLeftFmt()) )
-/*N*/           {
-/*N*/               //Leerseite einfuegen, die Flys werden aber erst von
-/*N*/               //der naechsten Seite aufgenommen!
-/*N*/               pPage = new SwPageFrm( pDoc->GetEmptyPageFmt(), pDesc );
-/*N*/               pPage->Paste( this, pSibling );
-/*N*/               pPage->PreparePage( FALSE );
-/*N*/               bOdd = bOdd ? FALSE : TRUE;
-/*N*/               ++i;
-/*N*/           }
-/*N*/           pPage = new
-/*N*/                   SwPageFrm( (bOdd ? pDesc->GetRightFmt() :
-/*N*/                                      pDesc->GetLeftFmt()), pDesc );
-/*N*/           pPage->Paste( this, pSibling );
-/*N*/           pPage->PreparePage( FALSE );
-/*N*/           bOdd = bOdd ? FALSE : TRUE;
-/*N*/           pDesc = pDesc->GetFollow();
-/*N*/       }
-/*N*/       //Jetzt koennen die Endnotenseiten natuerlich wieder krumm sein;
-/*N*/       //in diesem Fall werden sie vernichtet.
-/*N*/       if ( pDoc->GetFtnIdxs().Count() )
-/*N*/       {
-/*?*/           pPage = (SwPageFrm*)Lower();
-/*?*/           while ( pPage && !pPage->IsFtnPage() )
-/*?*/               pPage = (SwPageFrm*)pPage->GetNext();
-/*?*/
-/*?*/           if ( pPage )
-/*?*/           {
-/*?*/               SwPageDesc *pDesc1 = pPage->FindPageDesc();
-/*?*/               bOdd = pPage->OnRightPage();
-/*?*/               if ( pPage->GetFmt() !=
-/*?*/                    (bOdd ? pDesc1->GetRightFmt() : pDesc1->GetLeftFmt()) )
-/*?*/                   RemoveFtns( pPage, FALSE, TRUE );
-/*?*/           }
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-/*************************************************************************
-|*
-|*  SwRootFrm::AssertPageFlys()
-|*
-|*  Beschreibung        Stellt sicher, dass ab der uebergebenen Seite
-|*      auf allen Seiten die Seitengebunden Objecte auf der richtigen
-|*      Seite (Seitennummer stehen).
-|*
-|*************************************************************************/
-/*N*/ void SwRootFrm::AssertPageFlys( SwPageFrm *pPage )
-/*N*/ {
-/*N*/   while ( pPage )
-/*N*/   {
-/*N*/       if ( pPage->GetSortedObjs() )
-/*N*/       {
-/*N*/           pPage->GetSortedObjs();
-/*N*/           for ( int i = 0;
-/*N*/                 pPage->GetSortedObjs() && USHORT(i) < pPage->GetSortedObjs()->Count();
-/*N*/                 ++i)
-/*N*/           {
-/*N*/               SwFrmFmt *pFmt = ::binfilter::FindFrmFmt( (*pPage->GetSortedObjs())[i] );
-/*N*/               const SwFmtAnchor &rAnch = pFmt->GetAnchor();
-/*N*/               const USHORT nPg = rAnch.GetPageNum();
-/*N*/               if ( rAnch.GetAnchorId() == FLY_PAGE &&
-/*N*/                    nPg != pPage->GetPhyPageNum() )
-/*N*/               {
-/*N*/                   //Das er auf der falschen Seite steht muss noch nichts
-/*N*/                   //heissen, wenn er eigentlich auf der Vorseite
-/*N*/                   //stehen will und diese eine EmptyPage ist.
-/*N*/                     if( nPg && !(pPage->GetPhyPageNum()-1 == nPg &&
-/*N*/                         ((SwPageFrm*)pPage->GetPrev())->IsEmptyPage()) )
-/*N*/                   {
-/*?*/                       //Umhaengen kann er sich selbst, indem wir ihm
-/*?*/                       //einfach ein Modify mit seinem AnkerAttr schicken.
-/*?*/ #ifndef DBG_UTIL
-/*?*/                       pFmt->SwModify::Modify( 0, (SwFmtAnchor*)&rAnch );
-/*?*/ #else
-/*?*/                       const USHORT nCnt = pPage->GetSortedObjs()->Count();
-/*?*/                       pFmt->SwModify::Modify( 0, (SwFmtAnchor*)&rAnch );
-/*?*/                       OSL_ENSURE( !pPage->GetSortedObjs() ||
-/*?*/                               nCnt != pPage->GetSortedObjs()->Count(),
-/*?*/                               "Kann das Obj nicht umhaengen." );
-/*?*/ #endif
-/*?*/                       --i;
-/*N*/                   }
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/       pPage = (SwPageFrm*)pPage->GetNext();
-/*N*/   }
-/*N*/ }
-
-/*************************************************************************
-|*
-|*  SwRootFrm::ChgSize()
-|*
-|*************************************************************************/
-/*N*/ void SwRootFrm::ChgSize( const Size& aNewSize )
-/*N*/ {
-/*N*/   Frm().SSize() = aNewSize;
-/*N*/   _InvalidatePrt();
-/*N*/     bFixSize = FALSE;
-/*N*/ }
-
-/*************************************************************************
-|*
-|*  SwRootFrm::MakeAll()
-|*
-|*************************************************************************/
-/*N*/ void SwRootFrm::MakeAll()
-/*N*/ {
-/*N*/   if ( !bValidPos )
-/*N*/   {   bValidPos = TRUE;
-/*N*/       aFrm.Pos().X() = aFrm.Pos().Y() = DOCUMENTBORDER;
-/*N*/   }
-/*N*/   if ( !bValidPrtArea )
-/*N*/   {   bValidPrtArea = TRUE;
-/*N*/       aPrt.Pos().X() = aPrt.Pos().Y() = 0;
-/*N*/       aPrt.SSize( aFrm.SSize() );
-/*N*/   }
-/*N*/   if ( !bValidSize )
-/*N*/       //SSize wird von den Seiten (Cut/Paste) eingestellt.
-/*N*/       bValidSize = TRUE;
-/*N*/ }
-
-/*************************************************************************
-|*
-|*  SwRootFrm::ImplInvalidateBrowseWidth()
-|*
-|*************************************************************************/
-/*N*/ void SwRootFrm::ImplInvalidateBrowseWidth()
-/*N*/ {
-/*N*/   bBrowseWidthValid = FALSE;
-/*N*/   SwFrm *pPg = Lower();
-/*N*/   while ( pPg )
-/*N*/   {
-/*N*/       pPg->InvalidateSize();
-/*N*/       pPg = pPg->GetNext();
-/*N*/   }
-/*N*/ }
-
-/*************************************************************************
-|*
-|*  SwRootFrm::ImplCalcBrowseWidth()
-|*
-|*************************************************************************/
-/*N*/ void SwRootFrm::ImplCalcBrowseWidth()
-/*N*/ {
-/*N*/   OSL_ENSURE( GetFmt()->GetDoc()->IsBrowseMode(),
-/*N*/           "CalcBrowseWidth and not in BrowseView" );
-/*N*/
-/*N*/   //Die (minimale) Breite wird von Rahmen, Tabellen und Zeichenobjekten
-/*N*/   //bestimmt. Die Breite wird nicht anhand ihrer aktuellen Groessen bestimmt,
-/*N*/   //sondern anhand der Attribute. Es interessiert also nicht wie breit sie
-/*N*/   //sind, sondern wie breit sie sein wollen.
-/*N*/   //Rahmen und Zeichenobjekte innerhalb ander Objekte (Rahmen, Tabellen)
-/*N*/   //Zaehlen nicht.
-/*N*/   //Seitenraender und Spalten werden hier nicht beruecksichtigt.
-/*N*/
-/*N*/   SwFrm *pFrm = ContainsCntnt();
-/*N*/   while ( pFrm && !pFrm->IsInDocBody() )
-/*?*/       pFrm = ((SwCntntFrm*)pFrm)->GetNextCntntFrm();
-/*N*/   if ( !pFrm )
-/*N*/       return;
-/*N*/
-/*N*/   bBrowseWidthValid = TRUE;
-/*N*/   ViewShell *pSh = GetShell();
-/*N*/   nBrowseWidth = pSh
-/*N*/                   ? MINLAY + 2 * pSh->GetOut()->
-/*N*/                               PixelToLogic( pSh->GetBrowseBorder() ).Width()
-/*N*/                   : 5000;
-/*N*/   do
-/*N*/   {
-/*N*/       if ( pFrm->IsInTab() )
-/*N*/           pFrm = pFrm->FindTabFrm();
-/*N*/
-/*N*/       if ( pFrm->IsTabFrm() &&
-/*N*/            !((SwLayoutFrm*)pFrm)->GetFmt()->GetFrmSize().GetWidthPercent() )
-/*N*/       {
-/*N*/           SwBorderAttrAccess aAccess( SwFrm::GetCache(), pFrm );
-/*N*/           const SwBorderAttrs &rAttrs = *aAccess.Get();
-/*N*/           const SwFmtHoriOrient &rHori = rAttrs.GetAttrSet().GetHoriOrient();
-/*N*/           long nWidth = rAttrs.GetSize().Width();
-/*N*/           if ( nWidth < USHRT_MAX-2000 && //-2000, weil bei Randeinstellung per
-/*N*/                                           //Zuppeln das USHRT_MAX verlorengeht!
-/*N*/                HORI_FULL != rHori.GetHoriOrient() )
-/*N*/           {
-/*N*/               const SwHTMLTableLayout *pLayoutInfo =
-/*N*/                   ((const SwTabFrm *)pFrm)->GetTable()
-/*N*/                                           ->GetHTMLTableLayout();
-/*N*/               if ( pLayoutInfo )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/
-/*N*/               switch ( rHori.GetHoriOrient() )
-/*N*/               {
-/*?*/                   case HORI_NONE:
-/*?*/                       // add 1st param to <SwBorderAttrs::CalcRight(..)>
-/*?*/                       nWidth += rAttrs.CalcLeft( pFrm ) + rAttrs.CalcRight( pFrm );
-/*?*/                       break;
-/*?*/                   case HORI_LEFT_AND_WIDTH:
-/*?*/                       nWidth += rAttrs.CalcLeft( pFrm );
-/*?*/                       break;
-/*?*/                   default:
-/*?*/                       break;
-/*N*/               }
-/*N*/               nBrowseWidth = Max( nBrowseWidth, nWidth );
-/*N*/           }
-/*N*/       }
-/*N*/       else if ( pFrm->GetDrawObjs() )
-/*N*/       {
-/*N*/           for ( USHORT i = 0; i < pFrm->GetDrawObjs()->Count(); ++i )
-/*N*/           {
-/*N*/               SdrObject *pObj = (*pFrm->GetDrawObjs())[i];
-/*N*/               SwFrmFmt *pFmt = ::binfilter::FindFrmFmt( pObj );
-/*N*/               const bool bFly = pObj->IsWriterFlyFrame();
-/*N*/               if ( (bFly &&
-/*N*/                    WEIT_WECH == ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Frm().Width()) ||
-/*N*/                    pFmt->GetFrmSize().GetWidthPercent() )
-/*?*/                   continue;
-/*N*/
-/*N*/               long nWidth = 0;
-/*N*/               switch ( pFmt->GetAnchor().GetAnchorId() )
-/*N*/               {
-/*N*/                   case FLY_IN_CNTNT:
-/*N*/                       nWidth = bFly ? pFmt->GetFrmSize().GetWidth() :
-/*N*/                                       pObj->GetBoundRect().GetWidth();
-/*N*/                       break;
-/*N*/                   case FLY_AT_CNTNT:
-/*N*/                       {
-/*N*/                       if ( bFly )
-/*N*/                       {
-/*N*/                           nWidth = pFmt->GetFrmSize().GetWidth();
-/*N*/                           const SwFmtHoriOrient &rHori = pFmt->GetHoriOrient();
-/*N*/                           switch ( rHori.GetHoriOrient() )
-/*N*/                           {
-/*N*/                               case HORI_NONE:
-/*N*/                                   nWidth += rHori.GetPos();
-/*N*/                                   break;
-/*N*/                               case HORI_INSIDE:
-/*N*/                               case HORI_LEFT:
-/*?*/                                   if ( PRTAREA == rHori.GetRelationOrient() )
-/*?*/                                       nWidth += pFrm->Prt().Left();
-/*N*/                                   break;
-/*N*/                               default:
-/*N*/                                   break;
-/*N*/                           }
-/*N*/                       }
-/*N*/                       else
-/*N*/                           //Fuer Zeichenobjekte ist die Auswahl sehr klein,
-/*N*/                           //weil sie keine Attribute haben, also durch ihre
-/*N*/                           //aktuelle Groesse bestimmt werden.
-/*N*/                           nWidth = pObj->GetBoundRect().Right() -
-/*N*/                                    pObj->GetAnchorPos().X();
-/*N*/
-/*N*/ //MA 31. Jan. 97: Zaehlt doch garnicht mehr, seit die Flys den Rand nicht
-/*N*/ //mehr beruecksichtigen.
-/*N*/ //                        const SwContact *pCon = (SwContact*)pObj->GetUserCall();
-/*N*/ //                        const SvxLRSpaceItem &rLR = pCon->GetFmt()->GetLRSpace();
-/*N*/ //                        nWidth += rLR.GetLeft() + rLR.GetRight();
-/*N*/                       }
-/*N*/                       break;
-/*N*/                   default:
-/*N*/                       break;
-/*N*/               }
-/*N*/               nBrowseWidth = Max( nBrowseWidth, nWidth );
-/*N*/           }
-/*N*/       }
-/*N*/       pFrm = pFrm->FindNextCnt();
-/*N*/   } while ( pFrm );
-/*N*/ }
-
-/*************************************************************************
-|*
-|*  SwRootFrm::StartAllAction()
-|*
-|*************************************************************************/
-
-/*N*/ void SwRootFrm::StartAllAction()
-/*N*/ {
-/*N*/   ViewShell *pSh = GetCurrShell();
-/*N*/   if ( pSh )
-/*N*/       do
-/*N*/       {   if ( pSh->ISA( SwCrsrShell ) )
-/*N*/               ((SwCrsrShell*)pSh)->StartAction();
-/*N*/           else
-/*?*/               pSh->StartAction();
-/*N*/           pSh = (ViewShell*)pSh->GetNext();
-/*N*/
-/*N*/       } while ( pSh != GetCurrShell() );
-/*N*/ }
-
-/*N*/ void SwRootFrm::EndAllAction( BOOL bVirDev )
-/*N*/ {
-/*N*/   ViewShell *pSh = GetCurrShell();
-/*N*/   if ( pSh )
-/*N*/       do
-/*N*/       {
-/*N*/           const BOOL bOldEndActionByVirDev = pSh->IsEndActionByVirDev();
-/*N*/           pSh->SetEndActionByVirDev( bVirDev );
-/*N*/           if ( pSh->ISA( SwCrsrShell ) )
-/*N*/           {
-/*N*/               ((SwCrsrShell*)pSh)->EndAction();
-/*N*/               ((SwCrsrShell*)pSh)->CallChgLnk();
-/*N*/               if ( pSh->ISA( SwFEShell ) )
-/*N*/                   ((SwFEShell*)pSh)->SetChainMarker();
-/*N*/           }
-/*N*/           else
-/*?*/               pSh->EndAction();
-/*N*/           pSh->SetEndActionByVirDev( bOldEndActionByVirDev );
-/*N*/           pSh = (ViewShell*)pSh->GetNext();
-/*N*/
-/*N*/       } while ( pSh != GetCurrShell() );
-/*N*/ }
-
-
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

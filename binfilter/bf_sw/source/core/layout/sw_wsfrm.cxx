@@ -307,77 +307,6 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( !pPage )
 /*N*/       pPage = FindPageFrm();
-/*N*/
-/*N*/   if ( pPage && pPage->GetUpper() )
-/*N*/   {
-/*N*/       if ( pPage->GetFmt()->GetDoc()->IsInDtor() )
-/*?*/           return;
-/*N*/
-/*N*/       SwRootFrm *pRoot = (SwRootFrm*)pPage->GetUpper();
-/*N*/       const SwFlyFrm *pFly = FindFlyFrm();
-/*N*/       if ( IsCntntFrm() )
-/*N*/       {
-/*N*/           if ( pRoot->IsTurboAllowed() )
-/*N*/           {
-/*N*/               // JP 21.09.95: wenn sich der ContentFrame 2 mal eintragen
-/*N*/               //              will, kann es doch eine TurboAction bleiben.
-/*N*/               //  ODER????
-/*N*/               if ( !pRoot->GetTurbo() || this == pRoot->GetTurbo() )
-/*N*/                   pRoot->SetTurbo( (const SwCntntFrm*)this );
-/*N*/               else
-/*N*/               {
-/*N*/                   pRoot->DisallowTurbo();
-/*N*/                   //Die Seite des Turbo koennte eine andere als die meinige
-/*N*/                   //sein, deshalb muss sie invalidiert werden.
-/*N*/                   const SwFrm *pTmp = pRoot->GetTurbo();
-/*N*/                   pRoot->ResetTurbo();
-/*N*/                   pTmp->InvalidatePage();
-/*N*/               }
-/*N*/           }
-/*N*/           if ( !pRoot->GetTurbo() )
-/*N*/           {
-/*N*/               if ( pFly )
-/*N*/               {   if( !pFly->IsLocked() )
-/*N*/                   {
-/*N*/                       if ( pFly->IsFlyInCntFrm() )
-/*N*/                       {   pPage->InvalidateFlyInCnt();
-/*N*/                           ((SwFlyInCntFrm*)pFly)->InvalidateCntnt();
-/*N*/                           pFly->GetAnchor()->InvalidatePage();
-/*N*/                       }
-/*N*/                       else
-/*N*/                           pPage->InvalidateFlyCntnt();
-/*N*/                   }
-/*N*/               }
-/*N*/               else
-/*N*/                   pPage->InvalidateCntnt();
-/*N*/           }
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           pRoot->DisallowTurbo();
-/*N*/           if ( pFly )
-/*N*/           {   if( !pFly->IsLocked() )
-/*N*/               {
-/*N*/                   if ( pFly->IsFlyInCntFrm() )
-/*N*/                   {   pPage->InvalidateFlyInCnt();
-/*N*/                       ((SwFlyInCntFrm*)pFly)->InvalidateLayout();
-/*N*/                       pFly->GetAnchor()->InvalidatePage();
-/*N*/                   }
-/*N*/                   else
-/*N*/                       pPage->InvalidateFlyLayout();
-/*N*/               }
-/*N*/           }
-/*N*/           else
-/*N*/               pPage->InvalidateLayout();
-/*N*/
-/*N*/           if ( pRoot->GetTurbo() )
-/*N*/           {   const SwFrm *pTmp = pRoot->GetTurbo();
-/*N*/               pRoot->ResetTurbo();
-/*N*/               pTmp->InvalidatePage();
-/*N*/           }
-/*N*/       }
-/*N*/       pRoot->SetIdleFlags();
-/*N*/   }
 /*N*/ }
 
 /*************************************************************************
@@ -550,27 +479,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if( pNext )
 /*N*/       pNext->pPrev = pPrev;
-/*N*/
-/*N*/ #ifdef ACCESSIBLE_LAYOUT
-/*N*/     // inform accessibility API
-/*N*/     if ( IsInTab() )
-/*N*/     {
-/*N*/         SwTabFrm* pTableFrm = FindTabFrm();
-/*N*/         if( pTableFrm != NULL  &&
-/*N*/             pTableFrm->IsAccessibleFrm()  &&
-/*N*/             pTableFrm->GetFmt() != NULL )
-/*N*/         {
-/*N*/             SwRootFrm *pRootFrm = pTableFrm->FindRootFrm();
-/*N*/             if( pRootFrm != NULL &&
-/*N*/                 pRootFrm->IsAnyShellAccessible() )
-/*N*/             {
-/*N*/                 ViewShell* pShell = pRootFrm->GetCurrShell();
-/*N*/                 if( pShell != NULL )
-/*?*/                    {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/             }
-/*N*/         }
-/*N*/     }
-/*N*/ #endif
 /*N*/
 /*N*/   // Verbindung kappen.
 /*N*/   pNext  = pPrev  = 0;
@@ -762,7 +670,6 @@ namespace binfilter {
 /*N*/       {   SwRootFrm *pRoot = FindRootFrm();
 /*N*/           if ( pRoot )
 /*N*/           {
-/*N*/               pRoot->SetSuperfluous();
 /*N*/               GetUpper()->SetCompletePaint();
 /*N*/               GetUpper()->InvalidatePage( pPage );
 /*N*/           }
@@ -1749,8 +1656,6 @@ namespace binfilter {
 /*N*/               SwPageFrm *pPage = FindPageFrm();
 /*N*/               if ( !GetPrev() )
 /*N*/                   CheckPageDescs( pPage );
-/*N*/               if ( pPage && GetAttrSet()->GetPageDesc().GetNumOffset() )
-/*N*/                   ((SwRootFrm*)pPage->GetUpper())->SetVirtPageNum( TRUE );
 /*N*/               SwDocPosUpdate aMsgHnt( pPage->Frm().Top() );
 /*N*/               pPage->GetFmt()->GetDoc()->UpdatePageFlds( &aMsgHnt );
 /*N*/           }
@@ -1940,7 +1845,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   SwRect aOldFrm( Frm() );
-/*N*/   sal_Bool bMoveAccFrm = sal_False;
 /*N*/
 /*N*/     BOOL bChgPos = IsVertical() && !IsReverse();
 /*N*/   if ( !bTst )
@@ -1948,7 +1852,6 @@ namespace binfilter {
 /*N*/         (Frm().*fnRect->fnSetHeight)( nFrmHeight + nDist );
 /*N*/         if( bChgPos )
 /*?*/             Frm().Pos().X() -= nDist;
-/*N*/       bMoveAccFrm = sal_True;
 /*N*/     }
 /*N*/
 /*N*/   SwTwips nReal = nDist - nMin;
@@ -2009,7 +1912,6 @@ namespace binfilter {
 /*N*/                                           - nDist );
 /*N*/             if( bChgPos )
 /*?*/                 Frm().Pos().X() += nDist;
-/*N*/           bMoveAccFrm = sal_True;
 /*N*/         }
 /*N*/
 /*N*/       if ( nReal )
@@ -2038,15 +1940,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   if( bMoveAccFrm && IsAccessibleFrm() )
-/*N*/   {
-/*N*/       SwRootFrm *pRootFrm = FindRootFrm();
-/*N*/       if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
-/*N*/           pRootFrm->GetCurrShell() )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/   }
 /*N*/   return nReal;
 /*N*/ }
 
@@ -2089,7 +1982,6 @@ namespace binfilter {
 /*N*/       return nDist;
 /*N*/
 /*N*/   SwRect aOldFrm( Frm() );
-/*N*/   sal_Bool bMoveAccFrm = sal_False;
 /*N*/
 /*N*/   SwTwips nRealDist = nReal;
 /*N*/   if ( !bTst )
@@ -2097,7 +1989,6 @@ namespace binfilter {
 /*N*/         (Frm().*fnRect->fnSetHeight)( nFrmHeight - nReal );
 /*N*/         if( bChgPos )
 /*?*/             Frm().Pos().X() += nReal;
-/*N*/       bMoveAccFrm = sal_True;
 /*N*/     }
 /*N*/
 /*N*/   BYTE nAdjust = GetUpper() && GetUpper()->IsFtnBossFrm() ?
@@ -2144,15 +2035,6 @@ namespace binfilter {
 /*?*/           AdjustNeighbourhood( nReal - nShrink );
 /*N*/   }
 /*N*/
-/*N*/   if( bMoveAccFrm && IsAccessibleFrm() )
-/*N*/   {
-/*N*/       SwRootFrm *pRootFrm = FindRootFrm();
-/*N*/       if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
-/*N*/           pRootFrm->GetCurrShell() )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/   }
 /*N*/   if ( !bTst && (IsCellFrm() || IsColumnFrm() ? nReal : nRealDist) )
 /*N*/   {
 /*N*/       SwPageFrm *pPage = FindPageFrm();
@@ -3302,51 +3184,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-/*N*/ void SwRootFrm::InvalidateAllCntnt( BYTE nInv )
-/*N*/ {
-/*N*/   // Erst werden alle Seitengebundenen FlyFrms abgearbeitet.
-/*N*/   SwPageFrm *pPage = (SwPageFrm*)Lower();
-/*N*/   while( pPage )
-/*N*/   {
-/*N*/       pPage->InvalidateFlyLayout();
-/*N*/       pPage->InvalidateFlyCntnt();
-/*N*/       pPage->InvalidateFlyInCnt();
-/*N*/       pPage->InvalidateLayout();
-/*N*/       pPage->InvalidateCntnt();
-/*N*/       pPage->InvalidatePage( pPage ); //Damit ggf. auch der Turbo verschwindet
-/*N*/
-/*N*/       if ( pPage->GetSortedObjs() )
-/*N*/       {
-/*N*/           const SwSortDrawObjs &rObjs = *pPage->GetSortedObjs();
-/*N*/           for ( USHORT i = 0; i < rObjs.Count(); ++i )
-/*N*/           {
-/*N*/               SdrObject *pO = rObjs[i];
-/*N*/               if ( pO->IsWriterFlyFrame() )
-/*N*/                 {
-/*N*/                   ::binfilter::lcl_InvalidateCntnt( ((SwVirtFlyDrawObj*)pO)->GetFlyFrm()->ContainsCntnt(),
-/*N*/                                        nInv );
-/*N*/                     if( nInv & INV_DIRECTION )
-/*?*/                         ((SwVirtFlyDrawObj*)pO)->GetFlyFrm()->CheckDirChange();
-/*N*/                 }
-/*N*/           }
-/*N*/       }
-/*N*/         if( nInv & INV_DIRECTION )
-/*?*/             pPage->CheckDirChange();
-/*N*/       pPage = (SwPageFrm*)(pPage->GetNext());
-/*N*/   }
-/*N*/
-/*N*/   //Hier den gesamten Dokumentinhalt und die zeichengebundenen Flys.
-/*N*/   ::binfilter::lcl_InvalidateCntnt( ContainsCntnt(), nInv );
-/*N*/
-/*N*/   if( nInv & INV_PRTAREA )
-/*N*/   {
-/*?*/       ViewShell *pSh  = GetShell();
-/*?*/       if( pSh )
-/*?*/           pSh->InvalidateWindows( Frm() );
-/*N*/   }
-/*N*/ }
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

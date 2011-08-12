@@ -559,10 +559,7 @@ namespace binfilter {
 /*N*/                   const long nTop    = pAttrs->CalcTopLine()   + aBorder.Height();
 /*N*/                   const long nBottom = pAttrs->CalcBottomLine()+ aBorder.Height();
 /*N*/
-/*N*/                   long nWidth = GetUpper() ? ((SwRootFrm*)GetUpper())->
-/*N*/                       GetBrowseWidth() + 2 * aBorder.Width() : 0;
-/*N*/ //                    if ( !pSh->VisArea().Width() )
-/*N*/ //                        nWidth = Max( nWidth, 5000L );
+/*N*/                   long nWidth = 0;
 /*N*/                   if ( nWidth < pSh->VisArea().Width() )
 /*N*/                       nWidth = pSh->VisArea().Width();
 /*N*/                   nWidth = Max( nWidth, 2L * aBorder.Width() + 4L*MM50 );

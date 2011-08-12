@@ -265,23 +265,6 @@ namespace binfilter {
 
 /*N*/ SwFrm::~SwFrm()
 /*N*/ {
-/*N*/ #ifdef ACCESSIBLE_LAYOUT
-/*N*/   // accessible objects for fly and cell frames have been already disposed
-/*N*/   // by the destructors of the derived classes.
-/*N*/   if( IsAccessibleFrm() && !(IsFlyFrm() || IsCellFrm()) && GetDep() )
-/*N*/   {
-/*N*/       SwRootFrm *pRootFrm = FindRootFrm();
-/*N*/       if( pRootFrm && pRootFrm->IsAnyShellAccessible() )
-/*N*/       {
-/*?*/           ViewShell *pVSh = pRootFrm->GetCurrShell();
-/*?*/           if( pVSh && pVSh->Imp() )
-/*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
-/*N*/       }
-/*N*/   }
-/*N*/ #endif
-/*N*/
 /*N*/   if( pDrawObjs )
 /*N*/   {
 /*N*/       for ( USHORT i = pDrawObjs->Count(); i; )
@@ -347,13 +330,6 @@ namespace binfilter {
 /*N*/   if( 0 != ( pCNd = PTR_CAST( SwCntntNode, pRegisteredIn )) &&
 /*N*/       !pCNd->GetDoc()->IsInDtor() )
 /*N*/   {
-/*N*/       //Bei der Root abmelden wenn ich dort noch im Turbo stehe.
-/*N*/       SwRootFrm *pRoot = FindRootFrm();
-/*N*/       if( pRoot && pRoot->GetTurbo() == this )
-/*N*/       {
-/*?*/           pRoot->DisallowTurbo();
-/*?*/           pRoot->ResetTurbo();
-/*N*/       }
 /*N*/         if( IsTxtFrm() && ((SwTxtFrm*)this)->HasFtn() )
 /*N*/         {
 /*?*/             SwTxtNode *pTxtNd = ((SwTxtFrm*)this)->GetTxtNode();

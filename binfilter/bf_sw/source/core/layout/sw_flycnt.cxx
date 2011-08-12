@@ -1176,7 +1176,6 @@ namespace binfilter {
 /*N*/
 /*N*/   SwPageFrm *pNewPage = FindPageFrm();
 /*N*/   SwPageFrm *pMyPage  = pNewPage;
-/*N*/   BOOL bSuperfluous = FALSE;
 /*N*/
 /*N*/   //#45516# Ausnahmebehandlung. Eine Tabelle ist zu gross und haengt aus der
 /*N*/   //Seite heraus. Der Rahmen kann dann zwar richtig bei seinem Anker stehen,
@@ -1239,7 +1238,6 @@ namespace binfilter {
 /*N*/                   {
 /*?*/                       pNewPage->GetLeaf( bFtn ? MAKEPAGE_NONE : MAKEPAGE_APPEND,
 /*?*/                                           TRUE, GetAnchor());
-/*?*/                       bSuperfluous = TRUE;
 /*N*/                   }
 /*N*/                   if ( pNewPage->GetNext() )
 /*N*/                   {
@@ -1268,8 +1266,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       OSL_ENSURE( IsLocked(), "AssertPage: Unlocked Frame??" );
 /*N*/       pMyPage->MoveFly( this, pNewPage );
-/*N*/       if ( bSuperfluous && pMyPage->GetPhyPageNum() > pNewPage->GetPhyPageNum() )
-/*?*/           ((SwRootFrm*)pNewPage->GetUpper())->SetSuperfluous();
 /*N*/   }
 /*N*/
 /*N*/ }

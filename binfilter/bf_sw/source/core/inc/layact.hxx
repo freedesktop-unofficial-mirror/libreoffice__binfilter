@@ -174,7 +174,6 @@ public:
     //Einstellen der Action auf das gewuenschte Verhalten.
     void SetPaint       ( BOOL bNew )   { bPaint = bNew; }
     void SetComplete    ( BOOL bNew )   { bComplete = bNew; }
-    void SetStatBar     ( BOOL bNew );
     void SetInputType   ( USHORT nNew ) { nInputType = nNew; }
     void SetCalcLayout  ( BOOL bNew )   { bCalcLayout = bNew; }
     void SetReschedule  ( BOOL bNew )   { bReschedule = bNew; }

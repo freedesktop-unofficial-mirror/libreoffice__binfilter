@@ -772,8 +772,6 @@ namespace binfilter {
 /*?*/       return 0;
 /*N*/
 /*N*/   USHORT nPhyPage = pPage->GetPhyPageNum();
-/*N*/   if ( !((SwRootFrm*)pPage->GetUpper())->IsVirtPageNum() )
-/*N*/       return nPhyPage;
 /*N*/
 /*N*/   //Den am naechsten stehenden Absatz mit virtueller Seitennummer suchen.
 /*N*/   //Da das rueckwaertsuchen insgesamt sehr viel Zeit verschlingt suchen

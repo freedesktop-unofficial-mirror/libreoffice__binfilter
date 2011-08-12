@@ -1391,16 +1391,6 @@ namespace binfilter {
 /*N*/                 Frm().Pos().X() -= nDist;
 /*N*/           if ( nReal < nDist )
 /*N*/                 GetUpper()->Grow( nDist - (nReal>0 ? nReal : 0), bTst, bInfo );
-/*N*/
-/*N*/           SwRootFrm *pRootFrm = FindRootFrm();
-/*N*/           if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
-/*N*/               pRootFrm->GetCurrShell() )
-/*N*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
-/*N*/         }
-/*N*/       else
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       SwPageFrm *pPage = FindPageFrm();
@@ -1480,11 +1470,6 @@ namespace binfilter {
 /*N*/           if ( pTmp->IsCntntFrm() )
 /*N*/               pTmp->InvalidatePage( pPage );
 /*N*/       }
-/*N*/       if ( nInvFlags & 0x20  )
-/*N*/       {
-/*N*/           if ( pPage && pPage->GetUpper() && !IsFollow() )
-/*N*/               ((SwRootFrm*)pPage->GetUpper())->InvalidateBrowseWidth();
-/*N*/       }
 /*N*/       if ( nInvFlags & 0x80 )
 /*N*/           InvalidateNextPos();
 /*N*/   }
@@ -1532,8 +1517,6 @@ namespace binfilter {
 /*N*/               SwPageFrm *pPage = FindPageFrm();
 /*N*/               if ( !GetPrev() )
 /*N*/                   CheckPageDescs( pPage );
-/*N*/               if ( pPage && GetFmt()->GetPageDesc().GetNumOffset() )
-/*N*/                   ((SwRootFrm*)pPage->GetUpper())->SetVirtPageNum( TRUE );
 /*N*/               SwDocPosUpdate aMsgHnt( pPage->Frm().Top() );
 /*N*/               GetFmt()->GetDoc()->UpdatePageFlds( &aMsgHnt );
 /*N*/           }
@@ -1800,8 +1783,7 @@ namespace binfilter {
 /*N*/       //er die Retouche uebernehmen.
 /*N*/       //Ausserdem kann eine Leerseite entstanden sein.
 /*N*/       else
-/*N*/       {   SwRootFrm *pRoot = (SwRootFrm*)pPage->GetUpper();
-/*N*/           pRoot->SetSuperfluous();
+/*N*/       {
 /*N*/           GetUpper()->SetCompletePaint();
 /*N*/           if( IsInSct() )
 /*N*/           {
@@ -1857,9 +1839,6 @@ namespace binfilter {
 /*N*/             }
 /*N*/         }
 /*N*/   }
-/*N*/
-/*N*/   if ( pPage && !IsFollow() && pPage->GetUpper() )
-/*N*/       ((SwRootFrm*)pPage->GetUpper())->InvalidateBrowseWidth();
 /*N*/ }
 
 /*************************************************************************
@@ -1915,9 +1894,6 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( pPage && !IsFollow() )
 /*N*/   {
-/*N*/       if ( pPage->GetUpper() )
-/*N*/           ((SwRootFrm*)pPage->GetUpper())->InvalidateBrowseWidth();
-/*N*/
 /*N*/       if ( !GetPrev() )//Mindestens fuer HTML mit Tabelle am Anfang notwendig.
 /*N*/       {
 /*N*/           const SwPageDesc *pDesc = GetFmt()->GetPageDesc().GetPageDesc();
@@ -2212,7 +2188,6 @@ namespace binfilter {
 /*N*/   SwFrm *pFrm = Lower();
 /*N*/   if ( bHeight )
 /*N*/   {
-/*N*/       SwRootFrm *pRootFrm = 0;
 /*N*/         SWRECTFN( this )
 /*N*/       while ( pFrm )
 /*N*/         {
@@ -2221,13 +2196,6 @@ namespace binfilter {
 /*N*/           {
 /*N*/               SwRect aOldFrm( pFrm->Frm() );
 /*N*/                 (pFrm->Frm().*fnRect->fnAddBottom)( nDiff );
-/*N*/               if( !pRootFrm )
-/*N*/                   pRootFrm = FindRootFrm();
-/*N*/               if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
-/*N*/                   pRootFrm->GetCurrShell() )
-/*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
 /*N*/               pFrm->_InvalidatePrt();
 /*N*/           }
 /*N*/           pFrm = pFrm->GetNext();
@@ -2405,12 +2373,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // At this stage the lower frames aren't destroyed already,
 /*N*/       // therfor we have to do a recursive dispose.
-/*N*/       SwRootFrm *pRootFrm = FindRootFrm();
-/*N*/       if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
-/*N*/           pRootFrm->GetCurrShell() )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/       pMod->Remove( this );           // austragen,
 /*N*/         pMod->Remove( this );           // austragen,
 /*N*/       if( !pMod->GetDepends() )

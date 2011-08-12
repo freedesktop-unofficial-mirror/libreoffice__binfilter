@@ -468,23 +468,8 @@ namespace binfilter {
 
 /*N*/ SwEditShell* SwDoc::GetEditShell( ViewShell** ppSh ) const
 /*N*/ {
-/*N*/   // Layout und OLE-Shells sollten vorhanden sein!
-/*N*/   if( pLayout && pLayout->GetCurrShell() )
-/*N*/   {
-/*N*/       register ViewShell *pSh = pLayout->GetCurrShell(), *pVSh = pSh;
-/*N*/       if( ppSh )
-/*N*/           *ppSh = pSh;
-/*N*/
-/*N*/       // wir suchen uns eine EditShell, falls diese existiert
-/*N*/       do {
-/*N*/           if( pSh->IsA( TYPE( SwEditShell ) ) )
-/*N*/               return (SwEditShell*)pSh;
-/*N*/
-/*?*/       } while( pVSh != ( pSh = (ViewShell*)pSh->GetNext() ));
-/*N*/   }
-/*N*/   else if( ppSh )
+/*N*/   if( ppSh )
 /*N*/       *ppSh = 0;
-/*N*/
 /*N*/   return 0;
 /*N*/ }
 

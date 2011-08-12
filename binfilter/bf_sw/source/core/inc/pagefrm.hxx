@@ -61,8 +61,6 @@ enum SwPageChg
     CHG_CHGPAGE
 };
 
-void SetLastPage( SwPageFrm* );
-
 class SwPageFrm: public SwFtnBossFrm
 {
     friend class SwFrm;

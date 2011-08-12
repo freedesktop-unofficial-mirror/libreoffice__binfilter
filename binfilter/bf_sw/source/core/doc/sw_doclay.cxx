@@ -724,58 +724,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 
 /*N*/ IMPL_LINK( SwDoc, DoIdleJobs, Timer *, EMPTYARG )
 /*N*/ {
-/*N*/ #ifdef TIMELOG
-/*N*/   static ::rtl::Logfile* pModLogFile = 0;
-/*N*/   if( !pModLogFile )
-/*N*/       pModLogFile = new ::rtl::Logfile( "First DoIdleJobs" );
-/*N*/ #endif
-/*N*/
-/*N*/   if( !SfxProgress::GetActiveProgress( pDocShell ) &&
-/*N*/       GetRootFrm() && GetRootFrm()->GetCurrShell() )
-/*N*/   {
-/*N*/       ViewShell *pSh, *pStartSh;
-/*N*/       pSh = pStartSh = GetRootFrm()->GetCurrShell();
-/*N*/       do {
-/*N*/           if( pSh->ActionPend() )
-/*N*/               return 0;
-/*N*/           pSh = (ViewShell*)pSh->GetNext();
-/*N*/       } while( pSh != pStartSh );
-/*N*/
-/*N*/       sal_uInt16 nFldUpdFlag;
-/*N*/       if( GetRootFrm()->IsIdleFormat() )
-/*N*/           GetRootFrm()->GetCurrShell()->LayoutIdle();
-/*N*/       else if( ( AUTOUPD_FIELD_ONLY == ( nFldUpdFlag = GetFldUpdateFlags() )
-/*N*/                   || AUTOUPD_FIELD_AND_CHARTS == nFldUpdFlag ) &&
-/*N*/               GetUpdtFlds().IsFieldsDirty() &&
-/*N*/               !GetUpdtFlds().IsInUpdateFlds() &&
-/*N*/               !IsExpFldsLocked()
-/*N*/               // das umschalten der Feldname fuehrt zu keinem Update der
-/*N*/               // Felder, also der "Hintergrund-Update" immer erfolgen
-/*N*/               /* && !pStartSh->GetViewOptions()->IsFldName()*/ )
-/*N*/       {
-/*N*/           // chaos::Action-Klammerung!
-/*N*/           GetUpdtFlds().SetInUpdateFlds( sal_True );
-/*N*/
-/*N*/           GetRootFrm()->StartAllAction();
-/*N*/
-/*N*/           GetSysFldType( RES_CHAPTERFLD )->Modify( 0, 0 );    // KapitelFld
-/*N*/           UpdateExpFlds( 0, sal_False );      // Expression-Felder Updaten
-/*N*/           UpdateTblFlds();                // Tabellen
-/*N*/           UpdateRefFlds();                // Referenzen
-/*N*/
-/*N*/           if( AUTOUPD_FIELD_AND_CHARTS == nFldUpdFlag )
-/*N*/               aChartTimer.Start();
-/*N*/
-/*N*/           GetRootFrm()->EndAllAction();
-/*N*/
-/*N*/           GetUpdtFlds().SetInUpdateFlds( sal_False );
-/*N*/           GetUpdtFlds().SetFieldsDirty( sal_False );
-/*N*/       }
-/*N*/   }
-/*N*/ #ifdef TIMELOG
-/*N*/   if( pModLogFile && 1 != (long)pModLogFile )
-/*N*/       delete pModLogFile, ((long&)pModLogFile) = 1;
-/*N*/ #endif
 /*N*/   return 0;
 /*N*/ }
 

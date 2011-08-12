@@ -482,31 +482,8 @@ namespace binfilter {
 /*N*/                              SdrUserCallType eType,
 /*N*/                              const Rectangle& rOldBoundRect )
 /*N*/ {
-/*N*/   //Action aufsetzen, aber nicht wenn gerade irgendwo eine Action laeuft.
-/*N*/   ViewShell *pSh = 0, *pOrg;
-/*N*/   SwDoc *pDoc = GetFmt()->GetDoc();
-/*N*/   if ( pDoc->GetRootFrm() && pDoc->GetRootFrm()->IsCallbackActionEnabled() )
-/*N*/   {
-/*N*/       pDoc->GetEditShell( &pOrg );
-/*N*/       pSh = pOrg;
-/*N*/       if ( pSh )
-/*N*/           do
-/*N*/           {   if ( pSh->Imp()->IsAction() || pSh->Imp()->IsIdleAction() )
-/*N*/                   pSh = 0;
-/*N*/               else
-/*N*/                   pSh = (ViewShell*)pSh->GetNext();
-/*N*/
-/*N*/           } while ( pSh && pSh != pOrg );
-/*N*/
-/*N*/       if ( pSh )
-/*N*/           pDoc->GetRootFrm()->StartAllAction();
-/*N*/   }
-/*N*/
 /*N*/   SdrObjUserCall::Changed( rObj, eType, rOldBoundRect );
 /*N*/   _Changed( rObj, eType, &rOldBoundRect );    //Achtung, ggf. Suizid!
-/*N*/
-/*N*/   if ( pSh )
-/*N*/       pDoc->GetRootFrm()->EndAllAction();
 /*N*/ }
 
 /*N*/ void SwDrawContact::_Changed( const SdrObject& rObj,
@@ -839,9 +816,6 @@ void SwDrawContact::ConnectToLayout( const SwFmtAnchor* pAnch )
                     bSetAnchorPos = false;
                     pPage3->SwFrm::AppendDrawObj( this );
                 }
-                else
-                    //Sieht doof aus, ist aber erlaubt (vlg. SwFEShell::SetPageObjsNewPage)
-                    pRoot->SetAssertFlyPages();
             }
             break;
 

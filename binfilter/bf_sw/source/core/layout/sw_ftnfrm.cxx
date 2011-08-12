@@ -568,13 +568,6 @@ namespace binfilter {
 /*N*/       //Die letzte Fussnote nimmt ihren Container mit.
 /*N*/       if ( !pUp->Lower() )
 /*N*/       {
-/*N*/           SwPageFrm *pPage = pUp->FindPageFrm();
-/*N*/           if ( pPage )
-/*N*/           {
-/*N*/               SwLayoutFrm *pBody = pPage->FindBodyCont();
-/*N*/               if ( !pBody->ContainsCntnt() )
-/*?*/                   pPage->FindRootFrm()->SetSuperfluous();
-/*N*/           }
 /*N*/           SwSectionFrm* pSect = pUp->FindSctFrm();
 /*N*/           pUp->Cut();
 /*N*/           delete pUp;
@@ -771,57 +764,6 @@ namespace binfilter {
 /*N*/       pBoss = pBoss->IsColumnFrm() ? (SwColumnFrm*)pBoss->GetNext() : NULL;
 /*N*/   } while( pBoss );
 /*N*/ }
-
-/*N*/ void SwRootFrm::RemoveFtns( SwPageFrm *pPage, BOOL bPageOnly, BOOL bEndNotes )
-/*N*/ {
-/*N*/   if ( !pPage )
-/*?*/       pPage = (SwPageFrm*)Lower();
-/*N*/
-/*N*/   do
-/*N*/   {   // Bei spaltigen Seiten muessen wir in allen Spalten aufraeumen
-/*N*/       SwFtnBossFrm* pBoss;
-/*N*/       SwLayoutFrm* pBody = pPage->FindBodyCont();
-/*N*/       if( pBody && pBody->Lower() && pBody->Lower()->IsColumnFrm() )
-/*N*/           pBoss = (SwFtnBossFrm*)pBody->Lower(); // die erste Spalte
-/*N*/       else
-/*N*/           pBoss = pPage; // keine Spalten
-/*N*/       lcl_RemoveFtns( pBoss, bPageOnly, bEndNotes );
-/*N*/       if ( !bPageOnly )
-/*N*/       {
-/*?*/           if ( pPage->IsFtnPage() &&
-/*?*/                (!pPage->IsEndNotePage() || bEndNotes) )
-/*?*/           {
-/*?*/               SwFrm *pDel = pPage;
-/*?*/               pPage = (SwPageFrm*)pPage->GetNext();
-/*?*/               pDel->Cut();
-/*?*/               delete pDel;
-/*?*/           }
-/*?*/           else
-/*?*/               pPage = (SwPageFrm*)pPage->GetNext();
-/*N*/       }
-/*N*/       else
-/*N*/           break;
-/*N*/
-/*?*/   } while ( pPage );
-/*N*/ }
-
-/*************************************************************************
-|*
-|*  SetFtnPageDescs()   Seitenvorlagen der Fussnotenseiten aendern
-|*
-|*************************************************************************/
-
-void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
-{
-    SwPageFrm *pPage = (SwPageFrm*)Lower();
-    while ( pPage && !pPage->IsFtnPage() )
-        pPage = (SwPageFrm*)pPage->GetNext();
-    while ( pPage && pPage->IsEndNotePage() != bEndNote )
-        pPage = (SwPageFrm*)pPage->GetNext();
-    if ( pPage )
-        SwFrm::CheckPageDescs( pPage, FALSE );
-}
-
 
 /*************************************************************************
 |*

@@ -193,20 +193,6 @@ namespace binfilter {
 
 /*N*/ SwFlyFrm::~SwFlyFrm()
 /*N*/ {
-/*N*/ #ifdef ACCESSIBLE_LAYOUT
-/*N*/   // Accessible objects for fly frames will be destroyed in this destructor.
-/*N*/   // For frames bound as char or frames that don't have an anchor we have
-/*N*/   // to do that ourselves. For any other frame the call RemoveFly at the
-/*N*/   // anchor will do that.
-/*N*/   if( IsAccessibleFrm() && GetFmt() && (IsFlyInCntFrm() || !pAnchor) )
-/*N*/   {
-/*N*/       SwRootFrm *pRootFrm = FindRootFrm();
-/*N*/       if( pRootFrm && pRootFrm->IsAnyShellAccessible() )
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/   }
-/*N*/ #endif
-/*N*/
 /*N*/   if( GetFmt() && !GetFmt()->GetDoc()->IsInDtor() )
 /*N*/   {
 /*N*/       //Aus der Verkettung loessen.
@@ -477,9 +463,6 @@ namespace binfilter {
 /*N*/           SetCompletePaint();
 /*N*/       if ( ( nInvFlags & 0x40 ) && Lower() && Lower()->IsNoTxtFrm() )
 /*N*/           ClrContourCache( GetVirtDrawObj() );
-/*N*/       SwRootFrm *pRoot;
-/*N*/       if ( nInvFlags & 0x20 && 0 != (pRoot = FindRootFrm()) )
-/*N*/           pRoot->InvalidateBrowseWidth();
 /*N*/   }
 /*N*/ }
 
@@ -545,8 +528,6 @@ namespace binfilter {
 /*M*/       case RES_LR_SPACE:
 /*M*/           {
 /*?*/           rInvFlags |= 0x41;
-/*?*/           if ( GetFmt()->GetDoc()->IsBrowseMode() )
-/*?*/               GetFmt()->GetDoc()->GetRootFrm()->InvalidateBrowseWidth();
 /*?*/           SwRect aNew( AddSpacesToFrm() );
 /*?*/           SwRect aOld( aFrm );
 /*?*/           if ( RES_UL_SPACE == nWhich )
@@ -1477,37 +1458,7 @@ namespace binfilter {
 /*N*/   //Anmeldung wird dann in SwPageFrm::PreparePage durch gefuehrt.
 /*N*/   SwPageFrm *pPage = FindPageFrm();
 /*N*/   if ( pPage )
-/*N*/   {
-/*N*/       if ( pNew->IsFlyAtCntFrm() && pNew->Frm().Top() == WEIT_WECH )
-/*N*/       {
-/*N*/           //Versuch die Seitenformatierung von neuen Dokumenten etwas
-/*N*/           //guenstiger zu gestalten.
-/*N*/           //Wir haengen die Flys erstenmal nach hinten damit sie bei heftigem
-/*N*/           //Fluss der Anker nicht unoetig oft formatiert werden.
-/*N*/           //Damit man noch brauchbar an das Ende des Dokumentes springen
-/*N*/           //kann werden die Flys nicht ganz an das Ende gehaengt.
-/*N*/           SwRootFrm *pRoot = (SwRootFrm*)pPage->GetUpper();
-/*N*/             if( !SwLayHelper::CheckPageFlyCache( pPage, pNew ) )
-/*N*/             {
-/*N*/                 SwPageFrm *pTmp = pRoot->GetLastPage();
-/*N*/                 if ( pTmp->GetPhyPageNum() > 30 )
-/*N*/                 {
-/*N*/                     for ( USHORT i = 0; i < 10; ++i )
-/*N*/                     {
-/*N*/                         pTmp = (SwPageFrm*)pTmp->GetPrev();
-/*N*/                         if( pTmp->GetPhyPageNum() <= pPage->GetPhyPageNum() )
-/*N*/                             break; // damit wir nicht vor unserem Anker landen
-/*N*/                     }
-/*N*/                     if ( pTmp->IsEmptyPage() )
-/*?*/                         pTmp = (SwPageFrm*)pTmp->GetPrev();
-/*N*/                     pPage = pTmp;
-/*N*/                 }
-/*N*/           }
-/*N*/           pPage->SwPageFrm::AppendFly( pNew );
-/*N*/       }
-/*N*/       else
-/*N*/           pPage->SwPageFrm::AppendFly( pNew );
-/*N*/   }
+/*N*/       pPage->SwPageFrm::AppendFly( pNew );
 /*N*/ }
 
 /*N*/ void SwFrm::RemoveFly( SwFlyFrm *pToRemove )
@@ -1582,13 +1533,6 @@ void SwFrm::AppendDrawObj( SwDrawContact *pNew )
     SwPageFrm *pPage = FindPageFrm();
     if ( pPage )
         pPage->SwPageFrm::AppendDrawObj( pNew );
-
-#ifdef ACCESSIBLE_LAYOUT
-    // Notify accessible layout.
-    ViewShell* pSh = GetShell();
-    if( pSh && pSh->GetLayout()->IsAnyShellAccessible() )
-        pSh->Imp()->AddAccessibleObj( pNew->GetMaster() );
-#endif
 }
 
 // add 'virtual' drawing object to frame.
@@ -1641,25 +1585,10 @@ void SwFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
     {
         pPage->SwPageFrm::AppendVirtDrawObj( _pDrawContact, _pDrawVirtObj );
     }
-
-    // Notify accessible layout.
-    ViewShell* pSh = GetShell();
-    if( pSh && pSh->GetLayout()->IsAnyShellAccessible() )
-    {
-        pSh->Imp()->AddAccessibleObj( _pDrawVirtObj );
-    }
 }
 
 /*N*/ void SwFrm::RemoveDrawObj( SwDrawContact *pToRemove )
 /*N*/ {
-/*N*/   //Bei der Seite Abmelden - kann schon passiert sein weil die Seite
-/*N*/   //bereits destruiert wurde.
-/*N*/ #ifdef ACCESSIBLE_LAYOUT
-/*N*/   // Notify accessible layout.
-/*N*/     ViewShell* pSh = GetShell();
-/*N*/   if( pSh && pSh->GetLayout()->IsAnyShellAccessible() )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/ #endif
 /*N*/   SwPageFrm *pPage = pToRemove->GetPage();
 /*N*/   if ( pPage && pPage->GetSortedObjs() )
 /*N*/       pPage->SwPageFrm::RemoveDrawObj( pToRemove );
@@ -1676,13 +1605,6 @@ void SwFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
 void SwFrm::RemoveVirtDrawObj( SwDrawContact* _pDrawContact,
                                SwDrawVirtObj* _pDrawVirtObj )
 {
-    // Notify accessible layout.
-    ViewShell* pSh = GetShell();
-    if( pSh && pSh->GetLayout()->IsAnyShellAccessible() )
-    {
-        pSh->Imp()->DisposeAccessibleObj( _pDrawVirtObj );
-    }
-
     SwPageFrm *pPage = _pDrawVirtObj->GetPageFrm();
     if ( pPage && pPage->GetSortedObjs() )
     {

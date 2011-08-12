@@ -243,11 +243,6 @@ namespace binfilter {
 /*N*/       USHORT nPgNum = 0;
 /*N*/       if ( !pDesc )
 /*N*/           pDesc = rpPage->GetPageDesc()->GetFollow();
-/*N*/       else
-/*N*/       {
-/*N*/           if ( 0 != (nPgNum = rDesc.GetNumOffset()) )
-/*N*/               ((SwRootFrm*)rpPage->GetUpper())->SetVirtPageNum(TRUE);
-/*N*/       }
 /*N*/       BOOL bOdd = !rpPage->OnRightPage();
 /*N*/       BOOL bInsertEmpty = FALSE;
 /*N*/       if( nPgNum && bOdd != ( ( nPgNum % 2 ) != 0 ) )

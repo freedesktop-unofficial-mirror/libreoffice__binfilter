@@ -710,13 +710,6 @@ const sal_Char sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/           if( !bInReading )
 /*N*/               pDrawModel->ReformatAllTextObjects();
 /*N*/       }
-/*N*/
-/*N*/       if( pLayout && !bInReading )
-/*N*/       {
-/*N*/           pLayout->StartAllAction();
-/*N*/           pLayout->InvalidateAllCntnt();
-/*N*/           pLayout->EndAllAction();
-/*N*/       }
 /*N*/   }
 /*N*/ }
 }

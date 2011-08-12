@@ -1290,20 +1290,6 @@ namespace binfilter {
 /*N*/
 /*N*/       delete pXPoly;
 /*N*/       // UPPER_LOWER_TEST
-/*N*/ #ifdef DBG_UTIL
-/*N*/       if( pFmt->GetDoc()->GetRootFrm()->GetCurrShell() )
-/*N*/       {
-/*N*/           sal_Bool bT2 =  pFmt->GetDoc()->GetRootFrm()->GetCurrShell()->GetViewOptions()->IsTest2();
-/*N*/           sal_Bool bT6 = pFmt->GetDoc()->GetRootFrm()->GetCurrShell()->GetViewOptions()->IsTest6();
-/*N*/           if( bT2 || bT6 )
-/*N*/           {
-/*?*/               if( bT2 )
-/*?*/                   pTextRanger[ 0 ]->SetFlag7( sal_True );
-/*?*/               else
-/*?*/                   pTextRanger[ 0 ]->SetFlag6( sal_True );
-/*N*/           }
-/*N*/       }
-/*N*/ #endif
 /*N*/       nPntCnt += pTextRanger[ 0 ]->GetPointCount();
 /*N*/       while( nPntCnt > POLY_MAX && nObjCnt > POLY_MIN )
 /*N*/       {

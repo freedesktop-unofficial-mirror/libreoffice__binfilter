@@ -159,22 +159,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*  SwLayAction::SetStatBar()
-|*
-|*************************************************************************/
-/*N*/ void SwLayAction::SetStatBar( BOOL bNew )
-/*N*/ {
-/*N*/   if ( bNew )
-/*N*/   {
-/*N*/       nEndPage = pRoot->GetPageNum();
-/*N*/       nEndPage += nEndPage * 10 / 100;
-/*N*/   }
-/*N*/   else
-/*N*/       nEndPage = USHRT_MAX;
-/*N*/ }
-
-/*************************************************************************
-|*
 |*  SwLayAction::PaintCntnt()
 |*
 |*  Beschreibung        Je nach Typ wird der Cntnt entsprechend seinen
@@ -496,22 +480,6 @@ namespace binfilter {
 /*N*/ void SwLayAction::Action()
 /*N*/ {
 /*N*/   bActionInProgress = TRUE;
-/*N*/   //TurboMode? Disqualifiziert fuer Idle-Format.
-/*N*/   if ( IsPaint() && !IsIdle() && TurboAction() )
-/*N*/   {
-/*N*/       pRoot->ResetTurboFlag();
-/*N*/       bActionInProgress = FALSE;
-/*N*/       pRoot->DeleteEmptySct();
-/*N*/       return;
-/*N*/   }
-/*N*/   else if ( pRoot->GetTurbo() )
-/*N*/   {
-/*N*/       pRoot->DisallowTurbo();
-/*N*/       const SwFrm *pFrm = pRoot->GetTurbo();
-/*N*/       pRoot->ResetTurbo();
-/*N*/       pFrm->InvalidatePage();
-/*N*/   }
-/*N*/   pRoot->DisallowTurbo();
 /*N*/
 /*N*/   if ( IsCalcLayout() )
 /*?*/       SetCheckPages( FALSE );
@@ -524,11 +492,6 @@ namespace binfilter {
 /*N*/       InternalAction();
 /*N*/       bAgain |= RemoveEmptyBrowserPages();
 /*N*/   }
-/*N*/   pRoot->DeleteEmptySct();
-/*N*/
-/*N*/   //Turbo-Action ist auf jedenfall wieder erlaubt.
-/*N*/   pRoot->ResetTurboFlag();
-/*N*/   pRoot->ResetTurbo();
 /*N*/
 /*N*/   if ( IsInput() )
 /*N*/       pImp->GetShell()->SetNoNextScroll();
@@ -637,38 +600,11 @@ namespace binfilter {
 /*N*/            //Kein ShortCut fuer Idle oder CalcLayout
 /*N*/       if ( !IsIdle() && !IsComplete() && IsShortCut( pPage ) )
 /*N*/       {
-/*N*/           pRoot->DeleteEmptySct();
 /*N*/           XCHECKPAGE;
-/*N*/           if ( !IsInterrupt() &&
-/*N*/                (pRoot->IsSuperfluous() || pRoot->IsAssertFlyPages()) )
-/*N*/           {
-/*N*/               if ( pRoot->IsAssertFlyPages() )
-/*N*/                   pRoot->AssertFlyPages();
-/*N*/               if ( pRoot->IsSuperfluous() )
-/*N*/               {
-/*N*/                   BOOL bOld = IsAgain();
-/*N*/                   pRoot->RemoveSuperfluous();
-/*N*/                   bAgain = bOld;
-/*N*/               }
-/*N*/               if ( IsAgain() )
-/*N*/               {
-/*?*/                   if( bNoLoop )
-/*?*/                       pDoc->GetLayouter()->EndLoopControl();
-/*?*/                   return;
-/*N*/               }
-/*N*/               pPage = (SwPageFrm*)pRoot->Lower();
-/*N*/               while ( pPage && !pPage->IsInvalid() && !pPage->IsInvalidFly() )
-/*N*/                   pPage = (SwPageFrm*)pPage->GetNext();
-/*N*/               while ( pPage && pPage->GetNext() &&
-/*N*/                       pPage->GetPhyPageNum() < nFirstPageNum )
-/*N*/                   pPage = (SwPageFrm*)pPage->GetNext();
-/*N*/               continue;
-/*N*/           }
 /*N*/           break;
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           pRoot->DeleteEmptySct();
 /*N*/           XCHECKPAGE;
 /*N*/           //Erst das Layout der Seite formatieren. Erst wenn das Layout
 /*N*/           //stabil ist lohnt sich die Inhaltsformatiertung.
@@ -795,30 +731,6 @@ namespace binfilter {
 /*N*/                   pDoc->GetLayouter()->LoopControl( pPage, LOOP_PAGE );
 /*N*/           }
 /*N*/             CheckIdleEnd();
-/*N*/       }
-/*N*/       if ( !pPage && !IsInterrupt() &&
-/*N*/            (pRoot->IsSuperfluous() || pRoot->IsAssertFlyPages()) )
-/*N*/       {
-/*N*/           if ( pRoot->IsAssertFlyPages() )
-/*N*/               pRoot->AssertFlyPages();
-/*N*/           if ( pRoot->IsSuperfluous() )
-/*N*/           {
-/*N*/               BOOL bOld = IsAgain();
-/*N*/               pRoot->RemoveSuperfluous();
-/*N*/               bAgain = bOld;
-/*N*/           }
-/*N*/           if ( IsAgain() )
-/*N*/           {
-/*?*/               if( bNoLoop )
-/*?*/                   pDoc->GetLayouter()->EndLoopControl();
-/*?*/               return;
-/*N*/           }
-/*N*/           pPage = (SwPageFrm*)pRoot->Lower();
-/*N*/           while ( pPage && !pPage->IsInvalid() && !pPage->IsInvalidFly() )
-/*N*/               pPage = (SwPageFrm*)pPage->GetNext();
-/*N*/           while ( pPage && pPage->GetNext() &&
-/*N*/                   pPage->GetPhyPageNum() < nFirstPageNum )
-/*?*/               pPage = (SwPageFrm*)pPage->GetNext();
 /*N*/       }
 /*N*/   }
 /*N*/   if ( IsInterrupt() && pPage )
@@ -965,20 +877,7 @@ namespace binfilter {
 
 /*N*/ BOOL SwLayAction::TurboAction()
 /*N*/ {
-/*N*/   BOOL bRet = TRUE;
-/*N*/
-/*N*/   if ( pRoot->GetTurbo() )
-/*N*/   {
-/*N*/       if ( !_TurboAction( pRoot->GetTurbo() ) )
-/*N*/       {
-/*N*/           CheckIdleEnd();
-/*N*/           bRet = FALSE;
-/*N*/       }
-/*N*/       pRoot->ResetTurbo();
-/*N*/   }
-/*N*/   else
-/*N*/       bRet = FALSE;
-/*N*/   return bRet;
+/*N*/   return FALSE;
 /*N*/ }
 /*************************************************************************
 |*
@@ -1614,23 +1513,12 @@ namespace binfilter {
 /*N*/       while ( pLow != pRow )
 /*N*/           pLow = pLow->GetNext();
 /*N*/
-/*N*/   SwRootFrm *pRootFrm = 0;
-/*N*/
 /*N*/   while ( pLow )
 /*N*/   {
 /*N*/       if ( !bResetOnly )
 /*N*/       {
 /*N*/           SwRect aOldFrm( pLow->Frm() );
 /*N*/           pLow->Frm().Pos().Y() += nOfst;
-/*N*/           if( pLow->IsAccessibleFrm() )
-/*N*/           {
-/*N*/               if( !pRootFrm )
-/*N*/                   pRootFrm = pPage->FindRootFrm();
-/*N*/               if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
-/*N*/                   pRootFrm->GetCurrShell() )
-/*N*/               {DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
-/*N*/           }
 /*N*/       }
 /*N*/       if ( pLow->IsLayoutFrm() )
 /*N*/       {
@@ -2492,9 +2380,6 @@ namespace binfilter {
 /*N*/           pPg = (SwPageFrm*)pPg->GetNext();
 /*N*/
 /*N*/       } while ( pPg && TRUE^bInValid );
-/*N*/
-/*N*/       if ( TRUE^bInValid )
-/*N*/           pRoot->ResetIdleFormat();
 /*N*/   }
 /*N*/
 /*N*/   pImp->GetShell()->EnableSmooth( TRUE );

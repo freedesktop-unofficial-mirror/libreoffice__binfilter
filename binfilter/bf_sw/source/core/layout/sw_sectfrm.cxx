@@ -143,9 +143,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( GetFmt() && !GetFmt()->GetDoc()->IsInDtor() )
 /*N*/   {
-/*N*/       SwRootFrm *pRootFrm = GetFmt()->GetDoc()->GetRootFrm();
-/*N*/       if( pRootFrm )
-/*N*/           pRootFrm->RemoveFromList( this );
 /*N*/       if( IsFollow() )
 /*N*/       {
 /*?*/           SwSectionFrm *pMaster = FindSectionMaster();
@@ -225,17 +222,6 @@ namespace binfilter {
 /*N*/   if( pUp )
 /*N*/   {
 /*N*/       Frm().Height( 0 );
-/*N*/       // Wenn wir sowieso sofort zerstoert werden, brauchen/duerfen wir
-/*N*/       // uns gar nicht erst in die Liste eintragen
-/*N*/       if( bRemove )
-/*N*/       {   // Wenn wir bereits halbtot waren vor diesem DelEmpty, so
-/*N*/           // stehen wir vermutlich auch in der Liste und muessen uns
-/*N*/           // dort austragen
-/*N*/           if( !pSection )
-/*?*/               GetFmt()->GetDoc()->GetRootFrm()->RemoveFromList( this );
-/*N*/       }
-/*N*/       else
-/*N*/           GetFmt()->GetDoc()->GetRootFrm()->InsertEmptySct( this );
 /*N*/       pSection = NULL; // damit ist allerdings eine Reanimierung quasi ausgeschlossen
 /*N*/   }
 /*N*/ }
@@ -290,8 +276,7 @@ namespace binfilter {
 /*N*/       //er die Retouche uebernehmen.
 /*N*/       //Ausserdem kann eine Leerseite entstanden sein.
 /*N*/       else
-/*N*/       {   SwRootFrm *pRoot = (SwRootFrm*)pPage->GetUpper();
-/*N*/           pRoot->SetSuperfluous();
+/*N*/       {
 /*N*/           GetUpper()->SetCompletePaint();
 /*N*/       }
 /*N*/   }
@@ -531,7 +516,6 @@ namespace binfilter {
 /*N*/       return;
 /*N*/   if( !pSection ) // Durch DelEmpty
 /*N*/   {
-/*?*/       OSL_ENSURE( GetFmt()->GetDoc()->GetRootFrm()->IsInDelList( this ), "SectionFrm without Section" );
 /*?*/       if( !bValidPos )
 /*?*/       {
 /*?*/             if( GetUpper() )
@@ -791,8 +775,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( !pSection ) // Durch DelEmpty
 /*N*/   {
-/*N*/       OSL_ENSURE( GetFmt()->GetDoc()->GetRootFrm()->IsInDelList( this ),
-/*N*/                "SectionFrm without Section" );
 /*N*/       bValidSize = bValidPos = bValidPrtArea = TRUE;
 /*N*/       return;
 /*N*/   }
@@ -2032,76 +2014,6 @@ namespace binfilter {
 /*?*/       }
 /*N*/   }
 /*N*/ }
-
-/* Wenn ein SectionFrm leerlaeuft, z.B. weil sein Inhalt die Seite/Spalte wechselt,
- * so wird er nicht sofort zerstoert (es koennte noch jemand auf dem Stack einen Pointer
- * auf ihn halten), sondern er traegt sich in eine Liste am RootFrm ein, die spaeter
- * abgearbeitet wird (in LayAction::Action u.a.). Seine Groesse wird auf Null gesetzt und
- * sein Zeiger auf seine Section ebenfalls. Solche zum Loeschen vorgesehene SectionFrms
- * muessen vom Layout/beim Formatieren ignoriert werden.
- *
- * Mit InsertEmptySct nimmt der RootFrm einen SectionFrm in die Liste auf,
- * mit RemoveFromList kann ein SectionFrm wieder aus der Liste entfernt werden (Dtor),
- * mit DeleteEmptySct wird die Liste abgearbeitet und die SectionFrms zerstoert
- */
-
-/*N*/ void SwRootFrm::InsertEmptySct( SwSectionFrm* pDel )
-/*N*/ {
-/*N*/   if( !pDestroy )
-/*N*/       pDestroy = new SwDestroyList;
-/*N*/   USHORT nPos;
-/*N*/   if( !pDestroy->Seek_Entry( pDel, &nPos ) )
-/*N*/       pDestroy->Insert( pDel );
-/*N*/ }
-
-/*N*/ void SwRootFrm::_DeleteEmptySct()
-/*N*/ {
-/*N*/   OSL_ENSURE( pDestroy, "Keine Liste, keine Kekse" );
-/*N*/   while( pDestroy->Count() )
-/*N*/   {
-/*N*/       SwSectionFrm* pSect = (*pDestroy)[0];
-/*N*/       pDestroy->Remove( USHORT(0) );
-/*N*/       OSL_ENSURE( !pSect->IsColLocked() && !pSect->IsJoinLocked(),
-/*N*/               "DeleteEmptySct: Locked SectionFrm" );
-/*N*/       if( !pSect->Frm().HasArea() && !pSect->ContainsCntnt() )
-/*N*/       {
-/*N*/           SwLayoutFrm* pUp = pSect->GetUpper();
-/*N*/           pSect->Remove();
-/*N*/           delete pSect;
-/*N*/           if( pUp && !pUp->Lower() )
-/*N*/           {
-/*N*/               if( pUp->IsPageBodyFrm() )
-/*N*/                   pUp->FindRootFrm()->SetSuperfluous();
-/*N*/               else if( pUp->IsFtnFrm() && !pUp->IsColLocked() &&
-/*N*/                   pUp->GetUpper() )
-/*N*/               {
-/*?*/                   pUp->Cut();
-/*?*/                   delete pUp;
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/       else
-/*?*/           OSL_ENSURE( pSect->GetSection(), "DeleteEmptySct: Halbtoter SectionFrm?!" );
-/*N*/   }
-/*N*/ }
-
-/*N*/ void SwRootFrm::_RemoveFromList( SwSectionFrm* pSct )
-/*N*/ {
-/*N*/   OSL_ENSURE( pDestroy, "Where's my list?" );
-/*N*/   USHORT nPos;
-/*N*/   if( pDestroy->Seek_Entry( pSct, &nPos ) )
-/*?*/       pDestroy->Remove( nPos );
-/*N*/ }
-
-/*N*/ #ifdef DBG_UTIL
-
-/*N*/ BOOL SwRootFrm::IsInDelList( SwSectionFrm* pSct ) const
-/*N*/ {
-/*N*/   USHORT nPos;
-/*N*/   return ( pDestroy && pDestroy->Seek_Entry( pSct, &nPos ) );
-/*N*/ }
-
-/*N*/ #endif
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

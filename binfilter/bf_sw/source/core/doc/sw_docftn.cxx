@@ -266,7 +266,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       const SwFtnInfo &rOld = GetFtnInfo();
 /*N*/
-/*N*/       bool bFtnPos  = rInfo.ePos != rOld.ePos;
 /*N*/       rOld.ePos == FTNPOS_CHAPTER &&
 /*N*/           rInfo.GetPageDesc( *this ) != rOld.GetPageDesc( *this );
 /*N*/       rInfo.aQuoVadis != rOld.aQuoVadis ||
@@ -280,15 +279,6 @@ namespace binfilter {
 /*N*/
 /*N*/       *pFtnInfo = rInfo;
 /*N*/
-/*N*/       if ( GetRootFrm() )
-/*N*/       {
-/*?*/           if ( bFtnPos )
-/*?*/               GetRootFrm()->RemoveFtns();
-/*?*/           else
-/*?*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
-/*N*/       }
 /*N*/       if( FTNNUM_PAGE != rInfo.eNum )
 /*N*/           GetFtnIdxs().UpdateAllFtn();
 /*N*/       else if( bFtnChrFmts )

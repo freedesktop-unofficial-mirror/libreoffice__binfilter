@@ -101,8 +101,6 @@ namespace binfilter {
 /*N*/       {
 /*N*/           if( !pDoc->RemoveLink() )
 /*?*/               delete pDoc, pDoc = 0;
-/*N*/           else
-/*N*/               pDoc->GetRootFrm()->ResetNewLayout();
 /*N*/       }
 /*N*/
 /*N*/       delete pOpt;
@@ -116,9 +114,6 @@ namespace binfilter {
 /*N*/
 /*N*/       OSL_ENSURE( !nStartAction, "EndAction() pending." );
 /*N*/   }
-/*N*/
-/*N*/   if ( pDoc )
-/*N*/       GetLayout()->DeRegisterShell( this );
 /*N*/
 /*N*/     delete mpTmpRef;
 /*N*/     delete pAccOptions;

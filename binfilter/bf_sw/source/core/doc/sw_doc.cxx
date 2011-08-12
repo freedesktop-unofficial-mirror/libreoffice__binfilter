@@ -378,7 +378,7 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
 
 /*M*/ sal_uInt16 SwDoc::GetPageCount() const
 /*M*/ {
-/*M*/     return GetRootFrm() ? GetRootFrm()->GetPageNum() : 0;
+/*M*/     return 0;
 /*M*/ }
 
 /*M*/ const Size SwDoc::GetPageSize( sal_uInt16 nPageNum ) const
@@ -440,7 +440,7 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
 /*M*/           case ND_SECTIONNODE:    break;
 /*M*/           }
 /*M*/
-/*M*/       rStat.nPage     = GetRootFrm() ? GetRootFrm()->GetPageNum() : 0;
+/*M*/       rStat.nPage     = 0;
 /*M*/       rStat.bModified = FALSE;
 /*M*/       SetDocStat( rStat );
 /*M*/       // event. Stat. Felder Updaten

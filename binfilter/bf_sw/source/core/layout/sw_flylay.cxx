@@ -435,11 +435,6 @@ namespace binfilter {
 /*?*/               if ( i == nPgNum )
 /*?*/                   pPage1->PlaceFly( this, 0, pAnch );
 /*?*/           }
-/*?*/           if( !pPage1 )
-/*?*/           {
-/*?*/               pRoot->SetAssertFlyPages();
-/*?*/               pRoot->AssertFlyPages();
-/*?*/           }
 /*?*/       }
 /*?*/       else
 /*?*/       {
@@ -471,19 +466,8 @@ namespace binfilter {
 
 /*N*/ void SwPageFrm::AppendFly( SwFlyFrm *pNew )
 /*N*/ {
-/*N*/   if ( !pNew->GetVirtDrawObj()->IsInserted() )
-/*N*/       FindRootFrm()->GetDrawPage()->InsertObject(
-/*N*/               (SdrObject*)pNew->GetVirtDrawObj(),
-/*N*/               pNew->GetVirtDrawObj()->GetReferencedObj().GetOrdNumDirect() );
-/*N*/
 /*N*/   InvalidateSpelling();
 /*N*/   InvalidateAutoCompleteWords();
-/*N*/
-/*N*/   if ( GetUpper() )
-/*N*/   {
-/*N*/       ((SwRootFrm*)GetUpper())->SetIdleFlags();
-/*N*/       ((SwRootFrm*)GetUpper())->InvalidateBrowseWidth();
-/*N*/   }
 /*N*/
 /*N*/   const SdrObjectPtr pObj = pNew->GetVirtDrawObj();
 /*N*/   OSL_ENSURE( pNew->GetAnchor(), "Fly without Anchor" );
@@ -511,19 +495,6 @@ namespace binfilter {
 /*N*/
 /*N*/         ((SwFlyFreeFrm*)pNew)->SetPage( this );
 /*N*/         pNew->InvalidatePage( this );
-/*N*/
-/*N*/ #ifdef ACCESSIBLE_LAYOUT
-/*N*/       // Notify accessible layout. That's required at this place for
-/*N*/       // frames only where the anchor is moved. Creation of new frames
-/*N*/       // is additionally handled by the SwFrmNotify class.
-/*N*/       if( GetUpper() &&
-/*N*/           static_cast< SwRootFrm * >( GetUpper() )->IsAnyShellAccessible() &&
-/*N*/           static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell() )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/ #endif
-/*N*/
 /*N*/     }
 /*N*/
 /*N*/     if( pNew->GetDrawObjs() )
@@ -554,31 +525,11 @@ namespace binfilter {
 /*N*/ void SwPageFrm::RemoveFly( SwFlyFrm *pToRemove )
 /*N*/ {
 /*N*/   const UINT32 nOrdNum = pToRemove->GetVirtDrawObj()->GetOrdNum();
-/*N*/   FindRootFrm()->GetDrawPage()->RemoveObject( nOrdNum );
 /*N*/   pToRemove->GetVirtDrawObj()->ReferencedObj().SetOrdNum( nOrdNum );
-/*N*/
-/*N*/   if ( GetUpper() )
-/*N*/   {
-/*N*/       if ( !pToRemove->IsFlyInCntFrm() )
-/*N*/           ((SwRootFrm*)GetUpper())->SetSuperfluous();
-/*N*/       ((SwRootFrm*)GetUpper())->InvalidateBrowseWidth();
-/*N*/   }
 /*N*/
 /*N*/   //Flys die im Cntnt sitzen beachten wir nicht weiter.
 /*N*/   if ( pToRemove->IsFlyInCntFrm() )
 /*?*/       return;
-/*N*/
-/*N*/ #ifdef ACCESSIBLE_LAYOUT
-/*N*/   // Notify accessible layout. That's required at this place for
-/*N*/   // frames only where the anchor is moved. Creation of new frames
-/*N*/   // is additionally handled by the SwFrmNotify class.
-/*N*/   if( GetUpper() &&
-/*N*/       static_cast< SwRootFrm * >( GetUpper() )->IsAnyShellAccessible() &&
-/*N*/       static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ #endif
 /*N*/
 /*N*/   //Collections noch nicht loeschen. Das passiert am Ende
 /*N*/   //der Action im RemoveSuperfluous der Seite - angestossen von gleich-
@@ -603,13 +554,6 @@ namespace binfilter {
 
 /*N*/ void SwPageFrm::MoveFly( SwFlyFrm *pToMove, SwPageFrm *pDest )
 /*N*/ {
-/*N*/   //Invalidierungen
-/*N*/   if ( GetUpper() )
-/*N*/   {
-/*N*/       ((SwRootFrm*)GetUpper())->SetIdleFlags();
-/*N*/       if ( !pToMove->IsFlyInCntFrm() && pDest->GetPhyPageNum() < GetPhyPageNum() )
-/*N*/           ((SwRootFrm*)GetUpper())->SetSuperfluous();
-/*N*/   }
 /*N*/   pDest->InvalidateSpelling();
 /*N*/   pDest->InvalidateAutoCompleteWords();
 /*N*/
@@ -618,18 +562,6 @@ namespace binfilter {
 /*?*/       pDest->InvalidateFlyInCnt();
 /*?*/       return;
 /*N*/   }
-/*N*/
-/*N*/ #ifdef ACCESSIBLE_LAYOUT
-/*N*/   // Notify accessible layout. That's required at this place for
-/*N*/   // frames only where the anchor is moved. Creation of new frames
-/*N*/   // is additionally handled by the SwFrmNotify class.
-/*N*/   if( GetUpper() &&
-/*N*/       static_cast< SwRootFrm * >( GetUpper() )->IsAnyShellAccessible() &&
-/*N*/       static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ #endif
 /*N*/
 /*N*/   //Die FlyColl kann bereits weg sein, weil der DTor der Seite
 /*N*/   //gerade 'laeuft'
@@ -652,18 +584,6 @@ namespace binfilter {
 /*N*/   pToMove->InvalidatePage( pDest );
 /*N*/   pToMove->SetNotifyBack();
 /*N*/   pDest->InvalidateFlyCntnt();
-/*N*/
-/*N*/ #ifdef ACCESSIBLE_LAYOUT
-/*N*/   // Notify accessible layout. That's required at this place for
-/*N*/   // frames only where the anchor is moved. Creation of new frames
-/*N*/   // is additionally handled by the SwFrmNotify class.
-/*N*/   if( GetUpper() &&
-/*N*/       static_cast< SwRootFrm * >( GetUpper() )->IsAnyShellAccessible() &&
-/*N*/       static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ #endif
 /*N*/ }
 
 /*************************************************************************
@@ -674,9 +594,6 @@ namespace binfilter {
 
 /*N*/ void SwPageFrm::AppendDrawObj( SwDrawContact *pNew )
 /*N*/ {
-/*N*/   if ( GetUpper() )
-/*N*/       ((SwRootFrm*)GetUpper())->InvalidateBrowseWidth();
-/*N*/
 /*N*/   const SdrObjectPtr pObj = pNew->GetMaster();
 /*N*/   OSL_ENSURE( pNew->GetAnchor(), "Contact without Anchor" );
 /*N*/   SwFlyFrm *pFly = pNew->GetAnchor()->FindFlyFrm();
@@ -709,11 +626,6 @@ namespace binfilter {
 void SwPageFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
                                    SwDrawVirtObj* _pDrawVirtObj )
 {
-    if ( GetUpper() )
-    {
-        ((SwRootFrm*)GetUpper())->InvalidateBrowseWidth();
-    }
-
     OSL_ENSURE( _pDrawVirtObj->GetAnchorFrm(), "virtual draw contact without anchor" );
     SwFlyFrm *pFly = _pDrawVirtObj->GetAnchorFrm()->FindFlyFrm();
     if ( pFly && _pDrawVirtObj->GetOrdNum() < pFly->GetVirtDrawObj()->GetOrdNum() )
@@ -761,22 +673,12 @@ void SwPageFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
 /*N*/       {
 /*N*/           DELETEZ( pSortedObjs );
 /*N*/       }
-/*N*/       if ( GetUpper() )
-/*N*/       {
-/*N*/           if ( FLY_IN_CNTNT != pToRemove->GetFmt()->GetAnchor().GetAnchorId() )
-/*N*/           {
-/*N*/               ((SwRootFrm*)GetUpper())->SetSuperfluous();
-/*N*/               InvalidatePage();
-/*N*/           }
-/*N*/           ((SwRootFrm*)GetUpper())->InvalidateBrowseWidth();
-/*N*/       }
 /*N*/   }
 /*N*/   pToRemove->ChgPage( 0 );
 /*N*/ }
 
 // remove 'virtual' drawing object from page frame.
-void SwPageFrm::RemoveVirtDrawObj( SwDrawContact* _pDrawContact,
-                                   SwDrawVirtObj* _pDrawVirtObj )
+void SwPageFrm::RemoveVirtDrawObj( SwDrawContact*, SwDrawVirtObj* _pDrawVirtObj )
 {
     if ( pSortedObjs )
     {
@@ -784,15 +686,6 @@ void SwPageFrm::RemoveVirtDrawObj( SwDrawContact* _pDrawContact,
         if ( !pSortedObjs->Count() )
         {
             DELETEZ( pSortedObjs );
-        }
-        if ( GetUpper() )
-        {
-            if ( FLY_IN_CNTNT != _pDrawContact->GetFmt()->GetAnchor().GetAnchorId() )
-            {
-                ((SwRootFrm*)GetUpper())->SetSuperfluous();
-                InvalidatePage();
-            }
-            ((SwRootFrm*)GetUpper())->InvalidateBrowseWidth();
         }
     }
     _pDrawVirtObj->SetPageFrm( 0 );

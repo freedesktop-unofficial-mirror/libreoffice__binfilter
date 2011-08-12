@@ -382,14 +382,6 @@ bool bInSizeNotify = FALSE;
 /*N*/ #else
 /*N*/   pFntCache->Flush( );
 /*N*/ #endif
-/*N*/
-/*N*/     if( GetLayout()->IsCallbackActionEnabled() )
-/*N*/     {
-/*N*/
-/*N*/         StartAction();
-/*N*/         GetLayout()->InvalidateAllCntnt();
-/*N*/         EndAction();
-/*N*/     }
 /*N*/ }
 
 /******************************************************************************
@@ -407,18 +399,8 @@ bool bInSizeNotify = FALSE;
 /*N*/   SwSaveSetLRUOfst aSaveLRU( *SwTxtFrm::GetTxtCache(),
 /*N*/                               SwTxtFrm::GetTxtCache()->GetCurMax() - 50 );
 /*N*/
-/*N*/   //Progress einschalten wenn noch keiner Lauft.
-/*N*/   const BOOL bEndProgress = SfxProgress::GetActiveProgress( GetDoc()->GetDocShell() ) == 0;
-/*N*/   if ( bEndProgress )
-/*N*/   {
-/*N*/       USHORT nEndPage = GetLayout()->GetPageNum();
-/*N*/       nEndPage += nEndPage * 10 / 100;
-/*N*/       ::binfilter::StartProgress( STR_STATSTR_REFORMAT, 0, nEndPage, GetDoc()->GetDocShell() );
-/*N*/   }
-/*N*/
 /*N*/   SwLayAction aAction( GetLayout(), Imp() );
 /*N*/   aAction.SetPaint( FALSE );
-/*N*/   aAction.SetStatBar( TRUE );
 /*N*/   aAction.SetCalcLayout( TRUE );
 /*N*/   aAction.SetReschedule( TRUE );
 /*N*/   GetDoc()->LockExpFlds();
@@ -431,7 +413,6 @@ bool bInSizeNotify = FALSE;
 /*N*/   {
 /*N*/       aAction.Reset();
 /*N*/       aAction.SetPaint( FALSE );
-/*N*/       aAction.SetStatBar( TRUE );
 /*N*/       aAction.SetReschedule( TRUE );
 /*N*/
 /*N*/       SwDocPosUpdate aMsgHnt( 0 );
@@ -443,8 +424,6 @@ bool bInSizeNotify = FALSE;
 /*N*/
 /*N*/   if ( VisArea().HasArea() )
 /*N*/       InvalidateWindows( VisArea() );
-/*N*/   if ( bEndProgress )
-/*N*/       ::binfilter::EndProgress( GetDoc()->GetDocShell() );
 /*N*/ }
 
 /******************************************************************************

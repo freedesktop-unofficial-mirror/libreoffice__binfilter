@@ -226,20 +226,10 @@ SwUnoInternalPaM&   SwUnoInternalPaM::operator=(const SwPaM& rPaM)
 UnoActionContext::UnoActionContext(SwDoc* pDc) :
     pDoc(pDc)
 {
-    SwRootFrm* pRootFrm = pDoc->GetRootFrm();
-    if(pRootFrm)
-        pRootFrm->StartAllAction();
 }
 
 UnoActionContext::~UnoActionContext()
 {
-    //das Doc kann hier schon entfernt worden sein
-    if(pDoc)
-    {
-        SwRootFrm* pRootFrm = pDoc->GetRootFrm();
-        if(pRootFrm)
-            pRootFrm->EndAllAction();
-    }
 }
 
 /****************************************************************************
@@ -248,17 +238,10 @@ UnoActionContext::~UnoActionContext()
 UnoActionRemoveContext::UnoActionRemoveContext(SwDoc* pDc) :
     pDoc(pDc)
 {
-    SwRootFrm* pRootFrm = pDoc->GetRootFrm();
-    if(pRootFrm)
-        pRootFrm->UnoRemoveAllActions();
 }
 
 UnoActionRemoveContext::~UnoActionRemoveContext()
 {
-    SwRootFrm* pRootFrm = pDoc->GetRootFrm();
-    if(pRootFrm)
-        pRootFrm->UnoRestoreAllActions();
-
 }
 
 void SwXTextCursor::SelectPam(SwPaM& rCrsr, sal_Bool bExpand)

@@ -146,20 +146,14 @@ namespace binfilter {
 /*N*/               SwDoc* pDoc = pSh->GetDoc();
 /*N*/               SwPageNumberFieldType *pPageNr = (SwPageNumberFieldType *)
 /*N*/                               pFld->GetTyp();
-/*N*/ //???                             pDoc->GetSysFldType( RES_PAGENUMBERFLD );
 /*N*/
-/*N*/ //                SwPageFrm *pPage = pFrm->FindPageFrm();
-/*N*/ //                sal_Bool bVirt = pPage && pPage->GetNext();
-/*N*/               sal_Bool bVirt = pSh->GetLayout()->IsVirtPageNum();
-/*N*/
-/*N*/               MSHORT nVirtNum = pFrame->GetVirtPageNum(),
-/*N*/                      nNumPages = pDoc->GetRootFrm()->GetPageNum();
+/*N*/               MSHORT nVirtNum = pFrame->GetVirtPageNum();
 /*N*/               sal_Int16 nNumFmt = -1;
 /*N*/               if(SVX_NUM_PAGEDESC == pFld->GetFormat())
 /*N*/                   nNumFmt = pFrame->FindPageFrm()->GetPageDesc()->GetNumType().GetNumberingType();
 /*N*/
-/*N*/               pPageNr->ChangeExpansion( pDoc, nVirtNum, nNumPages,
-/*N*/                                           bVirt, nNumFmt > -1 ? &nNumFmt : 0);
+/*N*/               pPageNr->ChangeExpansion( pDoc, nVirtNum, 0,
+/*N*/                                           false, nNumFmt > -1 ? &nNumFmt : 0);
 /*N*/           }
 /*N*/           pRet = new SwFldPortion( pFld->GetCntnt( bName ) );
 /*N*/           break;

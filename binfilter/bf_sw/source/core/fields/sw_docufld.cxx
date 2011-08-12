@@ -737,8 +737,6 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/       case DS_WORD: nVal = rDStat.nWord;  break;
 /*N*/       case DS_CHAR: nVal = rDStat.nChar;  break;
 /*N*/       case DS_PAGE:
-/*N*/           if( pDoc->GetRootFrm() )
-/*N*/               ((SwDocStat &)rDStat).nPage = pDoc->GetRootFrm()->GetPageNum();
 /*N*/           nVal = rDStat.nPage;
 /*N*/           if( SVX_NUM_PAGEDESC == nFmt )
 /*?*/               nFmt = (sal_uInt32)nNumberingType;

@@ -231,16 +231,6 @@ namespace binfilter {
 /*N*/   if ( bAbsP || bPrtP || bChgWidth || bChgHeight ||
 /*N*/          bPrtWidth || bPrtHeight || bChgFlyBasePos )
 /*N*/   {
-/*N*/       if( pFrm->IsAccessibleFrm() )
-/*N*/       {
-/*N*/           SwRootFrm *pRootFrm = pFrm->FindRootFrm();
-/*N*/           if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
-/*N*/               pRootFrm->GetCurrShell() )
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
-/*N*/       }
-/*N*/
 /*N*/       //Auch die Flys wollen etwas von den Veraenderungen mitbekommen,
 /*N*/       //FlyInCnts brauchen hier nicht benachrichtigt werden.
 /*N*/       if ( pFrm->GetDrawObjs() )
@@ -353,17 +343,6 @@ namespace binfilter {
 /*N*/           }
 /*N*/       }
 /*N*/   }
-/*N*/ #ifdef ACCESSIBLE_LAYOUT
-/*N*/   else if( pFrm->IsTxtFrm() && bValidSize != pFrm->GetValidSizeFlag() )
-/*N*/   {
-/*N*/       SwRootFrm *pRootFrm = pFrm->FindRootFrm();
-/*N*/       if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
-/*N*/           pRootFrm->GetCurrShell() )
-/*N*/       {
-/*N*/           pRootFrm->GetCurrShell()->Imp()->InvalidateAccessibleFrmContent( pFrm );
-/*N*/       }
-/*N*/   }
-/*N*/ #endif
 /*N*/ }
 
 /*************************************************************************
@@ -1100,8 +1079,6 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*M*/ {
 /*M*/   const BOOL bOldIdle = pDoc->IsIdleTimerActive();
 /*M*/   pDoc->StopIdleTimer();
-/*M*/   const BOOL bOldCallbackActionEnabled = pDoc->GetRootFrm()->IsCallbackActionEnabled();
-/*M*/   pDoc->GetRootFrm()->SetCallbackActionEnabled( FALSE );
 /*M*/
 /*M*/   //Bei der Erzeugung des Layouts wird bPages mit TRUE uebergeben. Dann
 /*M*/   //werden schon mal alle x Absaetze neue Seiten angelegt. Bei umbruechen
@@ -1423,7 +1400,6 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*N*/
 /*N*/   if ( bOldIdle )
 /*N*/       pDoc->StartIdleTimer();
-/*N*/   pDoc->GetRootFrm()->SetCallbackActionEnabled( bOldCallbackActionEnabled );
 /*N*/ }
 
 
@@ -1625,7 +1601,6 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
                 if( !pSct->ContainsCntnt() )
                 {
                     pSct->DelEmpty( TRUE );
-                    pDoc->GetRootFrm()->RemoveFromList( pSct );
                     delete pSct;
                 }
             }
@@ -2429,8 +2404,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/   pRet = new SwPageFrm( pFmt, &rDesc );
 /*N*/   pRet->Paste( pUpper, pSibling );
 /*N*/   pRet->PreparePage( bFtn );
-/*N*/   if ( pRet->GetNext() )
-/*?*/       ((SwRootFrm*)pRet->GetUpper())->AssertPageFlys( pRet );
 /*N*/   return pRet;
 /*N*/ }
 

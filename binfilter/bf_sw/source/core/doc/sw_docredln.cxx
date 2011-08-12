@@ -366,16 +366,7 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 
 /*N*/ void SwRedlineTbl::Remove( USHORT nP, USHORT nL ) //SW50.SDW
 /*N*/ {
-/*N*/   SwDoc* pDoc = 0;
-/*N*/   if( !nP && nL && nL == _SwRedlineTbl::Count() )
-/*N*/       pDoc = _SwRedlineTbl::GetObject( 0 )->GetDoc();
-/*N*/
 /*N*/   _SwRedlineTbl::Remove( nP, nL );
-/*N*/
-/*N*/   ViewShell* pSh;
-/*N*/   if( pDoc && !pDoc->IsInDtor() && pDoc->GetRootFrm() &&
-/*N*/       0 != ( pSh = pDoc->GetRootFrm()->GetCurrShell()) )
-/*N*/       pSh->InvalidateWindows( SwRect( 0, 0, LONG_MAX, LONG_MAX ) );
 /*N*/ }
 
 

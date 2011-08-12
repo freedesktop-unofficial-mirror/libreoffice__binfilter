@@ -439,7 +439,6 @@ void lcl_RemoveFrms( SwFrmFmt& rFmt, bool& rbFtnsRemoved )
         if ( !rbFtnsRemoved && pFrm->IsPageFrm() &&
                 ((SwPageFrm*)pFrm)->IsFtnPage() )
         {
-            rFmt.GetDoc()->GetRootFrm()->RemoveFtns( 0, FALSE, TRUE );
             rbFtnsRemoved = TRUE;
         }
         else
@@ -488,8 +487,6 @@ void SwDoc::DelPageDesc( USHORT i )
              pLast == pEndNoteInfo->GetPageDescDep() )
         {
             aPageDescs[0]->Add( pLast );
-            if ( GetRootFrm() )
-                GetRootFrm()->CheckFtnPageDescs( !bFtnInf );
         }
     }
 
@@ -595,48 +592,14 @@ void SwDoc::DelPageDesc( USHORT i )
 
 /*N*/ void SwDoc::PrtDataChanged()
 /*N*/ {
-/*N*/ //!!!!!!!! Bei Aenderungen hier bitte ggf. InJobSetup im Sw3io mitpflegen
-/*N*/
-/*N*/   BOOL bEndAction = FALSE;
-/*N*/
 /*N*/   if( GetDocShell() )
 /*N*/       GetDocShell()->UpdateFontList();
 /*N*/
 /*N*/   BOOL bDraw = TRUE;
-/*N*/   if ( GetRootFrm() )
-/*N*/   {
-/*?*/       ViewShell *pSh = GetRootFrm()->GetCurrShell();
-/*?*/       if( !IsBrowseMode() || ( pSh && pSh->GetViewOptions()->IsPrtFormat() ) )
-/*?*/       {
-/*?*/           GetRootFrm()->StartAllAction();
-/*?*/           bEndAction = TRUE;
-/*?*/
-/*?*/           bDraw = FALSE;
-/*?*/           if( pDrawModel )
-/*?*/               pDrawModel->SetRefDevice( _GetRefDev() );
-/*?*/
-/*?*/           pFntCache->Flush();
-/*?*/           GetRootFrm()->InvalidateAllCntnt();
-/*?*/
-/*?*/           if ( pSh )
-/*?*/           {
-/*?*/               do
-/*?*/                           {
-/*?*/                     pSh->InitPrt( pPrt );
-/*?*/                   pSh = (ViewShell*)pSh->GetNext();
-/*?*/                 }
-/*?*/                 while ( pSh != GetRootFrm()->GetCurrShell() );
-/*?*/           }
-/*?*/
-/*?*/       }
-/*N*/   }
 /*N*/     if ( bDraw && pDrawModel && _GetRefDev() != pDrawModel->GetRefDevice() )
 /*N*/         pDrawModel->SetRefDevice( _GetRefDev() );
 /*N*/
 /*N*/   PrtOLENotify( TRUE );
-/*N*/
-/*N*/   if ( bEndAction )
-/*?*/       GetRootFrm()->EndAllAction();
 /*N*/ }
 
 //Zur Laufzeit sammeln wir die GlobalNames der Server, die keine
@@ -648,123 +611,14 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 
 /*N*/ void SwDoc::PrtOLENotify( BOOL bAll )
 /*N*/ {
-/*N*/   SwFEShell *pShell = 0;
-/*N*/   if ( GetRootFrm() && GetRootFrm()->GetCurrShell() )
-/*N*/   {
-/*N*/       ViewShell *pSh = GetRootFrm()->GetCurrShell();
-/*N*/       if ( !pSh->ISA(SwFEShell) )
-/*N*/           do
-/*?*/           {   pSh = (ViewShell*)pSh->GetNext();
-/*?*/           } while ( !pSh->ISA(SwFEShell) &&
-/*?*/                     pSh != GetRootFrm()->GetCurrShell() );
-/*N*/
-/*N*/       if ( pSh->ISA(SwFEShell) )
-/*N*/           pShell = (SwFEShell*)pSh;
-/*N*/   }
-/*N*/   if ( !pShell )
-/*N*/   {
-/*N*/       //Das hat ohne Shell und damit ohne Client keinen Sinn, weil nur darueber
-/*N*/       //die Kommunikation bezueglich der Groessenaenderung implementiert ist.
-/*N*/       //Da wir keine Shell haben, merken wir uns diesen unguenstigen
-/*N*/       //Zustand am Dokument, dies wird dann beim Erzeugen der ersten Shell
-/*N*/       //nachgeholt.
-/*N*/       bOLEPrtNotifyPending = TRUE;
-/*N*/       if ( bAll )
-/*N*/           bAllOLENotify = TRUE;
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       if ( bAllOLENotify )
-/*N*/           bAll = TRUE;
-/*N*/
-/*N*/       bOLEPrtNotifyPending = bAllOLENotify = FALSE;
-/*N*/
-/*N*/
-/*N*/       SwOLENodes *pNodes = 0;
-/*N*/       SwClientIter aIter( *(SwModify*)GetDfltGrfFmtColl() );
-/*N*/       for( SwCntntNode* pNd = (SwCntntNode*)aIter.First( TYPE( SwCntntNode ) );
-/*N*/            pNd;
-/*N*/            pNd = (SwCntntNode*)aIter.Next() )
-/*N*/       {
-/*N*/           SwOLENode *pONd;
-/*N*/           if ( 0 != (pONd = pNd->GetOLENode()) &&
-/*N*/                (bAll || pONd->IsOLESizeInvalid()) )
-/*N*/           {
-/*N*/               if ( !pNodes  )
-/*N*/                   pNodes = new SwOLENodes;
-/*N*/               pNodes->Insert( pONd, pNodes->Count() );
-/*N*/           }
-/*N*/       }
-/*N*/
-/*N*/       if ( pNodes )
-/*N*/       {
-/*N*/           ::binfilter::StartProgress( STR_STATSTR_SWGPRTOLENOTIFY,
-/*N*/                            0, pNodes->Count(), GetDocShell());
-/*N*/           GetRootFrm()->StartAllAction();
-/*N*/
-/*N*/           for( USHORT i = 0; i < pNodes->Count(); ++i )
-/*N*/           {
-/*N*/               ::binfilter::SetProgressState( i, GetDocShell() );
-/*N*/
-/*N*/               SwOLENode* pOLENd = (*pNodes)[i];
-/*N*/               pOLENd->SetOLESizeInvalid( FALSE );
-/*N*/
-/*N*/               //Ersteinmal die Infos laden und festellen ob das Teil nicht
-/*N*/               //schon in der Exclude-Liste steht
-/*N*/               SvGlobalName aName;
-/*N*/
-/*N*/               if ( !pOLENd->GetOLEObj().IsOleRef() )  //Noch nicht geladen
-/*N*/               {
-/*N*/                   String sBaseURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
-/*N*/                   const SfxMedium *pMedium;
-/*N*/                   if( 0 != (pMedium = GetDocShell()->GetMedium()) &&
-/*N*/                       pMedium->GetName() != sBaseURL )
-/*N*/                       ::binfilter::StaticBaseUrl::SetBaseURL( pMedium->GetName() );
-/*N*/                   SvInfoObjectRef xInfo = GetPersist()->Find( pOLENd->GetOLEObj().GetName() );
-/*N*/                   if ( xInfo.Is() )   //Muss normalerweise gefunden werden
-/*N*/                       aName = xInfo->GetClassName();
-/*N*/                   ::binfilter::StaticBaseUrl::SetBaseURL( sBaseURL );
-/*N*/               }
-/*N*/               else
-/*?*/                   aName = pOLENd->GetOLEObj().GetOleRef()->GetClassName();
-/*N*/
-/*N*/               BOOL bFound = FALSE;
-/*N*/               for ( USHORT ii = 0;
-/*N*/                     ii < pGlobalOLEExcludeList->Count() && !bFound;
-/*N*/                     ++ii )
-/*N*/               {
-/*N*/                   bFound = *(SvGlobalName*)(*pGlobalOLEExcludeList)[ii] ==
-/*N*/                                   aName;
-/*N*/               }
-/*N*/               if ( bFound )
-/*N*/                   continue;
-/*N*/
-/*N*/               //Kennen wir nicht, also muss das Objekt geladen werden.
-/*N*/               //Wenn es keine Benachrichtigung wuenscht
-/*N*/               SvEmbeddedObjectRef xRef( (SvInPlaceObject*) pOLENd->GetOLEObj().GetOleRef() );
-/*N*/               if ( xRef ) //Kaputt?
-/*N*/               {
-/*N*/                   if ( SVOBJ_MISCSTATUS_RESIZEONPRINTERCHANGE & xRef->GetMiscStatus())
-/*N*/                   {
-/*N*/                       if ( pOLENd->GetFrm() )
-/*N*/                       {
-/*N*/                           xRef->OnDocumentPrinterChanged( pPrt );
-/*N*/                           pShell->CalcAndSetScale( xRef );//Client erzeugen lassen.
-/*N*/                       }
-/*N*/                       else
-/*N*/                           pOLENd->SetOLESizeInvalid( TRUE );
-/*N*/                   }
-/*N*/                   else
-/*N*/                       pGlobalOLEExcludeList->Insert(
-/*N*/                               new SvGlobalName( xRef->GetClassName()),
-/*N*/                               pGlobalOLEExcludeList->Count() );
-/*N*/               }
-/*N*/           }
-/*N*/           delete pNodes;
-/*N*/           GetRootFrm()->EndAllAction();
-/*N*/           ::binfilter::EndProgress( GetDocShell() );
-/*N*/       }
-/*N*/   }
+/*N*/     //Das hat ohne Shell und damit ohne Client keinen Sinn, weil nur darueber
+/*N*/     //die Kommunikation bezueglich der Groessenaenderung implementiert ist.
+/*N*/     //Da wir keine Shell haben, merken wir uns diesen unguenstigen
+/*N*/     //Zustand am Dokument, dies wird dann beim Erzeugen der ersten Shell
+/*N*/     //nachgeholt.
+/*N*/     bOLEPrtNotifyPending = TRUE;
+/*N*/     if ( bAll )
+/*N*/         bAllOLENotify = TRUE;
 /*N*/ }
 
 /*N*/ void SwDoc::SetVirDev( VirtualDevice* pVd, sal_Bool /*bCallVirDevDataChanged*/ )
@@ -848,7 +702,6 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 /*N*/       {
 /*N*/           ::binfilter::StartProgress( STR_STATSTR_SWGPRTOLENOTIFY,
 /*N*/                            0, aOLENodes.Count(), GetDocShell());
-/*N*/           GetRootFrm()->StartAllAction();
 /*N*/           SwMsgPoolItem aMsgHint( RES_UPDATE_ATTR );
 /*N*/
 /*N*/           for( USHORT i = 0; i < aOLENodes.Count(); ++i )
@@ -879,7 +732,6 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 /*N*/                   pOLENd->Modify( &aMsgHint, &aMsgHint );
 /*N*/               }
 /*N*/           }
-/*N*/           GetRootFrm()->EndAllAction();
 /*N*/           ::binfilter::EndProgress( GetDocShell() );
 /*N*/       }
 /*N*/   }

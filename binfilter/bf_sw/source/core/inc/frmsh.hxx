@@ -41,9 +41,6 @@ namespace binfilter {
 
 inline ViewShell * SwFrm::GetShell() const
 {
-    const SwRootFrm *pRoot;
-    if ( 0 != (pRoot = FindRootFrm()) )
-        return pRoot->GetCurrShell();
     return 0;
 }
 

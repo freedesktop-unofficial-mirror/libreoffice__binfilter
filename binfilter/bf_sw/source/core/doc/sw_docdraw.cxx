@@ -234,11 +234,6 @@ namespace binfilter {
 /*N*/       OutputDevice* pRefDev = _GetRefDev();
 /*N*/     if ( pRefDev )
 /*N*/         pDrawModel->SetRefDevice( pRefDev );
-/*N*/   if ( pLayout )
-/*N*/   {
-/*N*/       pLayout->SetDrawPage( pDrawModel->GetPage( 0 ) );
-/*N*/       pLayout->GetDrawPage()->SetSize( pLayout->Frm().SSize() );
-/*N*/   }
 /*N*/ }
 
 /** method to determine, if a layer ID belongs to the visible ones.
@@ -378,22 +373,6 @@ SdrLayerID SwDoc::GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLa
 /*N*/ {
 /*N*/   OSL_ENSURE( !pDrawModel, "_MakeDrawModel: Why?" );
 /*N*/   InitDrawModel();
-/*N*/   if ( pLayout && pLayout->GetCurrShell() )
-/*N*/   {
-/*N*/       ViewShell* pTmp = pLayout->GetCurrShell();
-/*N*/       do
-/*N*/       {
-/*N*/           pTmp->MakeDrawView();
-/*N*/           pTmp = (ViewShell*) pTmp->GetNext();
-/*N*/       } while ( pTmp != pLayout->GetCurrShell() );
-/*N*/
-/*N*/       //Broadcast, damit die FormShell mit der DrawView verbunden werden kann
-/*N*/       if( GetDocShell() )
-/*N*/       {
-/*N*/           SfxSimpleHint aHnt( SW_BROADCAST_DRAWVIEWS_CREATED );
-/*N*/           GetDocShell()->Broadcast( aHnt );
-/*N*/       }
-/*N*/   }
 /*N*/   return pDrawModel;
 /*N*/ }
 

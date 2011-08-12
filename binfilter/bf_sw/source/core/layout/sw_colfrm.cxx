@@ -238,10 +238,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       SwDoc *pDoc = GetFmt()->GetDoc();
 /*N*/       OSL_ENSURE( pDoc, "FrmFmt gibt kein Dokument her." );
-/*N*/       // SaveCntnt wuerde auch den Inhalt der Fussnotencontainer aufsaugen
-/*N*/       // und im normalen Textfluss unterbringen.
-/*N*/       if( IsPageBodyFrm() )
-/*N*/           pDoc->GetRootFrm()->RemoveFtns( (SwPageFrm*)GetUpper(), TRUE, FALSE );
 /*N*/       pSave = ::binfilter::SaveCntnt( this );
 /*N*/
 /*N*/       //Wenn Spalten existieren, jetzt aber eine Spaltenanzahl von

@@ -43,14 +43,6 @@ namespace binfilter {
 
 /*N*/ void SwDoc::SetLineNumberInfo( const SwLineNumberInfo &rNew )
 /*N*/ {
-/*N*/   if ( GetRootFrm() &&
-/*N*/        (rNew.IsCountBlankLines() != pLineNumberInfo->IsCountBlankLines() ||
-/*N*/         rNew.IsRestartEachPage() != pLineNumberInfo->IsRestartEachPage()) )
-/*N*/   {
-/*?*/       GetRootFrm()->StartAllAction();
-/*?*/       GetRootFrm()->InvalidateAllCntnt( INV_LINENUM );
-/*?*/       GetRootFrm()->EndAllAction();
-/*N*/   }
 /*N*/   *pLineNumberInfo = rNew;
 /*N*/   SetModified();
 /*N*/ }
@@ -125,14 +117,6 @@ namespace binfilter {
 /*N*/ void SwLineNumberInfo::Modify( SfxPoolItem* pOld, SfxPoolItem* pNew )
 /*N*/ {
 /*N*/   SwClient::Modify( pOld, pNew );
-/*N*/   SwDoc *pDoc = ((SwCharFmt*)GetRegisteredIn())->GetDoc();
-/*N*/   SwRootFrm* pRoot = pDoc->GetRootFrm();
-/*N*/   if( pRoot && pRoot->GetCurrShell() )
-/*N*/   {
-/*?*/       pRoot->StartAllAction();
-/*?*/       pRoot->GetCurrShell()->AddPaintRect( pRoot->Frm() );
-/*?*/       pRoot->EndAllAction();
-/*N*/   }
 /*N*/ }
 
 }
