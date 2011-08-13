@@ -123,21 +123,6 @@ namespace binfilter {
             return pRet;
 /*N*/ }
 
-
-SwTableBox* SwTblBoxFormula::GetTableBox()
-{
-    SwTableBox* pBox = 0;
-    if( pDefinedIn )
-        pBox = (SwTableBox*)SwClientIter( *pDefinedIn ).
-                            First( TYPE( SwTableBox ));
-    return pBox;
-}
-
-/*************************************************************************
-|*
-*************************************************************************/
-
-
 /*N*/ SwTblBoxValue::SwTblBoxValue()
 /*N*/   : SfxPoolItem( RES_BOXATR_VALUE ), nValue( 0 )
 /*N*/ {

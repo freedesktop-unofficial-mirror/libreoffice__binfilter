@@ -843,15 +843,6 @@ public:
     sal_Bool SplitNode(const SwPosition &rPos, sal_Bool bChkTableStart = sal_False );
     sal_Bool AppendTxtNode( SwPosition& rPos ); // nicht const!
 
-    // Ersetz einen selektierten Bereich in einem TextNode mit dem
-    // String. Ist fuers Suchen&Ersetzen gedacht.
-    // bRegExpRplc - ersetze Tabs (\\t) und setze den gefundenen String
-    //               ein ( nicht \& )
-    //              z.B.: Fnd: "zzz", Repl: "xx\t\\t..&..\&"
-    //                      --> "xx\t<Tab>..zzz..&"
-    sal_Bool Replace( SwPaM& rPam, const String& rNewStr,
-                    sal_Bool bRegExpRplc = sal_False );
-
     /*
      * Einfuegen eines Attributs. Erstreckt sich rRg ueber
      * mehrere Nodes, wird das Attribut aufgespaltet, sofern

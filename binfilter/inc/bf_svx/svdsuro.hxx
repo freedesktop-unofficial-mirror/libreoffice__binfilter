@@ -63,18 +63,6 @@ private:
     void ImpReadValue(SvStream& rIn, UINT32& rVal, unsigned nByteAnz) const;
 #endif // __PRIVATE
 public:
-//    TYPEINFO();
-
-    // Konstruktor zum Schreiben
-    // pObj ist das referenzierte Objekt.
-    // Wird ueber pRefObj ein Referenzobjekt angegeben, so muss dieses
-    // auch beim spaeteren Einlesen wieder angegeben werden (fuer Verweis
-    // von einem Zeichenobjekt auf ein anderes). Diese Verwendung ist platz-
-    // und zeitsparender, wenn sich beide Objekte auf derselben Page oder
-    // noch besser in der selben ObjList befinden.
-    // (pRefObj hat einen Verweis auf pObj).
-    SdrObjSurrogate(SdrObject* pObj1, const SdrObject* pRefObj1=NULL);
-
     // Konstruktoren zum Lesen
     // Lesen eines absoluten Surrogats.
     SdrObjSurrogate(const SdrModel& rMod, SvStream& rIn);

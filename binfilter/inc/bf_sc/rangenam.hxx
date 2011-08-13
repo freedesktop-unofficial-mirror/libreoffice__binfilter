@@ -143,8 +143,6 @@ public:
 
     void            ReplaceRangeNamesInUse( const ScIndexMap& rMap );
 
-    BOOL            IsBeyond( USHORT nMaxRow ) const;
-
     static void     MakeValidName( String& rName );
 #ifdef WNT
     static int __cdecl  QsortNameCompare( const void*, const void* );

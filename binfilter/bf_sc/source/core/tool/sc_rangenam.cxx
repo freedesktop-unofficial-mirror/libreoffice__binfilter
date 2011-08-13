@@ -145,23 +145,6 @@ namespace binfilter {
 /*N*/   rHdr.EndEntry();
 /*N*/ }
 
-/*N*/ BOOL ScRangeData::IsBeyond( USHORT nMaxRow ) const
-/*N*/ {
-/*N*/   if ( aPos.Row() > nMaxRow )
-/*N*/       return TRUE;
-/*N*/
-/*N*/   ScToken* t;
-/*N*/   pCode->Reset();
-/*N*/   while (( t = pCode->GetNextReference() ))
-/*N*/       if ( t->GetSingleRef().nRow > nMaxRow ||
-/*N*/               (t->GetType() == svDoubleRef &&
-/*N*/               t->GetDoubleRef().Ref2.nRow > nMaxRow) )
-/*N*/           return TRUE;
-/*N*/
-/*N*/   return FALSE;
-/*N*/ }
-
-
 /*N*/ void ScRangeData::GetSymbol   (String& rSymbol) const
 /*N*/ {
 /*N*/   ScCompiler aScComp(pDoc, aPos, *pCode);

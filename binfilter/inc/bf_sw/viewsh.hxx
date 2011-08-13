@@ -169,10 +169,6 @@ public:
           SwViewImp *Imp() { return pImp; }
     const SwViewImp *Imp() const { return pImp; }
 
-    //Nach Druckerwechsel, vom Doc
-    //pPDFOut != NULL is used for PDF export.
-    void            InitPrt( SfxPrinter * , OutputDevice *pPDFOut = NULL );
-
     //Klammerung von zusammengehoerenden Aktionen.
     inline void StartAction();
            void ImplStartAction();
@@ -260,9 +256,6 @@ public:
     sal_Bool IsUseVirtualDevice()const;
     void SetUseVirtualDevice(sal_Bool bSet);
 
-    //Ruft den Idle-Formatierer des Layouts
-    void LayoutIdle();
-
     inline const SwViewOption *GetViewOptions() const { return pOpt; }
     void  ApplyViewOptions( const SwViewOption& /*rOpt*/ ){DBG_BF_ASSERT(0, "STRIP");} ;
 
@@ -310,7 +303,6 @@ public:
 
     // Abfragen/Erzeugen DrawView + PageView
     sal_Bool HasDrawView() const;
-    void MakeDrawView();
 
     //DrawView darf u.U. am UI benutzt werden.
           SdrView *GetDrawView();

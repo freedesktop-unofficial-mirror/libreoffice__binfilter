@@ -237,25 +237,12 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ScValidationDataList::ResetUsed()
-/*N*/ {
-/*N*/   USHORT nCount = Count();
-/*N*/   for (USHORT i=0; i<nCount; i++)
-/*N*/       (*this)[i]->SetUsed(FALSE);
-/*N*/ }
-
 /*N*/ void ScValidationDataList::CompileXML()
 /*N*/ {
 /*N*/   USHORT nCount = Count();
 /*N*/   for (USHORT i=0; i<nCount; i++)
 /*N*/       (*this)[i]->CompileXML();
 /*N*/ }
-
-
-
-
-
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

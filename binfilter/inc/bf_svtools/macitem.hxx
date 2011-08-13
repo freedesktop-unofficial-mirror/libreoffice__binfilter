@@ -141,7 +141,6 @@ public:
     void DelDtor();
 
     SvStream&   Read( SvStream &, USHORT nVersion = SVX_MACROTBL_AKTVERSION );
-    SvStream&   Write( SvStream & ) const;
 
     USHORT GetVersion() const       { return SVX_MACROTBL_AKTVERSION; }
 };

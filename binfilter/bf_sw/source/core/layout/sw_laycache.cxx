@@ -604,63 +604,6 @@ namespace binfilter {
 /*N*/         }
 /*N*/     }
 /*N*/ }
-
-/*
- * SwLayHelper::CheckPageFlyCache(..)
- * looks for the given text frame in the fly cache and sets
- * the position and size, if possible.
- * The fly cache is sorted by pages and we start searching with the given page.
- * If we found the page number in the fly cache, we set
- * the rpPage parameter to the right page, if possible.
- */
-
-/*N*/ BOOL SwLayHelper::CheckPageFlyCache( SwPageFrm* &rpPage, SwFlyFrm* pFly )
-/*N*/ {
-/*N*/     if( !pFly->GetAnchor() || !pFly->GetVirtDrawObj() ||
-/*N*/         pFly->GetAnchor()->FindFooterOrHeader() )
-/*N*/         return FALSE;
-/*N*/     BOOL bRet = FALSE;
-/*N*/     SwDoc* pDoc = rpPage->GetFmt()->GetDoc();
-/*N*/     SwLayCacheImpl *pCache = pDoc->GetLayoutCache() ?
-/*N*/                              pDoc->GetLayoutCache()->LockImpl() : NULL;
-/*N*/     if( pCache )
-/*N*/     {
-/*?*/         USHORT nPgNum = rpPage->GetPhyPageNum();
-/*?*/         USHORT nIdx = 0;
-/*?*/         USHORT nCnt = pCache->GetFlyCount();
-/*?*/         ULONG nOrdNum = pFly->GetVirtDrawObj()->GetOrdNum();
-/*?*/         SwFlyCache* pFlyC;
-/*?*/
-/*?*/         // skip fly frames from pages before the current page
-/*?*/         while( nIdx < nCnt &&
-/*?*/                nPgNum > (pFlyC = pCache->GetFlyCache( nIdx ))->nPageNum )
-/*?*/             ++nIdx;
-/*?*/
-/*?*/         while( nIdx < nCnt &&
-/*?*/                nOrdNum != (pFlyC = pCache->GetFlyCache( nIdx ))->nOrdNum )
-/*?*/             ++nIdx;
-/*?*/         if( nIdx < nCnt )
-/*?*/         {
-/*?*/             SwPageFrm *pPage = rpPage;
-/*?*/             while( pPage && pPage->GetPhyPageNum() < pFlyC->nPageNum )
-/*?*/                 pPage = (SwPageFrm*)pPage->GetNext();
-/*?*/             if( pPage )
-/*?*/             {
-/*?*/                 rpPage = pPage;
-/*?*/                 pFly->Frm().Pos().X() = pFlyC->Left() + pPage->Frm().Left();
-/*?*/                 pFly->Frm().Pos().Y() = pFlyC->Top() + pPage->Frm().Top();
-/*?*/                 if ( pCache->IsUseFlyCache() )
-/*?*/                 {
-/*?*/                     pFly->Frm().Width( pFlyC->Width() );
-/*?*/                     pFly->Frm().Height( pFlyC->Height() );
-/*?*/                 }
-/*?*/                 bRet = TRUE;
-/*?*/             }
-/*?*/         }
-/*?*/         pDoc->GetLayoutCache()->UnlockImpl();
-/*N*/     }
-/*N*/     return bRet;
-/*N*/ }
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -331,8 +331,6 @@ protected:
     void AddWin(OutputDevice* pOutDev1);
     void DelWin(OutputDevice* pOutDev1);
 
-    bool IsLayer(const String& rName, const SetOfByte& rBS) const;
-
     virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);
     void Show();
     void Hide();
@@ -382,13 +380,6 @@ public:
     const Rectangle& MarkSnap() const                           { return aMarkSnap; }
     Rectangle&       MarkBound()                                { return aMarkBound; }
     Rectangle&       MarkSnap()                                 { return aMarkSnap; }
-
-
-    bool IsLayerVisible(const String& rName) const              { return IsLayer(rName,aLayerVisi); }
-
-    bool IsLayerLocked(const String& rName) const               { return IsLayer(rName,aLayerLock); }
-
-    bool IsLayerPrintable(const String& rName) const            { return IsLayer(rName,aLayerPrn); }
 
     // PV stellt eine RefPage oder eine SubList eines RefObj dar oder Model ist ReadOnly
 

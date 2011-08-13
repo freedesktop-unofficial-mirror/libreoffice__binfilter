@@ -134,8 +134,6 @@ class SwLayAction
                        const SwPageFrm* pPage );
     BOOL IsShortCut( SwPageFrm *& );
 
-    BOOL TurboAction();
-    BOOL _TurboAction( const SwCntntFrm * );
     void InternalAction();
 
     SwPageFrm *CheckFirstVisPage( SwPageFrm *pPage );

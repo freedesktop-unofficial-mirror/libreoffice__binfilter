@@ -124,11 +124,6 @@ namespace binfilter {
 /*N*/   return Imp()->HasDrawView();
 /*N*/ }
 
-/*N*/ void ViewShell::MakeDrawView()
-/*N*/ {
-/*N*/   Imp()->MakeDrawView( );
-/*N*/ }
-
 /*N*/ SdrView* ViewShell::GetDrawView()
 /*N*/ {
 /*N*/   return Imp()->GetDrawView();

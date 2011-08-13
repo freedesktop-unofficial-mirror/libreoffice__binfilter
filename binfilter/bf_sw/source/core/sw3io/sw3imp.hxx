@@ -306,8 +306,6 @@ struct Sw3ExportInfo
     ~Sw3ExportInfo();
 };
 
-struct Sw3ExportTxtAttrs;
-
 class Sw3IoImp
 {                                   // I/O fuer Records:
     Sw3Bytes           aRecTypes;   // Satztyp-Stack
@@ -616,14 +614,9 @@ public:
                         xub_StrLen, SvUShorts*, SvXub_StrLens* );   // I: Zeichensatz-Konversion
     void   InTxtNode( SwTxtNode*, SwNodeIndex&, xub_StrLen, BYTE = 0 );
                                             // I: hartes Attribut
-    Sw3ExportTxtAttrs *ExportTxtNode( const SwTxtNode& rNd,
-                                            xub_StrLen nStart, xub_StrLen nEnd,
-                                            rtl_TextEncoding eEnc,
-                                            SwInsHardBlankSoftHyph& rHBSH );
     void   InTxtAttr( SwTxtNode&, const ByteString& rText8,
                       xub_StrLen, SvStringsDtor**, SvXub_StrLens**,
                       SvXub_StrLens**, SvUShorts**, SvXub_StrLens** );
-    void   ExportTxtAttrs( const Sw3ExportTxtAttrs*, xub_StrLen, xub_StrLen);
     void   InGrfNode( SwNodeIndex& rPos );      // I: Grafik-Node
     void   InOLENode( SwNodeIndex& rPos );      // I: OLE-Node
     void   InRepTxtNode( SwNodeIndex& );        // I: Textwiederholung

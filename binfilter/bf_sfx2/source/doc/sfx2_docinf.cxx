@@ -603,43 +603,6 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   return bOK;
 /*N*/ }
 
-//-------------------------------------------------------------------------
-/*N*/ BOOL SfxDocumentInfo::SavePropertySet( SvStorage *pStorage) const
-/*N*/ {
-/*N*/   SfxPS_Impl* pPS = new SfxPS_Impl;
-/*N*/   SvStorageStreamRef aStrPropSet = pStorage->OpenStream(
-/*N*/       String::CreateFromAscii( pPropSlot ), STREAM_TRUNC | STREAM_STD_WRITE );
-/*N*/   if ( !aStrPropSet.Is() )
-/*N*/   {
-/*N*/       DBG_ERRORFILE( "can not open the property set" );
-/*N*/       return FALSE;
-/*N*/   }
-/*N*/
-/*N*/   pPS->SetSectionName( SvGlobalName(
-/*N*/       0xf29f85e0, 0x4ff9, 0x1068, 0xab, 0x91, 0x08, 0x00, 0x2b, 0x27, 0xb3, 0xd9 ) );
-/*N*/   pPS->AddProperty( new SfxPSStringProperty_Impl( PID_TITLE, GetTitle() ) );
-/*N*/   pPS->AddProperty( new SfxPSStringProperty_Impl( PID_SUBJECT, GetTheme() ) );
-/*N*/   pPS->AddProperty( new SfxPSStringProperty_Impl( PID_KEYWORDS, GetKeywords() ) );
-/*N*/   pPS->AddProperty( new SfxPSStringProperty_Impl( PID_TEMPLATE, GetTemplateName() ) );
-/*N*/   pPS->AddProperty( new SfxPSStringProperty_Impl( PID_COMMENTS, GetComment() ) );
-/*N*/   pPS->AddProperty( new SfxPSStringProperty_Impl( PID_AUTHOR, GetCreated().GetName() ) );
-/*N*/   pPS->AddProperty( new SfxPSStringProperty_Impl( PID_LASTAUTHOR, GetChanged().GetName() ) );
-/*N*/   pPS->AddProperty( new SfxPSDateTimeProperty_Impl( PID_CREATE_DTM, GetCreated().GetTime() ) );
-/*N*/   pPS->AddProperty( new SfxPSDateTimeProperty_Impl( PID_LASTSAVED_DTM, GetChanged().GetTime() ) );
-/*N*/   if ( GetPrinted().GetTime() != GetCreated().GetTime() )
-/*N*/       pPS->AddProperty( new SfxPSDateTimeProperty_Impl( PID_LASTPRINTED_DTM, GetPrinted().GetTime() ) );
-/*N*/   DateTime aEditTime( Date( 1, 1, 1601 ), Time( GetTime() ) );
-/*N*/   aEditTime.ConvertToLocalTime();
-/*N*/   pPS->AddProperty( new SfxPSDateTimeProperty_Impl( PID_EDITTIME, aEditTime ) );
-/*N*/   pPS->AddProperty( new SfxPSStringProperty_Impl(
-/*N*/       PID_REVNUMBER, String::CreateFromInt32( GetDocumentNumber() ) ) );
-/*N*/   pPS->AddProperty( new SfxPSCodePageProperty_Impl( RTL_TEXTENCODING_UTF8 ));
-/*N*/   pPS->Save( *aStrPropSet );
-/*N*/   delete pPS;
-/*N*/   return ( aStrPropSet->GetErrorCode() == 0 );
-/*N*/ }
-
-//-------------------------------------------------------------------------
 /*N*/ BOOL SfxDocumentInfo::Load(SvStorage* pStorage)
 /*N*/ {
 /*N*/ #ifdef DBG_UTIL

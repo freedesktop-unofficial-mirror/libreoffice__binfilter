@@ -191,21 +191,6 @@ public:
     const SdrPageView*GetPageView() const { return pSdrPageView; }
     void MakeDrawView();
 
-    // add 3rd parameter <const Color* pPageBackgrdColor> for setting this
-    // color as the background color at the outliner of the draw view
-    // for painting layers <hell> and <heaven>
-    // add 4th parameter for the horizontal text
-    // direction of the page in order to set the default horizontal text
-    // direction at the outliner of the draw view for painting layers <hell>
-    // and <heaven>.
-    // correct type of 1st parameter
-
-    //wird als Link an die DrawEngine uebergeben, entscheidet was wie
-    //gepaintet wird oder nicht.
-
-    // Interface Drawing
-    void NotifySizeChg( const Size &rNewSz );
-
     //SS Fuer die Lay- bzw. IdleAction und verwandtes
     BOOL  IsAction() const                   { return pLayAct  != 0; }
     BOOL  IsIdleAction() const               { return pIdleAct != 0; }
@@ -224,43 +209,6 @@ public:
 
     void    SetRestoreActions(USHORT nSet){nRestoreActions = nSet;}
     USHORT  GetRestoreActions() const{return nRestoreActions;}
-
-#ifdef ACCESSIBLE_LAYOUT
-    // Is this view accessible?
-
-
-    // Update (this) accessible view
-
-    // Remove a frame from the accessible view
-    void DisposeAccessible( const SwFrm *pFrm, const SdrObject *pObj,
-                            sal_Bool bRecursive );
-    inline void DisposeAccessibleObj( const SdrObject *pObj );
-
-    // Move a frame's position in the accessible view
-    void MoveAccessible( const SwFrm *pFrm, const SdrObject *pObj,
-                         const SwRect& rOldFrm );
-
-    // Add a frame in the accessible view
-
-     inline void AddAccessibleObj( const SdrObject *pObj );
-
-    // Invalidate accessible frame's frame's content
-    void InvalidateAccessibleFrmContent( const SwFrm *pFrm );
-
-    // Invalidate accessible frame's cursor position
-
-    // Invalidate editable state for all accessible frames
-
-    // Invalidate opaque state for all accessible frames
-
-    // Invalidate frame's relation set (for chained frames)
-
-    // update data for accessible preview
-    // change method signature due to new page preview functionality
-
-
-    // Fire all accessible events that have been collected so far
-#endif
 };
 
 //Kann auf dem Stack angelegt werden, wenn etwas ausgegeben oder
@@ -282,24 +230,6 @@ inline const SwPageFrm *SwViewImp::GetFirstVisPage() const
         ((SwViewImp*)this)->SetFirstVisPage();
     return pFirstVisPage;
 }
-
-#ifdef ACCESSIBLE_LAYOUT
-
-
-inline void SwViewImp::DisposeAccessibleObj( const SdrObject *pObj )
-{
-    DisposeAccessible( 0, pObj, sal_False );
-}
-
-
-
-inline void SwViewImp::AddAccessibleObj( const SdrObject *pObj )
-{
-    SwRect aEmptyRect;
-    MoveAccessible( 0, pObj, aEmptyRect );
-}
-
-#endif
 
 } //namespace binfilter
 #endif //_VIEWIMP_HXX

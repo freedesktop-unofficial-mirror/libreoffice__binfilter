@@ -683,29 +683,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-#ifdef OS2
-#define RGBCOLOR(r,g,b) ((ULONG)(((BYTE)(b) | ((USHORT)(g)<<8)) | (((ULONG)(BYTE)(r))<<16)))
-#endif
-
-/*N*/ bool SdrPageView::IsLayer(const XubString& rName, const SetOfByte& rBS) const
-/*N*/ {
-/*N*/   if(!pPage)
-/*N*/       return FALSE;
-/*N*/
-/*N*/   BOOL bRet(FALSE);
-/*N*/
-/*N*/   if(rName.Len())
-/*N*/   {
-/*N*/       SdrLayerID nId = pPage->GetLayerAdmin().GetLayerID(rName, TRUE);
-/*N*/
-/*N*/       if(nId != SDRLAYER_NOTFOUND)
-/*N*/       {
-/*N*/           bRet = rBS.IsSet(nId);
-/*N*/       }
-/*N*/   }
-/*N*/   return bRet;
-/*N*/ }
-
 /*N*/ bool SdrPageView::IsObjMarkable(SdrObject* pObj) const
 /*N*/ {
 /*N*/   if(pObj)

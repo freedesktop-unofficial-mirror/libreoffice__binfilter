@@ -130,32 +130,6 @@ SvStream& SvxMacroTableDtor::Read( SvStream& rStrm, USHORT nVersion )
     return rStrm;
 }
 
-
-SvStream& SvxMacroTableDtor::Write( SvStream& rStream ) const
-{
-    USHORT nVersion = SOFFICE_FILEFORMAT_31 == rStream.GetVersion()
-                                    ? SVX_MACROTBL_VERSION31
-                                    : SVX_MACROTBL_AKTVERSION;
-
-    if( SVX_MACROTBL_VERSION40 <= nVersion )
-        rStream << nVersion;
-
-    rStream << (USHORT)Count();
-
-    SvxMacro* pMac = ((SvxMacroTableDtor*)this)->First();
-    while( pMac && rStream.GetError() == SVSTREAM_OK )
-    {
-        rStream << (short)GetCurKey();
-        SfxPoolItem::writeByteString(rStream, pMac->GetLibName());
-        SfxPoolItem::writeByteString(rStream, pMac->GetMacName());
-
-        if( SVX_MACROTBL_VERSION40 <= nVersion )
-            rStream << (USHORT)pMac->GetScriptType();
-        pMac = ((SvxMacroTableDtor*)this)->Next();
-    }
-    return rStream;
-}
-
 // -----------------------------------------------------------------------
 
 void SvxMacroTableDtor::DelDtor()

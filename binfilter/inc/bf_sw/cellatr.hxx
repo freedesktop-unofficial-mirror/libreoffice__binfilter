@@ -86,10 +86,6 @@ public:
     // suche den Node, in dem die Formel steht:
     //  BoxAttribut -> BoxStartNode
     virtual const SwNode* GetNodeOfFormula() const;
-
-          SwTableBox* GetTableBox();
-    const SwTableBox* GetTableBox() const
-        { return ((SwTblBoxFormula*)this)->GetTableBox(); }
 };
 
 class SwTblBoxValue : public SfxPoolItem

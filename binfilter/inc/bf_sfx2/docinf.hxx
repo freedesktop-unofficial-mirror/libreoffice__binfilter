@@ -143,7 +143,6 @@ public:
 
     BOOL Load( SvStorage* );
     BOOL Save( SvStorage* ) const {return false;}
-    BOOL SavePropertySet( SvStorage* ) const;
 
     void SetReloadURL( const String& rString );
     const String& GetReloadURL() const;

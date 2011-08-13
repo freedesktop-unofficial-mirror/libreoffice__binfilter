@@ -166,38 +166,6 @@ namespace binfilter {
 ******************************************************************************/
 
 /*N*/ void SwViewImp::MakeDrawView() { }
-
-/******************************************************************************
-|*
-|*  SwViewImp::GetRetoucheColor()
-|*
-******************************************************************************/
-
-
-/** create page preview layout
-
-    OD 12.12.2002 #103492#
-
-    @author OD
-*/
-
-
-/*N*/ void SwViewImp::DisposeAccessible( const SwFrm* /*pFrm*/,
-/*N*/                                  const SdrObject* /*pObj*/,
-/*N*/                                  sal_Bool /*bRecursive*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void SwViewImp::MoveAccessible( const SwFrm* /*pFrm*/, const SdrObject* /*pObj*/,
-/*N*/                               const SwRect& /*rOldFrm*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void SwViewImp::InvalidateAccessibleFrmContent( const SwFrm* /*pFrm*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-// OD 15.01.2003 #103492# - method signature change due to new page preview functionality
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -106,31 +106,6 @@ normalizedMakeRelative(
     const & context,
     rtl::OUString const & baseUriReference, rtl::OUString const & uriReference);
 
-/**
-   A variant of normalizedMakeRelative with a simplified interface.
-
-   Internally calls normalizedMakeRelative with the default component context.
-
-   @param baseUriReference a base URI reference, passed to
-   normalizedMakeRelative
-
-   @param uriReference a URI reference, passed to normalizedMakeRelative
-
-   @return if the XUriReference returnd by normalizedMakeRelative is empty,
-   uriReference is returned unmodified; otherwise, the result of calling
-   XUriReference::getUriReference on the XUriReference returnd by
-   normalizedMakeRelative is returned
-
-   @exception std::bad_alloc if an out-of-memory condition occurs
-
-   @exception com::sun::star::uno::RuntimeException if any error occurs
-
-   @deprecated
-   No code should rely on the default component context.
-*/
- rtl::OUString simpleNormalizedMakeRelative(
-    rtl::OUString const & baseUriReference, rtl::OUString const & uriReference);
-
 //============================================================================
  UniString
 FindFirstURLInText(UniString const & rText,

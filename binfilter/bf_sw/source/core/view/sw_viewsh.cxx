@@ -66,8 +66,6 @@ Window *ViewShell::pCareWindow = 0;
 
 bool bInSizeNotify = FALSE;
 
-/*N*/ DBG_NAME(LayoutIdle)
-
 /*N*/ TYPEINIT0(ViewShell);
 
 /******************************************************************************
@@ -317,59 +315,6 @@ bool bInSizeNotify = FALSE;
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-|*    ViewShell::LayoutIdle()
-|*
-*************************************************************************/
-
-/*N*/ void ViewShell::LayoutIdle()
-/*N*/ {
-/*N*/ #ifdef TCOVER
-/*N*/   //fuer TCV-Version: Ende der Startphase des Programmes
-/*N*/   TCovCall::Idle();
-/*N*/ #endif
-/*N*/   if( !pOpt->IsIdle() || !GetWin() ||
-/*N*/       ( Imp()->HasDrawView() && Imp()->GetDrawView()->IsDragObj() ) )
-/*N*/       return;
-/*N*/
-/*N*/   //Kein Idle wenn gerade gedruckt wird.
-/*N*/   ViewShell *pSh = this;
-/*N*/   do
-/*N*/   {   if ( !pSh->GetWin() )
-/*N*/           return;
-/*N*/       pSh = (ViewShell*)pSh->GetNext();
-/*N*/
-/*N*/   } while ( pSh != this );
-/*N*/
-/*N*/   SET_CURR_SHELL( this );
-/*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/   // Wenn Test5 gedrueckt ist, wird der IdleFormatierer abgeknipst.
-/*N*/   if( pOpt->IsTest5() )
-/*N*/       return;
-/*N*/ #endif
-/*N*/
-/*N*/   {
-/*N*/       DBG_PROFSTART( LayoutIdle );
-/*N*/
-/*N*/       //Cache vorbereiten und restaurieren, damit er nicht versaut wird.
-/*N*/       SwSaveSetLRUOfst aSave( *SwTxtFrm::GetTxtCache(),
-/*N*/                            SwTxtFrm::GetTxtCache()->GetCurMax() - 50 );
-/*N*/       SwLayIdle aIdle( GetLayout(), Imp() );
-/*N*/       DBG_PROFSTOP( LayoutIdle );
-/*N*/   }
-/*N*/ }
-
-// Absatzabstaende koennen wahlweise addiert oder maximiert werden
-
-
-/******************************************************************************
-|*
-|*  ViewShell::Reformat
-|*
-******************************************************************************/
 
 /*N*/ void ViewShell::Reformat()
 /*N*/ {

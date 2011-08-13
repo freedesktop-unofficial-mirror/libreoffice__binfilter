@@ -490,16 +490,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*?*/   return sal_True;
 /*N*/ }
 
-// liefert sal_True zurueck, wenn es weitergehen soll.
-/*N*/ sal_Bool SwDoc::Replace( SwPaM& /*rPam*/, const String& /*rStr*/, sal_Bool /*bRegExpRplc*/ )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return sal_True;
-/*N*/ }
-
-    // speicher die akt. Werte fuer die automatische Aufnahme von Ausnahmen
-    // in die Autokorrektur
-
 /*N*/ sal_Bool SwDoc::DelFullPara( SwPaM& rPam )
 /*N*/ {
 /*N*/   const SwPosition &rStt = *rPam.Start(), &rEnd = *rPam.End();

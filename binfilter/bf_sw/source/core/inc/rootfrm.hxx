@@ -75,9 +75,6 @@ class SwRootFrm : public SwLayoutFrm
     static BOOL           bNoVirDev;    //Bei SystemPaints kein virt. Device
 
 public:
-    //MasterObjekte aus der Page entfernen (von den Ctoren gerufen).
-    static void RemoveMasterObjs( SdrPage *pPg );
-
     static BOOL IsInPaint() { return bInPaint; }
     static void SetNoVirDev( const BOOL bNew ) { bNoVirDev = bNew; }
 };

@@ -379,25 +379,6 @@ normalizedMakeRelative(
         true, false);
 }
 
-rtl::OUString simpleNormalizedMakeRelative(
-    rtl::OUString const & baseUriReference, rtl::OUString const & uriReference)
-{
-    com::sun::star::uno::Reference< com::sun::star::uri::XUriReference > rel(
-        normalizedMakeRelative(
-            com::sun::star::uno::Reference<
-            com::sun::star::uno::XComponentContext >(
-                (com::sun::star::uno::Reference<
-                 com::sun::star::beans::XPropertySet >(
-                    comphelper::getProcessServiceFactory(),
-                    com::sun::star::uno::UNO_QUERY_THROW)->
-                 getPropertyValue(
-                     rtl::OUString(
-                         RTL_CONSTASCII_USTRINGPARAM("DefaultContext")))),
-                com::sun::star::uno::UNO_QUERY_THROW),
-            baseUriReference, uriReference));
-    return rel.is() ? rel->getUriReference() : uriReference;
-}
-
 //============================================================================
 //
 //  FindFirstURLInText

@@ -33,17 +33,6 @@
 
 namespace binfilter {
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// fuer Schreiben
-/*N*/ SdrObjSurrogate::SdrObjSurrogate(SdrObject* pObj1, const SdrObject* pRefObj1)
-/*N*/ {
-/*N*/   ImpClearVars();
-/*N*/   pObj=pObj1;
-/*N*/   pRefObj=pRefObj1;
-/*N*/   ImpMakeSurrogate();
-/*N*/ }
-
 // fuer Lesen
 /*N*/ SdrObjSurrogate::SdrObjSurrogate(const SdrModel& rMod, SvStream& rIn)
 /*N*/ {

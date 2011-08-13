@@ -152,7 +152,6 @@ public:
 
     void    Load( SvStream& rStream, ScDocument* pDocument );
     void Store( SvStream& ) const {}
-    void    ResetUsed();
 
     void    CompileXML();
 

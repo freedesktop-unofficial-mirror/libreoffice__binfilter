@@ -479,34 +479,6 @@ SfxMultiVarRecordWriter::SfxMultiVarRecordWriter
 
 //-------------------------------------------------------------------------
 
-SfxMultiVarRecordWriter::SfxMultiVarRecordWriter
-(
-    SvStream*       pStream,        // Stream, in dem der Record angelegt wird
-    UINT16          nRecordTag,     // Gesamt-Art-Kennung
-    BYTE            nRecordVer      // Gesamt-Versions-Kennung
-)
-
-/*  [Beschreibung]
-
-    Legt in 'pStream' einen 'SfxMultiVarRecord' an, dessen Content-Gr"o\sen
-    weder bekannt sind noch identisch sein m"ussen, sondern jeweils nach dem
-    Streamen jedes einzelnen Contents errechnet werden sollen.
-
-
-    [Anmerkung]
-
-    Diese Methode ist nicht inline, da f"ur die Initialisierung eines
-    <SvULongs>-Members zu viel Code generiert werden w"urde.
-*/
-
-:   SfxMultiFixRecordWriter( SFX_REC_TYPE_VARSIZE,
-                             pStream, nRecordTag, nRecordVer, 0 ),
-    _nContentVer( 0 )
-{
-}
-
-//-------------------------------------------------------------------------
-
 SfxMultiVarRecordWriter::~SfxMultiVarRecordWriter()
 
 /*  [Beschreibung]
@@ -537,22 +509,6 @@ void SfxMultiVarRecordWriter::FlushContent_Impl()
     _aContentOfs.Insert(
             SFX_REC_CONTENT_HEADER(_nContentVer,_nStartPos,_nContentStartPos),
             _nContentCount-1 );
-}
-
-//-------------------------------------------------------------------------
-
-void SfxMultiVarRecordWriter::NewContent()
-
-// siehe <SfxMultiFixRecordWriter>
-
-{
-    // schon ein Content geschrieben?
-    if ( _nContentCount )
-        FlushContent_Impl();
-
-    // neuen Content beginnen
-    _nContentStartPos = _pStream->Tell();
-    ++_nContentCount;
 }
 
 //-------------------------------------------------------------------------
@@ -599,33 +555,6 @@ UINT32 SfxMultiVarRecordWriter::Close( bool bSeekToEndOfRec )
 
     // Record war bereits vorher geschlossen
     return 0;
-}
-
-//=========================================================================
-
-void SfxMultiMixRecordWriter::NewContent
-(
-    UINT16      nContentTag,    // Kennung f"ur die Art des Contents
-    BYTE        nContentVer     // Kennung f"ur die Version des Contents
-)
-
-/*  [Beschreibung]
-
-    Mit dieser Methode wird in den Record ein neuer Content eingef"ugt
-    und dessen Content-Tag sowie dessen Content-Version angegeben. Jeder,
-    auch der 1. Record mu\s durch Aufruf dieser Methode eingeleitet werden.
-*/
-
-{
-    // ggf. vorherigen Record abschlie\sen
-    if ( _nContentCount )
-        FlushContent_Impl();
-
-    // Tag vor den Content schreiben, Version und Startposition merken
-    _nContentStartPos = _pStream->Tell();
-    ++_nContentCount;
-    *_pStream << nContentTag;
-    _nContentVer = nContentVer;
 }
 
 //=========================================================================

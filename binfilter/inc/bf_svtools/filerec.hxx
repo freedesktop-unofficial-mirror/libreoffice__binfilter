@@ -501,51 +501,6 @@ public:
 //------------------------------------------------------------------------
 
 class  SfxMultiVarRecordWriter: public SfxMultiFixRecordWriter
-
-/*  [Beschreibung]
-
-    Mit Instanzen dieser Klasse kann ein Record in einen Stream geschrieben
-    werden, der seine eigene L"ange speichert und somit auch von "alteren
-    Versionen bzw. Readern, die diesen Record-Type (Tag) nicht kennen,
-    "ubersprungen werden kann.
-
-    Er enth"alt mehrere Inhalte von demselben Typ (Tag) und derselben
-    Version, die einmalig (stellvertretend f"ur alle) im Header des Records
-    identifiziert werden. Die L"ange f"ur jeden einzelnen Inhalt wird
-    automatisch berechnet und gespeichert, so da\s auch einzelne Inhalte
-    "ubersprungen werden k"onnen, ohne sie interpretieren zu m"ussen.
-
-    Um Auf- und Abw"artskompatiblit"at gew"ahrleisten zu k"onnen, m"ussen
-    neue Versionen die Daten der "alteren immer komplett enthalten,
-    es d"urfen allenfalls neue Daten hinten angeh"angt werden!
-
-    [Fileformat]
-
-    1*                  BYTE        Pre-Tag (==0)
-    1*                  3-BYTE      OffsetToEndOfRec in Bytes
-    1*                  BYTE        Record-Type (==SFX_FILETYPE_TYPE_VARSIZE)
-    1*                  BYTE        Content-Version
-    1*                  USHORT      Content-Tag
-    1*                  UINT16      NumberOfContents
-    1*                  UINT32      OffsetToOfsTable
-    NumberOfContents*   (
-    ContentSize*        BYTE        Content
-                        )
-    NumberOfContents*   UINT32      ContentOfs (je per <<8 verschoben)
-
-    [Beispiel]
-
-    {
-        SfxMultiVarRecordWriter aRecord( pStream, MY_TAG_X, MY_VERSION );
-        for ( USHORT n = 0; n < Count(); ++n )
-        {
-            aRecord.NewContent();
-            *aRecord << aMember1[n];
-            *aRecord << aMember2[n];
-        }
-    }
-*/
-
 {
 protected:
     SfxUINT32s          _aContentOfs;
@@ -559,12 +514,7 @@ protected:
     void                FlushContent_Impl();
 
 public:
-                        SfxMultiVarRecordWriter( SvStream *pStream,
-                                                 USHORT nRecordTag,
-                                                 BYTE nRecordVer );
     virtual             ~SfxMultiVarRecordWriter();
-
-    void                NewContent();
 
     virtual UINT32      Close( bool bSeekToEndOfRec = TRUE );
 };
@@ -610,12 +560,6 @@ public:
     inline              SfxMultiMixRecordWriter( SvStream *pStream,
                                                  USHORT nRecordTag,
                                                  BYTE nRecordVer );
-
-    void                NewContent( USHORT nTag, BYTE nVersion );
-
-// private: geht nicht, da einige Compiler dann auch vorherige privat machen
-    void                NewContent()
-                        { OSL_FAIL( "NewContent() only allowed with args" ); }
 };
 
 //------------------------------------------------------------------------

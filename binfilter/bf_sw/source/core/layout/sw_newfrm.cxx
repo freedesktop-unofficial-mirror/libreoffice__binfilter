@@ -364,24 +364,6 @@ namespace binfilter {
 /*N*/ CurrShell::~CurrShell()
 /*N*/ {
 /*N*/ }
-
-/*************************************************************************
-|*
-|*  SwRootFrm::RemoveMasterObjs()
-|*
-|*************************************************************************/
-
-
-/*N*/ void SwRootFrm::RemoveMasterObjs( SdrPage *pPg )
-/*N*/ {
-/*N*/   //Alle Masterobjekte aus der Page entfernen. Nicht loeschen!!
-/*N*/   for( ULONG i = pPg ? pPg->GetObjCount() : 0; i; )
-/*N*/   {
-/*N*/       SdrObject* pObj = pPg->GetObj( --i );
-/*N*/       if( pObj->ISA(SwFlyDrawObj ) )
-/*N*/           pPg->RemoveObject( i );
-/*N*/   }
-/*N*/ }
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

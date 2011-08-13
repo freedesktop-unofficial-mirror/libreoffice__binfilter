@@ -83,32 +83,6 @@ SwQueuedPaint *SwPaintQueue::pQueue = 0;
 /*?*/       }
 /*N*/   }
 /*N*/ }
-
-/*M*/ void ViewShell::InitPrt( SfxPrinter *pPrt, OutputDevice *pPDFOut )
-/*M*/ {
-/*M*/   //Fuer den Printer merken wir uns einen negativen Offset, der
-/*M*/   //genau dem Offset de OutputSize entspricht. Das ist notwendig,
-/*M*/   //weil unser Ursprung der linken ober Ecke der physikalischen
-/*M*/   //Seite ist, die Ausgaben (SV) aber den Outputoffset als Urstprung
-/*M*/   //betrachten.
-/*M*/     OutputDevice *pTmpDev = pPDFOut ? pPDFOut : (OutputDevice *) pPrt;
-/*M*/     if ( pTmpDev )
-/*M*/   {
-/*M*/         aPrtOffst = pPrt ? pPrt->GetPageOffset() : Point();
-/*M*/
-/*M*/         aPrtOffst += pTmpDev->GetMapMode().GetOrigin();
-/*M*/         MapMode aMapMode( pTmpDev->GetMapMode() );
-/*M*/       aMapMode.SetMapUnit( MAP_TWIP );
-/*M*/         pTmpDev->SetMapMode( aMapMode );
-/*M*/         pTmpDev->SetLineColor();
-/*M*/         pTmpDev->SetFillColor();
-/*M*/   }
-/*M*/   else
-/*M*/       aPrtOffst.X() = aPrtOffst.Y() = 0;
-/*M*/
-/*M*/   if ( !pWin )
-/*M*/         pOut = pTmpDev;    //Oder was sonst?
-/*M*/ }
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
