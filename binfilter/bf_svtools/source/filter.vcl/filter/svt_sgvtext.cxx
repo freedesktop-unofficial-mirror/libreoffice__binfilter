@@ -30,6 +30,7 @@
 
 #include <tools/config.hxx>
 #include <bf_svtools/filter.hxx>
+#include <comphelper/string.hxx>
 #include "sgffilt.hxx"
 #include "sgfbram.hxx"
 #include "sgvmain.hxx"
@@ -1204,7 +1205,7 @@ void SgfFontOne::ReadOne( ByteString& ID, ByteString& Dsc )
             else if ( s.CompareTo( "MAC", 3 ) == COMPARE_EQUAL ) SVChSet=RTL_TEXTENCODING_APPLE_ROMAN;
             else if ( s.CompareTo( "SYMBOL", 6 ) == COMPARE_EQUAL ) SVChSet=RTL_TEXTENCODING_SYMBOL;
             else if ( s.CompareTo( "SYSTEM", 6 ) == COMPARE_EQUAL ) SVChSet = gsl_getSystemTextEncoding();
-            else if ( s.IsNumericAscii() ) SVWidth=sal::static_int_cast< USHORT >(s.ToInt32());
+            else if ( comphelper::string::isAsciiDecimalString(s) ) SVWidth=sal::static_int_cast< USHORT >(s.ToInt32());
         }
     }
 }
@@ -1263,7 +1264,7 @@ void SgfFontLst::ReadList()
             FID = aCfg.GetKeyName( i );
             FID = FID.EraseAllChars(); // Leerzeichen weg
             Dsc = aCfg.ReadKey( i );
-            if ( FID.IsNumericAscii() )
+            if ( comphelper::string::isAsciiDecimalString(FID) )
             {
                 P=new SgfFontOne;                                   // neuer Eintrag
                 if (Last!=NULL) Last->Next=P; else pList=P; Last=P; // einklinken
