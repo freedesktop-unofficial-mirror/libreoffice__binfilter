@@ -158,14 +158,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   bFirstPageInvalid = FALSE;
 /*N*/ }
-
-/******************************************************************************
-|*
-|*  SwViewImp::MakeDrawView();
-|*
-******************************************************************************/
-
-/*N*/ void SwViewImp::MakeDrawView() { }
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

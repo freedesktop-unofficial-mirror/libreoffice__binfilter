@@ -189,7 +189,6 @@ public:
     const SwDrawView* GetDrawView() const { return pDrawView; }
           SdrPageView*GetPageView()       { return pSdrPageView; }
     const SdrPageView*GetPageView() const { return pSdrPageView; }
-    void MakeDrawView();
 
     //SS Fuer die Lay- bzw. IdleAction und verwandtes
     BOOL  IsAction() const                   { return pLayAct  != 0; }

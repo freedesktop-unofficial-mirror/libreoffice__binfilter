@@ -584,7 +584,6 @@ public:
                                             // SW3FMTS.CXX
     SfxPoolItem* InAttr( xub_StrLen&, xub_StrLen&,
                          const SwTxtNode *pTxtNd=0 );// I: Attribut
-    void   OutAttr( const SfxPoolItem&, xub_StrLen nBgn, xub_StrLen nEnd );
     void   InAttrSet( SwAttrSet& rSet );    // I: AttrSet
     SwFmt* InFormat( BYTE cKind, SwFmt* );  // I: Format
     void   InFlyFrames();                   // I: globale FlyFrames

@@ -446,8 +446,6 @@ class XHatchTable : public XPropertyTable
 public:
     virtual         ~XHatchTable();
 
-    XHatchEntry*    Replace(long nIndex, XHatchEntry* pEntry );
-    XHatchEntry*    Remove(long nIndex);
     XHatchEntry*    Get(long nIndex) const;
 
     virtual BOOL    Load();
@@ -479,8 +477,6 @@ public:
                                 USHORT nReSize = 16 );
                     ~XHatchList();
 
-    XHatchEntry*    Replace(XHatchEntry* pEntry, long nIndex );
-    XHatchEntry*    Remove(long nIndex);
     XHatchEntry*    Get(long nIndex) const;
 
     virtual BOOL    Load();

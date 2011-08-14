@@ -239,16 +239,6 @@ public:
      */
     static bool readByteString(SvStream & rStream, UniString & rString);
 
-    /** Write a byte string representation of a Unicode string into a stream.
-
-        @param rStream  Some (output) stream.  Its Stream/TargetCharSets must
-        be set to correct values!
-
-        @param rString  Some Unicode string.
-     */
-    static void writeByteString(SvStream & rStream,
-                                UniString const & rString);
-
     /** Read in a Unicode string from either a streamed Unicode or byte string
         representation.
 

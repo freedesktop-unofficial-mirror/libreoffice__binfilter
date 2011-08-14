@@ -56,7 +56,6 @@ protected:
 #if _SOLAR__PRIVATE
 private:
     void ImpClearVars();
-    void ImpMakeSurrogate();
     void ImpFindObj();
     void ImpRead(SvStream& rIn);
     void ImpWriteValue(SvStream& rOut, UINT32 nVal, unsigned nByteAnz) const;

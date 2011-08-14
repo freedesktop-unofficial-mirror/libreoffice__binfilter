@@ -223,14 +223,6 @@ bool SfxPoolItem::readByteString(SvStream & rStream, UniString & rString)
 
 //============================================================================
 // static
-void SfxPoolItem::writeByteString(SvStream & rStream,
-                                  UniString const & rString)
-{
-    rStream.WriteByteString(rString);
-}
-
-//============================================================================
-// static
 bool SfxPoolItem::readUnicodeString(SvStream & rStream, UniString & rString,
                                     bool bUnicode)
 {

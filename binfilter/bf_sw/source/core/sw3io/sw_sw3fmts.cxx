@@ -226,68 +226,6 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/   return pItem;
 /*N*/ }
 
-// Schreiben eines Attributs
-
-/*N*/ void Sw3IoImp::OutAttr( const SfxPoolItem& rAttr, xub_StrLen nBgn,
-/*N*/                       xub_StrLen nEnd )
-/*N*/ {
-/*N*/   USHORT nWhich = rAttr.Which();
-/*N*/
-/*N*/   // Items, die als Version USHRT_MAX zurueckgeben, wollen nicht
-/*N*/   // geschrieben werden
-/*N*/   long nFFVersion = pStrm->GetVersion();
-/*N*/   OSL_ENSURE( IsSw31Export() ? nFFVersion==SOFFICE_FILEFORMAT_31
-/*N*/                          : (nFFVersion==SOFFICE_FILEFORMAT_40 ||
-/*N*/                             nFFVersion==SOFFICE_FILEFORMAT_50),
-/*N*/           "FF-Version am Stream stimmt nicht" );
-/*N*/   USHORT nIVer = rAttr.GetVersion( (USHORT)nFFVersion );
-/*N*/   if( USHRT_MAX == nIVer )
-/*N*/       return;
-/*N*/
-/*N*/   // Das Zeichen-Hintergrund-Attribut gab es in der 3.1 auch noch nicht
-/*N*/   if( IsSw31Export() && RES_CHRATR_BACKGROUND==nWhich)
-/*N*/       return;
-/*N*/
-/*N*/   // Hints that start behind the maximum string length of version 5.2
-/*N*/   // don't have to be exported.
-/*N*/
-/*N*/   if( nWhich != RES_TXTATR_FTN || nFlyLevel == 0 )
-/*N*/   {
-/*N*/       nWhich = lcl_sw3io__ExpandWhich( nWhich );
-/*N*/         // disable export of drawing frame format in header/footer.
-/*N*/         bool bExport = true;
-/*N*/         {
-/*N*/             if ( RES_TXTATR_FLYCNT == rAttr.Which() )
-/*N*/             {
-/*N*/                 bExport = static_cast<const SwFmtFlyCnt&>(rAttr).Sw3ioExportAllowed();
-/*N*/             }
-/*N*/         }
-/*N*/       if( bExport && nWhich )
-/*N*/       {
-/*N*/
-/*N*/           OpenRec( SWG_ATTRIBUTE );
-/*N*/           BYTE cFlags = 0x04;         // Which + Version
-/*N*/           if( nBgn != STRING_LEN )
-/*N*/               cFlags += 0x12;         // Begin
-/*N*/           if( nEnd != nBgn && nBgn != STRING_LEN )
-/*N*/               cFlags += 0x22;         // End
-/*N*/           *pStrm << (BYTE) cFlags
-/*N*/                  << (UINT16) nWhich
-/*N*/                  << (UINT16) nIVer;
-/*N*/           if( cFlags & 0x10 )
-/*N*/               *pStrm << (UINT16) nBgn;
-/*N*/           if( cFlags & 0x20 )
-/*N*/               *pStrm << (UINT16) nEnd;
-/*N*/           rAttr.Store( *pStrm, nIVer );
-/*N*/           CloseRec( SWG_ATTRIBUTE );
-/*N*/       }
-/*N*/   }
-/*N*/ #ifdef DBG_UTIL
-/*N*/   else
-/*N*/       OSL_ENSURE( !this, "Fussnoten im Fly sind nicht erlaubt" );
-/*N*/ #endif
-/*N*/ }
-
 // Einlesen eines AttrSets
 
 /*N*/ void Sw3IoImp::InAttrSet( SwAttrSet& rSet )

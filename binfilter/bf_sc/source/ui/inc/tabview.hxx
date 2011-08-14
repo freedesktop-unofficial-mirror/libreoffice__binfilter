@@ -187,10 +187,7 @@ protected:
 
     void            DrawEnableAnim(BOOL bSet);
 
-    void            MakeDrawView( BYTE nForceDesignMode = SC_FORCEMODE_NONE );
-
     void            HideNoteMarker();
-
 
 public:
                     ScTabView( Window* pParent, ScDocShell& rDocSh, ScTabViewShell* pViewShell );

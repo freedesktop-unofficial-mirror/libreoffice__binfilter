@@ -70,62 +70,6 @@ namespace binfilter {
 /*N*/   nPageNum=0;
 /*N*/ }
 
-/*N*/ void SdrObjSurrogate::ImpMakeSurrogate()
-/*N*/ {
-/*N*/   if (pObj!=NULL) { // ansonsten bleibt eList=SDROBJLIST_UNKNOWN, weil Obj=NULL
-/*N*/       bool bSameList=FALSE;
-/*N*/       bool bSamePage=FALSE;
-/*N*/       pModel=pObj->GetModel();
-/*N*/       pList=pObj->GetObjList();
-/*N*/       pRootList=pList;
-/*N*/       pPage=pObj->GetPage();
-/*N*/       nOrdNum=pObj->GetOrdNum();
-/*N*/       DBG_ASSERT(pModel!=NULL,"ImpMakeSurrogate(): Zielobjekt hat kein Model");
-/*N*/       DBG_ASSERT(pList!=NULL,"ImpMakeSurrogate(): Zielobjekt hat keine ObjList");
-/*N*/       if (pModel!=NULL && pList!=NULL) {
-/*N*/           if (pRefObj!=NULL) {
-/*N*/               if (pList==pRefObj->GetObjList()) bSameList=TRUE;
-/*N*/               else if (pPage!=NULL && pPage==pRefObj->GetPage()) bSamePage=TRUE;
-/*N*/           }
-/*N*/           if (!bSameList) {
-/*N*/               //if (eList==SDROBJLIST_UNKNOWN) eList=pList->GetListKind();
-/*N*/               SdrObjList* pL=pList->GetUpList();
-/*N*/               nGrpLevel=0;
-/*N*/               while (pL!=NULL) { pL=pL->GetUpList(); nGrpLevel++; }
-/*N*/               if (nGrpLevel!=0) { DBG_BF_ASSERT(0, "STRIP");
-/*N*/               } // if (nGrpLevel!=0)
-/*N*/           } // if (eList!=SDROBJLIST_SAMELIST)
-/*N*/           if (bSameList) eList=SDROBJLIST_SAMELIST;
-/*N*/           else if (bSamePage) eList=SDROBJLIST_SAMEPAGE;
-/*N*/           else eList=pRootList->GetListKind();
-/*N*/           if (eList==SDROBJLIST_GROUPOBJ || eList==SDROBJLIST_UNKNOWN) {
-/*?*/               if (pGrpOrdNums!=NULL) {
-/*?*/                   delete [] pGrpOrdNums;
-/*?*/                   pGrpOrdNums=NULL;
-/*?*/                   nGrpLevel=0;
-/*?*/               }
-/*?*/               eList=SDROBJLIST_UNKNOWN;
-/*?*/               return;
-/*N*/           }
-/*N*/           if (SdrIsPageKind(eList)) {
-/*N*/               if (pPage!=NULL) {
-/*N*/                   nPageNum=pPage->GetPageNum();
-/*N*/               } else {
-/*?*/                   OSL_FAIL("ImpMakeSurrogate(): eList ist eine Page, aber pPage==NULL");
-/*?*/                   if (pGrpOrdNums!=NULL) {
-/*?*/                       delete [] pGrpOrdNums;
-/*?*/                       pGrpOrdNums=NULL;
-/*?*/                       nGrpLevel=0;
-/*N*/                   }
-/*N*/                   eList=SDROBJLIST_UNKNOWN;
-/*N*/                   return;
-/*N*/               }
-/*N*/           }
-/*N*/           // so, nun ist alles beisammen und kann gestreamt werden.
-/*N*/       } // if (pModel!=NULL && pList!=NULL)
-/*N*/   } // if (pObj!=NULL)
-/*N*/ }
-
 /*N*/ void SdrObjSurrogate::ImpWriteValue(SvStream& rOut, UINT32 nVal, unsigned nByteAnz) const
 /*N*/ {
 /*N*/   switch (nByteAnz) {

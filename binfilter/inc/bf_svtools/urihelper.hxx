@@ -80,32 +80,6 @@ SmartRel2Abs(INetURLObject const & rTheBaseURIRef,
 //============================================================================
  Link GetMaybeFileHdl();
 
-/**
-   Converts a URI reference to a relative one, ignoring certain differences (for
-   example, treating file URLs for case-ignoring file systems
-   case-insensitively).
-
-   @param context a component context; must not be null
-
-   @param baseUriReference a base URI reference
-
-   @param uriReference a URI reference
-
-   @return a URI reference representing the given uriReference relative to the
-   given baseUriReference; if the given baseUriReference is not an absolute,
-   hierarchical URI reference, or the given uriReference is not a valid URI
-   reference, null is returned
-
-   @exception std::bad_alloc if an out-of-memory condition occurs
-
-   @exception com::sun::star::uno::RuntimeException if any error occurs
- */
- com::sun::star::uno::Reference< com::sun::star::uri::XUriReference >
-normalizedMakeRelative(
-    com::sun::star::uno::Reference< com::sun::star::uno::XComponentContext >
-    const & context,
-    rtl::OUString const & baseUriReference, rtl::OUString const & uriReference);
-
 //============================================================================
  UniString
 FindFirstURLInText(UniString const & rText,

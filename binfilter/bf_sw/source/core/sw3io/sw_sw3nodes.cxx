@@ -126,7 +126,6 @@ public:
     SwInsHardBlankSoftHyph() {}
     ~SwInsHardBlankSoftHyph();
     void AddItem( xub_StrLen nPos, sal_Unicode c );
-    void ChangePos( xub_StrLen nHtEnd, xub_StrLen nOffs );
 };
 
 /*N*/ sal_Char Sw3IoImp::ConvStarSymbolCharToStarBats( sal_Unicode c )
@@ -1143,15 +1142,6 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/       USHORT nInsPos = aItemStarts.Count();
 /*N*/       aItemStarts.Insert( nPos, nInsPos );
 /*N*/       aItems.C40_INSERT( SfxPoolItem, pItem, nInsPos );
-/*N*/   }
-/*N*/ }
-/*N*/ void SwInsHardBlankSoftHyph::ChangePos( xub_StrLen nHtEnd, xub_StrLen nOffs )
-/*N*/ {
-/*N*/   for( USHORT n = 0, nCnt = aItemStarts.Count(); n < nCnt; ++n )
-/*N*/   {
-/*?*/       xub_StrLen& rStt = aItemStarts[ n ];
-/*?*/       if( rStt >= nHtEnd )
-/*?*/           rStt -= nOffs;
 /*N*/   }
 /*N*/ }
 

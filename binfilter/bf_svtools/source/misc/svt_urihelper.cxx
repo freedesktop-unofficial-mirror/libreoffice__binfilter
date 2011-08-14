@@ -333,52 +333,6 @@ rtl::OUString normalize(
 
 }
 
-css::uno::Reference< css::uri::XUriReference >
-normalizedMakeRelative(
-    css::uno::Reference< css::uno::XComponentContext > const & context,
-    rtl::OUString const & baseUriReference, rtl::OUString const & uriReference)
-{
-    OSL_ASSERT(context.is());
-    css::uno::Reference< css::lang::XMultiComponentFactory > componentFactory(
-        context->getServiceManager());
-    if (!componentFactory.is()) {
-        throw css::uno::RuntimeException(
-            rtl::OUString(
-                RTL_CONSTASCII_USTRINGPARAM(
-                    "component context has no service manager")),
-            css::uno::Reference< css::uno::XInterface >());
-    }
-    css::uno::Sequence< css::uno::Any > args(2);
-    args[0] <<= rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Local"));
-    args[1] <<= rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Office"));
-    css::uno::Reference< css::ucb::XContentProvider > broker;
-    try {
-        broker = css::uno::Reference< css::ucb::XContentProvider >(
-            componentFactory->createInstanceWithArgumentsAndContext(
-                rtl::OUString(
-                    RTL_CONSTASCII_USTRINGPARAM(
-                        "com.sun.star.ucb.UniversalContentBroker")),
-                args, context),
-            css::uno::UNO_QUERY_THROW);
-    } catch (css::uno::RuntimeException &) {
-        throw;
-    } catch (css::uno::Exception &) {
-        css::uno::Any exception(cppu::getCaughtException());
-        throw css::lang::WrappedTargetRuntimeException(
-            rtl::OUString(
-                RTL_CONSTASCII_USTRINGPARAM(
-                    "creating com.sun.star.ucb.UniversalContentBroker failed")),
-            css::uno::Reference< css::uno::XInterface >(),
-            exception);
-    }
-    css::uno::Reference< css::uri::XUriReferenceFactory > uriFactory(
-        css::uri::UriReferenceFactory::create(context));
-    return uriFactory->makeRelative(
-        uriFactory->parse(normalize(broker, uriFactory, baseUriReference)),
-        uriFactory->parse(normalize(broker, uriFactory, uriReference)), true,
-        true, false);
-}
-
 //============================================================================
 //
 //  FindFirstURLInText

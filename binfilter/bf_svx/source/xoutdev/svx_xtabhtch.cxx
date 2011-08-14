@@ -75,20 +75,6 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 
 /************************************************************************/
 
-/*N*/ XHatchEntry* XHatchTable::Replace(long nIndex, XHatchEntry* pEntry )
-/*N*/ {
-/*N*/   return (XHatchEntry*) XPropertyTable::Replace(nIndex, pEntry);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XHatchEntry* XHatchTable::Remove(long nIndex)
-/*N*/ {
-/*N*/   return (XHatchEntry*) XPropertyTable::Remove(nIndex, 0);
-/*N*/ }
-
-/************************************************************************/
-
 /*N*/ XHatchEntry* XHatchTable::Get(long nIndex) const
 /*N*/ {
 /*N*/   return (XHatchEntry*) XPropertyTable::Get(nIndex, 0);
@@ -151,22 +137,6 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/   if( pXOut )  delete pXOut;
 /*N*/   if( pXFSet ) delete pXFSet;
 /*N*/ }
-
-/************************************************************************/
-
-/*N*/ XHatchEntry* XHatchList::Replace(XHatchEntry* pEntry, long nIndex )
-/*N*/ {
-/*N*/   return (XHatchEntry*) XPropertyList::Replace(pEntry, nIndex);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XHatchEntry* XHatchList::Remove(long nIndex)
-/*N*/ {
-/*N*/   return (XHatchEntry*) XPropertyList::Remove(nIndex, 0);
-/*N*/ }
-
-/************************************************************************/
 
 /*N*/ XHatchEntry* XHatchList::Get(long nIndex) const
 /*N*/ {
