@@ -77,20 +77,6 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /************************************************************************/
 
-/*N*/ XGradientEntry* XGradientTable::Replace(long nIndex, XGradientEntry* pEntry )
-/*N*/ {
-/*N*/   return (XGradientEntry*) XPropertyTable::Replace(nIndex, pEntry);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XGradientEntry* XGradientTable::Remove(long nIndex)
-/*N*/ {
-/*N*/   return (XGradientEntry*) XPropertyTable::Remove(nIndex, 0);
-/*N*/ }
-
-/************************************************************************/
-
 /*N*/ XGradientEntry* XGradientTable::Get(long nIndex) const
 /*N*/ {
 /*N*/   return (XGradientEntry*) XPropertyTable::Get(nIndex, 0);
@@ -152,20 +138,6 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/   if( pVD )    delete pVD;
 /*N*/   if( pXOut )  delete pXOut;
 /*N*/   if( pXFSet ) delete pXFSet;
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XGradientEntry* XGradientList::Replace(XGradientEntry* pEntry, long nIndex )
-/*N*/ {
-/*N*/   return( (XGradientEntry*) XPropertyList::Replace( pEntry, nIndex ) );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XGradientEntry* XGradientList::Remove(long nIndex)
-/*N*/ {
-/*N*/   return( (XGradientEntry*) XPropertyList::Remove( nIndex, 0 ) );
 /*N*/ }
 
 /************************************************************************/

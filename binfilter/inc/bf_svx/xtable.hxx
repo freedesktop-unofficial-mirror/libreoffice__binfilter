@@ -499,8 +499,6 @@ class XGradientTable : public XPropertyTable
 public:
     virtual         ~XGradientTable();
 
-    XGradientEntry* Replace(long nIndex, XGradientEntry* pEntry );
-    XGradientEntry* Remove(long nIndex);
     XGradientEntry* Get(long nIndex) const;
 
     virtual BOOL    Load();
@@ -532,8 +530,6 @@ public:
                                     USHORT nReSize = 16 );
     virtual         ~XGradientList();
 
-    XGradientEntry* Replace(XGradientEntry* pEntry, long nIndex );
-    XGradientEntry* Remove(long nIndex);
     XGradientEntry* Get(long nIndex) const;
 
     virtual BOOL    Load();

@@ -62,7 +62,6 @@ class SwViewOption;
 class SwViewImp;
 class SwPrtOptions;
 class SwPagePreViewPrtData;
-class SwLayIdle;
 struct ShellResource;
 class SwRegionRects;
 class SwFrm;
@@ -86,7 +85,6 @@ class ViewShell : public Ring
                                  Window *pWin, sal_uInt16 nZoom );
 
     friend class SwViewImp;
-    friend class SwLayIdle;
 
     // OD 12.12.2002 #103492# - for setting visible area for page preview paint
     friend class SwPagePreviewLayout;

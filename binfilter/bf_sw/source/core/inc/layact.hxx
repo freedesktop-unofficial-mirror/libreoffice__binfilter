@@ -202,36 +202,6 @@ public:
     void CheckWaitCrsr();
 };
 
-class SwLayIdle
-{
-
-    SwRootFrm *pRoot;
-    SwViewImp  *pImp;           // Hier Meldet sich der Idler an und ab.
-    SwCntntNode *pCntntNode;    // Hier wird die aktuelle Cursorposition
-    xub_StrLen  nTxtPos;        // zwischengespeichert.
-    BOOL        bPageValid;     // Konnte die Seite alles validiert werden?
-    BOOL        bAllValid;      // Konnte alles validiert werden?
-
-#ifdef DBG_UTIL
-    BOOL bIndicator;
-#endif
-
-#ifdef _LAYACT_CXX
-
-#ifdef DBG_UTIL
-    void ShowIdle( ColorData eName );
-#endif
-
-    BOOL _CollectAutoCmplWords( const SwCntntFrm *, BOOL bOnlyVisArea );
-    BOOL CollectAutoCmplWords( BOOL );
-
-#endif
-
-public:
-    SwLayIdle( SwRootFrm *pRt, SwViewImp *pImp );
-    ~SwLayIdle();
-};
-
 inline void SwLayAction::SetCheckPageNum( USHORT nNew )
 {
     if ( nNew < nCheckPageNum )

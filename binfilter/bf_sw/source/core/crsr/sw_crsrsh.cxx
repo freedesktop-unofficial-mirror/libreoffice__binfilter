@@ -409,9 +409,6 @@ using namespace ::com::sun::star::util;
 /*M*/                               &pCurCrsr->GetPtPos(), pCurCrsr->GetPoint() );
 /*M*/               }  while( !pFrm );
 /*M*/           }
-/*M*/           else if ( Imp()->IsIdleAction() )
-/*M*/               //Wir stellen sicher, dass anstaendig Formatiert wurde #42224#
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }
 /*M*/
 /*M*/           // im geschuetzten Fly? aber bei Rahmenselektion ignorieren
 /*M*/           if( !IsReadOnlyAvailable() && pFrm->IsProtected() &&
