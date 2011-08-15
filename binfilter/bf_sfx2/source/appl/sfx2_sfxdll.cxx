@@ -28,13 +28,11 @@
 
 #ifdef WIN
 #include <svwin.h>
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-#ifdef WIN
 namespace binfilter {
 
 // Statische DLL-Verwaltungs-Variablen
@@ -66,8 +64,7 @@ static HINSTANCE hDLLInst = 0;
 
 //==========================================================================
 }
+
 #endif
-
-
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -62,12 +62,16 @@ SLOFILES =  \
     $(SLO)$/sfx2_app.obj \
     $(SLO)$/sfx2_appbas.obj \
     $(SLO)$/sfx2_appdde.obj \
-    $(SLO)$/sfx2_sfxdll.obj \
     $(SLO)$/sfx2_module.obj \
     $(SLO)$/sfx2_dlgcont.obj \
     $(SLO)$/sfx2_namecont.obj \
     $(SLO)$/sfx2_scriptcont.obj \
     $(SLO)$/sfx2_imestatuswindow.obj 
+
+.IF "$(GUI)"=="WNT"
+SLOFILES += \
+    $(SLO)$/sfx2_sfxdll.obj
+.ENDIF
 
 EXCEPTIONSFILES=\
     $(SLO)$/sfx2_appopen.obj \
