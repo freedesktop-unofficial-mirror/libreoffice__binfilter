@@ -550,7 +550,7 @@ public:
     SwFrm               *GetNext()  { return pNext; }
     SwFrm               *GetPrev()  { return pPrev; }
     SwLayoutFrm         *GetUpper() { return pUpper; }
-    SwRootFrm           *FindRootFrm();
+    const SwRootFrm     *FindRootFrm() const { return NULL; }
     SwPageFrm           *FindPageFrm();
     SwFrm               *FindColFrm();
     SwFtnBossFrm        *FindFtnBossFrm( BOOL bFootnotes = FALSE );
@@ -571,7 +571,6 @@ public:
     inline SwCntntFrm   *FindNextCnt();
     inline SwFrm        *FindPrev();
     inline const SwPageFrm *FindPageFrm() const;
-    inline const SwRootFrm *FindRootFrm() const;
     inline const SwFtnBossFrm *FindFtnBossFrm( BOOL bFtn = FALSE ) const;
     inline const SwFrm     *FindColFrm() const;
     inline const SwFrm     *FindFooterOrHeader() const;
@@ -888,10 +887,6 @@ inline Point SwFrm::GetRelPos() const
 inline const SwPageFrm *SwFrm::FindPageFrm() const
 {
     return ((SwFrm*)this)->FindPageFrm();
-}
-inline const SwRootFrm *SwFrm::FindRootFrm() const
-{
-    return ((SwFrm*)this)->FindRootFrm();
 }
 inline const SwFrm *SwFrm::FindColFrm() const
 {

@@ -427,7 +427,7 @@ namespace binfilter {
 /*?*/       if( FLY_PAGE == pAnch->GetAnchorId() )
 /*?*/       {
 /*?*/           USHORT nPgNum = pAnch->GetPageNum();
-/*?*/           SwRootFrm *pRoot = FindRootFrm();
+/*?*/           const SwRootFrm *pRoot = FindRootFrm();
 /*?*/           SwPageFrm *pPage1 = (SwPageFrm*)pRoot->Lower();
 /*?*/           for ( USHORT i = 1; (i <= nPgNum) && pPage1; ++i,
 /*?*/                               pPage1 = (SwPageFrm*)pPage1->GetNext() )

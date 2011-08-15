@@ -347,28 +347,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/   return pLayoutFrm;
 /*N*/ }
 
-/*************************************************************************
-|*
-|*  SwFrm::FindRootFrm(), FindTabFrm(), FindFtnFrm(), FindFlyFrm(),
-|*         FindPageFrm(), FindColFrm()
-|*
-|*************************************************************************/
-/*N*/ SwRootFrm* SwFrm::FindRootFrm()
-/*N*/ {
-/*N*/   // MIB: A layout frame is always registerd at a SwFrmFmt and a content
-/*N*/   // frame alyways at a SwCntntNode. For any other case we won't find
-/*N*/   // a root frame.
-/*N*/   // Casting the GetDep() result instead of the frame itself (that has
-/*N*/   // been done before) makes it save to use that method in constructors
-/*N*/   // and destructors.
-/*N*/   OSL_ENSURE( GetDep(), "frame is not registered any longer" );
-/*N*/   OSL_ENSURE( IsLayoutFrm() || IsCntntFrm(), "invalid frame type" );
-/*N*/   SwDoc *pDoc = IsLayoutFrm()
-/*N*/                       ? static_cast < SwFrmFmt * >( GetDep() )->GetDoc()
-/*N*/                       : static_cast < SwCntntNode * >( GetDep() )->GetDoc();
-/*N*/   return pDoc->GetRootFrm();
-/*N*/ }
-
 /*N*/ SwPageFrm* SwFrm::FindPageFrm()
 /*N*/ {
 /*N*/   SwFrm *pRet = this;

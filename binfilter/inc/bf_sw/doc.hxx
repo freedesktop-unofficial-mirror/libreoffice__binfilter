@@ -276,7 +276,6 @@ class SwDoc
     SwTOXTypes      *pTOXTypes;         // Verzeichnisse
     SwDefTOXBase_Impl * pDefTOXBases;   // defaults of SwTOXBase's
 
-    SwRootFrm       *pLayout;           // Rootframe des spezifischen Layouts.
     SdrModel        *pDrawModel;        // StarView Drawing
 
     SwDocUpdtFld    *pUpdtFlds;         // Struktur zum Field-Update
@@ -489,10 +488,7 @@ public:
     const SvxLinkManager& GetLinkManager() const { return *pLinkMgr; }
 
         // erfrage das spezifische Layout
-    const SwRootFrm* GetRootFrm() const { return pLayout; }
-          SwRootFrm* GetRootFrm()       { return pLayout; }
-        // der alte muss !! von der Shell geloescht werden !!
-    void SetRootFrm( SwRootFrm* pNew )  { pLayout = pNew; }
+    const SwRootFrm* GetRootFrm() const { return NULL; }
 
     void StartIdleTimer()               { aIdleTimer.Start(); }
     void StopIdleTimer()                { aIdleTimer.Stop();  }

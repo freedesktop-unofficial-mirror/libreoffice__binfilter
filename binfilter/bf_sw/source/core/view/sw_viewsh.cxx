@@ -429,7 +429,7 @@ bool bInSizeNotify = FALSE;
 
 /*N*/ SwRootFrm *ViewShell::GetLayout() const
 /*N*/ {
-/*N*/   return GetDoc()->GetRootFrm();
+/*N*/   return NULL;
 /*N*/ }
 
 /*N*/ OutputDevice& ViewShell::GetRefDev() const

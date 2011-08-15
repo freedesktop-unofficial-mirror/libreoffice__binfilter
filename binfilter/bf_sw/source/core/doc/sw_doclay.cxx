@@ -934,27 +934,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   // ein Redline-Objekt in einer Kopf- oder Fusszeile befindet. Da
 /*N*/   // Redlines auch an Start- und Endnodes haengen, muss der Index nicht
 /*N*/   // unbedingt der eines Content-Nodes sein.
-/*N*/   SwNode* pNd = &rIdx.GetNode();
-/*N*/   if( pNd->IsCntntNode() && pLayout )
-/*N*/   {
-/*N*/       SwFrm *pFrm = pNd->GetCntntNode()->GetFrm();
-/*N*/       if( pFrm )
-/*N*/       {
-/*N*/           SwFrm *pUp = pFrm->GetUpper();
-/*N*/           while ( pUp && !pUp->IsHeaderFrm() && !pUp->IsFooterFrm() )
-/*N*/           {
-/*N*/               if ( pUp->IsFlyFrm() )
-/*N*/                   pUp = ((SwFlyFrm*)pUp)->GetAnchor();
-/*N*/               pUp = pUp->GetUpper();
-/*N*/           }
-/*N*/           if ( pUp )
-/*N*/               return sal_True;
-/*N*/
-/*N*/           return sal_False;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/
+/*N*/   const SwNode* pNd = &rIdx.GetNode();
 /*N*/   const SwNode* pFlyNd = pNd->FindFlyStartNode();
 /*N*/   while( pFlyNd )
 /*N*/   {

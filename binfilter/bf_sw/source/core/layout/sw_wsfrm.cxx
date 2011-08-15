@@ -667,12 +667,7 @@ namespace binfilter {
 /*N*/       //er die Retouche uebernehmen.
 /*N*/       //Ausserdem kann eine Leerseite entstanden sein.
 /*N*/       else
-/*N*/       {   SwRootFrm *pRoot = FindRootFrm();
-/*N*/           if ( pRoot )
-/*N*/           {
-/*N*/               GetUpper()->SetCompletePaint();
-/*N*/               GetUpper()->InvalidatePage( pPage );
-/*N*/           }
+/*N*/       {
 /*N*/           if( IsInSct() )
 /*N*/           {
 /*N*/               SwSectionFrm* pSct = FindSctFrm();

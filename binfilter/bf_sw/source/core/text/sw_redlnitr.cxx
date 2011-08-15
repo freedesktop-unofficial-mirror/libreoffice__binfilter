@@ -67,8 +67,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/ void SwAttrIter::CtorInit( SwTxtNode& rTxtNode, SwScriptInfo& rScrInf, SwTxtFrm* pFrm )
 /*N*/ {
 /*N*/   // Beim HTML-Import kann es vorkommen, dass kein Layout existiert.
-/*N*/   SwRootFrm *pRootFrm = rTxtNode.GetDoc()->GetRootFrm();
-/*N*/   pShell = pRootFrm ? pRootFrm->GetShell() : 0;
+/*N*/   pShell = 0;
 /*N*/
 /*N*/     pScriptInfo = &rScrInf;
 /*N*/   pAttrSet = &rTxtNode.GetSwAttrSet();

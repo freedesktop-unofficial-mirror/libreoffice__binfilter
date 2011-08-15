@@ -132,7 +132,6 @@ const sal_Char sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   , pBookmarkTbl( new SwBookmarks( 0, 16 ) )
 /*N*/   , pTOXTypes( new SwTOXTypes() )
 /*N*/   , pDefTOXBases( new SwDefTOXBase_Impl() )
-/*N*/   , pLayout( 0 )                  // Rootframe des spezifischen Layouts.
 /*N*/   , pDrawModel( 0 )
 /*N*/   , pUpdtFlds( new SwDocUpdtFld() )
 /*N*/   , pFldTypes( new SwFldTypes() )
@@ -335,7 +334,6 @@ const sal_Char sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   // damit die Fussnotenattribute die Fussnotennodes in Frieden lassen.
 /*N*/   bDtor = TRUE;
 /*N*/
-/*N*/   DELETEZ( pLayout );
 /*N*/   DELETEZ( pOutlineRule );
 /*N*/
 /*N*/   delete pRedlineTbl;
