@@ -227,26 +227,6 @@ using namespace ::com::sun::star::util;
 /*N*/ }
 
 
-/*?*/ #if defined(DBG_UTIL)
-/*?*/
-/*?*/ void SwCrsrShell::SttCrsrMove()
-/*?*/ {
-/*?*/   OSL_ENSURE( nCrsrMove < USHRT_MAX, "To many nested CrsrMoves." );
-/*?*/   ++nCrsrMove;
-/*?*/   StartAction();
-/*?*/ }
-/*?*/
-/*?*/ void SwCrsrShell::EndCrsrMove( const BOOL bIdleEnd )
-/*?*/ {
-/*?*/   OSL_ENSURE( nCrsrMove, "EndCrsrMove() ohne SttCrsrMove()." );
-/*?*/   EndAction( bIdleEnd );
-/*?*/   if( !--nCrsrMove )
-/*?*/       bInCMvVisportChgd = FALSE;
-/*?*/ }
-/*?*/
-/*?*/ #endif
-
-
 /*N*/ void SwCrsrShell::UpdateCrsrPos()
 /*N*/ {
 /*N*/   SET_CURR_SHELL( this );

@@ -274,27 +274,6 @@ inline void SwEditShell::ApplyViewOptions( const SwViewOption &rOpt )
 inline const SvxLinkManager& SwEditShell::GetLinkManager() const
 {   return ((SwEditShell*)this)->GetLinkManager();  }
 
-/*
- * Klasse fuer den automatisierten Aufruf von Start- und
- * EndAction();
- */
-
-
-/*
- * Klasse fuer den automatisierten Aufruf von Start- und
- * EndCrsrMove();
- */
-class SwMvKontext {
-    SwEditShell *pSh;
-public:
-    SwMvKontext(SwEditShell *pShell );
-    ~SwMvKontext();
-};
-
-#define MV_KONTEXT(x)   SwMvKontext _aMvKontext_(x)
-
-
-
 } //namespace binfilter
 #endif
 

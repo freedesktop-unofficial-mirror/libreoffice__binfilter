@@ -59,8 +59,6 @@ public:
 
     const SwTxtFlyCnt *GetTxtFlyCnt() const { return pTxtAttr; }
           SwTxtFlyCnt *GetTxtFlyCnt()       { return pTxtAttr; }
-
-    bool Sw3ioExportAllowed() const;
 };
 
 } //namespace binfilter

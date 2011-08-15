@@ -198,12 +198,6 @@ private:
     USHORT nAktNdTyp;
     bool bAktSelection;
 
-    /*
-     * Mit den Methoden SttCrsrMove und EndCrsrMove wird dieser Zaehler
-     * Inc-/Decrementiert. Solange der Zaehler ungleich 0 ist, erfolgt
-     * auf den akt. Cursor kein Update. Dadurch koennen "komplizierte"
-     * Cursorbewegungen (ueber Find()) realisiert werden.
-     */
     USHORT nCrsrMove;
     USHORT nBasicActionCnt;     // Actions, die vom Basic geklammert wurden
     CrsrMoveState eMvState;     // Status fuers Crsr-Travelling - GetCrsrOfst
@@ -322,29 +316,6 @@ public:
        the PaM.
     */
     void NormalizePam(BOOL bPointFirst = TRUE);
-
-
-    // erzeuge eine Kopie vom Cursor und speicher diese im Stack
-    /*
-     *  Loescht einen Cursor (gesteuert durch bOldCrsr)
-     *      - vom Stack oder    ( bOldCrsr = TRUE )
-     *      - den aktuellen und der auf dem Stack stehende wird zum aktuellen
-     *
-     *  Return:  es war auf dem Stack noch einer vorhanden
-     */
-    /*
-     * Verbinde zwei Cursor miteinander.
-     * Loesche vom Stack den obersten und setzen dessen Mark im Aktuellen.
-     */
-
-#if !defined(DBG_UTIL)
-    void SttCrsrMove() { ++nCrsrMove; StartAction(); }
-    void EndCrsrMove( const BOOL bIdleEnd = FALSE )
-            { EndAction( bIdleEnd ); --nCrsrMove; }
-#else
-    void SttCrsrMove();
-    void EndCrsrMove( const BOOL bIdleEnd = FALSE );
-#endif
 
     /*
      * Beim Abgeben des Focuses werden die selektierten Bereiche nicht mehr

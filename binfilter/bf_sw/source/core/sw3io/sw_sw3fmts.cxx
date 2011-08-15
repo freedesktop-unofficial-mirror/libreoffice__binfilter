@@ -81,33 +81,6 @@ SwFmt* lcl_sw3io__GetUserPoolFmt( USHORT nId, const SvPtrarr* pFmtArr )
     return 0;
 }
 
-// Whichwerte werden nach Gruppen gespreizt, so dass die einzelnen
-// Gruppen getrennt um neue Attribute erweitert werden koennen.
-
-// Umwandeln eines normalen Whichwertes in einen gespreizten Wert
-
-/*N*/ USHORT lcl_sw3io__ExpandWhich( USHORT nWhich )
-/*N*/ {
-/*N*/   // #95500#: There is no seperate range for box attributes in the file
-/*N*/   // format, but they are treated as graphic attributes!
-/*N*/   // Since we have extended the range of graphic attributes, we have
-/*N*/   // to move them back to RES_GRFATR_ROTATION, because that's where the
-/*N*/   // box attributes reange started in the 5.2..
-/*N*/   if( nWhich >= RES_BOXATR_BEGIN )
-/*N*/       return (nWhich <= RES_BOXATR_VALUE) ? (nWhich - RES_BOXATR_BEGIN + RES_GRFATR_ROTATION - RES_GRFATR_BEGIN + 0x6000) : 0;
-/*N*/   if( nWhich >= RES_GRFATR_BEGIN )
-/*N*/       return (nWhich <= RES_GRFATR_CROPGRF) ? (nWhich - RES_GRFATR_BEGIN + 0x6000) : 0;
-/*N*/   if( nWhich >= RES_FRMATR_BEGIN )
-/*N*/       return (nWhich <= RES_COLUMNBALANCE) ? (nWhich - RES_FRMATR_BEGIN + 0x5000) : 0;
-/*N*/   if( nWhich >= RES_PARATR_BEGIN )
-/*N*/       return (nWhich <= RES_PARATR_NUMRULE) ? (nWhich - RES_PARATR_BEGIN + 0x4000) : 0;
-/*N*/   if( nWhich >= RES_TXTATR_NOEND_BEGIN )
-/*N*/       return (nWhich <= RES_TXTATR_HARDBLANK) ? (nWhich - RES_TXTATR_NOEND_BEGIN + 0x3000) : 0;
-/*N*/   if( nWhich >= RES_TXTATR_WITHEND_BEGIN )
-/*N*/       return (nWhich <= RES_TXTATR_CHARFMT) ? (nWhich - RES_TXTATR_WITHEND_BEGIN + 0x2000) : 0;
-/*N*/   return (nWhich <= RES_CHRATR_BACKGROUND) ? (nWhich - RES_CHRATR_BEGIN + 0x1000) : 0;
-/*N*/ }
-
 // Umwandeln eines gespreizten Whichwertes in den normalen Wert
 
 /*N*/ USHORT lcl_sw3io__CompressWhich( USHORT nWhich, USHORT nVersion )
