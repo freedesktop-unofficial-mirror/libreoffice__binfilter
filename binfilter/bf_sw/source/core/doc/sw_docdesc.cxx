@@ -372,28 +372,19 @@ namespace binfilter {
 /*N*/
 /*N*/   //Wenn sich das UseOn oder der Follow aendern muessen die
 /*N*/   //Absaetze das erfahren.
-/*N*/   BOOL bUseOn  = FALSE;
-/*N*/   BOOL bFollow = FALSE;
 /*N*/   if ( pDesc->GetUseOn() != rChged.GetUseOn() )
 /*N*/   {   pDesc->SetUseOn( rChged.GetUseOn() );
-/*N*/       bUseOn = TRUE;
 /*N*/   }
 /*N*/   if ( pDesc->GetFollow() != rChged.GetFollow() )
 /*N*/   {   if ( rChged.GetFollow() == &rChged )
 /*N*/       {   if ( pDesc->GetFollow() != pDesc )
 /*?*/           {   pDesc->SetFollow( pDesc );
-/*?*/               bFollow = TRUE;
 /*?*/           }
 /*N*/       }
 /*N*/       else
 /*N*/       {   pDesc->SetFollow( rChged.pFollow );
-/*N*/           bFollow = TRUE;
 /*N*/       }
 /*N*/   }
-/*N*/
-/*N*/   if ( (bUseOn || bFollow) && GetRootFrm() )
-/*N*/       //Layot benachrichtigen!
-/*N*/       GetRootFrm()->CheckPageDescs( (SwPageFrm*)GetRootFrm()->Lower() );
 /*N*/
 /*N*/   //Jetzt noch die Seiten-Attribute uebernehmen.
 /*N*/   ::binfilter::lcl_DescSetAttr( rChged.GetMaster(), pDesc->GetMaster() );
@@ -495,28 +486,7 @@ void SwDoc::DelPageDesc( USHORT i )
         if ( aPageDescs[j]->GetFollow() == pDel )
         {
             aPageDescs[j]->SetFollow( 0 );
-            //Clients des PageDesc sind die Attribute, denen sagen wir bescheid.
-            //die Attribute wiederum reichen die Meldung an die Absaetze weiter.
-
-            //Layot benachrichtigen!
-            if( GetRootFrm() )  // ist nicht immer vorhanden!! (Orginizer)
-                GetRootFrm()->CheckPageDescs( (SwPageFrm*)GetRootFrm()->Lower() );
         }
-    }
-
-    if( GetRootFrm() )        // ist nicht immer vorhanden!! (Orginizer)
-    {
-        //Wenn jetzt noch irgendwelche Seiten auf die FrmFmt'e (Master und Left)
-        //Zeigen (z.B. irgendwelche Fussnotenseiten), so muessen die Seiten
-        //vernichtet werden.
-
-        // Wenn wir auf Endnotenseiten stossen, schmeissen wir alle Fussnoten weg,
-        // anders kann die Reihenfolge der Seiten (FollowsPageDescs usw.)
-        // nicht garantiert werden.
-        bool bFtnsRemoved = FALSE;
-
-        ::binfilter::lcl_RemoveFrms( pDel->GetMaster(), bFtnsRemoved );
-        ::binfilter::lcl_RemoveFrms( pDel->GetLeft(), bFtnsRemoved );
     }
 
     aPageDescs.Remove( i );

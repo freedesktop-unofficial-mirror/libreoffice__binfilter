@@ -381,23 +381,6 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
 /*M*/     return 0;
 /*M*/ }
 
-/*M*/ const Size SwDoc::GetPageSize( sal_uInt16 nPageNum ) const
-/*M*/ {
-/*M*/     Size aSize;
-/*M*/     if( GetRootFrm() && nPageNum )
-/*M*/     {
-/*M*/         const SwPageFrm* pPage = static_cast<const SwPageFrm*>
-/*M*/                                  (GetRootFrm()->Lower());
-/*M*/         while( --nPageNum && pPage->GetNext() )
-/*M*/             pPage = static_cast<const SwPageFrm*>( pPage->GetNext() );
-/*M*/         if( pPage->IsEmptyPage() && pPage->GetNext() )
-/*M*/             pPage = static_cast<const SwPageFrm*>( pPage->GetNext() );
-/*M*/         aSize = pPage->Frm().SSize();
-/*M*/     }
-/*M*/     return aSize;
-/*M*/ }
-
-
 /*************************************************************************
  *            void UpdateDocStat( const SwDocStat& rStat );
  *************************************************************************/

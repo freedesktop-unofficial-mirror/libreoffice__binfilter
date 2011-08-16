@@ -1072,7 +1072,6 @@ public:
     void UpdateDocStat( SwDocStat& rStat );
 
         sal_uInt16 GetPageCount() const;
-    const Size GetPageSize( sal_uInt16 nPageNum ) const;
 
         //PageDescriptor-Schnittstelle
     sal_uInt16 GetPageDescCnt() const { return aPageDescs.Count(); }

@@ -31,7 +31,6 @@
 #define _BLINK_HXX
 
 class SwLinePortion;
-class SwRootFrm;
 class SwTxtFrm;
 
 #include <bf_svtools/svarray.hxx>
@@ -42,17 +41,14 @@ class SwBlinkPortion
 {
     Point               aPos;
     const SwLinePortion *pPor;
-    const SwRootFrm     *pFrm;
     USHORT              nDir;
 public:
     SwBlinkPortion( const SwLinePortion* pPortion, USHORT nDirection )
             { pPor = pPortion; nDir = nDirection; }
     SwBlinkPortion( const SwBlinkPortion* pBlink, const SwLinePortion* pPort )
-    {   pPor = pPort; pFrm = pBlink->pFrm; aPos = pBlink->aPos; nDir = pBlink->nDir; }
+    {   pPor = pPort; aPos = pBlink->aPos; nDir = pBlink->nDir; }
     void SetPos( const Point& aNew ){ aPos = aNew; }
     const Point& GetPos() const{ return aPos; }
-    void SetRootFrm( const SwRootFrm* pNew ){ pFrm = pNew; }
-    const SwRootFrm* GetRootFrm() const{ return pFrm; }
     const SwLinePortion *GetPortion() const{ return pPor; }
     USHORT GetDirection() const { return nDir; }
     BOOL operator<( const SwBlinkPortion& rBlinkPortion ) const

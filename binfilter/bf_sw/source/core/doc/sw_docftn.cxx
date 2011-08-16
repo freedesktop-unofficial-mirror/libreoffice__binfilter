@@ -299,36 +299,12 @@ namespace binfilter {
 /*N*/   if( !(GetEndNoteInfo() == rInfo) )
 /*N*/   {
 /*N*/       bool bNumChg  = rInfo.nFtnOffset != GetEndNoteInfo().nFtnOffset;
-/*N*/       bool bExtra   = (!bNumChg &&
-/*N*/                           rInfo.aFmt.GetNumberingType() != GetEndNoteInfo().aFmt.GetNumberingType()) ||
-/*N*/                           rInfo.GetPrefix() != GetEndNoteInfo().GetPrefix() ||
-/*N*/                           rInfo.GetSuffix() != GetEndNoteInfo().GetSuffix();
-/*N*/       bool bFtnDesc = rInfo.GetPageDesc( *this ) !=
-/*N*/                           GetEndNoteInfo().GetPageDesc( *this );
 /*N*/       SwCharFmt *pOldChrFmt = GetEndNoteInfo().GetCharFmt( *this ),
 /*N*/                 *pNewChrFmt = rInfo.GetCharFmt( *this );
 /*N*/       bool bFtnChrFmts = pOldChrFmt != pNewChrFmt;
 /*N*/
 /*N*/       *pEndNoteInfo = rInfo;
 /*N*/
-/*N*/       if ( GetRootFrm() )
-/*N*/       {
-/*?*/           if ( bFtnDesc )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }
-/*?*/           if ( bExtra )
-/*?*/           {
-/*?*/               //Fuer die Benachrichtung bezueglich ErgoSum usw. sparen wir uns
-/*?*/               //extra-Code und nutzen die vorhandenen Wege.
-/*?*/               SwFtnIdxs& rFtnIdxs = GetFtnIdxs();
-/*?*/               for( USHORT nPos = 0; nPos < rFtnIdxs.Count(); ++nPos )
-/*?*/               {
-/*?*/                   SwTxtFtn *pTxtFtn = rFtnIdxs[ nPos ];
-/*?*/                   const SwFmtFtn &rFtn = pTxtFtn->GetFtn();
-/*?*/                   if ( rFtn.IsEndNote() )
-/*?*/                       pTxtFtn->SetNumber( rFtn.GetNumber(), &rFtn.GetNumStr());
-/*?*/               }
-/*N*/           }
-/*N*/       }
 /*N*/       if( bNumChg )
 /*?*/           GetFtnIdxs().UpdateAllFtn();
 /*N*/       else if( bFtnChrFmts )
@@ -419,15 +395,9 @@ namespace binfilter {
 /*N*/           if ( !bTypeChgd )
 /*N*/               rFtnArr.UpdateAllFtn();
 /*N*/       }
-/*N*/       else if( GetRootFrm() )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/   return bChg;
 /*N*/ }
-
-
-
-
 
 }
 

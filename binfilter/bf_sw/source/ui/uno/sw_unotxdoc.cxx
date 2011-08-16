@@ -2030,7 +2030,7 @@ uno::Sequence< beans::PropertyValue > SAL_CALL SwXTextDocument::getRenderer(
     if (nRenderer >= pDoc->GetPageCount())
         return uno::Sequence< beans::PropertyValue >();
 
-    Size aPgSize( pDoc->GetPageSize( nRenderer + 1 ) );
+    Size aPgSize;
     DBG_ASSERT( aPgSize != Size(), "no page size" );
 
     awt::Size aPageSize( TWIP_TO_MM100( aPgSize.Width() ),

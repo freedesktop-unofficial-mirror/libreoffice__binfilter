@@ -570,10 +570,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*?*/       }
 /*?*/       pFmt->SetAttr( aFmtSize );
 /*N*/   }
-
-    // Frames anlegen
-/*N*/   if( GetRootFrm() )
-/*N*/       pFmt->MakeFrms();           // ???
 /*N*/
 /*N*/   SetModified();
 /*N*/   return pFmt;
@@ -707,10 +703,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   }
 /*N*/
 /*N*/   new SwDrawContact( pFmt, &rDrawObj );
-/*N*/
-/*N*/   // ggfs. Frames anlegen
-/*N*/   if( GetRootFrm() )
-/*N*/       pFmt->MakeFrms();
 /*N*/
 /*N*/   SetModified();
 /*N*/   return pFmt;
