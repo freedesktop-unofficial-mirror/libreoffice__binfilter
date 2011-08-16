@@ -337,64 +337,6 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   return 8;
 /*N*/ }
 
-//=========================================================================
-
-/*N*/ typedef SfxPSProperty_Impl *SfxPSPropertyPtr_Impl;
-/*N*/ SV_DECL_PTRARR_DEL(SfxPSPropertyArr_Impl, SfxPSPropertyPtr_Impl, 10, 10)
-/*N*/ SV_IMPL_PTRARR(SfxPSPropertyArr_Impl, SfxPSPropertyPtr_Impl);
-
-/*N*/ struct SfxPSSection_Impl
-/*N*/ {
-/*N*/   SvGlobalName aId;
-/*N*/   SfxPSPropertyArr_Impl aProperties;
-/*N*/   ULONG Save(SvStream &) {return 1;}
-/*N*/ };
-
-//=========================================================================
-
-/*N*/ class SfxPS_Impl
-/*N*/ {
-/*N*/   SfxPSSection_Impl aSection;
-/*N*/   USHORT GetPos( UINT32 nId );
-/*N*/
-/*N*/   public:
-/*N*/
-/*N*/   void   SetSectionName(const SvGlobalName& aIdP);
-/*N*/   void   AddProperty( SfxPSProperty_Impl* pProp);
-/*N*/
-/*N*/   ULONG Save(SvStream &) {return 1;}
-/*N*/ };
-
-
-/*N*/ USHORT SfxPS_Impl::GetPos( UINT32 nId )
-/*N*/ {
-/*N*/   SfxPSPropertyArr_Impl& rProperties = aSection.aProperties;
-/*N*/   USHORT nCount = rProperties.Count();
-/*N*/   for( USHORT n = 0 ; n < nCount; n++ )
-/*N*/       if( rProperties.GetObject( n )->GetId() == nId )
-/*N*/           return n;
-/*N*/   return USHRT_MAX;
-/*N*/ }
-
-
-/*N*/ void  SfxPS_Impl::AddProperty( SfxPSProperty_Impl* pProp)
-/*N*/ {
-/*N*/   USHORT nPos = GetPos( pProp->GetId() );
-/*N*/   if( nPos != USHRT_MAX )
-/*N*/   {
-/*?*/       delete aSection.aProperties[ nPos ];
-/*?*/       aSection.aProperties.Remove( nPos );
-/*N*/   }
-/*N*/   aSection.aProperties.Insert(pProp,0);
-/*N*/ }
-
-//-------------------------------------------------------------------------
-
-/*N*/ void SfxPS_Impl::SetSectionName(const SvGlobalName& aIdP)
-/*N*/ {
-/*N*/   aSection.aId = aIdP;
-/*N*/ }
-
 //-------------------------------------------------------------------------
 
 /*N*/ inline SvStream& Skip(SvStream &rStream, USHORT nCount)

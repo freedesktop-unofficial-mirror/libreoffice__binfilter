@@ -192,63 +192,6 @@ Link GetMaybeFileHdl()
     return MaybeFileHdl::get();
 }
 
-namespace {
-
-bool isAbsoluteHierarchicalUriReference(
-    css::uno::Reference< css::uri::XUriReference > const & uriReference)
-{
-    return uriReference.is() && uriReference->isAbsolute()
-        && uriReference->isHierarchical() && !uriReference->hasRelativePath();
-}
-
-// To improve performance, assume that if for any prefix URL of a given
-// hierarchical URL either a UCB content cannot be created, or the UCB content
-// does not support the getCasePreservingURL command, then this will hold for
-// any other prefix URL of the given URL, too:
-enum Result { Success, GeneralFailure, SpecificFailure };
-
-Result normalizePrefix(
-    css::uno::Reference< css::ucb::XContentProvider > const & broker,
-    rtl::OUString const & uri, rtl::OUString * normalized)
-{
-    OSL_ASSERT(broker.is() && normalized != 0);
-    css::uno::Reference< css::ucb::XContent > content;
-    try {
-        content = broker->queryContent(
-            css::uno::Reference< css::ucb::XContentIdentifierFactory >(
-                broker, css::uno::UNO_QUERY_THROW)->createContentIdentifier(
-                    uri));
-    } catch (css::ucb::IllegalIdentifierException &) {}
-    if (!content.is()) {
-        return GeneralFailure;
-    }
-    try {
-        #if OSL_DEBUG_LEVEL > 0
-        bool ok =
-        #endif
-            (css::uno::Reference< css::ucb::XCommandProcessor >(
-                   content, css::uno::UNO_QUERY_THROW)->execute(
-                       css::ucb::Command(
-                           rtl::OUString(
-                               RTL_CONSTASCII_USTRINGPARAM(
-                                   "getCasePreservingURL")),
-                           -1, css::uno::Any()),
-                       0,
-                       css::uno::Reference< css::ucb::XCommandEnvironment >())
-               >>= *normalized);
-        OSL_ASSERT(ok);
-    } catch (css::uno::RuntimeException &) {
-        throw;
-    } catch (css::ucb::UnsupportedCommandException &) {
-        return GeneralFailure;
-    } catch (css::uno::Exception &) {
-        return SpecificFailure;
-    }
-    return Success;
-}
-
-}
-
 //============================================================================
 //
 //  FindFirstURLInText
