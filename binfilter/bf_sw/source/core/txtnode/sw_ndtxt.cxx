@@ -239,90 +239,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/   return aText.Len();
 /*N*/ }
 
-/*---------------------------------------------------------------------------
- * lcl_ChangeFtnRef
- *  After a split node, it's necessary to actualize the ref-pointer of the
- *  ftnfrms.
- * --------------------------------------------------------------------------*/
-
-/*N*/ void lcl_ChangeFtnRef( SwTxtNode &rNode )
-/*N*/ {
-/*N*/   SwpHints *pSwpHints = rNode.GetpSwpHints();
-/*N*/   if( pSwpHints && rNode.GetDoc()->GetRootFrm() )
-/*N*/   {
-/*N*/       SwTxtAttr* pHt;
-/*N*/       SwCntntFrm* pFrm = NULL;
-/*N*/         // OD 07.11.2002 #104840# - local variable to remember first footnote
-/*N*/         // of node <rNode> in order to invalidate position of its first content.
-/*N*/         // Thus, in its <MakeAll()> it will checked its position relative to its reference.
-/*N*/         SwFtnFrm* pFirstFtnOfNode = 0;
-/*N*/       for( register USHORT j = pSwpHints->Count(); j; )
-/*N*/         {
-/*N*/           if( RES_TXTATR_FTN == (pHt = pSwpHints->GetHt(--j))->Which() )
-/*N*/           {
-/*N*/               if( !pFrm )
-/*N*/               {
-/*N*/                   SwClientIter aNew( rNode );
-/*N*/                   pFrm = (SwCntntFrm*)aNew.First( TYPE(SwCntntFrm) );
-/*N*/ //JP 11.07.00: the assert's shows incorrect an error when nodes are converted
-/*N*/ //                to a table. Then no layout exist!
-/*N*/ //                    OSL_ENSURE( pFrm, "lcl_ChangeFtnRef: No TxtFrm" );
-/*N*/ //                    OSL_ENSURE( pFrm && !aNew.Next(),"lcl_ChangeFtnRef: Doublefault");
-/*N*/                   if( !pFrm )
-/*N*/                       return;
-/*N*/               }
-/*N*/               SwTxtFtn *pAttr = (SwTxtFtn*)pHt;
-/*N*/               OSL_ENSURE( pAttr->GetStartNode(), "FtnAtr ohne StartNode." );
-/*N*/               SwNodeIndex aIdx( *pAttr->GetStartNode(), 1 );
-/*N*/               SwCntntNode *pNd = aIdx.GetNode().GetCntntNode();
-/*N*/               if ( !pNd )
-/*N*/                   pNd = pFrm->GetAttrSet()->GetDoc()->
-/*N*/                         GetNodes().GoNextSection( &aIdx, TRUE, FALSE );
-/*N*/               if ( !pNd )
-/*N*/                   continue;
-/*N*/               SwClientIter aIter( *pNd );
-/*N*/               SwCntntFrm* pCntnt = (SwCntntFrm*)aIter.First(TYPE(SwCntntFrm));
-/*N*/               if( pCntnt )
-/*N*/               {
-/*N*/                   OSL_ENSURE( pCntnt->FindRootFrm() == pFrm->FindRootFrm(),
-/*N*/                           "lcl_ChangeFtnRef: Layout double?" );
-/*N*/                   SwFtnFrm *pFtn = pCntnt->FindFtnFrm();
-/*N*/                   if( pFtn && pFtn->GetAttr() == pAttr )
-/*N*/                   {
-/*N*/                       while( pFtn->GetMaster() )
-/*N*/                           pFtn = pFtn->GetMaster();
-/*N*/                         // OD 07.11.2002 #104840# - remember footnote frame
-/*N*/                         pFirstFtnOfNode = pFtn;
-/*N*/                         while ( pFtn )
-/*N*/                       {
-/*N*/                           pFtn->SetRef( pFrm );
-/*N*/                           pFtn = pFtn->GetFollow();
-/*N*/                           ((SwTxtFrm*)pFrm)->SetFtn( TRUE );
-/*N*/                       }
-/*N*/                   }
-/*N*/ #ifdef DBG_UTIL
-/*N*/                   while( 0 != (pCntnt = (SwCntntFrm*)aIter.Next()) )
-/*N*/                   {
-/*N*/                       SwFtnFrm *pLclFtn = pCntnt->FindFtnFrm();
-/*N*/                       OSL_ENSURE( !pLclFtn || pLclFtn->GetRef() == pFrm,
-/*N*/                               "lcl_ChangeFtnRef: Who's that guy?" );
-/*N*/                   }
-/*N*/ #endif
-/*N*/               }
-/*N*/           }
-/*N*/         } // end of for-loop on <SwpHints>
-/*N*/         // OD 08.11.2002 #104840# - invalidate
-/*N*/         if ( pFirstFtnOfNode )
-/*N*/         {
-/*N*/             SwCntntFrm* pCntnt = pFirstFtnOfNode->ContainsCntnt();
-/*N*/             if ( pCntnt )
-/*N*/             {
-/*N*/                 pCntnt->_InvalidatePos();
-/*N*/             }
-/*N*/         }
-/*N*/   }
-/*N*/ }
-
 /*N*/ SwCntntNode *SwTxtNode::SplitNode( const SwPosition &rPos )
 /*N*/ {
 /*N*/   // lege den Node "vor" mir an
@@ -434,7 +350,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/       if( pSwpHints )
                 {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       pNode->MakeFrms( *this );       // neue Frames anlegen.
-/*?*/       lcl_ChangeFtnRef( *this );
 /*N*/   }
 /*N*/   else
 /*N*/   {
@@ -460,7 +375,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/
 /*N*/       if ( GetDepends() )
 /*N*/           MakeFrms( *pNode );     // neue Frames anlegen.
-/*N*/       lcl_ChangeFtnRef( *pNode );
 /*N*/   }
 /*N*/
 /*N*/   {

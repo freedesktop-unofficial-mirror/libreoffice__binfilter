@@ -145,8 +145,6 @@ using ::rtl::OUString;
 /*N*/   {
 /*N*/       refLink->SetVisible( pDoc->IsVisibleLinks() );
 /*N*/       pDoc->GetLinkManager().InsertDDELink( refLink );
-/*N*/       if( pDoc->GetRootFrm() )
-/*?*/           UpdateNow();
 /*N*/   }
 /*N*/   else
 /*N*/   {

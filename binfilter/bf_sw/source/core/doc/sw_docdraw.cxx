@@ -120,18 +120,9 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/
 /*N*/   if( RES_FLYFRMFMT == pFmt->Which() )
 /*N*/   {
-/*N*/       if( pFmt->GetDoc()->GetRootFrm() )
-/*N*/       {
-/*N*/           // Schauen, ob es ein SdrObject dafuer gibt
-/*N*/           if( aIter.First( TYPE( SwFlyFrm) ) )
-/*N*/               nOrdNum = ((SwFlyFrm*)aIter())->GetVirtDrawObj()->GetOrdNum();
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           // Schauen, ob es ein SdrObject dafuer gibt
-/*N*/           if( aIter.First( TYPE(SwFlyDrawContact) ) )
-/*N*/               nOrdNum = ((SwFlyDrawContact*)aIter())->GetMaster()->GetOrdNum();
-/*N*/       }
+/*N*/       // Schauen, ob es ein SdrObject dafuer gibt
+/*N*/       if( aIter.First( TYPE(SwFlyDrawContact) ) )
+/*N*/           nOrdNum = ((SwFlyDrawContact*)aIter())->GetMaster()->GetOrdNum();
 /*N*/   }
 /*N*/   else if( RES_DRAWFRMFMT == pFmt->Which() )
 /*N*/   {

@@ -301,7 +301,6 @@ struct _CopyTable
 /*N*/   rTbl.SetHeadlineRepeat( GetTable().IsHeadlineRepeat() );
 /*N*/   rTbl.SetTblChgMode( GetTable().GetTblChgMode() );
 /*N*/
-/*N*/   SwDDEFieldType* pDDEType = 0;
 /*N*/   if( IS_TYPE( SwDDETable, &GetTable() ))
 /*N*/   {
 /*?*/       // es wird eine DDE-Tabelle kopiert
@@ -329,9 +328,6 @@ struct _CopyTable
 /*N*/   _CopyTable aPara( pDoc, aMapArr, GetIndex(), *pTblNd, &GetTable() );
 /*N*/
 /*N*/   ((SwTable&)GetTable()).GetTabLines().ForEach( &lcl_CopyTblLine, &aPara );
-/*N*/
-/*N*/   if( pDDEType && pDoc->GetRootFrm() )
-/*?*/       pDDEType->IncRefCnt();
 /*N*/
 /*N*/   return pTblNd;
 /*N*/ }

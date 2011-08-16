@@ -292,9 +292,6 @@ namespace binfilter {
 /*?*/           }
 /*?*/       }
 /*N*/   }
-/*N*/
-/*N*/   if( pDoc->GetRootFrm() && FTNNUM_PAGE == rFtnInfo.eNum )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 
 

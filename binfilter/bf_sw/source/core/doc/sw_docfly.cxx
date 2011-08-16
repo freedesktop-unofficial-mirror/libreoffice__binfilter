@@ -142,65 +142,6 @@ namespace binfilter {
 /*N*/   return pRetFmt;
 /*N*/ }
 
-
-/***********************************************************************
-#*  Class       :  SwDoc
-#*  Methode     :  SetFlyFrmAnchor
-#*  Beschreibung:  Das Ankerattribut des FlyFrms aendert sich.
-#***********************************************************************/
-
-/*N*/ Point lcl_FindAnchorLayPos( SwDoc& rDoc, const SwFmtAnchor& rAnch,
-/*N*/                           const SwFrmFmt* pFlyFmt )
-/*N*/ {
-/*N*/   Point aRet;
-/*N*/   if( rDoc.GetRootFrm() )
-/*N*/       switch( rAnch.GetAnchorId() )
-/*N*/       {
-/*N*/       case FLY_IN_CNTNT:
-/*N*/           if( pFlyFmt && rAnch.GetCntntAnchor() )
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
-/*N*/           break;
-/*N*/
-/*N*/       case FLY_AT_CNTNT:
-/*N*/       case FLY_AUTO_CNTNT: // LAYER_IMPL
-/*N*/           if( rAnch.GetCntntAnchor() )
-/*N*/           {
-/*N*/               const SwPosition *pPos = rAnch.GetCntntAnchor();
-/*N*/               const SwCntntNode* pNd = pPos->nNode.GetNode().GetCntntNode();
-/*N*/               const SwFrm* pOld = pNd ? pNd->GetFrm( &aRet, 0, FALSE ) : 0;
-/*N*/               if( pOld )
-/*N*/                   aRet = pOld->Frm().Pos();
-/*N*/           }
-/*N*/           break;
-/*N*/
-/*N*/       case FLY_AT_FLY: // LAYER_IMPL
-/*?*/           if( rAnch.GetCntntAnchor() )
-/*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
-/*?*/           break;
-/*?*/
-/*N*/       case FLY_PAGE:
-/*?*/           {
-/*?*/               USHORT nPgNum = rAnch.GetPageNum();
-/*?*/               const SwPageFrm *pPage = (SwPageFrm*)rDoc.GetRootFrm()->Lower();
-/*?*/               for( USHORT i = 1; (i <= nPgNum) && pPage; ++i,
-/*?*/                                   pPage = (const SwPageFrm*)pPage->GetNext() )
-/*?*/                   if( i == nPgNum )
-/*?*/                   {
-/*?*/                       aRet = pPage->Frm().Pos();
-/*?*/                       break;
-/*?*/                   }
-/*?*/           }
-/*?*/           break;
-            default:
-                break;
-/*?*/       }
-/*N*/   return aRet;
-/*N*/ }
-
 #define MAKEFRMS 0
 #define IGNOREANCHOR 1
 #define DONTMAKEFRMS 2
@@ -226,8 +167,8 @@ namespace binfilter {
 /*M*/         return DONTMAKEFRMS;
 /*M*/
 /*M*/
-/*M*/   Point aOldAnchorPos( ::binfilter::lcl_FindAnchorLayPos( *this, rOldAnch, &rFmt ));
-/*M*/   Point aNewAnchorPos( ::binfilter::lcl_FindAnchorLayPos( *this, aNewAnch, 0 ));
+/*M*/   Point aOldAnchorPos;
+/*M*/   Point aNewAnchorPos;
 /*M*/
 /*M*/   //Die alten Frms vernichten. Dabei werden die Views implizit gehidet und
 /*M*/   //doppeltes hiden waere so eine art Show!

@@ -60,55 +60,8 @@ namespace binfilter {
 /*N*/   EndListening( *INetURLHistory::GetOrCreate() );
 /*N*/ }
 
-/*N*/ void SwURLStateChanged::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
+/*N*/ void SwURLStateChanged::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& /*rHint*/ )
 /*N*/ {
-/*N*/   if( rHint.ISA( INetURLHistoryHint ) && pDoc->GetRootFrm() )
-/*N*/   {
-/*N*/       // diese URL wurde veraendert:
-/*N*/       const INetURLObject* pIURL = ((INetURLHistoryHint&)rHint).GetObject();
-/*N*/       String sURL( pIURL->GetMainURL( INetURLObject::NO_DECODE ) ), sBkmk;
-/*N*/
-/*N*/       SwEditShell* pESh = pDoc->GetEditShell();
-/*N*/
-/*N*/       if( pDoc->GetDocShell() && pDoc->GetDocShell()->GetMedium() &&
-/*N*/           // falls das unser Doc ist, kann es auch lokale Spruenge geben!
-/*N*/           sURL == pDoc->GetDocShell()->GetMedium()->GetName() )
-/*?*/           (sBkmk = pIURL->GetMark()).Insert( INET_MARK_TOKEN, 0 );
-/*N*/
-/*N*/       BOOL bAction = FALSE, bUnLockView = FALSE;
-/*N*/       const SwFmtINetFmt* pItem;
-/*N*/       const SwTxtINetFmt* pTxtAttr;
-/*N*/       const SwTxtNode* pTxtNd;
-/*N*/       USHORT n, nMaxItems = pDoc->GetAttrPool().GetItemCount( RES_TXTATR_INETFMT );
-/*N*/       for( n = 0; n < nMaxItems; ++n )
-/*N*/           if( 0 != (pItem = (SwFmtINetFmt*)pDoc->GetAttrPool().GetItem(
-/*N*/               RES_TXTATR_INETFMT, n ) ) &&
-/*N*/               ( pItem->GetValue() == sURL ||
-/*N*/                   ( sBkmk.Len() && pItem->GetValue() == sBkmk )) &&
-/*N*/               0 != ( pTxtAttr = pItem->GetTxtINetFmt()) &&
-/*N*/               0 != ( pTxtNd = pTxtAttr->GetpTxtNode() ) )
-/*N*/           {
-/*?*/               if( !bAction && pESh )
-/*?*/               {
-/*?*/                   pESh->StartAllAction();
-/*?*/                   bAction = TRUE;
-/*?*/                   bUnLockView = !pESh->IsViewLocked();
-/*?*/                   pESh->LockView( TRUE );
-/*?*/               }
-/*?*/               ((SwTxtINetFmt*)pTxtAttr)->SetValidVis( FALSE );
-/*?*/               const SwTxtAttr* pAttr = pTxtAttr;
-/*?*/               SwUpdateAttr aUpdateAttr( *pAttr->GetStart(),
-/*?*/                                         *pAttr->GetEnd(),
-/*?*/                                         RES_FMT_CHG );
-/*?*/               ((SwTxtNode*)pTxtNd)->SwCntntNode::Modify( &aUpdateAttr,
-/*?*/                                                           &aUpdateAttr );
-/*?*/           }
-/*N*/
-/*N*/       if( bAction )
-/*?*/           pESh->EndAllAction();
-/*N*/       if( bUnLockView )
-/*?*/           pESh->LockView( FALSE );
-/*N*/   }
 /*N*/ }
 
     // erfrage ob die URL besucht war. Uebers Doc, falls nur ein Bookmark

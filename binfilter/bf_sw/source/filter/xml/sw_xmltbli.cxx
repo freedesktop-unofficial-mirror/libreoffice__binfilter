@@ -2635,13 +2635,6 @@ void SwXMLTableContext::MakeTable()
         // 4) set new (DDE)table at node.
         pTableNode->SetNewTable(pDDETable, FALSE);
     }
-
-    if( pTableNode->GetDoc()->GetRootFrm() )
-    {
-        pTableNode->DelFrms();
-        SwNodeIndex aIdx( *pTableNode->EndOfSectionNode(), 1 );
-        pTableNode->MakeFrms( &aIdx );
-    }
 }
 
 void SwXMLTableContext::MakeTable( SwTableBox *pBox, sal_Int32 nW )

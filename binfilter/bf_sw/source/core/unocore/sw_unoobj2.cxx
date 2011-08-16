@@ -163,76 +163,31 @@ void CollectFrameAtNode( SwClient& rClnt, const SwNodeIndex& rIdx,
     SwDoc* pDoc = rIdx.GetNode().GetDoc();
 
     USHORT nChkType = bSort ? FLY_AUTO_CNTNT : FLY_AT_CNTNT;
-    const SwCntntFrm* pCFrm;
-    const SwCntntNode* pCNd;
-    if( pDoc->GetRootFrm() &&
-        0 != (pCNd = rIdx.GetNode().GetCntntNode()) &&
-        0 != (pCFrm = pCNd->GetFrm()) )
+    const SwSpzFrmFmts& rFmts = *pDoc->GetSpzFrmFmts();
+    USHORT nSize = rFmts.Count();
+    for ( USHORT i = 0; i < nSize; i++)
     {
-        const SwDrawObjs *pObjs = pCFrm->GetDrawObjs();
-        if( pObjs )
-            for( USHORT i = 0; i < pObjs->Count(); ++i )
-            {
-                const SdrObject *pO = (*pObjs)[ i ];
-                const SwFlyFrm *pFly;
-                SwFrmFmt* pFmt;
-
-                if( pO->IsWriterFlyFrame()
-                    ? ( (pFly = ((SwVirtFlyDrawObj*)pO)->GetFlyFrm())
-                                ->IsFlyAtCntFrm() &&
-                        (bSort ? pFly->IsAutoPos() : !pFly->IsAutoPos() ) &&
-                        0 != ( pFmt = (SwFrmFmt*)pFly->GetFmt()) )
-                    : ( 0 != (pFmt=((SwDrawContact*)GetUserCall(pO))->GetFmt())
-                        && pFmt->GetAnchor().GetAnchorId() == nChkType )
-                    )
-                {
-                    //jetzt einen SwDepend anlegen und in das Array einfuegen
-                    SwDepend* pNewDepend = new SwDepend( &rClnt, pFmt );
-
-                    USHORT nInsPos = rFrameArr.Count();
-                    if( bSort )
-                    {
-                        xub_StrLen nInsertIndex = pFmt->GetAnchor().
-                                    GetCntntAnchor()->nContent.GetIndex();
-
-                        USHORT nEnd = nInsPos;
-                        for( nInsPos = 0; nInsPos < nEnd; ++nInsPos )
-                            if( aSortArr[ nInsPos ] > nInsertIndex )
-                                break;
-                        aSortArr.Insert( nInsertIndex, nInsPos );
-                    }
-                    rFrameArr.C40_INSERT( SwDepend, pNewDepend, nInsPos );
-                }
-            }
-    }
-    else
-    {
-        const SwSpzFrmFmts& rFmts = *pDoc->GetSpzFrmFmts();
-        USHORT nSize = rFmts.Count();
-        for ( USHORT i = 0; i < nSize; i++)
+        const SwFrmFmt* pFmt = rFmts[ i ];
+        const SwFmtAnchor& rAnchor = pFmt->GetAnchor();
+        const SwPosition* pAnchorPos;
+        if( rAnchor.GetAnchorId() == nChkType &&
+            0 != (pAnchorPos = rAnchor.GetCntntAnchor()) &&
+                pAnchorPos->nNode == rIdx )
         {
-            const SwFrmFmt* pFmt = rFmts[ i ];
-            const SwFmtAnchor& rAnchor = pFmt->GetAnchor();
-            const SwPosition* pAnchorPos;
-            if( rAnchor.GetAnchorId() == nChkType &&
-                0 != (pAnchorPos = rAnchor.GetCntntAnchor()) &&
-                    pAnchorPos->nNode == rIdx )
+            //jetzt einen SwDepend anlegen und in das Array einfuegen
+            SwDepend* pNewDepend = new SwDepend( &rClnt, (SwFrmFmt*)pFmt);
+            USHORT nInsPos = rFrameArr.Count();
+            if( bSort )
             {
-                //jetzt einen SwDepend anlegen und in das Array einfuegen
-                SwDepend* pNewDepend = new SwDepend( &rClnt, (SwFrmFmt*)pFmt);
-                USHORT nInsPos = rFrameArr.Count();
-                if( bSort )
-                {
-                    xub_StrLen nInsertIndex = pAnchorPos->nContent.GetIndex();
+                xub_StrLen nInsertIndex = pAnchorPos->nContent.GetIndex();
 
-                    USHORT nEnd = nInsPos;
-                    for( nInsPos = 0; nInsPos < nEnd; ++nInsPos )
-                        if( aSortArr[ nInsPos ] > nInsertIndex )
-                            break;
-                    aSortArr.Insert( nInsertIndex, nInsPos );
-                }
-                rFrameArr.C40_INSERT( SwDepend, pNewDepend, nInsPos );
+                USHORT nEnd = nInsPos;
+                for( nInsPos = 0; nInsPos < nEnd; ++nInsPos )
+                    if( aSortArr[ nInsPos ] > nInsertIndex )
+                        break;
+                aSortArr.Insert( nInsertIndex, nInsPos );
             }
+            rFrameArr.C40_INSERT( SwDepend, pNewDepend, nInsPos );
         }
     }
 }

@@ -88,7 +88,6 @@ class SwFrmFmt;         // fuer GetTxtNodeFmts()
 class SwCharFmt;
 class SwExtTextInput;
 class SwTxtNode;        // fuer IsNotMakeTxtNode
-class SwRootFrm;        // fuer CTOR
 class SwFmtINetFmt;     // InsertURL
 
 class SwTable;

@@ -159,31 +159,6 @@ namespace binfilter {
 
 /*N*/ SwDataChanged::~SwDataChanged()
 /*N*/ {
-/*N*/   // JP 09.04.96: nur wenn das Layout vorhanden ist ( also waehrend der
-/*N*/   //              Eingabe)
-/*N*/   if( pDoc->GetRootFrm() )
-/*N*/   {
-/*N*/       const ::binfilter::SvLinkSources& rServers = pDoc->GetLinkManager().GetServers();
-/*N*/
-/*N*/       for( USHORT nCnt = rServers.Count(); nCnt; )
-/*N*/       {
-/*N*/           ::binfilter::SvLinkSourceRef refObj( rServers[ --nCnt ] );
-/*N*/           // noch jemand am Object interessiert ?
-/*?*/           if( refObj->HasDataLinks() && refObj->ISA( SwServerObject ))
-/*?*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
-/*?*/
-/*?*/           // sollte jetzt gar keine Verbindung mehr bestehen
-/*?*/           if( !refObj->HasDataLinks() )
-/*?*/           {
-/*?*/               // dann raus aus der Liste (Object bleibt aber bestehen!)
-/*?*/               // falls es noch da ist !!
-/*?*/               if( nCnt < rServers.Count() && &refObj == rServers[ nCnt ] )
-/*?*/                   pDoc->GetLinkManager().RemoveServer( nCnt, 1 );
-/*?*/           }
-/*?*/       }
-/*N*/   }
 /*N*/ }
 
 }

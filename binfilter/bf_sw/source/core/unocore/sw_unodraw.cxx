@@ -510,15 +510,6 @@ void SwXDrawPage::add(const uno::Reference< drawing::XShape > & xShape)
         else
             throw uno::RuntimeException();
     }
-    else if( aAnchor.GetAnchorId() != FLY_PAGE && pDoc->GetRootFrm() )
-    {
-        SwCrsrMoveState aState( MV_SETONLYTEXT );
-        Point aTmp(MM100_TO_TWIP(aMM100Pos.X), MM100_TO_TWIP(aMM100Pos.Y));
-        pDoc->GetRootFrm()->GetCrsrOfst( pPam->GetPoint(), aTmp, &aState );
-        aAnchor.SetAnchor( pPam->GetPoint() );
-
-        aSet.Put( SwFmtVertOrient( 0, VERT_TOP ) );
-    }
     else
     {
         aAnchor.SetType(FLY_PAGE);
@@ -895,26 +886,6 @@ void SwXShape::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
                     }
 
                 }
-                else if( pDoc->GetRootFrm() )
-                {
-                    UnoActionContext aCtx(pDoc);
-                    if(RES_ANCHOR == pMap->nWID && MID_ANCHOR_ANCHORTYPE == pMap->nMemberId)
-                    {
-                        SdrObject* pObj = pFmt->FindSdrObject();
-                        SdrMarkList aList;
-                        SdrMark aMark(pObj);
-                        aList.InsertEntry(aMark);
-                        sal_Int32 nAnchor(0);
-                        cppu::enum2int( nAnchor, aValue );
-                        pDoc->ChgAnchor( aList, nAnchor,
-                                                sal_False, sal_True );
-                    }
-                    else
-                    {
-                        aPropSet.setPropertyValue(*pMap, aValue, aSet);
-                        pFmt->SetAttr(aSet);
-                    }
-                }
                 else
                 {
                     aPropSet.setPropertyValue(*pMap, aValue, aSet);
@@ -970,13 +941,7 @@ void SwXShape::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
             if(aPSet.getValueType() != rPSetType || !aPSet.getValue())
                 throw uno::RuntimeException();
             xPrSet = *(uno::Reference< XPropertySet >*)aPSet.getValue();
-            if( pFmt && pFmt->GetDoc()->GetRootFrm() )
-            {
-                UnoActionContext aCtx(pFmt->GetDoc());
-                xPrSet->setPropertyValue(rPropertyName, aValue);
-            }
-            else
-                xPrSet->setPropertyValue(rPropertyName, aValue);
+            xPrSet->setPropertyValue(rPropertyName, aValue);
         }
     }
 }
