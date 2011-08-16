@@ -110,8 +110,6 @@ public:
 
 #if _SOLAR__PRIVATE
     static void             Release_Impl();
-    DECL_LINK(              CallbackHdl_Impl, SfxMacroConfig*);
-    DECL_LINK(              EventHdl_Impl, SfxMacroInfo*);
 #endif
 };
 

@@ -797,16 +797,6 @@ namespace binfilter {
 /*N*/   pImp->aBaseURL = rURL;
 /*N*/ }
 
-/*N*/ const String& SfxObjectShell::GetBaseURL() const
-/*N*/ {
-/*N*/   if ( pImp->aBaseURL.Len() )
-/*N*/       return pImp->aBaseURL;
-/*N*/   else if ( pMedium->GetFilter() && ( pMedium->GetFilter()->GetFilterFlags() & SFX_FILTER_PACKED ) )
-/*N*/       return pMedium->GetPhysicalName();
-/*N*/   else
-/*N*/       return pMedium->GetBaseURL();
-/*N*/ }
-
 /*?*/ String SfxObjectShell::QueryTitle( SfxTitleQuery eType ) const
 /*?*/ {
 /*?*/   String aRet;

@@ -42,10 +42,6 @@
 #include <porfld.hxx>       // SwFldPortion
 namespace binfilter {
 
-#if OSL_DEBUG_LEVEL > 1
-const sal_Char *GetLangName( const MSHORT nLang );
-#endif
-
 using namespace ::com::sun::star::i18n::ScriptType;
 
 /*************************************************************************

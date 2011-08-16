@@ -34,26 +34,9 @@
 #include "app.hxx"
 namespace binfilter {
 
-//====================================================================
-
-//--------------------------------------------------------------------
-
 /*N*/ SfxHintPoster::~SfxHintPoster()
 /*N*/ {
 /*N*/ }
-
-//--------------------------------------------------------------------
-
-/*N*/ IMPL_LINK_INLINE_START( SfxHintPoster, DoEvent_Impl, SfxHint *, pPostedHint )
-/*N*/ {
-/*N*/   DBG_MEMTEST();
-/*N*/   Event( pPostedHint );
-/*N*/   ReleaseRef();
-/*N*/   return 0;
-/*N*/ }
-/*N*/ IMPL_LINK_INLINE_END( SfxHintPoster, DoEvent_Impl, SfxHint *, pPostedHint )
-
-//--------------------------------------------------------------------
 
 /*N*/ void SfxHintPoster::Event( SfxHint* pPostedHint )
 /*N*/ {

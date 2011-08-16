@@ -1211,12 +1211,6 @@ namespace binfilter {
 /*N*/     }
 /*N*/ }
 
-
-/*N*/ IMPL_LINK( Outliner, EditEngineNotifyHdl, EENotify*, EMPTYARG )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/     return 0;
-/*N*/ }
-
 /*N*/ sal_Bool DrawPortionInfo::IsRTL() const
 /*N*/ {
 /*N*/   if(0xFF == mnBiDiLevel)

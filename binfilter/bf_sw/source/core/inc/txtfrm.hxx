@@ -531,8 +531,6 @@ inline SwTwips SwTxtFrm::GrowTst( const SwTwips nGrow )
 }
 
 #if OSL_DEBUG_LEVEL > 1
-// fragt auf WYSIWYG DBG ab
-extern sal_Bool IsDbg( const SwTxtFrm *pFrm );
 #define DBTXTFRM aDbstream << "SwTxtFrm[" << GetFrmId() << "]"
 #endif
 

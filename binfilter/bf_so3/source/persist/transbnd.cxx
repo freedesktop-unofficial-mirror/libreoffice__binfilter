@@ -241,15 +241,7 @@ SvBindStatusCallback::~SvBindStatusCallback (void)
 {
 }
 
-/*
- * SetProgressCallback.
- */
 Link SvBindStatusCallback::m_aProgressCallback;
-
-void SvBindStatusCallback::SetProgressCallback (const Link &rLink)
-{
-    m_aProgressCallback = rLink;
-}
 
 /*
  * InitStartTime.

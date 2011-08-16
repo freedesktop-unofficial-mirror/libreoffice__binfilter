@@ -59,11 +59,7 @@ SLOFILES =  \
         $(SLO)$/sw_rdswg.obj \
         $(SLO)$/sw_rdtox.obj \
         $(SLO)$/sw_swgpar.obj \
-        $(SLO)$/sw_swgstr.obj \
-        $(SLO)$/sw_SwXMLSectionList.obj
-
-EXCEPTIONSFILES = \
-        $(SLO)$/sw_SwXMLSectionList.obj
+        $(SLO)$/sw_swgstr.obj
 
 # --- Tagets -------------------------------------------------------
 

@@ -1237,14 +1237,6 @@ namespace binfilter {
 /*N*/   return NULL;
 /*N*/ }
 
-/*N*/ void ScConditionalFormatList::ResetUsed()
-/*N*/ {
-/*N*/   USHORT nCount = Count();
-/*N*/   for (USHORT i=0; i<nCount; i++)
-/*N*/       (*this)[i]->SetUsed(FALSE);
-/*N*/ }
-
-
 /*N*/ void ScConditionalFormatList::CompileXML()
 /*N*/ {
 /*N*/   USHORT nCount = Count();

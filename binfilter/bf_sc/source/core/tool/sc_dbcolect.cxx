@@ -454,15 +454,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/  BOOL ScDBData::IsBeyond(USHORT nMaxRow) const
-/*N*/  {
-/*N*/   return ( nStartRow > nMaxRow ||
-/*N*/            nEndRow > nMaxRow ||
-/*N*/            nQueryDestRow > nMaxRow );
-/*N*/  }
-
-
-
 /*N*/ void ScDBData::GetArea(USHORT& rTab, USHORT& rCol1, USHORT& rRow1, USHORT& rCol2, USHORT& rRow2) const
 /*N*/ {
 /*N*/   rTab  = nTable;

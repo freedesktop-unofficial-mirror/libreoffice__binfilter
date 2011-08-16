@@ -61,23 +61,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Richtung ZUR Lichtquelle setzen
-|*
-\************************************************************************/
-
-/*N*/ void E3dDistantLight::SetDirection(const Vector3D& rNewDir)
-/*N*/ {
-/*N*/   if ( aDirection != rNewDir )
-/*N*/   {
-/*N*/       aDirection = rNewDir;
-/*N*/       aDirection.Normalize();
-/*N*/       CreateLightObj();
-/*N*/       StructureChanged(this);
-/*N*/   }
-/*N*/ }
-
-/*************************************************************************
-|*
 |* Lichtstaerke an uebergeben Punkt bestimmen und die akkumulierte
 |* Punktfarbe berechnen
 |*

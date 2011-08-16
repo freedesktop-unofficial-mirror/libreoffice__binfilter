@@ -31,9 +31,6 @@
 #pragma hdrstop
 #endif
 
-#include "viewsh.hxx"       // IsDbg()
-#include "viewopt.hxx"      // IsDbg()
-
 #ifndef DBG_UTIL
 #error Wer fummelt denn an den makefiles?
 #endif
@@ -272,18 +269,6 @@ namespace binfilter {
 /*N*/   rOs << '}';
 /*N*/   return rOs;
 /*N*/ }
-
-/*************************************************************************
- *                          IsDbg()
- *************************************************************************/
-
-/*N*/ sal_Bool IsDbg( const SwTxtFrm *pFrm )
-/*N*/ {
-/*N*/   if( pFrm && pFrm->GetShell() )
-/*N*/       return pFrm->GetShell()->GetViewOptions()->IsTest4();
-/*N*/   else
-/*N*/       return sal_False;
-/*N*/ }
 } //namespace binfilter
 
 /*N*/ #if OSL_DEBUG_LEVEL < 2
@@ -341,16 +326,6 @@ namespace binfilter {
 /*N*/ IMPL_OUTOP( SwKernPortion )
 /*N*/ IMPL_OUTOP( SwArrowPortion )
 /*N*/ IMPL_OUTOP( SwMultiPortion )
-
-/*N*/ const char *GetPortionName( const MSHORT )
-/*N*/ {
-/*N*/   return 0;
-/*N*/ }
-
-/*N*/ const char *GetLangName( const MSHORT )
-/*N*/ {
-/*N*/   return 0;
-/*N*/ }
 } //namespace binfilter
 #else
 # include <limits.h>
@@ -360,183 +335,6 @@ namespace binfilter {
 namespace binfilter {
 /*N*/ CONSTCHAR( pClose, "} " );
 
-/*************************************************************************
- *                    GetPortionName()
- *************************************************************************/
-
-/*N*/ CONSTCHAR( pPOR_LIN, "LIN" );
-/*N*/ CONSTCHAR( pPOR_TXT, "TXT" );
-/*N*/ CONSTCHAR( pPOR_SHADOW, "SHADOW" );
-/*N*/ CONSTCHAR( pPOR_TAB, "TAB" );
-/*N*/ CONSTCHAR( pPOR_TABLEFT, "TABLEFT" );
-/*N*/ CONSTCHAR( pPOR_TABRIGHT, "TABRIGHT" );
-/*N*/ CONSTCHAR( pPOR_TABCENTER, "TABCENTER" );
-/*N*/ CONSTCHAR( pPOR_TABDECIMAL, "TABDECIMAL" );
-/*N*/ CONSTCHAR( pPOR_EXP, "EXP" );
-/*N*/ CONSTCHAR( pPOR_HYPH, "HYPH" );
-/*N*/ CONSTCHAR( pPOR_HYPHSTR, "HYPHSTR" );
-/*N*/ CONSTCHAR( pPOR_FLD, "FLD" );
-/*N*/ CONSTCHAR( pPOR_FIX, "FIX" );
-/*N*/ CONSTCHAR( pPOR_FLY, "FLY" );
-/*N*/ CONSTCHAR( pPOR_FLYCNT, "FLYCNT" );
-/*N*/ CONSTCHAR( pPOR_MARGIN, "MARGIN" );
-/*N*/ CONSTCHAR( pPOR_GLUE, "GLUE" );
-/*N*/ CONSTCHAR( pPOR_HOLE, "HOLE" );
-/*N*/ CONSTCHAR( pPOR_END, "END" );
-/*N*/ CONSTCHAR( pPOR_BRK, "BRK" );
-/*N*/ CONSTCHAR( pPOR_LAY, "LAY" );
-/*N*/ CONSTCHAR( pPOR_BLANK, "BLANK" );
-/*N*/ CONSTCHAR( pPOR_FTN, "FTN" );
-/*N*/ CONSTCHAR( pPOR_FTNNUM, "FTNNUM" );
-/*N*/ CONSTCHAR( pPOR_POSTITS, "POSTITS" );
-/*N*/ CONSTCHAR( pPOR_SOFTHYPH, "SOFTHYPH" );
-/*N*/ CONSTCHAR( pPOR_SOFTHYPHSTR, "SOFTHYPHSTR" );
-/*N*/ CONSTCHAR( pPOR_TOX, "TOX" );
-/*N*/ CONSTCHAR( pPOR_REF, "REF" );
-/*N*/
-/*N*/ CONSTCHAR( pPOR_ISOTOX, "ISOTOX" );
-/*N*/ CONSTCHAR( pPOR_ISOREF, "ISOREF" );
-/*N*/ CONSTCHAR( pPOR_HIDDEN, "Hidden" );
-/*N*/ CONSTCHAR( pPOR_QUOVADIS, "QuoVadis" );
-/*N*/ CONSTCHAR( pPOR_ERGOSUM, "ErgoSum" );
-/*N*/ CONSTCHAR( pPOR_NUMBER, "NUMBER" );
-/*N*/ CONSTCHAR( pPOR_BULLET, "BULLET" );
-/*N*/ CONSTCHAR( pPOR_UNKW, "UNKW" );
-/*N*/ CONSTCHAR( pPOR_PAR, "PAR" );
-
-/*N*/ const char *GetPortionName( const MSHORT nType )
-/*N*/ {
-/*N*/ #ifdef USED
-/*N*/   // Kurz und schmerzlos:
-/*N*/   const char *ppNameArr[PORTYPE_END] = {
-/*N*/     pPOR_LIN, pPOR_TXT, pPOR_HOLE, pPOR_SHADOW,
-/*N*/     pPOR_TAB, pPOR_TABLEFT, pPOR_TABRIGHT, pPOR_TABCENTER, pPOR_TABDECIMAL,
-/*N*/     pPOR_EXP, pPOR_HYPH, pPOR_HYPHSTR, pPOR_FLD,
-/*N*/     pPOR_FIX, pPOR_FLY, pPOR_FLYCNT, pPOR_MARGIN,
-/*N*/     pPOR_GLUE, pPOR_END, pPOR_BRK, pPOR_LAY,
-/*N*/     pPOR_BLANK, pPOR_FTN, pPOR_FTNNUM,
-/*N*/     pPOR_POSTITS, pPOR_SOFTHYPH, pPOR_SOFTHYPHSTR,
-/*N*/     pPOR_TOX, pPOR_REF, pPOR_ISOTOX, pPOR_ISOREF,
-/*N*/     pPOR_HIDDEN, pPOR_QUOVADIS, pPOR_ERGOSUM,
-/*N*/     pPOR_NUMBER, pPOR_BULLET, pPOR_UNKW, pPOR_PAR
-/*N*/   };
-/*N*/   OSL_ENSURE( eType < PORTYPE_END, "GetPortionName: bad type" );
-/*N*/   return( ppNameArr[eType] );
-/*N*/ #else
-/*N*/   return 0;
-/*N*/ #endif
-/*N*/ }
-
-/*N*/ #ifdef USED
-/*N*/ CONSTCHAR( pRES_LNG_ALBANIAN, "ALBANIAN" );
-/*N*/ CONSTCHAR( pRES_LNG_ARABIC, "ARABIC" );
-/*N*/ CONSTCHAR( pRES_LNG_AUS_ENGLISH, "AUS_ENGLISH" );
-/*N*/ CONSTCHAR( pRES_LNG_BAHASA, "BAHASA" );
-/*N*/ CONSTCHAR( pRES_LNG_BELGIAN_DUTCH, "BELGIAN_DUTCH" );
-/*N*/ CONSTCHAR( pRES_LNG_BELGIAN_FRENCH, "BELGIAN_FRENCH" );
-/*N*/ CONSTCHAR( pRES_LNG_BRAZIL_PORT, "BRAZIL_PORT" );
-/*N*/ CONSTCHAR( pRES_LNG_BULGARIAN, "BULGARIAN" );
-/*N*/ CONSTCHAR( pRES_LNG_CANADA_FRENCH, "CANADA_FRENCH" );
-/*N*/ CONSTCHAR( pRES_LNG_CAST_SPANISH, "CAST_SPANISH" );
-/*N*/ CONSTCHAR( pRES_LNG_CATALAN, "CATALAN" );
-/*N*/ CONSTCHAR( pRES_LNG_CROATO_SERBIAN, "CROATO_SERBIAN" );
-/*N*/ CONSTCHAR( pRES_LNG_CZECH, "CZECH" );
-/*N*/ CONSTCHAR( pRES_LNG_DANISH, "DANISH" );
-/*N*/ CONSTCHAR( pRES_LNG_DUTCH, "DUTCH" );
-/*N*/ CONSTCHAR( pRES_LNG_FINNISH, "FINNISH" );
-/*N*/ CONSTCHAR( pRES_LNG_FRENCH, "FRENCH" );
-/*N*/ CONSTCHAR( pRES_LNG_GERMAN, "GERMAN" );
-/*N*/ CONSTCHAR( pRES_LNG_GREEK, "GREEK" );
-/*N*/ CONSTCHAR( pRES_LNG_HEBREW, "HEBREW" );
-/*N*/ CONSTCHAR( pRES_LNG_HUNGARIAN, "HUNGARIAN" );
-/*N*/ CONSTCHAR( pRES_LNG_ICELANDIC, "ICELANDIC" );
-/*N*/ CONSTCHAR( pRES_LNG_ITALIAN, "ITALIAN" );
-/*N*/ CONSTCHAR( pRES_LNG_JAPANESE, "JAPANESE" );
-/*N*/ CONSTCHAR( pRES_LNG_KOREAN, "KOREAN" );
-/*N*/ CONSTCHAR( pRES_LNG_MEXICAN_SPANISH, "MEXICAN_SPANISH" );
-/*N*/ CONSTCHAR( pRES_LNG_NORWEG_BOKMAL, "NORWEG_BOKMAL" );
-/*N*/ CONSTCHAR( pRES_LNG_NORWEG_NYNORSK, "NORWEG_NYNORSK" );
-/*N*/ CONSTCHAR( pRES_LNG_POLISH, "POLISH" );
-/*N*/ CONSTCHAR( pRES_LNG_PORTUGUESE, "PORTUGUESE" );
-/*N*/ CONSTCHAR( pRES_LNG_RHAETO_ROMANIC, "RHAETO_ROMANIC" );
-/*N*/ CONSTCHAR( pRES_LNG_ROMANIAN, "ROMANIAN" );
-/*N*/ CONSTCHAR( pRES_LNG_RUSSIAN, "RUSSIAN" );
-/*N*/ CONSTCHAR( pRES_LNG_SERBO_CROATIAN, "SERBO_CROATIAN" );
-/*N*/ CONSTCHAR( pRES_LNG_SIM_CHINESE, "SIM_CHINESE" );
-/*N*/ CONSTCHAR( pRES_LNG_SLOVAKIAN, "SLOVAKIAN" );
-/*N*/ CONSTCHAR( pRES_LNG_SWEDISH, "SWEDISH" );
-/*N*/ CONSTCHAR( pRES_LNG_SWISS_FRENCH, "SWISS_FRENCH" );
-/*N*/ CONSTCHAR( pRES_LNG_SWISS_GERMAN, "SWISS_GERMAN" );
-/*N*/ CONSTCHAR( pRES_LNG_SWISS_ITALIAN, "SWISS_ITALIAN" );
-/*N*/ CONSTCHAR( pRES_LNG_THAI, "THAI" );
-/*N*/ CONSTCHAR( pRES_LNG_TRD_CHINESE, "TRD_CHINESE" );
-/*N*/ CONSTCHAR( pRES_LNG_TURKISH, "TURKISH" );
-/*N*/ CONSTCHAR( pRES_LNG_UK_ENGLISH, "UK_ENGLISH" );
-/*N*/ CONSTCHAR( pRES_LNG_URDU, "URDU" );
-/*N*/ CONSTCHAR( pRES_LNG_US_ENGLISH, "US_ENGLISH" );
-/*N*/ CONSTCHAR( pRES_LNG_NOLANGUAGE, "NOLANGUAGE" );
-/*N*/
-/*N*/ const char *GetLangName( const MSHORT nLang )
-/*N*/ {
-/*N*/   switch( nLang )
-/*N*/   {
-/*N*/       case 0x041c : return pRES_LNG_ALBANIAN;
-/*N*/       case 0x0401 : return pRES_LNG_ARABIC;
-/*N*/       case 0x0c09 : return pRES_LNG_AUS_ENGLISH;
-/*N*/       case 0x0421 : return pRES_LNG_BAHASA;
-/*N*/       case 0x0813 : return pRES_LNG_BELGIAN_DUTCH;
-/*N*/       case 0x080c : return pRES_LNG_BELGIAN_FRENCH;
-/*N*/       case 0x0416 : return pRES_LNG_BRAZIL_PORT;
-/*N*/       case 0x0402 : return pRES_LNG_BULGARIAN;
-/*N*/       case 0x0c0c : return pRES_LNG_CANADA_FRENCH;
-/*N*/       case 0x040a : return pRES_LNG_CAST_SPANISH;
-/*N*/       case 0x0403 : return pRES_LNG_CATALAN;
-/*N*/       case 0x041a : return pRES_LNG_CROATO_SERBIAN;
-/*N*/       case 0x0405 : return pRES_LNG_CZECH;
-/*N*/       case 0x0406 : return pRES_LNG_DANISH;
-/*N*/       case 0x0413 : return pRES_LNG_DUTCH;
-/*N*/       case 0x040b : return pRES_LNG_FINNISH;
-/*N*/       case 0x040c : return pRES_LNG_FRENCH;
-/*N*/       case 0x0407 : return pRES_LNG_GERMAN;
-/*N*/       case 0x0408 : return pRES_LNG_GREEK;
-/*N*/       case 0x040d : return pRES_LNG_HEBREW;
-/*N*/       case 0x040e : return pRES_LNG_HUNGARIAN;
-/*N*/       case 0x040f : return pRES_LNG_ICELANDIC;
-/*N*/       case 0x0410 : return pRES_LNG_ITALIAN;
-/*N*/       case 0x0411 : return pRES_LNG_JAPANESE;
-/*N*/       case 0x0412 : return pRES_LNG_KOREAN;
-/*N*/       case 0x080a : return pRES_LNG_MEXICAN_SPANISH;
-/*N*/       case 0x0414 : return pRES_LNG_NORWEG_BOKMAL;
-/*N*/       case 0x0814 : return pRES_LNG_NORWEG_NYNORSK;
-/*N*/       case 0x0415 : return pRES_LNG_POLISH;
-/*N*/       case 0x0816 : return pRES_LNG_PORTUGUESE;
-/*N*/       case 0x0417 : return pRES_LNG_RHAETO_ROMANIC;
-/*N*/       case 0x0418 : return pRES_LNG_ROMANIAN;
-/*N*/       case 0x0419 : return pRES_LNG_RUSSIAN;
-/*N*/       case 0x081a : return pRES_LNG_SERBO_CROATIAN;
-/*N*/       case 0x0804 : return pRES_LNG_SIM_CHINESE;
-/*N*/       case 0x041b : return pRES_LNG_SLOVAKIAN;
-/*N*/       case 0x041d : return pRES_LNG_SWEDISH;
-/*N*/       case 0x100c : return pRES_LNG_SWISS_FRENCH;
-/*N*/       case 0x0807 : return pRES_LNG_SWISS_GERMAN;
-/*N*/       case 0x0810 : return pRES_LNG_SWISS_ITALIAN;
-/*N*/       case 0x041e : return pRES_LNG_THAI;
-/*N*/       case 0x0404 : return pRES_LNG_TRD_CHINESE;
-/*N*/       case 0x041f : return pRES_LNG_TURKISH;
-/*N*/       case 0x0809 : return pRES_LNG_UK_ENGLISH;
-/*N*/       case 0x0420 : return pRES_LNG_URDU;
-/*N*/       case 0x0409 : return pRES_LNG_US_ENGLISH;
-/*N*/       default     : return pRES_LNG_NOLANGUAGE;
-/*N*/   }
-/*N*/ }
-/*N*/ #else
-/*N*/
-/*N*/ const char *GetLangName( const MSHORT nLang )
-/*N*/ {
-/*N*/   return "???";
-/*N*/ }
-/*N*/ #endif
-/*N*/
 /*N*/ SvStream &SwLinePortion::operator<<( SvStream &rOs ) const //$ ostream
 /*N*/ {
 /*N*/   rOs << " {";
@@ -942,7 +740,5 @@ namespace binfilter {
 /*N*/ }
 } //namespace binfilter
 /*N*/ #endif /* OSL_DEBUG_LEVEL */
-
-
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

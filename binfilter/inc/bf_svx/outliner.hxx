@@ -390,7 +390,6 @@ class Outliner
     DECL_LINK(              EndMovingParagraphsHdl, MoveParagraphsInfo* );
     DECL_LINK(              BeginPasteOrDropHdl, PasteOrDropInfos* );
     DECL_LINK(              EndPasteOrDropHdl, PasteOrDropInfos* );
-    DECL_LINK(              EditEngineNotifyHdl, EENotify* );
     void                    ImplCheckParagraphs( USHORT nStart, USHORT nEnd );
     BOOL                    ImplHasBullet( USHORT nPara ) const;
     const SvxNumberFormat*  ImplGetBullet( USHORT nPara ) const;

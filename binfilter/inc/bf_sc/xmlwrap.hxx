@@ -77,8 +77,6 @@ class ScXMLImportWrapper
 
 public:
     ScXMLImportWrapper(ScDocument& rD, SfxMedium* pM, SvStorage* pS);
-    BOOL Import(sal_Bool bStylesOnly);
-    BOOL Export(sal_Bool bStylesOnly);
 };
 
 } //namespace binfilter

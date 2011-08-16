@@ -176,20 +176,6 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/   delete pImp;
 /*?*/ }
 
-//==========================================================================
-
-/*?*/ IMPL_LINK( SfxMacroConfig, CallbackHdl_Impl, SfxMacroConfig*, EMPTYARG )
-/*?*/ {
-    DBG_BF_ASSERT(0, "STRIP");
-/*?*/   return 0;
-/*?*/ }
-
-/*?*/ IMPL_LINK( SfxMacroConfig, EventHdl_Impl, SfxMacroInfo*, EMPTYARG )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
-/*?*/   pImp->nEventId = 0;
-/*?*/   return 0;
-/*?*/ }
-
 /*?*/ ErrCode SfxMacroConfig::Call(SbxObject*,
 /*?*/   const String&, BasicManager*, SbxArray *, SbxValue *)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;

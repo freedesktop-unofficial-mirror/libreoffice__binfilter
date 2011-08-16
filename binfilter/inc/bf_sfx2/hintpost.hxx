@@ -59,11 +59,6 @@ class SfxHintPoster: public SvRefBase
     ULONG           nId;
     GenLink         aLink;
 
-private:
-#if _SOLAR__PRIVATE
-                    DECL_LINK( DoEvent_Impl, SfxHint * );
-#endif
-
 protected:
     virtual         ~SfxHintPoster();
     virtual void    Event( SfxHint* pPostedHint );

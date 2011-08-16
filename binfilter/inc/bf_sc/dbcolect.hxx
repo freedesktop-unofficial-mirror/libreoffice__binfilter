@@ -156,9 +156,6 @@ public:
             BOOL        IsStripData() const             { return bStripData; }
             void        SetStripData(BOOL bSet)         { bStripData = bSet; }
 
-            BOOL        IsBeyond(USHORT nMaxRow) const;
-
-
             void        GetSortParam(ScSortParam& rSortParam) const;
             void        SetSortParam(const ScSortParam& rSortParam);
 

@@ -343,7 +343,6 @@ public:
                                 // ben"otigen
     virtual SfxObjectShell*     GetObjectShell();
     void                        SetBaseURL( const String& rURL );
-    const String&               GetBaseURL() const;
 
     void                        SetModel( SfxBaseModel* pModel );
     ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel > GetModel();

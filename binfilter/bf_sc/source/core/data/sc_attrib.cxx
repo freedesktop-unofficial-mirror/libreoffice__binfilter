@@ -814,8 +814,6 @@ using namespace ::com::sun::star;
 /*N*/   virtual String  CalcFieldValue( const SvxFieldItem& rField, USHORT nPara,
 /*N*/                                   USHORT nPos, Color*& rTxtColor,
 /*N*/                                   Color*& rFldColor );
-/*N*/
-/*N*/   BOOL            ConvertFields();
 /*N*/ };
 /*N*/
 /*N*/ ScFieldChangerEditEngine::ScFieldChangerEditEngine( SfxItemPool* pInEnginePool,
@@ -839,23 +837,6 @@ using namespace ::com::sun::star;
 /*N*/       nConvPos = nPos;
 /*N*/   }
 /*N*/   return EMPTY_STRING;
-/*N*/ }
-/*N*/
-/*N*/ BOOL ScFieldChangerEditEngine::ConvertFields()
-/*N*/ {
-/*N*/   BOOL bConverted = FALSE;
-/*N*/   do
-/*N*/   {
-/*N*/       bConvert = FALSE;
-/*N*/       UpdateFields();
-/*N*/       if ( bConvert )
-/*N*/       {
-/*N*/           ESelection aSel( nConvPara, nConvPos, nConvPara, nConvPos+1 );
-/*N*/           QuickInsertField( SvxFileField(), aSel );
-/*N*/           bConverted = TRUE;
-/*N*/       }
-/*N*/   } while ( bConvert );
-/*N*/   return bConverted;
 /*N*/ }
 
 /*N*/ void ScPageHFItem::SetLeftArea( const EditTextObject& rNew )

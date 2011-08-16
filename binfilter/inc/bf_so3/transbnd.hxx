@@ -233,7 +233,6 @@ class SO3_DLLPUBLIC SvBindStatusCallback : public SvRefBase
 public:
     virtual ~SvBindStatusCallback (void);
 
-    static void SetProgressCallback (const Link &rLink);
     void InitStartTime (void);
 
     const Link& GetDoneLink (void) const { return m_aDoneLink; }

@@ -66,10 +66,6 @@ namespace binfilter {
 /*N*/ }
 #endif
 
-#if OSL_DEBUG_LEVEL > 1
-const sal_Char *GetPortionName( const MSHORT nType );
-#endif
-
 /*N*/ SwLinePortion::~SwLinePortion()
 /*N*/ {
 /*N*/ }
