@@ -1019,7 +1019,7 @@ void SwSectionFmt::MakeFrms()
 /*N*/                   aSave++;
 /*N*/
 /*N*/                   if( !bCreateFrm )
-/*N*/                       ::binfilter::MakeFrms( pDoc, aSave, rInsPos );
+/*N*/                       ::binfilter::MakeFrms();
 /*N*/
 /*N*/                   // den letzten Node noch loeschen, aber nur wenn
 /*N*/                   // erfolgreich kopiert werden konnte, also der Bereich

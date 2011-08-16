@@ -284,15 +284,6 @@ public:
         // in welchem Doc steht das Nodes-Array ?
             SwDoc* GetDoc()         { return pMyDoc; }
     const   SwDoc* GetDoc() const   { return pMyDoc; }
-
-        // suche den vorhergehenden [/nachfolgenden ] ContentNode oder
-        // TabellenNode mit Frames. Wird kein Ende angeben, dann wird mit
-        // dem FrameIndex begonnen; ansonsten, wird mit dem vor rFrmIdx und
-        // dem hintern pEnd die Suche gestartet. Sollte kein gueltiger Node
-        // gefunden werden, wird 0 returnt. rFrmIdx zeigt auf dem Node mit
-        // Frames
-    SwNode* FindPrvNxtFrmNode( SwNodeIndex& rFrmIdx,
-                                const SwNode* pEnd = 0 ) const;
 private:
     // privater Constructor, weil nie kopiert werden darf !!
     SwNodes( const SwNodes & rNodes );

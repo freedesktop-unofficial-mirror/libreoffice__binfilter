@@ -71,7 +71,7 @@ class SwFlowFrm
     //TblSel darf das Follow-Bit zuruecksetzen.
     friend inline void UnsetFollow( SwFlowFrm *pFlow );
 
-    friend void MakeFrms( SwDoc *, const SwNodeIndex &, const SwNodeIndex & );
+    friend void MakeFrms();
 
     friend class SwNode2LayImpl;
 

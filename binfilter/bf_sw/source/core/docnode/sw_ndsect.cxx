@@ -653,12 +653,7 @@ namespace binfilter {
 /*N*/                  GetDoc()->GetRootFrm();
 /*N*/   SwNode2Layout *pNode2Layout = NULL;
 /*N*/   if( bInsFrm )
-/*N*/   {
-/*N*/       SwNodeIndex aTmp( *pSectNd );
-/*N*/       if( !pSectNd->GetNodes().FindPrvNxtFrmNode( aTmp, pSectNd->EndOfSectionNode() ) )
-/*N*/           // dann sammel mal alle Uppers ein
-/*?*/           pNode2Layout = new SwNode2Layout( *pSectNd );
-/*N*/   }
+/*?*/       pNode2Layout = new SwNode2Layout( *pSectNd );
 /*N*/
 /*N*/   // jetzt noch bei allen im Bereich den richtigen StartNode setzen
 /*N*/   ULONG nEnde = pSectNd->EndOfSectionIndex();
@@ -822,25 +817,17 @@ namespace binfilter {
 //Fuer jedes vorkommen im Layout einen SectionFrm anlegen und vor den
 //entsprechenden CntntFrm pasten.
 
-/*N*/ void SwSectionNode::MakeFrms( SwNodeIndex* pIdxBehind, SwNodeIndex* pEndIdx )
+/*N*/ void SwSectionNode::MakeFrms( SwNodeIndex* pIdxBehind, SwNodeIndex* /*pEndIdx*/ )
 /*N*/ {
 /*N*/   OSL_ENSURE( pIdxBehind, "kein Index" );
 /*N*/   SwNodes& rNds = GetNodes();
-/*N*/   SwDoc* pDoc = rNds.GetDoc();
 /*N*/
 /*N*/   *pIdxBehind = *this;
 /*N*/
 /*N*/   pSection->bHiddenFlag = TRUE;
 /*N*/
 /*N*/   if( rNds.IsDocNodes() )
-/*N*/   {
-/*N*/       SwNodeIndex *pEnd = pEndIdx ? pEndIdx :
-/*N*/                           new SwNodeIndex( *EndOfSectionNode(), 1 );
-/*N*/       ::binfilter::MakeFrms( pDoc, *pIdxBehind, *pEnd );
-/*N*/       if( !pEndIdx )
-/*N*/           delete pEnd;
-/*N*/   }
-/*N*/
+/*N*/       ::binfilter::MakeFrms();
 /*N*/ }
 
 /*N*/ void SwSectionNode::DelFrms()

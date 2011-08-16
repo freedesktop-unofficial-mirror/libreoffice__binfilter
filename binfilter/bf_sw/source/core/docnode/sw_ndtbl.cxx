@@ -573,22 +573,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/ {
 /*N*/   OSL_ENSURE( pIdxBehind, "kein Index" );
 /*N*/   *pIdxBehind = *this;
-/*N*/   SwNode *pNd = GetNodes().FindPrvNxtFrmNode( *pIdxBehind, EndOfSectionNode() );
-/*N*/   if( !pNd )
-/*N*/       return ;
-/*N*/
-/*N*/   // liegt der gefundene ContentNode vor oder hinter der Tabelle ?
-/*N*/   BOOL bBehind = EndOfSectionIndex() < pIdxBehind->GetIndex();
-/*N*/
-/*N*/   SwFrm *pFrm, *pNew;
-/*N*/
-/*N*/   SwNode2Layout aNode2Layout( *pNd, GetIndex() );
-/*N*/   while( 0 != (pFrm = aNode2Layout.NextFrm()) )
-/*N*/   {
-/*N*/       pNew = MakeFrm();
-/*N*/       pNew->Paste( pFrm->GetUpper(),  bBehind ? pFrm : pFrm->GetNext() );
-/*N*/       ((SwTabFrm*)pNew)->RegistFlys();
-/*N*/   }
 /*N*/ }
 
 /*N*/ void SwTableNode::DelFrms()

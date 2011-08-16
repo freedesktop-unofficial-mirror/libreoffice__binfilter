@@ -1008,21 +1008,6 @@ namespace binfilter {
 /*N*/   return 0;
 /*N*/ }
 
-
-    // suche den vorhergehenden [/nachfolgenden ] ContentNode oder
-    // TabellenNode mit Frames. Wird kein Ende angeben, dann wird mit
-    // dem FrameIndex begonnen; ansonsten, wird mit dem vor rFrmIdx und
-    // dem hintern pEnd die Suche gestartet. Sollte kein gueltiger Node
-    // gefunden werden, wird 0 returnt. rFrmIdx zeigt auf dem Node mit
-    // Frames
-/*N*/ SwNode* SwNodes::FindPrvNxtFrmNode( SwNodeIndex& /*rFrmIdx*/,
-/*N*/                                   const SwNode* /*pEnd*/ ) const
-/*N*/ {
-/*N*/   SwNode* pFrmNd = 0;
-/*N*/   return pFrmNd;
-/*N*/ }
-
-
 /*N*/ void SwNodes::ForEach( const SwNodeIndex& rStart, const SwNodeIndex& rEnd,
 /*N*/                   FnForEach_SwNodes fnForEach, void* pArgs )
 /*N*/ {

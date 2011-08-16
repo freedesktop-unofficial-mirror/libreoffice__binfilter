@@ -95,8 +95,7 @@ void MA_FASTCALL _InsertCnt( SwLayoutFrm *pLay, SwDoc *pDoc, ULONG nIndex,
                  SwFrm *pPrv = 0 );
 
 //Erzeugen der Frames fuer einen bestimmten Bereich, verwendet _InsertCnt
-void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
-                            const SwNodeIndex &rEndIdx );
+void MakeFrms();
 
 //Um z.B. fuer Tabelleheadlines das Erzeugen der Flys in _InsertCnt zu unterbinden.
 extern bool bDontCreateObjects;
