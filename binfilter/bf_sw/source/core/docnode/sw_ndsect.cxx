@@ -576,7 +576,7 @@ namespace binfilter {
 /*N*/                               SwSectionFmt& rSectionFmt,
 /*N*/                               const SwSection& rSection,
 /*N*/                               const SwNodeIndex* pEnde,
-/*N*/                               BOOL bInsAtStart, BOOL bCreateFrms )
+/*N*/                               BOOL bInsAtStart )
 /*N*/ {
 /*N*/   SwNodeIndex aInsPos( rNdIdx );
 /*N*/   if( !pEnde )        // kein Bereich also neue Section davor/hinter anlegen
@@ -647,14 +647,6 @@ namespace binfilter {
 /*N*/   pSectNd->GetSection() = rSection;
 /*N*/   SwSectionFmt* pSectFmt = pSectNd->GetSection().GetFmt();
 /*N*/
-/*N*/   // Hier bietet sich als Optimierung an, vorhandene Frames nicht zu
-/*N*/   // zerstoeren und wieder neu anzulegen, sondern nur umzuhaengen.
-/*N*/   BOOL bInsFrm = bCreateFrms && !pSectNd->GetSection().IsHidden() &&
-/*N*/                  GetDoc()->GetRootFrm();
-/*N*/   SwNode2Layout *pNode2Layout = NULL;
-/*N*/   if( bInsFrm )
-/*?*/       pNode2Layout = new SwNode2Layout( *pSectNd );
-/*N*/
 /*N*/   // jetzt noch bei allen im Bereich den richtigen StartNode setzen
 /*N*/   ULONG nEnde = pSectNd->EndOfSectionIndex();
 /*N*/   ULONG nStart = pSectNd->GetIndex()+1;
@@ -694,18 +686,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   lcl_DeleteFtn( pSectNd, nStart, nEnde );
-/*N*/
-/*N*/   if( bInsFrm )
-/*N*/   {
-/*N*/       if( pNode2Layout )
-/*N*/       {
-/*?*/           ULONG nIdx = pSectNd->GetIndex();
-/*?*/           pNode2Layout->RestoreUpperFrms( pSectNd->GetNodes(), nIdx, nIdx + 1 );
-/*?*/           delete pNode2Layout;
-/*N*/       }
-/*N*/       else
-/*N*/           pSectNd->MakeFrms( &aInsPos );
-/*N*/   }
 /*N*/
 /*N*/   return pSectNd;
 /*N*/ }

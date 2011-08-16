@@ -135,7 +135,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*?*/           SwNodeIndex aStt( *pHeadNd ); aIdx--;
 /*?*/           SwSectionFmt* pSectFmt = MakeSectionFmt( 0 );
 /*?*/           GetNodes().InsertSection( aStt, *pSectFmt, aSect, &aIdx,
-/*?*/                                               TRUE, FALSE );
+/*?*/                                               TRUE );
 /*?*/       }
 /*N*/   }
 /*N*/   else

@@ -1440,11 +1440,6 @@ public:
     // Der Pointer geht NICHT in den Besitz des Doc's!!
     void SetPreViewPrtData( const SwPagePreViewPrtData* pData );
 
-    // update all modified OLE-Objects. The modification is called over the
-    // StarOne - Interface              --> Bug 67026
-    void SetOLEObjModified()
-    {   if( GetRootFrm() ) aOLEModifiedTimer.Start(); }
-
     // -------------------- Uno - Schnittstellen ---------------------------
     const SwUnoCrsrTbl& GetUnoCrsrTbl() const       { return *pUnoCrsrTbl; }
     SwUnoCrsr* CreateUnoCrsr( const SwPosition& rPos, sal_Bool bTblCrsr = sal_False );

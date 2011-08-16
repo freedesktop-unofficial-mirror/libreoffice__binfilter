@@ -2668,7 +2668,6 @@ void SwXOLEListener::modified( const EventObject& rEvent )
     {
         // if the OLE-Node is UI-Active do nothing
         pNd->SetOLESizeInvalid( sal_True );
-        pNd->GetDoc()->SetOLEObjModified();
     }
 }
 

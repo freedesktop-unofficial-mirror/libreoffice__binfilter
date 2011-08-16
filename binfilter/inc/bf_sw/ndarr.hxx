@@ -278,8 +278,7 @@ public:
                                 SwSectionFmt& rSectionFmt,
                                 const SwSection&,
                                 const SwNodeIndex* pEnde,
-                                BOOL bInsAtStart = TRUE,
-                                BOOL bCreateFrms = TRUE );
+                                BOOL bInsAtStart = TRUE );
 
         // in welchem Doc steht das Nodes-Array ?
             SwDoc* GetDoc()         { return pMyDoc; }
