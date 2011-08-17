@@ -247,7 +247,6 @@ public:
     virtual ~SvXMLExport();
 
     static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId() throw();
-    static SvXMLExport* getImplementation( ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > ) throw();
 
     // XExporter
     virtual void SAL_CALL setSourceDocument( const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent >& xDoc ) throw(::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException);

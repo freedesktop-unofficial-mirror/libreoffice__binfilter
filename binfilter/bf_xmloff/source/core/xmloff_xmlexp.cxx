@@ -1409,15 +1409,6 @@ const uno::Sequence< sal_Int8 > & SvXMLExport::getUnoTunnelId() throw()
     return *pSeq;
 }
 
-SvXMLExport* SvXMLExport::getImplementation( uno::Reference< uno::XInterface > xInt ) throw()
-{
-    uno::Reference< lang::XUnoTunnel > xUT( xInt, uno::UNO_QUERY );
-    if( xUT.is() )
-        return (SvXMLExport*)xUT->getSomething( SvXMLExport::getUnoTunnelId() );
-    else
-        return NULL;
-}
-
 // XUnoTunnel
 sal_Int64 SAL_CALL SvXMLExport::getSomething( const uno::Sequence< sal_Int8 >& rId )
     throw( uno::RuntimeException )

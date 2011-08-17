@@ -188,7 +188,6 @@ public:
     virtual ~SvXMLImport() throw();
 
     static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId() throw();
-    static SvXMLImport* getImplementation( ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > ) throw();
 
     // ::com::sun::star::xml::sax::XDocumentHandler
     virtual void SAL_CALL startDocument(void)
