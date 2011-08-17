@@ -46,7 +46,6 @@ class SwRegionRects;
 
 class SwLayVout;
 class SwDestroyList;
-class SwCurrShells;
 struct SwPosition;
 struct SwCrsrMoveState;
 

@@ -344,20 +344,9 @@ namespace binfilter {
 /*N*/   delete SwFrm::GetCachePtr();
 /*N*/ }
 
-/*************************************************************************
-|*
-|*  RootFrm::Alles was so zur CurrShell gehoert
-|*
-|*************************************************************************/
-
-/*N*/ typedef CurrShell* CurrShellPtr;
-/*N*/ SV_DECL_PTRARR_SORT(SwCurrShells,CurrShellPtr,4,4)
-/*N*/ SV_IMPL_PTRARR_SORT(SwCurrShells,CurrShellPtr)
-
 /*N*/ CurrShell::CurrShell( ViewShell *pNew )
 /*N*/ {
 /*N*/   OSL_ENSURE( pNew, "0-Shell einsetzen?" );
-/*N*/   pRoot = pNew->GetLayout();
 /*?*/   pPrev = 0;
 /*N*/ }
 

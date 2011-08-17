@@ -175,8 +175,7 @@ class SwFEShell : public SwEditShell
 
 public:
     TYPEINFO();
-    SwFEShell( SwDoc& rDoc, Window *pWin,
-               SwRootFrm *pMaster = 0, const SwViewOption *pOpt = 0 );
+    SwFEShell( SwDoc& rDoc, Window *pWin );
     virtual ~SwFEShell();
 
     // #107513#
@@ -195,10 +194,6 @@ public:
 
     BOOL IsFrmSelected() const;
 
-#ifdef ACCESSIBLE_LAYOUT
-    const SwFlyFrm *GetCurrFlyFrm() const { return FindFlyFrm(); }
-#endif
-
     //Der Client fuer das OleObject muss bezueglich der Scalierung auf dem
     //neuesten Stand gehalten werden. Impl in der WrtShell.
     //Wird ein Pointer auf eine Size uebergeben, so ist diese die aktuelle
@@ -213,95 +208,11 @@ public:
     virtual void ConnectObj( SvInPlaceObjectRef xIPObj, const SwRect &rPrt,
                              const SwRect &rFrm ) = 0;
 
-    //Sichbaren Bereich auf das Object setzen, wenn es noch nicht sichtbar ist.
-
-    // check resize of OLE-Object
-    BOOL IsCheckForOLEInCaption() const         { return bCheckForOLEInCaption; }
-    void SetCheckForOLEInCaption( BOOL bFlag )  { bCheckForOLEInCaption = bFlag; }
-
     //Fuer das Chain wird immer der durch das Format spezifizierte Fly
     //mit dem durch den Point getroffenen verbunden.
     //In rRect wird das Rect des Flys geliefert (fuer Highlight desselben)
     void HideChainMarker();
     void SetChainMarker();
-
-
-//SS fuer DrawObjekte ---------------------
-
-    //Temporaer um Bug zu umgehen.
-
-    //Achtung: Uneindeutikeiten bei Mehrfachselektionen.
-
-
-
-    //Setzen vom DragMode (z.B. Rotate), tut nix bei Rahmenselektion.
-
-#ifdef ACCESSIBLE_LAYOUT
-#endif
-
-
-    //Ankertyp des selektierten Objektes, -1 bei Uneindeutigkeit oder
-    //Rahmenselektion; FLY_PAGE bzw. FLY_AT_CNTNT aus frmatr.hxx sonst.
-
-    //Erzeugen von DrawObjekten, beim Begin wird der Objekttyp mitgegeben.
-    //Beim End kann ein Cmd mitgegeben werden, hier ist ggf.
-    //SDRCREATE_RESTRAINTEND fuer Ende oder SDRCREATE_NEXTPOINT fuer ein
-    //Polygon relevant. Nach dem RESTRAINTEND ist das Objekt erzeugt und
-    //selektiert.
-    //Mit BreakCreate wird der Vorgang abgebrochen, dann ist kein Objekt
-    //mehr selektiert.
-
-    // Funktionen f�r Rubberbox, um Draw-Objekte zu selektieren
-
-    //Gruppe erzeugen, aufloesen, nix bei Rahmenselektion.
-                                //Es koennen noch immer Gruppen dabei sein.
-
-// OD 27.06.2003 #108784# - change return type.
-
-
-    //Umankern. erlaubt sind: FLY_PAGE und FLY_AT_CNTNT des enum RndStdIds aus
-    //frmatr.hxx. Hier kein enum wg. Abhaengigkeiten
-    //Der BOOL ist nur fuer internen Gebrauch! Anker wird nur - anhand der
-    //aktuellen Dokumentposition - neu gesetzt aber nicht umgesetzt.
-
-    // hole die selectierten DrawObj als Grafik (MetaFile/Bitmap)
-    // Return-Wert besagt ob konvertiert wurde!!
-
-
-
-        //Einfuegen eines DrawObjectes. Das Object muss bereits im DrawModel
-        // angemeldet sein.
-
-
-//------------------------------------------
-
-    //Auskunft ueber naechstliegenden Inhalt zum uebergebenen Point
-
-    //convert document position into position relative to the current page
-    Point GetRelativePagePosition(const Point& rDocPos);
-
-    //Ausgleich der Zellenbreiten, mit bTstOnly feststellen, ob mehr als
-    //eine Zelle markiert ist.
-    BOOL BalanceCellWidth( BOOL bTstOnly );
-
-    BOOL IsLastCellInRow() const;
-    // Die Breite des aktuellen Bereichs fuer Spaltendialog
-
-    /** Is default horizontal text direction for selected drawing object right-to-left
-
-        OD 09.12.2002 #103045#
-        Because drawing objects only painted for each page only, the default
-        horizontal text direction of a drawing object is given by the corresponding
-        page property.
-
-        @author OD
-
-        @returns boolean, indicating, if the horizontal text direction of the
-        page, the selected drawing object is on, is right-to-left.
-    */
-    bool IsShapeDefaultHoriTextDirR2L() const;
-
-    void ParkCursorInTab();
 };
 
 } //namespace binfilter

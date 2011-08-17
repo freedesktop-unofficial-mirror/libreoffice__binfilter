@@ -215,7 +215,7 @@ public:
     //Invalidierung der ersten Sichtbaren Seite fuer alle Shells im Ring.
     void SetFirstVisPageInvalid();
 
-    SwRootFrm   *GetLayout() const;
+    SwRootFrm   *GetLayout() const { return NULL; }
                                       //erzeugt?
 
     void CalcLayout();  //Durchformatierung des Layouts erzwingen.
@@ -330,7 +330,6 @@ class CurrShell
 {
 public:
     ViewShell *pPrev;
-    SwRootFrm *pRoot;
 
     CurrShell( ViewShell *pNew );
     ~CurrShell();

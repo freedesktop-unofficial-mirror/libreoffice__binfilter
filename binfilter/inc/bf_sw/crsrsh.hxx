@@ -257,8 +257,7 @@ protected:
 
 public:
     TYPEINFO();
-    SwCrsrShell( SwDoc& rDoc, Window *pWin,
-                SwRootFrm * = 0, const SwViewOption *pOpt = 0 );
+    SwCrsrShell( SwDoc& rDoc, Window *pWin );
     virtual ~SwCrsrShell();
 
     virtual void Modify( SfxPoolItem *pOld, SfxPoolItem *pNew);
@@ -270,9 +269,6 @@ public:
     // nur den akt. Cursor returnen
           SwShellCrsr* _GetCrsr()                       { return pCurCrsr; }
     const SwShellCrsr* _GetCrsr() const                 { return pCurCrsr; }
-
-    // alle Cursor aus den ContentNodes entfernen und auf 0 setzen.
-    // Wurde aus der FEShell hierher verschoben.
 
     // gebe den akt. Cursor-Stack zurueck.
     // ( Wird in der EditShell beim Loeschen von Inhalten benoetigt! )
@@ -288,26 +284,6 @@ public:
     // Basiscursortravelling
     long GetUpDownX() const             { return nUpDownX; }
 
-
-    // die Suchfunktionen
-
-
-
-    /*
-     * Benachrichtung, dass der sichtbare Bereich sich geaendert
-     * hat. aVisArea wird neu gesetzt, anschliessend wird
-     * gescrollt. Das uebergebene Rectangle liegt auf
-     * Pixelgrenzen, um Pixelfehler beim Scrollen zu vermeiden.
-     */
-
-    /*
-     * Virtuelle PaintMethode, damit die Selection nach dem Paint wieder
-     * sichtbar wird.
-     */
-
-    // Bereiche
-
-
     /**
        Ensure point and mark of the current PaM are in a specific order.
 
@@ -316,14 +292,6 @@ public:
        the PaM.
     */
     void NormalizePam(BOOL bPointFirst = TRUE);
-
-    /*
-     * Beim Abgeben des Focuses werden die selektierten Bereiche nicht mehr
-     * angezeigt; andererseits beim Erhalten des Focuses, werden alle selek-
-     * tierten Bereiche wieder angezeigt. (Bereiche muessen neu berechnet
-     * werden!)
-     */
-    BOOL HasShFcs() const { return bHasFocus; }
 
     // Methoden zum Anzeigen bzw. Verstecken der selektierten Bereiche mit
     // dem sichtbaren Cursor
@@ -347,14 +315,6 @@ public:
     void        SetFlyMacroLnk( const Link& rLnk ) { aFlyMacroLnk = rLnk; }
     const Link& GetFlyMacroLnk() const             { return aFlyMacroLnk; }
 
-    // Methoden geben/aendern den Link fuer die Attribut/Format-Aenderungen
-    void        SetChgLnk( const Link &rLnk ) { aChgLnk = rLnk; }
-    const Link& GetChgLnk() const             { return aChgLnk; }
-
-    // Methoden geben/aendern den Link fuers "Grafik vollstaendig geladen"
-    void        SetGrfArrivedLnk( const Link &rLnk ) { aGrfArrivedLnk = rLnk; }
-    const Link& GetGrfArrivedLnk() const             { return aGrfArrivedLnk; }
-
     //ChgLink callen, innerhalb einer Action wird der Ruf verzoegert.
     void CallChgLnk();
 
@@ -366,17 +326,10 @@ public:
     // aufgespannt oder nicht der einzigste ist.
     CRSR_INLINE bool IsSelection() const;
 
-    //Sollte fuer das Clipboard der WaitPtr geschaltet werden.
-
     /*
      * liefert das SRectangle, auf dem der Cursor steht.
      */
     const SwRect &GetCharRect() const { return aCharRect; }
-    /*
-     * liefert zurueck, ob der Cursor sich ganz oder teilweise im
-     * sichtbaren Bereich befindet.
-     */
-    bool IsCrsrVisible() const { return VisArea().IsOver( GetCharRect() ); }
 
     // aktualisiere den Crsrs, d.H. setze ihn wieder in den Content.
     // Das sollte nur aufgerufen werden, wenn der Cursor z.B. beim
@@ -387,62 +340,19 @@ public:
     CRSR_INLINE const   SwPaM* GetTblCrs() const;
     CRSR_INLINE         SwPaM* GetTblCrs();
 
-    // select a table row, column or box (based on the current cursor)
-
-    // zum naechsten/vorhergehenden Punkt auf gleicher Ebene
-
-        // zu diesem Gliederungspunkt
-        // zum naechsten/vorhergehenden oder angegebenen OultineNode
-        // suche die "Outline-Position" im Nodes-Array vom akt. Kaiptel
-        // selektiere den angeben Bereich von OutlineNodes. Optional
-        // inclusive der Childs. Die USHORT sind die Positionen im
-        // OutlineNds-Array!! (EditShell)
-
-
         // ist der Crsr in einer Tabelle und ist die Selection ueber
         // zwei Spalten
     bool IsTableMode() const { return 0 != pTblCrsr; }
 
-        // erfrage den Tabellen Crsr; ausserhalb von Tabellen immer 0
-    const SwShellTableCrsr* GetTableCrsr() const { return pTblCrsr; }
-    SwShellTableCrsr* GetTableCrsr() { return pTblCrsr; }
-
-    // Abfrage vom CrsrTravelling Status
-    CrsrMoveState GetMoveState() const { return eMvState; }
-
-    // loesche alle erzeugten Crsr, setze den Tabellen-Crsr und den letzten
-    // Cursor auf seinen TextNode (oder StartNode?).
-    // Beim naechsten ::GetCrsr werden sie wieder alle erzeugt.
-    // Wird fuers Drag&Drop/ClipBorad-Paste in Tabellen benoetigt.
-
     // erfrage die selektierte "Region" aller Cursor (fuer D&D auf Mac)
     Region GetCrsrRegion() const;
-
-    // gibt es nicht aufgespannte Attribute?
-    bool IsGCAttr() const { return bGCAttr; }
-    void    ClearGCAttr() { bGCAttr = FALSE; }
-    void    UpdateAttr() {  bGCAttr = TRUE; }
-
-    // ist das gesamte Dokument geschuetzt/versteckt?? (fuer UI,..)
-    bool IsAllProtect() const { return bAllProtect; }
-
-#ifdef SW_CRSR_TIMER
-    // setze das Flag am VisCrsr, ob dieser ueber Timer getriggert (TRUE)
-    // oder direkt (FALSE) angezeigt wird. (default ist Timer getriggert)
-#endif
 
     // steht der Curor auf einem "Symbol"-Zeichen
 
     BOOL BasicActionPend() const    { return nBasicActionCnt != nStartAction; }
 
-        // springe zum benannten Bereich
-
     // zeige die aktuelle Selektion an
     virtual void MakeSelVisible();
-
-    // setzte den Cursor auf einen NICHT geschuetzten/versteckten Node
-
-
 
         // Attribut selelktieren
 
@@ -458,20 +368,8 @@ public:
     BOOL IsAutoUpdateCells() const              { return bAutoUpdateCells; }
     void SetAutoUpdateCells( BOOL bFlag )       { bAutoUpdateCells = bFlag; }
 
-
-
     // remove all invalid cursors
     void ClearUpCrsrs();
-
-    // OD 11.02.2003 #100556# - set/get flag to allow/avoid execution of macros
-    inline void SetMacroExecAllowed( const bool _bMacroExecAllowed )
-    {
-        mbMacroExecAllowed = _bMacroExecAllowed;
-    }
-    inline bool IsMacroExecAllowed()
-    {
-        return mbMacroExecAllowed;
-    }
 };
 
 
