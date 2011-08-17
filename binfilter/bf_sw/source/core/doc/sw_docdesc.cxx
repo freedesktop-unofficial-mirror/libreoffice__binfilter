@@ -412,34 +412,6 @@ namespace binfilter {
 /*N*/   SetModified();
 /*N*/ }
 
-/*************************************************************************
-|*
-|*  SwDoc::DelPageDesc()
-|*
-|*  Beschreibung        Alle Descriptoren, deren Follow auf den zu loeschenden
-|*      zeigen muessen angepasst werden.
-|*
-|*************************************************************************/
-
-void lcl_RemoveFrms( SwFrmFmt& rFmt, bool& rbFtnsRemoved )
-{
-    SwClientIter aIter( rFmt );
-    SwFrm *pFrm;
-    for( pFrm = (SwFrm*)aIter.First(TYPE(SwFrm)); pFrm;
-            pFrm = (SwFrm*)aIter.Next() )
-        if ( !rbFtnsRemoved && pFrm->IsPageFrm() &&
-                ((SwPageFrm*)pFrm)->IsFtnPage() )
-        {
-            rbFtnsRemoved = TRUE;
-        }
-        else
-        {
-            pFrm->Cut();
-            delete pFrm;
-        }
-}
-
-
 void SwDoc::DelPageDesc( USHORT i )
 {
     OSL_ENSURE( i < aPageDescs.Count(), "PageDescs ueberindiziert." );

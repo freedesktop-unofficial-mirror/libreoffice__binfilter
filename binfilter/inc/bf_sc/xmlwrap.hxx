@@ -55,26 +55,6 @@ class ScXMLImportWrapper
     SfxMedium*      pMedium;
     SvStorage*      pStorage;
 
-    ::com::sun::star::uno::Reference< ::com::sun::star::task::XStatusIndicator> GetStatusIndicator(
-        ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel >& rModel);
-    ::com::sun::star::uno::Reference< ::com::sun::star::task::XStatusIndicator> GetStatusIndicator();
-
-    sal_uInt32 ImportFromComponent(::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory>& xServiceFactory,
-        ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel>& xModel,
-        ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface>& xXMLParser,
-        ::com::sun::star::xml::sax::InputSource& aParserInput,
-        const ::rtl::OUString& sComponentName, const ::rtl::OUString& sDocName, const ::rtl::OUString& sOldDocName,
-        ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any>& aArgs,
-        sal_Bool bMustBeSuccessfull);
-
-    sal_Bool ExportToComponent(::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory>& xServiceFactory,
-        ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel>& xModel,
-        ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface>& xWriter,
-        ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aDescriptor,
-        const ::rtl::OUString& sName,   const ::rtl::OUString& sMediaType, const ::rtl::OUString& sComponentName,
-        const sal_Bool bPlainText, ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any>& aArgs,
-        ScMySharedData*& pSharedData);
-
 public:
     ScXMLImportWrapper(ScDocument& rD, SfxMedium* pM, SvStorage* pS);
 };
