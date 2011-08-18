@@ -69,7 +69,6 @@
 
 #include <horiornt.hxx>
 
-#include <wrtsh.hxx>
 #include <fldbas.hxx>
 #include <viewopt.hxx>
 #include <globdoc.hxx>
@@ -136,13 +135,6 @@ using namespace ::rtl;
 /*N*/
 /*N*/   if( nAction )
 /*N*/   {
-/*N*/       BOOL bUnlockView(false);
-/*N*/       if( pWrtShell )
-/*N*/       {
-/*N*/           bUnlockView = !pWrtShell->IsViewLocked();
-/*N*/           pWrtShell->LockView( TRUE );    //lock visible section
-/*N*/           pWrtShell->StartAllAction();
-/*N*/       }
 /*N*/       switch( nAction )
 /*N*/       {
 /*N*/       case 1:
@@ -152,13 +144,6 @@ using namespace ::rtl;
 /*N*/       case 2:
 /*N*/           pDoc->GetSysFldType( RES_FILENAMEFLD )->UpdateFlds();
 /*N*/           break;
-/*N*/       }
-/*N*/
-/*N*/       if( pWrtShell )
-/*N*/       {
-/*N*/           pWrtShell->EndAllAction();
-/*N*/           if( bUnlockView )
-/*N*/               pWrtShell->LockView( FALSE );
 /*N*/       }
 /*N*/   }
 /*N*/ }

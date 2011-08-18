@@ -43,7 +43,6 @@ class SfxMedium;
 class SwPageDesc;
 
 class SvxTabStopItem;
-class SwWrtShell;
 
 class SwDocShell;
 class SwFrmFmt;

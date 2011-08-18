@@ -50,7 +50,6 @@ class   SwDoc;
 class   Sw3Io;
 class   SfxDocumentInfoDialog;
 class   SwView;
-class   SwWrtShell;
 class   SwFEShell;
 class   Reader;
 class   SwReader;
@@ -73,7 +72,6 @@ class SwDocShell: public SfxObjectShell, public SfxInPlaceObject,
     // oder dieser im Dtor der View geloescht wird
     //
     SwView*                 pView;
-    SwWrtShell*             pWrtShell;
 
     Timer                   aFinishedTimer; // Timer fuers ueberpriefen der
                                             // Grafik-Links. Sind alle da,
@@ -104,8 +102,6 @@ class SwDocShell: public SfxObjectShell, public SfxInPlaceObject,
 
     void                    InitDraw();
     void                    SubInitNew();   // fuer InitNew und HtmlSourceModus
-    inline void             SetWrtShell(SwWrtShell* pShell)
-                                { pWrtShell = pShell; }
 
     void                    Init_Impl();
     DECL_STATIC_LINK( SwDocShell, IsLoadFinished, void* );
@@ -153,10 +149,6 @@ public:
 
     const SwView *GetView() const { return pView; }
     SwView       *GetView()       { return pView; }
-
-    // Zugriff auf die zur SwView gehoerige SwWrtShell
-          SwWrtShell *GetWrtShell()       { return pWrtShell; }
-    const SwWrtShell *GetWrtShell() const { return pWrtShell; }
 
     // fuer die Core - die kennt die DocShell aber keine WrtShell!
     const SwFEShell *GetFEShell() const

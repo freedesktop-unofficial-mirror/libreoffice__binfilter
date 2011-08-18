@@ -56,8 +56,8 @@
 
 #include <horiornt.hxx>
 
-#include <wrtsh.hxx>        // Verbindung zur Core
 #include <wdocsh.hxx>
+#include <crsrsh.hxx>
 #include <swmodule.hxx>
 #include <globdoc.hxx>
 #include <usrpref.hxx>
@@ -389,8 +389,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/   BOOL bSttTimer = FALSE;
     // ohne WrtShell haben wir eine WebDocShell und muessen uns die
     // Optionen vom Modul holen
-/*N*/   if( pWrtShell ? pWrtShell->GetViewOptions()->IsGraphic()
-/*N*/                 : SW_MOD()->GetUsrPref(TRUE)->IsGraphic() )
+/*N*/   if( SW_MOD()->GetUsrPref(TRUE)->IsGraphic() )
 /*N*/   {
 /*N*/       const SvxLinkManager& rLnkMgr = pDoc->GetLinkManager();
 /*N*/       const ::binfilter::SvBaseLinks& rLnks = rLnkMgr.GetLinks();

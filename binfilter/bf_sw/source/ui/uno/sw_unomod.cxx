@@ -50,7 +50,6 @@
 
 #include <horiornt.hxx>
 
-#include <wrtsh.hxx>
 #include <viewopt.hxx>
 #include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>

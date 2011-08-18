@@ -45,7 +45,7 @@
 
 #include <horiornt.hxx>
 
-#include <wrtsh.hxx>
+#include <viewsh.hxx>
 #include <cmdid.h>          // Funktion-Ids
 #include <swmodule.hxx>
 #include <wdocsh.hxx>
@@ -80,22 +80,6 @@ namespace binfilter {
 /*M*/ {
 /*M*/   if( rHint.ISA( SfxEventHint ) )
 /*M*/   {
-/*M*/       SfxEventHint& rEvHint = (SfxEventHint&) rHint;
-/*M*/       SwDocShell* pDocSh = PTR_CAST( SwDocShell, rEvHint.GetObjShell() );
-/*M*/       if( pDocSh )
-/*M*/       {
-/*M*/           SwWrtShell* pWrtSh = pDocSh ? pDocSh->GetWrtShell() : 0;
-/*M*/           switch( rEvHint.GetEventId() )
-/*M*/           {
-/*M*/           case SFX_EVENT_CREATEDOC:
-/*M*/               // alle FIX-Date/Time Felder auf akt. setzen
-/*M*/               if( pWrtSh )
-/*M*/               {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*M*/               }
-/*M*/               break;
-/*M*/           }
-/*M*/       }
 /*M*/   }
 /*M*/   else if(rHint.ISA(SfxItemSetHint))
 /*M*/   {
@@ -108,8 +92,8 @@ namespace binfilter {
 /*M*/                   GetItemState( SID_ATTR_ADDRESS, sal_False ))
 /*M*/           bAuthorInitialised = FALSE;
 /*M*/   }
-/*M*/     else if(rHint.ISA(SfxSimpleHint))
-/*M*/     {
+/*M*/   else if(rHint.ISA(SfxSimpleHint))
+/*M*/   {
 /*M*/         ULONG nHintId = ((SfxSimpleHint&)rHint).GetId();
 /*M*/         if(SFX_HINT_COLORS_CHANGED == nHintId ||
 /*N*/            SFX_HINT_ACCESSIBILITY_CHANGED == nHintId )

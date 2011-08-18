@@ -59,8 +59,7 @@ sw_res_files= \
     $(SRS)$/sw_index.srs        \
     $(SRS)$/sw_misc.srs         \
     $(SRS)$/sw_shells.srs       \
-    $(SRS)$/sw_utlui.srs        \
-    $(SRS)$/sw_wrtsh.srs        
+    $(SRS)$/sw_utlui.srs
 
 RESLIB1SRSFILES= \
     $(sw_res_files)

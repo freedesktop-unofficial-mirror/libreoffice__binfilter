@@ -65,7 +65,6 @@
 
 #include <horiornt.hxx>
 
-#include <wrtsh.hxx>
 #include <fldbas.hxx>
 #include <flddat.hxx>
 #include <swmodule.hxx>

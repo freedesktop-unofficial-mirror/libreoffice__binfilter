@@ -64,7 +64,6 @@
 
 #include <horiornt.hxx>
 
-#include <wrtsh.hxx>
 #include <docsh.hxx>
 #include <dbmgr.hxx>
 #include <uinums.hxx>

@@ -316,7 +316,6 @@ using namespace ::rtl;
 /*N*/ , pBasePool(0)
 /*N*/ , pFontList(0)
 /*N*/ , pView( 0 )
-/*N*/ , pWrtShell( 0 )
 /*N*/ , nUpdateDocMode(document::UpdateDocMode::ACCORDING_TO_CONFIG)
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::SwDocShell" );
@@ -335,7 +334,6 @@ using namespace ::rtl;
 /*?*/ , pBasePool(0)
 /*?*/ , pFontList(0)
 /*?*/ , pView( 0 )
-/*?*/ , pWrtShell( 0 )
 /*?*/ , nUpdateDocMode(document::UpdateDocMode::ACCORDING_TO_CONFIG)
 /*?*/ {
 /*?*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::SwDocShell" );

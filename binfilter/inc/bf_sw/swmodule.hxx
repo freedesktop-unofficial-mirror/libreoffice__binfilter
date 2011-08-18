@@ -60,7 +60,6 @@ class SwModuleOptions;
 class SwMasterUsrPref;
 class SwViewOption;
 class SwView;
-class SwWrtShell;
 class SwPrintOptions;
 class SwAutoFmtOpt;
 class SwChapterNumRules;

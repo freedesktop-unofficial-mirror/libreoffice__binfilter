@@ -46,7 +46,6 @@
 
 #include <horiornt.hxx>
 
-#include <wrtsh.hxx>
 #include <viewsh.hxx>
 #include <pvprtdat.hxx>
 #include <swprtopt.hxx>
@@ -1856,10 +1855,7 @@ void SwXTextDocument::refresh(void) throw( RuntimeException )
     SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
-    SwWrtShell *pWrtShell = pDocShell->GetWrtShell();
     notifyRefreshListeners();
-    if(pWrtShell)
-        pWrtShell->CalcLayout();
 }
 
 void SwXTextDocument::addRefreshListener(const Reference< util::XRefreshListener > & l)
@@ -1992,19 +1988,6 @@ sal_Int32 SAL_CALL SwXTextDocument::getRendererCount(
     SwDoc *pDoc = GetRenderDoc( rSelection );
     if (!pDoc)
         throw RuntimeException();
-
-    SwWrtShell *pWrtShell = pDoc->GetDocShell()->GetWrtShell();
-    if( pWrtShell )
-    {
-        SwViewOption aViewOpt( *pWrtShell->GetViewOptions() );
-        aViewOpt.SetPDFExport( TRUE );
-        if ( pWrtShell->IsBrowseMode() )
-            aViewOpt.SetPrtFormat( TRUE );
-        pWrtShell->ApplyViewOptions( aViewOpt );
-        pWrtShell->CalcLayout();
-        aViewOpt.SetPDFExport( FALSE );
-        pWrtShell->ApplyViewOptions( aViewOpt );
-    }
 
     return pDoc->GetPageCount();
 }

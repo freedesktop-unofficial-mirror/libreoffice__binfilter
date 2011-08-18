@@ -35,7 +35,6 @@
 
 namespace binfilter {
 
-class SwWrtShell;
 class SwFmt;
 class SwCollCondition;
 

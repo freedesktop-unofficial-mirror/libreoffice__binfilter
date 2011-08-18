@@ -47,7 +47,6 @@
 
 #include <horiornt.hxx>
 
-#include <wrtsh.hxx>
 #include <docsh.hxx>
 #include <osl/diagnose.h>
 #include <charfmt.hxx>
@@ -72,48 +71,6 @@ namespace binfilter {
 #define cFRAME      (sal_Unicode)'f'
 #define cPAGE       (sal_Unicode)'g'
 #define cNUMRULE    (sal_Unicode)'n'
-
-// Dieses Zeichen wird bei der Herausgabe der Namen wieder entfernt und
-// die Familie wird neu generiert.
-
-// Ausserdem gibt es jetzt zusaetzlich das Bit bPhysical. Ist dieses Bit
-// TRUE, werden die Pool-Formatnamen NICHT mit eingetragen.
-
-
-/*N*/ class SwImplShellAction
-/*N*/ {
-/*N*/   SwWrtShell* pSh;
-/*N*/   CurrShell* pCurrSh;
-/*N*/ public:
-/*N*/   SwImplShellAction( SwDoc& rDoc );
-/*N*/   ~SwImplShellAction();
-/*N*/
-/*N*/   SwWrtShell* GetSh() { return pSh; }
-/*N*/ };
-
-/*N*/ SwImplShellAction::SwImplShellAction( SwDoc& rDoc )
-/*N*/   : pCurrSh( 0 )
-/*N*/ {
-/*N*/   if( rDoc.GetDocShell() )
-/*N*/       pSh = rDoc.GetDocShell()->GetWrtShell();
-/*N*/   else
-/*N*/       pSh = 0;
-/*N*/
-/*N*/   if( pSh )
-/*N*/   {
-/*N*/       pCurrSh = new CurrShell( pSh );
-/*N*/       pSh->StartAllAction();
-/*N*/   }
-/*N*/ }
-
-/*N*/ SwImplShellAction::~SwImplShellAction()
-/*N*/ {
-/*N*/   if( pCurrSh )
-/*N*/   {
-/*N*/       pSh->EndAllAction();
-/*N*/       delete pCurrSh;
-/*N*/   }
-/*N*/ }
 
 /*--------------------------------------------------------------------
     Beschreibung:   SwCharFormate finden/anlegen
@@ -555,10 +512,7 @@ namespace binfilter {
 /*N*/   if( pFmt && pFmt->DerivedFrom() &&
 /*N*/       pFmt->DerivedFrom()->GetName() != rStr )
 /*N*/   {
-/*N*/       {
-/*N*/           SwImplShellAction aTmp( rDoc );
-/*N*/           bRet = pFmt->SetDerivedFrom( pParent );
-/*N*/       }
+/*N*/       bRet = pFmt->SetDerivedFrom( pParent );
 /*N*/
 /*N*/       if( bRet )
 /*N*/       {
@@ -581,7 +535,6 @@ namespace binfilter {
 /*N*/   if( rStr.Len() && !SfxStyleSheetBase::SetFollow( rStr ))
 /*?*/       return FALSE;
 /*N*/
-/*N*/   SwImplShellAction aTmpSh( rDoc );
 /*N*/   switch(nFamily)
 /*N*/   {
 /*N*/   case SFX_STYLE_FAMILY_PARA :
@@ -714,8 +667,6 @@ namespace binfilter {
 /*N*/   // gegebenenfalls Format erst ermitteln
 /*N*/   if(!bPhysical)
 /*?*/       FillStyleSheet( FillPhysical );
-/*N*/
-/*N*/   SwImplShellAction aTmpSh( rDoc );
 /*N*/
 /*N*/   OSL_ENSURE( &rSet != &aCoreSet, "SetItemSet mit eigenem Set ist nicht erlaubt" );
 /*N*/

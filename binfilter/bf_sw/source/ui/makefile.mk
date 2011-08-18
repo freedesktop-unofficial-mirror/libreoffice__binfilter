@@ -66,8 +66,7 @@ LIB1FILES= \
         $(SLB)$/sw_globdoc.lib  \
         $(SLB)$/sw_index.lib    \
         $(SLB)$/sw_unoidl.lib   \
-        $(SLB)$/sw_web.lib      \
-        $(SLB)$/sw_wrtsh.lib
+        $(SLB)$/sw_web.lib
 
 .INCLUDE :  target.mk
 

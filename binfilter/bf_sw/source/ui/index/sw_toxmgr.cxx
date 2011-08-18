@@ -28,7 +28,7 @@
 
 #include <horiornt.hxx>
 
-#include <wrtsh.hxx>
+#include <viewsh.hxx>
 #include <shellres.hxx>
 
 #include <globals.hrc>
