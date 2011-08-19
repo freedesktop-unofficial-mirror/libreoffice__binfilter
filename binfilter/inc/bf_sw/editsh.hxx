@@ -227,9 +227,6 @@ public:
     void StartAllAction();
     void EndAllAction();
 
-    //Damit Start-/EndActions aufgesetzt werden koennen.
-    void CalcLayout();
-
     /* Anwenden der ViewOptions mit Start-/EndAction */
     inline void ApplyViewOptions( const SwViewOption &rOpt );
 

@@ -84,29 +84,6 @@ namespace binfilter {
 /*N*/       pSh = (ViewShell *)pSh->GetNext();
 /*N*/   } while(pSh != this);
 /*N*/ }
-
-/******************************************************************************
- *                  void SwEditShell::CalcLayout()
- ******************************************************************************/
-
-
-/*N*/ void SwEditShell::CalcLayout()
-/*N*/ {
-/*N*/   StartAllAction();
-/*N*/   ViewShell::CalcLayout();
-/*N*/
-/*N*/   ViewShell *pSh = this;
-/*N*/   do
-/*N*/   {
-/*N*/       if ( pSh->GetWin() )
-/*N*/           pSh->GetWin()->Invalidate();
-/*N*/       pSh = (ViewShell*)pSh->GetNext();
-/*N*/
-/*N*/   } while ( pSh != this );
-/*N*/
-/*N*/   EndAllAction();
-/*N*/ }
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
