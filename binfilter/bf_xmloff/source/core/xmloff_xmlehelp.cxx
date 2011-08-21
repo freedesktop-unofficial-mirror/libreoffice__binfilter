@@ -157,7 +157,7 @@ void SvXMLExportHelper::AddLength( sal_Int32 nValue, MapUnit eValueUnit,
     }
 
 
-    sal_Int32 nLongVal;
+    sal_Int32 nLongVal(0);
     BOOL bOutLongVal = TRUE;
     if( nValue > SAL_MAX_INT32 / nMul )
     {

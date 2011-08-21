@@ -385,15 +385,9 @@ uno::Any SwXDrawPage::getByIndex(sal_Int32 nIndex)
     if(!pDoc)
         throw uno::RuntimeException();
     if(!pDoc->GetDrawModel())
-    {
         throw IndexOutOfBoundsException();
-    }
-    else
-    {
-         ((SwXDrawPage*)this)->GetSvxPage();
-         return pDrawPage->getByIndex( nIndex);
-    }
-    return uno::Any();
+    ((SwXDrawPage*)this)->GetSvxPage();
+    return pDrawPage->getByIndex( nIndex);
 }
 
 uno::Type  SwXDrawPage::getElementType(void) throw( uno::RuntimeException )

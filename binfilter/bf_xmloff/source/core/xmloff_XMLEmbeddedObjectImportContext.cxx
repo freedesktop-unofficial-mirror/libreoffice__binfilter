@@ -306,7 +306,7 @@ void XMLEmbeddedObjectImportContext::EndElement()
             {
                 xStorable->store();
             }
-            catch( ::com::sun::star::beans::PropertyVetoException& e )
+            catch (const ::com::sun::star::beans::PropertyVetoException&)
             {
                 Sequence<OUString> aSeq( 0 );
                 GetImport().SetError( XMLERROR_FLAG_WARNING |

@@ -70,20 +70,20 @@ enum SwRedlineMode
     REDLINE_DONTCOMBINE_REDLINES = 0x400
 };
 
-inline int IsShowChanges( const USHORT eM )
+inline bool IsShowChanges( const USHORT eM )
 {
     return (REDLINE_SHOW_INSERT | REDLINE_SHOW_DELETE) ==
                     (eM & REDLINE_SHOW_MASK);
 }
-inline int IsHideChanges( const USHORT eM )
+inline bool IsHideChanges( const USHORT eM )
 {
     return REDLINE_SHOW_INSERT == (eM & REDLINE_SHOW_MASK);
 }
-inline int IsShowOriginal( const USHORT eM )
+inline bool IsShowOriginal( const USHORT eM )
 {
     return REDLINE_SHOW_DELETE == (eM & REDLINE_SHOW_MASK);
 }
-inline int IsRedlineOn( const USHORT eM )
+inline bool IsRedlineOn( const USHORT eM )
 {
     return REDLINE_ON == (eM & (REDLINE_ON | REDLINE_IGNORE ));
 }
