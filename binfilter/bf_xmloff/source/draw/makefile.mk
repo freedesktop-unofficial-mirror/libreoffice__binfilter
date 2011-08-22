@@ -41,7 +41,6 @@ INC+= -I$(PRJ)$/inc$/bf_xmloff
 SLOFILES =	\
         $(SLO)$/xmloff_XMLNumberStyles.obj\
         $(SLO)$/xmloff_XMLGraphicsDefaultStyle.obj\
-        $(SLO)$/xmloff_viewcontext.obj\
         $(SLO)$/xmloff_eventimp.obj\
         $(SLO)$/xmloff_layerexp.obj\
         $(SLO)$/xmloff_layerimp.obj\
