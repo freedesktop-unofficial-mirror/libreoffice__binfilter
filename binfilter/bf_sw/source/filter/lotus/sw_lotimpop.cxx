@@ -184,7 +184,7 @@ void SwLotusParser::PutCell( USHORT nCol, USHORT nRow, short nVal )
 void SwLotusParser::PutCell( USHORT nCol, USHORT nRow, double fVal )
 {
 
-    String sText(String::CreateFromFloat(fVal));
+    String sText(rtl::OUString::valueOf(fVal));
     xub_StrLen nLen = sText.Len();
     for (xub_StrLen nI = 0; nI <  nLen; ++nI)
     {
