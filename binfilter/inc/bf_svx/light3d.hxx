@@ -63,8 +63,6 @@ class E3dLight : public E3dPointObj
 
  public:
     TYPEINFO();
-    E3dLight(const Vector3D& rPos, const Color& rColor,
-             double fLightIntensity = 1.0);
     E3dLight();
 
     using SdrAttrObj::operator=;

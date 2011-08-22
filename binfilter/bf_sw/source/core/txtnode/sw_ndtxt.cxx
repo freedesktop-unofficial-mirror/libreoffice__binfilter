@@ -109,68 +109,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/   if( pColl && NO_NUMBERING != pColl->GetOutlineLevel() && IsDocNodes() )
 /*N*/       UpdateOutlineNode( *pNode, NO_NUMBERING, pColl->GetOutlineLevel() );
 /*N*/
-/*N*/   //Wenn es noch kein Layout gibt oder in einer versteckten Section
-/*N*/   // stehen, brauchen wir uns um das MakeFrms nicht bemuehen.
-/*N*/   const SwSectionNode* pSectNd;
-/*N*/   if( !GetDoc()->GetRootFrm() ||
-/*N*/       ( 0 != (pSectNd = pNode->FindSectionNode()) &&
-/*N*/           pSectNd->GetSection().IsHiddenFlag() ))
-/*N*/       return pNode;
-/*N*/
-/*N*/   SwNodeIndex aTmp( rWhere );
-/*N*/   do {
-/*N*/       // max. 2 Durchlaeufe:
-/*N*/       // 1. den Nachfolger nehmen
-/*N*/       // 2. den Vorgaenger
-/*N*/
-/*N*/       SwNode *pNd;
-/*N*/       switch( ( pNd = (*this)[aTmp] )->GetNodeType() )
-/*N*/       {
-/*?*/       case ND_TABLENODE:
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/           return pNode;
-/*?*/
-/*?*/       case ND_SECTIONNODE:
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/           return pNode;
-/*N*/
-/*N*/       case ND_TEXTNODE:
-/*N*/       case ND_GRFNODE:
-/*N*/       case ND_OLENODE:
-/*N*/           ((SwCntntNode*)pNd)->MakeFrms( *pNode );
-/*N*/           return pNode;
-/*N*/
-/*N*/       case ND_ENDNODE:
-/*N*/           if( pNd->FindStartNode()->IsSectionNode() &&
-/*N*/               aTmp.GetIndex() < rWhere.GetIndex() )
-/*N*/           {
-/*?*/               if( pNd->FindStartNode()->GetSectionNode()->GetSection().IsHiddenFlag())
-/*?*/               {
-/*?*/                   if( !GoPrevSection( &aTmp, TRUE, FALSE ) ||
-/*?*/                       aTmp.GetNode().FindTableNode() !=
-/*?*/                           pNode->FindTableNode() )
-/*?*/                       return pNode;       // schade, das wars
-/*?*/               }
-/*?*/               else
-/*?*/                   aTmp = *pNd->FindStartNode();
-/*?*/               break;
-/*N*/           }
-/*N*/           else if( pNd->FindStartNode()->IsTableNode() &&
-/*N*/                   aTmp.GetIndex() < rWhere.GetIndex() )
-/*N*/           {
-/*N*/               // wir stehen hinter einem TabellenNode
-/*?*/               aTmp = *pNd->FindStartNode();
-/*?*/               break;
-/*N*/           }
-/*N*/           // kein break !!!
-/*N*/       default:
-/*N*/           if( rWhere == aTmp )
-/*N*/               aTmp -= 2;
-/*N*/           else
-/*N*/               return pNode;
-/*N*/           break;
-/*N*/       }
-/*N*/   } while( TRUE );
+/*N*/   return pNode;
 /*N*/ }
 
 

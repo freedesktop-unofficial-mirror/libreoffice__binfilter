@@ -36,30 +36,6 @@ namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dLight, E3dPointObj);
 
-/*************************************************************************
-|*
-|* E3dLight-Konstruktor
-|*
-\************************************************************************/
-
-/*N*/ E3dLight::E3dLight(const Vector3D& rPos, const Color& rColor,
-/*N*/                   double fLightIntensity) :
-/*N*/   E3dPointObj(rPos),
-/*N*/   fIntensity(fLightIntensity),
-/*N*/   bOn(TRUE),
-/*N*/   bVisible(FALSE)
-/*N*/ {
-/*N*/   SetColor(rColor);
-/*N*/   aLocalBoundVol = Volume3D();
-/*N*/   bBoundVolValid = FALSE;
-/*N*/ }
-
-/*************************************************************************
-|*
-|* E3dLight-Konstruktor 2
-|*
-\************************************************************************/
-
 /*N*/ E3dLight::E3dLight() :
 /*N*/   E3dPointObj(Vector3D()),
 /*N*/   aColor(255, 255, 255),
