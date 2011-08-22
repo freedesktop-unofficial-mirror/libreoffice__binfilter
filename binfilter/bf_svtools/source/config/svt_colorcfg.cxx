@@ -128,14 +128,12 @@ uno::Sequence< OUString> ColorConfig_Impl::GetPropertyNames(const rtl::OUString&
         { RTL_CONSTASCII_USTRINGPARAM("/FontColor")     ,sal_False },
         { RTL_CONSTASCII_USTRINGPARAM("/Links")           ,sal_True },
         { RTL_CONSTASCII_USTRINGPARAM("/LinksVisited")    ,sal_True },
-        { RTL_CONSTASCII_USTRINGPARAM("/Anchor")          ,sal_False },
         { RTL_CONSTASCII_USTRINGPARAM("/Spell")     ,sal_False },
         { RTL_CONSTASCII_USTRINGPARAM("/SmartTags")     ,sal_False },
         { RTL_CONSTASCII_USTRINGPARAM("/WriterTextGrid")  ,sal_False },
         { RTL_CONSTASCII_USTRINGPARAM("/WriterFieldShadings"),sal_True },
         { RTL_CONSTASCII_USTRINGPARAM("/WriterIdxShadings")     ,sal_True },
         { RTL_CONSTASCII_USTRINGPARAM("/WriterDirectCursor")    ,sal_True },
-        { RTL_CONSTASCII_USTRINGPARAM("/WriterNotesIndicator")    ,sal_False },
         { RTL_CONSTASCII_USTRINGPARAM("/WriterScriptIndicator")    ,sal_False },
         { RTL_CONSTASCII_USTRINGPARAM("/WriterSectionBoundaries")    ,sal_True },
         { RTL_CONSTASCII_USTRINGPARAM("/WriterPageBreaks")    ,sal_False },
@@ -152,8 +150,6 @@ uno::Sequence< OUString> ColorConfig_Impl::GetPropertyNames(const rtl::OUString&
         { RTL_CONSTASCII_USTRINGPARAM("/CalcReference")   ,sal_False },
         { RTL_CONSTASCII_USTRINGPARAM("/CalcNotesBackground") ,sal_False },
         { RTL_CONSTASCII_USTRINGPARAM("/DrawGrid")        ,sal_True },
-        { RTL_CONSTASCII_USTRINGPARAM("/DrawDrawing")     ,sal_False },
-        { RTL_CONSTASCII_USTRINGPARAM("/DrawFill")        ,sal_False },
         { RTL_CONSTASCII_USTRINGPARAM("/BASICIdentifier"),  sal_False },
         { RTL_CONSTASCII_USTRINGPARAM("/BASICComment")   ,  sal_False },
         { RTL_CONSTASCII_USTRINGPARAM("/BASICNumber")    ,  sal_False },
@@ -393,14 +389,12 @@ Color ColorConfig::GetDefaultColor(ColorConfigEntry eEntry)
         0, // FONTCOLOR
         0xcc, // LINKS
         0x80, // LINKSVISITED
-        0, // ANCHOR
         0xff0000, // SPELL
         COL_LIGHTMAGENTA,// SMARTTAGS
         0xc0c0c0, // WRITERTEXTGRID
         0xc0c0c0, // WRITERFIELDSHADIN
         0xc0c0c0, // WRITERIDXSHADINGS
         0, // WRITERDIRECTCURSOR
-        COL_YELLOW, //WRITERNOTESINDICATOR
         COL_GREEN,  //WRITERSCRIPTINDICATOR
         0xc0c0c0, //WRITERSECTIONBOUNDARIES
         COL_BLUE, //WRITERPAGEBREAKS,
@@ -417,8 +411,6 @@ Color ColorConfig::GetDefaultColor(ColorConfigEntry eEntry)
         COL_LIGHTRED, // CALCREFERENCE
         0xffffc0, // CALCNOTESBACKGROUND
         0xc0c0c0, // DRAWGRID
-        0, // DRAWDRAWING
-        0xb8ff, // DRAWFILL
         COL_GREEN, // BASICIDENTIFIER,
         COL_GRAY,// BASICCOMMENT   ,
         COL_LIGHTRED,// BASICNUMBER    ,
@@ -437,18 +429,6 @@ Color ColorConfig::GetDefaultColor(ColorConfigEntry eEntry)
         case APPBACKGROUND :
             aRet = Application::GetSettings().GetStyleSettings().GetWorkspaceColor();
             break;
-
-        case SPELL :
-        case DRAWDRAWING :
-        case SMARTTAGS :
-        {
-            aRet = aAutoColors[eEntry];
-        }
-        break;
-
-        case DRAWFILL            :
-                aRet = aAutoColors[eEntry];
-        break;
 
         case FONTCOLOR :
             aRet = Application::GetSettings().GetStyleSettings().GetWindowTextColor();
