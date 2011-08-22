@@ -260,7 +260,6 @@ void ItemHolder1::impl_newItem(TItemInfo& rItem)
             break;
 
         case E_REGOPTIONS :
-// no ref count            rItem.pItem = new ::svt::RegOptions();
             break;
 
         case E_SAVEOPTIONS :
@@ -268,7 +267,6 @@ void ItemHolder1::impl_newItem(TItemInfo& rItem)
             break;
 
         case E_SEARCHOPT :
-// no ref count            rItem.pItem = new SvtSearchOptions();
             break;
 
         case E_SECURITYOPTIONS :
