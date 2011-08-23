@@ -121,7 +121,6 @@ SLOFILES =	\
         $(SLO)$/xmloff_XMLFillBitmapSizePropertyHandler.obj	\
         $(SLO)$/xmloff_XMLBitmapLogicalSizePropertyHandler.obj	\
         $(SLO)$/xmloff_durationhdl.obj	\
-        $(SLO)$/xmloff_VisAreaContext.obj \
         $(SLO)$/xmloff_DrawAspectHdl.obj
 
 # --- Tagets -------------------------------------------------------
