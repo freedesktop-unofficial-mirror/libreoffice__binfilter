@@ -498,17 +498,19 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*    const Bitmap& XFillBitmapItem::GetValue(const XBitmapTable* pTable) const
+|*    const Bitmap& XFillBitmapItem::GetValue() const
 |*
 *************************************************************************/
 
-/*N*/ const XOBitmap& XFillBitmapItem::GetValue(const XBitmapTable* pTable) const
-/*N*/ {
-/*N*/   if (!IsIndex())
-/*N*/       return aXOBitmap;
-/*N*/   else
-/*?*/       return pTable->Get(GetIndex())->GetXBitmap();
-/*N*/ }
+const XOBitmap& XFillBitmapItem::GetValue(
+//    const XBitmapTable* pTable
+) const
+{
+//    if (!IsIndex())
+        return aXOBitmap;
+//    else
+//        return pTable->Get(GetIndex())->GetXBitmap();
+}
 
 
 /*************************************************************************

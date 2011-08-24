@@ -35,7 +35,6 @@ class XColorTable;
 class XDashTable;
 class XLineEndTable;
 class XHatchTable;
-class XBitmapTable;
 }//end of namespace binfilter
 
 #include <bf_svx/xit.hxx>

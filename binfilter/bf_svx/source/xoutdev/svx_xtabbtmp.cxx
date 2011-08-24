@@ -57,65 +57,6 @@ static char const aChckBitmap0[] = { 0x04, 0x00, 'S','O','B','0'};  // old
 static char const aChckBitmap1[] = { 0x04, 0x00, 'S','O','B','1'};  // = 5.2
 static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 
-// -------------------
-// class XBitmapTable
-// -------------------
-
-/************************************************************************/
-
-/*N*/ XBitmapTable::~XBitmapTable()
-/*N*/ {
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XBitmapEntry* XBitmapTable::Replace(long nIndex, XBitmapEntry* pEntry )
-/*N*/ {
-/*N*/   return (XBitmapEntry*) XPropertyTable::Replace(nIndex, pEntry);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XBitmapEntry* XBitmapTable::Remove(long nIndex)
-/*N*/ {
-/*N*/   return (XBitmapEntry*) XPropertyTable::Remove(nIndex, 0);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XBitmapEntry* XBitmapTable::Get(long nIndex) const
-/*N*/ {
-/*N*/   return (XBitmapEntry*) XPropertyTable::Get(nIndex, 0);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XBitmapTable::Load()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XBitmapTable::Create()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XBitmapTable::CreateBitmapsForUI()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ Bitmap* XBitmapTable::CreateBitmapForUI( long /*nIndex*/, BOOL /*bDelete*/ )
-/*N*/ {
-/*N*/   return( NULL );
-/*N*/ }
-
 // ------------------
 // class XBitmapList
 // ------------------

@@ -61,7 +61,7 @@ public:
     virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 
-    const XOBitmap& GetValue( const XBitmapTable* pTable = 0 ) const;
+    const XOBitmap& GetValue() const;
     void           SetValue( const XOBitmap& rNew )  { aXOBitmap = rNew; Detach(); }
 
     static BOOL CompareValueFunc( const NameOrIndex* p1, const NameOrIndex* p2 );

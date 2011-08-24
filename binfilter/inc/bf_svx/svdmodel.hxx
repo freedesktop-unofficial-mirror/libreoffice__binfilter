@@ -93,7 +93,6 @@ class SdrUndoAction;
 class SdrUndoGroup;
 class SvxLinkManager;
 class XBitmapList;
-class XBitmapTable;
 class XColorTable;
 class XDashList;
 class XDashTable;
