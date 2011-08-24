@@ -47,7 +47,6 @@ class XDashTable;
 class XLineEndTable;
 class XHatchTable;
 class XBitmapTable;
-class XGradientTable;
 class NameOrIndex;
 class XPropertyList;
 

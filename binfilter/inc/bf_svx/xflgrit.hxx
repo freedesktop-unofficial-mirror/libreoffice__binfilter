@@ -62,7 +62,7 @@ public:
 
     virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
-    const XGradient&        GetValue(const XGradientTable* pTable = 0) const;
+    const XGradient&        GetValue() const;
     void                    SetValue(const XGradient& rNew) { aGradient = rNew; Detach(); }
 
     static BOOL CompareValueFunc( const NameOrIndex* p1, const NameOrIndex* p2 );

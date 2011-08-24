@@ -486,28 +486,6 @@ public:
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
 };
 
-// ---------------------
-// class XGradientTable
-// ---------------------
-
-class XGradientTable : public XPropertyTable
-{
-                    XGradientTable( const String& rPath,
-                                    XOutdevItemPool* pXPool = NULL,
-                                    USHORT nInitSize = 16,
-                                    USHORT nReSize = 16 );
-public:
-    virtual         ~XGradientTable();
-
-    XGradientEntry* Get(long nIndex) const;
-
-    virtual BOOL    Load();
-    virtual BOOL    Save() {return false;}
-    virtual BOOL    Create();
-    virtual BOOL    CreateBitmapsForUI();
-    virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
-};
-
 // -------------------
 // class XGradientList
 // -------------------

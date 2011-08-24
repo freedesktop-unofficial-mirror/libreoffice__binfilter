@@ -98,7 +98,6 @@ class XColorTable;
 class XDashList;
 class XDashTable;
 class XGradientList;
-class XGradientTable;
 class XHatchList;
 class XHatchTable;
 class XLineEndList;

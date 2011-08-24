@@ -65,51 +65,6 @@ char const aChckGradient[]  = { 0x04, 0x00, 'S','O','G','L'};   // < 5.2
 char const aChckGradient0[] = { 0x04, 0x00, 'S','O','G','0'};   // = 5.2
 char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
-// ---------------------
-// class XGradientTable
-// ---------------------
-
-/************************************************************************/
-
-/*N*/ XGradientTable::~XGradientTable()
-/*N*/ {
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XGradientEntry* XGradientTable::Get(long nIndex) const
-/*N*/ {
-/*N*/   return (XGradientEntry*) XPropertyTable::Get(nIndex, 0);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XGradientTable::Load()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XGradientTable::Create()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XGradientTable::CreateBitmapsForUI()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ Bitmap* XGradientTable::CreateBitmapForUI( long /*nIndex*/, BOOL /*bDelete*/ )
-/*N*/ {
-/*N*/   return( NULL );
-/*N*/ }
-
 // --------------------
 // class XGradientList
 // --------------------

@@ -2367,18 +2367,19 @@ XubString aNameOrIndexEmptyString;
 
 /*************************************************************************
 |*
-|*    const XGradient& XFillGradientItem::GetValue(const XGradientTable* pTable)
-|*                                                                 const
+|*    const XGradient& XFillGradientItem::GetValue() const
 |*
 *************************************************************************/
 
-/*N*/ const XGradient& XFillGradientItem::GetValue(const XGradientTable* pTable) const
-/*N*/ {
-/*N*/   if (!IsIndex())
-/*N*/       return aGradient;
-/*N*/   else
-/*?*/       return pTable->Get(GetIndex())->GetGradient();
-/*N*/ }
+const XGradient& XFillGradientItem::GetValue(
+//    const XGradientTable* pTable
+) const
+{
+//    if (!IsIndex())
+        return aGradient;
+//    else
+//        return pTable->Get(GetIndex())->GetGradient();
+}
 
 
 /*************************************************************************
