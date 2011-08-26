@@ -110,15 +110,10 @@ public:
 
     // ModelViewMatrix (ViewOrientationMatrix) fuer die Umwandlung
     // ObjectCoordinates in EyeCoordinates
-#if defined( ICC ) || defined( GCC )
     void Orientation(Point4D aVRP = Point4D(0.0,0.0,1.0),
         Vector3D aVPN = Vector3D(0.0,0.0,1.0),
         Vector3D aVUP = Vector3D(0.0,1.0,0.0));
-#else
-    void Orientation(Point4D& aVRP = Point4D(0.0,0.0,1.0),
-        Vector3D& aVPN = Vector3D(0.0,0.0,1.0),
-        Vector3D& aVUP = Vector3D(0.0,1.0,0.0));
-#endif
+
     // Projektionsmatritzen fuer die Umwandlung von EyeCoordinates
     // auf ClipCoordinates
     void Frustum(double fLeft = -1.0, double fRight = 1.0,

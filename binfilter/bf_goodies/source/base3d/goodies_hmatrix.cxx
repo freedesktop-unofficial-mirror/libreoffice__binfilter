@@ -582,11 +582,7 @@ BOOL Matrix4D::Decompose(
 |*
 \************************************************************************/
 
-#if defined ( ICC ) || defined( GCC )
 void Matrix4D::Orientation(Point4D aVRP, Vector3D aVPN, Vector3D aVUP)
-#else
-void Matrix4D::Orientation(Point4D& aVRP, Vector3D& aVPN, Vector3D& aVUP)
-#endif
 {
     // Translation um -VRP
     aVRP.Homogenize();
