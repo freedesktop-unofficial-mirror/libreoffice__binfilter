@@ -78,7 +78,7 @@ namespace binfilter {
 
 /*N*/ void SfxFilter::InitMembers_Impl()
 /*N*/ {
-/*N*/   String aExts = GetWildcard()();
+/*N*/   String aExts = GetWildcard().getGlob();
 /*N*/   String aShort, aLong;
 /*N*/   String aRet;
 /*N*/   sal_uInt16 nMaxLength =

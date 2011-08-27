@@ -288,7 +288,7 @@ const SfxFilter* SfxFilterContainer::aMethod(                   \
 /*N*/ IMPL_CONTAINER_LOOP(
 /*N*/     GetFilter4Extension, const String&,
 /*N*/     pFilter->GetWildcard() != String() && pFilter->GetWildcard() != DEFINE_CONST_UNICODE("*.*") && pFilter->GetWildcard() != '*' &&
-/*N*/   WildCard( ToUpper_Impl( pFilter->GetWildcard()() ), ';' ) == ToUpper_Impl( aArg ))
+/*N*/   WildCard( ToUpper_Impl( pFilter->GetWildcard().getGlob() ), ';' ) == ToUpper_Impl( aArg ))
 
 
 //----------------------------------------------------------------
