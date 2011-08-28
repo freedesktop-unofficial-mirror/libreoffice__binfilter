@@ -287,8 +287,8 @@ const SfxFilter* SfxFilterContainer::aMethod(                   \
  */
 /*N*/ IMPL_CONTAINER_LOOP(
 /*N*/     GetFilter4Extension, const String&,
-/*N*/     pFilter->GetWildcard() != String() && pFilter->GetWildcard() != DEFINE_CONST_UNICODE("*.*") && pFilter->GetWildcard() != '*' &&
-/*N*/   WildCard( ToUpper_Impl( pFilter->GetWildcard().getGlob() ), ';' ) == ToUpper_Impl( aArg ))
+/*N*/     !pFilter->GetWildcard().Matches(String()) && !pFilter->GetWildcard().Matches(DEFINE_CONST_UNICODE("*.*")) && !pFilter->GetWildcard().Matches('*') &&
+/*N*/   WildCard( ToUpper_Impl( pFilter->GetWildcard().getGlob() ), ';' ).Matches(ToUpper_Impl( aArg )))
 
 
 //----------------------------------------------------------------
@@ -537,7 +537,7 @@ void SfxFilterMatcher::AddContainer( SfxFilterContainer* pC )
 /*N*/       if( !pFilter )
 /*N*/       {
 /*N*/           pFilter = GetFilter4Extension( rMedium.GetURLObject().GetName(), nMust, nDont );
-/*N*/           if( !pFilter || pFilter->GetWildcard()==DEFINE_CONST_UNICODE("*.*") || pFilter->GetWildcard() == '*' )
+/*N*/           if( !pFilter || pFilter->GetWildcard().Matches(DEFINE_CONST_UNICODE("*.*")) || pFilter->GetWildcard().Matches('*') )
 /*N*/               pFilter = 0;
 /*N*/       }
 /*N*/   }
@@ -798,7 +798,8 @@ const SfxFilter* SfxFilterMatcher::Type(                        \
 /*N*/   const SfxFilter* pFilter =
 /*N*/       pThis->GetFilter4Extension( *pString, SFX_FILTER_IMPORT );
 /*N*/   if( pFilter && !pFilter->GetWildcard().Matches( String() ) &&
-/*N*/       pFilter->GetWildcard() != DEFINE_CONST_UNICODE("*.*") && pFilter->GetWildcard() != '*' )
+/*N*/       !pFilter->GetWildcard().Matches(DEFINE_CONST_UNICODE("*.*")) &&
+/*N*/       !pFilter->GetWildcard().Matches('*') )
 /*N*/       return sal_True;
 /*N*/   return sal_False;
 /*?*/ }

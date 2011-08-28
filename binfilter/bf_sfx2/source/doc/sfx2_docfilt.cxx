@@ -110,9 +110,9 @@ namespace binfilter {
 /*N*/       aShort += ';';
 /*N*/       aShort += aLong;
 /*N*/   }
-/*N*/   aWildCard = aShort;
+/*N*/   aWildCard.setGlob(aShort);
 /*N*/
-/*N*/     nVersion = SOFFICE_FILEFORMAT_50;
+/*N*/   nVersion = SOFFICE_FILEFORMAT_50;
 /*N*/   bPlugDataSearched = 0;
 /*N*/   pPlugData = 0;
 /*N*/   aUIName = aFilterName;
