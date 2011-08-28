@@ -59,7 +59,7 @@ public:
     virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 
-    const XPolygon& GetValue(const XLineEndTable* pTable = 0) const;
+    const XPolygon& GetValue() const;
     void            SetValue(const XPolygon& rXPolygon) { aXPolygon = rXPolygon; Detach(); }
 
     XLineEndItem* checkForUniqueItem( SdrModel* pModel ) const;

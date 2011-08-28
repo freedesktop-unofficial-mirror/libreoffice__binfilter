@@ -317,30 +317,6 @@ public:
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
 };
 
-// --------------------
-// class XLineEndTable
-// --------------------
-
-class XLineEndTable : public XPropertyTable
-{
-                    XLineEndTable( const String& rPath,
-                                    XOutdevItemPool* pXPool = NULL,
-                                    USHORT nInitSize = 16,
-                                    USHORT nReSize = 16 );
-public:
-    virtual         ~XLineEndTable();
-
-    XLineEndEntry*  Replace(long nIndex, XLineEndEntry* pEntry );
-    XLineEndEntry*  Remove(long nIndex);
-    XLineEndEntry*  Get(long nIndex) const;
-
-    virtual BOOL    Load();
-    virtual BOOL    Save() {return false;}
-    virtual BOOL    Create();
-    virtual BOOL    CreateBitmapsForUI();
-    virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
-};
-
 // -------------------
 // class XLineEndList
 // -------------------

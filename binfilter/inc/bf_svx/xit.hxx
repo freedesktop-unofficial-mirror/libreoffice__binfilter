@@ -44,7 +44,6 @@ extern String aNameOrIndexEmptyString;
 
 class XColorTable;
 class XDashTable;
-class XLineEndTable;
 class NameOrIndex;
 class XPropertyList;
 

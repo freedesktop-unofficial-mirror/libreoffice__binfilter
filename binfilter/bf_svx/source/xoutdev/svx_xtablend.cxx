@@ -74,61 +74,6 @@ static char const aChckLEnd[]  = { 0x04, 0x00, 'S','O','E','L'};    // < 5.2
 static char const aChckLEnd0[] = { 0x04, 0x00, 'S','O','E','0'};    // = 5.2
 static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 
-/************************************************************************/
-
-/*N*/ XLineEndTable::~XLineEndTable()
-/*N*/ {
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XLineEndEntry* XLineEndTable::Replace(long nIndex, XLineEndEntry* pEntry )
-/*N*/ {
-/*N*/   return (XLineEndEntry*) XPropertyTable::Replace(nIndex, pEntry);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XLineEndEntry* XLineEndTable::Remove(long nIndex)
-/*N*/ {
-/*N*/   return (XLineEndEntry*) XPropertyTable::Remove(nIndex, 0);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XLineEndEntry* XLineEndTable::Get(long nIndex) const
-/*N*/ {
-/*N*/   return (XLineEndEntry*) XPropertyTable::Get(nIndex, 0);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XLineEndTable::Load()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XLineEndTable::Create()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ Bitmap* XLineEndTable::CreateBitmapForUI( long /*nIndex*/, BOOL /*bDelete*/ )
-/*N*/ {
-/*N*/   return( NULL );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XLineEndTable::CreateBitmapsForUI()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
 // --------------------
 // class XLineEndList
 // --------------------

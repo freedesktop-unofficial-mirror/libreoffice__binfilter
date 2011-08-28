@@ -1064,18 +1064,18 @@ XubString aNameOrIndexEmptyString;
 
 /*************************************************************************
 |*
-|*    const XPolygon& XLineStartItem::GetValue(const XLineEndTable* pTable)
-|*                                             const
+|*    const XPolygon& XLineStartItem::GetValue() const
 |*
 *************************************************************************/
 
-/*N*/ const XPolygon& XLineStartItem::GetValue(const XLineEndTable* pTable) const
-/*N*/ {
-/*N*/   if (!IsIndex())
-/*N*/       return aXPolygon;
-/*N*/   else
-/*?*/       return pTable->Get(GetIndex())->GetLineEnd();
-/*N*/ }
+const XPolygon& XLineStartItem::GetValue() const
+{
+    //if (!IsIndex())
+    //    return aXPolygon;
+    //else
+    //    return pTable->Get(GetIndex())->GetLineEnd();
+    return aXPolygon;
+}
 
 //------------------------------------------------------------------------
 
@@ -1454,17 +1454,18 @@ XubString aNameOrIndexEmptyString;
 
 /*************************************************************************
 |*
-|*    const XPolygon& XLineEndItem::GetValue(const XLineEndTable* pTable) const
+|*    const XPolygon& XLineEndItem::GetValue() const
 |*
 *************************************************************************/
 
-/*N*/ const XPolygon& XLineEndItem::GetValue(const XLineEndTable* pTable) const
-/*N*/ {
-/*N*/   if (!IsIndex())
-/*N*/       return aXPolygon;
-/*N*/   else
-/*?*/       return pTable->Get(GetIndex())->GetLineEnd();
-/*N*/ }
+const XPolygon& XLineEndItem::GetValue() const
+{
+    //if (!IsIndex())
+    //    return aXPolygon;
+    //else
+    //    return pTable->Get(GetIndex())->GetLineEnd();
+    return aXPolygon;
+}
 
 
 /** this function searches in both the models pool and the styles pool for XLineStartItem

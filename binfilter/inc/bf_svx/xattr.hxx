@@ -33,7 +33,6 @@ namespace binfilter {
 
 class XColorTable;
 class XDashTable;
-class XLineEndTable;
 
 }//end of namespace binfilter
 

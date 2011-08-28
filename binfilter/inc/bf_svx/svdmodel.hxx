@@ -99,7 +99,6 @@ class XDashTable;
 class XGradientList;
 class XHatchList;
 class XLineEndList;
-class XLineEndTable;
 class SvxForbiddenCharactersTable;
 class SdrOutlinerCache;
 
