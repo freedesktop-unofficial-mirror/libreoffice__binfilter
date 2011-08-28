@@ -98,7 +98,6 @@ class XDashList;
 class XDashTable;
 class XGradientList;
 class XHatchList;
-class XHatchTable;
 class XLineEndList;
 class XLineEndTable;
 class SvxForbiddenCharactersTable;

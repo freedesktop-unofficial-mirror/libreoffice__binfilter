@@ -61,7 +61,7 @@ public:
     virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
-    const XHatch&           GetValue(const XHatchTable* pTable = 0) const;
+    const XHatch&           GetValue() const;
     void                    SetValue(const XHatch& rNew)  { aHatch = rNew; Detach(); }
 
     static BOOL CompareValueFunc( const NameOrIndex* p1, const NameOrIndex* p2 );

@@ -63,51 +63,6 @@ char const aChckHatch[]  = { 0x04, 0x00, 'S','O','H','L'};  // < 5.2
 char const aChckHatch0[] = { 0x04, 0x00, 'S','O','H','0'};  // = 5.2
 char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 
-// ------------------
-// class XHatchTable
-// ------------------
-
-/************************************************************************/
-
-/*N*/ XHatchTable::~XHatchTable()
-/*N*/ {
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XHatchEntry* XHatchTable::Get(long nIndex) const
-/*N*/ {
-/*N*/   return (XHatchEntry*) XPropertyTable::Get(nIndex, 0);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XHatchTable::Load()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XHatchTable::Create()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XHatchTable::CreateBitmapsForUI()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ Bitmap* XHatchTable::CreateBitmapForUI( long /*nIndex*/, BOOL /*bDelete*/ )
-/*N*/ {
-/*N*/   return( NULL );
-/*N*/ }
-
 // -----------------
 // class XHatchList
 // -----------------

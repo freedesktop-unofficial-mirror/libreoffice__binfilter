@@ -2850,13 +2850,14 @@ const XGradient& XFillGradientItem::GetValue(
 |*
 *************************************************************************/
 
-/*N*/ const XHatch& XFillHatchItem::GetValue(const XHatchTable* pTable) const
-/*N*/ {
-/*N*/   if (!IsIndex())
-/*N*/       return aHatch;
-/*N*/   else
-/*?*/       return pTable->Get(GetIndex())->GetHatch();
-/*N*/ }
+const XHatch& XFillHatchItem::GetValue() const
+{
+    //if (!IsIndex())
+    //    return aHatch;
+    //else
+    //    return pTable->Get(GetIndex())->GetHatch();
+    return aHatch;
+}
 
 //------------------------------------------------------------------------
 
