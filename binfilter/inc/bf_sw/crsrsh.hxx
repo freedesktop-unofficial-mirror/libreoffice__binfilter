@@ -321,12 +321,6 @@ public:
      */
     const SwRect &GetCharRect() const { return aCharRect; }
 
-    // aktualisiere den Crsrs, d.H. setze ihn wieder in den Content.
-    // Das sollte nur aufgerufen werden, wenn der Cursor z.B. beim
-    // Loeschen von Rahmen irgendwohin gesetzt wurde. Die Position
-    // ergibt sich aus seiner aktuellen Position im Layout !!
-    void UpdateCrsrPos();
-
     CRSR_INLINE const   SwPaM* GetTblCrs() const;
     CRSR_INLINE         SwPaM* GetTblCrs();
 

@@ -126,28 +126,6 @@ using namespace ::com::sun::star::util;
 /*N*/   return pCurCrsr;
 /*N*/ }
 
-/*N*/ void SwCrsrShell::UpdateCrsrPos()
-/*N*/ {
-/*N*/   SET_CURR_SHELL( this );
-/*N*/   ++nStartAction;
-/*N*/   Size aOldSz( GetLayout()->Frm().SSize() );
-/*N*/   SwCntntNode *pCNode = pCurCrsr->GetCntntNode();
-/*N*/   SwCntntFrm  *pFrm = pCNode ?
-/*N*/       pCNode->GetFrm( &pCurCrsr->GetPtPos(), pCurCrsr->GetPoint() ) :0;
-/*N*/   if( !pFrm || (pFrm->IsTxtFrm() && ((SwTxtFrm*)pFrm)->IsHiddenNow()) )
-/*N*/   {
-/*?*/       SwCrsrMoveState aTmpState( MV_NONE );
-/*?*/       aTmpState.bSetInReadOnly = IsReadOnlyAvailable();
-/*?*/       GetLayout()->GetCrsrOfst( pCurCrsr->GetPoint(), pCurCrsr->GetPtPos(),
-/*?*/                                    &aTmpState );
-/*?*/       if( pCurCrsr->HasMark())
-/*?*/           pCurCrsr->DeleteMark();
-/*N*/   }
-/*N*/   --nStartAction;
-/*N*/   if( aOldSz != GetLayout()->Frm().SSize() )
-/*N*/       SizeChgNotify( GetLayout()->Frm().SSize() );
-/*N*/ }
-
 /*N*/ void SwCrsrShell::ShowCrsrs( BOOL bCrsrVis )
 /*N*/ {
 /*N*/   if( !bHasFocus || bAllProtect || bBasicHideCrsr )
