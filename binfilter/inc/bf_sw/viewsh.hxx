@@ -171,7 +171,7 @@ public:
     inline void StartAction();
            void ImplStartAction();
     inline void EndAction();
-           void ImplEndAction( const sal_Bool bIdleEnd = sal_False );
+    void ImplEndAction();
     sal_uInt16 ActionCount() const { return nStartAction; }
     sal_Bool ActionPend() const { return nStartAction != 0; }
     sal_Bool IsInEndAction() const { return bInEndAction; }
@@ -347,7 +347,7 @@ inline void ViewShell::StartAction()
 inline void ViewShell::EndAction()
 {
     if( 0 == (nStartAction - 1) )
-        ImplEndAction( false );
+        ImplEndAction();
     --nStartAction;
 }
 

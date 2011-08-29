@@ -74,7 +74,7 @@ bool bInSizeNotify = FALSE;
 |*
 ******************************************************************************/
 
-/*N*/ void ViewShell::ImplEndAction( const BOOL bIdleEnd )
+/*N*/ void ViewShell::ImplEndAction()
 /*N*/ {
 /*N*/   //Fuer den Drucker gibt es hier nichts zu tun.
 /*N*/   if ( !GetWin() || IsPreView() )
@@ -110,7 +110,6 @@ bool bInSizeNotify = FALSE;
 /*N*/
 /*N*/   const bool bExtraData = ::binfilter::IsExtraData( GetDoc() );
 /*N*/
-/*N*/   if ( !bIdleEnd )
 /*N*/   {
 /*N*/       if ( Imp()->IsNextScroll() && !bExtraData )
 /*N*/           Imp()->SetScroll();
