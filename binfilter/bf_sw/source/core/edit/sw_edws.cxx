@@ -41,49 +41,10 @@
 #include <pam.hxx>
 namespace binfilter {
 
-/********************************************************
- * Ctor/Dtor
- ********************************************************/
-
-// ctor/dtor
-
-
 /*N*/ SwEditShell::~SwEditShell() // USED
 /*N*/ {
 /*N*/ }
 
-/******************************************************************************
- *                 void SwEditShell::StartAllAction()
- ******************************************************************************/
-
-
-/*N*/ void SwEditShell::StartAllAction()
-/*N*/ {
-/*N*/   ViewShell *pSh = this;
-/*N*/   do {
-/*N*/       if( pSh->IsA( TYPE( SwEditShell ) ) )
-/*N*/           ((SwEditShell*)pSh)->StartAction();
-/*N*/       else
-/*?*/           pSh->StartAction();
-/*N*/       pSh = (ViewShell *)pSh->GetNext();
-/*N*/   } while(pSh != this);
-/*N*/ }
-/******************************************************************************
- *                  void SwEditShell::EndAllAction()
- ******************************************************************************/
-
-
-/*N*/ void SwEditShell::EndAllAction()
-/*N*/ {
-/*N*/   ViewShell *pSh = this;
-/*N*/   do {
-/*N*/       if( pSh->IsA( TYPE( SwEditShell ) ) )
-/*N*/           ((SwEditShell*)pSh)->EndAction();
-/*N*/       else
-/*?*/           pSh->EndAction();
-/*N*/       pSh = (ViewShell *)pSh->GetNext();
-/*N*/   } while(pSh != this);
-/*N*/ }
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

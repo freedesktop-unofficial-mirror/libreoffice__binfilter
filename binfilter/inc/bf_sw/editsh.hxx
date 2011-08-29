@@ -211,10 +211,6 @@ public:
     //check whether DB fields point to an available data source and returns it
     BOOL IsFieldDataSourceAvailable(String& rUsedDataSource) const;
 
-    // fuer alle Sichten auf dieses Dokument
-    void StartAllAction();
-    void EndAllAction();
-
     // Is spelling active somewhere else?
     // Is text conversion active somewhere else?
     BOOL HasConvIter() const;

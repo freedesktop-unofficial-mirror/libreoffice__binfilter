@@ -36,7 +36,7 @@
 
 #include <doc.hxx>
 #include <cntfrm.hxx>
-#include <editsh.hxx>       //EndAllAction gibts nur an der EditShell
+#include <editsh.hxx>
 #include <frmfmt.hxx>
 #include <viscrs.hxx>
 #include <ndtxt.hxx>
