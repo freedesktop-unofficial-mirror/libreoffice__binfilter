@@ -227,12 +227,7 @@ private:
     // OD 11.02.2003 #100556# - flag to allow/avoid execution of marcos (default: true)
     bool mbMacroExecAllowed : 1;
 
-    void UpdateCrsr( USHORT eFlags
-                            =SwCrsrShell::SCROLLWIN|SwCrsrShell::CHKRANGE,
-                     BOOL bIdleEnd = FALSE );
-
-
-typedef bool (SwCursor:: *FNCrsr)();
+    typedef bool (SwCursor:: *FNCrsr)();
 
 protected:
     /*
