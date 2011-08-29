@@ -211,25 +211,9 @@ public:
     //check whether DB fields point to an available data source and returns it
     BOOL IsFieldDataSourceAvailable(String& rUsedDataSource) const;
 
-
-    // Repeat
-    // liefert die Id der letzten Repeatfaehigen Aktion zurueck
-    // fuellt ggf. VARARR mit RedoIds
-
-    // 0 letzte Aktion, sonst Aktionen bis zum Start der Klammerung nUndoId
-    // mit KillPaMs, ClearMark
-    // wiederholt
-    // wiederholt
-#ifdef USED
-    // Aktionen klammern
-#endif
     // fuer alle Sichten auf dieses Dokument
     void StartAllAction();
     void EndAllAction();
-
-    /* Anwenden der ViewOptions mit Start-/EndAction */
-    inline void ApplyViewOptions( const SwViewOption &rOpt );
-
 
     // Is spelling active somewhere else?
     // Is text conversion active somewhere else?
@@ -259,13 +243,6 @@ private:
     SwEditShell(const SwEditShell &);
     const SwEditShell &operator=(const SwEditShell &);
 };
-
-inline void SwEditShell::ApplyViewOptions( const SwViewOption &rOpt )
-{
-    SwCrsrShell::StartAction();
-    ViewShell::ApplyViewOptions( rOpt );
-    SwEditShell::EndAction();
-}
 
 inline const SvxLinkManager& SwEditShell::GetLinkManager() const
 {   return ((SwEditShell*)this)->GetLinkManager();  }
