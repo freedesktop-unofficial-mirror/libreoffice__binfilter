@@ -274,11 +274,6 @@ public:
     // ( Wird in der EditShell beim Loeschen von Inhalten benoetigt! )
     CRSR_INLINE SwPaM* GetStkCrsr() const;
 
-    // Start der Klammerung, SV-Cursor und selektierte Bereiche hiden
-    void StartAction();
-    // Ende der Klammerung, SV-Cursor und selektierte Bereiche anzeigen
-    void EndAction();
-
     USHORT GetBasicActionCnt() const    { return nBasicActionCnt; }
 
     // Basiscursortravelling
