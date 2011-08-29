@@ -159,7 +159,7 @@ using namespace ::com::sun::star::util;
 /*N*/   BOOL bSavSVCrsrVis = bSVCrsrVis;
 /*N*/   bSVCrsrVis = FALSE;
 /*N*/
-/*N*/   ViewShell::EndAction( false );   //der ViewShell den Vortritt lassen
+/*N*/   ViewShell::EndAction();   //der ViewShell den Vortritt lassen
 /*N*/
 /*N*/   bSVCrsrVis = bSavSVCrsrVis;
 /*N*/

@@ -170,7 +170,7 @@ public:
     //Klammerung von zusammengehoerenden Aktionen.
     inline void StartAction();
            void ImplStartAction();
-    inline void EndAction( const sal_Bool bIdleEnd = sal_False );
+    inline void EndAction();
            void ImplEndAction( const sal_Bool bIdleEnd = sal_False );
     sal_uInt16 ActionCount() const { return nStartAction; }
     sal_Bool ActionPend() const { return nStartAction != 0; }
@@ -344,10 +344,10 @@ inline void ViewShell::StartAction()
     if ( !nStartAction++ )
         ImplStartAction();
 }
-inline void ViewShell::EndAction( const sal_Bool bIdleEnd )
+inline void ViewShell::EndAction()
 {
     if( 0 == (nStartAction - 1) )
-        ImplEndAction( bIdleEnd );
+        ImplEndAction( false );
     --nStartAction;
 }
 
