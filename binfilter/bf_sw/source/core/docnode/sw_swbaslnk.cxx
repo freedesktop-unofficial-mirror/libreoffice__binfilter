@@ -207,13 +207,9 @@ namespace binfilter {
 /*N*/   else if( pCntntNode->IsOLENode() )
 /*?*/       bUpdate = TRUE;
 /*N*/
-/*N*/   ViewShell *pSh = 0;
-/*N*/   SwEditShell* pESh = pDoc->GetEditShell( &pSh );
-/*N*/
 /*N*/   if ( bUpdate && bGraphicPieceArrived && !(bSwapIn || bDontNotify) )
 /*N*/   {
 /*?*/       //Hint ohne Actions verschicken, loest direktes Paint aus.
-/*?*/       if ( (!pSh || !pSh->ActionPend()) && (!pESh || !pESh->ActionPend()) )
 /*?*/       {
 /*?*/           SwMsgPoolItem aMsgHint( RES_GRAPHIC_PIECE_ARRIVED );
 /*?*/           pCntntNode->Modify( &aMsgHint, &aMsgHint );
@@ -225,18 +221,6 @@ namespace binfilter {
 /*N*/   if( bUpdate && !bDontNotify && (!bSwapIn || bGraphicArrived) &&
 /*N*/       !bInNotifyLinks)
 /*N*/   {
-/*N*/       BOOL bLockView = FALSE;
-/*N*/       if( pSh )
-/*N*/       {
-/*N*/           bLockView = pSh->IsViewLocked();
-/*N*/           pSh->LockView( TRUE );
-/*N*/       }
-/*N*/
-/*N*/       if( pESh )
-/*N*/           pESh->StartAllAction();
-/*N*/       else if( pSh )
-/*?*/           pSh->StartAction();
-/*N*/
 /*N*/       SwMsgPoolItem aMsgHint( bGraphicArrived ? RES_GRAPHIC_ARRIVED :
 /*N*/                                                 RES_UPDATE_ATTR );
 /*N*/
@@ -283,20 +267,6 @@ namespace binfilter {
 /*N*/       {
 /*?*/           pCntntNode->Modify( &aMsgHint, &aMsgHint );
 /*N*/       }
-/*N*/
-/*N*/
-/*N*/       if( pESh )
-/*N*/       {
-/*N*/           const BOOL bEndActionByVirDev = pESh->IsEndActionByVirDev();
-/*N*/           pESh->SetEndActionByVirDev( TRUE );
-/*N*/           pESh->EndAllAction();
-/*N*/           pESh->SetEndActionByVirDev( bEndActionByVirDev );
-/*N*/       }
-/*N*/       else if( pSh )
-/*?*/           pSh->EndAction();
-/*N*/
-/*N*/       if( pSh && !bLockView )
-/*N*/           pSh->LockView( FALSE );
 /*N*/   }
 /*N*/ }
 
@@ -316,10 +286,6 @@ namespace binfilter {
 /*N*/ BOOL SetGrfFlySize( const Size& rGrfSz, const Size& rFrmSz, SwGrfNode* pGrfNd )
 /*N*/ {
 /*N*/   BOOL bRet = FALSE;
-/*N*/   ViewShell *pSh;
-/*N*/   CurrShell *pCurr = 0;
-/*N*/   if ( pGrfNd->GetDoc()->GetEditShell( &pSh ) )
-/*N*/       pCurr = new CurrShell( pSh );
 /*N*/
 /*N*/   Size aSz = pGrfNd->GetTwipSize();
 /*N*/   if ( !(aSz.Width() && aSz.Height()) &&
@@ -383,8 +349,6 @@ namespace binfilter {
 /*N*/       // braucht dazu das Frame-Format
 /*N*/       pGrfNd->SetTwipSize( rGrfSz );
 /*N*/   }
-/*N*/
-/*N*/   delete pCurr;
 /*N*/
 /*N*/   return bRet;
 /*N*/ }

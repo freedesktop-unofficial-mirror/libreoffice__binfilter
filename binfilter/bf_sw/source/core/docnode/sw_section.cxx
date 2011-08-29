@@ -878,8 +878,6 @@ void SwSectionFmt::MakeFrms()
 /*N*/   pDoc->SetVisibleLinks( FALSE );
 /*N*/
 /*N*/   SwPaM* pPam;
-/*N*/   ViewShell* pVSh = 0;
-/*N*/   SwEditShell* pESh = pDoc->GetEditShell( &pVSh );
 /*N*/   pDoc->LockExpFlds();
 /*N*/   {
 /*N*/       // am Anfang des Bereichs einen leeren TextNode einfuegen
@@ -887,11 +885,6 @@ void SwSectionFmt::MakeFrms()
 /*N*/       SwNodeIndex aEndIdx( *pSectNd->EndOfSectionNode() );
 /*N*/       SwTxtNode* pNewNd = pDoc->GetNodes().MakeTxtNode( aIdx,
 /*N*/                       pDoc->GetTxtCollFromPool( RES_POOLCOLL_TEXT ) );
-/*N*/
-/*N*/       if( pESh )
-/*N*/           pESh->StartAllAction();
-/*N*/       else if( pVSh )
-/*?*/           pVSh->StartAction();
 /*N*/
 /*N*/       SwPosition aPos( aIdx, SwIndex( pNewNd, 0 ));
 /*N*/       aPos.nNode--;
@@ -1066,10 +1059,6 @@ void SwSectionFmt::MakeFrms()
 /*N*/   if( !pDoc->IsExpFldsLocked() )
 /*N*/       pDoc->UpdateExpFlds();
 /*N*/
-/*N*/   if( pESh )
-/*N*/       pESh->EndAllAction();
-/*N*/   else if( pVSh )
-/*?*/       pVSh->EndAction();
 /*N*/   delete pPam;            // wurde am Anfang angelegt
 /*N*/ }
 

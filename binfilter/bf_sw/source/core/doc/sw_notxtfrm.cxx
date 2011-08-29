@@ -280,29 +280,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*N*/           CLEARCACHE( pNd )
 /*N*/
 /*N*/           SwRect aRect( Frm() );
-/*N*/
-/*N*/           ViewShell *pVSh = 0;
-/*N*/           pNd->GetDoc()->GetEditShell( &pVSh );
-/*N*/             if( !pVSh )
-/*N*/               break;
-/*N*/
-/*N*/           ViewShell *pSh = pVSh;
-/*N*/           do {
-/*N*/               SET_CURR_SHELL( pSh );
-/*N*/               if( pSh->IsPreView() )
-/*N*/               {
-/*?*/                   if( pSh->GetWin() )
-/*?*/                       DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
-/*?*/               else if ( pSh->VisArea().IsOver( aRect ) &&
-/*?*/                    OUTDEV_WINDOW == pSh->GetOut()->GetOutDevType() )
-/*?*/               {
-/*?*/                     // invalidate instead of painting
-/*?*/                     pSh->GetWin()->Invalidate( aRect.SVRect() );
-/*?*/               }
-/*N*/
-/*N*/               pSh = (ViewShell *)pSh->GetNext();
-/*N*/           } while( pSh != pVSh );
 /*N*/       }
 /*N*/       break;
 /*N*/

@@ -99,22 +99,6 @@ namespace binfilter {
 /*N*/            SFX_HINT_ACCESSIBILITY_CHANGED == nHintId )
 /*M*/         {DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
-/*N*/         else if( SFX_HINT_CTL_SETTINGS_CHANGED == nHintId )
-/*N*/         {
-/*N*/             const SfxObjectShell* pObjSh = SfxObjectShell::GetFirst();
-/*N*/             while( pObjSh )
-/*N*/             {
-/*N*/                 if( pObjSh->IsA(TYPE(SwDocShell)) )
-/*N*/                 {
-/*N*/                     const SwDoc* pDoc = ((SwDocShell*)pObjSh)->GetDoc();
-/*N*/                     ViewShell* pVSh = 0;
-/*N*/                     pDoc->GetEditShell( &pVSh );
-/*N*/                     if ( pVSh )
-/*N*/                         pVSh->ChgNumberDigits();
-/*N*/                 }
-/*N*/                 pObjSh = SfxObjectShell::GetNext(*pObjSh);
-/*N*/             }
-/*N*/         }
 /*M*/         else if(SFX_HINT_DEINITIALIZING == nHintId)
 /*M*/         {
 /*M*/             DELETEZ(pWebUsrPref);

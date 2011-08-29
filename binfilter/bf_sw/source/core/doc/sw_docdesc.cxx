@@ -622,66 +622,8 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 
 /*N*/ IMPL_LINK( SwDoc, DoUpdateModifiedOLE, Timer *, EMPTYARG )
 /*N*/ {
-/*N*/   SwFEShell* pSh = (SwFEShell*)GetEditShell();
-/*N*/   if( pSh )
-/*N*/   {
-/*N*/       bOLEPrtNotifyPending = bAllOLENotify = FALSE;
-/*N*/
-/*N*/       SwOLENodes aOLENodes;
-/*N*/       SwClientIter aIter( *(SwModify*)GetDfltGrfFmtColl() );
-/*N*/       for( SwCntntNode* pNd = (SwCntntNode*)aIter.First( TYPE( SwCntntNode ) );
-/*N*/            pNd;
-/*N*/            pNd = (SwCntntNode*)aIter.Next() )
-/*N*/       {
-/*N*/           SwOLENode *pONd = pNd->GetOLENode();
-/*N*/           if( pONd && pONd->IsOLESizeInvalid() )
-/*N*/           {
-/*N*/               aOLENodes.Insert( pONd, aOLENodes.Count() );
-/*N*/           }
-/*N*/       }
-/*N*/
-/*N*/       if( aOLENodes.Count() )
-/*N*/       {
-/*N*/           ::binfilter::StartProgress( STR_STATSTR_SWGPRTOLENOTIFY,
-/*N*/                            0, aOLENodes.Count(), GetDocShell());
-/*N*/           SwMsgPoolItem aMsgHint( RES_UPDATE_ATTR );
-/*N*/
-/*N*/           for( USHORT i = 0; i < aOLENodes.Count(); ++i )
-/*N*/           {
-/*N*/               ::binfilter::SetProgressState( i, GetDocShell() );
-/*N*/
-/*N*/               SwOLENode* pOLENd = aOLENodes[i];
-/*N*/               pOLENd->SetOLESizeInvalid( FALSE );
-/*N*/
-/*N*/               //Kennen wir nicht, also muss das Objekt geladen werden.
-/*N*/               //Wenn es keine Benachrichtigung wuenscht
-/*N*/               SvEmbeddedObjectRef xRef( (SvInPlaceObject*)
-/*N*/                                       pOLENd->GetOLEObj().GetOleRef() );
-/*N*/               if( xRef ) //Kaputt?
-/*N*/               {
-/*N*/                   if( SVOBJ_MISCSTATUS_RESIZEONPRINTERCHANGE &
-/*N*/                           xRef->GetMiscStatus() )
-/*N*/                   {
-/*N*/                       if( pOLENd->GetFrm() )
-/*N*/                       {
-/*N*/                           xRef->OnDocumentPrinterChanged( pPrt );
-/*N*/                           pSh->CalcAndSetScale( xRef );//Client erzeugen lassen.
-/*N*/                       }
-/*N*/                       else
-/*?*/                           pOLENd->SetOLESizeInvalid( TRUE );
-/*N*/                   }
-/*N*/                   // repaint it
-/*N*/                   pOLENd->Modify( &aMsgHint, &aMsgHint );
-/*N*/               }
-/*N*/           }
-/*N*/           ::binfilter::EndProgress( GetDocShell() );
-/*N*/       }
-/*N*/   }
 /*N*/   return 0;
 /*N*/ }
-
-
-
 
 }
 

@@ -1296,9 +1296,6 @@ public:
     const SwAttrPool& GetAttrPool() const   { return aAttrPool; }
           SwAttrPool& GetAttrPool()         { return aAttrPool; }
 
-    // suche ueber das Layout eine EditShell und ggfs. eine ViewShell
-    SwEditShell* GetEditShell( ViewShell** ppSh = 0 ) const;
-
     // OLE 2.0-Benachrichtung
     inline       void  SetOle2Link(const Link& rLink) {aOle2Link = rLink;}
     inline const Link& GetOle2Link() const {return aOle2Link;}

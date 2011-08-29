@@ -94,29 +94,6 @@ namespace binfilter {
 /*N*/   const SwNode* pOldNode = &rOldNode.GetNode();
 /*N*/   const SwPosition aNewPos( rNewPos );
 /*N*/   const SwDoc* pDoc = pOldNode->GetDoc();
-/*N*/   SwCrsrShell* pShell = pDoc->GetEditShell();
-/*N*/
-/*N*/   if( pShell )
-/*N*/   {
-/*N*/       FOREACHSHELL_START( pShell )
-/*N*/           register SwPaM *_pStkCrsr = PCURSH->GetStkCrsr();
-/*N*/   // Alle ueberfluessigen Crsr sind vom Stack, oder ??
-/*N*/   //      OSL_ENSURE( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
-/*N*/           if( _pStkCrsr )
-/*?*/           do {
-/*?*/               _PaMCorrAbs1( _pStkCrsr )
-/*?*/           } while ( (_pStkCrsr != 0 ) &&
-/*?*/               ((_pStkCrsr=(SwPaM *)_pStkCrsr->GetNext()) != PCURSH->GetStkCrsr()) );
-/*?*/
-/*N*/           FOREACHPAM_START( PCURSH->_GetCrsr() )
-/*N*/               _PaMCorrAbs1( PCURCRSR )
-/*N*/           FOREACHPAM_END()
-/*N*/
-/*N*/           if( PCURSH->IsTableMode() )
-/*N*/               _PaMCorrAbs1( PCURSH->GetTblCrs() )
-/*N*/
-/*N*/       FOREACHSHELL_END( pShell )
-/*N*/   }
 /*N*/
 /*N*/   {
 /*N*/       register SwUnoCrsrTbl& rTbl = (SwUnoCrsrTbl&)pDoc->GetUnoCrsrTbl();
@@ -206,29 +183,6 @@ namespace binfilter {
 /*N*/   const SwPosition aNewPos( rNewPos );
 /*N*/   SwDoc* pDoc = rStartNode.GetNode().GetDoc();
 /*N*/
-/*N*/   SwCrsrShell* pShell = pDoc->GetEditShell();
-/*N*/   if( pShell )
-/*N*/   {
-/*N*/       FOREACHSHELL_START( pShell )
-/*N*/           register SwPaM *_pStkCrsr = PCURSH->GetStkCrsr();
-/*N*/   // Alle ueberfluessigen Crsr sind vom Stack, oder ??
-/*N*/   //      OSL_ENSURE( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
-/*N*/           if( _pStkCrsr )
-/*N*/           do {
-/*N*/               _PaMCorrAbs2( _pStkCrsr, aNewPos, nSttNode, nEndNode );
-/*N*/           } while ( (_pStkCrsr != 0 ) &&
-/*N*/               ((_pStkCrsr=(SwPaM *)_pStkCrsr->GetNext()) != PCURSH->GetStkCrsr()) );
-/*N*/
-/*N*/           FOREACHPAM_START( PCURSH->_GetCrsr() )
-/*N*/               _PaMCorrAbs2( PCURCRSR, aNewPos, nSttNode, nEndNode );
-/*N*/           FOREACHPAM_END()
-/*N*/
-/*N*/           if( PCURSH->IsTableMode() )
-/*N*/               _PaMCorrAbs2( PCURSH->GetTblCrs(), aNewPos, nSttNode, nEndNode );
-/*N*/
-/*N*/       FOREACHSHELL_END( pShell )
-/*N*/   }
-/*N*/
 /*N*/   {
 /*N*/       register SwUnoCrsrTbl& rTbl = (SwUnoCrsrTbl&)pDoc->GetUnoCrsrTbl();
 /*N*/       for( USHORT n = 0; n < rTbl.Count(); ++n )
@@ -303,29 +257,7 @@ namespace binfilter {
 /*N*/   SwPosition aEnd( *rRange.End() );
 /*N*/   SwPosition aNewPos( rNewPos );
 /*N*/   SwDoc* pDoc = aStart.nNode.GetNode().GetDoc();
-/*N*/   SwCrsrShell* pShell = pDoc->GetEditShell();
 /*N*/
-/*N*/   if( pShell )
-/*N*/   {
-/*N*/       FOREACHSHELL_START( pShell )
-/*N*/           register SwPaM *_pStkCrsr = PCURSH->GetStkCrsr();
-/*N*/   // Alle ueberfluessigen Crsr sind vom Stack, oder ??
-/*N*/   //      OSL_ENSURE( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
-/*N*/           if( _pStkCrsr )
-/*N*/           do {
-/*?*/               _PaMCorrAbs3( _pStkCrsr )
-/*?*/           } while ( (_pStkCrsr != 0 ) &&
-/*?*/               ((_pStkCrsr=(SwPaM *)_pStkCrsr->GetNext()) != PCURSH->GetStkCrsr()) );
-/*N*/
-/*N*/           FOREACHPAM_START( PCURSH->_GetCrsr() )
-/*N*/               _PaMCorrAbs3( PCURCRSR )
-/*N*/           FOREACHPAM_END()
-/*N*/
-/*N*/           if( PCURSH->IsTableMode() )
-/*?*/               _PaMCorrAbs3( PCURSH->GetTblCrs() )
-/*N*/
-/*N*/       FOREACHSHELL_END( pShell )
-/*N*/   }
 /*N*/   {
 /*N*/       register SwUnoCrsrTbl& rTbl = (SwUnoCrsrTbl&)pDoc->GetUnoCrsrTbl();
 /*N*/       for( USHORT n = 0; n < rTbl.Count(); ++n )
@@ -370,28 +302,6 @@ namespace binfilter {
 /*N*/
 /*N*/   xub_StrLen nCntIdx = rNewPos.nContent.GetIndex() + nOffset;
 /*N*/
-/*N*/   SwCrsrShell* pShell = pDoc->GetEditShell();
-/*N*/   if( pShell )
-/*N*/   {
-/*N*/       FOREACHSHELL_START( pShell )
-/*N*/           register SwPaM *_pStkCrsr = PCURSH->GetStkCrsr();
-/*N*/   // Alle ueberfluessigen Crsr sind vom Stack, oder ??
-/*N*/   //      OSL_ENSURE( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
-/*N*/           if( _pStkCrsr )
-/*N*/           do {
-/*?*/               _PaMCorrRel1( _pStkCrsr )
-/*?*/           } while ( (_pStkCrsr != 0 ) &&
-/*?*/               ((_pStkCrsr=(SwPaM *)_pStkCrsr->GetNext()) != PCURSH->GetStkCrsr()) );
-/*N*/
-/*N*/           FOREACHPAM_START( PCURSH->_GetCrsr() )
-/*N*/               _PaMCorrRel1( PCURCRSR )
-/*N*/           FOREACHPAM_END()
-/*N*/
-/*N*/           if( PCURSH->IsTableMode() )
-/*?*/               _PaMCorrRel1( PCURSH->GetTblCrs() )
-/*N*/
-/*N*/       FOREACHSHELL_END( pShell )
-/*N*/   }
 /*N*/   {
 /*N*/       register SwUnoCrsrTbl& rTbl = (SwUnoCrsrTbl&)pDoc->GetUnoCrsrTbl();
 /*N*/       for( USHORT n = 0; n < rTbl.Count(); ++n )
@@ -463,19 +373,6 @@ namespace binfilter {
 /*N*/   if( bMoveCrsr )
 /*N*/       ::binfilter::PaMCorrRel( rOldNode, rNewPos, nOffset );
 /*N*/ }
-
-
-
-/*N*/ SwEditShell* SwDoc::GetEditShell( ViewShell** ppSh ) const
-/*N*/ {
-/*N*/   if( ppSh )
-/*N*/       *ppSh = 0;
-/*N*/   return 0;
-/*N*/ }
-
-// #102505# ->
-
-// <- #102505#
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

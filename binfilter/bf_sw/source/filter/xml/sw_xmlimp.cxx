@@ -422,7 +422,6 @@ void SwXMLImport::startDocument( void )
         Reference < XTextDocument > xTextDoc( GetModel(), UNO_QUERY );
         Reference < XText > xText = xTextDoc->getText();
         xTextCursor = xText->createTextCursor();
-        SwCrsrShell *pCrsrSh = 0;
         SwDoc *pDoc = 0;
         if( IMPORT_ALL == getImportFlags() )
         {
@@ -435,24 +434,8 @@ void SwXMLImport::startDocument( void )
             OSL_ENSURE( pDoc, "SwDoc missing" );
             if( !pDoc )
                 return;
-
-            // Is there a edit shell. If yes, then we are currently inserting
-            // a document. We then have to insert at the current edit shell's
-            // cursor position. That not quite clean code, but there is no other
-            // way currently.
-            pCrsrSh = pDoc->GetEditShell();
         }
-        if( pCrsrSh )
-        {
-            Reference<XTextRange> xInsertTextRange(
-                SwXTextRange::CreateTextRangeFromPosition(
-                                pDoc, *pCrsrSh->GetCrsr()->GetPoint(), 0 ) );
-            setTextInsertMode( xInsertTextRange );
-            xTextCursor = GetTextImport()->GetCursor();
-            pTxtCrsr = 0;
-        }
-        else
-            GetTextImport()->SetCursor( xTextCursor );
+        GetTextImport()->SetCursor( xTextCursor );
     }
 
     if( (getImportFlags() & (IMPORT_CONTENT|IMPORT_MASTERSTYLES)) == 0 )

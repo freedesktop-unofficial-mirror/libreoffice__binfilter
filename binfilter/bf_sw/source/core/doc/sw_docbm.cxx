@@ -614,31 +614,6 @@ namespace binfilter {
 /*N*/           }
 /*N*/       }
 /*N*/   }
-/*N*/   // 5. CrsrShell
-/*N*/   {
-/*N*/       SwCrsrShell* pShell = pDoc->GetEditShell();
-/*N*/       if( pShell )
-/*N*/       {
-/*N*/           aSave.SetTypeAndCount( 0x800, 0 );
-/*N*/           FOREACHSHELL_START( pShell )
-/*N*/               register SwPaM *_pStkCrsr = PCURSH->GetStkCrsr();
-/*N*/               if( _pStkCrsr )
-/*N*/               do {
-/*N*/                   ::binfilter::_ChkPaM( rSaveArr, nNode, nCntnt, *_pStkCrsr,
-/*N*/                               aSave, FALSE );
-/*N*/                   aSave.IncCount();
-/*N*/               } while ( (_pStkCrsr != 0 ) &&
-/*N*/                   ((_pStkCrsr=(SwPaM *)_pStkCrsr->GetNext()) != PCURSH->GetStkCrsr()) );
-/*N*/
-/*N*/               FOREACHPAM_START( PCURSH->_GetCrsr() )
-/*N*/                   ::binfilter::_ChkPaM( rSaveArr, nNode, nCntnt, *PCURCRSR,
-/*N*/                               aSave, FALSE );
-/*N*/                   aSave.IncCount();
-/*N*/               FOREACHPAM_END()
-/*N*/
-/*N*/           FOREACHSHELL_END( pShell )
-/*N*/       }
-/*N*/   }
 /*N*/   // 6. UnoCrsr
 /*N*/   {
 /*N*/       aSave.SetTypeAndCount( 0x400, 0 );
@@ -719,43 +694,6 @@ namespace binfilter {
 /*N*/
 /*N*/       case 0x0800:
 /*N*/       case 0x0801:
-/*N*/           {
-/*N*/               USHORT nCnt = 0;
-/*N*/               SwCrsrShell* pShell = pDoc->GetEditShell();
-/*N*/               if( pShell )
-/*N*/               {
-/*N*/                   FOREACHSHELL_START( pShell )
-/*N*/                       register SwPaM *_pStkCrsr = PCURSH->GetStkCrsr();
-/*N*/                       if( _pStkCrsr )
-/*N*/                       do {
-/*N*/                           if( aSave.GetCount() == nCnt )
-/*N*/                           {
-/*N*/                               pPos = &_pStkCrsr->GetBound( 0x0800 ==
-/*N*/                                                   aSave.GetType() );
-/*N*/                               break;
-/*N*/                           }
-/*N*/                           ++nCnt;
-/*N*/                       } while ( (_pStkCrsr != 0 ) &&
-/*N*/                           ((_pStkCrsr=(SwPaM *)_pStkCrsr->GetNext()) != PCURSH->GetStkCrsr()) );
-/*N*/
-/*N*/                       if( pPos )
-/*N*/                           break;
-/*N*/
-/*N*/                       FOREACHPAM_START( PCURSH->_GetCrsr() )
-/*N*/                           if( aSave.GetCount() == nCnt )
-/*N*/                           {
-/*N*/                               pPos = &PCURCRSR->GetBound( 0x0800 ==
-/*N*/                                                   aSave.GetType() );
-/*N*/                               break;
-/*N*/                           }
-/*N*/                           ++nCnt;
-/*N*/                       FOREACHPAM_END()
-/*N*/                       if( pPos )
-/*N*/                           break;
-/*N*/
-/*N*/                   FOREACHSHELL_END( pShell )
-/*N*/               }
-/*N*/           }
 /*N*/           break;
 /*N*/
 /*N*/       case 0x0400:

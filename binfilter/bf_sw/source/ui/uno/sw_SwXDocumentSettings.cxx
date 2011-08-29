@@ -368,9 +368,6 @@ void SwXDocumentSettings::_setSingleValue( const comphelper::PropertyInfo & rInf
         {
             sal_Bool bIsKern = *(sal_Bool*)(rValue).getValue();
             mpDoc->SetKernAsianPunctuation( bIsKern );
-            SwEditShell* pEditSh = mpDoc->GetEditShell();
-            if(pEditSh)
-                pEditSh->ChgHyphenation();
         }
         break;
         case HANDLE_CHARACTER_COMPRESSION_TYPE:

@@ -279,25 +279,6 @@ namespace binfilter {
 
 /*N*/ IMPL_LINK( SwDoc, DoUpdateAllCharts, Timer *, EMPTYARG )
 /*N*/ {
-/*N*/   ViewShell* pVSh;
-/*N*/   GetEditShell( &pVSh );
-/*N*/   if( pVSh )
-/*N*/   {
-/*N*/       const SwFrmFmts& rTblFmts = *GetTblFrmFmts();
-/*N*/       for( USHORT n = 0; n < rTblFmts.Count(); ++n )
-/*N*/       {
-/*N*/           SwTable* pTmpTbl;
-/*N*/           const SwTableNode* pTblNd;
-/*N*/           SwFrmFmt* pFmt = rTblFmts[ n ];
-/*N*/
-/*N*/           if( 0 != ( pTmpTbl = SwTable::FindTable( pFmt ) ) &&
-/*N*/               0 != ( pTblNd = pTmpTbl->GetTableNode() ) &&
-/*N*/               pTblNd->GetNodes().IsDocNodes() )
-/*N*/           {
-/*N*/               _UpdateCharts( *pTmpTbl, *pVSh );
-/*N*/           }
-/*N*/       }
-/*N*/   }
 /*N*/   return 0;
 /*N*/ }
 
