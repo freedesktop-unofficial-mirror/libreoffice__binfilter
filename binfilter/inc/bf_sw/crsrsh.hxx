@@ -277,7 +277,7 @@ public:
     // Start der Klammerung, SV-Cursor und selektierte Bereiche hiden
     void StartAction();
     // Ende der Klammerung, SV-Cursor und selektierte Bereiche anzeigen
-    void EndAction( const BOOL bIdleEnd = FALSE );
+    void EndAction();
 
     USHORT GetBasicActionCnt() const    { return nBasicActionCnt; }
 

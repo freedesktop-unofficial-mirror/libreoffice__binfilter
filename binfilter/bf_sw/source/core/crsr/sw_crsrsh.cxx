@@ -146,29 +146,9 @@ using namespace ::com::sun::star::util;
 /*N*/ }
 
 
-/*N*/ void SwCrsrShell::EndAction( const BOOL bIdleEnd )
+/*N*/ void SwCrsrShell::EndAction()
 /*N*/ {
 /*N*/   bool bVis = bSVCrsrVis;
-    // Idle-Formatierung ?
-/*N*/   if( bIdleEnd && Imp()->GetRegion() )
-/*N*/   {
-/*?*/       pCurCrsr->Hide();
-
-/*?*/ #ifdef SHOW_IDLE_REGION
-/*?*/ if( GetWin() )
-/*?*/ {
-/*?*/   GetWin()->Push();
-/*?*/   GetWin()->ChangePen( Pen( Color( COL_YELLOW )));
-/*?*/   for( USHORT n = 0; n < aPntReg.Count(); ++n )
-/*?*/   {
-/*?*/       SwRect aIRect( aPntReg[n] );
-/*?*/       GetWin()->DrawRect( aIRect.SVRect() );
-/*?*/   }
-/*?*/   GetWin()->Pop();
-/*?*/ }
-/*?*/ #endif
-
-/*N*/   }
 
     // vor der letzten Action alle invaliden Numerierungen updaten
 /*N*/   if( 1 == nStartAction )
@@ -179,7 +159,7 @@ using namespace ::com::sun::star::util;
 /*N*/   BOOL bSavSVCrsrVis = bSVCrsrVis;
 /*N*/   bSVCrsrVis = FALSE;
 /*N*/
-/*N*/   ViewShell::EndAction( bIdleEnd );   //der ViewShell den Vortritt lassen
+/*N*/   ViewShell::EndAction( false );   //der ViewShell den Vortritt lassen
 /*N*/
 /*N*/   bSVCrsrVis = bSavSVCrsrVis;
 /*N*/
@@ -202,10 +182,8 @@ using namespace ::com::sun::star::util;
 /*N*/       return;
 /*N*/   }
 
-/*N*/   USHORT nParm = SwCrsrShell::CHKRANGE;
-/*N*/   if ( !bIdleEnd )
-/*N*/       nParm |= SwCrsrShell::SCROLLWIN;
-/*N*/   UpdateCrsr( nParm, bIdleEnd );      // Cursor-Aenderungen anzeigen
+/*N*/   USHORT nParm = SwCrsrShell::CHKRANGE | SwCrsrShell::SCROLLWIN;
+/*N*/   UpdateCrsr( nParm, false );      // Cursor-Aenderungen anzeigen
 /*N*/
 /*N*/   {
 /*N*/       SwCallLink aLk( *this );        // Crsr-Moves ueberwachen,
