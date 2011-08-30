@@ -59,7 +59,6 @@
 
 #include "ChXChartDocument.hxx"
 #include "ChXChartData.hxx"
-#include "SchXMLWrapper.hxx"
 #include "memchrt.hxx"
 
 namespace binfilter {

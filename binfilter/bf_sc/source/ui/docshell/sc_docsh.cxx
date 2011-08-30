@@ -71,7 +71,6 @@
 #include "printfun.hxx"
 #include "chartlis.hxx"
 #include "hints.hxx"
-#include "xmlwrap.hxx"
 #include "drwlayer.hxx"
 #include "dbcolect.hxx"
 

@@ -47,7 +47,6 @@ INC+= -I$(PRJ)$/inc$/bf_sc
 # --- Files --------------------------------------------------------
 
 CXXFILES = \
-        sc_xmlwrap.cxx \
         sc_xmlimprt.cxx \
         sc_xmlexprt.cxx \
         sc_xmlbodyi.cxx \
@@ -96,7 +95,6 @@ CXXFILES = \
         sc_XMLEmptyContext.cxx
 
 SLOFILES =  \
-        $(SLO)$/sc_xmlwrap.obj \
         $(SLO)$/sc_xmlimprt.obj \
         $(SLO)$/sc_xmlexprt.obj \
         $(SLO)$/sc_xmlbodyi.obj \

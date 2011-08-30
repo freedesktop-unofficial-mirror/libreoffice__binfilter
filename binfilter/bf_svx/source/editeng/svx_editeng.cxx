@@ -531,15 +531,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   return aStr;
 /*N*/ }
 
-/*N*/ sal_Bool EditEngine::IsModified() const
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/   return pImpEditEngine->IsModified();
-/*N*/ }
-
-
-
-
 /*N*/ void EditEngine::InsertParagraph( sal_uInt16 nPara, const XubString& rTxt )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );

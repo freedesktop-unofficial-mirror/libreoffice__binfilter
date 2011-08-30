@@ -218,7 +218,6 @@ public:
     BOOL            IsUndoEnabled();
 
     void            SetModified();
-    BOOL            IsModified() const;
 
     Link            GetModifyHdl() const;
 

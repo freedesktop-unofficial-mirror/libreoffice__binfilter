@@ -113,10 +113,6 @@ namespace binfilter {
 /*N*/   return CONTAINER_ENTRY_NOTFOUND;
 /*N*/ }
 
-/*N*/ void SdrMarkList::InsertEntry(const SdrMark& /*rMark*/, bool /*bChkSort*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ bool SdrMarkList::DeletePageView(const SdrPageView& rPV)
 /*N*/ {
 /*N*/   bool bChgd=FALSE;

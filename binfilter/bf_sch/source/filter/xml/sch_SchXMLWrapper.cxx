@@ -35,8 +35,6 @@
 #include <bf_sfx2/docfile.hxx>
 #include <bf_svtools/sfxecode.hxx>
 
-#include "SchXMLWrapper.hxx"
-
 #include <unotools/streamwrap.hxx>
 #include <bf_svx/xmlgrhlp.hxx>
 #include <tools/debug.hxx>
@@ -71,17 +69,6 @@ XML_STRING( sXML_import_chart_styles_service,       "com.sun.star.comp.Chart.XML
 XML_STRING( sXML_import_chart_content_service,      "com.sun.star.comp.Chart.XMLContentImporter" );
 XML_STRING( sXML_import_chart_old_content_service,  "com.sun.star.office.sax.importer.Chart" );
 
-using namespace ::com::sun::star;
-using namespace ::rtl;
-using namespace comphelper;
-
-/*N*/ SchXMLWrapper::SchXMLWrapper( uno::Reference< frame::XModel >& xModel,
-/*N*/                             SvStorage& rStorage,
-/*N*/                             sal_Bool bShowProgress ) :
-/*N*/       mxModel( xModel ),
-/*N*/       mrStorage( rStorage ),
-/*N*/       mbShowProgress( bShowProgress )
-/*N*/ {}
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

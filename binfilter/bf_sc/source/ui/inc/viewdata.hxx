@@ -193,7 +193,6 @@ public:
 
     void            ReadUserData(const String& rData);      // #116578#
     void            WriteUserDataSequence(::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& rSettings);
-    void            ReadUserDataSequence(const ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& rSettings);  // #116578#
 
     ScDocument*     GetDocument() const;
 

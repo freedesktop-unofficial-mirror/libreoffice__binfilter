@@ -363,9 +363,6 @@ protected:
                                            UINT16 nTag, BYTE nCurVer );
 
 public:
-                    SfxSingleRecordWriter( SvStream *pStream,
-                                           UINT16 nTag, BYTE nCurVer );
-
     inline void     Reset();
 
     UINT32          Close( bool bSeekToEndOfRec = TRUE );
@@ -500,78 +497,13 @@ public:
 
 //------------------------------------------------------------------------
 
-class  SfxMultiVarRecordWriter: public SfxMultiFixRecordWriter
-{
-protected:
-    SfxUINT32s          _aContentOfs;
-    USHORT              _nContentVer;   // nur f"ur SfxMultiMixRecordWriter
-
-                        SfxMultiVarRecordWriter( BYTE nRecordType,
-                                                 SvStream *pStream,
-                                                 USHORT nRecordTag,
-                                                 BYTE nRecordVer );
-
-    void                FlushContent_Impl();
-
-public:
-    virtual             ~SfxMultiVarRecordWriter();
-
-    virtual UINT32      Close( bool bSeekToEndOfRec = TRUE );
-};
-
-//------------------------------------------------------------------------
-
-class  SfxMultiMixRecordWriter: public SfxMultiVarRecordWriter
-
-/*  [Beschreibung]
-
-    Mit Instanzen dieser Klasse kann ein Record in einen Stream geschrieben
-    werden, der seine eigene L"ange speichert und somit auch von "alteren
-    Versionen bzw. Readern, die diesen Record-Type (Tag) nicht kennen,
-    "ubersprungen werden kann.
-
-    Er enth"alt mehrere Inhalte von demselben Typ (Tag) und derselben
-    Version, die einmalig (stellvertretend f"ur alle) im Header des Records
-    identifiziert werden. Alle Inhalte haben eine vorher bekannte und
-    identische L"ange.
-
-    Um Auf- und Abw"artskompatiblit"at gew"ahrleisten zu k"onnen, m"ussen
-    neue Versionen die Daten der "alteren immer komplett enthalten,
-    es d"urfen allenfalls neue Daten hinten angeh"angt werden!
-
-    [Fileformat]
-
-    1*                  BYTE        Pre-Tag (==0)
-    1*                  3-BYTE      OffsetToEndOfRec in Bytes
-    1*                  BYTE        Record-Type (==SFX_REC_TYPE_MIXTAGS)
-    1*                  BYTE        Content-Version
-    1*                  USHORT      Record-Tag
-    1*                  UINT16      NumberOfContents
-    1*                  UINT32      OffsetToOfsTable
-    NumberOfContents*   (
-    1*                  USHORT      Content-Tag
-    ContentSize*        BYTE        Content
-                        )
-    NumberOfContents*   UINT32      ( ContentOfs << 8 + Version )
-*/
-
-{
-public:
-    inline              SfxMultiMixRecordWriter( SvStream *pStream,
-                                                 USHORT nRecordTag,
-                                                 BYTE nRecordVer );
-};
-
-//------------------------------------------------------------------------
-
 class  SfxMultiRecordReader: public SfxSingleRecordReader
 
 /*  [Beschreibung]
 
     Mit Instanzen dieser Klasse kann ein aus mehreren Contents bestehender
     Record aus einem Stream gelesen werden, der mit einer der Klassen
-    <SfxMultiFixRecordWriter>, <SfxMultiVarRecordWriter> oder
-    <SfxMultiMixRecordWriter> geschrieben wurde.
+    <SfxMultiFixRecordWriter> geschrieben wurde.
 
     Es ist auch m"oglich, den Record oder einzelne Contents zu "uberspringen,
     ohne das jeweilis interne Format zu kennen.
@@ -924,27 +856,6 @@ inline void SfxMultiFixRecordWriter::NewContent()
 
     // Anzahl mitz"ahlen
     ++_nContentCount;
-}
-
-//=========================================================================
-
-inline SfxMultiMixRecordWriter::SfxMultiMixRecordWriter
-(
-    SvStream*       pStream,    // Stream, in dem der Record angelegt wird
-    USHORT          nRecordTag, // Gesamt-Record-Art-Kennung
-    BYTE            nRecordVer  // Gesamt-Record-Versions-Kennung
-)
-
-/*  [Beschreibung]
-
-    Legt in 'pStream' einen 'SfxMultiMixRecord' an, f"ur dessen Contents
-    je eine separate Kennung f"ur Art (Tag) und Version gespeichert wird.
-    Die Gr"o\sen der einzelnen Contents werden automatisch ermittelt.
-*/
-
-:   SfxMultiVarRecordWriter( SFX_REC_TYPE_MIXTAGS,
-                             pStream, nRecordTag, nRecordVer )
-{
 }
 
 //=========================================================================

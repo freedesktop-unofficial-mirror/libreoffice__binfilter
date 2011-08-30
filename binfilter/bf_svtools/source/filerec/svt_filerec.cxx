@@ -270,28 +270,6 @@ SfxSingleRecordWriter::SfxSingleRecordWriter
     *pStream << SFX_REC_HEADER(nRecordType, nContentTag, nContentVer);
 }
 
-//-------------------------------------------------------------------------
-
-SfxSingleRecordWriter::SfxSingleRecordWriter
-(
-    SvStream*       pStream,        // Stream, in dem der Record angelegt wird
-    UINT16          nContentTag,    // Inhalts-Art-Kennung
-    BYTE            nContentVer     // Inhalts-Versions-Kennung
-)
-
-/*  [Beschreibung]
-
-    Legt in 'pStream' einen 'SfxSingleRecord' an, dessen Content-Gr"o\se
-    nicht bekannt ist, sondern nach dam Streamen des Contents errechnet
-    werden soll.
-*/
-
-:   SfxMiniRecordWriter( pStream, SFX_REC_PRETAG_EXT )
-{
-    // Erweiterten Header hiner den des SfxMiniRec schreiben
-    *pStream << SFX_REC_HEADER( SFX_REC_TYPE_SINGLE, nContentTag, nContentVer);
-}
-
 //=========================================================================
 
 inline bool SfxSingleRecordReader::ReadHeader_Impl( USHORT nTypes )
@@ -454,106 +432,6 @@ UINT32 SfxMultiFixRecordWriter::Close( bool bSeekToEndOfRec )
     }
 
     // Record war bereits geschlossen
-    return 0;
-}
-
-//=========================================================================
-
-SfxMultiVarRecordWriter::SfxMultiVarRecordWriter
-(
-    BYTE            nRecordType,    // Record-Kennung der Subklasse
-    SvStream*       pStream,        // Stream, in dem der Record angelegt wird
-    UINT16          nRecordTag,     // Gesamt-Art-Kennung
-    BYTE            nRecordVer      // Gesamt-Versions-Kennung
-)
-
-/*  [Beschreibung]
-
-    Interner Ctor f"ur Subklassen.
-*/
-
-:   SfxMultiFixRecordWriter( nRecordType, pStream, nRecordTag, nRecordVer, 0 ),
-    _nContentVer( 0 )
-{
-}
-
-//-------------------------------------------------------------------------
-
-SfxMultiVarRecordWriter::~SfxMultiVarRecordWriter()
-
-/*  [Beschreibung]
-
-    Der Dtor der Klasse <SfxMultiVarRecordWriter> schlie\st den Record
-    automatisch, falls <SfxMultiVarRecordWriter::Close()> nicht bereits
-    explizit gerufen wurde.
-*/
-
-{
-    // wurde der Header noch nicht geschrieben oder mu\s er gepr"uft werden
-    if ( !_bHeaderOk )
-        Close();
-}
-
-//-------------------------------------------------------------------------
-
-void SfxMultiVarRecordWriter::FlushContent_Impl()
-
-/*  [Beschreibung]
-
-    Interne Methode zum Abschlie\sen eines einzelnen Contents.
-*/
-
-{
-    // Versions-Kennung und Positions-Offset des aktuellen Contents merken;
-    // das Positions-Offset ist relativ zur Startposition des ersten Contents
-    _aContentOfs.Insert(
-            SFX_REC_CONTENT_HEADER(_nContentVer,_nStartPos,_nContentStartPos),
-            _nContentCount-1 );
-}
-
-//-------------------------------------------------------------------------
-
-UINT32 SfxMultiVarRecordWriter::Close( bool bSeekToEndOfRec )
-
-// siehe <SfxMiniRecordWriter>
-
-{
-    // Header noch nicht geschrieben?
-    if ( !_bHeaderOk )
-    {
-        // ggf. letzten Content abschlie\sen
-        if ( _nContentCount )
-            FlushContent_Impl();
-
-        // Content-Offset-Tabelle schreiben
-        UINT32 nContentOfsPos = _pStream->Tell();
-        //! darf man das so einr"ucken?
-        #if defined(OSL_LITENDIAN)
-            _pStream->Write( _aContentOfs.GetData(),
-                             sizeof(UINT32)*_nContentCount );
-        #else
-            for ( USHORT n = 0; n < _nContentCount; ++n )
-                *_pStream << UINT32(_aContentOfs[n]);
-        #endif
-
-        // SfxMultiFixRecordWriter::Close() "uberspringen!
-        UINT32 nEndPos = SfxSingleRecordWriter::Close( FALSE );
-
-        // eigenen Header schreiben
-        *_pStream << _nContentCount;
-        if ( SFX_REC_TYPE_VARSIZE_RELOC == _nPreTag ||
-             SFX_REC_TYPE_MIXTAGS_RELOC == _nPreTag )
-            *_pStream << static_cast<UINT32>(nContentOfsPos - ( _pStream->Tell() + sizeof(UINT32) ));
-        else
-            *_pStream << nContentOfsPos;
-
-        // ans Ende des Records seeken bzw. am Ende des Headers bleiben
-        if ( bSeekToEndOfRec )
-             _pStream->Seek(nEndPos);
-        return nEndPos;
-    }
-
-    // Record war bereits vorher geschlossen
     return 0;
 }
 

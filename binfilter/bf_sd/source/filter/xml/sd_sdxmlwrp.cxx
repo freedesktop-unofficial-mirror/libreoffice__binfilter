@@ -265,57 +265,6 @@ sal_Int32 ReadThroughComponent(
     return 0;
 }
 
-sal_Int32 ReadThroughComponent(
-    SvStorage* pStorage,
-    Reference<XComponent> xModelComponent,
-    const sal_Char* pStreamName,
-    const sal_Char* pCompatibilityStreamName,
-    Reference<lang::XMultiServiceFactory> & rFactory,
-    const sal_Char* pFilterName,
-    Sequence<Any> rFilterArguments,
-    const OUString& rName,
-    sal_Bool bMustBeSuccessfull )
-{
-    DBG_ASSERT(NULL != pStorage, "Need storage!");
-    DBG_ASSERT(NULL != pStreamName, "Please, please, give me a name!");
-
-    // open stream (and set parser input)
-    OUString sStreamName = OUString::createFromAscii(pStreamName);
-    if (! pStorage->IsStream(sStreamName))
-    {
-        // stream name not found! Then try the compatibility name.
-        // if no stream can be opened, return immediatly with OK signal
-
-        // do we even have an alternative name?
-        if ( NULL == pCompatibilityStreamName )
-            return 0;
-
-        // if so, does the stream exist?
-        sStreamName = OUString::createFromAscii(pCompatibilityStreamName);
-        if (! pStorage->IsStream(sStreamName) )
-            return 0;
-    }
-
-    // get input stream
-    SvStorageStreamRef xEventsStream;
-    xEventsStream = pStorage->OpenStream( sStreamName,
-                                          STREAM_READ | STREAM_NOCREATE );
-    Any aAny;
-    sal_Bool bEncrypted =
-        xEventsStream->GetProperty(
-                OUString( RTL_CONSTASCII_USTRINGPARAM("Encrypted") ), aAny ) &&
-        aAny.getValueType() == ::getBooleanCppuType() &&
-        *(sal_Bool *)aAny.getValue();
-
-    Reference<io::XInputStream> xInputStream = xEventsStream->GetXInputStream();
-
-    // read from the stream
-    return ReadThroughComponent(
-        xInputStream, xModelComponent, sStreamName, rFactory,
-        pFilterName, rFilterArguments,
-        rName, bMustBeSuccessfull, bEncrypted );
-}
-
 // -----------------------------------------------------------------------------
 
 sal_Bool SdXMLFilter::Import()

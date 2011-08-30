@@ -130,8 +130,6 @@ public:
     // CONTAINER_ENTRY_NOTFOUND.
     ULONG FindObject(const SdrObject* pObj);
 
-    void  InsertEntry(const SdrMark& rMark, bool bChkSort=TRUE);
-
     // bReverse kann einen Performancevorteil bringen, wenn sicher ist,
     // dass die SrcList genau verkehrt herum ist.
 
@@ -155,9 +153,6 @@ public:
     void operator=(const SdrMarkList& rLst);
 
 };
-// Die Klasse kopiert alle eingefuegten MarkEntrys auf den Heap. Die Verwendung
-// ist z.B. wie folgt gedacht:
-//     InsertEntry(SdrMark(pObj,pPage));
 
 }//end of namespace binfilter
 #endif //_SVDMARK_HXX

@@ -798,47 +798,6 @@ using namespace ::com::sun::star;
 /*N*/   return pItem;
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-/*N*/ class ScFieldChangerEditEngine : public ScEditEngineDefaulter
-/*N*/ {
-/*N*/   TypeId      aExtFileId;
-/*N*/   USHORT      nConvPara;
-/*N*/   xub_StrLen  nConvPos;
-/*N*/   BOOL        bConvert;
-/*N*/
-/*N*/ public:
-/*N*/               ScFieldChangerEditEngine( SfxItemPool* pEnginePool, BOOL bDeleteEnginePool );
-/*N*/   virtual     ~ScFieldChangerEditEngine() {}
-/*N*/
-/*N*/   virtual String  CalcFieldValue( const SvxFieldItem& rField, USHORT nPara,
-/*N*/                                   USHORT nPos, Color*& rTxtColor,
-/*N*/                                   Color*& rFldColor );
-/*N*/ };
-/*N*/
-/*N*/ ScFieldChangerEditEngine::ScFieldChangerEditEngine( SfxItemPool* pInEnginePool,
-/*N*/           BOOL bInDeleteEnginePool ) :
-/*N*/       ScEditEngineDefaulter( pInEnginePool, bInDeleteEnginePool ),
-/*N*/       aExtFileId( TYPE( SvxExtFileField ) ),
-/*N*/       nConvPara( 0 ),
-/*N*/       nConvPos( 0 ),
-/*N*/       bConvert( FALSE )
-/*N*/ {
-/*N*/ }
-/*N*/
-/*N*/ String ScFieldChangerEditEngine::CalcFieldValue( const SvxFieldItem& rField,
-/*N*/           USHORT nPara, USHORT nPos, Color*& /*rTxtColor*/, Color*& /*rFldColor*/ )
-/*N*/ {
-/*N*/   const SvxFieldData* pFieldData = rField.GetField();
-/*N*/   if ( pFieldData && pFieldData->Type() == aExtFileId )
-/*N*/   {
-/*N*/       bConvert = TRUE;
-/*N*/       nConvPara = nPara;
-/*N*/       nConvPos = nPos;
-/*N*/   }
-/*N*/   return EMPTY_STRING;
-/*N*/ }
-
 /*N*/ void ScPageHFItem::SetLeftArea( const EditTextObject& rNew )
 /*N*/ {
 /*N*/   delete pLeftArea;
