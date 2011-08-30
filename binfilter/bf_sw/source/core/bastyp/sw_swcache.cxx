@@ -461,30 +461,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*  SwCache::SetLRUOfst()
-|*
-|*************************************************************************/
-
-
-/*N*/ void SwCache::SetLRUOfst( const USHORT nOfst )
-/*N*/ {
-/*N*/   if ( !pRealFirst || ((Count() - aFreePositions.Count()) < nOfst) )
-/*N*/       return;
-/*N*/
-/*N*/   CHECK;
-/*N*/   pFirst = pRealFirst;
-/*N*/   for ( USHORT i = 0; i < Count() && i < nOfst; ++i )
-/*N*/   {
-/*N*/       if ( pFirst->GetNext() && pFirst->GetNext()->GetNext() )
-/*N*/           pFirst = pFirst->GetNext();
-/*N*/       else
-/*N*/           break;
-/*N*/   }
-/*N*/   CHECK;
-/*N*/ }
-
-/*************************************************************************
-|*
 |*  SwCacheObj::SwCacheObj()
 |*
 |*************************************************************************/

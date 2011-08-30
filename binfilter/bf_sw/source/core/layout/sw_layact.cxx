@@ -425,22 +425,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*  SwLayAction::Reset()
-|*
-|*************************************************************************/
-/*N*/ void SwLayAction::Reset()
-/*N*/ {
-/*N*/   pOptTab = 0;
-/*N*/   nStartTicks = Ticks();
-/*N*/   nInputType = 0;
-/*N*/   nEndPage = nPreInvaPage = nCheckPageNum = USHRT_MAX;
-/*N*/   bPaint = bComplete = bWaitAllowed = bCheckPages = TRUE;
-/*N*/   bInput = bAgain = bNextCycle = bCalcLayout = bIdle = bReschedule =
-/*N*/   bUpdateExpFlds = bBrowseActionStop = FALSE;
-/*N*/ }
-
-/*************************************************************************
-|*
 |*  SwLayAction::RemoveEmptyBrowserPages()
 |*
 |*************************************************************************/

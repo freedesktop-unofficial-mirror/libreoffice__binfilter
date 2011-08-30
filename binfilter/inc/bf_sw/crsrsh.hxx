@@ -306,9 +306,6 @@ public:
      */
     const SwRect &GetCharRect() const { return aCharRect; }
 
-    const   SwPaM* GetTblCrs() const;
-    SwPaM* GetTblCrs();
-
         // ist der Crsr in einer Tabelle und ist die Selection ueber
         // zwei Spalten
     bool IsTableMode() const { return 0 != pTblCrsr; }

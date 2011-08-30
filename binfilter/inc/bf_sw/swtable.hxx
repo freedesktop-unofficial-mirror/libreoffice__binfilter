@@ -159,10 +159,6 @@ public:
     // returnt TRUE wenn sich in der Tabelle Verschachtelungen befinden
     BOOL IsTblComplex() const;
 
-    //returnt TRUE wenn die Tabelle oder Selektion ausgeglichen ist
-    BOOL IsTblComplexForChart( const String& rSel,
-                                SwChartLines* pGetCLines = 0  ) const;
-
     // suche alle Inhaltstragenden-Boxen der Grundline in der diese Box
     // steht. rBoxes auch als Return-Wert, um es gleich weiter zu benutzen
     //JP 31.01.97: bToTop = TRUE -> hoch bis zur Grundline,
@@ -183,10 +179,6 @@ public:
         // Daten Server-Methoden
     const SwServerObject* GetObject() const     {  return &refObj; }
       SwServerObject* GetObject()           {  return &refObj; }
-
-    //Daten fuer das Chart fuellen.
-    SchMemChart *UpdateData( SchMemChart *pData,
-                            const String* pSelection = 0 ) const;
 
     TblChgMode GetTblChgMode() const        { return eTblChgMode; }
     void SetTblChgMode( TblChgMode eMode )  { eTblChgMode = eMode; }

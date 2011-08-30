@@ -85,22 +85,6 @@ public:
     static SchMemChart*  GetChartData( SvInPlaceObjectRef aIPObj );
 
     static SchMemChart* NewMemChart( short nCols, short nRows );
-
-    static void GetDefaultForColumnText( const SchMemChart& rMemChart, sal_Int32 nCol, String& aResult );
-    static void GetDefaultForRowText( const SchMemChart& rMemChart, sal_Int32 nRow, String& aResult );
-
-    static void ConvertChartRangeForWriter( SchMemChart& rMemChart,
-                                            BOOL bOldToNew );
-
-    static void MemChartInsertCols( SchMemChart& rMemChart,
-                                    short nAtCol, short nCount);
-    static void MemChartRemoveCols( SchMemChart& rMemChart,
-                                    short nAtCol, short nCount);
-
-    static void MemChartInsertRows( SchMemChart& rMemChart,
-                                    short nAtRow, short nCount);
-    static void MemChartRemoveRows( SchMemChart& rMemChart,
-                                    short nAtRow, short nCount);
 };
 
 /*-------------------------------------------------------------------------

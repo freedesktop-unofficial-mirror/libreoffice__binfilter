@@ -80,9 +80,6 @@ BOOL GetAutoSumSel( const SwCrsrShell&, SwCellFrms& );
 SV_DECL_PTRARR( SwChartBoxes, SwTableBoxPtr, 16, 16)
 SV_DECL_PTRARR_DEL( SwChartLines, SwChartBoxes*, 25, 50)
 
-BOOL ChkChartSel( const SwNode& rSttNd, const SwNode& rEndNd,
-                    SwChartLines* pGetCLines = 0 );
-
 // teste ob die Celle in die SSelection gehoert
 // (wurde eine Funktion, damit GetTblSel() und MakeTblCrsr() immer
 // das "gleiche Verstaendnis" fuer die Selektion haben)

@@ -270,10 +270,6 @@ using namespace ::com::sun::star::util;
 /*N*/       pUnoCrsr ? TRUE : FALSE;
 /*N*/ }
 
-// gebe den TabellenCrsr zurueck
-/*N*/ const SwPaM* SwCrsrShell::GetTblCrs() const   { return pTblCrsr; }
-/*N*/       SwPaM* SwCrsrShell::GetTblCrs()         { return pTblCrsr; }
-
 // Abfrage, ob ueberhaupt eine Selektion existiert, sprich der akt. Cursor
 // aufgespannt oder nicht der einzigste ist.
 

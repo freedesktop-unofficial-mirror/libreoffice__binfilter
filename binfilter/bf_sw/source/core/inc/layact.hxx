@@ -186,7 +186,6 @@ public:
     inline void SetCheckPageNumDirect( USHORT nNew ) { nCheckPageNum = nNew; }
 
     void Action();  //Jetzt gehts loos...
-    void Reset();   //Zurueck auf CTor-Defaults.
 
     BOOL IsAgain()      const { return bAgain; }
     BOOL IsComplete()   const { return bComplete; }

@@ -133,10 +133,7 @@ public:
 
     BOOL Insert( SwCacheObj *pNew );
     void Delete( const void *pOwner );
-//  void Delete( const void *pOwner, const USHORT nIndex );
 
-    void SetLRUOfst( const USHORT nOfst );      //nOfst sagt wieviele unangetastet
-                                                //bleiben sollen.
     void ResetLRUOfst() { pFirst = pRealFirst; }
 
     inline void IncreaseMax( const USHORT nAdd );
@@ -145,17 +142,6 @@ public:
     inline SwCacheObj *First() { return pRealFirst; }
     inline SwCacheObj *Last()  { return pLast; }
     inline SwCacheObj *Next( SwCacheObj *pCacheObj);
-};
-
-//Cache-Manipulation auf die sichere Art.
-class SwSaveSetLRUOfst
-{
-    SwCache &rCache;
-public:
-    SwSaveSetLRUOfst( SwCache &rC, const USHORT nOfst )
-        : rCache( rC )          { rCache.SetLRUOfst( nOfst );  }
-
-    ~SwSaveSetLRUOfst()         { rCache.ResetLRUOfst(); }
 };
 
 //Das allgemeine CacheObjekt. Anwender des Cache muessen eine Klasse vom
