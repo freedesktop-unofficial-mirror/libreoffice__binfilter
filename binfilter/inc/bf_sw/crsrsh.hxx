@@ -37,13 +37,6 @@
 #include <crstate.hxx>          // fuer die CursorMove-Staties
 #include <tblsel.hxx>               //SwTblSearchType
 
-#if !defined(DBG_UTIL) && !defined(WIN)
-// fuer die Inline-Methoden
-#include <viscrs.hxx>
-#define CRSR_INLINE inline
-#else
-#define CRSR_INLINE
-#endif
 namespace com { namespace sun { namespace star { namespace util {
     struct SearchOptions;
 } } } }
@@ -306,15 +299,15 @@ public:
 
     // Abfrage, ob ueberhaupt eine Selektion existiert, sprich der akt. Cursor
     // aufgespannt oder nicht der einzigste ist.
-    CRSR_INLINE bool IsSelection() const;
+    bool IsSelection() const;
 
     /*
      * liefert das SRectangle, auf dem der Cursor steht.
      */
     const SwRect &GetCharRect() const { return aCharRect; }
 
-    CRSR_INLINE const   SwPaM* GetTblCrs() const;
-    CRSR_INLINE         SwPaM* GetTblCrs();
+    const   SwPaM* GetTblCrs() const;
+    SwPaM* GetTblCrs();
 
         // ist der Crsr in einer Tabelle und ist die Selection ueber
         // zwei Spalten
@@ -355,25 +348,6 @@ public:
     SwChgLinkFlag( SwCrsrShell& rShell );
     ~SwChgLinkFlag();
 };
-
-
-
-// Cursor Inlines:
-
-#if !defined(DBG_UTIL) && !defined(WIN)
-
-inline const SwPaM* SwCrsrShell::GetTblCrs() const
-{
-    return pTblCrsr;
-}
-
-inline SwPaM* SwCrsrShell::GetTblCrs()
-{
-    return pTblCrsr;
-}
-
-#endif
-
 
 } //namespace binfilter
 #endif  // _CRSRSH_HXX

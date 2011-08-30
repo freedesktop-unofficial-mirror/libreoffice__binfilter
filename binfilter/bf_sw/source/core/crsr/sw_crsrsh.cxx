@@ -270,9 +270,6 @@ using namespace ::com::sun::star::util;
 /*N*/       pUnoCrsr ? TRUE : FALSE;
 /*N*/ }
 
-
-#if defined(DBG_UTIL) || defined(WIN)
-
 // gebe den TabellenCrsr zurueck
 /*N*/ const SwPaM* SwCrsrShell::GetTblCrs() const   { return pTblCrsr; }
 /*N*/       SwPaM* SwCrsrShell::GetTblCrs()         { return pTblCrsr; }
@@ -285,8 +282,6 @@ using namespace ::com::sun::star::util;
 /*N*/   return IsTableMode() || pCurCrsr->HasMark() ||
 /*N*/           pCurCrsr->GetNext() != pCurCrsr;
 /*N*/ }
-
-#endif
 
 }
 
