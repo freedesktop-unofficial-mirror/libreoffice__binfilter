@@ -83,8 +83,6 @@ public:
     inline Point &Pos();
     inline Size  &SSize();
 
-     Point Center() const;
-
     void Justify();
 
            SwRect &Union( const SwRect& rRect );

@@ -134,32 +134,6 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/   }
 /*N*/ }
 
-
-
-/*N*/ void SwVisCrsr::Hide()
-/*N*/ {
-/*N*/   if( bIsVisible )
-/*N*/   {
-/*N*/       bIsVisible = FALSE;
-/*N*/
-/*N*/ #ifdef SW_CRSR_TIMER
-/*N*/       if( IsActive() )
-/*N*/           Stop();         // Timer Stoppen
-/*N*/ #endif
-/*N*/
-/*N*/       if( aTxtCrsr.IsVisible() )      // sollten die Flags nicht gueltig sein?
-/*?*/           aTxtCrsr.Hide();
-/*N*/   }
-/*N*/ }
-
-#ifdef SW_CRSR_TIMER
-
-
-
-
-#endif
-
-
 /*N*/ void SwVisCrsr::_SetPosAndShow()
 /*N*/ {
 /*N*/   SwRect aRect;

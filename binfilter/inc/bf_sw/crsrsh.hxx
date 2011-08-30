@@ -265,10 +265,6 @@ public:
           SwShellCrsr* _GetCrsr()                       { return pCurCrsr; }
     const SwShellCrsr* _GetCrsr() const                 { return pCurCrsr; }
 
-    // gebe den akt. Cursor-Stack zurueck.
-    // ( Wird in der EditShell beim Loeschen von Inhalten benoetigt! )
-    CRSR_INLINE SwPaM* GetStkCrsr() const;
-
     USHORT GetBasicActionCnt() const    { return nBasicActionCnt; }
 
     // Basiscursortravelling
@@ -307,10 +303,6 @@ public:
 
     //ChgLink callen, innerhalb einer Action wird der Ruf verzoegert.
     void CallChgLnk();
-
-    // Abfrage, ob der aktuelle Cursor eine Selektion aufspannt,
-    // also, ob Mark gesetzt und SPoint und Mark unterschiedlich sind.
-    bool HasSelection() const;
 
     // Abfrage, ob ueberhaupt eine Selektion existiert, sprich der akt. Cursor
     // aufgespannt oder nicht der einzigste ist.
@@ -351,9 +343,6 @@ public:
 
     BOOL IsAutoUpdateCells() const              { return bAutoUpdateCells; }
     void SetAutoUpdateCells( BOOL bFlag )       { bAutoUpdateCells = bFlag; }
-
-    // remove all invalid cursors
-    void ClearUpCrsrs();
 };
 
 
@@ -372,14 +361,6 @@ public:
 // Cursor Inlines:
 
 #if !defined(DBG_UTIL) && !defined(WIN)
-
-inline SwPaM* SwCrsrShell::GetStkCrsr() const { return pCrsrStk; }
-
-/*N*/ inline bool SwCrsrShell::IsSelection() const
-/*N*/ {
-/*N*/   return IsTableMode() || pCurCrsr->HasMark() ||
-/*N*/           pCurCrsr->GetNext() != pCurCrsr;
-/*N*/ }
 
 inline const SwPaM* SwCrsrShell::GetTblCrs() const
 {

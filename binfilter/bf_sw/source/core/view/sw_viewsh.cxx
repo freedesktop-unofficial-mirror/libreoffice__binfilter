@@ -315,61 +315,6 @@ bool bInSizeNotify = FALSE;
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ViewShell::Reformat()
-/*N*/ {
-/*N*/   // Wir gehen auf Nummer sicher:
-/*N*/   // Wir muessen die alten Fontinformationen wegschmeissen,
-/*N*/   // wenn die Druckeraufloesung oder der Zoomfaktor sich aendert.
-/*N*/   // Init() und Reformat() sind die sichersten Stellen.
-/*N*/ #ifdef FNTMET
-/*N*/   aFntMetList.Flush();
-/*N*/ #else
-/*N*/   pFntCache->Flush( );
-/*N*/ #endif
-/*N*/ }
-
-/******************************************************************************
-|*
-|*  ViewShell::CalcLayout()
-|*                  Vollstaendige Formatierung von Layout und Inhalt.
-|*
-******************************************************************************/
-
-/*N*/ void ViewShell::CalcLayout()
-/*N*/ {
-/*N*/   SET_CURR_SHELL( this );
-/*N*/
-/*N*/   //Cache vorbereiten und restaurieren, damit er nicht versaut wird.
-/*N*/   SwSaveSetLRUOfst aSaveLRU( *SwTxtFrm::GetTxtCache(),
-/*N*/                               SwTxtFrm::GetTxtCache()->GetCurMax() - 50 );
-/*N*/
-/*N*/   SwLayAction aAction( GetLayout(), Imp() );
-/*N*/   aAction.SetPaint( FALSE );
-/*N*/   aAction.SetCalcLayout( TRUE );
-/*N*/   aAction.SetReschedule( TRUE );
-/*N*/   GetDoc()->LockExpFlds();
-/*N*/   aAction.Action();
-/*N*/   GetDoc()->UnlockExpFlds();
-/*N*/
-/*N*/   //Das SetNewFldLst() am Doc wurde unterbunden und muss nachgeholt
-/*N*/   //werden (siehe flowfrm.cxx, txtfld.cxx)
-/*N*/   if ( aAction.IsExpFlds() )
-/*N*/   {
-/*N*/       aAction.Reset();
-/*N*/       aAction.SetPaint( FALSE );
-/*N*/       aAction.SetReschedule( TRUE );
-/*N*/
-/*N*/       SwDocPosUpdate aMsgHnt( 0 );
-/*N*/       GetDoc()->UpdatePageFlds( &aMsgHnt );
-/*N*/       GetDoc()->UpdateExpFlds();
-/*N*/
-/*N*/       aAction.Action();
-/*N*/   }
-/*N*/
-/*N*/   if ( VisArea().HasArea() )
-/*N*/       InvalidateWindows( VisArea() );
-/*N*/ }
-
 /******************************************************************************
 |*
 |*  ViewShell::SetFirstVisPageInvalid()

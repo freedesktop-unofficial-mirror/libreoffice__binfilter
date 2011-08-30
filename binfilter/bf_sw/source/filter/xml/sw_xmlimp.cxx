@@ -353,17 +353,6 @@ SwXMLImport::~SwXMLImport() throw ()
     _FinitItemImport();
 }
 
-void SwXMLImport::setTextInsertMode(
-         const Reference< XTextRange > & rInsertPos )
-{
-    bInsert = sal_True;
-
-    Reference < XText > xText = rInsertPos->getText();
-    Reference < XTextCursor > xTextCursor =
-        xText->createTextCursorByRange( rInsertPos );
-    GetTextImport()->SetCursor( xTextCursor );
-}
-
 const Sequence< sal_Int8 > & SwXMLImport::getUnoTunnelId() throw()
 {
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();

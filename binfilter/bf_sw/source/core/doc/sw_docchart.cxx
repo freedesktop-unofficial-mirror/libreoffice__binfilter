@@ -282,49 +282,6 @@ namespace binfilter {
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ void SwDoc::_UpdateCharts( const SwTable& rTbl, ViewShell& rVSh ) const
-/*N*/ {
-/*N*/   String aName( rTbl.GetFrmFmt()->GetName() );
-/*N*/   SwOLENode *pONd;
-/*N*/   SwStartNode *pStNd;
-/*N*/   SwNodeIndex aIdx( *GetNodes().GetEndOfAutotext().StartOfSectionNode(), 1 );
-/*N*/   while( 0 != (pStNd = aIdx.GetNode().GetStartNode()) )
-/*N*/   {
-/*N*/       aIdx++;
-/*N*/       SwFrm* pFrm;
-/*N*/       if( 0 != ( pONd = aIdx.GetNode().GetOLENode() ) &&
-/*N*/           aName.Equals( pONd->GetChartTblName() ) &&
-/*N*/           0 != ( pFrm = pONd->GetFrm() ) )
-/*N*/       {
-/*N*/           SwOLEObj& rOObj = pONd->GetOLEObj();
-/*N*/
-/*N*/           SchMemChart *pData = SchDLL::GetChartData( rOObj.GetOleRef() );
-/*N*/           bool bDelData = 0 == pData;
-/*N*/
-/*N*/           OSL_ENSURE( pData, "UpdateChart ohne irgendwelche Daten?" );
-/*N*/           pData = rTbl.UpdateData( pData );
-/*N*/
-/*N*/           if( pData->GetColCount() && pData->GetRowCount() )
-/*N*/           {
-/*N*/               SchDLL::Update( rOObj.GetOleRef(), pData, rVSh.GetWin() );
-/*N*/
-/*N*/               SwClientIter aIter( *pONd );
-/*N*/               for( pFrm = (SwFrm*)aIter.First( TYPE(SwFrm) ); pFrm;
-/*N*/                       pFrm = (SwFrm*)aIter.Next() )
-/*N*/               {
-/*N*/                   if( pFrm->Frm().HasArea() )
-/*N*/                       rVSh.InvalidateWindows( pFrm->Frm() );
-/*N*/               }
-/*N*/           }
-/*N*/
-/*N*/           if ( bDelData )
-/*?*/               delete pData;
-/*N*/       }
-/*N*/       aIdx.Assign( *pStNd->EndOfSectionNode(), + 1 );
-/*N*/   }
-/*N*/ }
-
-
 /*N*/ void SwDoc::SetTableName( SwFrmFmt& /*rTblFmt*/, const String& /*rNewName*/ )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP");

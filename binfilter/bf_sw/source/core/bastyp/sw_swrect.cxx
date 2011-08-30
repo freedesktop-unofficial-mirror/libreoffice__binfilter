@@ -56,24 +56,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*  SwRect::Center()
-|*
-|*************************************************************************/
-/*N*/ Point SwRect::Center() const
-/*N*/ {
-/*N*/   return Point( Left() + Width()  / 2,
-/*N*/                 Top()  + Height() / 2 );
-
-/*  Wer ruft schon ein Center auf ein "falsches" Rechteck?
-    const long nRight = Right();
-    const long nBottom= Bottom();
-    return Point( min( Left(), nRight ) + long(abs( (nRight - Left())/2) ),
-                  min( Top(),  nBottom) + long(abs( (nBottom - Top())/2)));
-*/
-/*N*/ }
-
-/*************************************************************************
-|*
 |*  SwRect::Union()
 |*
 |*************************************************************************/

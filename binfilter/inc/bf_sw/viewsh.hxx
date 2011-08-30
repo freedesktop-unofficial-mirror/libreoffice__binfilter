@@ -137,9 +137,6 @@ class ViewShell : public Ring
 
     inline void ResetInvalidRect();
 
-
-    void Reformat();            //Invalidert das ges. Layout (ApplyViewOption)
-
                                                 // Malen der Wiese und rufen
     // PaintDesktop gesplittet, dieser Teil wird auch von PreViewPage benutzt
 
@@ -183,8 +180,6 @@ public:
     //  auf Null gesetzt und wieder restauriert
 
     inline sal_Bool HasInvalidRect() const { return aInvalidRect.HasArea(); }
-    void ChgHyphenation() { Reformat(); }
-    void ChgNumberDigits() { Reformat(); }
 
     //Methoden fuer Paint- und Scrollrects, die auf allen Shells im
     //Ring arbeiten.
@@ -217,8 +212,6 @@ public:
 
     SwRootFrm   *GetLayout() const { return NULL; }
                                       //erzeugt?
-
-    void CalcLayout();  //Durchformatierung des Layouts erzwingen.
 
     inline SwDoc *GetDoc()  const { return pDoc; }  //niemals 0.
 

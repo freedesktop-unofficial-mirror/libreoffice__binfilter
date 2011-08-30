@@ -125,10 +125,6 @@ public:
 
     ~SwXMLImport() throw();
 
-    void         setTextInsertMode(
-                     const ::com::sun::star::uno::Reference<
-                        ::com::sun::star::text::XTextRange > & rInsertPos );
-
     // ::com::sun::star::xml::sax::XDocumentHandler
     virtual void SAL_CALL startDocument(void)
         throw( ::com::sun::star::xml::sax::SAXException, ::com::sun::star::uno::RuntimeException );

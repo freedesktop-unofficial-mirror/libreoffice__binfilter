@@ -62,15 +62,12 @@ class SwVisCrsr
     Cursor aTxtCrsr;
     const SwCrsrShell* pCrsrShell;
 
-#ifdef SW_CRSR_TIMER
-#endif
     void _SetPosAndShow();
 
 public:
     ~SwVisCrsr();
 
     void Show();
-    void Hide();
 
     bool IsVisible() const { return bIsVisible; }
     bool IsDragCrsr() const { return bIsDragCrsr; }

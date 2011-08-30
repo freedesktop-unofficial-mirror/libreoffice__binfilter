@@ -459,12 +459,6 @@ class SwDoc
     void _CreateNumberFormatter();
 
 
-    // erzeuge Anhand der vorgebenen Collection Teildokumente
-    // falls keine angegeben ist, nehme die Kapitelvorlage der 1. Ebene
-
-    // Charts der angegebenen Tabelle updaten
-    void _UpdateCharts( const SwTable& rTbl, ViewShell& rVSh ) const;
-
     // unser eigener 'IdlTimer' ruft folgende Methode
     DECL_LINK( DoIdleJobs, Timer * );
     // der CharTimer ruft diese Methode
