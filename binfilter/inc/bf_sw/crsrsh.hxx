@@ -282,7 +282,7 @@ public:
     void SetOverwriteCrsr( bool bFlag ) { bOverwriteCrsr = bFlag; }
 
     // gebe den aktuellen Frame, in dem der Cursor steht, zurueck
-    SwCntntFrm *GetCurrFrm( const BOOL bCalcFrm = TRUE ) const;
+    SwCntntFrm *GetCurrFrm() const;
 
     //TRUE wenn der Crsr wenn der Crsr wegen Readonly gehidet ist,
     //FALSE wenn der arbeitet (trotz Readonly).

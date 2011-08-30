@@ -347,7 +347,7 @@ bool bInSizeNotify = FALSE;
 /*N*/
 /*N*/       if ( !Imp()->IsCalcLayoutProgress() && ISA( SwCrsrShell ) )
 /*N*/       {
-/*N*/           const SwFrm *pCnt = ((SwCrsrShell*)this)->GetCurrFrm( FALSE );
+/*N*/           const SwFrm *pCnt = ((SwCrsrShell*)this)->GetCurrFrm();
 /*N*/           const SwPageFrm *pPage;
 /*N*/           if ( pCnt && 0 != (pPage = pCnt->FindPageFrm()) )
 /*N*/           {

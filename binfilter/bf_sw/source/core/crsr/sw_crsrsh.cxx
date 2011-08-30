@@ -88,25 +88,14 @@ using namespace ::com::sun::star::util;
 /*N*/ }
 
 
-/*N*/ SwCntntFrm *SwCrsrShell::GetCurrFrm( const BOOL bCalcFrm ) const
+/*N*/ SwCntntFrm *SwCrsrShell::GetCurrFrm() const
 /*N*/ {
 /*N*/   SET_CURR_SHELL( (ViewShell*)this );
 /*N*/   SwCntntFrm *pRet = 0;
 /*N*/   SwCntntNode *pNd = pCurCrsr->GetCntntNode();
 /*N*/   if ( pNd )
 /*N*/   {
-/*N*/       if ( bCalcFrm )
-/*N*/       {
-/*N*/           const USHORT* pST = &nStartAction;
-/*N*/           ++(*((USHORT*)pST));
-/*N*/           const Size aOldSz( GetLayout()->Frm().SSize() );
-/*N*/           pRet = pNd->GetFrm( &pCurCrsr->GetPtPos(), pCurCrsr->GetPoint() );
-/*N*/           --(*((USHORT*)pST));
-/*N*/           if( aOldSz != GetLayout()->Frm().SSize() )
-/*N*/               ((SwCrsrShell*)this)->SizeChgNotify( GetLayout()->Frm().SSize() );
-/*N*/       }
-/*N*/       else
-/*N*/           pRet = pNd->GetFrm( &pCurCrsr->GetPtPos(), pCurCrsr->GetPoint(), FALSE);
+/*N*/       pRet = pNd->GetFrm( &pCurCrsr->GetPtPos(), pCurCrsr->GetPoint(), FALSE);
 /*N*/   }
 /*N*/   return pRet;
 /*N*/ }
@@ -246,7 +235,7 @@ using namespace ::com::sun::star::util;
 /*N*/ {
 /*N*/   if ( GetViewOptions()->IsReadonly() )
 /*N*/   {
-/*N*/       SwFrm *pFrm = GetCurrFrm( FALSE );
+/*N*/       SwFrm *pFrm = GetCurrFrm();
 /*N*/       SwFlyFrm *pFly;
 /*N*/       if( pFrm && pFrm->IsInFly() &&
 /*N*/            (pFly = pFrm->FindFlyFrm())->GetFmt()->GetEditInReadonly().GetValue() &&
