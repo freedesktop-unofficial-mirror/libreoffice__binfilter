@@ -80,23 +80,10 @@ struct SwAccessibilityOptions;
 
 class ViewShell : public Ring
 {
-    friend void SetOutDev( ViewShell *pSh, OutputDevice *pOut );
-    friend void SetOutDevAndWin( ViewShell *pSh, OutputDevice *pOut,
-                                 Window *pWin, sal_uInt16 nZoom );
-
     friend class SwViewImp;
 
     // OD 12.12.2002 #103492# - for setting visible area for page preview paint
     friend class SwPagePreviewLayout;
-
-    //Umsetzen der SwVisArea, damit vor dem Drucken sauber formatiert
-    //werden kann.
-    friend void SetSwVisArea( ViewShell *pSh, const SwRect &, BOOL bPDFExport = FALSE );
-
-    static sal_Bool bLstAct;            // sal_True wenn Das EndAction der letzten Shell
-                                    // laeuft; also die EndActions der
-                                    // anderen Shells auf das Dokument
-                                    // abgearbeitet sind.
 
     Point         aPrtOffst;         //Ofst fuer den Printer,
                                      //nicht bedruckbarer Rand.
@@ -201,8 +188,6 @@ public:
         //uebergebene Rect im sichtbaren Ausschnitt liegt.
     void MakeVisible( const SwRect & );
 
-    //Bei naechster Gelegenheit die neue Dokuemntgroesse an das UI weiterreichen.
-    void SizeChgNotify(const Size &);
     void UISizeNotify();            //Das weiterreichen der aktuellen groesse.
 
 
@@ -223,8 +208,6 @@ public:
     OutputDevice& GetRefDev() const;
     inline Window* GetWin()    const { return pWin; }
     inline OutputDevice* GetOut()     const { return pOut; }
-
-    static inline sal_Bool IsLstEndAction() { return ViewShell::bLstAct; }
 
     // Setzt Drucker fuer ALLE Sichten im Ring; einschl. Invalidierungen
     void SetVirDev( VirtualDevice* );
@@ -266,19 +249,6 @@ public:
 
     // OD 12.12.2002 #103492#
     SwPagePreviewLayout* PagePreviewLayout();
-
-    /** adjust view options for page preview
-
-        OD 09.01.2003 #i6467#
-        Because page preview should show the document as it is printed -
-        page preview is print preview -, the view options are adjusted to the
-        same as for printing.
-
-        @param _rPrintOptions
-        input parameter - constant reference to print options, to which the
-        view option will be adjusted.
-    */
-    void AdjustOptionsForPagePreview( const SwPrtOptions &_rPrintOptions );
 
     // print page/print preview
     void PrintPreViewPage( SwPrtOptions& rOptions, sal_uInt16 nRowCol,

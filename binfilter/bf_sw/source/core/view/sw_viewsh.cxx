@@ -60,7 +60,6 @@
 #include <shellres.hxx>
 namespace binfilter {
 
-BOOL ViewShell::bLstAct = FALSE;
 ShellResource *ViewShell::pShellRes = 0;
 Window *ViewShell::pCareWindow = 0;
 
@@ -90,11 +89,10 @@ bool bInSizeNotify = FALSE;
 /*N*/   bInEndAction = TRUE;
 /*N*/
 /*N*/   //Laeuft hiermit das EndAction der Letzten Shell im Ring?
-/*N*/   ViewShell::bLstAct = TRUE;
 /*N*/   ViewShell *pSh = (ViewShell*)this->GetNext();
 /*N*/   while ( pSh != this )
 /*?*/   {   if ( pSh->ActionPend() )
-/*?*/       {   ViewShell::bLstAct = FALSE;
+/*?*/       {
 /*?*/           pSh = this;
 /*?*/       }
 /*?*/       else
@@ -188,7 +186,6 @@ bool bInSizeNotify = FALSE;
 /*N*/       bPaintWorks = TRUE;
 /*N*/
 /*N*/   bInEndAction = FALSE;
-/*N*/   ViewShell::bLstAct = FALSE;
 /*N*/   Imp()->EndAction();
 /*N*/
 /*N*/
@@ -329,40 +326,6 @@ bool bInSizeNotify = FALSE;
 /*N*/       pSh = (ViewShell*)pSh->GetNext();
 /*N*/
 /*N*/   } while ( pSh != this );
-/*N*/ }
-
-/******************************************************************************
-|*
-|*  ViewShell::SizeChgNotify()
-|*
-******************************************************************************/
-
-/*N*/ void ViewShell::SizeChgNotify(const Size &)
-/*N*/ {
-/*N*/   if ( !pWin )
-/*N*/       bDocSizeChgd = TRUE;
-/*N*/   else if( ActionPend() || Imp()->IsCalcLayoutProgress() || bPaintInProgress )
-/*N*/   {
-/*N*/       bDocSizeChgd = TRUE;
-/*N*/
-/*N*/       if ( !Imp()->IsCalcLayoutProgress() && ISA( SwCrsrShell ) )
-/*N*/       {
-/*N*/           const SwFrm *pCnt = ((SwCrsrShell*)this)->GetCurrFrm();
-/*N*/           const SwPageFrm *pPage;
-/*N*/           if ( pCnt && 0 != (pPage = pCnt->FindPageFrm()) )
-/*N*/           {
-/*N*/               USHORT nVirtNum = pPage->GetVirtPageNum();
-/*N*/               const SvxNumberType& rNum = pPage->GetPageDesc()->GetNumType();
-/*N*/               String sDisplay = rNum.GetNumStr( nVirtNum );
-/*N*/               DBG_BF_ASSERT(0, "STRIP");//PageNumNotify( this, pCnt->GetPhyPageNum(), nVirtNum, sDisplay );
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       bDocSizeChgd = FALSE;
-/*N*/       DBG_BF_ASSERT(0, "STRIP");//::binfilter::SizeNotify( this, GetLayout()->Frm().SSize() );
-/*N*/   }
 /*N*/ }
 
 /*N*/ OutputDevice& ViewShell::GetRefDev() const

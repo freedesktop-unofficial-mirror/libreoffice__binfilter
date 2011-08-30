@@ -197,7 +197,6 @@ protected:
                         ~XOutputDevice();
 
     OutputDevice*       GetOutDev() const { return pOut; }
-    void                SetOutDev(OutputDevice* pNewOut) { pOut=pNewOut; }
 
     RasterOp            GetRasterOp() const { return pOut->GetRasterOp(); }
     void                SetRasterOp(RasterOp eRop) { pOut->SetRasterOp(eRop); }
