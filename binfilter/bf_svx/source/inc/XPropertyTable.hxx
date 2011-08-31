@@ -35,7 +35,7 @@ namespace binfilter {
 class XPropertyList;
 class XPropertyTable;
 
-com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SvxUnoXColorTable_createInstance( XPropertyTable* pTable ) throw();
+com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SvxUnoXColorTable_createInstance( XPropertyList* pList ) throw();
 com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SvxUnoXLineEndTable_createInstance( XPropertyList* pList ) throw();
 com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SvxUnoXDashTable_createInstance( XPropertyList* pList ) throw();
 com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SvxUnoXHatchTable_createInstance( XPropertyList* pList ) throw();

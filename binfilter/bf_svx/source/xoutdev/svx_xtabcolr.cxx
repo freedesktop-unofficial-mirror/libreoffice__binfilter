@@ -69,7 +69,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/ XColorTable::XColorTable( const String& rPath,
 /*N*/                           XOutdevItemPool* pInPool,
 /*N*/                           USHORT nInitSize, USHORT nReSize ) :
-/*N*/               XPropertyTable( rPath, pInPool, nInitSize, nReSize)
+/*N*/               XPropertyList( rPath, pInPool, nInitSize, nReSize)
 /*N*/ {
 /*N*/   // ColorTable braucht keine eigene BmpTable
 /*N*/   // pBmpTable = new Table( nInitSize, nReSize );
@@ -85,21 +85,21 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /*N*/ XColorEntry* XColorTable::Replace(long nIndex, XColorEntry* pEntry )
 /*N*/ {
-/*N*/   return (XColorEntry*) XPropertyTable::Replace(nIndex, pEntry);
+/*N*/   return (XColorEntry*) XPropertyList::Replace( pEntry, nIndex );
 /*N*/ }
 
 /************************************************************************/
 
 /*N*/ XColorEntry* XColorTable::Remove(long nIndex)
 /*N*/ {
-/*N*/   return (XColorEntry*) XPropertyTable::Remove(nIndex, 0);
+/*N*/   return (XColorEntry*) XPropertyList::Remove( 0, nIndex );
 /*N*/ }
 
 /************************************************************************/
 
 /*N*/ XColorEntry* XColorTable::Get(long nIndex) const
 /*N*/ {
-/*N*/   return (XColorEntry*) XPropertyTable::Get(nIndex, 0);
+/*N*/   return (XColorEntry*) XPropertyList::Get( 0, nIndex );
 /*N*/ }
 
 /************************************************************************/
@@ -107,9 +107,9 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/ BOOL XColorTable::Load()
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
-/*N*/   if( bTableDirty )
+/*N*/   if( bListDirty )
 /*N*/   {
-/*N*/       bTableDirty = FALSE;
+/*N*/       bListDirty = FALSE;
 /*N*/
 /*N*/       INetURLObject aURL( aPath );
 /*N*/
@@ -226,202 +226,205 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/   for( USHORT n = 0; n < 16; ++n )
 /*N*/   {
-/*N*/       Insert( n, new XColorEntry( Color( aColTab[n] ),
-/*N*/                                   String( ResId( aResId[ n ], rRes )) ) );
+/*N*/       Insert( new XColorEntry(
+                        Color( aColTab[n] ),
+                        String( ResId( aResId[ n ], rRes ) )
+                    ),
+                    n
+            );
 /*N*/   }
 /*N*/
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_GREY );
 /*N*/   aStr.AppendAscii(" 80%");
 /*N*/   nLen = aStr.Len() - 3;
-/*N*/   Insert(16, new XColorEntry( Color( 51, 51, 51 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 51, 51, 51 ), aStr ), 16 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('7'));
-/*N*/   Insert(17, new XColorEntry( Color( 76, 76, 76 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 76, 76, 76 ), aStr ), 17 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('6'));
-/*N*/   Insert(18, new XColorEntry( Color(102,102,102 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(102,102,102 ), aStr ), 18 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('4'));
-/*N*/   Insert(19, new XColorEntry( Color(153,153,153 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(153,153,153 ), aStr ), 19 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('3'));
-/*N*/   Insert(20, new XColorEntry( Color(179,179,179 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(179,179,179 ), aStr ), 20 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('2'));
-/*N*/   Insert(21, new XColorEntry( Color(204,204,204 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(204,204,204 ), aStr ), 21 );
 /*N*/   // BM: new 15%
 /*N*/   aStr.SetChar(nLen, sal_Unicode('1'));
 /*N*/   aStr.SetChar(nLen + 1, sal_Unicode('5'));
-/*N*/   Insert(22, new XColorEntry( Color(217,217,217 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(217,217,217 ), aStr ), 22 );
 /*N*/   aStr.SetChar(nLen + 1, sal_Unicode('0'));
-/*N*/   Insert(23, new XColorEntry( Color(230,230,230 ), aStr ) );
-/*N*/   Insert(24, new XColorEntry( Color(230,230,255 ), SVX_RESSTR( RID_SVXSTR_BLUEGREY ) ) );
+/*N*/   Insert( new XColorEntry( Color(230,230,230 ), aStr ), 23 );
+/*N*/   Insert( new XColorEntry( Color(230,230,255 ), SVX_RESSTR( RID_SVXSTR_BLUEGREY ) ), 24 );
 /*N*/
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_RED );
 /*N*/   aStr.AppendAscii(" 1");
 /*N*/   nLen = aStr.Len() - 1;
-/*N*/   Insert(25, new XColorEntry( Color(255, 51,102 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(255, 51,102 ), aStr ), 25 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('2'));
-/*N*/   Insert(26, new XColorEntry( Color(220, 35,  0 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(220, 35,  0 ), aStr ), 26 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('3'));
-/*N*/   Insert(27, new XColorEntry( Color(184, 71,  0 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(184, 71,  0 ), aStr ), 27 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('4'));
-/*N*/   Insert(28, new XColorEntry( Color(255, 51, 51 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(255, 51, 51 ), aStr ), 28 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('5'));
-/*N*/   Insert(29, new XColorEntry( Color(235, 97, 61 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(235, 97, 61 ), aStr ), 29 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('6'));
-/*N*/   Insert(30, new XColorEntry( Color(184, 71, 71 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(184, 71, 71 ), aStr ), 30 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('7'));
-/*N*/   Insert(31, new XColorEntry( Color(184,  0, 71 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(184,  0, 71 ), aStr ), 31 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('8'));
-/*N*/   Insert(32, new XColorEntry( Color(153, 40, 76 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(153, 40, 76 ), aStr ), 32 );
 /*N*/
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_MAGENTA );
 /*N*/   aStr.AppendAscii(" 1");
 /*N*/   nLen = aStr.Len() - 1;
-/*N*/   Insert(33, new XColorEntry( Color(148,  0,107 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(148,  0,107 ), aStr ), 33 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('2'));
-/*N*/   Insert(34, new XColorEntry( Color(148, 71,107 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(148, 71,107 ), aStr ), 34 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('3'));
-/*N*/   Insert(35, new XColorEntry( Color(148, 71,148 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(148, 71,148 ), aStr ), 35 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('4'));
-/*N*/   Insert(36, new XColorEntry( Color(153,102,204 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(153,102,204 ), aStr ), 36 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('5'));
-/*N*/   Insert(37, new XColorEntry( Color(107, 71,148 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(107, 71,148 ), aStr ), 37 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('6'));
-/*N*/   Insert(38, new XColorEntry( Color(107, 35,148 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(107, 35,148 ), aStr ), 38 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('7'));
-/*N*/   Insert(39, new XColorEntry( Color(107,  0,148 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(107,  0,148 ), aStr ), 39 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('8'));
-/*N*/   Insert(40, new XColorEntry( Color( 94, 17,166 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 94, 17,166 ), aStr ), 40 );
 /*N*/
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_BLUE );
 /*N*/   aStr.AppendAscii(" 1");
 /*N*/   nLen = aStr.Len() - 1;
-/*N*/   Insert(41, new XColorEntry( Color( 40,  0,153 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 40,  0,153 ), aStr ), 41 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('2'));
-/*N*/   Insert(42, new XColorEntry( Color( 71,  0,184 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 71,  0,184 ), aStr ), 42 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('3'));
-/*N*/   Insert(43, new XColorEntry( Color( 35,  0,220 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 35,  0,220 ), aStr ), 43 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('4'));
-/*N*/   Insert(44, new XColorEntry( Color( 35, 35,220 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 35, 35,220 ), aStr ), 44 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('5'));
-/*N*/   Insert(45, new XColorEntry( Color(  0, 71,255 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(  0, 71,255 ), aStr ), 45 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('6'));
-/*N*/   Insert(46, new XColorEntry( Color(  0,153,255 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(  0,153,255 ), aStr ), 46 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('7'));
-/*N*/   Insert(47, new XColorEntry( Color(  0,184,255 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(  0,184,255 ), aStr ), 47 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('8'));
-/*N*/   Insert(48, new XColorEntry( Color(153,204,255 ), aStr ) );
-/*N*/   //Insert(48, new XColorEntry( Color( 46,215,255 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(153,204,255 ), aStr ), 48 );
 /*N*/
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_CYAN );
 /*N*/   aStr.AppendAscii(" 1");
 /*N*/   nLen = aStr.Len() - 1;
-/*N*/   Insert(49, new XColorEntry( Color(  0,220,255 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(  0,220,255 ), aStr ), 49 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('2'));
-/*N*/   Insert(50, new XColorEntry( Color(  0,204,204 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(  0,204,204 ), aStr ), 50 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('3'));
-/*N*/   Insert(51, new XColorEntry( Color( 35,184,220 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 35,184,220 ), aStr ), 51 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('4'));
-/*N*/   Insert(52, new XColorEntry( Color( 71,184,184 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 71,184,184 ), aStr ), 52 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('5'));
-/*N*/   Insert(53, new XColorEntry( Color( 51,163,163 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 51,163,163 ), aStr ), 53 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('6'));
-/*N*/   Insert(54, new XColorEntry( Color( 25,138,138 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 25,138,138 ), aStr ), 54 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('7'));
-/*N*/   Insert(55, new XColorEntry( Color(  0,107,107 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(  0,107,107 ), aStr ), 55 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('8'));
-/*N*/   Insert(56, new XColorEntry( Color(  0, 74, 74 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(  0, 74, 74 ), aStr ), 56 );
 /*N*/
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_GREEN );
 /*N*/   aStr.AppendAscii(" 1");
 /*N*/   nLen = aStr.Len() - 1;
-/*N*/   Insert(57, new XColorEntry( Color( 53, 94,  0 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 53, 94,  0 ), aStr ), 57 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('2'));
-/*N*/   Insert(58, new XColorEntry( Color( 92,133, 38 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 92,133, 38 ), aStr ), 58 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('3'));
-/*N*/   Insert(59, new XColorEntry( Color(125,166, 71 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(125,166, 71 ), aStr ), 59 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('4'));
-/*N*/   Insert(60, new XColorEntry( Color(148,189, 94 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(148,189, 94 ), aStr ), 60 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('5'));
-/*N*/   Insert(61, new XColorEntry( Color(  0,174,  0 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(  0,174,  0 ), aStr ), 61 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('6'));
-/*N*/   Insert(62, new XColorEntry( Color( 51,204,102 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 51,204,102 ), aStr ), 62 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('7'));
-/*N*/   Insert(63, new XColorEntry( Color( 61,235, 61 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 61,235, 61 ), aStr ), 63 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('8'));
-/*N*/   Insert(64, new XColorEntry( Color( 35,255, 35 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 35,255, 35 ), aStr ), 64 );
 /*N*/
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_YELLOW );
 /*N*/   aStr.AppendAscii(" 1");
 /*N*/   nLen = aStr.Len() - 1;
-/*N*/   Insert(65, new XColorEntry( Color(230,255,  0 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(230,255,  0 ), aStr ), 65 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('2'));
-/*N*/   Insert(66, new XColorEntry( Color(255,255,153 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(255,255,153 ), aStr ), 66 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('3'));
-/*N*/   Insert(67, new XColorEntry( Color(255,255,102 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(255,255,102 ), aStr ), 67 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('4'));
-/*N*/   Insert(68, new XColorEntry( Color(230,230, 76 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(230,230, 76 ), aStr ), 68 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('5'));
-/*N*/   Insert(69, new XColorEntry( Color(204,204,  0 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(204,204,  0 ), aStr ), 69 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('6'));
-/*N*/   Insert(70, new XColorEntry( Color(179,179,  0 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(179,179,  0 ), aStr ), 70 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('7'));
-/*N*/   Insert(71, new XColorEntry( Color(128,128, 25 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(128,128, 25 ), aStr ), 71 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('8'));
-/*N*/   Insert(72, new XColorEntry( Color(102,102,  0 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(102,102,  0 ), aStr ), 72 );
 /*N*/
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_BROWN );
 /*N*/   aStr.AppendAscii(" 1");
 /*N*/   nLen = aStr.Len() - 1;
-/*N*/   Insert(73, new XColorEntry( Color( 76, 25,  0 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 76, 25,  0 ), aStr ), 73 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('2'));
-/*N*/   Insert(74, new XColorEntry( Color(102, 51,  0 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(102, 51,  0 ), aStr ), 74 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('3'));
-/*N*/   Insert(75, new XColorEntry( Color(128, 76, 25 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(128, 76, 25 ), aStr ), 75 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('4'));
-/*N*/   Insert(76, new XColorEntry( Color(153,102, 51 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(153,102, 51 ), aStr ), 76 );
 /*N*/
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_ORANGE );
 /*N*/   aStr.AppendAscii(" 1");
 /*N*/   nLen = aStr.Len() - 1;
-/*N*/   Insert(77, new XColorEntry( Color(204,102, 51 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(204,102, 51 ), aStr ), 77 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('2'));
-/*N*/   Insert(78, new XColorEntry( Color(255,102, 51 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(255,102, 51 ), aStr ), 78 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('3'));
-/*N*/   Insert(79, new XColorEntry( Color(255,153,102 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(255,153,102 ), aStr ), 79 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('4'));
-/*N*/   Insert(80, new XColorEntry( Color(255,204,153 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color(255,204,153 ), aStr ), 80 );
 /*N*/
 /*N*/   // new chart colors
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_VIOLET );
-/*N*/   Insert( 81, new XColorEntry( Color( 0x99, 0x99, 0xff ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 0x99, 0x99, 0xff ), aStr ), 81 );
 /*N*/
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_BORDEAUX );
-/*N*/   Insert( 82, new XColorEntry( Color( 0x99, 0x33, 0x66 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 0x99, 0x33, 0x66 ), aStr ), 82 );
 /*N*/
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_PALE_YELLOW );
-/*N*/   Insert( 83, new XColorEntry( Color( 0xff, 0xff, 0xcc ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 0xff, 0xff, 0xcc ), aStr ), 83 );
 /*N*/
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_PALE_GREEN );
-/*N*/   Insert( 84, new XColorEntry( Color( 0xcc, 0xff, 0xff ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 0xcc, 0xff, 0xff ), aStr ), 84 );
 /*N*/
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_DKVIOLET );
-/*N*/   Insert( 85, new XColorEntry( Color( 0x66, 0x00, 0x66 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 0x66, 0x00, 0x66 ), aStr ), 85 );
 /*N*/
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_SALMON );
-/*N*/   Insert( 86, new XColorEntry( Color( 0xff, 0x80, 0x80 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 0xff, 0x80, 0x80 ), aStr ), 86 );
 /*N*/
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_SEABLUE );
-/*N*/   Insert( 87, new XColorEntry( Color( 0x00, 0x66, 0xcc ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 0x00, 0x66, 0xcc ), aStr ), 87 );
 /*N*/
 /*N*/   // Sun colors
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_COLOR_SUN );
 /*N*/   aStr.AppendAscii(" 1");
 /*N*/   nLen = aStr.Len() - 1;
-/*N*/   Insert( 88, new XColorEntry( Color( 0x33, 0x33, 0x66 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 0x33, 0x33, 0x66 ), aStr ), 88 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('2'));
-/*N*/   Insert( 89, new XColorEntry( Color( 0x66, 0x66, 0x99 ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 0x66, 0x66, 0x99 ), aStr ), 89 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('3'));
-/*N*/   Insert( 90, new XColorEntry( Color( 0x99, 0x99, 0xcc ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 0x99, 0x99, 0xcc ), aStr ), 90 );
 /*N*/   aStr.SetChar(nLen, sal_Unicode('4'));
-/*N*/   Insert( 91, new XColorEntry( Color( 0xcc, 0xcc, 0xff ), aStr ) );
+/*N*/   Insert( new XColorEntry( Color( 0xcc, 0xcc, 0xff ), aStr ), 91 );
 /*N*/
 /*N*/   return( Count() == 92 );
 /*N*/ }
@@ -525,8 +528,8 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/   // Lesen
 /*N*/   rIn.SetStreamCharSet( RTL_TEXTENCODING_IBM_850 );
 /*N*/
-/*N*/   delete pBmpTable;
-/*N*/   pBmpTable = new Table( 16, 16 );
+/*N*/   delete pBmpList;
+/*N*/   pBmpList = new List( 16, 16 );
 /*N*/
 /*N*/   XColorEntry* pEntry = NULL;
 /*N*/   long         nType;
@@ -560,7 +563,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/                           (BYTE) ( nGreen >> 8 ),
 /*N*/                           (BYTE) ( nBlue  >> 8 ) );
 /*N*/           pEntry = new XColorEntry( aColor, aLclName);
-/*N*/           Insert (nIndex, pEntry);
+/*N*/           Insert ( pEntry, nIndex );
 /*N*/       }
 /*N*/   }
 /*N*/   else // Version ab 3.00a
@@ -588,7 +591,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/           }
 /*N*/
 /*N*/           pEntry = new XColorEntry( aColor, aLclName );
-/*N*/           Insert( nIndex, pEntry );
+/*N*/           Insert( pEntry, nIndex );
 /*N*/       }
 /*N*/   }
 /*N*/   return( rIn );

@@ -292,7 +292,7 @@ public:
 // class XColorTable
 // ------------------
 
-class XColorTable : public XPropertyTable
+class XColorTable : public XPropertyList
 {
 protected:
     SvStream&       ImpRead( SvStream& rIn );
