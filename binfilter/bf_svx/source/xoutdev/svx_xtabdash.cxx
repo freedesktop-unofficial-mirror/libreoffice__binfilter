@@ -65,65 +65,6 @@ char const aChckDash[]  = { 0x04, 0x00, 'S','O','D','L'};   // < 5.2
 char const aChckDash0[] = { 0x04, 0x00, 'S','O','D','0'};   // = 5.2
 char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
-// -----------------
-// class XDashTable
-// -----------------
-
-/************************************************************************/
-
-/*N*/ XDashTable::~XDashTable()
-/*N*/ {
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XDashEntry* XDashTable::Replace(long nIndex, XDashEntry* pEntry )
-/*N*/ {
-/*N*/   return (XDashEntry*) XPropertyTable::Replace(nIndex, pEntry);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XDashEntry* XDashTable::Remove(long nIndex)
-/*N*/ {
-/*N*/   return (XDashEntry*) XPropertyTable::Remove(nIndex, 0);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XDashEntry* XDashTable::Get(long nIndex) const
-/*N*/ {
-/*N*/   return (XDashEntry*) XPropertyTable::Get(nIndex, 0);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XDashTable::Load()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XDashTable::Create()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XDashTable::CreateBitmapsForUI()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ Bitmap* XDashTable::CreateBitmapForUI( long /*nIndex*/, BOOL /*bDelete*/ )
-/*N*/ {
-/*N*/   return( NULL );
-/*N*/ }
-
 // ----------------
 // class XDashList
 // ----------------

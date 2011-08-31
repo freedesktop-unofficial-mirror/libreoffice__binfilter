@@ -596,17 +596,14 @@ XubString aNameOrIndexEmptyString;
 
 /*************************************************************************
 |*
-|*    const XDash& XLineDashItem::GetValue(const XDashTable* pTable) const
+|*    const XDash& XLineDashItem::GetValue() const
 |*
 *************************************************************************/
 
-/*N*/ const XDash& XLineDashItem::GetValue(const XDashTable* pTable) const
-/*N*/ {
-/*N*/   if (!IsIndex())
-/*N*/       return aDash;
-/*N*/   else
-/*?*/       return pTable->Get(GetIndex())->GetDash();
-/*N*/ }
+const XDash& XLineDashItem::GetValue() const
+{
+    return aDash;
+}
 
 //------------------------------------------------------------------------
 

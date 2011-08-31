@@ -95,7 +95,6 @@ class SvxLinkManager;
 class XBitmapList;
 class XColorTable;
 class XDashList;
-class XDashTable;
 class XGradientList;
 class XHatchList;
 class XLineEndList;

@@ -62,7 +62,7 @@ public:
     virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 
-    const XDash&            GetValue(const XDashTable* pTable = 0) const;
+    const XDash&            GetValue() const;
     void                    SetValue(const XDash& rNew)   { aDash = rNew; Detach(); }
 
     static BOOL CompareValueFunc( const NameOrIndex* p1, const NameOrIndex* p2 );

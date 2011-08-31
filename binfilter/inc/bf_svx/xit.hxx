@@ -43,7 +43,6 @@ extern String aNameOrIndexEmptyString;
 /************************************************************************/
 
 class XColorTable;
-class XDashTable;
 class NameOrIndex;
 class XPropertyList;
 

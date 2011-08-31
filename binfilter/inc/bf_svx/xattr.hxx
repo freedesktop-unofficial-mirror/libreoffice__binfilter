@@ -32,7 +32,6 @@ namespace binfilter {
 // include ---------------------------------------------------------------
 
 class XColorTable;
-class XDashTable;
 
 }//end of namespace binfilter
 
