@@ -83,20 +83,6 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 
 /************************************************************************/
 
-/*N*/ XBitmapEntry* XBitmapList::Replace(XBitmapEntry* pEntry, long nIndex )
-/*N*/ {
-/*N*/   return (XBitmapEntry*) XPropertyList::Replace(pEntry, nIndex);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XBitmapEntry* XBitmapList::Remove(long nIndex)
-/*N*/ {
-/*N*/   return (XBitmapEntry*) XPropertyList::Remove(nIndex, 0);
-/*N*/ }
-
-/************************************************************************/
-
 /*N*/ XBitmapEntry* XBitmapList::Get(long nIndex) const
 /*N*/ {
 /*N*/   return (XBitmapEntry*) XPropertyList::Get(nIndex, 0);

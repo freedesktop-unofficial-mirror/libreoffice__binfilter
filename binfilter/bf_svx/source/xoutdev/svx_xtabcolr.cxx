@@ -90,13 +90,6 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /************************************************************************/
 
-/*N*/ XColorEntry* XColorTable::Remove(long nIndex)
-/*N*/ {
-/*N*/   return (XColorEntry*) XPropertyList::Remove( 0, nIndex );
-/*N*/ }
-
-/************************************************************************/
-
 /*N*/ XColorEntry* XColorTable::Get(long nIndex) const
 /*N*/ {
 /*N*/   return (XColorEntry*) XPropertyList::Get( 0, nIndex );

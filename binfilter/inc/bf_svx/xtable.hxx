@@ -258,7 +258,6 @@ public:
     virtual         ~XColorTable();
 
     XColorEntry*    Replace(long nIndex, XColorEntry* pEntry );
-    XColorEntry*    Remove(long nIndex);
     XColorEntry*    Get(long nIndex) const;
 
     virtual BOOL    Load();
@@ -291,8 +290,6 @@ public:
                                     USHORT nReSize = 16 );
     virtual         ~XLineEndList();
 
-    XLineEndEntry*  Replace(XLineEndEntry* pEntry, long nIndex );
-    XLineEndEntry*  Remove(long nIndex);
     XLineEndEntry*  Get(long nIndex) const;
 
     virtual BOOL    Load();
@@ -325,8 +322,6 @@ public:
                                 USHORT nReSize = 16 );
     virtual         ~XDashList();
 
-    XDashEntry* Replace(XDashEntry* pEntry, long nIndex );
-    XDashEntry* Remove(long nIndex);
     XDashEntry* Get(long nIndex) const;
 
     virtual BOOL    Load();
@@ -416,8 +411,6 @@ public:
                                     USHORT nReSize = 16 );
     virtual         ~XBitmapList();
 
-    XBitmapEntry*   Replace(XBitmapEntry* pEntry, long nIndex );
-    XBitmapEntry*   Remove(long nIndex);
     XBitmapEntry*   Get(long nIndex) const;
 
     virtual BOOL    Load();

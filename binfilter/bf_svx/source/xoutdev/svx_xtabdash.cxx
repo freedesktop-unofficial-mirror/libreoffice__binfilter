@@ -99,20 +99,6 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /************************************************************************/
 
-/*N*/ XDashEntry* XDashList::Replace(XDashEntry* pEntry, long nIndex )
-/*N*/ {
-/*N*/   return (XDashEntry*) XPropertyList::Replace(pEntry, nIndex);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XDashEntry* XDashList::Remove(long nIndex)
-/*N*/ {
-/*N*/   return (XDashEntry*) XPropertyList::Remove(nIndex, 0);
-/*N*/ }
-
-/************************************************************************/
-
 /*N*/ XDashEntry* XDashList::Get(long nIndex) const
 /*N*/ {
 /*N*/   return (XDashEntry*) XPropertyList::Get(nIndex, 0);
