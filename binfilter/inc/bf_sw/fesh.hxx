@@ -184,9 +184,6 @@ public:
     // the draw object.
     sal_Bool ShouldObjectBeSelected(const Point& rPt);
 
-    // zeige die aktuelle Selektion an ( ggfs. den Rahmen/DrawObject)
-    virtual void MakeSelVisible();
-
     //Liefert neben der Grafik in rName bei gelinkten Grafiken den Namen mit
     //Pfad und sonst den Grafiknamen. rbLink ist TRU bei gelinkten Grafiken.
 
@@ -208,10 +205,6 @@ public:
     virtual void ConnectObj( SvInPlaceObjectRef xIPObj, const SwRect &rPrt,
                              const SwRect &rFrm ) = 0;
 
-    //Fuer das Chain wird immer der durch das Format spezifizierte Fly
-    //mit dem durch den Point getroffenen verbunden.
-    //In rRect wird das Rect des Flys geliefert (fuer Highlight desselben)
-    void HideChainMarker();
     void SetChainMarker();
 };
 

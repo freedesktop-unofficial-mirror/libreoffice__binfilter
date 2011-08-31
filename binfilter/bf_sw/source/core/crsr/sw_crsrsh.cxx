@@ -178,59 +178,6 @@ using namespace ::com::sun::star::util;
 /*N*/       pRegisteredIn->Remove( this );
 /*N*/ }
 
-
-
-//Sollte fuer das Clipboard der WaitPtr geschaltet werden?
-//Warten bei TableMode, Mehrfachselektion und mehr als x Selektieren Absaetzen.
-
-
-
-
-
-// steht der Curor auf einem "Symbol"-Zeichen
-
-
-// zeige das akt. selektierte "Object" an
-/*N*/ void SwCrsrShell::MakeSelVisible()
-/*N*/ {
-/*N*/   OSL_ENSURE( bHasFocus, "kein Focus aber Cursor sichtbar machen?" );
-/*N*/   if( aCrsrHeight.Y() < aCharRect.Height() && aCharRect.Height() > VisArea().Height() )
-/*N*/   {
-/*N*/       SwRect aTmp( aCharRect );
-/*N*/       long nDiff = aCharRect.Height() - VisArea().Height();
-/*N*/       if( nDiff < aCrsrHeight.X() )
-/*?*/           aTmp.Top( nDiff + aCharRect.Top() );
-/*N*/       else
-/*N*/       {
-/*N*/           aTmp.Top( aCrsrHeight.X() + aCharRect.Top() );
-/*N*/           aTmp.Height( aCrsrHeight.Y() );
-/*N*/       }
-/*N*/         if( !aTmp.HasArea() )
-/*N*/         {
-/*?*/             aTmp.SSize().Height() += 1;
-/*?*/             aTmp.SSize().Width() += 1;
-/*N*/         }
-/*N*/       MakeVisible( aTmp );
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       if( aCharRect.HasArea() )
-/*N*/           MakeVisible( aCharRect );
-/*N*/       else
-/*N*/       {
-/*?*/           SwRect aTmp( aCharRect );
-/*?*/           aTmp.SSize().Height() += 1; aTmp.SSize().Width() += 1;
-/*?*/           MakeVisible( aTmp );
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-
-// suche eine gueltige ContentPosition (nicht geschuetzt/nicht versteckt)
-
-
-
-
 /*N*/ bool SwCrsrShell::IsCrsrReadonly() const
 /*N*/ {
 /*N*/   if ( GetViewOptions()->IsReadonly() )

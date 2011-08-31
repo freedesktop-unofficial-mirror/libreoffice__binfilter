@@ -89,29 +89,6 @@ namespace binfilter {
 /*N*/                                       (ViewShell*)this );
 /*N*/ }
 
-
-
-// zeige das akt. selektierte "Object" an
-/*N*/ void SwFEShell::MakeSelVisible()
-/*N*/ {
-/*N*/   if( Imp()->HasDrawView() &&
-/*N*/       Imp()->GetDrawView()->GetMarkList().GetMarkCount() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/   else
-/*N*/       SwCrsrShell::MakeSelVisible();
-/*N*/ }
-
-
-/*N*/ void SwFEShell::HideChainMarker()
-/*N*/ {
-/*N*/   if ( pChainFrom )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/   if ( pChainTo )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/ }
-
 /*N*/ void SwFEShell::SetChainMarker()
 /*N*/ {
 /*N*/   bool bDelFrom = TRUE,

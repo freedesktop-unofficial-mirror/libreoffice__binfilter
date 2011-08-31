@@ -317,9 +317,6 @@ public:
 
     BOOL BasicActionPend() const    { return nBasicActionCnt != nStartAction; }
 
-    // zeige die aktuelle Selektion an
-    virtual void MakeSelVisible();
-
         // Attribut selelktieren
 
     bool CheckTblBoxCntnt( const SwPosition* pPos = 0 );

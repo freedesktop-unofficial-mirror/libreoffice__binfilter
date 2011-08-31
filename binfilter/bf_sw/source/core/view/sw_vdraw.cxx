@@ -66,8 +66,7 @@ namespace binfilter {
 /*N*/   if ( HasDrawView() )
 /*N*/   {
 /*N*/       SET_CURR_SHELL( GetShell() );
-/*N*/       if ( pSh->ISA(SwFEShell) )
-/*N*/           ((SwFEShell*)pSh)->HideChainMarker();   //Kann sich geaendert haben
+
 /*N*/       bResetXorVisibility = GetDrawView()->IsShownXorVisible( GetShell()->GetOut());
 /*N*/       GetDrawView()->HideShownXor( GetShell()->GetOut() );
 /*N*/   }
