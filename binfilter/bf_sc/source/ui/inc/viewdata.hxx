@@ -115,7 +115,6 @@ private:
                     ~ScViewDataTable();
 
     void            WriteUserDataSequence(::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& rSettings);
-    void            ReadUserDataSequence(const ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& rSettings); // #116578#
 };
 
 // ---------------------------------------------------------------------------

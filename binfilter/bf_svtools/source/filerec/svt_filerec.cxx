@@ -387,54 +387,6 @@ bool SfxSingleRecordReader::FindHeader_Impl
     return FALSE;
 }
 
-SfxMultiFixRecordWriter::SfxMultiFixRecordWriter
-(
-       BYTE                    nRecordType,    // Subklassen Record-Kennung
-       SvStream*               pStream,                // Stream, in dem der Record angelegt wird
-       UINT16                  nContentTag,    // Content-Art-Kennung
-       BYTE                    nContentVer,    // Content-Versions-Kennung
-       UINT32                                  // Gr"o\se jedes einzelnen Contents in Bytes
-)
-
-/*  [Beschreibung]
-
-       Interne Methode f"ur Subklassen.
-*/
-
-:   SfxSingleRecordWriter( nRecordType, pStream, nContentTag, nContentVer ),
-       _nContentCount( 0 )
-{
-       // Platz f"ur eigenen Header
-       pStream->SeekRel( + SFX_REC_HEADERSIZE_MULTI );
-}
-
-//=========================================================================
-
-UINT32 SfxMultiFixRecordWriter::Close( bool bSeekToEndOfRec )
-
-//  siehe <SfxMiniRecordWriter>
-
-{
-    // Header noch nicht geschrieben?
-    if ( !_bHeaderOk )
-    {
-        // Position hinter Record merken, um sie restaurieren zu k"onnen
-        UINT32 nEndPos = SfxSingleRecordWriter::Close( FALSE );
-
-        // gegen"uber SfxSingleRecord erweiterten Header schreiben
-        *_pStream << _nContentCount;
-        *_pStream << _nContentSize;
-
-        // je nachdem ans Ende des Records seeken oder hinter Header bleiben
-        if ( bSeekToEndOfRec )
-            _pStream->Seek(nEndPos);
-        return nEndPos;
-    }
-
-    // Record war bereits geschlossen
-    return 0;
-}
-
 //=========================================================================
 
 bool SfxMultiRecordReader::ReadHeader_Impl()

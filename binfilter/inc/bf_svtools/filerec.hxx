@@ -425,85 +425,9 @@ public:
 
 //------------------------------------------------------------------------
 
-class  SfxMultiFixRecordWriter: public SfxSingleRecordWriter
-
-/*  [Beschreibung]
-
-    Mit Instanzen dieser Klasse kann ein Record in einen Stream geschrieben
-    werden, der seine eigene L"ange speichert und somit auch von "alteren
-    Versionen bzw. Readern, die diesen Record-Type (Tag) nicht kennen,
-    "ubersprungen werden kann.
-
-    Er enth"alt mehrere Inhalte von demselben Typ (Tag) und derselben
-    Version, die einmalig (stellvertretend f"ur alle) im Header des Records
-    identifiziert werden. Alle Inhalte haben eine vorher bekannte und
-    identische L"ange.
-
-    Um Auf- und Abw"artskompatiblit"at gew"ahrleisten zu k"onnen, m"ussen
-    neue Versionen die Daten der "alteren immer komplett enthalten,
-    es d"urfen allenfalls neue Daten hinten angeh"angt werden! Hier sind
-    damit selbstverst"andlich nur die Daten der einzelnen Inhalte gemeint,
-    die Anzahl der Inhalte ist selbstverst"andlich variabel und sollte
-    von lesenden Applikationen auch so behandelt werden.
-
-    [Fileformat]
-
-    1*                  BYTE        Pre-Tag (==0)
-    1*                  3-BYTE      OffsetToEndOfRec in Bytes
-    1*                  BYTE        Record-Type (==SFX_REC_TYPE_FIXSIZE)
-    1*                  BYTE        Content-Version
-    1*                  UINT16      Content-Tag
-    1*                  UINT16      NumberOfContents
-    1*                  UINT32      SizeOfEachContent
-    NumberOfContents*   (
-    SizeOfEachContent   BYTE        Content
-                        )
-
-    [Beispiel]
-
-    {
-        SfxMultiFixRecordWriter aRecord( pStream, MY_TAG_X, MY_VERSION );
-        for ( USHORT n = 0; n < Count(); ++n )
-        {
-            aRecord.NewContent();
-            *aRecord << aMember1[n];
-            *aRecord << aMember2[n];
-        }
-    }
-*/
-
-{
-protected:
-    UINT32          _nContentStartPos;  /*  Startposition des jeweiligen
-                                            Contents - nur bei DBG_UTIL
-                                            und f"ur Subklassen */
-    UINT32          _nContentSize;      //  Gr"o\se jedes Contents
-    UINT16          _nContentCount;     //  jeweilige Anzahl der Contents
-
-                    SfxMultiFixRecordWriter( BYTE nRecordType,
-                                             SvStream *pStream,
-                                             UINT16 nTag, BYTE nCurVer,
-                                             UINT32 nContentSize );
-
-public:
-    inline          ~SfxMultiFixRecordWriter();
-
-    inline void     NewContent();
-
-    inline void     Reset();
-
-    UINT32          Close( bool bSeekToEndOfRec = TRUE );
-};
-
-//------------------------------------------------------------------------
-
 class  SfxMultiRecordReader: public SfxSingleRecordReader
 
 /*  [Beschreibung]
-
-    Mit Instanzen dieser Klasse kann ein aus mehreren Contents bestehender
-    Record aus einem Stream gelesen werden, der mit einer der Klassen
-    <SfxMultiFixRecordWriter> geschrieben wurde.
 
     Es ist auch m"oglich, den Record oder einzelne Contents zu "uberspringen,
     ohne das jeweilis interne Format zu kennen.
@@ -806,66 +730,6 @@ inline bool SfxSingleRecordReader::HasVersion( USHORT nVersion ) const
 
 {
     return _nRecordVer >= nVersion;
-}
-
-//=========================================================================
-
-inline SfxMultiFixRecordWriter::~SfxMultiFixRecordWriter()
-
-/*  [Beschreibung]
-
-    Der Dtor der Klasse <SfxMultiFixRecordWriter> schlie\st den Record
-    automatisch, falls <SfxMutiFixRecordWriter::Close()> nicht bereits
-    explizit gerufen wurde.
-*/
-
-{
-    // wurde der Header noch nicht geschrieben oder mu\s er gepr"uft werden
-    if ( !_bHeaderOk )
-        Close();
-}
-
-//-------------------------------------------------------------------------
-
-inline void SfxMultiFixRecordWriter::NewContent()
-
-/*  [Beschreibung]
-
-    Mit dieser Methode wird in den Record ein neuer Content eingef"ugt.
-    Jeder, auch der 1. Record mu\s durch Aufruf dieser Methode eingeleitet
-    werden.
-*/
-
-{
-    #ifdef DBG_UTIL
-    ULONG nOldStartPos;
-    // Startposition des aktuellen Contents merken - Achtung Subklassen!
-    nOldStartPos = _nContentStartPos;
-    #endif
-    _nContentStartPos = _pStream->Tell();
-
-#ifdef DBG_UTIL
-    // ist ein vorhergehender Content vorhanden?
-    if ( _nContentCount )
-    {
-        // pr"ufen, ob der vorhergehende die Soll-Gr"o\se eingehalten hat
-        DBG_ASSERT( _nContentStartPos - nOldStartPos == _nContentSize,
-                    "wrong content size detected" );
-    }
-#endif
-
-    // Anzahl mitz"ahlen
-    ++_nContentCount;
-}
-
-//=========================================================================
-
-inline void SfxMultiFixRecordWriter::Reset()
-{
-    _pStream->Seek( _nStartPos + SFX_REC_HEADERSIZE_MINI +
-                                 SFX_REC_HEADERSIZE_SINGLE +
-                                 SFX_REC_HEADERSIZE_MULTI );
-    _bHeaderOk = false;
 }
 
 //=========================================================================
