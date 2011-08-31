@@ -164,31 +164,12 @@ void SAL_CALL SvxUnoNumberingRuleTable::insertByName( const OUString& aName, con
 void SAL_CALL SvxUnoNumberingRuleTable::removeByName( const OUString& Name )
     throw( container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    /* Currently, don't know how to do this ?
-    long nIndex = pTable ? ((XPropertyTable*)pTable)->Get( Name ) : -1;
-    if( nIndex == -1 )
-        throw container::NoSuchElementException();
-
-    pTable->Remove( nIndex );
-    */
 }
 
 // XNameReplace
 void SAL_CALL SvxUnoNumberingRuleTable::replaceByName( const OUString& aName, const uno::Any& aElement )
     throw( lang::IllegalArgumentException, container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    /* Currently, don't know how to do this ?
-    INT32 nColor;
-    if( aElement >>= nColor )
-        throw lang::IllegalArgumentException();
-
-    long nIndex = pTable ? ((XPropertyTable*)pTable)->Get( aName ) : -1;
-    if( nIndex == -1  )
-        throw container::NoSuchElementException();
-
-    XColorEntry* pEntry = new XColorEntry( Color( (ColorData)nColor ), aName );
-    delete pTable->Replace( nIndex, pEntry );
-    */
 }
 
 SvxNumBulletItem* SvxGetNumBulletItemByName( SfxItemPool* pPool, const OUString& aName ) throw()
