@@ -60,13 +60,11 @@ class SvxUnoXPropertyTable : public WeakImplHelper2< XNameContainer, XServiceInf
 private:
     sal_Int16 mnWhich;
     XPropertyList*  mpList;
-    XPropertyTable* mpTable;
 
-    long getCount() const { return mpList ? mpList->Count() : (mpTable?mpTable->Count():0); }
+    long getCount() const { return mpList ? mpList->Count() : 0; }
     XPropertyEntry* get( long index ) const;
 public:
     SvxUnoXPropertyTable( sal_Int16 nWhich, XPropertyList* pList ) throw();
-    SvxUnoXPropertyTable( sal_Int16 nWhich, XPropertyTable* pTable ) throw();
 
     virtual ~SvxUnoXPropertyTable() throw();
 
@@ -92,17 +90,9 @@ public:
     virtual sal_Bool SAL_CALL hasElements(  ) throw( RuntimeException);
 };
 
-SvxUnoXPropertyTable::SvxUnoXPropertyTable( sal_Int16 nWhich, XPropertyTable* pTable ) throw()
-    : mnWhich( nWhich )
-    , mpList( NULL )
-    , mpTable( pTable )
-{
-}
-
 SvxUnoXPropertyTable::SvxUnoXPropertyTable( sal_Int16 nWhich, XPropertyList* pList ) throw()
     : mnWhich( nWhich )
     , mpList( pList )
-    , mpTable( NULL )
 {
 }
 
@@ -112,9 +102,7 @@ SvxUnoXPropertyTable::~SvxUnoXPropertyTable() throw()
 
 XPropertyEntry* SvxUnoXPropertyTable::get( long index ) const
 {
-    if( mpTable )
-        return mpTable->Get( index, 0 );
-    else if( mpList )
+    if( mpList )
         return mpList->Get( index, 0 );
     else
         return NULL;
@@ -143,7 +131,7 @@ void SAL_CALL SvxUnoXPropertyTable::insertByName( const  OUString& aName, const 
 {
     SolarMutexGuard aGuard;
 
-    if( NULL == mpList && NULL == mpTable )
+    if( NULL == mpList )
         throw IllegalArgumentException();
 
     if( hasByName( aName ) )
@@ -156,10 +144,7 @@ void SAL_CALL SvxUnoXPropertyTable::insertByName( const  OUString& aName, const 
     if( NULL == pNewEntry )
         throw IllegalArgumentException();
 
-    if( mpList )
-        mpList->Insert( pNewEntry );
-    else
-        mpTable->Insert( mpTable->Count(), pNewEntry );
+    mpList->Insert( pNewEntry );
 }
 
 void SAL_CALL SvxUnoXPropertyTable::removeByName( const  OUString& Name )
@@ -178,10 +163,7 @@ void SAL_CALL SvxUnoXPropertyTable::removeByName( const  OUString& Name )
         pEntry = get( i );
         if( pEntry && pEntry->GetName() == aInternalName )
         {
-            if( mpList )
-                delete mpList->Remove( i, 0 );
-            else
-                delete mpTable->Remove( i, 0 );
+            delete mpList->Remove( i, 0 );
             return;
         }
     }
@@ -210,10 +192,7 @@ void SAL_CALL SvxUnoXPropertyTable::replaceByName( const  OUString& aName, const
             if( NULL == pNewEntry )
                 throw IllegalArgumentException();
 
-            if( mpList )
-                delete mpList->Replace( pNewEntry, i );
-            else
-                delete mpTable->Replace( i, pNewEntry );
+            delete mpList->Replace( pNewEntry, i );
             return;
         }
     }
