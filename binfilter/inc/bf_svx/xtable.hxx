@@ -190,55 +190,6 @@ public:
     XOBitmap& GetXBitmap()                    { return aXOBitmap; }
 };
 
-// ---------------------
-// class XPropertyTable
-// ---------------------
-
-class XPropertyTable
-{
-protected:
-    String              aName; // nicht persistent !
-    String              aPath;
-    XOutdevItemPool*    pXPool;
-
-    Table               aTable;
-    Table*              pBmpTable;
-
-    BOOL                bTableDirty;
-    BOOL                bBitmapsDirty;
-    BOOL                bOwnPool;
-
-                        XPropertyTable( const String& rPath,
-                                        XOutdevItemPool* pXPool = NULL,
-                                        USHORT nInitSize = 16,
-                                        USHORT nReSize = 16 );
-public:
-    virtual             ~XPropertyTable();
-
-    long                Count() const;
-
-    BOOL                Insert(long nIndex, XPropertyEntry* pEntry);
-    XPropertyEntry*     Replace(long nIndex, XPropertyEntry* pEntry);
-    XPropertyEntry*     Remove(long nIndex, USHORT nDummy);
-    XPropertyEntry*     Get( long nIndex, USHORT nDummy ) const;
-
-    long                Get(const String& rName);
-
-    const String&       GetName() const { return aName; }
-    void                SetName( const String& rString );
-    const String&       GetPath() const { return aPath; }
-    void                SetPath( const String& rString ) { aPath = rString; }
-    BOOL                IsDirty() const { return bTableDirty && bBitmapsDirty; }
-    void                SetDirty( BOOL bDirty = TRUE )
-                            { bTableDirty = bDirty; bBitmapsDirty = bDirty; }
-
-    virtual BOOL        Load() = 0;
-    virtual BOOL        Save() = 0;
-    virtual BOOL        Create() = 0;
-    virtual BOOL        CreateBitmapsForUI() = 0;
-    virtual Bitmap*     CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE ) = 0;
-};
-
 // --------------------
 // class XPropertyList
 // --------------------
