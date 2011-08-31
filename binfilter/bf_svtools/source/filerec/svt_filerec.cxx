@@ -61,74 +61,10 @@ SV_IMPL_VARARR( SfxUINT32s, UINT32 );
     um Calls zu sparen.
 */
 
-#define SFX_REC_MINI_HEADER(nPreTag,nStartPos,nEndPos) \
-                    ( UINT32(nPreTag) | \
-                      UINT32(nEndPos-nStartPos-SFX_REC_HEADERSIZE_MINI) << 8 )
-
 #define SFX_REC_HEADER(nRecType,nContentTag,nContentVer) \
                     ( UINT32(nRecType) | \
                       ( UINT32(nContentVer) << 8 ) | \
                       ( UINT32(nContentTag) << 16 ) )
-
-#define SFX_REC_CONTENT_HEADER(nContentVer,n1StStartPos,nCurStartPos) \
-                    ( UINT32(nContentVer) | \
-                      UINT32( nCurStartPos - n1StStartPos ) << 8 )
-
-//=========================================================================
-
-UINT32 SfxMiniRecordWriter::Close
-(
-    bool    bSeekToEndOfRec     /*  TRUE (default)
-                                        Der Stream wird an das Ende des Records
-                                        positioniert.
-
-                                        FALSE
-                                        Der Stream wird an den Anfang des
-                                        Contents (also hinter den Header)
-                                        positioniert.
-                                    */
-)
-
-/*  [Beschreibung]
-
-    Diese Methode schlie\st den Record. Dabei wird haupts"achlich der
-    Header geschrieben.
-
-    Wurde der Header bereits geschrieben, hat der Aufruf keine Wirkung.
-
-
-    [R"uckgabewert]
-
-    UINT32      != 0
-                Position im Stream, die direkt hinter dem Record liegt.
-                'bSeekToEndOfRecord==TRUE'
-                => R"uckgabewert == aktuelle Stream-Position nach Aufruf
-
-                == 0
-                Der Header war bereits geschrieben worden.
-*/
-
-{
-    // wurde der Header noch nicht geschrieben?
-    if ( !_bHeaderOk )
-    {
-        // Header an den Anfang des Records schreiben
-        UINT32 nEndPos = _pStream->Tell();
-        _pStream->Seek( _nStartPos );
-        *_pStream << SFX_REC_MINI_HEADER( _nPreTag, _nStartPos, nEndPos );
-
-        // je nachdem ans Ende des Records seeken oder hinter Header bleiben
-        if ( bSeekToEndOfRec )
-            _pStream->Seek( nEndPos );
-
-        // Header wurde JETZT geschrieben
-        _bHeaderOk = true;
-        return nEndPos;
-    }
-
-    // Record war bereits geschlossen
-    return 0;
-}
 
 //=========================================================================
 
@@ -247,27 +183,6 @@ SfxMiniRecordReader::SfxMiniRecordReader
         pStream->Seek( nStartPos );
         break;
     }
-}
-
-//=========================================================================
-
-SfxSingleRecordWriter::SfxSingleRecordWriter
-(
-    BYTE            nRecordType,    // f"ur Subklassen
-    SvStream*       pStream,        // Stream, in dem der Record angelegt wird
-    UINT16          nContentTag,    // Inhalts-Art-Kennung
-    BYTE            nContentVer     // Inhalts-Versions-Kennung
-)
-
-/*  [Beschreibung]
-
-    Interner Ctor f"ur Subklassen.
-*/
-
-:   SfxMiniRecordWriter( pStream, SFX_REC_PRETAG_EXT )
-{
-    // Erweiterten Header hiner den des SfxMiniRec schreiben
-    *pStream << SFX_REC_HEADER(nRecordType, nContentTag, nContentVer);
 }
 
 //=========================================================================
