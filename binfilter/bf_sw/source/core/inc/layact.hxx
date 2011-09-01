@@ -99,8 +99,6 @@ class SwLayAction
     sal_Bool    mbFormatCntntOnInterrupt;
 #ifdef _LAYACT_CXX
 
-    void _AddScrollRect( const SwCntntFrm *, const SwPageFrm *,
-                         const SwTwips, const SwTwips );
     void PaintCntnt( const SwCntntFrm *, const SwPageFrm *,
                      const SwRect &rOldRect, long nOldBottom );
     BOOL PaintWithoutFlys( const SwRect &, const SwCntntFrm *,

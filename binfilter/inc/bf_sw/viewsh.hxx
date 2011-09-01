@@ -247,10 +247,6 @@ public:
     // Abfragen/Erzeugen DrawView + PageView
     sal_Bool HasDrawView() const;
 
-    //DrawView darf u.U. am UI benutzt werden.
-          SdrView *GetDrawView();
-    const SdrView *GetDrawView() const { return ((ViewShell*)this)->GetDrawView(); }
-
     //sorge dafuer, das auf jedenfall die MarkListe aktuell ist (Bug 57153)
 
     sal_Bool IsPreView() const { return bPreView; }

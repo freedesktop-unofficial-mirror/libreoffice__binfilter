@@ -74,22 +74,8 @@ using namespace ::com::sun::star::util;
 /*N*/   return pCurCrsr;
 /*N*/ }
 
-/*N*/ SwCntntFrm *SwCrsrShell::GetCurrFrm() const
-/*N*/ {
-/*N*/   SET_CURR_SHELL( (ViewShell*)this );
-/*N*/   SwCntntFrm *pRet = 0;
-/*N*/   SwCntntNode *pNd = pCurCrsr->GetCntntNode();
-/*N*/   if ( pNd )
-/*N*/   {
-/*N*/       pRet = pNd->GetFrm( &pCurCrsr->GetPtPos(), pCurCrsr->GetPoint(), FALSE);
-/*N*/   }
-/*N*/   return pRet;
-/*N*/ }
-
-
 // alle Attribut/Format-Aenderungen am akt. Node werden an den
 // Link weitergeleitet.
-
 
 /*N*/ void SwCrsrShell::Modify( SfxPoolItem* pOld, SfxPoolItem* pNew )
 /*N*/ {

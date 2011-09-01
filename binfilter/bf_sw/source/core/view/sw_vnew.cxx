@@ -123,12 +123,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   return Imp()->HasDrawView();
 /*N*/ }
-
-/*N*/ SdrView* ViewShell::GetDrawView()
-/*N*/ {
-/*N*/   return Imp()->GetDrawView();
-/*N*/ }
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

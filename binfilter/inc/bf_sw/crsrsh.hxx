@@ -278,9 +278,6 @@ public:
     bool IsOverwriteCrsr() const { return bOverwriteCrsr; }
     void SetOverwriteCrsr( bool bFlag ) { bOverwriteCrsr = bFlag; }
 
-    // gebe den aktuellen Frame, in dem der Cursor steht, zurueck
-    SwCntntFrm *GetCurrFrm() const;
-
     // darf der Cursor in ReadOnlyBereiche?
     bool IsReadOnlyAvailable() const { return bSetCrsrInReadOnly; }
 

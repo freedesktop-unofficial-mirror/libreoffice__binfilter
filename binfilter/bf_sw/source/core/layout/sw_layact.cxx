@@ -318,62 +318,6 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ void SwLayAction::_AddScrollRect( const SwCntntFrm *pCntnt,
-/*N*/                                 const SwPageFrm *pPage,
-/*N*/                                 const SwTwips nOfst,
-/*N*/                                 const SwTwips nOldBottom )
-/*N*/ {
-/*N*/   bool bScroll = TRUE;
-/*N*/   SwRect aPaintRect( pCntnt->PaintArea() );
-/*N*/     SWRECTFN( pCntnt )
-/*N*/
-/*N*/   //Wenn altes oder neues Rechteck mit einem Fly ueberlappen, in dem der
-/*N*/   //Cntnt nicht selbst steht, so ist nichts mit Scrollen.
-/*N*/   if ( pPage->GetSortedObjs() )
-/*N*/   {
-/*N*/       SwRect aRect( aPaintRect );
-/*N*/         if( bVert )
-/*?*/             aPaintRect.Pos().X() += nOfst;
-/*N*/         else
-/*N*/       aPaintRect.Pos().Y() -= nOfst;
-/*N*/       if ( ::binfilter::lcl_IsOverObj( pCntnt, pPage, aPaintRect, aRect, 0 ) )
-/*N*/           bScroll = FALSE;
-/*N*/         if( bVert )
-/*?*/             aPaintRect.Pos().X() -= nOfst;
-/*N*/         else
-/*N*/       aPaintRect.Pos().Y() += nOfst;
-/*N*/   }
-/*N*/   if ( bScroll && pPage->GetFmt()->GetBackground().GetGraphicPos() != GPOS_NONE )
-/*N*/       bScroll = FALSE;
-/*N*/
-    // Don't intersect potential paint rectangle with
-    // union of frame and printing area, because at scroll destination position
-    // could be a frame that has filled up the potential paint area.
-    //aPaintRect.Intersection( pCntnt->UnionFrm( TRUE ) );
-
-/*N*/   if ( bScroll )
-/*N*/   {
-/*N*/       if( aPaintRect.HasArea() )
-/*N*/           pImp->GetShell()->AddScrollRect( pCntnt, aPaintRect, nOfst );
-/*N*/       if ( pCntnt->IsRetouche() && !pCntnt->GetNext() )
-/*N*/       {
-/*N*/           SwRect aRect( pCntnt->GetUpper()->PaintArea() );
-/*N*/             (aRect.*fnRect->fnSetTop)( (pCntnt->*fnRect->fnGetPrtBottom)() );
-/*N*/           if ( !pImp->GetShell()->AddPaintRect( aRect ) )
-/*N*/               pCntnt->ResetRetouche();
-/*N*/       }
-/*N*/       pCntnt->ResetCompletePaint();
-/*N*/   }
-/*N*/   else if( aPaintRect.HasArea() )
-/*N*/   {
-/*N*/         if( bVert )
-/*?*/             aPaintRect.Pos().X() += nOfst;
-/*N*/         else
-/*N*/       aPaintRect.Pos().Y() -= nOfst;
-/*N*/       PaintCntnt( pCntnt, pPage, aPaintRect, nOldBottom );
-/*N*/   }
-/*N*/ }
-
 /*************************************************************************
 |*
 |*  SwLayAction::SwLayAction()
