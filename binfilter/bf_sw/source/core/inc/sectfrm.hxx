@@ -41,7 +41,6 @@ class SwSectionFmt;
 class SwAttrSetChg;
 class SwFtnContFrm;
 class SwFtnFrm;
-class SwLayouter;
 
 #define FINDMODE_ENDNOTE 1
 #define FINDMODE_LASTCNT 2

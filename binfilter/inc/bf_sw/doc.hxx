@@ -178,7 +178,6 @@ class SwUnoCrsrTbl;
 class ViewShell;
 class _SetGetExpFld;
 class SwDrawContact;
-class SwLayouter;
 class SdrView;
 class SdrMarkList;
 class SwAuthEntry;
@@ -320,8 +319,6 @@ class SwDoc
                                         // Drucken der Seitenansicht
     SwPaM           *pExtInputRing;
 
-    SwLayouter      *pLayouter;     // ::com::sun::star::frame::Controller for complex layout formatting
-                                    // like footnote/endnote in sections
     SwLayoutCache   *pLayoutCache;  // Layout cache to read and save with the
                                     // document for a faster formatting
 
@@ -614,13 +611,6 @@ public:
     // wegen swrtf.cxx und define private public, jetzt hier
     SwFlyFrmFmt  *MakeFlyFrmFmt (const String &rFmtName, SwFrmFmt *pDerivedFrom);
     SwDrawFrmFmt *MakeDrawFrmFmt(const String &rFmtName, SwFrmFmt *pDerivedFrom);
-
-          SwLayouter* GetLayouter()       { return pLayouter; }
-    const SwLayouter* GetLayouter() const { return pLayouter; }
-    void SetLayouter( SwLayouter* pNew )  { pLayouter = pNew; }
-
-    // used for spell checking and text conversion
-
 
     const SwBookmarks& GetBookmarks() const { return *pBookmarkTbl; }
     SwBookmark* MakeBookmark( const SwPaM& rPaM, const KeyCode&,

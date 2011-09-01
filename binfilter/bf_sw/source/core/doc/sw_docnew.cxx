@@ -157,7 +157,6 @@ const sal_Char sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   , pUnoCrsrTbl( new SwUnoCrsrTbl( 0, 16 ) )
 /*N*/   , pPgPViewPrtData( 0 )
 /*N*/   , pExtInputRing( 0 )
-/*N*/   , pLayouter( 0 )
 /*N*/   , pLayoutCache( 0 )
 /*N*/   , pUnoCallBack(new SwUnoCallBack(0))
 /*N*/   , nAutoFmtRedlnCommentNo( 0 )
@@ -320,8 +319,6 @@ const sal_Char sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/
 /*N*/   delete pUnoCallBack, pUnoCallBack = 0;
 /*N*/   delete pURLStateChgd;
-/*N*/
-/*N*/   delete pLayouter;
 /*N*/
 /*N*/   // Undo-Benachrichtigung vom Draw abschalten
 /*N*/   if( pDrawModel )

@@ -75,7 +75,6 @@ CXXFILES = \
         sw_hffrm.cxx \
         sw_layact.cxx \
                 sw_laycache.cxx \
-        sw_layouter.cxx \
         sw_newfrm.cxx \
         sw_pagechg.cxx \
         sw_pagedesc.cxx \
@@ -104,7 +103,6 @@ SLOFILES =  \
         $(SLO)$/sw_hffrm.obj \
         $(SLO)$/sw_layact.obj \
                 $(SLO)$/sw_laycache.obj \
-        $(SLO)$/sw_layouter.obj \
         $(SLO)$/sw_newfrm.obj \
         $(SLO)$/sw_pagechg.obj \
         $(SLO)$/sw_pagedesc.obj \

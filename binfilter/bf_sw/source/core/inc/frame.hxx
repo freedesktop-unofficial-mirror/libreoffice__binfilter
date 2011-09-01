@@ -314,7 +314,6 @@ class SwFrm: public SwClient
     //Der verkappte Frm
     friend class SwFlowFrm;
     friend class SwLayoutFrm;       // Sw3FrameIo: fuer pNext, pPrev
-    friend class SwLooping;         // LoopControlling  (layouter.cxx)
 
         //Hebt die Lower waehrend eines Spaltenumbaus auf.
     friend SwFrm *SaveCntnt( SwLayoutFrm *, SwFrm* pStart = NULL );
