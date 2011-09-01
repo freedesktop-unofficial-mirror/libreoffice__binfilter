@@ -281,9 +281,6 @@ public:
     // gebe den aktuellen Frame, in dem der Cursor steht, zurueck
     SwCntntFrm *GetCurrFrm() const;
 
-    //TRUE wenn der Crsr wenn der Crsr wegen Readonly gehidet ist,
-    //FALSE wenn der arbeitet (trotz Readonly).
-    bool IsCrsrReadonly() const;
     // darf der Cursor in ReadOnlyBereiche?
     bool IsReadOnlyAvailable() const { return bSetCrsrInReadOnly; }
 
@@ -293,10 +290,6 @@ public:
 
     //ChgLink callen, innerhalb einer Action wird der Ruf verzoegert.
     void CallChgLnk();
-
-    // Abfrage, ob ueberhaupt eine Selektion existiert, sprich der akt. Cursor
-    // aufgespannt oder nicht der einzigste ist.
-    bool IsSelection() const;
 
     /*
      * liefert das SRectangle, auf dem der Cursor steht.

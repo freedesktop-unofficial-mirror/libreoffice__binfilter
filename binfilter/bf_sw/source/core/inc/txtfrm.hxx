@@ -427,14 +427,6 @@ public:
     ULONG GetThisLines() const { return nThisLines;}
     void RecalcAllLines();
 
-    // Stoppt Animationen innerhalb von Numerierungen
-
-
-    // visit all portions for Accessibility
-
-    // returns the script info stored at the paraportion
-    const SwScriptInfo* GetScriptInfo() const;
-
     // Swaps width and height of the text frame
     void SwapWidthAndHeight();
     // Calculates the a limit value when switching from

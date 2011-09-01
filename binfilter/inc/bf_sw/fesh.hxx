@@ -171,8 +171,6 @@ class SwFEShell : public SwEditShell
                       *pChainTo;
     BOOL bCheckForOLEInCaption;
 
-    SwFlyFrm *FindFlyFrm() const;
-
 public:
     TYPEINFO();
     SwFEShell( SwDoc& rDoc, Window *pWin );
@@ -186,10 +184,6 @@ public:
 
     //Liefert neben der Grafik in rName bei gelinkten Grafiken den Namen mit
     //Pfad und sonst den Grafiknamen. rbLink ist TRU bei gelinkten Grafiken.
-
-//SS fuer Rahmen --------------------------------------------
-
-    BOOL IsFrmSelected() const;
 
     //Der Client fuer das OleObject muss bezueglich der Scalierung auf dem
     //neuesten Stand gehalten werden. Impl in der WrtShell.

@@ -105,95 +105,6 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/   pCrsrShell->GetWin()->SetCursor( 0 );
 /*N*/ }
 
-/*N*/ void SwVisCrsr::_SetPosAndShow()
-/*N*/ {
-/*N*/   SwRect aRect;
-/*N*/     long nTmpY = pCrsrShell->aCrsrHeight.Y();
-/*N*/     if( 0 > nTmpY )
-/*N*/   {
-/*?*/         nTmpY = -nTmpY;
-/*?*/         aTxtCrsr.SetOrientation( 900 );
-/*?*/       aRect = SwRect( pCrsrShell->aCharRect.Pos(),
-/*?*/            Size( pCrsrShell->aCharRect.Height(), nTmpY ) );
-/*?*/       aRect.Pos().X() += pCrsrShell->aCrsrHeight.X();
-/*?*/         if( pCrsrShell->IsOverwriteCrsr() )
-/*?*/             aRect.Pos().Y() += aRect.Width();
-/*N*/   }
-/*N*/   else
-/*N*/     {
-/*N*/         aTxtCrsr.SetOrientation( 0 );
-/*N*/       aRect = SwRect( pCrsrShell->aCharRect.Pos(),
-/*N*/            Size( pCrsrShell->aCharRect.Width(), nTmpY ) );
-/*N*/       aRect.Pos().Y() += pCrsrShell->aCrsrHeight.X();
-/*N*/     }
-/*N*/
-/*N*/     // check if cursor should show the current cursor bidi level
-/*N*/     aTxtCrsr.SetDirection( CURSOR_DIRECTION_NONE );
-/*N*/     const SwCursor* pTmpCrsr = pCrsrShell->_GetCrsr();
-/*N*/
-/*N*/     if ( pTmpCrsr && !pCrsrShell->IsOverwriteCrsr() )
-/*N*/     {
-/*N*/         SwNode& rNode = pTmpCrsr->GetPoint()->nNode.GetNode();
-/*N*/         if( rNode.IsTxtNode() )
-/*N*/         {
-/*N*/             const SwTxtNode& rTNd = *rNode.GetTxtNode();
-/*N*/             Point aPt( aRect.Pos() );
-/*N*/             SwFrm* pFrm = rTNd.GetFrm( &aPt );
-/*N*/             if ( pFrm )
-/*N*/             {
-/*N*/                 const SwScriptInfo* pSI = ((SwTxtFrm*)pFrm)->GetScriptInfo();
-/*N*/                  // cursor level has to be shown
-/*N*/                 if ( pSI && pSI->CountDirChg() > 1 )
-/*N*/                 {
-/*N*/                     aTxtCrsr.SetDirection(
-/*N*/                         ( pTmpCrsr->GetCrsrBidiLevel() % 2 ) ?
-/*N*/                           CURSOR_DIRECTION_RTL :
-/*N*/                           CURSOR_DIRECTION_LTR );
-/*N*/                 }
-/*N*/
-/*N*/                 if ( pFrm->IsRightToLeft() )
-/*N*/                 {
-/*N*/                     const OutputDevice *pOut = pCrsrShell->GetOut();
-/*N*/                     if ( pOut )
-/*N*/                     {
-/*N*/                         USHORT nSize = pOut->GetSettings().GetStyleSettings().GetCursorSize();
-/*N*/                         Size aSize( nSize, nSize );
-/*N*/                         aSize = pOut->PixelToLogic( aSize );
-/*N*/                         aRect.Left( aRect.Left() - aSize.Width() );
-/*N*/                     }
-/*N*/                 }
-/*N*/             }
-/*N*/         }
-/*N*/     }
-/*N*/
-/*N*/     if( aRect.Height() )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
-/*N*/     if( !pCrsrShell->IsOverwriteCrsr() || bIsDragCrsr ||
-/*N*/         pCrsrShell->IsSelection() )
-/*N*/         aRect.Width( 0 );
-/*N*/
-/*N*/   aTxtCrsr.SetSize( aRect.SSize() );
-/*N*/
-/*N*/   aTxtCrsr.SetPos( aRect.Pos() );
-/*N*/     if ( !pCrsrShell->IsCrsrReadonly()  || pCrsrShell->GetViewOptions()->IsSelectionInReadonly() )
-/*N*/   {
-/*N*/       if ( pCrsrShell->GetDrawView() )
-/*N*/           ((SwDrawView*)pCrsrShell->GetDrawView())->SetAnimationEnabled(
-/*N*/                   !pCrsrShell->IsSelection() );
-/*N*/
-/*N*/       USHORT nStyle = bIsDragCrsr ? CURSOR_SHADOW : 0;
-/*N*/       if( nStyle != aTxtCrsr.GetStyle() )
-/*N*/       {
-/*?*/           aTxtCrsr.SetStyle( nStyle );
-/*?*/           aTxtCrsr.SetWindow( bIsDragCrsr ? pCrsrShell->GetWin() : 0 );
-/*N*/       }
-/*N*/
-/*N*/       aTxtCrsr.Show();
-/*N*/   }
-/*N*/ }
-
-
 // ------ Ab hier Klassen / Methoden fuer die Selectionen -------
 
 /*N*/ SwSelPaintRects::~SwSelPaintRects()
@@ -207,27 +118,6 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*?*/   {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   SwRects::Remove( 0, Count() );
 /*N*/ }
-
-/*N*/ void SwSelPaintRects::Show()
-/*N*/ {
-/*N*/   if( pCShell->GetDrawView() )
-/*N*/   {
-/*N*/       SdrView* pView = (SdrView*)pCShell->GetDrawView();
-/*N*/       pView->SetAnimationEnabled( !pCShell->IsSelection() );
-/*N*/   }
-/*N*/
-/*N*/   SwRects aTmp;
-/*N*/   aTmp.Insert( this, 0 );     // Kopie vom Array
-/*N*/
-/*N*/   SwRects::Remove( 0, SwRects::Count() );
-/*N*/   FillRects();
-/*N*/
-/*N*/   if( Count() || aTmp.Count() )
-/*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ }
-
 
 /*N*/ SwShellCrsr::~SwShellCrsr() {}
 

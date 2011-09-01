@@ -48,7 +48,6 @@ CDEFS+=-Dmydebug
 
 SLOFILES =  \
         $(SLO)$/sw_fefly1.obj \
-        $(SLO)$/sw_feshview.obj \
         $(SLO)$/sw_fetab.obj \
         $(SLO)$/sw_fews.obj \
         $(SLO)$/sw_tblsel.obj

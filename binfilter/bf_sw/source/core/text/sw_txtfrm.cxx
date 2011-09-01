@@ -1943,18 +1943,6 @@ public:
 /*N*/   }
 /*N*/ }
 
-
-
-/*************************************************************************
- *                      SwTxtFrm::GetScriptInfo()
- *************************************************************************/
-
-/*N*/ const SwScriptInfo* SwTxtFrm::GetScriptInfo() const
-/*N*/ {
-/*N*/     const SwParaPortion* pPara = GetPara();
-/*N*/     return pPara ? &pPara->GetScriptInfo() : 0;
-/*N*/ }
-
 /*************************************************************************
  *                      lcl_CalcFlyBasePos()
  * Helper function for SwTxtFrm::CalcBasePosForFly()

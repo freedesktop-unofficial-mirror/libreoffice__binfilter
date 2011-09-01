@@ -44,15 +44,9 @@ class SwLooping;
 class SwLayouter
 {
     SwLooping* pLooping;
-    BOOL StartLooping( SwPageFrm* pPage );
 public:
     SwLayouter();
     ~SwLayouter();
-
-    void LoopControl( SwPageFrm* pPage, BYTE nLoop );
-    void EndLoopControl();
-
-    static BOOL StartLoopControl( SwDoc* pDoc, SwPageFrm *pPage );
 };
 
 } //namespace binfilter

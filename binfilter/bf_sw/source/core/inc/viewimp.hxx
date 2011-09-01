@@ -137,8 +137,6 @@ class SwViewImp
     */
     void ResetStopPrt() { bStopPrt = FALSE; }
 
-    void SetFirstVisPage();     //Neue Ermittlung der ersten sichtbaren Seite
-
     void ResetNextScroll()    { bNextScroll = FALSE; }
     void SetNextScroll()      { bNextScroll = TRUE; }
     void SetScroll()          { bScroll = TRUE; }
@@ -152,10 +150,6 @@ public:
     const ViewShell *GetShell() const { return pSh; }
           ViewShell *GetShell()       { return pSh; }
 
-
-    //Verwaltung zur ersten sichtbaren Seite
-    inline const SwPageFrm *GetFirstVisPage() const;
-    inline       SwPageFrm *GetFirstVisPage();
     void SetFirstVisPageInvalid() { bFirstPageInvalid = TRUE; }
 
     //SS'en fuer Paint- und Scrollrects.
@@ -198,27 +192,6 @@ public:
     void    SetRestoreActions(USHORT nSet){nRestoreActions = nSet;}
     USHORT  GetRestoreActions() const{return nRestoreActions;}
 };
-
-//Kann auf dem Stack angelegt werden, wenn etwas ausgegeben oder
-//gescrolled wird. Handles und sontiges vom Drawing werden im CTor
-//gehidet und im DTor wieder sichtbar gemacht.
-// Hiding of handles is no longer necessary, removed
-
-
-inline SwPageFrm *SwViewImp::GetFirstVisPage()
-{
-    if ( bFirstPageInvalid )
-        SetFirstVisPage();
-    return pFirstVisPage;
-}
-
-inline const SwPageFrm *SwViewImp::GetFirstVisPage() const
-{
-    if ( bFirstPageInvalid )
-        ((SwViewImp*)this)->SetFirstVisPage();
-    return pFirstVisPage;
-}
-
 } //namespace binfilter
 #endif //_VIEWIMP_HXX
 

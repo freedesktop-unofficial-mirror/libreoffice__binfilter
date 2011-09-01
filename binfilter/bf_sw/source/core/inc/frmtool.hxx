@@ -78,11 +78,6 @@ void MA_FASTCALL DrawGraphic( const SvxBrushItem *, OutputDevice *,
 // Created declaration here to avoid <extern> declarations
 void SwAlignGrfRect( SwRect *pGrfRect, const OutputDevice &rOut );
 
-//Fly besorgen, wenn keine List hineingereicht wird, wir die der aktuellen
-//Shell benutzt.
-//Implementierung in feshview.cxx
-SwFlyFrm *GetFlyFromMarked( const SdrMarkList *pLst, ViewShell *pSh );
-
 SwFrm *SaveCntnt( SwLayoutFrm *pLay, SwFrm *pStart );
 void RestoreCntnt( SwFrm *pSav, SwLayoutFrm *pParent, SwFrm *pSibling );
 

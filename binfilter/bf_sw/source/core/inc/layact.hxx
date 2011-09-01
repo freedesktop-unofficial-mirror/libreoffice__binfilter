@@ -110,20 +110,12 @@ class SwLayAction
 
     void ChkFlyAnchor( SwFlyFrm *, const SwPageFrm * );
 
-    void FormatFlyLayout( const SwPageFrm * );
-    BOOL FormatFlyCntnt( const SwPageFrm *, sal_Bool bDontShrink );
     BOOL _FormatFlyCntnt( const SwFlyFrm * );
     BOOL __FormatFlyCntnt( const SwCntntFrm * );
     void FormatFlyInCnt( SwFlyInCntFrm* );
     BOOL FormatLayout( SwLayoutFrm *, BOOL bAddRect = TRUE );
     BOOL FormatLayoutTab( SwTabFrm *, BOOL bAddRect = TRUE );
     BOOL FormatLayoutFly( SwFlyFrm *, BOOL bAddRect = TRUE );
-    BOOL FormatCntnt( const SwPageFrm* pPage );
-    void _FormatCntnt( const SwCntntFrm* pCntnt,
-                       const SwPageFrm* pPage );
-    BOOL IsShortCut( SwPageFrm *& );
-
-    SwPageFrm *CheckFirstVisPage( SwPageFrm *pPage );
 
     inline void CheckIdleEnd();
     inline ULONG GetStartTicks() { return nStartTicks; }

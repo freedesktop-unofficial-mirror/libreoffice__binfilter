@@ -164,25 +164,6 @@ using namespace ::com::sun::star::util;
 /*N*/       pRegisteredIn->Remove( this );
 /*N*/ }
 
-/*N*/ bool SwCrsrShell::IsCrsrReadonly() const
-/*N*/ {
-/*N*/   if ( GetViewOptions()->IsReadonly() )
-/*N*/   {
-/*N*/       SwFrm *pFrm = GetCurrFrm();
-/*N*/       SwFlyFrm *pFly;
-/*N*/       if( pFrm && pFrm->IsInFly() &&
-/*N*/            (pFly = pFrm->FindFlyFrm())->GetFmt()->GetEditInReadonly().GetValue() &&
-/*N*/            pFly->Lower() &&
-/*N*/            !pFly->Lower()->IsNoTxtFrm() &&
-/*N*/            !GetDrawView()->GetMarkList().GetMarkCount() )
-/*N*/       {
-/*N*/           return FALSE;
-/*N*/       }
-/*N*/       return TRUE;
-/*N*/   }
-/*N*/   return FALSE;
-/*N*/ }
-
 // SwCursor - Methode !!!!
 /*N*/ bool SwCursor::IsReadOnlyAvailable() const
 /*N*/ {
@@ -191,16 +172,6 @@ using namespace ::com::sun::star::util;
 /*N*/   return pShCrsr ? pShCrsr->GetShell()->IsReadOnlyAvailable() :
 /*N*/       pUnoCrsr ? TRUE : FALSE;
 /*N*/ }
-
-// Abfrage, ob ueberhaupt eine Selektion existiert, sprich der akt. Cursor
-// aufgespannt oder nicht der einzigste ist.
-
-/*N*/ bool SwCrsrShell::IsSelection() const
-/*N*/ {
-/*N*/   return IsTableMode() || pCurCrsr->HasMark() ||
-/*N*/           pCurCrsr->GetNext() != pCurCrsr;
-/*N*/ }
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

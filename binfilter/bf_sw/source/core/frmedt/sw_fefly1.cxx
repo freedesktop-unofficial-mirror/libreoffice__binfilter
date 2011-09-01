@@ -180,30 +180,6 @@ using namespace ::com::sun::star;
 /*N*/   return ::binfilter::lcl_FindAnchorPos( *pDoc, rFly.Frm().Pos(), rFly, rSet );
 /*N*/ }
 
-
-/*************************************************************************
-|*
-|*  SwFEShell::FindFlyFrm()
-|*
-|*  Beschreibung        Liefert den Fly wenn einer Selektiert ist.
-|*
-*************************************************************************/
-
-/*N*/ SwFlyFrm *SwFEShell::FindFlyFrm() const
-/*N*/ {
-/*N*/   if ( Imp()->HasDrawView() )
-/*N*/   {
-/*N*/       // Ein Fly ist genau dann erreichbar, wenn er selektiert ist.
-/*N*/       const SdrMarkList &rMrkList = Imp()->GetDrawView()->GetMarkList();
-/*N*/       if( rMrkList.GetMarkCount() != 1 )
-/*N*/           return 0;
-/*N*/
-/*?*/       SdrObject *pO = rMrkList.GetMark( 0 )->GetObj();
-/*?*/       return pO->IsWriterFlyFrame() ? ((SwVirtFlyDrawObj*)pO)->GetFlyFrm() : 0;
-/*N*/   }
-/*N*/   return 0;
-/*N*/ }
-
 } //namespace binfilter
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

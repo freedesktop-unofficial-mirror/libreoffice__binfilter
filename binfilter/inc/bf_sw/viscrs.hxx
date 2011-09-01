@@ -62,8 +62,6 @@ class SwVisCrsr
     Cursor aTxtCrsr;
     const SwCrsrShell* pCrsrShell;
 
-    void _SetPosAndShow();
-
 public:
     ~SwVisCrsr();
 
@@ -95,7 +93,6 @@ class SwSelPaintRects : public SwRects
 public:
     ~SwSelPaintRects();
 
-    void Show();
     void Hide();
 
     const SwCrsrShell* GetShell() const { return pCShell; }

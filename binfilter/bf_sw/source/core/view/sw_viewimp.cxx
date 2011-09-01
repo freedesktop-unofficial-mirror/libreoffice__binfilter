@@ -105,35 +105,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   return FALSE;
 /*N*/ }
-
-
-/******************************************************************************
-|*
-|*  SwViewImp::SetFirstVisPage(), ImplGetFirstVisPage();
-|*
-******************************************************************************/
-
-/*N*/ void SwViewImp::SetFirstVisPage()
-/*N*/ {
-/*N*/   if ( pSh->bDocSizeChgd && pSh->VisArea().Top() > pSh->GetLayout()->Frm().Height() )
-/*N*/   {
-/*N*/       //Wir stecken in einer Action und die VisArea sitzt wegen
-/*N*/       //Loeschoperationen hinter der erste sichtbaren Seite.
-/*N*/       //Damit nicht zu heftig Formatiert wird, liefern wir die letzte Seite
-/*N*/       //zurueck.
-/*?*/       pFirstVisPage = (SwPageFrm*)pSh->GetLayout()->Lower();
-/*?*/       while ( pFirstVisPage && pFirstVisPage->GetNext() )
-/*?*/           pFirstVisPage = (SwPageFrm*)pFirstVisPage->GetNext();
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       SwPageFrm *pPage = (SwPageFrm*)pSh->GetLayout()->Lower();
-/*N*/       while ( pPage && !pPage->Frm().IsOver( pSh->VisArea() ) )
-/*N*/           pPage = (SwPageFrm*)pPage->GetNext();
-/*N*/       pFirstVisPage = pPage ? pPage : (SwPageFrm*)pSh->GetLayout()->Lower();
-/*N*/   }
-/*N*/   bFirstPageInvalid = FALSE;
-/*N*/ }
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
