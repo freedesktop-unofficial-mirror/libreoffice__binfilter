@@ -274,9 +274,6 @@ public:
 
     // Methoden zum Anzeigen bzw. Verstecken der selektierten Bereiche mit
     // dem sichtbaren Cursor
-    void ShowCrsrs( BOOL bCrsrVis );
-    // Methoden zum Anzeigen bzw. Verstecken der selektierten Bereiche mit
-    // dem sichtbaren Cursor
 
     bool IsOverwriteCrsr() const { return bOverwriteCrsr; }
     void SetOverwriteCrsr( bool bFlag ) { bOverwriteCrsr = bFlag; }

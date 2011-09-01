@@ -32,7 +32,6 @@
 #endif
 
 #include <viewimp.hxx>
-// OD 18.02.2003 #107562# - <SwAlignRect> for <ViewShell::Scroll()>
 
 #include <horiornt.hxx>
 
@@ -74,36 +73,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/       AddPaintRect( rRect );
-/*N*/ }
-
-/******************************************************************************
-|*
-|*  ViewShell::Scroll()
-|*
-|*  Description
-|*  ViewShell::Scroll() scrolls all rectangles in the pScrollRects-list and
-|*  transfers the critical lines by calling SwViewImp::MoveScrollArea(..).
-|*
-******************************************************************************/
-
-/*N*/ void ViewShell::Scroll()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/******************************************************************************
-|*
-|*  ViewShell::SetNoNextScroll()
-|*
-******************************************************************************/
-
-/*N*/ void ViewShell::SetNoNextScroll()
-/*N*/ {
-/*N*/   ViewShell *pSh = this;
-/*N*/   do
-/*N*/   {   pSh->Imp()->ResetNextScroll();
-/*N*/       pSh = (ViewShell*)pSh->GetNext();
-/*N*/
-/*N*/   } while ( pSh != this );
 /*N*/ }
 
 /******************************************************************************

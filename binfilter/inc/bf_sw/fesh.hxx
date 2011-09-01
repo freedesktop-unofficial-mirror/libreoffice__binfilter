@@ -204,8 +204,6 @@ public:
     //gerufen von notxtfrm::Paint, impl in wrtsh
     virtual void ConnectObj( SvInPlaceObjectRef xIPObj, const SwRect &rPrt,
                              const SwRect &rFrm ) = 0;
-
-    void SetChainMarker();
 };
 
 } //namespace binfilter

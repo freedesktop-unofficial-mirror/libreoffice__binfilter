@@ -67,8 +67,6 @@ class SwVisCrsr
 public:
     ~SwVisCrsr();
 
-    void Show();
-
     bool IsVisible() const { return bIsVisible; }
     bool IsDragCrsr() const { return bIsDragCrsr; }
     void SetDragCrsr( BOOL bFlag = TRUE ) { bIsDragCrsr = bFlag; }
@@ -117,8 +115,6 @@ public:
     virtual ~SwShellCrsr();
 
     virtual operator SwShellCrsr* ();
-
-    void Show();            // Update und zeige alle Selektionen an
 
     const Point& GetPtPos() const   { return( SwPaM::GetPoint() == pPt ? aPtPt : aMkPt ); }
           Point& GetPtPos()         { return( SwPaM::GetPoint() == pPt ? aPtPt : aMkPt ); }

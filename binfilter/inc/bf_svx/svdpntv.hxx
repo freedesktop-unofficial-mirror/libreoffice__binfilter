@@ -386,9 +386,6 @@ public:
     void SetVisualizeEnteredGroup(BOOL bNew) { bVisualizeEnteredGroup = bNew; }
 
     virtual void ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const; // Alles togglen was als Xor im Win, nix merken! NULL=alle OutDev
-    void ShowShownXor(OutputDevice* pOut, BOOL bShow=TRUE);
-    void HideShownXor(OutputDevice* pOut) { ShowShownXor(pOut,FALSE); }
-    BOOL IsShownXorVisible(OutputDevice* pOut) const;
 
     // Am DragStatus laesst sich beispielsweise erfragen, welche
     // entfernung bereits gedraggd wurde, etc.

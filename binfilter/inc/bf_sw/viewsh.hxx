@@ -129,12 +129,6 @@ class ViewShell : public Ring
 
     sal_Bool CheckInvalidForPaint( const SwRect & );//Direkt Paint oder lieber
                                                 //eine Aktion ausloesen.
-
-    void Scroll();  //Scrollen wenn sich aus der LayAction Scrollmoeglichkeiten
-                    //ergaben.
-
-
-
 protected:
     static ShellResource*   pShellRes;      // Resourcen fuer die Shell
     static Window*          pCareWindow;    // diesem Fenster ausweichen
@@ -152,10 +146,6 @@ public:
     const SwViewImp *Imp() const { return pImp; }
 
     //Klammerung von zusammengehoerenden Aktionen.
-    inline void StartAction();
-           void ImplStartAction();
-    inline void EndAction();
-    void ImplEndAction();
     sal_uInt16 ActionCount() const { return nStartAction; }
     sal_Bool ActionPend() const { return nStartAction != 0; }
     sal_Bool IsInEndAction() const { return bInEndAction; }
@@ -172,7 +162,6 @@ public:
     //Ring arbeiten.
     sal_Bool AddPaintRect( const SwRect &rRect );
     void AddScrollRect( const SwFrm *pFrm, const SwRect &rRect, long nOffs );
-    void SetNoNextScroll();
 
     void InvalidateWindows( const SwRect &rRect );
     sal_Bool IsPaintInProgress() const { return bPaintInProgress; }
@@ -184,13 +173,6 @@ public:
     void EnableSmooth( sal_Bool b ) { bEnableSmooth = b; }
 
     const SwRect &VisArea() const { return aVisArea; }
-        //Es wird, wenn notwendig, soweit gescrollt, dass das
-        //uebergebene Rect im sichtbaren Ausschnitt liegt.
-    void MakeVisible( const SwRect & );
-
-    void UISizeNotify();            //Das weiterreichen der aktuellen groesse.
-
-
 
     //Invalidierung der ersten Sichtbaren Seite fuer alle Shells im Ring.
     void SetFirstVisPageInvalid();
@@ -301,17 +283,6 @@ public:
 inline void ViewShell::ResetInvalidRect()
 {
     aInvalidRect.Clear();
-}
-inline void ViewShell::StartAction()
-{
-    if ( !nStartAction++ )
-        ImplStartAction();
-}
-inline void ViewShell::EndAction()
-{
-    if( 0 == (nStartAction - 1) )
-        ImplEndAction();
-    --nStartAction;
 }
 
 } //namespace binfilter

@@ -105,35 +105,6 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/   pCrsrShell->GetWin()->SetCursor( 0 );
 /*N*/ }
 
-
-
-
-/*N*/ void SwVisCrsr::Show()
-/*N*/ {
-/*N*/   if( !bIsVisible )
-/*N*/   {
-/*N*/       bIsVisible = TRUE;
-/*N*/
-/*N*/       // muss ueberhaupt angezeigt werden ?
-/*N*/       if( pCrsrShell->VisArea().IsOver( pCrsrShell->aCharRect ) )
-/*N*/ #ifdef SW_CRSR_TIMER
-/*N*/       {
-/*N*/           if( bTimerOn )
-/*N*/               Start();            // Timer aufsetzen
-/*N*/           else
-/*N*/           {
-/*N*/               if( IsActive() )
-/*N*/                   Stop();         // Timer Stoppen
-/*N*/
-/*N*/               _SetPosAndShow();
-/*N*/           }
-/*N*/       }
-/*N*/ #else
-/*N*/           _SetPosAndShow();
-/*N*/ #endif
-/*N*/   }
-/*N*/ }
-
 /*N*/ void SwVisCrsr::_SetPosAndShow()
 /*N*/ {
 /*N*/   SwRect aRect;
@@ -275,20 +246,7 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*?*/   {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 
-
-/*N*/ void SwShellCrsr::Show()
-/*N*/ {
-/*N*/   SwShellCrsr * pTmp = this;
-/*N*/   do {
-/*N*/       pTmp->SwSelPaintRects::Show();
-/*N*/   } while( this != ( pTmp = (SwShellCrsr*)*(SwCursor*)(pTmp->GetNext() )));
-/*N*/
-/*N*/   SHOWBOOKMARKS1( 1 )
-/*N*/   SHOWREDLINES1( 1 )
-/*N*/ }
-
 // TRUE: an die Position kann der Cursor gesetzt werden
-
 
 /*N*/ SwShellTableCrsr::~SwShellTableCrsr() {}
 

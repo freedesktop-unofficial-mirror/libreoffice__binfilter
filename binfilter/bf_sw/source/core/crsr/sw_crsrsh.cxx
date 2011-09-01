@@ -74,20 +74,6 @@ using namespace ::com::sun::star::util;
 /*N*/   return pCurCrsr;
 /*N*/ }
 
-/*N*/ void SwCrsrShell::ShowCrsrs( BOOL bCrsrVis )
-/*N*/ {
-/*N*/   if( !bHasFocus || bAllProtect || bBasicHideCrsr )
-/*?*/       return;
-
-/*N*/   SET_CURR_SHELL( this );
-/*N*/   SwShellCrsr* pAktCrsr = pTblCrsr ? pTblCrsr : pCurCrsr;
-/*N*/   pAktCrsr->Show();
-/*N*/
-/*N*/   if( bSVCrsrVis && bCrsrVis )    // auch SV-Cursor wieder anzeigen
-/*N*/       pVisCrsr->Show();
-/*N*/ }
-
-
 /*N*/ SwCntntFrm *SwCrsrShell::GetCurrFrm() const
 /*N*/ {
 /*N*/   SET_CURR_SHELL( (ViewShell*)this );

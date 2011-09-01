@@ -88,29 +88,6 @@ namespace binfilter {
 /*N*/       return 0 != ::binfilter::GetFlyFromMarked( &Imp()->GetDrawView()->GetMarkList(),
 /*N*/                                       (ViewShell*)this );
 /*N*/ }
-
-/*N*/ void SwFEShell::SetChainMarker()
-/*N*/ {
-/*N*/   bool bDelFrom = TRUE,
-/*N*/            bDelTo   = TRUE;
-/*N*/   if ( IsFrmSelected() )
-/*N*/   {
-/*?*/       SwFlyFrm *pFly = FindFlyFrm();
-/*?*/
-/*?*/       XPolygon aPoly(3);
-/*?*/       if ( pFly->GetPrevLink() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
-/*?*/       if ( pFly->GetNextLink() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
-/*N*/   }
-/*N*/   if ( bDelFrom )
-/*N*/       delete pChainFrom, pChainFrom = 0;
-/*N*/   if ( bDelTo )
-/*N*/       delete pChainTo,   pChainTo = 0;
-/*N*/ }
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

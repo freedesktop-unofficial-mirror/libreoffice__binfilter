@@ -146,10 +146,6 @@ class SwViewImp
     void SetScrolled()        { bScrolled = TRUE; }
 
     SwScrollAreas *GetScrollRects() { return pScrollRects; }
-
-    void StartAction();         //Henkel Anzeigen und verstecken.
-    void EndAction();           //gerufen von ViewShell::ImplXXXAction
-
 public:
     ~SwViewImp();
 
@@ -166,7 +162,6 @@ public:
     BOOL AddPaintRect( const SwRect &rRect );
     void AddScrollRect( const SwFrm *pFrm, const SwRect &rRect, long nOffs );
     SwRegionRects *GetRegion()      { return pRegion; }
-    void DelRegions();                      //Loescht Scroll- und PaintRects
 
     void RestartScrollTimer()            { aScrollTimer.Start(); }
 

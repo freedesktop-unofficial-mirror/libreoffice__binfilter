@@ -403,38 +403,6 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void SdrPaintView::ShowShownXor(OutputDevice* pOut, BOOL bShow)
-/*N*/ {
-/*N*/   USHORT nAnz=GetWinCount();
-/*N*/   USHORT nw=0;
-/*N*/   BOOL bWeiter=TRUE;
-/*N*/   do {
-/*N*/       if (pOut!=NULL) {
-/*N*/           nw=aWinList.Find(pOut);
-/*N*/           bWeiter=FALSE;
-/*N*/       }
-/*N*/       if (nw<nAnz && nw!=SDRVIEWWIN_NOTFOUND) {
-/*N*/           BOOL bOn=IsShownXorVisibleWinNum(nw);
-/*N*/           if (bOn!=bShow) {
-/*N*/               ToggleShownXor(GetWin(nw),NULL);
-/*N*/               SetShownXorVisible(nw,bShow);
-/*N*/           }
-/*N*/       } else bWeiter=FALSE;
-/*N*/   } while (bWeiter);
-/*N*/ }
-
-/*N*/ BOOL SdrPaintView::IsShownXorVisible(OutputDevice* pOut) const
-/*N*/ {
-/*N*/   USHORT nPos=aWinList.Find(pOut);
-/*N*/   if (nPos!=SDRVIEWWIN_NOTFOUND) {
-/*N*/       return IsShownXorVisibleWinNum(nPos);
-/*N*/   } else {
-/*N*/       return FALSE;
-/*N*/   }
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
 /*N*/ void SdrPaintView::ClearPageViews()
 /*N*/ {
 /*N*/   BrkAction();

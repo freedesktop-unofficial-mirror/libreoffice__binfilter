@@ -45,17 +45,6 @@ class SwViewImp;
 class SwCntntNode;
 class SwWait;
 
-//Die Verwendung der LayAction laeuft immer gleich ab:
-//
-// 1. Erzeugen des LayAction-Objektes.
-// 2. Einstellen des gewuenschten Verhaltens mittels der Set-Methoden
-// 3. Aufruf von Action()
-// 4. Baldiges Zerstoeren des Objektes.
-//
-// Das Objekt meldet sich im CTor beim SwViewImp an und erst im DTor
-// wieder ab! Es handelt sich mithin um ein typisches Stackobjekt.
-
-
 class SwLayAction
 {
     SwRootFrm  *pRoot;
@@ -134,11 +123,7 @@ class SwLayAction
                        const SwPageFrm* pPage );
     BOOL IsShortCut( SwPageFrm *& );
 
-    void InternalAction();
-
     SwPageFrm *CheckFirstVisPage( SwPageFrm *pPage );
-
-    BOOL RemoveEmptyBrowserPages();
 
     inline void CheckIdleEnd();
     inline ULONG GetStartTicks() { return nStartTicks; }
@@ -184,8 +169,6 @@ public:
 
     inline void SetCheckPageNum( USHORT nNew );
     inline void SetCheckPageNumDirect( USHORT nNew ) { nCheckPageNum = nNew; }
-
-    void Action();  //Jetzt gehts loos...
 
     BOOL IsAgain()      const { return bAgain; }
     BOOL IsComplete()   const { return bComplete; }
