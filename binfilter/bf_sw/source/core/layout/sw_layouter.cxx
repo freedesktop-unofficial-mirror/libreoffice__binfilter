@@ -83,13 +83,12 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-/*N*/ SwLayouter::SwLayouter() : pLooping( NULL )
+/*N*/ SwLayouter::SwLayouter()
 /*N*/ {
 /*N*/ }
 
 /*N*/ SwLayouter::~SwLayouter()
 /*N*/ {
-/*N*/   delete pLooping;
 /*N*/ }
 
 }

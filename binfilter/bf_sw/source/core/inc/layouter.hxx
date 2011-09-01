@@ -43,7 +43,6 @@ class SwLooping;
 
 class SwLayouter
 {
-    SwLooping* pLooping;
 public:
     SwLayouter();
     ~SwLayouter();
