@@ -52,7 +52,6 @@
 #include <horiornt.hxx>
 
 #include <rootfrm.hxx>  //Damit der RootDtor gerufen wird.
-#include <layouter.hxx>
 #include <ndtxt.hxx>
 #include <printdata.hxx>
 #include <docfld.hxx>

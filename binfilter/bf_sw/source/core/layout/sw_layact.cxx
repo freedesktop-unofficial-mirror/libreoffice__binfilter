@@ -47,7 +47,6 @@
 #include "viewopt.hxx"  // OnlineSpelling ueber Internal-TabPage testen.
 #include "pam.hxx"      // OnlineSpelling wg. der aktuellen Cursorposition
 #include "dbg_lay.hxx"
-#include "layouter.hxx" // LoopControlling
 
 #include <ftnidx.hxx>
 
