@@ -41,12 +41,9 @@
 #include "pagefrm.hxx"
 #include "viewimp.hxx"
 #include "viewopt.hxx"
-#include "layact.hxx"
 #include "swregion.hxx"
 #include "dview.hxx"
 #include <bf_svx/svdpage.hxx>
-#ifdef ACCESSIBLE_LAYOUT
-#endif
 
 namespace binfilter {
 
@@ -73,8 +70,6 @@ namespace binfilter {
 
 /*N*/ void SwViewImp::CheckWaitCrsr()
 /*N*/ {
-/*N*/   if ( pLayAct )
-/*N*/       pLayAct->CheckWaitCrsr();
 /*N*/ }
 
 /******************************************************************************
@@ -85,8 +80,6 @@ namespace binfilter {
 
 /*N*/ BOOL SwViewImp::IsCalcLayoutProgress() const
 /*N*/ {
-/*N*/   if ( pLayAct )
-/*N*/       return pLayAct->IsCalcLayout();
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -98,11 +91,6 @@ namespace binfilter {
 
 /*N*/ BOOL SwViewImp::IsUpdateExpFlds()
 /*N*/ {
-/*N*/   if ( pLayAct && pLayAct->IsCalcLayout() )
-/*N*/   {
-/*?*/       pLayAct->SetUpdateExpFlds();
-/*?*/       return TRUE;
-/*N*/   }
 /*N*/   return FALSE;
 /*N*/ }
 }

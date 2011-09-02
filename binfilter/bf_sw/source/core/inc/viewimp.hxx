@@ -49,7 +49,6 @@ class SwRegionRects;
 class SwScrollAreas;
 class SwScrollColumn;
 class SwFrm;
-class SwLayAction;
 class SwDrawView;
 class SdrPageView;
 class SwPageFrm;
@@ -71,8 +70,6 @@ class SwViewImp
 {
     friend class ViewShell;
 
-    friend class SwLayAction;   //Lay- und IdleAction tragen sich ein und aus.
-
     // for paint of page preview
     friend class SwPagePreviewLayout;
 
@@ -87,14 +84,6 @@ class SwViewImp
     SwRegionRects *pRegion;      //Sammler fuer Paintrects aus der LayAction.
     SwScrollAreas *pScrollRects; //Sammler fuer Scrollrects aus der LayAction.
     SwScrollAreas *pScrolledArea;//Sammler der gescrollten Rechtecke.
-
-    SwLayAction   *pLayAct;      //Ist gesetzt wenn ein Action-Objekt existiert
-                                 //Wird vom SwLayAction-CTor ein- und vom DTor
-                                 //ausgetragen.
-
-#ifdef ACCESSIBLE_LAYOUT
-#endif
-
 
     AutoTimer     aScrollTimer;  //Fuer das Aufraeumen nach dem Scrollen.
 
@@ -175,11 +164,6 @@ public:
     const SwDrawView* GetDrawView() const { return pDrawView; }
           SdrPageView*GetPageView()       { return pSdrPageView; }
     const SdrPageView*GetPageView() const { return pSdrPageView; }
-
-    //SS Fuer die Lay- bzw. IdleAction und verwandtes
-    BOOL  IsAction() const                   { return pLayAct  != 0; }
-          SwLayAction &GetLayAction()        { return *pLayAct; }
-    const SwLayAction &GetLayAction() const  { return *pLayAct; }
 
     //Wenn eine Aktion laueft wird diese gebeten zu pruefen ob es
     //an der zeit ist den WaitCrsr einzuschalten.

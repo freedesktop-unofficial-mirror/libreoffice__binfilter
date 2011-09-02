@@ -50,7 +50,6 @@
 #include <swregion.hxx>
 #include <hints.hxx>
 #include <txtfrm.hxx>
-#include <layact.hxx>
 #include <mdiexp.hxx>
 #include <fntcache.hxx>
 #include <docsh.hxx>

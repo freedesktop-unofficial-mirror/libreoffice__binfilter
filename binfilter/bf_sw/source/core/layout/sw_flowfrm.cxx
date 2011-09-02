@@ -63,7 +63,6 @@
 #include "txtfrm.hxx"
 #include "tabfrm.hxx"
 #include "pagedesc.hxx"
-#include "layact.hxx"
 #include "frmsh.hxx"
 #include "fmtornt.hxx"
 #include "flyfrms.hxx"
@@ -515,21 +514,16 @@ namespace binfilter {
 /*N*/
 /*N*/   //Sparsamer benachrichtigen wenn eine Action laeuft.
 /*N*/   ViewShell *pSh = rThis.GetShell();
-/*N*/   const SwViewImp *pImp = pSh ? pSh->Imp() : 0;
-/*N*/   const BOOL bComplete = pImp && pImp->IsAction() && pImp->GetLayAction().IsComplete();
 /*N*/
-/*N*/   if ( !bComplete )
+/*N*/   SwFrm *pPre = rThis.GetIndPrev();
+/*N*/   if ( pPre )
 /*N*/   {
-/*N*/       SwFrm *pPre = rThis.GetIndPrev();
-/*N*/       if ( pPre )
-/*N*/       {
-/*N*/           pPre->SetRetouche();
-/*N*/           pPre->InvalidatePage();
-/*N*/       }
-/*N*/       else
-/*N*/       {   rThis.GetUpper()->SetCompletePaint();
-/*N*/           rThis.GetUpper()->InvalidatePage();
-/*N*/       }
+/*N*/       pPre->SetRetouche();
+/*N*/       pPre->InvalidatePage();
+/*N*/   }
+/*N*/   else
+/*N*/   {   rThis.GetUpper()->SetCompletePaint();
+/*N*/       rThis.GetUpper()->InvalidatePage();
 /*N*/   }
 /*N*/
 /*N*/   SwPageFrm *pOldPage = rThis.FindPageFrm();

@@ -74,7 +74,6 @@
 #include "notxtfrm.hxx"
 #include "flyfrms.hxx"
 #include "frmsh.hxx"
-#include "layact.hxx"
 #include "pagedesc.hxx"
 #include "section.hxx"
 #include "sectfrm.hxx"
@@ -625,14 +624,9 @@ namespace binfilter {
 /*N*/   SwFlyFrm *pFly = GetFly();
 /*N*/   if ( pFly->IsNotifyBack() )
 /*N*/   {
-/*N*/       ViewShell *pSh = pFly->GetShell();
-/*N*/       SwViewImp *pImp = pSh ? pSh->Imp() : 0;
-/*N*/       if ( !pImp || !pImp->IsAction() || !pImp->GetLayAction().IsAgain() )
-/*N*/       {
-/*N*/           //Wenn in der LayAction das IsAgain gesetzt ist kann es sein,
-/*N*/           //dass die alte Seite inzwischen vernichtet wurde!
-/*N*/           ::binfilter::Notify( pFly, pOldPage, aFrmAndSpace );
-/*N*/       }
+/*N*/       //Wenn in der LayAction das IsAgain gesetzt ist kann es sein,
+/*N*/       //dass die alte Seite inzwischen vernichtet wurde!
+/*N*/       ::binfilter::Notify( pFly, pOldPage, aFrmAndSpace );
 /*N*/       pFly->ResetNotifyBack();
 /*N*/   }
 /*N*/

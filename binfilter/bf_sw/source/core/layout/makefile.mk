@@ -73,7 +73,6 @@ CXXFILES = \
         sw_frmtool.cxx \
         sw_ftnfrm.cxx \
         sw_hffrm.cxx \
-        sw_layact.cxx \
                 sw_laycache.cxx \
         sw_newfrm.cxx \
         sw_pagechg.cxx \
@@ -101,7 +100,6 @@ SLOFILES =  \
         $(SLO)$/sw_frmtool.obj \
         $(SLO)$/sw_ftnfrm.obj \
         $(SLO)$/sw_hffrm.obj \
-        $(SLO)$/sw_layact.obj \
                 $(SLO)$/sw_laycache.obj \
         $(SLO)$/sw_newfrm.obj \
         $(SLO)$/sw_pagechg.obj \

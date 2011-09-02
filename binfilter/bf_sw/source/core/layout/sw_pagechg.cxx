@@ -61,7 +61,6 @@
 #include "ftnfrm.hxx"
 #include "tabfrm.hxx"
 #include "txtfrm.hxx"
-#include "layact.hxx"
 #include "flyfrms.hxx"
 #include "frmsh.hxx"
 #include "pagedesc.hxx"
@@ -277,9 +276,7 @@ namespace binfilter {
 /*N*/           {
 /*N*/               SwViewImp *pImp = pSh->Imp();
 /*N*/               pImp->SetFirstVisPageInvalid();
-/*N*/               if ( pImp->IsAction() )
-/*N*/                   pImp->GetLayAction().SetAgain();
-/*N*/             }
+/*N*/           }
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -1049,12 +1046,6 @@ namespace binfilter {
 /*N*/   ViewShell *pSh   = pStart->GetShell();
 /*N*/   SwViewImp *pImp  = pSh ? pSh->Imp() : 0;
 /*N*/
-/*N*/   if ( pImp && pImp->IsAction() && !pImp->GetLayAction().IsCheckPages() )
-/*N*/   {
-/*?*/       pImp->GetLayAction().SetCheckPageNum( pStart->GetPhyPageNum() );
-/*?*/       return;
-/*N*/   }
-/*N*/
 /*N*/   //Fuer das Aktualisieren der Seitennummern-Felder gibt nDocPos
 /*N*/   //die Seitenposition an, _ab_ der invalidiert werden soll.
 /*N*/   SwTwips nDocPos  = LONG_MAX;
@@ -1326,16 +1317,6 @@ namespace binfilter {
 /*N*/       if ( bCheckPages )
 /*N*/       {
 /*N*/           CheckPageDescs( pSibling, FALSE );
-/*N*/           ViewShell *pSh = GetShell();
-/*N*/           SwViewImp *pImp = pSh ? pSh->Imp() : 0;
-/*N*/           if ( pImp && pImp->IsAction() && !pImp->GetLayAction().IsCheckPages() )
-/*N*/           {
-/*?*/               const USHORT nNum = pImp->GetLayAction().GetCheckPageNum();
-/*?*/               if ( nNum == pPrevPage->GetPhyPageNum() + 1 )
-/*?*/                   pImp->GetLayAction().SetCheckPageNumDirect(
-/*?*/                                                   pSibling->GetPhyPageNum() );
-/*?*/               return pPage;
-/*N*/           }
 /*N*/       }
 /*N*/   }
 /*N*/
