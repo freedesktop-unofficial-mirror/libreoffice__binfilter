@@ -43,30 +43,10 @@ class SfxItemSet;
 
 
 
-class SwRedlineExtraData
-{
-    SwRedlineExtraData( const SwRedlineExtraData& );
-    SwRedlineExtraData& operator=( const SwRedlineExtraData& );
-
-protected:
-    SwRedlineExtraData() {}
-
-public:
-    virtual ~SwRedlineExtraData();
-     virtual SwRedlineExtraData* CreateNew() const = 0;
-
-    virtual int operator == ( const SwRedlineExtraData& ) const;
-};
-
-
-
-
-
 class SwRedlineData
 {
     friend class SwRedline;
     SwRedlineData* pNext;       // Verweis auf weitere Daten
-    SwRedlineExtraData* pExtraData;
 
     String sComment;
     DateTime aStamp;
@@ -78,21 +58,21 @@ public:
 
     // fuer sw3io: pNext/pExtraData gehen in eigenen Besitz ueber!
     SwRedlineData( SwRedlineType eT, USHORT nAut, const DateTime& rDT,
-                   const String& rCmnt, SwRedlineData* pNxt,
-                    SwRedlineExtraData* pExtraData = 0 );
+                   const String& rCmnt, SwRedlineData* pNxt );
 
     ~SwRedlineData();
 
     int operator==( const SwRedlineData& rCmp ) const
         {
-            return nAuthor == rCmp.nAuthor &&
-                    eType == rCmp.eType &&
-                    sComment == rCmp.sComment &&
-                    (( !pNext && !rCmp.pNext ) ||
-                        ( pNext && rCmp.pNext && *pNext == *rCmp.pNext )) &&
-                    (( !pExtraData && !rCmp.pExtraData ) ||
-                        ( pExtraData && rCmp.pExtraData &&
-                            *pExtraData == *rCmp.pExtraData ));
+            return nAuthor == rCmp.nAuthor
+                && eType == rCmp.eType
+                && sComment == rCmp.sComment
+                && (  (  !pNext && !rCmp.pNext )
+                   || (  pNext
+                      && rCmp.pNext
+                      && *pNext == *rCmp.pNext
+                      )
+                   );
         }
     int operator!=( const SwRedlineData& rCmp ) const
         {   return !operator==( rCmp ); }
@@ -112,21 +92,19 @@ public:
         { eType = SwRedlineType( eType | REDLINE_FORM_AUTOFMT ); }
     int CanCombine( const SwRedlineData& rCmp ) const
         {
-            return nAuthor == rCmp.nAuthor &&
-                    eType == rCmp.eType &&
-                    sComment == rCmp.sComment &&
-                    GetTimeStamp() == rCmp.GetTimeStamp() &&
-                    (( !pNext && !rCmp.pNext ) ||
-                        ( pNext && rCmp.pNext &&
-                        pNext->CanCombine( *rCmp.pNext ))) &&
-                    (( !pExtraData && !rCmp.pExtraData ) ||
-                        ( pExtraData && rCmp.pExtraData &&
-                            *pExtraData == *rCmp.pExtraData ));
+            return nAuthor == rCmp.nAuthor
+                && eType == rCmp.eType
+                && sComment == rCmp.sComment
+                && GetTimeStamp() == rCmp.GetTimeStamp()
+                && (  (  !pNext
+                      && !rCmp.pNext
+                      )
+                   || (  pNext
+                      && rCmp.pNext
+                      && pNext->CanCombine( *rCmp.pNext )
+                      )
+                   );
         }
-
-    // ExtraData wird kopiert, der Pointer geht also NICHT in den Besitz
-    // des RedlineObjectes!
-    const SwRedlineExtraData* GetExtraData() const { return pExtraData; }
 
     // fuers UI-seitige zusammenfassen von Redline-Actionen. Wird z.Z. nur
     // fuers Autoformat mit Redline benoetigt. Der Wert != 0 bedeutet dabei,
@@ -194,11 +172,6 @@ public:
 
     const String& GetComment() const    { return pRedlineData->GetComment(); }
     void SetComment( const String& rS ) { pRedlineData->SetComment( rS ); }
-
-    // ExtraData wird kopiert, der Pointer geht also NICHT in den Besitz
-    // des RedlineObjectes!
-    const SwRedlineExtraData* GetExtraData() const
-        { return pRedlineData->GetExtraData(); }
 
     // fuers UI-seitige zusammenfassen von Redline-Actionen. Wird z.Z. nur
     // fuers Autoformat mit Redline benoetigt. Der Wert != 0 bedeutet dabei,

@@ -370,26 +370,8 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*N*/ }
 
 
-// suche den naechsten oder vorherigen Redline mit dergleichen Seq.No
-// Mit dem Lookahead kann die Suche eingeschraenkt werden. 0 oder
-// USHRT_MAX suchen im gesamten Array.
-
-
-/*?*/SwRedlineExtraData::~SwRedlineExtraData()
-/*?*/{
-/*?*/}
-
-
-
-/*?*/int SwRedlineExtraData::operator == ( const SwRedlineExtraData& ) const
-/*?*/{
-/*?*/   return FALSE;
-/*?*/}
-
-
 /*?*/SwRedlineData::SwRedlineData( const SwRedlineData& rCpy, BOOL bCpyNext )
 /*?*/   : pNext( (bCpyNext && rCpy.pNext) ? new SwRedlineData( *rCpy.pNext ) : 0 )
-/*?*/   , pExtraData( rCpy.pExtraData ? rCpy.pExtraData->CreateNew() : 0 )
 /*?*/   , sComment( rCpy.sComment )
 /*?*/   , aStamp( rCpy.aStamp )
 /*?*/   , eType( rCpy.eType )
@@ -400,10 +382,8 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 
     // fuer sw3io: pNext geht in eigenen Besitz ueber!
 /*?*/SwRedlineData::SwRedlineData( SwRedlineType eT, USHORT nAut, const DateTime& rDT,
-/*?*/                  const String& rCmnt, SwRedlineData *pNxt,
-/*?*/                  SwRedlineExtraData* pData )
+/*?*/                  const String& rCmnt, SwRedlineData *pNxt )
 /*?*/   : pNext( pNxt )
-/*?*/   , pExtraData( pData )
 /*?*/   , sComment( rCmnt )
 /*?*/   , aStamp( rDT )
 /*?*/   , eType( eT )
@@ -414,7 +394,6 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 
 /*?*/SwRedlineData::~SwRedlineData()
 /*?*/{
-/*?*/   delete pExtraData;
 /*?*/   delete pNext;
 /*?*/}
 
