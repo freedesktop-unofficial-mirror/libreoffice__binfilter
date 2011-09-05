@@ -42,7 +42,6 @@ class SwPaM;
 class SwCursor;
 class SwShellCrsr;
 class SwTableCursor;
-class SwRegionRects;
 
 class SwLayVout;
 class SwDestroyList;

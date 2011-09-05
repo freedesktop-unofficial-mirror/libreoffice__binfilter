@@ -45,14 +45,12 @@ namespace binfilter {
 class ViewShell;
 class SwFlyFrm;
 class SwViewOption;
-class SwRegionRects;
 class SwScrollAreas;
 class SwScrollColumn;
 class SwFrm;
 class SwDrawView;
 class SdrPageView;
 class SwPageFrm;
-class SwRegionRects;
 class ExtOutputDevice;
 class SdrPaintInfoRec;
 struct SdrPaintProcRec;
@@ -81,7 +79,6 @@ class SwViewImp
     SdrPageView *pSdrPageView;  //Genau eine Seite fuer unsere DrawView
 
     SwPageFrm     *pFirstVisPage;//Zeigt immer auf die erste sichtbare Seite.
-    SwRegionRects *pRegion;      //Sammler fuer Paintrects aus der LayAction.
     SwScrollAreas *pScrollRects; //Sammler fuer Scrollrects aus der LayAction.
     SwScrollAreas *pScrolledArea;//Sammler der gescrollten Rechtecke.
 
@@ -119,9 +116,6 @@ public:
 
     void SetFirstVisPageInvalid() { bFirstPageInvalid = TRUE; }
 
-    //SS'en fuer Paint- und Scrollrects.
-    BOOL AddPaintRect( const SwRect &rRect );
-
     //Wird vom Layout ggf. waehrend einer Action gerufen, wenn der
     //Verdacht besteht, dass es etwas drunter und drueber geht.
     void ResetScroll()        { bScroll = FALSE; }
@@ -132,14 +126,6 @@ public:
     const SwDrawView* GetDrawView() const { return pDrawView; }
           SdrPageView*GetPageView()       { return pSdrPageView; }
     const SdrPageView*GetPageView() const { return pSdrPageView; }
-
-    //Wenn eine Aktion laueft wird diese gebeten zu pruefen ob es
-    //an der zeit ist den WaitCrsr einzuschalten.
-    void CheckWaitCrsr();
-    BOOL IsCalcLayoutProgress() const;  //Fragt die LayAction wenn vorhanden.
-    //TRUE wenn eine LayAction laeuft, dort wird dann auch das Flag fuer
-    //ExpressionFields gesetzt.
-    BOOL IsUpdateExpFlds();
 };
 } //namespace binfilter
 #endif //_VIEWIMP_HXX

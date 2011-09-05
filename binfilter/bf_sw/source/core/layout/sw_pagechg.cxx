@@ -1043,9 +1043,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   OSL_ENSURE( pStart, "Keine Startpage." );
 /*N*/
-/*N*/   ViewShell *pSh   = pStart->GetShell();
-/*N*/   SwViewImp *pImp  = pSh ? pSh->Imp() : 0;
-/*N*/
 /*N*/   //Fuer das Aktualisieren der Seitennummern-Felder gibt nDocPos
 /*N*/   //die Seitenposition an, _ab_ der invalidiert werden soll.
 /*N*/   SwTwips nDocPos  = LONG_MAX;
@@ -1074,11 +1071,6 @@ namespace binfilter {
 /*N*/              )
 /*N*/            )
 /*N*/       {
-/*N*/           //Wenn wir schon ein Seite veraendern muessen kann das eine
-/*N*/           //Weile dauern, deshalb hier den WaitCrsr pruefen.
-/*N*/           if( pImp )
-/*N*/               pImp->CheckWaitCrsr();
-/*N*/
 /*N*/           //Ab hier muessen die Felder invalidiert werden!
 /*N*/           if ( nDocPos == LONG_MAX )
 /*N*/               nDocPos = pPage->GetPrev() ?
@@ -1196,7 +1188,7 @@ namespace binfilter {
 /*N*/       pPage = (SwPageFrm*)pPage->GetNext();
 /*N*/   }
 /*N*/
-/*N*/   if ( bNotifyFields && (!pImp || !pImp->IsUpdateExpFlds()) )
+/*N*/   if ( bNotifyFields )
 /*N*/   {
 /*N*/       SwDocPosUpdate aMsgHnt( nDocPos );
 /*N*/       pDoc->UpdatePageFlds( &aMsgHnt );
@@ -1320,10 +1312,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   //Fuer das Aktualisieren der Seitennummern-Felder gibt nDocPos
-/*N*/   //die Seitenposition an, _ab_ der invalidiert werden soll.
-/*N*/   ViewShell *pSh = GetShell();
-/*N*/   if ( !pSh || !pSh->Imp()->IsUpdateExpFlds() )
 /*N*/   {
 /*N*/       SwDocPosUpdate aMsgHnt( pPrevPage->Frm().Top() );
 /*N*/       pDoc->UpdatePageFlds( &aMsgHnt );

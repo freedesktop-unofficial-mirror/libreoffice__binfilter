@@ -2774,7 +2774,6 @@ namespace binfilter {
 /*N*/
 /*N*/   bool bEnd = FALSE;
 /*N*/   bool bBackLock = FALSE;
-/*N*/   SwViewImp *pImp = GetShell() ? GetShell()->Imp() : 0;
 /*N*/   {
 /*N*/       // Zugrunde liegender Algorithmus
 /*N*/       // Es wird versucht, eine optimale Hoehe fuer die Spalten zu finden.
@@ -2855,10 +2854,6 @@ namespace binfilter {
 /*N*/           nMaximum = LONG_MAX;
 /*N*/       do
 /*N*/       {
-/*N*/           //Kann eine Weile dauern, deshalb hier auf Waitcrsr pruefen.
-/*N*/           if ( pImp )
-/*N*/               pImp->CheckWaitCrsr();
-/*N*/
 /*N*/           bValidSize = TRUE;
 /*N*/           //Erstmal die Spalten formatieren, das entlastet den
 /*N*/           //Stack ein wenig.

@@ -63,7 +63,6 @@ class SwViewImp;
 class SwPrtOptions;
 class SwPagePreViewPrtData;
 struct ShellResource;
-class SwRegionRects;
 class SwFrm;
 struct SwPrintData;
 // OD 12.12.2002 #103492#

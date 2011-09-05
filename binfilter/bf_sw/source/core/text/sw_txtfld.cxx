@@ -125,7 +125,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/
 /*N*/       case RES_CHAPTERFLD:
-/*N*/           if( !bName && pSh && !pSh->Imp()->IsUpdateExpFlds() )
+/*N*/           if( !bName && pSh )
 /*N*/           {
 /*N*/               ((SwChapterField*)pFld)->ChangeExpansion( pFrame,
 /*N*/                                       &((SwTxtFld*)pHint)->GetTxtNode() );
@@ -134,14 +134,14 @@ namespace binfilter {
 /*N*/           break;
 /*N*/
 /*N*/       case RES_DOCSTATFLD:
-/*N*/           if( !bName && pSh && !pSh->Imp()->IsUpdateExpFlds() )
+/*N*/           if( !bName && pSh )
 /*N*/               ((SwDocStatField*)pFld)->ChangeExpansion( pFrame );
 /*N*/           pRet = new SwFldPortion( pFld->GetCntnt( bName ) );
 /*N*/           break;
 /*N*/
 /*N*/       case RES_PAGENUMBERFLD:
 /*N*/       {
-/*N*/           if( !bName && pSh && !pSh->Imp()->IsUpdateExpFlds() )
+/*N*/           if( !bName && pSh )
 /*N*/           {
 /*N*/               SwDoc* pDoc = pSh->GetDoc();
 /*N*/               SwPageNumberFieldType *pPageNr = (SwPageNumberFieldType *)
@@ -160,7 +160,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       case RES_GETEXPFLD:
 /*N*/       {
-/*N*/           if( !bName && pSh && !pSh->Imp()->IsUpdateExpFlds() )
+/*N*/           if( !bName && pSh )
 /*N*/           {
 /*N*/               SwGetExpField* pExpFld = (SwGetExpField*)pFld;
                         /*N*/               if( !::binfilter::lcl_IsInBody( pFrame ) )
@@ -182,26 +182,12 @@ namespace binfilter {
 /*N*/           {
 /*N*/               SwDBField* pDBFld = (SwDBField*)pFld;
 /*N*/               pDBFld->ChgBodyTxtFlag( ::binfilter::lcl_IsInBody( pFrame ) );
- /* Solange das ChangeExpansion auskommentiert ist.
-  * Aktualisieren in Kopf/Fuszeilen geht aktuell nicht.
-                 if( !::binfilter::lcl_IsInBody( pFrame ) )
-                 {
-                     pDBFld->ChgBodyTxtFlag( sal_False );
-                     pDBFld->ChangeExpansion( pFrame, (SwTxtFld*)pHint );
-                 }
-                 else if( !pDBFld->IsInBodyTxt() )
-                 {
-                     // war vorher anders, also erst expandieren, dann umsetzen!!
-                     pDBFld->ChangeExpansion( pFrame, (SwTxtFld*)pHint );
-                     pDBFld->ChgBodyTxtFlag( sal_True );
-                 }
- */
 /*N*/           }
 /*N*/           pRet = new SwFldPortion( pFld->GetCntnt( bName ) );
 /*N*/           break;
 /*N*/       }
 /*?*/       case RES_REFPAGEGETFLD:
-/*?*/           if( !bName && pSh && !pSh->Imp()->IsUpdateExpFlds() )
+/*?*/           if( !bName && pSh )
                         /*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           pRet = new SwFldPortion( pFld->GetCntnt( bName ) );
 /*?*/           break;

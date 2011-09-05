@@ -49,50 +49,6 @@ namespace binfilter {
 
 /*N*/ SwViewImp::~SwViewImp() { }
 
-/*N*/ BOOL SwViewImp::AddPaintRect( const SwRect &rRect )
-/*N*/ {
-/*N*/   if ( rRect.IsOver( pSh->VisArea() ) )
-/*N*/   {
-/*?*/       if ( !pRegion )
-/*?*/           pRegion = new SwRegionRects( pSh->VisArea() );
-/*?*/       (*pRegion) -= rRect;
-/*?*/       return TRUE;
-/*N*/   }
-/*N*/   return FALSE;
-/*N*/ }
-
-
-/******************************************************************************
-|*
-|*  ViewImp::CheckWaitCrsr()
-|*
-******************************************************************************/
-
-/*N*/ void SwViewImp::CheckWaitCrsr()
-/*N*/ {
-/*N*/ }
-
-/******************************************************************************
-|*
-|*  ViewImp::IsCalcLayoutProgress()
-|*
-******************************************************************************/
-
-/*N*/ BOOL SwViewImp::IsCalcLayoutProgress() const
-/*N*/ {
-/*N*/   return FALSE;
-/*N*/ }
-
-/******************************************************************************
-|*
-|*  ViewImp::IsUpdateExpFlds()
-|*
-******************************************************************************/
-
-/*N*/ BOOL SwViewImp::IsUpdateExpFlds()
-/*N*/ {
-/*N*/   return FALSE;
-/*N*/ }
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -74,23 +74,19 @@ bool bInSizeNotify = FALSE;
 
 /*N*/ void ViewShell::InvalidateWindows( const SwRect &rRect )
 /*N*/ {
-/*N*/   if ( !Imp()->IsCalcLayoutProgress() )
-/*N*/   {
-/*N*/       ViewShell *pSh = this;
-/*N*/       do
-/*N*/       {
-/*N*/           if ( pSh->GetWin() )
-/*N*/           {
-/*N*/               if ( pSh->IsPreView() )
-/*N*/ //                    pSh->GetWin()->Invalidate();
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");//::binfilter::RepaintPagePreview( pSh, rRect );
-/*N*/               else if ( pSh->VisArea().IsOver( rRect ) )
-/*N*/                   pSh->GetWin()->Invalidate( rRect.SVRect() );
-/*N*/           }
-/*N*/           pSh = (ViewShell*)pSh->GetNext();
+/*N*/     ViewShell *pSh = this;
+/*N*/     do
+/*N*/     {
+/*N*/         if ( pSh->GetWin() )
+/*N*/         {
+/*N*/             if ( pSh->IsPreView() )
+/*?*/                 DBG_BF_ASSERT(0, "STRIP");
+/*N*/             else if ( pSh->VisArea().IsOver( rRect ) )
+/*N*/                 pSh->GetWin()->Invalidate( rRect.SVRect() );
+/*N*/         }
+/*N*/         pSh = (ViewShell*)pSh->GetNext();
 /*N*/
-/*N*/       } while ( pSh != this );
-/*N*/   }
+/*N*/     } while ( pSh != this );
 /*N*/ }
 
 /******************************************************************************

@@ -37,25 +37,6 @@ namespace binfilter {
 
 SV_DECL_VARARR( SwRects, SwRect, 20, 8 )
 
-class SwRegionRects : public SwRects
-{
-    SwRect aOrigin; // die Kopie des StartRects
-
-    inline void InsertRect( const SwRect &rRect, const USHORT nPos, bool &rDel);
-
-public:
-    SwRegionRects( const SwRect& rStartRect, USHORT nInit = 20,
-                                             USHORT nGrow = 8 );
-    // Zum Ausstanzen aus aOrigin.
-    void operator-=( const SwRect& rRect );
-
-    // Aus Loechern werden Flaechen, aus Flaechen werden Loecher.
-    // Benachbarte Rechtecke zusammenfassen.
-
-    inline const SwRect &GetOrigin() const { return aOrigin; }
-    inline void ChangeOrigin( const SwRect &rRect ) { aOrigin = rRect; }
-};
-
 } //namespace binfilter
 #endif  //_SWREGION_HXX
 

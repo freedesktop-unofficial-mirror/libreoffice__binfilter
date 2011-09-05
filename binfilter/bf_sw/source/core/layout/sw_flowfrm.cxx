@@ -1492,7 +1492,7 @@ namespace binfilter {
 /*N*/               if( !bSamePage )
 /*N*/               {
 /*N*/                   ViewShell *pSh = rThis.GetShell();
-/*N*/                   if ( pSh && !pSh->Imp()->IsUpdateExpFlds() )
+/*N*/                   if ( pSh )
 /*N*/                       pSh->GetDoc()->SetNewFldLst();  //Wird von CalcLayout() hinterher erledigt!
 /*N*/                   pNewPage->InvalidateSpelling();
 /*N*/                   pNewPage->InvalidateAutoCompleteWords();
@@ -1791,7 +1791,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/           rThis.Prepare( PREP_BOSS_CHGD, (const void*)pOldPage, FALSE );
 /*N*/           ViewShell *pSh = rThis.GetShell();
-/*N*/           if ( pSh && !pSh->Imp()->IsUpdateExpFlds() )
+/*N*/           if ( pSh )
 /*N*/               pSh->GetDoc()->SetNewFldLst();  //Wird von CalcLayout() hinterher eledigt!
 /*N*/           pNewPage->InvalidateSpelling();
 /*N*/           pNewPage->InvalidateAutoCompleteWords();
