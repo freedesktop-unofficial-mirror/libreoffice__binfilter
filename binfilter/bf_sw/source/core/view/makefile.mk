@@ -47,7 +47,6 @@ LIBFLAGS=/NOI /NOE /PAGE:128
 # --- Files --------------------------------------------------------
 
 CXXFILES = \
-    sw_scrrect.cxx \
     sw_viewimp.cxx \
     sw_viewsh.cxx \
         sw_vnew.cxx \
@@ -56,7 +55,6 @@ CXXFILES = \
 
 
 SLOFILES =  \
-    $(SLO)$/sw_scrrect.obj \
     $(SLO)$/sw_viewimp.obj \
     $(SLO)$/sw_viewsh.obj \
         $(SLO)$/sw_vnew.obj \

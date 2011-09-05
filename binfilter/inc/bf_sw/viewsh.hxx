@@ -158,11 +158,6 @@ public:
 
     inline sal_Bool HasInvalidRect() const { return aInvalidRect.HasArea(); }
 
-    //Methoden fuer Paint- und Scrollrects, die auf allen Shells im
-    //Ring arbeiten.
-    sal_Bool AddPaintRect( const SwRect &rRect );
-    void AddScrollRect( const SwFrm *pFrm, const SwRect &rRect, long nOffs );
-
     void InvalidateWindows( const SwRect &rRect );
     sal_Bool IsPaintInProgress() const { return bPaintInProgress; }
 

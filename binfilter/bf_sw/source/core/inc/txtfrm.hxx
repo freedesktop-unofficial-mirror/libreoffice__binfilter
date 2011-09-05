@@ -230,7 +230,6 @@ public:
     inline  sal_Bool GetKeyCrsrOfst(SwPosition *pPos, const Point &rPoint ) const
             { return _GetCrsrOfst( pPos, rPoint, sal_False ); }
 
-    SwRect Paint();
     virtual void Modify( SfxPoolItem*, SfxPoolItem* );
     virtual sal_Bool GetInfo( SfxPoolItem & ) const;
 
@@ -425,7 +424,6 @@ public:
     //Fuer die Anzeige der Zeilennummern.
     ULONG GetAllLines()  const { return nAllLines; }
     ULONG GetThisLines() const { return nThisLines;}
-    void RecalcAllLines();
 
     // Swaps width and height of the text frame
     void SwapWidthAndHeight();

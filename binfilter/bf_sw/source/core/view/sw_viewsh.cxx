@@ -68,29 +68,6 @@ bool bInSizeNotify = FALSE;
 
 /******************************************************************************
 |*
-|*  ViewShell::AddPaintRect()
-|*
-******************************************************************************/
-
-/*N*/ BOOL ViewShell::AddPaintRect( const SwRect & rRect )
-/*N*/ {
-/*N*/   BOOL bRet = FALSE;
-/*N*/   ViewShell *pSh = this;
-/*N*/   do
-/*N*/   {
-/*N*/       if ( pSh->IsPreView() && pSh->GetWin() )
-/*N*/ //            pSh->GetWin()->Invalidate();
-/*?*/           DBG_BF_ASSERT(0, "STRIP");//::binfilter::RepaintPagePreview( pSh, rRect );
-/*N*/       else
-/*N*/           bRet |= pSh->Imp()->AddPaintRect( rRect );
-/*N*/       pSh = (ViewShell*)pSh->GetNext();
-/*N*/
-/*N*/   } while ( pSh != this );
-/*N*/   return bRet;
-/*N*/ }
-
-/******************************************************************************
-|*
 |*  ViewShell::InvalidateWindows()
 |*
 ******************************************************************************/

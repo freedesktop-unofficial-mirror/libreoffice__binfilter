@@ -111,28 +111,6 @@ class SwViewImp
         @param _useless just to fit macro
     */
     DECL_LINK(SetStopPrt, void * _useless = NULL);
-
-    /**
-       Returns if printer shall be stopped.
-
-       @retval TRUE The printer shall be stopped.
-       @retval FALSE else
-    */
-    BOOL IsStopPrt() { return bStopPrt; }
-
-    /**
-       Resets signal for stopping printing.
-
-    */
-    void ResetStopPrt() { bStopPrt = FALSE; }
-
-    void ResetNextScroll()    { bNextScroll = FALSE; }
-    void SetNextScroll()      { bNextScroll = TRUE; }
-    void SetScroll()          { bScroll = TRUE; }
-    void ResetScrolled()      { bScrolled = FALSE; }
-    void SetScrolled()        { bScrolled = TRUE; }
-
-    SwScrollAreas *GetScrollRects() { return pScrollRects; }
 public:
     ~SwViewImp();
 
@@ -143,20 +121,10 @@ public:
 
     //SS'en fuer Paint- und Scrollrects.
     BOOL AddPaintRect( const SwRect &rRect );
-    void AddScrollRect( const SwFrm *pFrm, const SwRect &rRect, long nOffs );
-    SwRegionRects *GetRegion()      { return pRegion; }
-
-    void RestartScrollTimer()            { aScrollTimer.Start(); }
 
     //Wird vom Layout ggf. waehrend einer Action gerufen, wenn der
     //Verdacht besteht, dass es etwas drunter und drueber geht.
     void ResetScroll()        { bScroll = FALSE; }
-
-    BOOL IsNextScroll() const { return bNextScroll; }
-    BOOL IsScroll()     const { return bScroll; }
-    BOOL IsScrolled()   const { return bScrolled; }
-
-    BOOL IsPaintInScroll() const { return bPaintInScroll; }
 
     // neues Interface fuer StarView Drawing
     inline BOOL HasDrawView() const { return 0 != pDrawView; }
@@ -172,9 +140,6 @@ public:
     //TRUE wenn eine LayAction laeuft, dort wird dann auch das Flag fuer
     //ExpressionFields gesetzt.
     BOOL IsUpdateExpFlds();
-
-    void    SetRestoreActions(USHORT nSet){nRestoreActions = nSet;}
-    USHORT  GetRestoreActions() const{return nRestoreActions;}
 };
 } //namespace binfilter
 #endif //_VIEWIMP_HXX

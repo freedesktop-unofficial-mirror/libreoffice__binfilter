@@ -2835,15 +2835,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/   return pMinFrm;
 /*N*/ }
 
-/*N*/ bool IsExtraData( const SwDoc *pDoc )
-/*N*/ {
-/*N*/   const SwLineNumberInfo &rInf = pDoc->GetLineNumberInfo();
-/*N*/   return rInf.IsPaintLineNumbers() ||
-/*N*/          rInf.IsCountInFlys() ||
-/*N*/          ((SwHoriOrient)SW_MOD()->GetRedlineMarkPos() != HORI_NONE &&
-/*N*/           pDoc->GetRedlineTbl().Count());
-/*N*/ }
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

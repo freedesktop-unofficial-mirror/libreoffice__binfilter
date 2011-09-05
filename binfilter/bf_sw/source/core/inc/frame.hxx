@@ -607,9 +607,6 @@ public:
     const  SwRect &Frm() const { return aFrm; }
     const  SwRect &Prt() const { return aPrt; }
 
-    // The PaintArea is the area, where content may be displayed.
-    // The margin of the page or the space between columns belongs to her.
-    const SwRect PaintArea() const;
     // The UnionFrm is the union of frm- and prt-area, normally identical
     // to the frm-area except the case of negative prt-margins.
     const SwRect UnionFrm( BOOL bBorder = FALSE ) const;

@@ -57,7 +57,6 @@ SLOFILES =  \
         $(SLO)$/sw_atrstck.obj \
         $(SLO)$/sw_frmcrsr.obj \
         $(SLO)$/sw_frmform.obj \
-        $(SLO)$/sw_frmpaint.obj \
         $(SLO)$/sw_guess.obj \
         $(SLO)$/sw_inftxt.obj \
         $(SLO)$/sw_itradj.obj \

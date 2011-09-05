@@ -155,8 +155,6 @@ public:
      const String&      GetRedlineAuthor(sal_uInt16 nPos);
 /*N*/   sal_uInt16          InsertRedlineAuthor(const String& rAuthor); //SW50.SDW
 
-    sal_uInt16              GetRedlineMarkPos();
-
     // returne den definierten DocStat - WordDelimiter
     const String&       GetDocStatWordDelim() const;
 

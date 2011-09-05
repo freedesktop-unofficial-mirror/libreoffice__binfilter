@@ -1891,58 +1891,6 @@ public:
 /*N*/   }
 /*N*/ }
 
-
-/*N*/ void SwTxtFrm::RecalcAllLines()
-/*N*/ {
-/*N*/   ValidateLineNum();
-/*N*/
-/*N*/   const SwAttrSet *pAttrSet = GetAttrSet();
-/*N*/
-/*N*/   if ( !IsInTab() )
-/*N*/   {
-/*N*/       const ULONG nOld = GetAllLines();
-/*N*/       const SwFmtLineNumber &rLineNum = pAttrSet->GetLineNumber();
-/*N*/       ULONG nNewNum;
-/*N*/
-/*N*/       if ( !IsFollow() && rLineNum.GetStartValue() && rLineNum.IsCount() )
-/*?*/           nNewNum = rLineNum.GetStartValue() - 1;
-/*N*/       //If it is a follow or not has not be considered if it is a restart at each page; the
-/*N*/       //restart should also take affekt at follows.
-/*N*/       else if ( pAttrSet->GetDoc()->GetLineNumberInfo().IsRestartEachPage() &&
-/*N*/                 FindPageFrm()->FindFirstBodyCntnt() == this )
-/*N*/       {
-/*N*/           nNewNum = 0;
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           SwCntntFrm *pPrv = GetPrevCntntFrm();
-/*N*/           while ( pPrv &&
-/*N*/                   (pPrv->IsInTab() || pPrv->IsInDocBody() != IsInDocBody()) )
-/*N*/               pPrv = pPrv->GetPrevCntntFrm();
-/*N*/
-/*N*/           nNewNum = pPrv ? ((SwTxtFrm*)pPrv)->GetAllLines() : 0;
-/*N*/       }
-/*N*/       if ( rLineNum.IsCount() )
-/*N*/           nNewNum += GetThisLines();
-/*N*/
-/*N*/       if ( nOld != nNewNum )
-/*N*/       {
-/*N*/           nAllLines = nNewNum;
-/*N*/           SwCntntFrm *pNxt = GetNextCntntFrm();
-/*N*/           while ( pNxt &&
-/*N*/                   (pNxt->IsInTab() || pNxt->IsInDocBody() != IsInDocBody()) )
-/*N*/               pNxt = pNxt->GetNextCntntFrm();
-/*N*/           if ( pNxt )
-/*N*/           {
-/*N*/               if ( pNxt->GetUpper() != GetUpper() )
-/*N*/                   pNxt->InvalidateLineNum();
-/*N*/               else
-/*N*/                   pNxt->_InvalidateLineNum();
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
 /*************************************************************************
  *                      lcl_CalcFlyBasePos()
  * Helper function for SwTxtFrm::CalcBasePosForFly()

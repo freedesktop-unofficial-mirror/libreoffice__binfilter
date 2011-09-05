@@ -60,7 +60,6 @@ extern void FrameNotify( ViewShell* pVwSh, FlyMode eMode = FLY_DRAG );
 void StartProgress     ( USHORT nMessId, long nStartVal, long nEndVal, SwDocShell *pDocSh = 0 );
 void EndProgress       ( SwDocShell *pDocSh = 0 );
 void SetProgressState  ( long nPosition, SwDocShell *pDocShell );
-void RescheduleProgress( SwDocShell *pDocShell );
 
 void EnableCmdInterface(BOOL bEnable = TRUE);
 

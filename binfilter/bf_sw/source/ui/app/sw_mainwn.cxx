@@ -133,19 +133,6 @@ static SvPtrarr *pProgressContainer = 0;
 /*N*/   }
 /*N*/ }
 
-
-
-
-/*N*/ void RescheduleProgress( SwDocShell *pDocShell )
-/*N*/ {
-/*N*/   if( pProgressContainer && !SW_MOD()->IsEmbeddedLoadSave() )
-/*N*/   {
-/*N*/       SwProgress *pProgress = lcl_SwFindProgress( pDocShell );
-/*N*/       if ( pProgress )
-/*N*/           pProgress->pProgress->Reschedule();
-/*N*/   }
-/*N*/ }
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

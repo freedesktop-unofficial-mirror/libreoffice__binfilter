@@ -65,8 +65,6 @@ public:
     void                    Suspend();
     BOOL                    IsSuspended() const { return bSuspended; }
 
-    void                    Reschedule();
-
     void                    Stop();
 
 

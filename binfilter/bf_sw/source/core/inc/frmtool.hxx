@@ -133,9 +133,6 @@ SwFrm* GetFrmOfModify( SwModify&, USHORT nFrmType, const Point* = 0,
                         const SwPosition *pPos = 0,
                         const BOOL bCalcFrm = FALSE );
 
-//Sollen ExtraDaten (Reline-Strich, Zeilennummern) gepaintet werden?
-bool IsExtraData( const SwDoc *pDoc );
-
 // #i11760# - method declaration <CalcCntnt(..)>
 void CalcCntnt( SwLayoutFrm *pLay,
                 bool bNoColl = false,

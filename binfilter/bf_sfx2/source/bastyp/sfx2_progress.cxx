@@ -380,38 +380,6 @@ inline ULONG Get10ThSec()
 /*N*/   }
 /*N*/ }
 
-// -----------------------------------------------------------------------
-
-/*N*/ void SfxProgress::Reschedule()
-
-/*  [Beschreibung]
-
-    Reschedule von au"sen rufbar
-
-*/
-
-/*N*/ {
-/*N*/   SFX_STACK(SfxProgress::Reschedule);
-/*N*/
-/*N*/   if( pImp->pActiveProgress ) return;
-/*N*/     SfxApplication* pApp = SFX_APP();
-/*N*/     if ( pImp->bLocked && 0 == pApp->Get_Impl()->nRescheduleLocks )
-/*N*/   {
-/*N*/         SfxAppData_Impl *pAppData = pApp->Get_Impl();
-/*N*/       ++pAppData->nInReschedule;
-/*N*/       Application::Reschedule();
-/*N*/       --pAppData->nInReschedule;
-/*N*/   }
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxProgress* SfxProgress::GetActiveProgress
 /*N*/ (
 /*N*/   SfxObjectShell* pDocSh    /*  <SfxObjectShell>, die nach einem laufenden

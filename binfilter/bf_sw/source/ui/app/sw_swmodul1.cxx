@@ -155,14 +155,6 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;
     Beschreibung:
  --------------------------------------------------------------------*/
 
-/*N*/ sal_uInt16 SwModule::GetRedlineMarkPos()
-/*N*/ {
-/*N*/   return pModuleConfig->GetMarkAlignMode();
-/*N*/ }
-
-
-
-
 /*N*/ const SwViewOption*   SwModule::GetViewOption(sal_Bool bWeb)
 /*N*/ {
 /*N*/   return GetUsrPref( bWeb );
