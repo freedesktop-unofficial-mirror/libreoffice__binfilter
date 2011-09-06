@@ -69,7 +69,17 @@ public:
     bf_OfficeWrapper( const Reference < XMultiServiceFactory >& xFactory );
     virtual ~bf_OfficeWrapper();
 
-    SFX_DECL_XSERVICEINFO
+    /* XServiceInfo */
+    virtual UNOOUSTRING SAL_CALL getImplementationName() throw( UNORUNTIMEEXCEPTION );
+    virtual sal_Bool SAL_CALL supportsService( const UNOOUSTRING& sServiceName ) throw( UNORUNTIMEEXCEPTION );
+    virtual UNOSEQUENCE< UNOOUSTRING > SAL_CALL getSupportedServiceNames() throw( UNORUNTIMEEXCEPTION );
+
+    /* Helper for XServiceInfo */
+    static UNOSEQUENCE< UNOOUSTRING > impl_getStaticSupportedServiceNames();
+    static UNOOUSTRING impl_getStaticImplementationName();
+
+    /* Helper for registry */
+    static UNOREFERENCE< UNOXSINGLESERVICEFACTORY > impl_createFactory( const UNOREFERENCE< UNOXMULTISERVICEFACTORY >& xServiceManager );
 
     static Reference< XSingleServiceFactory > GetWrapperFactory( Reference< XMultiServiceFactory > & xSMgr );
     static ::rtl::OUString  GetImplementationName_static();

@@ -53,7 +53,6 @@ class SwDoc;
 class SfxPrinter;
 
 class SfxProgress;
-class SwRootFrm;
 class SwNodes;
 class SdrView;
 
@@ -119,11 +118,7 @@ class ViewShell : public Ring
                                 //Drag der Scrollbars.
     sal_Bool  bEndActionByVirDev:1; //Paints aus der EndAction immer ueber virtuelles
 
-                                //Device (etwa beim Browsen)
-
-    inline void ResetInvalidRect();
-
-                                                // Malen der Wiese und rufen
+                                               // Malen der Wiese und rufen
     // PaintDesktop gesplittet, dieser Teil wird auch von PreViewPage benutzt
 
     sal_Bool CheckInvalidForPaint( const SwRect & );//Direkt Paint oder lieber
@@ -158,21 +153,11 @@ public:
     inline sal_Bool HasInvalidRect() const { return aInvalidRect.HasArea(); }
 
     void InvalidateWindows( const SwRect &rRect );
-    sal_Bool IsPaintInProgress() const { return bPaintInProgress; }
-
-    //Benachrichtung, dass sich der sichtbare Bereich geaendert hat.
-    //VisArea wird neu gesetzt, anschliessend wird gescrollt.
-    //Das uebergebene Rect liegt auf Pixelgrenzen,
-    //um Pixelfehler beim Scrollen zu vermeiden.
-    void EnableSmooth( sal_Bool b ) { bEnableSmooth = b; }
 
     const SwRect &VisArea() const { return aVisArea; }
 
     //Invalidierung der ersten Sichtbaren Seite fuer alle Shells im Ring.
     void SetFirstVisPageInvalid();
-
-    SwRootFrm   *GetLayout() const { return NULL; }
-                                      //erzeugt?
 
     inline SwDoc *GetDoc()  const { return pDoc; }  //niemals 0.
 
@@ -207,18 +192,9 @@ public:
     void SetUseVirtualDevice(sal_Bool bSet);
 
     inline const SwViewOption *GetViewOptions() const { return pOpt; }
-    void  ApplyViewOptions( const SwViewOption& /*rOpt*/ ){DBG_BF_ASSERT(0, "STRIP");} ;
 
     //static void           SetShellRes( ShellResource* pRes ) { pShellRes = pRes; }
     static ShellResource* GetShellRes();
-
-    static void           SetCareWin( Window* pNew ) { pCareWindow = pNew; }
-    static Window*        GetCareWin(ViewShell& rVSh)
-                        { return pCareWindow ? pCareWindow : CareChildWin(rVSh); }
-    static Window*        CareChildWin(ViewShell& /*rVSh*/){DBG_BF_ASSERT(0, "STRIP"); return NULL;} ;
-
-    inline SfxViewShell   *GetSfxViewShell() { return pSfxViewShell; }
-    inline void           SetSfxViewShell(SfxViewShell *pNew) { pSfxViewShell = pNew; }
 
     // Selektion der Draw ::com::sun::star::script::Engine geaendert
     virtual void DrawSelChanged(SdrView*);
@@ -231,23 +207,12 @@ public:
                            SfxProgress& rProgress,
                            const SwPagePreViewPrtData* = 0 );
 
-    // Prospekt-Format drucken
-
-    sal_Bool IsViewLocked() const { return bViewLocked; }
-    void LockView( sal_Bool b )   { bViewLocked = b;    }
-
-           sal_Bool IsPaintLocked() const { return nLockPaint != 0; }
-
     // Abfragen/Erzeugen DrawView + PageView
     sal_Bool HasDrawView() const;
 
     //sorge dafuer, das auf jedenfall die MarkListe aktuell ist (Bug 57153)
 
     sal_Bool IsPreView() const { return bPreView; }
-
-    sal_Bool IsFrameView()  const { return bFrameView; }
-    void SetFrameView( const Size& rBrowseBorder )
-        { bFrameView = sal_True; aBrowseBorder = rBrowseBorder; }
 
     //Damit in der UI nicht ueberall das dochxx includet werden muss
     sal_Bool IsBrowseMode() const;
@@ -269,11 +234,6 @@ public:
     CurrShell( ViewShell *pNew );
     ~CurrShell();
 };
-
-inline void ViewShell::ResetInvalidRect()
-{
-    aInvalidRect.Clear();
-}
 
 } //namespace binfilter
 #endif //_VIEWSH_HXX

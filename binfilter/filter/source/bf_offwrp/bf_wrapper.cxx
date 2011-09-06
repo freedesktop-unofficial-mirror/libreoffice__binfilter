@@ -56,7 +56,47 @@ static SchDLL*              pSchDLL = 0L;
 static SmDLL*               pSmDLL = 0L;
 static bf_OfficeWrapper*    pOfficeWrapper = 0L;
 
-SFX_IMPL_XSERVICEINFO( bf_OfficeWrapper, "com.sun.star.office.OfficeWrapper", "com.sun.star.comp.desktop.OfficeWrapper" )
+/* XServiceInfo */
+UNOOUSTRING SAL_CALL bf_OfficeWrapper::getImplementationName() throw( UNORUNTIMEEXCEPTION )
+{
+    return impl_getStaticImplementationName();
+}
+
+/* XServiceInfo */
+sal_Bool SAL_CALL bf_OfficeWrapper::supportsService( const UNOOUSTRING& sServiceName ) throw( UNORUNTIMEEXCEPTION )
+{
+    UNOSEQUENCE< UNOOUSTRING >  seqServiceNames =   getSupportedServiceNames();
+    const UNOOUSTRING*          pArray          =   seqServiceNames.getConstArray();
+    for ( sal_Int32 nCounter=0; nCounter<seqServiceNames.getLength(); nCounter++ )
+    {
+        if ( pArray[nCounter] == sServiceName )
+        {
+            return sal_True ;
+        }
+    }
+    return sal_False ;
+}
+
+/* XServiceInfo */
+UNOSEQUENCE< UNOOUSTRING > SAL_CALL bf_OfficeWrapper::getSupportedServiceNames() throw( UNORUNTIMEEXCEPTION )
+{
+    return impl_getStaticSupportedServiceNames();
+}
+
+/* Helper for XServiceInfo */
+UNOSEQUENCE< UNOOUSTRING > bf_OfficeWrapper::impl_getStaticSupportedServiceNames()
+{
+    UNOMUTEXGUARD aGuard( UNOMUTEX::getGlobalMutex() );
+    UNOSEQUENCE< UNOOUSTRING > seqServiceNames( 1 );
+    seqServiceNames.getArray() [0] = UNOOUSTRING::createFromAscii( "com.sun.star.office.OfficeWrapper" );
+    return seqServiceNames ;
+}
+
+/* Helper for XServiceInfo */
+UNOOUSTRING bf_OfficeWrapper::impl_getStaticImplementationName()
+{
+    return UNOOUSTRING::createFromAscii( "com.sun.star.comp.desktop.OfficeWrapper" );
+}
 
 Reference< XInterface >  SAL_CALL bf_OfficeWrapper_CreateInstance( const Reference< XMultiServiceFactory >  & rSMgr )
 {
