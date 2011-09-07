@@ -372,8 +372,7 @@ struct _PercentHdl
 /*N*/ {
 /*N*/   SwTableCursor* pTblCrsr = (SwTableCursor*)*this;
 /*N*/   if( pTblCrsr )
-/*N*/       return bLeft ? pTblCrsr->GoPrevCell( nCnt )
-/*N*/                    : pTblCrsr->GoNextCell( nCnt );
+/*N*/       return FALSE;
 /*N*/
 /*N*/     // calculate cursor bidi level
 /*N*/     const SwCntntFrm* pSttFrm = NULL;

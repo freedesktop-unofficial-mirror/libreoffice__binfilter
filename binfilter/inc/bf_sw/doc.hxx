@@ -1236,8 +1236,6 @@ public:
                                     const SwTableBox* /*pStart*/, sal_Bool /*bCurRowOnly*/){DBG_BF_ASSERT(0, "STRIP");}
 
     void SetHeadlineRepeat( SwTable& /*rTable*/, sal_Bool /*bSet*/ ){DBG_BF_ASSERT(0, "STRIP");}
-        // AutoFormat fuer die Tabelle/TabellenSelection
-    sal_Bool SetTableAutoFmt( const SwSelBoxes& /*rBoxes*/, const SwTableAutoFmt& /*rNew*/ ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
         // Erfrage wie attributiert ist
         // setze das TabelleAttribut Undo auf:
         // setze das InsertDB als Tabelle Undo auf:
@@ -1433,7 +1431,6 @@ public:
     void SetTabBorders( const SwCursor& /*rCursor*/, const SfxItemSet& /*rSet*/ ){DBG_BF_ASSERT(0, "STRIP");}
     void GetTabBorders( const SwCursor& rCursor, SfxItemSet& rSet ) const;
     void SetBoxAttr( const SwCursor& /*rCursor*/, const SfxPoolItem& /*rNew*/ ){DBG_BF_ASSERT(0, "STRIP");}
-    sal_Bool GetBoxBackground( const SwCursor& /*rCursor*/, SvxBrushItem& /*rToFill*/ ) const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
 
     int Chain( SwFrmFmt &rSource, const SwFrmFmt &rDest );
     void Unchain( SwFrmFmt &rFmt );

@@ -1505,7 +1505,6 @@ void SwXTextTableCursor::setPropertyValue(const OUString& rPropertyName,
                 case FN_UNO_TABLE_CELL_BACKGROUND:
                 {
                     SvxBrushItem aBrush;
-                    pDoc->GetBoxBackground( *pUnoCrsr, aBrush );
                     aBrush.PutValue(aValue, pMap->nMemberId);
                     pDoc->SetBoxAttr( *pUnoCrsr, aBrush );
 
@@ -1559,10 +1558,6 @@ uno::Any SwXTextTableCursor::getPropertyValue(const OUString& rPropertyName)
             {
                 case FN_UNO_TABLE_CELL_BACKGROUND:
                 {
-                    SvxBrushItem aBrush;
-                    if(pTblCrsr->GetDoc()->GetBoxBackground( *pUnoCrsr, aBrush ))
-                        aBrush.QueryValue(aRet, pMap->nMemberId);
-
                 }
                 break;
                 case RES_BOXATR_FORMAT:
@@ -3450,7 +3445,6 @@ void SwXCellRange::setPropertyValue(const OUString& rPropertyName,
                 case FN_UNO_TABLE_CELL_BACKGROUND:
                 {
                     SvxBrushItem aBrush;
-                    pDoc->GetBoxBackground( *pTblCrsr, aBrush );
                     ((SfxPoolItem&)aBrush).PutValue(aValue, pMap->nMemberId);
                     pDoc->SetBoxAttr( *pTblCrsr, aBrush );
 
@@ -3552,10 +3546,6 @@ uno::Any SwXCellRange::getPropertyValue(const OUString& rPropertyName) throw( be
             {
                 case FN_UNO_TABLE_CELL_BACKGROUND:
                 {
-                    SvxBrushItem aBrush;
-                    if(pTblCrsr->GetDoc()->GetBoxBackground( *pTblCrsr, aBrush ))
-                        aBrush.QueryValue(aRet, pMap->nMemberId);
-
                 }
                 break;
                 case RES_BOX :

@@ -140,8 +140,6 @@ public:
         END_SENT
     };
      bool GoSentence(SentenceMoveType eMoveType);
-    bool GoNextSentence(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
-    bool GoPrevSentence(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
 
     bool LeftRight( BOOL bLeft, USHORT nCnt, USHORT nMode, BOOL bAllowVisual,
                         BOOL bInsertCrsr );
@@ -158,8 +156,6 @@ public:
     bool RightMargin()              { DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
     bool SttDoc()                   { DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
     bool EndDoc()                   { DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
-    bool GoNextCell( USHORT nCnt = 1 )  { DBG_BF_ASSERT(0, "STRIP"); (void)nCnt; return FALSE;}
-    bool GoPrevCell( USHORT nCnt = 1 )  { DBG_BF_ASSERT(0, "STRIP"); (void)nCnt; return FALSE;}
     bool GotoTblBox( const String& rName );
 
     bool MovePara( SwWhichPara, SwPosPara );

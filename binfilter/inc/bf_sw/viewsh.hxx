@@ -64,17 +64,9 @@ class SwPagePreViewPrtData;
 struct ShellResource;
 class SwFrm;
 struct SwPrintData;
-// OD 12.12.2002 #103492#
 class SwPagePreviewLayout;
 
 struct SwAccessibilityOptions;
-
-
-//JP 19.07.98: - Bug 52312
-// define fuer Flags, die im CTOR oder den darunter liegenden Schichten
-// benoetigt werden.
-// Zur Zeit wird fuer die DrawPage das PreView Flag benoetigt
-#define VSHELLFLAG_ISPREVIEW            ((long)0x1)
 
 class ViewShell : public Ring
 {
@@ -138,19 +130,6 @@ public:
 
           SwViewImp *Imp() { return pImp; }
     const SwViewImp *Imp() const { return pImp; }
-
-    //Klammerung von zusammengehoerenden Aktionen.
-    sal_uInt16 ActionCount() const { return nStartAction; }
-    sal_Bool ActionPend() const { return nStartAction != 0; }
-    sal_Bool IsInEndAction() const { return bInEndAction; }
-
-    void SetEndActionByVirDev( sal_Bool b ) { bEndActionByVirDev = b; }
-    sal_Bool IsEndActionByVirDev()          { return bEndActionByVirDev; }
-
-    //  Per UNO wird am RootFrame fuer alle shells der ActionCount kurzfristig
-    //  auf Null gesetzt und wieder restauriert
-
-    inline sal_Bool HasInvalidRect() const { return aInvalidRect.HasArea(); }
 
     void InvalidateWindows( const SwRect &rRect );
 
@@ -216,7 +195,6 @@ public:
 
     //Damit in der UI nicht ueberall das dochxx includet werden muss
     sal_Bool IsBrowseMode() const;
-
 
     const Size& GetBrowseBorder() const{ return aBrowseBorder; }
 
