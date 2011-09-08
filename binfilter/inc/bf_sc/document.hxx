@@ -826,12 +826,6 @@ public:
 
 
 
-    void            Fill(   USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
-                            const ScMarkData& rMark,
-                            USHORT nFillCount, FillDir eFillDir = FILL_TO_BOTTOM,
-                            FillCmd eFillCmd = FILL_LINEAR, FillDateCmd eFillDateCmd = FILL_DAY,
-                            double nStepValue = 1.0, double nMaxValue = 1E307);
-
     BOOL            GetSelectionFunction( ScSubTotalFunc eFunc,
                                             const ScAddress& rCursor, const ScMarkData& rMark,
                                             double& rResult );
@@ -910,10 +904,6 @@ public:
     BOOL            RemoveFlagsTab( USHORT nStartCol, USHORT nStartRow,
                                             USHORT nEndCol, USHORT nEndRow,
                                             USHORT nTab, INT16 nFlags );
-
-
-    void            AutoFormat( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
-                                    USHORT nFormatNo, const ScMarkData& rMark );
 
 
     BOOL            Solver(USHORT nFCol, USHORT nFRow, USHORT nFTab,
@@ -1040,14 +1030,9 @@ public:
 
     SvNumberFormatter*  GetFormatTable() const;
 
-    void            Sort( USHORT nTab, const ScSortParam& rSortParam, BOOL bKeepQuery );
-    USHORT          Query( USHORT nTab, const ScQueryParam& rQueryParam, BOOL bKeepSub );
     BOOL            CreateQueryParam( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
                                         USHORT nTab, ScQueryParam& rQueryParam );
 
-
-    BOOL            HasColHeader( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
-                                    USHORT nTab );
 
     SfxPrinter*     GetPrinter();
     void            SetPrinter( SfxPrinter* pNewPrinter );

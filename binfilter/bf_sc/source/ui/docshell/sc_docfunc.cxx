@@ -1249,8 +1249,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       USHORT nTabCount = pDoc->GetTableCount();
 /*N*/
-/*N*/       pDoc->AutoFormat( nStartCol, nStartRow, nEndCol, nEndRow, nFormatNo, aMark );
-/*N*/
 /*N*/       if (bSize)
 /*N*/       {
 /*N*/           USHORT nCols[2] = { nStartCol, nEndCol };

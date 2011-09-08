@@ -255,7 +255,7 @@ namespace binfilter {
 /*N*/           aDocument.GetDataArea( nTab, nStartCol, nStartRow, nEndCol, nEndRow, FALSE );
 /*N*/       }
 /*N*/
-/*N*/       BOOL bHasHeader = aDocument.HasColHeader( nStartCol,nStartRow, nEndCol,nEndRow, nTab );
+/*N*/       BOOL bHasHeader = FALSE;
 /*N*/
 /*N*/       ScDBData* pNoNameData;
 /*N*/       USHORT nNoNameIndex;

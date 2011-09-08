@@ -358,22 +358,11 @@ namespace binfilter {
 /*N*/           bRepeatQuery = FALSE;
 /*N*/   }
 /*N*/
-/*N*/   if ( bRecord )
-/*N*/   {
-/*?*/       //  Referenzen ausserhalb des Bereichs werden nicht veraendert !
-/*?*/
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   if ( bCopy )
 /*N*/   {
 /*N*/       if (pDestData)
 /*N*/           pDoc->DeleteAreaTab(aOldDest, IDF_CONTENTS);            // Zielbereich vorher loeschen
 /*N*/   }
-/*N*/
-/*N*/   // #105780# don't call ScDocument::Sort with an empty SortParam (may be empty here if bCopy is set)
-/*N*/   if ( aLocalParam.bDoSort[0] )
-/*N*/       pDoc->Sort( nTab, aLocalParam, bRepeatQuery );
 /*N*/
 /*N*/   BOOL bSave = TRUE;
 /*N*/   if (bCopy)
@@ -556,12 +545,9 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   //  Filtern am Dokument ausfuehren
-/*N*/   USHORT nCount = pDoc->Query( nTab, rQueryParam, bKeepSub );
 /*N*/   if (bCopy)
 /*N*/   {
-/*N*/       aLocalParam.nRow2 = aLocalParam.nRow1 + nCount;
-/*N*/       if (!aLocalParam.bHasHeader && nCount)
-/*N*/           --aLocalParam.nRow2;
+/*N*/       aLocalParam.nRow2 = aLocalParam.nRow1;
 /*N*/
 /*N*/       if ( bDoSize )
 /*N*/       {
@@ -585,11 +571,6 @@ namespace binfilter {
 /*N*/
 /*N*/               ScMarkData aMark;
 /*N*/               aMark.SelectOneTable(nDestTab);
-/*N*/               USHORT nFStartY = aLocalParam.nRow1 + ( aLocalParam.bHasHeader ? 1 : 0 );
-/*N*/               pDoc->Fill( aLocalParam.nCol2+1, nFStartY,
-/*N*/                           aLocalParam.nCol2+nFormulaCols, nFStartY, aMark,
-/*N*/                           aLocalParam.nRow2 - nFStartY,
-/*N*/                           FILL_TO_BOTTOM, FILL_SIMPLE );
 /*N*/           }
 /*N*/       }
 /*N*/

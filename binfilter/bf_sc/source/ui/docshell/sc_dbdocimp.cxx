@@ -489,8 +489,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/           // fill formulas
 /*M*/           ScMarkData aMark;
 /*M*/           aMark.SelectOneTable(nTab);
-/*M*/           pDoc->Fill( nEndCol+1, rParam.nRow1+1, nEndCol+nFormulaCols, rParam.nRow1+1,
-/*M*/                           aMark, nEndRow-rParam.nRow1-1, FILL_TO_BOTTOM, FILL_SIMPLE );
 /*M*/       }
 /*M*/
 /*M*/       //  if new range is smaller, clear old contents
