@@ -31,13 +31,14 @@
 #include <bf_svtools/bf_solar.h>
 
 #include "layfrm.hxx"
+#include "frmfmt.hxx"
+#include "doc.hxx"
 class OutputDevice;
 namespace binfilter {
 
 class SwCntntFrm;
 class ViewShell;
 class SdrPage;
-class SwFrmFmt;
 class SwPaM;
 class SwCursor;
 class SwShellCrsr;
@@ -73,6 +74,9 @@ class SwRootFrm : public SwLayoutFrm
     static BOOL           bNoVirDev;    //Bei SystemPaints kein virt. Device
 
 public:
+    SwRootFrm( SwFrmFmt *pFmt )
+      : SwLayoutFrm( pFmt->GetDoc()->MakeFrmFmt(
+          XubString( "Root", RTL_TEXTENCODING_MS_1252 ), pFmt ) ) {}
     static BOOL IsInPaint() { return bInPaint; }
     static void SetNoVirDev( const BOOL bNew ) { bNoVirDev = bNew; }
 };
