@@ -613,7 +613,7 @@ DBG_BF_ASSERT(0, "STRIP"); /*N*/    if( !pDocument->IsClipOrUndo() )
 /*N*/   return bRet;
 /*N*/ }
 
-void ScFormulaCell::UpdateCompile( BOOL bForceIfNameInUse )
+void ScFormulaCell::UpdateCompile( BOOL )
 {
     bCompile = pCode->HasNameOrColRowName();
     if ( bCompile )

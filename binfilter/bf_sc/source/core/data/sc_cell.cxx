@@ -598,7 +598,7 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/ }
 
 /*N*/ ScFormulaCell::ScFormulaCell( ScDocument* pDoc, const ScAddress& rNewPos,
-/*N*/                               const ScFormulaCell& rScFormulaCell, USHORT nCopyFlags ) :
+/*N*/                               const ScFormulaCell& rScFormulaCell, USHORT ) :
 /*N*/   ScBaseCell( rScFormulaCell ),
 /*N*/   SfxListener(),
 /*N*/   aErgString( rScFormulaCell.aErgString ),

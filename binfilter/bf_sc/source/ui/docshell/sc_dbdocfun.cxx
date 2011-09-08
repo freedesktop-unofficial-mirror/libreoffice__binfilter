@@ -477,15 +477,9 @@ namespace binfilter {
 /*N*/
 /*N*/   WaitObject aWait( rDocShell.GetDialogParent() );
 /*N*/
-/*N*/   BOOL bKeepSub = FALSE;                          // bestehende Teilergebnisse wiederholen?
 /*N*/   ScSubTotalParam aSubTotalParam;
 /*N*/   if (rQueryParam.GetEntry(0).bDoQuery)           // nicht beim Aufheben
-/*N*/   {
 /*N*/       pDBData->GetSubTotalParam( aSubTotalParam );    // Teilergebnisse vorhanden?
-/*N*/
-/*N*/       if ( aSubTotalParam.bGroupActive[0] && !aSubTotalParam.bRemoveOnly )
-/*N*/           bKeepSub = TRUE;
-/*N*/   }
 /*N*/
 /*N*/   ScDocument* pAttribDoc = NULL;
 /*N*/   ScRange aAttribRange;
