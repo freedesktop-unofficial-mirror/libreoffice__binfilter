@@ -991,33 +991,12 @@ namespace binfilter {
 /*N*/           ScRangeData** pSrcRangeNames = nSrcRangeNames ? new ScRangeData* [nSrcRangeNames] : NULL;
 /*N*/           // the index mapping thereof
 /*N*/           ScIndexMap aSrcRangeMap( nSrcRangeNames );
-/*N*/           BOOL bRangeNameReplace = FALSE;
 /*N*/
 /*N*/           for (USHORT i = 0; i < nSrcRangeNames; i++)     //! DB-Bereiche Pivot-Bereiche auch !!!
 /*N*/           {
 /*?*/               ScRangeData* pSrcData = (*pSrcDoc->pRangeName)[i];
 /*?*/               /*USHORT nOldIndex =*/ pSrcData->GetIndex();
-/*?*/               BOOL bInUse = FALSE;
-/*?*/               for (USHORT j = 0; !bInUse && (j <= MAXTAB); j++)
-/*?*/               {
-/*?*/                   if (pSrcDoc->pTab[j])
-DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
-/*?*/               if (bInUse)
-/*?*/               {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
-/*?*/               else
-/*?*/               {
-/*?*/                   pSrcRangeNames[i] = NULL;
-/*?*/                   //aSrcRangeMap.SetPair( i, 0, 0 );      // not needed, defaulted
-/*?*/               }
-/*N*/           }
-/*N*/           if ( bRangeNameReplace )
-/*N*/           {
-/*?*/               // first update all inserted named formulas if they contain other
-/*?*/               // range names and used indices changed
-DBG_BF_ASSERT(0, "STRIP");
+/*?*/               pSrcRangeNames[i] = NULL;
 /*N*/           }
 /*N*/           if ( pSrcRangeNames )
 /*?*/               delete [] pSrcRangeNames;

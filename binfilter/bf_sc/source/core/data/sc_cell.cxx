@@ -229,10 +229,6 @@ static const sal_Char msgDbgInfinity[] =
 /*M*/                 BOOL bDo = FALSE;
 /*M*/                 if ( !nOnlyNames )
 /*M*/                     bDo = TRUE;
-/*M*/                 else
-/*M*/                 {
-/*M*/                     DBG_BF_ASSERT(0, "STRIP");
-/*M*/                 }
 /*M*/                 if ( bDo )
 /*M*/               {
 /*M*/                   switch( eType )
@@ -334,8 +330,6 @@ static const sal_Char msgDbgInfinity[] =
 /*?*/                     bDo = FALSE;
 /*?*/                     if ( nOnlyNames & SC_LISTENING_NAMES_REL )
 /*?*/                         bDo |= (rRef1.IsRelName() || rRef2.IsRelName());
-/*?*/                     if ( nOnlyNames & SC_LISTENING_NAMES_ABS )
-/*?*/                    {  DBG_BF_ASSERT(0, "STRIP");}
 /*?*/                     if ( nOnlyNames & SC_LISTENING_EXCEPT )
 /*?*/                         bDo = !bDo;
 /*N*/                 }
@@ -636,9 +630,6 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/       pMatrix = NULL;
 /*N*/   pCode = rScFormulaCell.pCode->Clone();
 /*N*/
-/*N*/     if ( nCopyFlags & 0x0001 )
-/*?*/         DBG_BF_ASSERT(0, "STRIP");
-/*N*/
 /*N*/   // evtl. Fehler zuruecksetzen und neu kompilieren
 /*N*/   //  nicht im Clipboard - da muss das Fehlerflag erhalten bleiben
 /*N*/   //  Spezialfall Laenge=0: als Fehlerzelle erzeugt, dann auch Fehler behalten
@@ -676,10 +667,6 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/   }
 /*N*/   if( bCompile )
 /*N*/   {
-/*N*/         if ( !bCompileLater && bClipMode )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/         if ( !bCompileLater )
 /*N*/         {
 /*N*/             // bNoListening, bei in Clip/Undo sowieso nicht,
@@ -1344,10 +1331,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           if ( p->GetId() & SC_HINT_TABLEOPDIRTY )
 /*N*/             {
 /*?*/                 bForceTrack = !bTableOpDirty;
-/*?*/                 if ( !bTableOpDirty )
-/*?*/                 {
-/*?*/                     DBG_BF_ASSERT(0, "STRIP");
-/*?*/                 }
 /*N*/             }
 /*N*/           else
 /*N*/             {

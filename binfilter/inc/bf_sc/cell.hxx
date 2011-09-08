@@ -301,11 +301,6 @@ public:
 
      BOOL           HasRelNameReference() const;
 
-     void           UpdateReference(UpdateRefMode eUpdateRefMode,
-                                     const ScRange& r,
-                                     short nDx, short nDy, short nDz,
-                                     ScDocument* pUndoDoc = NULL );
-
     void            UpdateInsertTab(USHORT nTable);
      BOOL           UpdateDeleteTab(USHORT nTable, BOOL bIsMove = FALSE);
     void            UpdateRenameTab(USHORT nTable, const String& rName);

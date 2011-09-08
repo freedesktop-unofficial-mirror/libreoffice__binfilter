@@ -507,9 +507,6 @@ namespace binfilter {
 /*?*/                   {
 /*?*/                       nWidth = (long) ( pDocument->GetColWidth( nCol,nTab ) * nPPT );
 /*?*/                       bAddMargin = FALSE;
-/*?*/                       //  nur nach rechts:
-/*?*/                       //! unterscheiden nach Ausrichtung oben/unten (nur Text/ganze Hoehe)
-DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/                   else
 /*?*/                       nWidth  = (long)( aSize.Height() / nSinAbs );   //! begrenzen?
@@ -661,11 +658,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*?*/               long nWidth(0);
 /*?*/               if ( eRotMode == SVX_ROTATE_MODE_STANDARD )
 /*?*/                   nWidth  = (long)( aSize.Width() * nCosAbs + aSize.Height() * nSinAbs );
-/*?*/               else if ( rOptions.bTotalSize )
-/*?*/               {
-DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
-/*?*/               else
+/*?*/               else if ( !rOptions.bTotalSize )
 /*?*/                   nWidth  = (long)( aSize.Height() / nSinAbs );   //! begrenzen?
 /*?*/               aSize = Size( nWidth, nHeight );
 /*?*/

@@ -523,15 +523,8 @@ extern const ScFormulaCell* pLastFormulaTreeTop;    // in cellform.cxx
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   if ( nDelFlag & IDF_EDITATTR )
-/*N*/   {
-/*?*/       DBG_ASSERT( nContFlag == 0, "DeleteArea: falsche Flags" );
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   //  Attribute erst hier
 /*N*/   if ((nDelFlag & IDF_ATTRIB) == IDF_ATTRIB) pAttrArray->DeleteArea( nStartRow, nEndRow );
-/*N*/   else if ((nDelFlag & IDF_ATTRIB) != 0) pAttrArray->DeleteHardAttr( nStartRow, nEndRow );
 /*N*/ }
 
 
@@ -603,10 +596,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*?*/                       //  Fehler werden immer mit "Zahlen" kopiert
 /*?*/                       //  (Das ist hiermit willkuerlich so festgelegt)
 /*?*/
-/*?*/                       if ( nFlags & IDF_VALUE )
-/*?*/                       {
-DBG_BF_ASSERT(0, "STRIP");
-/*?*/                       }
 /*?*/                   }
 /*?*/                   else if ( pForm->IsValue() )
 /*?*/                   {

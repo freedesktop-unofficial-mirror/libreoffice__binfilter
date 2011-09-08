@@ -130,8 +130,6 @@ public:
 
     void    FindStyleSheet( const SfxStyleSheetBase* pStyleSheet, BOOL* pUsed, BOOL bReset );
 
-    void    DeleteAreaSafe(USHORT nStartRow, USHORT nEndRow);
-
     BOOL    IsEmpty() const;
 
 
@@ -149,8 +147,6 @@ public:
 /*N*/   void    MoveTo( USHORT nStartRow, USHORT nEndRow, ScAttrArray& rAttrArray );
     void    CopyArea( USHORT nStartRow, USHORT nEndRow, short nDy, ScAttrArray& rAttrArray,
                         INT16 nStripFlags = 0 );
-
-    void    DeleteHardAttr( USHORT nStartRow, USHORT nEndRow );
 
     void    Save( SvStream& ) const {}
     void    Load( SvStream& rStream );

@@ -1945,12 +1945,6 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 /*N*/           break;
 /*N*/       }
 /*N*/       ScRange aRange( aTmpRange.MakeRange() );
-/*N*/       if ( bOldFormula )
-/*N*/           ((ScFormulaCell*)pOldCell)->UpdateReference( eMode, aRange,
-/*N*/               (short) nDx, (short) nDy, (short) nDz, NULL );
-/*N*/       if ( bNewFormula )
-/*N*/           ((ScFormulaCell*)pNewCell)->UpdateReference( eMode, aRange,
-/*N*/               (short) nDx, (short) nDy, (short) nDz, NULL );
 /*N*/       if ( !aBigRange.aStart.IsValid( pTrack->GetDocument() ) )
 /*N*/       {   //! HACK!
 /*N*/           //! UpdateReference kann nicht mit Positionen ausserhalb des

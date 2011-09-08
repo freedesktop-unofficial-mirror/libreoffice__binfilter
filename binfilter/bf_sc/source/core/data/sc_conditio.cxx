@@ -695,8 +695,8 @@ namespace binfilter {
 /*N*/
 /*N*/   if (bVal)
 /*N*/       return IsValid( nArg );
-/*N*/   else
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+/*N*/
+/*?*/   return FALSE;
 /*N*/ }
 
 /*N*/ String ScConditionEntry::GetExpression( const ScAddress& rCursor, USHORT nIndex,

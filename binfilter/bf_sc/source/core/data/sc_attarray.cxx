@@ -941,15 +941,6 @@ namespace binfilter {
 /*N*/   return bFound;
 /*N*/ }
 
-            //      Bereich loeschen, aber Merge-Flags stehenlassen
-
-/*N*/ void ScAttrArray::DeleteAreaSafe(USHORT, USHORT)
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-
-
 
 /*N*/ BOOL ScAttrArray::ApplyFlags( USHORT nStartRow, USHORT nEndRow, INT16 nFlags )
 /*N*/ {
@@ -1412,15 +1403,8 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( !HasAttrib( nStartRow, nEndRow, HASATTR_OVERLAPPED | HASATTR_AUTOFILTER) )
 /*N*/       SetPatternArea( nStartRow, nEndRow, pDocument->GetDefPattern() );
-/*N*/   else
-/*?*/       DeleteAreaSafe( nStartRow, nEndRow );       // Merge-Flags stehenlassen
 /*N*/ }
 
-
-/*N*/ void ScAttrArray::DeleteHardAttr(USHORT, USHORT)
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
 
         // Verschieben innerhalb eines Dokuments
 

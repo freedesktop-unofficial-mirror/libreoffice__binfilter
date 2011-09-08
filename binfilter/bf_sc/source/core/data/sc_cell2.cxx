@@ -506,13 +506,6 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/   return FALSE;
 /*N*/  }
 
-/*N*/  void ScFormulaCell::UpdateReference(UpdateRefMode /*eUpdateRefMode*/,
-/*N*/                                   const ScRange& /*r*/,
-/*N*/                                   short /*nDx*/, short /*nDy*/, short /*nDz*/,
-/*N*/                                   ScDocument* /*pUndoDoc*/ )
-/*N*/  {DBG_BF_ASSERT(0, "STRIP");
-/*N*/  }
-
 /*N*/ void ScFormulaCell::UpdateInsertTab(USHORT nTable)
 /*N*/ {
 /*N*/   BOOL bPosChanged = ( aPos.Tab() >= nTable ? TRUE : FALSE );
@@ -620,14 +613,13 @@ DBG_BF_ASSERT(0, "STRIP"); /*N*/    if( !pDocument->IsClipOrUndo() )
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ void ScFormulaCell::UpdateCompile( BOOL bForceIfNameInUse )
-/*N*/ {
-/*N*/   if ( bForceIfNameInUse && !bCompile )
-/*?*/      { DBG_BF_ASSERT(0, "STRIP");} /*N*/    bCompile = pCode->HasNameOrColRowName();
-/*N*/   if ( bCompile )
-/*?*/       pCode->SetError( 0 );   // damit auch wirklich kompiliert wird
-/*N*/   CompileTokenArray();
-/*N*/ }
+void ScFormulaCell::UpdateCompile( BOOL bForceIfNameInUse )
+{
+    bCompile = pCode->HasNameOrColRowName();
+    if ( bCompile )
+        pCode->SetError( 0 );   // damit auch wirklich kompiliert wird
+    CompileTokenArray();
+}
 
 /*N*/ BOOL lcl_IsRangeNameInUse(USHORT nIndex, ScTokenArray* pCode, ScRangeName* pNames)
 /*N*/ {

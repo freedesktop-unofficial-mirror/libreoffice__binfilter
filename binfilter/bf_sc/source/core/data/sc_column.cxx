@@ -831,11 +831,7 @@ namespace binfilter {
 /*N*/           {
 /*N*/               aAdr.SetRow( pItems[i].nRow );
 /*N*/               ScBaseCell* pNew = NULL;
-/*N*/               if (bAsLink)
-/*N*/               {
-                DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
-/*N*/               else
+/*N*/               if (!bAsLink)
 /*N*/               {
 /*N*/                   pNew = CloneCell( i, nFlags, rColumn.pDocument, aAdr );
 /*N*/
@@ -980,11 +976,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       ScRange aRange( ScAddress( nCol1, nRow1, nTab1 ),
 /*N*/                       ScAddress( nCol2, nRow2, nTab2 ) );
-/*N*/       if ( eUpdateRefMode == URM_COPY && nRow1 == nRow2 )
-/*N*/       {   // z.B. eine einzelne Zelle aus dem Clipboard eingefuegt
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       else
+/*N*/       if ( !(eUpdateRefMode == URM_COPY && nRow1 == nRow2) )
 /*N*/       {
 /*?*/             // #90279# For performance reasons two loop bodies instead of
 /*?*/             // testing for update mode in each iteration.
