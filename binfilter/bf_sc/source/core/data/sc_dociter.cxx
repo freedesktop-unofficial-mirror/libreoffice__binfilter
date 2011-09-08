@@ -127,7 +127,7 @@ namespace binfilter {
 /*N*/                       --nRow;
 /*N*/                       if ( bCalcAsShown )
 /*N*/                       {
-/*?*/                           rValue = pDoc->RoundValueAsShown( rValue, nNumFormat );
+/*?*/                           rValue = 0.0;
 /*N*/                       }
 /*N*/                       //
 /*N*/                       //  wenn in der selben Spalte gleich noch eine Value-Cell folgt, die
@@ -143,7 +143,7 @@ namespace binfilter {
 /*N*/                           bNextValid = TRUE;
 /*N*/                           if ( bCalcAsShown )
 /*N*/                           {
-/*?*/                               fNextValue = pDoc->RoundValueAsShown( fNextValue, nNumFormat );
+/*?*/                               fNextValue = 0.0;
 /*N*/                           }
 /*N*/                       }
 /*N*/
@@ -318,7 +318,7 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/                           rValue = ((ScValueCell*)pCell)->GetValue();
 /*N*/                           if ( bCalcAsShown )
 /*N*/                           {
-/*N*/                               rValue = pDoc->RoundValueAsShown( rValue, nNumFormat );
+/*N*/                               rValue = 0.0;
 /*N*/                           }
 /*N*/                           nNumFmtType = NUMBERFORMAT_NUMBER;
 /*N*/                           nNumFmtIndex = 0;

@@ -142,8 +142,6 @@ namespace binfilter {
 /*N*/       {
 /*N*/           if (i == nTab1)
 /*N*/               pTab[i]->PutCell(nCol1, nRow1, pCell);
-/*N*/           else
-DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -204,11 +202,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
-/*N*/ void ScDocument::CompileDBFormula()
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ void ScDocument::CompileDBFormula( BOOL bCreateFormulaString )
 /*N*/ {
 /*N*/   for (USHORT i=0; i<=MAXTAB; i++)
@@ -219,9 +212,6 @@ DBG_BF_ASSERT(0, "STRIP");
 
 /*N*/ void ScDocument::CompileNameFormula( BOOL bCreateFormulaString )
 /*N*/ {
-/*N*/   if ( pCondFormList )
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/
 /*N*/   for (USHORT i=0; i<=MAXTAB; i++)
 /*N*/   {
 /*N*/       if (pTab[i]) pTab[i]->CompileNameFormula( bCreateFormulaString );
@@ -310,12 +300,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   return !aData.bError;
 /*N*/ }
-
-/*N*/ double ScDocument::RoundValueAsShown( double , ULONG )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-        return 0;
-}
 
 //
 //          bedingte Formate und Gueltigkeitsbereiche
@@ -466,15 +450,6 @@ DBG_BF_ASSERT(0, "STRIP");
 #define SC_DOCCOMP_MINGOOD  128
 #define SC_DOCCOMP_COLUMNS  10
 #define SC_DOCCOMP_ROWS     100
-
-
-
-
-
-
-
-
-
 
 }
 

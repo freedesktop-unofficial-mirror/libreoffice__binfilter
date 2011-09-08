@@ -561,7 +561,7 @@ namespace binfilter {
 /*?*/                               sal_uInt32 nFormat;
 /*?*/                               pDocument->GetNumberFormat( pCols[nCol],
 /*?*/                                   pRows[nRow], nTab1, nFormat );
-/*?*/                               nVal = pDocument->RoundValueAsShown( nVal, nFormat );
+/*?*/                               nVal = 0.0;
 /*?*/                           }
 /*N*/                       }
 /*N*/                       else if (eType == CELLTYPE_FORMULA)
@@ -704,8 +704,8 @@ namespace binfilter {
 /*?*/                           nVal = ((ScValueCell*)pCell)->GetValue();
 /*?*/                           if ( bCalcAsShown && nVal != 0.0 )
 /*?*/                           {
-/*?*/                               ULONG nFormat = pDocument->GetNumberFormat( *pPos );
-/*?*/                               nVal = pDocument->RoundValueAsShown( nVal, nFormat );
+/*?*/                               /* ULONG nFormat = */ pDocument->GetNumberFormat( *pPos );
+/*?*/                               nVal = 0.0;
 /*?*/                           }
 /*N*/                       }
 /*N*/                       else if (eType == CELLTYPE_FORMULA)

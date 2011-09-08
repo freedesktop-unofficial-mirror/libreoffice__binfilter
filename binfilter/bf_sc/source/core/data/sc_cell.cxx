@@ -1249,7 +1249,7 @@ static const sal_Char msgDbgInfinity[] =
 /*?*/           if ( (nFormat % SV_COUNTRY_LANGUAGE_OFFSET) == 0 )
 /*?*/               nFormat = ScGlobal::GetStandardFormat(
 /*?*/                   *pDocument->GetFormatTable(), nFormat, nFormatType );
-/*?*/           nErgValue = pDocument->RoundValueAsShown( nErgValue, nFormat );
+/*?*/           nErgValue = 0.0;
 /*N*/       }
 /*N*/       if ( nIterMode == 0 )
 /*N*/       {

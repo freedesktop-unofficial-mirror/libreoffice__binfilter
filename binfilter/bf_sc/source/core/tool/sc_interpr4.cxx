@@ -196,8 +196,8 @@ ULONG ScInterpreter::GetCellNumberFormat( const ScAddress& rPos, const ScBaseCel
 /*N*/   double fVal = pCell->GetValue();
 /*N*/   if ( bCalcAsShown && fVal != 0.0 )
 /*N*/   {
-/*?*/       ULONG nFormat = pDok->GetNumberFormat( rPos );
-/*?*/       fVal = pDok->RoundValueAsShown( fVal, nFormat );
+/*?*/       /* ULONG nFormat = */ pDok->GetNumberFormat( rPos );
+/*?*/       fVal = 0.0;
 /*N*/   }
 /*N*/   return fVal;
 /*N*/ }
@@ -253,7 +253,7 @@ ULONG ScInterpreter::GetCellNumberFormat( const ScAddress& rPos, const ScBaseCel
 /*N*/               nCurFmtIndex = pDok->GetNumberFormat( rPos );
 /*N*/               nCurFmtType = pFormatter->GetType( nCurFmtIndex );
 /*N*/               if ( bCalcAsShown && fValue != 0.0 )
-/*?*/                   fValue = pDok->RoundValueAsShown( fValue, nCurFmtIndex );
+/*?*/                   fValue = 0.0;
 /*N*/           }
 /*N*/           break;
 /*N*/           case  CELLTYPE_STRING:
@@ -1366,9 +1366,8 @@ BOOL ScInterpreter::DoubleRefToPosSingleRef( const ScRange& rRange, ScAddress& r
 /*N*/                       double rValue = ((ScValueCell*)pCell)->GetValue();
 /*N*/                       if ( bCalcAsShown )
 /*N*/                       {
-/*N*/                           ULONG nFormat;
-/*N*/                           nFormat = aCellIter.GetNumberFormat();
-/*N*/                           rValue = pDok->RoundValueAsShown( rValue, nFormat );
+/*N*/                           /* ULONG nFormat = */ aCellIter.GetNumberFormat();
+/*N*/                           rValue = 0.0;
 /*N*/                       }
 /*N*/                       PushDouble(rValue);
 /*N*/                   }

@@ -644,7 +644,6 @@ public:
     void            GetInputString( USHORT nCol, USHORT nRow, USHORT nTab, String& rString );
     double          GetValue( const ScAddress& );
     void            GetValue( USHORT nCol, USHORT nRow, USHORT nTab, double& rValue );
-    double          RoundValueAsShown( double fVal, ULONG nFormat );
     void            GetNumberFormat( USHORT nCol, USHORT nRow, USHORT nTab,
                                      sal_uInt32& rFormat );
     ULONG           GetNumberFormat( const ScAddress& ) const;
@@ -1214,7 +1213,6 @@ public:
                             }
 
 
-    void            CompileDBFormula();
     void            CompileDBFormula( BOOL bCreateFormulaString );
     void            CompileNameFormula( BOOL bCreateFormulaString );
     void            CompileColRowNameFormula();

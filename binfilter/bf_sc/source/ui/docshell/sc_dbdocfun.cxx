@@ -123,10 +123,6 @@ namespace binfilter {
 /*N*/       pDoc->CompileDBFormula( TRUE );             // CreateFormulaString
 /*N*/       pDocColl->AtFree( nPos );
 /*N*/       BOOL bInserted = pDocColl->Insert( pNewData );
-/*N*/       if (!bInserted)                             // Fehler -> alten Zustand wiederherstellen
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/       pDoc->CompileDBFormula( FALSE );            // CompileFormulaString
 /*N*/
 /*N*/       if (bInserted)                              // Einfuegen hat geklappt
@@ -158,12 +154,8 @@ namespace binfilter {
 /*N*/       ScRange aOldRange, aNewRange;
 /*N*/       pData->GetArea(aOldRange);
 /*N*/       rNewData.GetArea(aNewRange);
-/*N*/       BOOL bAreaChanged = ( aOldRange != aNewRange );     // dann muss neu compiliert werden
-/*N*/
 /*N*/
 /*N*/       *pData = rNewData;
-/*N*/       if (bAreaChanged)
-/*N*/           pDoc->CompileDBFormula();
 /*N*/
 /*N*/       aModificator.SetDocumentModified();
 /*N*/       bDone = TRUE;
@@ -225,11 +217,7 @@ namespace binfilter {
 /*N*/               USHORT nTabCount = pDoc->GetTableCount();
 /*N*/               pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
 /*N*/               ScOutlineTable* pTable = pDoc->GetOutlineTable( nTab );
-/*N*/               if (pTable)
-/*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
-/*N*/               else
+/*N*/               if (!pTable)
 /*N*/                   pUndoDoc->InitUndo( pDoc, nTab, nTab, FALSE, TRUE );
 /*N*/
 /*N*/               //  Datenbereich sichern - incl. Filter-Ergebnis
@@ -272,11 +260,6 @@ namespace binfilter {
 /*N*/               DoSubTotals( nTab, aSubTotalParam, NULL, FALSE, bApi );
 /*N*/           }
 /*N*/
-/*N*/           if (bRecord)
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
-/*N*/
 /*N*/           rDocShell.PostPaint( 0,0,nTab, MAXCOL,MAXROW,nTab,
 /*N*/                                   PAINT_GRID | PAINT_LEFT | PAINT_TOP | PAINT_SIZE );
 /*N*/           bDone = TRUE;
@@ -313,10 +296,6 @@ namespace binfilter {
 /*N*/                 rSortParam.nDestRow == rSortParam.nRow1 && rSortParam.nDestTab == nTab )
 /*N*/       bCopy = FALSE;
 /*N*/   ScSortParam aLocalParam( rSortParam );
-/*N*/   if ( bCopy )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   ScEditableTester aTester( pDoc, nTab, aLocalParam.nCol1,aLocalParam.nRow1,
 /*N*/                                       aLocalParam.nCol2,aLocalParam.nRow2 );
@@ -493,10 +472,6 @@ namespace binfilter {
 /*N*/                 rQueryParam.nDestRow == rQueryParam.nRow1 && rQueryParam.nDestTab == nTab )
 /*N*/       bCopy = FALSE;
 /*N*/   USHORT nDestTab = nTab;
-/*N*/   if ( bCopy )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   //      ausfuehren
 /*N*/
@@ -510,11 +485,6 @@ namespace binfilter {
 /*N*/
 /*N*/       if ( aSubTotalParam.bGroupActive[0] && !aSubTotalParam.bRemoveOnly )
 /*N*/           bKeepSub = TRUE;
-/*N*/   }
-/*N*/
-/*N*/   if ( bRecord )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   ScDocument* pAttribDoc = NULL;
@@ -714,8 +684,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   BOOL bOk = TRUE;
-/*N*/   if (rParam.bReplace)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/   if (bOk)
 /*N*/   {
@@ -733,11 +701,7 @@ namespace binfilter {
 /*N*/           nTabCount = pDoc->GetTableCount();
 /*N*/           pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
 /*N*/           ScOutlineTable* pTable = pDoc->GetOutlineTable( nTab );
-/*N*/           if (pTable)
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
-/*N*/           else
+/*N*/           if (!pTable)
 /*N*/               pUndoDoc->InitUndo( pDoc, nTab, nTab, FALSE, bOldFilter );
 /*N*/
 /*N*/           //  Datenbereich sichern - incl. Filter-Ergebnis
@@ -749,26 +713,12 @@ namespace binfilter {
 /*N*/                                       IDF_FORMULA, FALSE, pUndoDoc );
 /*N*/       }
 /*N*/
-/*N*/       ScOutlineTable* pOut = pDoc->GetOutlineTable( nTab );
-/*N*/       if (pOut)
-/*?*/       {   DBG_BF_ASSERT(0, "STRIP"); }
+/*N*/       /* ScOutlineTable* pOut = */ pDoc->GetOutlineTable( nTab );
 /*N*/
-/*N*/       if (rParam.bReplace)
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       BOOL bSuccess = TRUE;
-/*N*/       if (bDo)
-/*N*/       {
-/*?*/           // Sortieren
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/       ScRange aDirtyRange( aNewParam.nCol1, aNewParam.nRow1, nTab,
 /*N*/           aNewParam.nCol2, aNewParam.nRow2, nTab );
 /*N*/       pDoc->SetDirty( aDirtyRange );
-/*N*/
-/*N*/       if (bRecord)
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/
 /*N*/       if (!bSuccess)
 /*N*/       {
@@ -780,7 +730,6 @@ namespace binfilter {
 /*N*/                                                   // merken
 /*N*/       pDBData->SetSubTotalParam( aNewParam );
 /*N*/       pDBData->SetArea( nTab, aNewParam.nCol1,aNewParam.nRow1, aNewParam.nCol2,aNewParam.nRow2 );
-/*N*/       pDoc->CompileDBFormula();
 /*N*/
 /*N*/       rDocShell.PostPaint( 0,0,nTab, MAXCOL,MAXROW,nTab,
 /*N*/                                               PAINT_GRID | PAINT_LEFT | PAINT_TOP | PAINT_SIZE );
@@ -877,15 +826,6 @@ namespace binfilter {
 /*N*/                   pDoc->CopyToDocument( aRange, IDF_ALL, FALSE, pOldUndoDoc );
 /*N*/               }
 /*N*/
-/*N*/               if ( pNewObj == pOldObj )
-/*N*/               {
-/*N*/                   //  refresh only - no settings modified
-/*N*/               }
-/*N*/               else
-/*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
-/*N*/
 /*N*/               pDestObj = pOldObj;
 /*N*/           }
 /*N*/           else
@@ -900,20 +840,8 @@ namespace binfilter {
 /*N*/                   DELETEZ( pDestObj );
 /*N*/               }
 /*N*/           }
-/*N*/           if ( pDestObj )
-/*N*/           {
-/*N*/               // #78541# create new database connection for "refresh"
-/*N*/               // (and re-read column entry collections)
-/*N*/               // so all changes take effect
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
 /*N*/       }
 /*N*/       // else nothing (no old, no new)
-/*N*/   }
-/*N*/
-/*N*/   if ( bRecord && bDone )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   delete pOldUndoDoc;     // if not used for undo
