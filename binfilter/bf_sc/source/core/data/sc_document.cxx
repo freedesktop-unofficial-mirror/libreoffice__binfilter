@@ -891,7 +891,7 @@ namespace binfilter {
 /*N*/                           USHORT nCol2, USHORT nRow2,
 /*N*/                           BOOL bCut, ScDocument* pClipDoc,
 /*N*/                           BOOL bAllTabs, const ScMarkData* pMarks,
-/*N*/                           BOOL /*bKeepScenarioFlags*/, BOOL bIncludeObjects)
+/*N*/                           BOOL /*bKeepScenarioFlags*/, BOOL /*bIncludeObjects*/)
 /*N*/ {
 /*N*/   DBG_ASSERT( bAllTabs || pMarks, "CopyToClip: ScMarkData fehlt" );
 /*N*/
@@ -933,7 +933,7 @@ namespace binfilter {
 /*N*/ void ScDocument::CopyFromClip( const ScRange& rDestRange, const ScMarkData& rMark,
 /*N*/                               USHORT nInsFlag,
 /*N*/                               ScDocument* pRefUndoDoc, ScDocument* pClipDoc, BOOL bResetCut,
-/*N*/                               BOOL bAsLink, BOOL bIncludeFiltered, BOOL bSkipAttrForEmpty )
+/*N*/                               BOOL bAsLink, BOOL /*bIncludeFiltered*/, BOOL bSkipAttrForEmpty )
 /*N*/ {
 /*N*/   if (!bIsClip && pClipDoc)
 /*N*/   {

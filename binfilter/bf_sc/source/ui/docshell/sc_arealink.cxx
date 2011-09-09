@@ -132,7 +132,7 @@ namespace binfilter {
 //  ausfuehren:
 
 /*N*/ BOOL ScAreaLink::Refresh( const String& rNewFile, const String& rNewFilter,
-/*N*/                           const String& rNewArea, ULONG nNewRefresh )
+/*N*/                           const String& rNewArea, ULONG /*nNewRefresh*/ )
 /*N*/ {
 /*N*/   //  Dokument laden - wie TabLink
 /*N*/
@@ -204,8 +204,6 @@ namespace binfilter {
 /*N*/
 /*N*/   //  alte Daten loeschen / neue kopieren
 /*N*/
-/*N*/   ScAddress aDestPos = aDestArea.aStart;
-/*N*/   ScRange aOldRange = aDestArea;
 /*N*/   ScRange aNewRange = aDestArea;          // alter Bereich, wenn Datei nicht gefunden o.ae.
 /*N*/   if (nWidth && nHeight)
 /*N*/   {

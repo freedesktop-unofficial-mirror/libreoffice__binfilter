@@ -394,8 +394,6 @@ void ScDocument::UpdateChartListenerCollection()
                                             pCL->StartListeningTo();
                                             pCL->SetUsed( TRUE );
 
-                                            BOOL bForceSave = FALSE;
-
                                             //  Set ReadOnly flag at MemChart, so Chart knows
                                             //  about the external data in a freshly loaded document.
                                             //  #73642# only if the chart really has external data
@@ -406,10 +404,6 @@ void ScDocument::UpdateChartListenerCollection()
                                                 {
                                                     String aOldData3 = pChartData->SomeData3();
                                                     aArray.SetExtraStrings( *pChartData );
-                                                    if ( aOldData3 != pChartData->SomeData3() )
-                                                    {
-                                                        bForceSave = TRUE;
-                                                    }
                                                 }
                                             }
                                             BOOL bEnabled = aIPObj->IsEnableSetModified();
