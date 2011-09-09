@@ -263,8 +263,6 @@ namespace binfilter {
 /*N*/               if (pPivotCollection)
 /*N*/                   pPivotCollection->UpdateReference(
 /*N*/                                   URM_INSDEL, 0,0,nPos, MAXCOL,MAXROW,MAXTAB, 0,0,1 );
-/*N*/               if (pDPCollection)
-/*?*/                   pDPCollection->UpdateReference( URM_INSDEL, aRange, 0,0,1 );
 /*N*/               UpdateChartRef( URM_INSDEL, 0,0,nPos, MAXCOL,MAXROW,MAXTAB, 0,0,1 );
 /*N*/               UpdateRefAreaLinks( URM_INSDEL, aRange, 0,0,1 );
 /*N*/               if ( pUnoBroadcaster )
@@ -327,8 +325,6 @@ namespace binfilter {
 /*N*/               if (pPivotCollection)
 /*N*/                   pPivotCollection->UpdateReference(
 /*N*/                                   URM_INSDEL, 0,0,nTab, MAXCOL,MAXROW,MAXTAB, 0,0,-1 );
-/*N*/               if (pDPCollection)
-/*N*/                   pDPCollection->UpdateReference( URM_INSDEL, aRange, 0,0,-1 );
 /*N*/               if (pDetOpList)
 /*N*/                   pDetOpList->UpdateReference( this, URM_INSDEL, aRange, 0,0,-1 );
 /*N*/               UpdateChartRef( URM_INSDEL, 0,0,nTab, MAXCOL,MAXROW,MAXTAB, 0,0,-1 );

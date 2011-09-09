@@ -219,17 +219,6 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/   InvalidateSource();     // new source must be created
 /*N*/ }
 
-/*N*/ void ScDPObject::SetImportDesc(const ScImportSourceDesc&)
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void ScDPObject::SetServiceData(const ScDPServiceDesc&)
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-
 /*N*/ BOOL ScDPObject::IsSheetData() const
 /*N*/ {
 /*N*/   return ( pSheetDesc != NULL );
@@ -256,15 +245,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       DBG_ASSERT( bAlive, "CreateObjects on non-inserted DPObject" );
 /*N*/
 /*N*/       DELETEZ( pOutput );     // not valid when xSource is changed
-/*N*/
-/*N*/       if ( pImpDesc )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       else if ( pServDesc )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/
 /*N*/       if ( !xSource.is() )    // sheet data or error in above cases
 /*N*/       {
@@ -315,12 +295,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
-
-/*N*/ void ScDPObject::UpdateReference( UpdateRefMode /*eUpdateRefMode*/,
-/*N*/                                    const ScRange& /*rRange*/, short /*nDx*/, short /*nDy*/, short /*nDz*/ )
-/*N*/ {
-    DBG_BF_ASSERT(0, "STRIP");
-}
 
 /*N*/ USHORT lcl_FirstSubTotal( const uno::Reference<beans::XPropertySet>& xDimProp )       // PIVOT_FUNC mask
 /*N*/ {
@@ -441,12 +415,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/           long nDupSource = -1;
 /*N*/           uno::Reference<uno::XInterface> xIntOrig = ScUnoHelpFunctions::AnyToInterface( aOrigAny );
-/*N*/           if ( xIntOrig.is() )
-/*N*/           {
-/*?*/               uno::Reference<container::XNamed> xNameOrig( xIntOrig, uno::UNO_QUERY );
-/*?*/               if ( xNameOrig.is() )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/           }
 /*N*/
 /*N*/           BOOL bDupUsed = FALSE;
 /*N*/           if ( nDupSource >= 0 )
@@ -659,8 +627,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       {
 /*N*/           if ( pDoc )
 /*N*/               pDoc->GetString( nCol, nRow, nTab, aDocStr );
-/*N*/           else
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/           if ( aDocStr.Len() )
 /*N*/               pDim = rSaveData.GetDimensionByName(aDocStr);
@@ -842,13 +808,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   return bSuccess;
-/*N*/ }
-
-/*N*/ void ScDPCollection::UpdateReference( UpdateRefMode eUpdateRefMode,
-/*N*/                                        const ScRange& r, short nDx, short nDy, short nDz )
-/*N*/ {
-/*N*/   for (USHORT i=0; i<nCount; i++)
-/*N*/       ((ScDPObject*)At(i))->UpdateReference( eUpdateRefMode, r, nDx, nDy, nDz );
 /*N*/ }
 
 /*N*/ String ScDPCollection::CreateNewName( USHORT nMin ) const

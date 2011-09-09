@@ -269,7 +269,6 @@ void ScXMLDataPilotTableContext::EndElement()
                 aImportDesc.aObject = sSourceObject;
                 aImportDesc.nType = sheet::DataImportMode_SQL;
                 aImportDesc.bNative = bIsNative;
-                pDPObject->SetImportDesc(aImportDesc);
             }
             break;
             case TABLE :
@@ -278,7 +277,6 @@ void ScXMLDataPilotTableContext::EndElement()
                 aImportDesc.aDBName = sDatabaseName;
                 aImportDesc.aObject = sSourceObject;
                 aImportDesc.nType = sheet::DataImportMode_TABLE;
-                pDPObject->SetImportDesc(aImportDesc);
             }
             break;
             case QUERY :
@@ -287,14 +285,12 @@ void ScXMLDataPilotTableContext::EndElement()
                 aImportDesc.aDBName = sDatabaseName;
                 aImportDesc.aObject = sSourceObject;
                 aImportDesc.nType = sheet::DataImportMode_QUERY;
-                pDPObject->SetImportDesc(aImportDesc);
             }
             break;
             case SERVICE :
             {
                 ScDPServiceDesc aServiceDesk(sServiceName, sServiceSourceObject, sServiceSourceName,
                                     sServiceUsername, sServicePassword);
-                pDPObject->SetServiceData(aServiceDesk);
             }
             break;
             case CELLRANGE :

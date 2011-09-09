@@ -438,8 +438,6 @@ using namespace ::com::sun::star;
 /*N*/           pRangeName->UpdateReference( eUpdateRefMode, aRange, nDx, nDy, nDz );
 /*N*/           if (pPivotCollection)
 /*N*/               pPivotCollection->UpdateReference( eUpdateRefMode, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2, nDx, nDy, nDz );
-/*N*/           if ( pDPCollection )
-/*N*/               pDPCollection->UpdateReference( eUpdateRefMode, aRange, nDx, nDy, nDz );
 /*N*/           UpdateChartRef( eUpdateRefMode, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2, nDx, nDy, nDz );
 /*N*/           UpdateRefAreaLinks( eUpdateRefMode, aRange, nDx, nDy, nDz );
 /*N*/           if ( pCondFormList )

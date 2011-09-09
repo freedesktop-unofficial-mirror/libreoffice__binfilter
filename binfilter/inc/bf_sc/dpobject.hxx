@@ -119,9 +119,6 @@ public:
     const ScRange&      GetOutRange() const     { return aOutRange; }
 
     void                SetSheetDesc(const ScSheetSourceDesc& rDesc);
-    void                SetImportDesc(const ScImportSourceDesc& rDesc);
-    void                SetServiceData(const ScDPServiceDesc& rDesc);
-
 
     const ScSheetSourceDesc* GetSheetDesc() const   { return pSheetDesc; }
     const ScImportSourceDesc* GetImportSourceDesc() const   { return pImpDesc; }
@@ -140,9 +137,6 @@ public:
     BOOL                LoadNew(SvStream& rStream, ScMultipleReadHeader& rHdr );
     BOOL                FillOldParam(ScPivotParam& rParam, BOOL bForFile) const;
     void                InitFromOldPivot(const ScPivot& rOld, ScDocument* pDoc, BOOL bSetSource);
-
-    void                UpdateReference( UpdateRefMode eUpdateRefMode,
-                                          const ScRange& r, short nDx, short nDy, short nDz );
 
     static void         ConvertOrientation( ScDPSaveData& rSaveData,
                             PivotField* pFields, USHORT nCount, USHORT nOrient,
@@ -172,9 +166,6 @@ public:
     BOOL        LoadNew( SvStream& rStream );
 
     void        ConvertOldTables( ScPivotCollection& rOldColl );
-
-    void        UpdateReference( UpdateRefMode eUpdateRefMode,
-                                 const ScRange& r, short nDx, short nDy, short nDz );
 
     String      CreateNewName( USHORT nMin = 1 ) const;
     void        EnsureNames();
