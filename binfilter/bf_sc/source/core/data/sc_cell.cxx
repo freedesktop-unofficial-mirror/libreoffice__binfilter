@@ -706,7 +706,6 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/   bTableOpDirty( FALSE ),
 /*N*/   aPos( rPos )
 /*N*/ {
-/*N*/ //    ScReadHeader aHdr( rStream );
 /*N*/   rHdr.StartEntry();
 /*N*/
 /*N*/   USHORT nVer = (USHORT) pDoc->GetSrcVersion();
@@ -715,14 +714,6 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/   {
 /*N*/       BYTE cData;
 /*N*/       rStream >> cData;
-/*N*/ #ifdef DBG_UTIL
-/*N*/ //        static BOOL bShown = 0;
-/*N*/ //        if ( !bShown && SOFFICE_FILEFORMAT_NOW > SOFFICE_FILEFORMAT_50 )
-/*N*/ //        {
-/*N*/ //            bShown = 1;
-/*N*/ //            DBG_ERRORFILE( "bei inkompatiblem FileFormat den FormatIndex umheben!" );
-/*N*/ //        }
-/*N*/ #endif
 /*N*/       if( cData & 0x0F )
 /*N*/       {
 /*N*/           BYTE nSkip = cData & 0x0F;
@@ -866,10 +857,6 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/       delete pCodeOld;
 /*N*/   if( !pCode->GetError() )
 /*N*/   {
-/*N*/       if ( !pCode->GetLen() && aErgString.Len() && rFormula == aErgString )
-/*N*/       {   // #65994# nicht rekursiv CompileTokenArray/Compile/CompileTokenArray
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/       bCompile = TRUE;
 /*N*/       CompileTokenArray( bNoListening );
 /*N*/   }
@@ -945,10 +932,6 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/   delete pCodeOld;
 /*N*/   if( !pCode->GetError() )
 /*N*/   {
-/*N*/       if ( !pCode->GetLen() )
-/*N*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/       bSubTotal = aComp.CompileTokenArray();
 /*N*/       if( !pCode->GetError() )
 /*N*/       {
@@ -1286,13 +1269,6 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/           pCode->SetError( errIllegalFPOperation );
 /*N*/       }
 /*N*/ #endif
-/*N*/
-/*N*/       //  FORCED Zellen auch sofort auf Gueltigkeit testen (evtl. Makro starten)
-/*N*/
-/*N*/       if ( pCode->IsRecalcModeForced() )
-/*N*/       {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/
 /*N*/       // Reschedule verlangsamt das ganze erheblich, nur bei Prozentaenderung ausfuehren
 /*N*/       ScProgress::GetInterpretProgress()->SetStateCountDownOnPercent(

@@ -582,7 +582,7 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/ BOOL ScFormulaCell::TestTabRefAbs(USHORT nTable)
 /*N*/ {
 /*N*/   BOOL bRet = FALSE;
-DBG_BF_ASSERT(0, "STRIP"); /*N*/    if( !pDocument->IsClipOrUndo() )
+/*N*/   if( !pDocument->IsClipOrUndo() )
 /*N*/   {
 /*N*/       pCode->Reset();
 /*N*/       ScToken* p = pCode->GetNextReferenceRPN();
