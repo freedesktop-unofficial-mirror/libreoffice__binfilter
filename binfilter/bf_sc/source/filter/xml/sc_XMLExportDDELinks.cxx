@@ -132,15 +132,13 @@ void ScXMLExportDDELinks::WriteTable(const sal_Int32 nPos)
             for(sal_Int32 nColumn = 0; nColumn < nColCount; nColumn++)
             {
                 if (nColumn == 0)
-                    bPrevEmpty = rExport.GetDocument()->GetDdeLinkResult(pMatrix, static_cast<USHORT>(nColumn), static_cast<USHORT>(nRow),
-                                                                        sPrevValue, fPrevValue, bPrevString);
+                    bPrevEmpty = TRUE;
                 else
                 {
                     double fValue;
                     String sValue;
                     sal_Bool bString(sal_True);
-                    sal_Bool bEmpty = rExport.GetDocument()->GetDdeLinkResult(pMatrix, static_cast<USHORT>(nColumn), static_cast<USHORT>(nRow),
-                                                                        sValue, fValue, bString);
+                    sal_Bool bEmpty = TRUE;
                     if (CellsEqual(bPrevEmpty, bPrevString, sPrevValue, fPrevValue,
                                 bEmpty, bString, sValue, fValue))
                         nRepeatColsCount++;

@@ -1391,18 +1391,12 @@ using namespace ::com::sun::star;
 /*?*/       return FALSE;
 /*N*/   }
 /*N*/
-/*N*/   BOOL bNeedContents = bContents &&
-/*N*/           ( !pDoc->IsBlockEmpty( nTab, nStartCol,nStartRow+1, nStartCol,nEndRow ) ||
-/*N*/             !pDoc->IsBlockEmpty( nTab, nStartCol+1,nStartRow, nEndCol,nEndRow ) );
-/*N*/
-/*N*/   if (bNeedContents && bContents)
-/*?*/   {   DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   pDoc->DoMerge( nTab, nStartCol,nStartRow, nEndCol,nEndRow );
 /*N*/
 /*N*/   if ( !AdjustRowHeight( ScRange( 0,nStartRow,nTab, MAXCOL,nEndRow,nTab ) ) )
 /*N*/       rDocShell.PostPaint( nStartCol, nStartRow, nTab,
 /*N*/                                           nEndCol, nEndRow, nTab, PAINT_GRID );
-/*N*/   if (bNeedContents && bContents)
+/*N*/   if ( bContents )
 /*?*/       pDoc->SetDirty( rRange );
 /*N*/   aModificator.SetDocumentModified();
 /*N*/

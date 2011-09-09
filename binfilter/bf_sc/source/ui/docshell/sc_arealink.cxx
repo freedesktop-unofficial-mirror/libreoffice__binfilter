@@ -140,7 +140,6 @@ namespace binfilter {
 /*N*/       return FALSE;
 /*N*/
 /*N*/   String aNewUrl( ScGlobal::GetAbsDocName( rNewFile, pDocShell ) );
-/*N*/   BOOL bNewUrlName = (aNewUrl != aFileName);
 /*N*/
 /*N*/   const SfxFilter* pFilter = SFX_APP()->GetFilter( pDocShell->GetFactory(), rNewFilter );
 /*N*/   if (!pFilter)
@@ -148,7 +147,6 @@ namespace binfilter {
 /*N*/
 /*N*/   ScDocument* pDoc = pDocShell->GetDocument();
 /*N*/
-/*N*/   BOOL bUndo (pDoc->IsUndoEnabled());
 /*N*/   pDoc->SetInLinkUpdate( TRUE );
 /*N*/
 /*N*/   //  wenn neuer Filter ausgewaehlt wurde, Optionen vergessen
@@ -207,7 +205,6 @@ namespace binfilter {
 /*N*/   //  alte Daten loeschen / neue kopieren
 /*N*/
 /*N*/   ScAddress aDestPos = aDestArea.aStart;
-/*N*/   USHORT nDestTab = aDestPos.Tab();
 /*N*/   ScRange aOldRange = aDestArea;
 /*N*/   ScRange aNewRange = aDestArea;          // alter Bereich, wenn Datei nicht gefunden o.ae.
 /*N*/   if (nWidth && nHeight)
@@ -216,151 +213,15 @@ namespace binfilter {
 /*N*/       aNewRange.aEnd.SetRow( aNewRange.aStart.Row() + nHeight - 1 );
 /*N*/   }
 /*N*/
-/*N*/   BOOL bCanDo = pDoc->CanFitBlock( aOldRange, aNewRange );    //! nach bDoInsert unterscheiden
-/*N*/   if (bCanDo)
-/*N*/   {
-/*N*/       ScDocShellModificator aModificator( *pDocShell );
+/*N*/   //  CanFitBlock FALSE -> Probleme mit zusammengefassten Zellen
+/*N*/   //                       oder Tabellengrenze erreicht!
+/*N*/   //! Zellschutz ???
 /*N*/
-/*N*/       aDestPos.Col();
-/*N*/       aDestPos.Row();
-/*N*/       USHORT nOldEndX = aOldRange.aEnd.Col();
-/*N*/       USHORT nOldEndY = aOldRange.aEnd.Row();
-/*N*/       USHORT nNewEndX = aNewRange.aEnd.Col();
-/*N*/       USHORT nNewEndY = aNewRange.aEnd.Row();
-/*N*/       ScRange aMaxRange( aDestPos,
-/*N*/                   ScAddress(Max(nOldEndX,nNewEndX), Max(nOldEndY,nNewEndY), nDestTab) );
-/*N*/
-/*N*/       //  Undo initialisieren
-/*N*/
-/*N*/       ScDocument* pUndoDoc = NULL;
-/*N*/       if ( bAddUndo && bUndo )
-/*N*/       {
-/*N*/           pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-/*N*/           if ( bDoInsert )
-/*N*/           {
-/*N*/               if ( nNewEndX != nOldEndX || nNewEndY != nOldEndY )             // Bereich veraendert?
-/*N*/               {
-/*N*/                   pUndoDoc->InitUndo( pDoc, 0, pDoc->GetTableCount()-1 );
-/*N*/                   pDoc->CopyToDocument( 0,0,0,MAXCOL,MAXROW,MAXTAB,
-/*N*/                                           IDF_FORMULA, FALSE, pUndoDoc );     // alle Formeln
-/*N*/               }
-/*N*/               else
-/*N*/                   pUndoDoc->InitUndo( pDoc, nDestTab, nDestTab );             // nur Zieltabelle
-/*N*/               pDoc->CopyToDocument( aOldRange, IDF_ALL, FALSE, pUndoDoc );
-/*N*/           }
-/*N*/           else        // ohne Einfuegen
-/*N*/           {
-/*N*/               pUndoDoc->InitUndo( pDoc, nDestTab, nDestTab );             // nur Zieltabelle
-/*N*/               pDoc->CopyToDocument( aMaxRange, IDF_ALL, FALSE, pUndoDoc );
-/*N*/           }
-/*N*/       }
-/*N*/
-/*N*/       //  Zellen einfuegen / loeschen
-/*N*/       //  DeleteAreaTab loescht auch MERGE_FLAG Attribute
-/*N*/
-/*N*/       if (bDoInsert)
-/*N*/           pDoc->FitBlock( aOldRange, aNewRange );         // incl. loeschen
-/*N*/       else
-/*N*/           pDoc->DeleteAreaTab( aMaxRange, IDF_ALL );
-/*N*/
-/*N*/       //  Daten kopieren
-/*N*/
-/*N*/       if (nWidth && nHeight)
-/*N*/       {
-/*N*/           ScDocument aClipDoc( SCDOCMODE_CLIP );
-/*N*/           ScRange aNewTokenRange( aNewRange.aStart );
-/*N*/           nStringIx = 0;
-/*N*/           for( nToken = 0; nToken < nTokenCnt; nToken++ )
-/*N*/           {
-/*N*/               String aToken( aTempArea.GetToken( 0, ';', nStringIx ) );
-/*N*/               ScRange aTokenRange;
-/*N*/               if( FindExtRange( aTokenRange, pSrcDoc, aToken ) )
-/*N*/               {
-/*N*/                   USHORT nSrcTab = aTokenRange.aStart.Tab();
-/*N*/                   ScMarkData aSourceMark;
-/*N*/                   aSourceMark.SelectOneTable( nSrcTab );      // selektieren fuer CopyToClip
-/*N*/                   aSourceMark.SetMarkArea( aTokenRange );
-/*N*/
-/*N*/                   pSrcDoc->CopyToClip( aTokenRange.aStart.Col(), aTokenRange.aStart.Row(),
-/*N*/                                        aTokenRange.aEnd.Col(), aTokenRange.aEnd.Row(),
-/*N*/                                        FALSE, &aClipDoc, FALSE, &aSourceMark );
-/*N*/
-/*N*/                   if ( aClipDoc.HasAttrib( 0,0,nSrcTab, MAXCOL,MAXROW,nSrcTab,
-/*N*/                                           HASATTR_MERGED | HASATTR_OVERLAPPED ) )
-/*N*/                   {
-/*N*/                       //! ResetAttrib am Dokument !!!
-/*N*/
-/*N*/                       ScPatternAttr aPattern( pSrcDoc->GetPool() );
-/*N*/                       aPattern.GetItemSet().Put( ScMergeAttr() );             // Defaults
-/*N*/                       aPattern.GetItemSet().Put( ScMergeFlagAttr() );
-/*N*/                       aClipDoc.ApplyPatternAreaTab( 0,0, MAXCOL,MAXROW, nSrcTab, aPattern );
-/*N*/                   }
-/*N*/
-/*N*/                   aNewTokenRange.aEnd.SetCol( aNewTokenRange.aStart.Col() + (aTokenRange.aEnd.Col() - aTokenRange.aStart.Col()) );
-/*N*/                   aNewTokenRange.aEnd.SetRow( aNewTokenRange.aStart.Row() + (aTokenRange.aEnd.Row() - aTokenRange.aStart.Row()) );
-/*N*/                   ScMarkData aDestMark;
-/*N*/                   aDestMark.SelectOneTable( nDestTab );
-/*N*/                   aDestMark.SetMarkArea( aNewTokenRange );
-/*N*/                   pDoc->CopyFromClip( aNewTokenRange, aDestMark, IDF_ALL, NULL, &aClipDoc, FALSE );
-/*N*/                   aNewTokenRange.aStart.SetRow( aNewTokenRange.aEnd.Row() + 2 );
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           String aErr = ScGlobal::GetRscString(STR_LINKERROR);
-/*N*/           pDoc->SetString( aDestPos.Col(), aDestPos.Row(), aDestPos.Tab(), aErr );
-/*N*/       }
-/*N*/
-/*N*/       //  Undo eintragen
-/*N*/
-/*N*/       if ( bAddUndo && bUndo)
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/
-/*N*/       //  neue Einstellungen merken
-/*N*/
-/*N*/       if ( bNewUrlName )
-/*N*/           aFileName = aNewUrl;
-/*N*/       if ( rNewFilter != aFilterName )
-/*N*/           aFilterName = rNewFilter;
-/*N*/       if ( rNewArea != aSourceArea )
-/*N*/           aSourceArea = rNewArea;
-/*N*/       if ( aNewOpt != aOptions )
-/*N*/           aOptions = aNewOpt;
-/*N*/
-/*N*/       if ( aNewRange != aDestArea )
-/*N*/           aDestArea = aNewRange;
-/*N*/
-/*N*/       if ( nNewRefresh != GetRefreshDelay() )
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/
-/*N*/       USHORT nPaintEndX = Max( aOldRange.aEnd.Col(), aNewRange.aEnd.Col() );
-/*N*/       USHORT nPaintEndY = Max( aOldRange.aEnd.Row(), aNewRange.aEnd.Row() );
-/*N*/
-/*N*/       if ( aOldRange.aEnd.Col() != aNewRange.aEnd.Col() )
-/*N*/           nPaintEndX = MAXCOL;
-/*N*/       if ( aOldRange.aEnd.Row() != aNewRange.aEnd.Row() )
-/*N*/           nPaintEndY = MAXROW;
-/*N*/
-/*N*/       if ( !pDocShell->AdjustRowHeight( aDestPos.Row(), nPaintEndY, nDestTab ) )
-/*N*/           pDocShell->PostPaint( aDestPos.Col(),aDestPos.Row(),nDestTab,
-/*N*/                                   nPaintEndX,nPaintEndY,nDestTab, PAINT_GRID );
-/*N*/       aModificator.SetDocumentModified();
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       //  CanFitBlock FALSE -> Probleme mit zusammengefassten Zellen
-/*N*/       //                       oder Tabellengrenze erreicht!
-/*N*/       //! Zellschutz ???
-/*N*/
-/*N*/       //! Link-Dialog muss Default-Parent setzen
-/*N*/       //  "kann keine Zeilen einfuegen"
-/*N*/       InfoBox aBox( Application::GetDefDialogParent(),
-/*N*/                       ScGlobal::GetRscString( STR_MSSG_DOSUBTOTALS_2 ) );
-/*N*/       aBox.Execute();
-/*N*/   }
+/*N*/   //! Link-Dialog muss Default-Parent setzen
+/*N*/   //  "kann keine Zeilen einfuegen"
+/*N*/   InfoBox aBox( Application::GetDefDialogParent(),
+/*N*/                 ScGlobal::GetRscString( STR_MSSG_DOSUBTOTALS_2 ) );
+/*N*/   aBox.Execute();
 /*N*/
 /*N*/   //  aufraeumen
 /*N*/
@@ -368,16 +229,7 @@ namespace binfilter {
 /*N*/
 /*N*/   pDoc->SetInLinkUpdate( FALSE );
 /*N*/
-/*N*/   if (bCanDo)
-/*N*/   {
-/*N*/       //  notify Uno objects (for XRefreshListener)
-/*N*/       //! also notify Uno objects if file name was changed!
-/*N*/       ScLinkRefreshedHint aHint;
-/*N*/       aHint.SetAreaLink( aDestPos );
-/*N*/       pDoc->BroadcastUno( aHint );
-/*N*/   }
-/*N*/
-/*N*/   return bCanDo;
+/*N*/   return FALSE;
 /*N*/ }
 
 

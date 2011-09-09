@@ -204,21 +204,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
 /*N*/ BOOL ScDocument::RemovePageStyleInUse( const String& rStyle )
 /*N*/ {
 /*N*/   BOOL bWasInUse = FALSE;
@@ -233,7 +218,6 @@ namespace binfilter {
 /*N*/
 /*N*/   return bWasInUse;
 /*N*/ }
-
 
 //------------------------------------------------------------------------
 
@@ -324,22 +308,6 @@ namespace binfilter {
 /*N*/   DBG_ASSERT( bInLinkUpdate != bSet, "SetInLinkUpdate twice" );
 /*N*/   bInLinkUpdate = bSet;
 /*N*/ }
-
-
-/*N*/ BOOL ScDocument::UpdateDdeLink( const String&, const String&, const String& )
-/*N*/ {
-/*N*/   //  fuer refresh() per StarOne Api
-/*N*/   //  ResetValue() fuer einzelnen Link nicht noetig
-/*N*/   //! wenn's mal alles asynchron wird, aber auch hier
-/*N*/
-/*N*/   BOOL bFound = FALSE;
-/*N*/     if (pLinkManager)
-/*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
-/*N*/   return bFound;
-/*N*/ }
-
 
 
 /*N*/ USHORT ScDocument::GetDdeLinkCount() const
@@ -437,34 +405,6 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ BOOL ScDocument::GetDdeLinkResult(const ScMatrix*, USHORT, USHORT, String&, double&, BOOL&)
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return TRUE;
-/*N*/ }
-
-/*N*/ void ScDocument::CreateDdeLink(const String&, const String&, const String&, const BYTE)
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ BOOL ScDocument::FindDdeLink(const String&, const String&, const String&, const BYTE, USHORT&)
-/*N*/ {
-/*?*/     DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return FALSE;
-/*N*/ }
-
-/*N*/ BOOL ScDocument::CreateDdeLinkResultDimension(USHORT, USHORT, USHORT, ScMatrix*&)
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return FALSE;
-/*N*/ }
-
-void ScDocument::SetDdeLinkResult(ScMatrix*, const USHORT, const USHORT, const String&, const double&, BOOL, BOOL )
-{
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 //------------------------------------------------------------------------
 
 /*N*/ void ScDocument::UpdateRefAreaLinks( UpdateRefMode eUpdateRefMode,
@@ -516,33 +456,9 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   USHORT nCount;
 /*N*/   rStream >> nCount;
-/*N*/   for (USHORT i=0; i<nCount; i++)
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*?*/
-/*N*/   }
 /*N*/ }
 
-
 //------------------------------------------------------------------------
-
-// TimerDelays etc.
-
-//  ----------------------------------------------------------------------------
-
-/*N*/ BOOL ScDocument::CheckMacroWarn()
-/*N*/ {
-/*N*/   //  The check for macro configuration, macro warning and disabling is now handled
-/*N*/   //  in SfxObjectShell::AdjustMacroMode, called by SfxObjectShell::CallBasic.
-/*N*/
-/*N*/   return TRUE;
-/*N*/ }
-
-
-
-//------------------------------------------------------------------------
-
-
 
 }
 

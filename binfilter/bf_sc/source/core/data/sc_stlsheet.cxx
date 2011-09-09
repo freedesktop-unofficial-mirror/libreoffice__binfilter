@@ -235,13 +235,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if ( GetFamily() == SFX_STYLE_FAMILY_PARA )
 /*N*/   {
-/*?*/         // Always query the document to let it decide if a rescan is necessary,
-/*?*/         // and store the state.
-/*?*/         ScDocument* pDoc = ((ScStyleSheetPool&)rPool).GetDocument();
-/*?*/         if ( pDoc && pDoc->IsStyleSheetUsed( *this, TRUE ) )
-/*?*/             eUsage = USED;
-/*?*/         else
-/*?*/             eUsage = NOTUSED;
+/*?*/         eUsage = NOTUSED;
 /*?*/         return eUsage == USED;
 /*N*/   }
 /*N*/   else

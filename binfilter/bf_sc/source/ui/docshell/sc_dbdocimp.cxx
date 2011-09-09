@@ -359,14 +359,7 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/
 /*M*/   if ( bSuccess && bMoveCells )
 /*M*/   {
-/*M*/       ScRange aOld( rParam.nCol1, rParam.nRow1, nTab,
-/*M*/                       rParam.nCol2+nFormulaCols, rParam.nRow2, nTab );
-/*M*/       ScRange aNew( rParam.nCol1, rParam.nRow1, nTab,
-/*M*/                       nEndCol+nFormulaCols, nEndRow, nTab );
-/*M*/       if (!pDoc->CanFitBlock( aOld, aNew ))
-/*M*/       {
-/*M*/           bSuccess = FALSE;
-/*M*/       }
+/*M*/       bSuccess = FALSE;
 /*M*/   }
 /*M*/
 /*M*/   //
@@ -454,12 +447,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/           ScRange aDelRange( rParam.nCol1, rParam.nRow1, nTab,
 /*M*/                               rParam.nCol2, rParam.nRow2, nTab );
 /*M*/           pDoc->DeleteAreaTab( aDelRange, IDF_ALL );  // ohne die Formeln
-/*M*/
-/*M*/           ScRange aOld( rParam.nCol1, rParam.nRow1, nTab,
-/*M*/                           rParam.nCol2+nFormulaCols, rParam.nRow2, nTab );
-/*M*/           ScRange aNew( rParam.nCol1, rParam.nRow1, nTab,
-/*M*/                           nEndCol+nFormulaCols, nEndRow, nTab );
-/*M*/           pDoc->FitBlock( aOld, aNew, FALSE );        // Formeln nicht loeschen
 /*M*/       }
 /*M*/       else if ( nEndCol < rParam.nCol2 )      // DeleteArea calls PutInOrder
 /*M*/           pDoc->DeleteArea( nEndCol+1, rParam.nRow1, rParam.nCol2, rParam.nRow2,

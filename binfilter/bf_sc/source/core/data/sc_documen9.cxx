@@ -83,25 +83,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ScDocument::TransferDrawPage(ScDocument* pSrcDoc, USHORT nSrcPos, USHORT nDestPos)
-/*N*/ {
-/*N*/   if (pDrawLayer && pSrcDoc->pDrawLayer)
-/*N*/   {
-/*?*/       SdrPage* pOldPage = pSrcDoc->pDrawLayer->GetPage(nSrcPos);
-/*?*/       SdrPage* pNewPage = pDrawLayer->GetPage(nDestPos);
-/*?*/
-/*?*/       if (pOldPage && pNewPage)
-/*?*/       {
-/*?*/           SdrObjListIter aIter( *pOldPage, IM_FLAT );
-/*?*/           SdrObject* pOldObject = aIter.Next();
-/*?*/           while (pOldObject)
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
-/*?*/       }
-/*N*/   }
-/*N*/ }
-
-
 /*N*/ void ScDocument::InitDrawLayer( SfxObjectShell* pDocShell )
 /*N*/ {
 /*N*/   if (pDocShell && !pShell)
@@ -343,14 +324,6 @@ namespace binfilter {
 /*N*/ /*?*/         aFunc.UpdateAllComments();
 /*N*/ /*?*/         aFunc.UpdateAllArrowColors();
 /*N*/   }
-/*N*/ }
-
-/*N*/ BOOL ScDocument::IsPrintEmpty( USHORT, USHORT, USHORT,
-/*N*/                               USHORT, USHORT, BOOL,
-/*N*/                               ScRange*, Rectangle* ) const
-/*N*/ {
-    DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return TRUE;
 /*N*/ }
 
 /*N*/ void ScDocument::Clear()

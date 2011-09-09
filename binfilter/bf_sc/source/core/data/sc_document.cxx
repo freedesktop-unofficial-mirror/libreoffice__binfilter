@@ -265,8 +265,6 @@ namespace binfilter {
 /*N*/                                   URM_INSDEL, 0,0,nPos, MAXCOL,MAXROW,MAXTAB, 0,0,1 );
 /*N*/               if (pDPCollection)
 /*?*/                   pDPCollection->UpdateReference( URM_INSDEL, aRange, 0,0,1 );
-/*N*/               if (pDetOpList)
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/               UpdateChartRef( URM_INSDEL, 0,0,nPos, MAXCOL,MAXROW,MAXTAB, 0,0,1 );
 /*N*/               UpdateRefAreaLinks( URM_INSDEL, aRange, 0,0,1 );
 /*N*/               if ( pUnoBroadcaster )
@@ -778,16 +776,6 @@ namespace binfilter {
 /*N*/              pRefUndoDoc, pUndoOutline );
 /*N*/ }
 
-/*N*/ BOOL ScDocument::CanFitBlock( const ScRange&, const ScRange& )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
-
-/*N*/ void ScDocument::FitBlock( const ScRange&, const ScRange&, BOOL )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ void ScDocument::DeleteArea(USHORT nCol1, USHORT nRow1,
 /*N*/                           USHORT nCol2, USHORT nRow2,
 /*N*/                           const ScMarkData& rMark, USHORT nDelFlag)
@@ -911,10 +899,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       PutInOrder( nCol1, nCol2 );
 /*N*/       PutInOrder( nRow1, nRow2 );
-/*N*/       if (!pClipDoc)
-/*N*/       {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/
 /*N*/       pClipDoc->aDocName = aDocName;
 /*N*/       pClipDoc->aClipRange = ScRange( nCol1,nRow1,0, nCol2,nRow2,0 );
@@ -939,52 +923,11 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/                   pData->SetIndex(nIndex);
 /*N*/           }
 /*N*/       }
-/*N*/       for (i = 0; i <= MAXTAB; i++)
-/*N*/           if (pTab[i] && pClipDoc->pTab[i])
-/*N*/               if ( bAllTabs || !pMarks || pMarks->GetTableSelect(i) )
-/*N*/               {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/
-/*N*/                   if ( pDrawLayer && bIncludeObjects )
-/*N*/                   {
-/*N*/                       //  also copy drawing objects
-/*N*/
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/                   }
-/*N*/               }
 /*N*/
 /*N*/       pClipDoc->bCutMode = bCut;
 /*N*/   }
 /*N*/ }
 
-void ScDocument::StartListeningFromClip( USHORT, USHORT, USHORT, USHORT, const ScMarkData&, USHORT )
-{
-}
-
-/*N*/ void ScDocument::BroadcastFromClip( USHORT, USHORT,
-/*N*/                               USHORT, USHORT,
-/*N*/                                   const ScMarkData&, USHORT )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void ScDocument::CopyBlockFromClip( USHORT, USHORT,
-/*N*/                                   USHORT, USHORT,
-/*N*/                                   const ScMarkData&,
-/*N*/                                   short, short,
-/*N*/                                   const ScCopyBlockFromClipParams* )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void ScDocument::CopyNonFilteredFromClip( USHORT, USHORT,
-/*N*/                                   USHORT, USHORT,
-/*N*/                                   const ScMarkData&,
-/*N*/                                   short, short,
-/*N*/                                   const ScCopyBlockFromClipParams* )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
 
 
 /*N*/ void ScDocument::CopyFromClip( const ScRange& rDestRange, const ScMarkData& rMark,
@@ -1073,7 +1016,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           nXw -= pClipDoc->aClipRange.aEnd.Col();
 /*N*/           nYw -= pClipDoc->aClipRange.aEnd.Row();         // only extra value from ExtendMerge
 /*N*/           USHORT nDestAddX(0), nDestAddY(0);
-/*N*/           pClipDoc->GetClipArea( nDestAddX, nDestAddY, bIncludeFiltered );
 /*N*/           nXw += nDestAddX;
 /*N*/           nYw += nDestAddY;                               // ClipArea, plus ExtendMerge value
 /*N*/
@@ -1092,8 +1034,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           USHORT nR1_a = nRow1;
 /*N*/           USHORT nC2_a = nC1_a + nXw;
 /*N*/           USHORT nR2_a = nR1_a + nYw;
-/*N*/           USHORT nClipStartCol = pClipDoc->aClipRange.aStart.Col();
-/*N*/           USHORT nClipStartRow = pClipDoc->aClipRange.aStart.Row();
 /*N*/
 /*N*/           ScCopyBlockFromClipParams aCBFCP;
 /*N*/           aCBFCP.pRefUndoDoc = pRefUndoDoc;
@@ -1127,12 +1067,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           {
 /*N*/               do
 /*N*/               {
-/*N*/                   short nDx = ((short)nC1_a) - nClipStartCol;
-/*N*/                   short nDy = ((short)nR1_a) - nClipStartRow;
-/*N*/                   if ( bIncludeFiltered )
-/*N*/                       CopyBlockFromClip( nC1_a, nR1_a, nC2_a, nR2_a, rMark, nDx, nDy, &aCBFCP );
-/*N*/                   else
-/*N*/                       CopyNonFilteredFromClip( nC1_a, nR1_a, nC2_a, nR2_a, rMark, nDx, nDy, &aCBFCP );
 /*N*/                   nC1_a = nC2_a + 1;
 /*N*/                   nC2_a = Min((USHORT)(nC1_a + nXw), nCol2);
 /*N*/               }
@@ -1187,10 +1121,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           if ( pClipRangeNames )
 /*N*/               delete [] pClipRangeNames;
-/*N*/           // Listener aufbauen nachdem alles inserted wurde
-/*N*/           StartListeningFromClip( nCol1, nRow1, nCol2, nRow2, rMark, nInsFlag );
-/*N*/           // nachdem alle Listener aufgebaut wurden, kann gebroadcastet werden
-/*N*/           BroadcastFromClip( nCol1, nRow1, nCol2, nRow2, rMark, nInsFlag );
+
 /*N*/           if (bResetCut)
 /*N*/               pClipDoc->bCutMode = FALSE;
 /*N*/           SetAutoCalc( bOldAutoCalc );
@@ -1198,10 +1129,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ScDocument::GetClipArea(USHORT&, USHORT&, BOOL)
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
 
 /*N*/ void ScDocument::PutCell( USHORT nCol, USHORT nRow, USHORT nTab, ScBaseCell* pCell, BOOL bForceTab )
 /*N*/ {
@@ -1807,11 +1734,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ BOOL ScDocument::GetRowDefault( USHORT, USHORT, USHORT, USHORT&)
-/*N*/ {
-/*N*/   BOOL bRet(FALSE);
-/*N*/   return bRet;
-/*N*/ }
 
 //
 //  Attribute   ----------------------------------------------------------
@@ -1974,9 +1896,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
-/*N*/ BOOL ScDocument::IsStyleSheetUsed( const ScStyleSheet&, BOOL ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
 
 /*N*/ BOOL ScDocument::ApplyFlagsTab( USHORT nStartCol, USHORT nStartRow,
 /*N*/                       USHORT nEndCol, USHORT nEndRow, USHORT nTab, INT16 nFlags )
@@ -1989,11 +1908,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ BOOL ScDocument::RemoveFlagsTab( USHORT, USHORT,
-/*N*/                       USHORT, USHORT, USHORT, INT16 )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return FALSE;
-/*N*/ }
 
 /*N*/ ScPatternAttr* ScDocument::CreateSelectionPattern( const ScMarkData& rMark, BOOL bDeep )
 /*N*/ {
@@ -2134,13 +2048,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return HasAttrib( rRange.aStart.Col(), rRange.aStart.Row(), rRange.aStart.Tab(),
 /*N*/                     rRange.aEnd.Col(),   rRange.aEnd.Row(),   rRange.aEnd.Tab(),
 /*N*/                     nMask );
-/*N*/ }
-
-/*N*/ BOOL ScDocument::IsBlockEmpty( USHORT /*nTab*/, USHORT /*nStartCol*/, USHORT /*nStartRow*/,
-/*N*/                                       USHORT /*nEndCol*/, USHORT /*nEndRow*/ ) const
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return FALSE;
 /*N*/ }
 
 
@@ -2348,9 +2255,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   {
 /*N*/       if (pTab[nTab])
 /*N*/           bFound = pTab[nTab]->ExtendMerge( nStartCol, nStartRow, rEndCol, rEndRow, bRefresh, bAttrs );
-/*N*/
-/*N*/       if (bRefresh)
-DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else
 /*N*/       OSL_FAIL("ExtendMerge: falscher Bereich");

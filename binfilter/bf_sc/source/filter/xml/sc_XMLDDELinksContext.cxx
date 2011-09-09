@@ -137,12 +137,7 @@ void ScXMLDDELinkContext::CreateDDELink()
         String sAppl(sApplication);
         String sTop(sTopic);
         String sIt(sItem);
-        GetScImport().GetDocument()->CreateDdeLink(sAppl, sTop, sIt, nMode);
-        sal_uInt16 nPos;
-        if(GetScImport().GetDocument()->FindDdeLink(sAppl, sTop, sIt, nMode, nPos))
-            nPosition = nPos;
-        else
-            nPosition = -1;
+        nPosition = -1;
         DBG_ASSERT(nPosition > -1, "DDE Link not inserted");
     }
 }
@@ -161,36 +156,6 @@ void ScXMLDDELinkContext::AddRowsToTable(const sal_Int32 nInRows)
 
 void ScXMLDDELinkContext::EndElement()
 {
-    if (nPosition > -1 && nColumns && nRows)
-    {
-        ScMatrix* pMatrix;
-        if (GetScImport().GetDocument() &&
-            GetScImport().GetDocument()->CreateDdeLinkResultDimension(static_cast<USHORT>(nPosition),
-            static_cast<USHORT>(nColumns), static_cast<USHORT>(nRows), pMatrix))
-        {
-            if (pMatrix)
-            {
-                DBG_ASSERT(static_cast<sal_uInt32>(nColumns * nRows) == aDDELinkTable.size(), "there is a wrong cells count");
-                sal_Int32 nCol(0);
-                sal_Int32 nRow(-1);
-                sal_Int32 nIndex(0);
-                for (ScDDELinkCells::iterator aItr = aDDELinkTable.begin(); aItr != aDDELinkTable.end(); ++aItr)
-                {
-                    if (nIndex % nColumns == 0)
-                    {
-                        nRow++;
-                        nCol = 0;
-                    }
-                    else
-                        nCol++;
-                    String sValue(aItr->sValue);
-                    GetScImport().GetDocument()->SetDdeLinkResult(pMatrix, static_cast<USHORT>(nCol), static_cast<USHORT>(nRow),
-                        sValue, aItr->fValue, aItr->bString, aItr->bEmpty);
-                    nIndex++;
-                }
-            }
-        }
-    }
 }
 
 ScXMLDDESourceContext::ScXMLDDESourceContext( ScXMLImport& rInImport,

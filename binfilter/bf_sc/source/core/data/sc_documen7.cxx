@@ -353,14 +353,14 @@ extern const ScFormulaCell* pLastFormulaTreeTop;    // cellform.cxx Err527 WorkA
 /*N*/       if ( bHaveForced )
 /*N*/       {
 /*?*/           SetForcedFormulas( TRUE );
-/*?*/           if ( bAutoCalc && !IsAutoCalcShellDisabled() && !IsInInterpreter()
-/*?*/                   && !IsCalculatingFormulaTree() )
-{DBG_BF_ASSERT(0, "STRIP"); }
-/*?*/           else
+                if ( !( bAutoCalc
+                      && !IsAutoCalcShellDisabled()
+                      && !IsInInterpreter()
+                      && !IsCalculatingFormulaTree()
+                      )
+                   )
 /*?*/               SetForcedFormulaPending( TRUE );
 /*N*/       }
-///*N*/         if ( !bWasWaiting )
-///*N*/             Application::LeaveWait();
 /*N*/   }
 /*N*/   DBG_ASSERT( nFormulaTrackCount==0, "TrackFormulas: nFormulaTrackCount!=0" );
 /*N*/ }
@@ -391,12 +391,8 @@ extern const ScFormulaCell* pLastFormulaTreeTop;    // cellform.cxx Err527 WorkA
 /*N*/   {
 /*?*/       if ( IsAutoCalcShellDisabled() )
 /*?*/           SetForcedFormulaPending( TRUE );
-/*?*/       else if ( !IsInInterpreter() )
-DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
-
-
 
 }
 

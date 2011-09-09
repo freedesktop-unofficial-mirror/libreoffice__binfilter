@@ -470,8 +470,7 @@ void ScMyDefaultStyles::FillDefaultStyles(const sal_uInt16 nTable,
         for (sal_Int32 i = nLast; i >= 0; i--)
         {
             if (bRow)
-                bResult = pDoc->GetRowDefault(nTable,
-                    static_cast<sal_uInt16>(i), static_cast<sal_uInt16>(nLastCol), nPos);
+                bResult = FALSE;
             else
                 bResult = pDoc->GetColDefault(nTable,
                     static_cast<sal_uInt16>(i), static_cast<sal_uInt16>(nLastRow), nPos);

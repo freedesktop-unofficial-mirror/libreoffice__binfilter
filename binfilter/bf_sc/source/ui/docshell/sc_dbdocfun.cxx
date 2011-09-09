@@ -502,9 +502,7 @@ namespace binfilter {
 /*N*/           pDoc->CopyToDocument( aAttribRange, IDF_ATTRIB, FALSE, pAttribDoc );
 /*N*/       }
 /*N*/
-/*N*/       if ( bDoSize )
-/*N*/           pDoc->FitBlock( aOldDest, aDestTotal );
-/*N*/       else
+/*N*/       if ( !bDoSize )
 /*N*/           pDoc->DeleteAreaTab(aOldDest, IDF_ALL);         // einfach loeschen
 /*N*/   }
 /*N*/
@@ -520,7 +518,6 @@ namespace binfilter {
 /*N*/
 /*N*/           ScRange aNewDest( aLocalParam.nCol1, aLocalParam.nRow1, nDestTab,
 /*N*/                               aLocalParam.nCol2, aLocalParam.nRow2, nDestTab );
-/*N*/           pDoc->FitBlock( aDestTotal, aNewDest, FALSE );      // FALSE - nicht loeschen
 /*N*/
 /*N*/           if ( nFormulaCols )
 /*N*/           {
@@ -531,7 +528,6 @@ namespace binfilter {
 /*N*/                                 aLocalParam.nCol2+nFormulaCols, aLocalParam.nRow2, nDestTab );
 /*N*/               ScRange aOldForm = aNewForm;
 /*N*/               aOldForm.aEnd.SetRow( aOldDest.aEnd.Row() );
-/*N*/               pDoc->FitBlock( aOldForm, aNewForm, FALSE );
 /*N*/
 /*N*/               ScMarkData aMark;
 /*N*/               aMark.SelectOneTable(nDestTab);

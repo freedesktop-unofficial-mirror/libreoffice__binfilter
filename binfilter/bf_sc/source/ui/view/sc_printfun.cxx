@@ -742,38 +742,26 @@ namespace binfilter {
 /*N*/   if (bAreaOk)
 /*N*/   {
 /*N*/       long nPages = 0;
-/*N*/       USHORT nY;
 /*N*/       if (bMultiArea)
 /*N*/       {
 /*?*/           USHORT nRCount = pDoc->GetPrintRangeCount( nPrintTab );
 /*?*/           for (USHORT i=0; i<nRCount; i++)
 /*?*/           {
 /*?*/               CalcZoom(i);
-/*?*/               if ( aTableParam.bSkipEmpty )
-/*?*/                   for (nY=0; nY<nPagesY; nY++)
-                            {DBG_BF_ASSERT(0, "STRIP");}
-/*?*/               else
+/*?*/               if ( !aTableParam.bSkipEmpty )
 /*?*/                   nPages += ((long) nPagesX) * nPagesY;
-/*?*/               if ( pPageData )
-                        {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           }
 /*N*/       }
 /*N*/       else
 /*N*/       {
 /*N*/           CalcZoom(RANGENO_NORANGE);                      // Zoom berechnen
-/*N*/           if ( aTableParam.bSkipEmpty )
-/*?*/               for (nY=0; nY<nPagesY; nY++)
-                        {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/           else
+/*N*/           if ( !aTableParam.bSkipEmpty )
 /*N*/               nPages += ((long) nPagesX) * nPagesY;
-/*N*/           if ( pPageData )
-                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/       return nPages;
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/ //        nZoom = 100;                        // nZoom auf letztem Wert stehenlassen !!!
 /*N*/       nPagesX = nPagesY = nTotalY = 0;
 /*N*/       return 0;
 /*N*/   }
@@ -832,12 +820,6 @@ namespace binfilter {
 /*?*/   }
 /*?*/
 /*?*/   long nPages = 0;
-/*?*/   long nNoteAdd;
-/*?*/   do
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); nNoteAdd=0;
-/*?*/   }
-/*?*/   while (nNoteAdd);
-/*?*/
 /*?*/   return nPages;
 /*N*/ }
 
@@ -1026,14 +1008,11 @@ namespace binfilter {
 /*N*/           pPageEndY[nTotalY] = i-1;
 /*N*/           ++nTotalY;
 /*N*/
-/*N*/           if ( !aTableParam.bSkipEmpty ||
-/*N*/                   !pDoc->IsPrintEmpty( nPrintTab, nStartCol, nPageStartRow, nEndCol, i-1 ) )
+/*N*/           if ( !aTableParam.bSkipEmpty )
 /*N*/           {
 /*N*/               pPageRows[nPagesY].SetStartRow( nPageStartRow );
 /*N*/               pPageRows[nPagesY].SetEndRow( i-1 );
 /*N*/               pPageRows[nPagesY].SetPagesX( nPagesX );
-/*N*/               if (aTableParam.bSkipEmpty)
-                        {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/               ++nPagesY;
 /*N*/           }
 /*N*/
@@ -1048,14 +1027,11 @@ namespace binfilter {
 /*N*/       pPageEndY[nTotalY] = nEndRow;
 /*N*/       ++nTotalY;
 /*N*/
-/*N*/       if ( !aTableParam.bSkipEmpty ||
-/*N*/               !pDoc->IsPrintEmpty( nPrintTab, nStartCol, nPageStartRow, nEndCol, nEndRow ) )
+/*N*/       if ( !aTableParam.bSkipEmpty )
 /*N*/       {
 /*N*/           pPageRows[nPagesY].SetStartRow( nPageStartRow );
 /*N*/           pPageRows[nPagesY].SetEndRow( nEndRow );
 /*N*/           pPageRows[nPagesY].SetPagesX( nPagesX );
-/*N*/           if (aTableParam.bSkipEmpty)
-                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           ++nPagesY;
 /*N*/       }
 /*N*/   }

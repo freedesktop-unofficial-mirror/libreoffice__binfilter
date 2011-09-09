@@ -447,26 +447,9 @@ void ScChartObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 
 void ScChartObj::GetData_Impl( ScRangeListRef& rRanges, BOOL& rColHeaders, BOOL& rRowHeaders ) const
 {
-    BOOL bFound = FALSE;
-    if (pDocShell)
-    {
-        ScDocument* pDoc = pDocShell->GetDocument();
-        SchMemChart* pOld = pDoc->FindChartData(aChartName);
-        if (pOld)
-        {
-            ScChartArray aData(pDoc,*pOld);
-            rRanges = aData.GetRangeList();
-            rColHeaders = aData.HasColHeaders();
-            rRowHeaders = aData.HasRowHeaders();
-            bFound = TRUE;
-        }
-    }
-    if (!bFound)        // Default
-    {
-        rRanges = NULL;
-        rColHeaders = FALSE;
-        rRowHeaders = FALSE;
-    }
+    rRanges = NULL;
+    rColHeaders = FALSE;
+    rRowHeaders = FALSE;
 }
 
 void ScChartObj::Update_Impl( const ScRangeListRef& rRanges, BOOL bColHeaders, BOOL bRowHeaders )

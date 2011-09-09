@@ -1122,13 +1122,6 @@ void SAL_CALL ScDDELinkObj::setName( const ::rtl::OUString& /*aName*/ ) throw(un
 
 void SAL_CALL ScDDELinkObj::refresh() throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
-    if (pDocShell)
-    {
-        ScDocument* pDoc = pDocShell->GetDocument();
-        pDoc->UpdateDdeLink( aAppl, aTopic, aItem );
-        //! Fehler abfragen
-    }
 }
 
 void SAL_CALL ScDDELinkObj::addRefreshListener(

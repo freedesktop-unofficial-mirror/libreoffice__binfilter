@@ -951,7 +951,6 @@ namespace binfilter {
 /*N*/       if (VALIDTAB(nDestPos) && pTab[nDestPos])
 /*N*/       {
 /*N*/           pTab[nDestPos]->DeleteArea( 0,0, MAXCOL,MAXROW, IDF_ALL );
-/*N*/ //            ClearDrawPage(nDestPos);
 /*N*/       }
 /*N*/       else
 /*N*/           bValid = FALSE;
@@ -1025,10 +1024,6 @@ namespace binfilter {
 /*N*/           pSrcDoc->SetAutoCalc( bOldAutoCalcSrc );
 /*N*/       SetAutoCalc( bOldAutoCalc );
 /*N*/
-/*N*/       //  Drawing kopieren
-/*N*/
-/*N*/       if (bInsertNew)
-/*?*/           TransferDrawPage( pSrcDoc, nSrcPos, nDestPos );
 /*N*/   }
 /*N*/   if (!bValid)
 /*N*/       nRetVal = 0;

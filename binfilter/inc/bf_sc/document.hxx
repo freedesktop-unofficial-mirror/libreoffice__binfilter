@@ -509,7 +509,6 @@ public:
                                     const ScRangeListRef& rNewList,
                                     BOOL bColHeaders, BOOL bRowHeaders, BOOL bAdd,
                                     Window* pWindow );
-    SchMemChart*    FindChartData(const String& rName, BOOL bForModify = FALSE);
 
     void            MakeTable( USHORT nTab );
 
@@ -557,7 +556,6 @@ public:
     ULONG           TransferTab(ScDocument* pSrcDoc, USHORT nSrcPos, USHORT nDestPos,
                                     BOOL bInsertNew = TRUE,
                                     BOOL bResultsOnly = FALSE );
-    void            TransferDrawPage(ScDocument* pSrcDoc, USHORT nSrcPos, USHORT nDestPos);
     void            SetVisible( USHORT nTab, BOOL bVisible );
     BOOL            IsVisible( USHORT nTab ) const;
     void            SetScenario( USHORT nTab, BOOL bFlag );
@@ -593,19 +591,10 @@ public:
                     // Fuer StarOne Api:
     USHORT          GetDdeLinkCount() const;
     BOOL            GetDdeLinkData( USHORT nPos, String& rAppl, String& rTopic, String& rItem ) const;
-    BOOL            UpdateDdeLink( const String& rAppl, const String& rTopic, const String& rItem );
 
                     // For XCL/XML Export (nPos is index of DDE links only):
     BOOL            GetDdeLinkMode(USHORT nPos, USHORT& nMode);
     BOOL            GetDdeLinkResultDimension( USHORT nPos , USHORT& nCol, USHORT& nRow, ScMatrix*& pMatrix);
-    BOOL            GetDdeLinkResult(const ScMatrix* pMatrix, USHORT nCol, USHORT nRow, String& rStrValue, double& rDoubValue, BOOL& bIsString);
-
-                    // For XCL/XML Import (nPos is index of DDE links only):
-    void            CreateDdeLink(const String& rAppl, const String& rTopic, const String& rItem, const BYTE nMode = SC_DDE_DEFAULT );
-    BOOL            FindDdeLink(const String& rAppl, const String& rTopic, const String& rItem, const BYTE nMode, USHORT& nPos );
-    BOOL            CreateDdeLinkResultDimension(USHORT nPos, USHORT nCols, USHORT nRows, ScMatrix*& pMatrix);
-    void            SetDdeLinkResult(ScMatrix* pMatrix, const USHORT nCol, const USHORT nRow, const String& rStrValue, const double& rDoubValue, BOOL bString, BOOL bEmpty);
-
 
     SfxBindings*    GetViewBindings();
     SfxObjectShell* GetDocumentShell() const    { return pShell; }
@@ -676,15 +665,6 @@ public:
                     //  ohne Ueberpruefung:
     void            DoMerge( USHORT nTab, USHORT nStartCol, USHORT nStartRow,
                                     USHORT nEndCol, USHORT nEndRow );
-
-    BOOL            IsBlockEmpty( USHORT nTab, USHORT nStartCol, USHORT nStartRow,
-                                                USHORT nEndCol, USHORT nEndRow ) const;
-    BOOL            IsPrintEmpty( USHORT nTab, USHORT nStartCol, USHORT nStartRow,
-                                                USHORT nEndCol, USHORT nEndRow,
-                                                BOOL bLeftIsEmpty = FALSE,
-                                                ScRange* pLastRange = NULL,
-                                                Rectangle* pLastMM = NULL ) const;
-
 
     BOOL            HasAttrib( USHORT nCol1, USHORT nRow1, USHORT nTab1,
                             USHORT nCol2, USHORT nRow2, USHORT nTab2, USHORT nMask );
@@ -761,9 +741,6 @@ public:
 /*N*/   BOOL            CanInsertRow( const ScRange& rRange ) const;
 /*N*/   BOOL            CanInsertCol( const ScRange& rRange ) const;
 
-    void            FitBlock( const ScRange& rOld, const ScRange& rNew, BOOL bClear = TRUE );
-    BOOL            CanFitBlock( const ScRange& rOld, const ScRange& rNew );
-
     BOOL            IsClipOrUndo() const                        { return bIsClip || bIsUndo; }
     BOOL            IsUndo() const                              { return bIsUndo; }
     BOOL            IsClipboard() const                         { return bIsClip; }
@@ -778,18 +755,6 @@ public:
                                 BOOL bCut, ScDocument* pClipDoc, BOOL bAllTabs,
                                 const ScMarkData* pMarks = NULL,
                                 BOOL bKeepScenarioFlags = FALSE, BOOL bIncludeObjects = FALSE);
-    void            CopyBlockFromClip( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
-                                    const ScMarkData& rMark, short nDx, short nDy,
-                                    const ScCopyBlockFromClipParams* pCBFCP );
-    void            CopyNonFilteredFromClip( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
-                                    const ScMarkData& rMark, short nDx, short nDy,
-                                    const ScCopyBlockFromClipParams* pCBFCP );
-    void            StartListeningFromClip( USHORT nCol1, USHORT nRow1,
-                                        USHORT nCol2, USHORT nRow2,
-                                        const ScMarkData& rMark, USHORT nInsFlag );
-    void            BroadcastFromClip( USHORT nCol1, USHORT nRow1,
-                                    USHORT nCol2, USHORT nRow2,
-                                    const ScMarkData& rMark, USHORT nInsFlag );
     void            CopyFromClip( const ScRange& rDestRange, const ScMarkData& rMark,
                                     USHORT nInsFlag,
                                     ScDocument* pRefUndoDoc = NULL,
@@ -798,9 +763,6 @@ public:
                                     BOOL bAsLink = FALSE,
                                     BOOL bIncludeFiltered = TRUE,
                                     BOOL bSkipAttrForEmpty = FALSE );
-
-    void            GetClipArea(USHORT& nClipX, USHORT& nClipY, BOOL bIncludeFiltered);
-
 
     void            InitUndo( ScDocument* pSrcDoc, USHORT nTab1, USHORT nTab2,
                                 BOOL bColInfo = FALSE, BOOL bRowInfo = FALSE );
@@ -894,24 +856,16 @@ public:
                                         double nPPTX, double nPPTY,
                                         const Fraction& rZoomX, const Fraction& rZoomY );
 
-    BOOL            IsStyleSheetUsed( const ScStyleSheet& rStyle, BOOL bGatherAllStyles ) const;
-
                     // Rueckgabe TRUE bei ApplyFlags: Wert geaendert
     BOOL            ApplyFlagsTab( USHORT nStartCol, USHORT nStartRow,
                                             USHORT nEndCol, USHORT nEndRow,
                                             USHORT nTab, INT16 nFlags );
-    BOOL            RemoveFlagsTab( USHORT nStartCol, USHORT nStartRow,
-                                            USHORT nEndCol, USHORT nEndRow,
-                                            USHORT nTab, INT16 nFlags );
-
 
     BOOL            Solver(USHORT nFCol, USHORT nFRow, USHORT nFTab,
                             USHORT nVCol, USHORT nVRow, USHORT nVTab,
                             const String& sValStr, double& nX);
 
     void            ApplySelectionPattern( const ScPatternAttr& rAttr, const ScMarkData& rMark );
-
-                    //
 
     void            SetColWidth( USHORT nCol, USHORT nTab, USHORT nNewWidth );
     void            SetRowHeightRange( USHORT nStartRow, USHORT nEndRow, USHORT nTab,
@@ -967,8 +921,6 @@ public:
     // returns whether to export a Default style for this col/row or not
     // nDefault is setted to one possition in the current row/col where the Default style is
     BOOL            GetColDefault( USHORT nTab, USHORT nCol, USHORT nLastRow, USHORT& nDefault);
-    BOOL            GetRowDefault( USHORT nTab, USHORT nRow, USHORT nLastCol, USHORT& nDefault);
-
 
     BOOL            UpdateOutlineCol( USHORT nStartCol, USHORT nEndCol, USHORT nTab, BOOL bShow );
     BOOL            UpdateOutlineRow( USHORT nStartRow, USHORT nEndRow, USHORT nTab, BOOL bShow );
@@ -1056,8 +1008,6 @@ public:
 
     BOOL            GetHasMacroFunc() const      { return bHasMacroFunc; }
     void            SetHasMacroFunc(BOOL bSet)   { bHasMacroFunc = bSet; }
-
-    BOOL            CheckMacroWarn();
 
     // fuer Broadcasting/Listening
     void            SetNoSetDirty( BOOL bVal ) { bNoSetDirty = bVal; }

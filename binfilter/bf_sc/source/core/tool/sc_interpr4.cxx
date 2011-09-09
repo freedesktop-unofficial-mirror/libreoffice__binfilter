@@ -1981,7 +1981,7 @@ void ScInterpreter::ScMissing()
 /*N*/   String aMacro( pCur->GetExternal() );
 /*N*/
 /*N*/   SfxObjectShell* pDocSh = pDok->GetDocumentShell();
-/*N*/   if ( !pDocSh || !pDok->CheckMacroWarn() )
+/*N*/   if ( !pDocSh )
 /*N*/   {
 /*N*/       SetError( errNoValue );     // ohne DocShell kein CallBasic
 /*N*/       return;

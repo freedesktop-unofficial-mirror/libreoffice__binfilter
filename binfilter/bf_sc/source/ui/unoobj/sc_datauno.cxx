@@ -1722,10 +1722,7 @@ void SAL_CALL ScDatabaseRangeObj::setPropertyValue(
                 pDoc->ApplyFlagsTab( aRange.aStart.Col(), aRange.aStart.Row(),
                                      aRange.aEnd.Col(), aRange.aStart.Row(),
                                      aRange.aStart.Tab(), SC_MF_AUTO );
-            else  if (!bAutoFilter && pDoc)
-                pDoc->RemoveFlagsTab(aRange.aStart.Col(), aRange.aStart.Row(),
-                                     aRange.aEnd.Col(), aRange.aStart.Row(),
-                                     aRange.aStart.Tab(), SC_MF_AUTO );
+
             ScRange aPaintRange(aRange.aStart, aRange.aEnd);
             aPaintRange.aEnd.SetRow(aPaintRange.aStart.Row());
             pDocShell->PostPaint(aPaintRange, PAINT_GRID);

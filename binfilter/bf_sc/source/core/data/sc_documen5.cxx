@@ -253,7 +253,6 @@ void ScDocument::UpdateChartRef( UpdateRefMode eUpdateRefMode,
             (ScChartListener*) (pChartListenerCollection->At(nIndex));
         ScRangeListRef aRLR( pChartListener->GetRangeList() );
         ScRangeListRef aNewRLR( new ScRangeList );
-        BOOL bChanged = FALSE;
         BOOL bDataChanged = FALSE;
         for ( ScRangePtr pR = aRLR->First(); pR; pR = aRLR->Next() )
         {
@@ -271,7 +270,6 @@ void ScDocument::UpdateChartRef( UpdateRefMode eUpdateRefMode,
                 theCol2,theRow2,theTab2 );
             if ( eRes != UR_NOTHING )
             {
-                bChanged = TRUE;
                 aNewRLR->Append( ScRange(
                     theCol1, theRow1, theTab1,
                     theCol2, theRow2, theTab2 ));
@@ -291,10 +289,6 @@ void ScDocument::UpdateChartRef( UpdateRefMode eUpdateRefMode,
             else
                 aNewRLR->Append( *pR );
         }
-        if ( bChanged )
-        {
-            DBG_BF_ASSERT(0, "STRIP");
-        }
     }
 }
 
@@ -304,12 +298,6 @@ BOOL ScDocument::HasData( USHORT nCol, USHORT nRow, USHORT nTab )
         return pTab[nTab]->HasData( nCol, nRow );
     else
         return FALSE;
-}
-
-SchMemChart* ScDocument::FindChartData(const String&, BOOL)
-{
-    DBG_BF_ASSERT(0, "STRIP");
-    return NULL;
 }
 
 BOOL lcl_StringInCollection( const StrCollection* pColl, const String& rStr )
@@ -424,7 +412,6 @@ void ScDocument::UpdateChartListenerCollection()
                                                     }
                                                 }
                                             }
-    #if 1
                                             BOOL bEnabled = aIPObj->IsEnableSetModified();
                                             if (bEnabled)
                                                 aIPObj->EnableSetModified(FALSE);
@@ -433,15 +420,6 @@ void ScDocument::UpdateChartListenerCollection()
                                             //! pChartData got deleted, don't use it anymore
                                             if (bEnabled)
                                                 aIPObj->EnableSetModified(TRUE);
-    #endif
-                                            if ( bForceSave )
-                                            {
-                                                    // the return value of DoSave() was not checked, this is not a good style...
-                                                    // due to the suppression of the function DoSave() this stay here just for
-                                                    // pro memoria, waiting that all the if is cleaned out
-                                                    // the same for DoSaveCompleted()
-                                                    DBG_BF_ASSERT(0, "return value of DoSave() and DoSaveComleted was not checked here!");
-                                            }
                                         }
                                     }
                                 }
