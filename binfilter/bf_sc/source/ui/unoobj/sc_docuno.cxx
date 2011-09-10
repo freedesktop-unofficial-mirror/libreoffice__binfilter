@@ -550,9 +550,7 @@ void SAL_CALL ScModelObj::unlockControllers() throw (::com::sun::star::uno::Runt
 void SAL_CALL ScModelObj::calculate() throw(uno::RuntimeException)
 {
     SolarMutexGuard aGuard;
-    if (pDocShell)
-        pDocShell->DoRecalc(TRUE);
-    else
+    if (!pDocShell)
         OSL_FAIL("keine DocShell");     //! Exception oder so?
 }
 
@@ -1338,7 +1336,7 @@ void SAL_CALL ScTableSheetsObj::moveByName( const ::rtl::OUString& aName, sal_In
         String aNamStr = aName;
         USHORT nSource;
         if ( pDocShell->GetDocument()->GetTable( aNamStr, nSource ) )
-            bDone = pDocShell->MoveTable( nSource, nDestination, FALSE, TRUE );
+            bDone = TRUE;
     }
     if (!bDone)
         throw uno::RuntimeException();      // no other exceptions specified
@@ -1357,12 +1355,8 @@ void SAL_CALL ScTableSheetsObj::copyByName( const ::rtl::OUString& aName,
         USHORT nSource;
         if ( pDocShell->GetDocument()->GetTable( aNamStr, nSource ) )
         {
-            bDone = pDocShell->MoveTable( nSource, nDestination, TRUE, TRUE );
-            if (bDone)
-            {
-                ScDocFunc aFunc(*pDocShell);
-                bDone = aFunc.RenameTable( nDestination, aNewStr, TRUE, TRUE );
-            }
+            ScDocFunc aFunc(*pDocShell);
+            bDone = aFunc.RenameTable( nDestination, aNewStr, TRUE, TRUE );
         }
     }
     if (!bDone)
@@ -2381,9 +2375,6 @@ void SAL_CALL ScScenariosObj::addNewByName( const ::rtl::OUString& aName,
         String aCommStr = aComment;
 
         Color aColor( COL_LIGHTGRAY );  // Default
-        USHORT nFlags = SC_SCENARIO_SHOWFRAME | SC_SCENARIO_PRINTFRAME | SC_SCENARIO_TWOWAY;
-
-        pDocShell->MakeScenario( nTab, aNameStr, aCommStr, aColor, nFlags, aMarkData );
     }
 }
 

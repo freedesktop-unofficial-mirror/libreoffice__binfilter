@@ -121,45 +121,34 @@ namespace binfilter {
 
 // static
 
-/*N*/ BOOL ScImportExport::ImportStream( SvStream& rStrm, ULONG nFmt )
-/*N*/ {
-/*N*/   if( nFmt == FORMAT_STRING )
-/*N*/   {
-/*N*/       if( ExtText2Doc( rStrm ) )      // pExtOptions auswerten
-/*N*/           return TRUE;
-/*N*/   }
-/*N*/   if( nFmt == SOT_FORMATSTR_ID_SYLK )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*?*/           return TRUE;
-/*N*/   }
-/*N*/   if( nFmt == SOT_FORMATSTR_ID_DIF )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*?*/           return TRUE;
-/*N*/   }
-/*N*/   if( nFmt == FORMAT_RTF )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*?*/           return TRUE;
-/*N*/   }
-/*N*/   if( nFmt == SOT_FORMATSTR_ID_LINK )
-/*N*/       return TRUE;            // Link-Import?
-/*N*/   if ( nFmt == SOT_FORMATSTR_ID_HTML )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*?*/           return TRUE;
-/*N*/   }
-/*N*/   if ( nFmt == SOT_FORMATSTR_ID_HTML_SIMPLE )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*?*/           return TRUE;
-/*N*/   }
-/*N*/
-/*N*/   return FALSE;
-/*N*/ }
+BOOL ScImportExport::ImportStream( SvStream& rStrm, ULONG nFmt )
+{
+    if( nFmt == FORMAT_STRING )
+    {
+        if( ExtText2Doc( rStrm ) )      // pExtOptions auswerten
+            return TRUE;
+    }
 
+    if( nFmt == SOT_FORMATSTR_ID_SYLK )
+        return TRUE;
 
+    if( nFmt == SOT_FORMATSTR_ID_DIF )
+        return TRUE;
+
+    if( nFmt == FORMAT_RTF )
+        return TRUE;
+
+    if( nFmt == SOT_FORMATSTR_ID_LINK )
+        return TRUE;            // Link-Import?
+
+    if ( nFmt == SOT_FORMATSTR_ID_HTML )
+        return TRUE;
+
+    if ( nFmt == SOT_FORMATSTR_ID_HTML_SIMPLE )
+        return TRUE;
+
+    return FALSE;
+}
 
 
 //static
@@ -433,8 +422,6 @@ enum DoubledQuoteMode
 
 /*N*/ BOOL ScImportExport::ExtText2Doc( SvStream& rStrm )
 /*N*/ {
-/*N*/   if (!pExtOptions)
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   ULONG nOldPos = rStrm.Tell();
 /*N*/   rStrm.Seek( STREAM_SEEK_TO_END );
@@ -499,11 +486,7 @@ enum DoubledQuoteMode
 /*N*/
 /*N*/       aLine.Len();
 /*N*/       USHORT nCol = nStartCol;
-/*N*/       if ( bFixed )               //  Feste Satzlaenge
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       else                        //  Nach Trennzeichen suchen
+/*N*/       if ( !bFixed )               //  Feste Satzlaenge
 /*N*/       {
 /*N*/           USHORT nSourceCol = 0;
 /*N*/           USHORT nInfoStart = 0;

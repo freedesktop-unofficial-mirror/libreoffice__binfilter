@@ -399,7 +399,6 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 
 /*N*/ void ScDocShell::AfterXMLLoading(sal_Bool /*bRet*/)
 /*N*/ {
-           DBG_BF_ASSERT(0, "STRIP");
             aDocument.SetInsertingFromOtherDoc( FALSE );
             aDocument.SetImportingXML( FALSE );
 
@@ -475,18 +474,6 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/               SFX_APP()->Broadcast(SfxSimpleHint( SC_HINT_DOCNAME_CHANGED )); // Navigator
 /*N*/               break;
 /*N*/       }
-/*N*/   }
-/*N*/   else if (rHint.ISA(SfxStyleSheetHint))                      // Vorlagen geaendert
-/*N*/       NotifyStyle((const SfxStyleSheetHint&) rHint);
-/*N*/   else if (rHint.ISA(ScAutoStyleHint))
-/*N*/   {
-/*?*/       //! direct call for AutoStyles
-/*?*/
-/*?*/       //  this is called synchronously from ScInterpreter::ScStyle,
-/*?*/       //  modifying the document must be asynchronous
-/*?*/       //  (handled by AddInitial)
-/*?*/
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -719,8 +706,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/           }
 /*N*/       }
-/*N*/       if ( bSetRowHeights )
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   FinishedLoading( SFX_LOADED_MAINDOCUMENT | SFX_LOADED_IMAGES );
 /*N*/
@@ -829,7 +814,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   , SfxListener()
 /*N*/   , __SCDOCSHELL_INIT
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //------------------------------------------------------------------
@@ -925,12 +909,10 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       else
 /*N*/       {
 /*N*/           SetDocumentModifiedPending( FALSE );
-/*N*/             aDocument.InvalidateStyleSheetUsage();
+/*N*/           aDocument.InvalidateStyleSheetUsage();
 /*N*/           aDocument.InvalidateTableArea();
-/*N*/             aDocument.InvalidateLastTableOpParams();
+/*N*/           aDocument.InvalidateLastTableOpParams();
 /*N*/           aDocument.Broadcast( SC_HINT_DATACHANGED, BCA_BRDCST_ALWAYS, NULL );
-/*N*/           if ( aDocument.IsForcedFormulaPending() && aDocument.GetAutoCalc() )
-/*?*/           {   DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           PostDataChanged();
 /*N*/
 /*N*/           //  Detective AutoUpdate:

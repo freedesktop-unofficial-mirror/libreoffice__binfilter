@@ -145,11 +145,6 @@ using namespace ::com::sun::star;
 /*?*/                       new SvxForbiddenCharactersTable( aDocument.GetServiceManager() );
 /*?*/
 /*?*/               aLocales.getConstArray();
-/*?*/               for (sal_Int32 i = 0; i < aLocales.getLength(); i++)
-/*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
-/*?*/
 /*?*/               aDocument.SetForbiddenCharacters( xForbiddenTable );
 /*N*/           }
 /*N*/       }

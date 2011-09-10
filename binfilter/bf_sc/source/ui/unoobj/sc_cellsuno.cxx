@@ -7127,8 +7127,6 @@ void SAL_CALL ScTableSheetObj::setScenarioComment( const ::rtl::OUString& aScena
         pDoc->GetScenarioData( nTab, aComment, aColor, nFlags );
 
         aComment = String( aScenarioComment );
-
-        pDocSh->ModifyScenario( nTab, aName, aComment, aColor, nFlags );
     }
 }
 

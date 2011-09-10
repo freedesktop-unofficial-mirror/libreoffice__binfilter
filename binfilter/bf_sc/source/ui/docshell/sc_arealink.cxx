@@ -86,7 +86,7 @@ namespace binfilter {
 /*N*/  void ScAreaLink::DataChanged( const String&,
 /*N*/                                      const ::com::sun::star::uno::Any& )
 /*N*/ {
-        DBG_BF_ASSERT(0, "STRIP");
+        DBG_BF_ASSERT(0, "STRIP");  // Virtual Method
 /*N*/ }
 
 
@@ -174,9 +174,7 @@ namespace binfilter {
 /*N*/   // correct source range name list for web query import
 /*N*/   String aTempArea;
 /*N*/
-/*N*/   if( rNewFilter == ScDocShell::GetWebQueryFilterName() )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/   else
+/*N*/   if( !(rNewFilter == ScDocShell::GetWebQueryFilterName()) )
 /*N*/       aTempArea = rNewArea;
 /*N*/
 /*N*/   // find total size of source area
@@ -233,7 +231,8 @@ namespace binfilter {
 
 /*N*/ IMPL_LINK( ScAreaLink, RefreshHdl, ScAreaLink*, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); return 0;
+    DBG_BF_ASSERT(0, "STRIP");  // IMP_LINK() function
+    return 0;
 /*N*/ }
 
 }

@@ -264,8 +264,6 @@ namespace binfilter {
 /*N*/                                   PAINT_GRID | PAINT_LEFT | PAINT_TOP | PAINT_SIZE );
 /*N*/           bDone = TRUE;
 /*N*/       }
-/*N*/       else if (!bApi)     // "Keine Operationen auszufuehren"
-/*N*/           rDocShell.ErrorMessage(STR_MSSG_REPEATDB_0);
 /*N*/   }
 /*N*/
 /*N*/   return bDone;
@@ -301,8 +299,6 @@ namespace binfilter {
 /*N*/                                       aLocalParam.nCol2,aLocalParam.nRow2 );
 /*N*/   if (!aTester.IsEditable())
 /*N*/   {
-/*N*/       if (!bApi)
-/*N*/           rDocShell.ErrorMessage(aTester.GetMessageId());
 /*N*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -311,9 +307,6 @@ namespace binfilter {
 /*N*/                                       aLocalParam.nCol2, aLocalParam.nRow2, nTab,
 /*N*/                                       HASATTR_MERGED | HASATTR_OVERLAPPED ) )
 /*N*/   {
-/*N*/       //  Merge-Attribute wuerden beim Sortieren durcheinanderkommen
-/*N*/       if (!bApi)
-/*N*/           rDocShell.ErrorMessage(STR_SORT_ERR_MERGED);
 /*N*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -660,16 +653,12 @@ namespace binfilter {
 /*N*/   ScEditableTester aTester( pDoc, nTab, 0,rParam.nRow1+1, MAXCOL,MAXROW );
 /*N*/   if (!aTester.IsEditable())
 /*N*/   {
-/*N*/       if (!bApi)
-/*N*/           rDocShell.ErrorMessage(aTester.GetMessageId());
 /*N*/       return FALSE;
 /*N*/   }
 /*N*/
 /*N*/   if (pDoc->HasAttrib( rParam.nCol1, rParam.nRow1+1, nTab,
 /*N*/                        rParam.nCol2, rParam.nRow2, nTab, HASATTR_MERGED | HASATTR_OVERLAPPED ))
 /*N*/   {
-/*N*/       if (!bApi)
-/*N*/           rDocShell.ErrorMessage(STR_MSSG_INSERTCELLS_0); // nicht in zusammengefasste einfuegen
 /*N*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -710,14 +699,6 @@ namespace binfilter {
 /*N*/           aNewParam.nCol2, aNewParam.nRow2, nTab );
 /*N*/       pDoc->SetDirty( aDirtyRange );
 /*N*/
-/*N*/       if (!bSuccess)
-/*N*/       {
-/*N*/           // "Kann keine Zeilen einfuegen"
-/*N*/           if (!bApi)
-/*N*/               rDocShell.ErrorMessage(STR_MSSG_DOSUBTOTALS_2);
-/*N*/       }
-/*N*/
-/*N*/                                                   // merken
 /*N*/       pDBData->SetSubTotalParam( aNewParam );
 /*N*/       pDBData->SetArea( nTab, aNewParam.nCol1,aNewParam.nRow1, aNewParam.nCol2,aNewParam.nRow2 );
 /*N*/
@@ -840,9 +821,6 @@ namespace binfilter {
 /*N*/
 /*N*/   if (bDone)
 /*N*/       aModificator.SetDocumentModified();
-/*N*/
-/*N*/   if ( nErrId && !bApi )
-/*N*/       rDocShell.ErrorMessage( nErrId );
 /*N*/
 /*N*/   return bDone;
 /*N*/ }

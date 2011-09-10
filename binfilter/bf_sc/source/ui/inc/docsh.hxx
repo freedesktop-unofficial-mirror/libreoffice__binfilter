@@ -192,28 +192,17 @@ public:
 
     void            PageStyleModified( const String& rStyleName, BOOL bApi );
 
-    void            NotifyStyle( const SfxStyleSheetHint& rHint );
-
     Window*         GetDialogParent();
-    void            ErrorMessage( USHORT nGlobStrId );
     BOOL            IsEditable() const;
 
     BOOL            AdjustRowHeight( USHORT nStartRow, USHORT nEndRow, USHORT nTab );
 
     void            DoConsolidate( const ScConsolidateParam& rParam, BOOL bRecord = TRUE );
     void            UseScenario( USHORT nTab, const String& rName, BOOL bRecord = TRUE );
-    USHORT          MakeScenario( USHORT nTab, const String& rName, const String& rComment,
-                                    const Color& rColor, USHORT nFlags,
-                                    ScMarkData& rMark, BOOL bRecord = TRUE );
-    void            ModifyScenario( USHORT nTab, const String& rName, const String& rComment,
-                                    const Color& rColor, USHORT nFlags );
-    BOOL            MoveTable( USHORT nSrcTab, USHORT nDestTab, BOOL bCopy, BOOL bRecord );
 
-    void            DoRecalc( BOOL bApi );
     void            DoHardRecalc( BOOL bApi );
 
 
-    void            DBAreaDeleted( USHORT nTab, USHORT nX1, USHORT nY1, USHORT nX2, USHORT nY2 );
     ScDBData*       GetDBData( const ScRange& rMarked, ScGetDBMode eMode, BOOL bForceMark );
 
     void            UpdateLinks();          // Link-Eintraege aktuallisieren

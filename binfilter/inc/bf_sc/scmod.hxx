@@ -158,7 +158,6 @@ public:
     void                    SetAppOptions   ( const ScAppOptions& rOpt );
     void                    SetInputOptions ( const ScInputOptions& rOpt );
     void                    SetPrintOptions ( const ScPrintOptions& rOpt );
-    void                    RecentFunctionsChanged();
 
     static void         GetSpellSettings( USHORT& rDefLang, USHORT& rCjkLang, USHORT& rCtlLang,
                                         BOOL& rAutoSpell, BOOL& rHideAuto );

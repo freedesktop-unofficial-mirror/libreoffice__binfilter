@@ -137,25 +137,12 @@ namespace binfilter {
 //  ehemalige viewfunc/dbfunc Methoden
 //
 
-/*N*/ void ScDocShell::ErrorMessage( USHORT /*nGlobStrId*/ )
-/*N*/ {
-/*N*/   //! StopMarking an der (aktiven) View?
-/*N*/
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ BOOL ScDocShell::IsEditable() const
 /*N*/ {
 /*N*/   // import into read-only document is possible - must be extended if other filters use api
 /*N*/
 /*N*/   return !IsReadOnly() || aDocument.IsImportingXML();
 /*N*/ }
-
-/*N*/ void ScDocShell::DBAreaDeleted( USHORT /*nTab*/, USHORT /*nX1*/, USHORT /*nY1*/, USHORT /*nX2*/, USHORT /*nY2*/ )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 
 /*N*/ ScDBData* ScDocShell::GetDBData( const ScRange& rMarked, ScGetDBMode eMode, BOOL bForceMark )
 /*N*/ {
@@ -175,8 +162,6 @@ namespace binfilter {
 /*N*/   //  benannter DB-Bereich dort gesucht werden.
 /*N*/
 /*N*/   ScDBData* pData = aDocument.GetDBAtArea( nTab, nStartCol, nStartRow, nEndCol, nEndRow );
-/*N*/   if (!pData)
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   BOOL bSelected = ( bForceMark || rMarked.aStart != rMarked.aEnd );
 /*N*/
@@ -271,7 +256,6 @@ namespace binfilter {
 /*N*/           USHORT nOldY2;
 /*N*/           USHORT nOldTab;
 /*N*/           pNoNameData->GetArea( nOldTab, nOldX1, nOldY1, nOldX2, nOldY2 );
-/*N*/           DBAreaDeleted( nOldTab, nOldX1, nOldY1, nOldX2, nOldY2 );
 /*N*/
 /*N*/           pNoNameData->SetSortParam( ScSortParam() );             // Parameter zuruecksetzen
 /*N*/           pNoNameData->SetQueryParam( ScQueryParam() );
@@ -309,11 +293,6 @@ namespace binfilter {
 /*N*/                               nStartCol,nStartRow, nEndCol,nEndRow,
 /*N*/                               TRUE, bHasHeader );
 /*N*/           pColl->Insert( pNoNameData );
-/*N*/
-/*N*/           if ( pUndoColl )
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
 /*N*/
 /*N*/           //  neuen Bereich am Sba anmelden nicht mehr noetig
 /*N*/
@@ -441,15 +420,6 @@ namespace binfilter {
 /*N*/                           rParam.nCol+nColSize-1, rParam.nRow+nRowSize-1 );
 /*N*/       if (rParam.bByCol) ++aDestArea.nColEnd;
 /*N*/       if (rParam.bByRow) ++aDestArea.nRowEnd;
-/*N*/
-/*N*/       if (rParam.bReferenceData)
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/   }
 /*N*/
 /*N*/   if (pDestData)                                      // Zielbereich loeschen / anpassen
@@ -508,11 +478,7 @@ namespace binfilter {
 /*N*/                   nSrcTab = nEndTab;      // gefunden
 /*N*/           }
 /*N*/       }
-/*N*/       if (nSrcTab <= MAXTAB)
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       else
+/*N*/       if ( !(nSrcTab <= MAXTAB) )
 /*N*/       {
 /*N*/           InfoBox aBox(GetDialogParent(),
 /*N*/               ScGlobal::GetRscString( STR_SCENARIO_NOTFOUND ) );
@@ -523,30 +489,11 @@ namespace binfilter {
 /*N*/       OSL_FAIL( "UseScenario auf Szenario-Blatt" );
 /*N*/ }
 
-/*N*/ void ScDocShell::ModifyScenario( USHORT /*nTab*/, const String& /*rName*/, const String& /*rComment*/,
-/*N*/                                   const Color& /*rColor*/, USHORT /*nFlags*/ )
-/*N*/ {
-/*?*/   //  Undo
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ USHORT ScDocShell::MakeScenario( USHORT /*nTab*/, const String& /*rName*/, const String& /*rComment*/,
-/*N*/                                   const Color& /*rColor*/, USHORT /*nFlags*/,
-/*N*/                                   ScMarkData& /*rMark*/, BOOL /*bRecord*/ )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*N*/ }
-
-/*N*/ BOOL ScDocShell::MoveTable( USHORT /*nSrcTab*/, USHORT /*nDestTab*/, BOOL /*bCopy*/, BOOL /*bRecord*/ )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*?*/   return TRUE;
-/*N*/ }
-
 
 /*N*/ IMPL_LINK( ScDocShell, RefreshDBDataHdl, ScDBData*, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); return 0;
+    DBG_BF_ASSERT(0, "STRIP");  // IMPL_LINK()
+    return 0;
 /*N*/ }
 
 }

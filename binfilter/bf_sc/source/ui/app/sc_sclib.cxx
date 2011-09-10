@@ -269,12 +269,6 @@ SfxModule* ScModuleDummy::Load()
 /*N*/   return ( nEndFlag == 0x0d );
 /*N*/ }
 
-BOOL lcl_IsAnyXMLFilter( const SfxFilter* /*pFilter*/ )
-{
-    DBG_BF_ASSERT(0, "STRIP");
-        return FALSE;
-}
-
 /*N*/ ULONG ScDLL::DetectFilter( SfxMedium& rMedium, const SfxFilter** ppFilter,
 /*N*/                                   SfxFilterFlags /*nMust*/, SfxFilterFlags /*nDont*/ )
 /*N*/ {
@@ -374,10 +368,8 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* /*pFilter*/ )
 /*?*/           ULONG nStorageFormat = pStorage->GetFormat();
 /*?*/           if ( nStorageFormat == 0 || nStorageFormat == SOT_FORMATSTR_ID_STARCALC_60 )
 /*?*/           {
-/*?*/               //  if XML template is set, don't modify
-/*?*/               if (!lcl_IsAnyXMLFilter(*ppFilter))
-/*?*/                   *ppFilter = SFX_APP()->GetFilter( ScDocShell::Factory(),
-/*?*/                                                     String::CreateFromAscii(pFilterXML) );
+/*?*/               *ppFilter = SFX_APP()->GetFilter( ScDocShell::Factory(),
+/*?*/                                                 String::CreateFromAscii(pFilterXML) );
 /*?*/               return ERRCODE_NONE;
 /*?*/           }
 /*?*/       }

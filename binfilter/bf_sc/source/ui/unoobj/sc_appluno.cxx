@@ -628,8 +628,6 @@ void SAL_CALL ScRecentFunctionsObj::setRecentFunctionIds(
     aNewOpts.SetLRUFuncList(pFuncs, nCount);
     pScMod->SetAppOptions(aNewOpts);
 
-    pScMod->RecentFunctionsChanged();       // update function list child window
-
     delete[] pFuncs;
 }
 

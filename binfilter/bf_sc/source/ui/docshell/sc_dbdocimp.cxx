@@ -290,9 +290,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/                           //  progress bar
 /*M*/
 /*M*/                           ++nInserted;
-/*M*/                           if (!(nInserted & 15))
-/*M*/                           {DBG_BF_ASSERT(0, "STRIP");
-/*M*/                           }
 /*M*/                       }
 /*M*/                       else        // past the end of the spreadsheet
 /*M*/                       {
@@ -488,16 +485,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/           if ( rParam.nRow2 > nEndRow )
 /*M*/               pDoc->DeleteArea( rParam.nCol1, nEndRow+1, rParam.nCol2, rParam.nRow2,
 /*M*/                                   aNewMark, IDF_CONTENTS );
-/*M*/       }
-/*M*/
-/*M*/       if( !bAddrInsert )      // update database range
-/*M*/       {
-/*M*/           DBG_BF_ASSERT(0, "STRIP");
-/*M*/       }
-/*M*/
-/*M*/       if (bRecord)
-/*M*/       {
-/*M*/           DBG_BF_ASSERT(0, "STRIP");
 /*M*/       }
 /*M*/
 /*M*/       pDoc->SetDirty();

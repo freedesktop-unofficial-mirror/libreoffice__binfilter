@@ -157,7 +157,6 @@ static USHORT nIdleCount = 0;
 /*N*/   DELETEZ( pFormEditData );
 /*N*/
 /*N*/   delete pErrorHdl;
-/*N*/ //    delete pSvxErrorHdl;
 /*N*/
 /*N*/   ScGlobal::Clear();      // ruft auch ScDocumentPool::DeleteVersionMaps();
 /*N*/
@@ -176,13 +175,6 @@ static USHORT nIdleCount = 0;
 /*N*/           //  ConfigItems must be removed before ConfigManager
 /*N*/           DeleteCfg();
 /*N*/       }
-/*N*/       else if ( nHintId == SFX_HINT_COLORS_CHANGED || nHintId == SFX_HINT_ACCESSIBILITY_CHANGED )
-/*N*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/         else if ( nHintId == SFX_HINT_CTL_SETTINGS_CHANGED )
-/*N*/         {DBG_BF_ASSERT(0, "STRIP");
-/*N*/         }
 /*N*/   }
 /*N*/ }
 
@@ -266,11 +258,6 @@ static USHORT nIdleCount = 0;
 #define LRU_MAX 10
 #endif
 
-
-/*N*/ void ScModule::RecentFunctionsChanged()
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
 
 /*N*/ void ScModule::SetAppOptions( const ScAppOptions& /*rOpt*/ )
 /*N*/ {
@@ -372,37 +359,18 @@ static USHORT nIdleCount = 0;
 /*N*/       return 0;
 /*N*/   }
 /*N*/
-/*N*/   BOOL bMore = FALSE;
-/*N*/   ScDocShell* pDocSh = PTR_CAST( ScDocShell, SfxObjectShell::Current() );
-/*N*/   if ( pDocSh )
-/*N*/   {
-/*?*/       ScDocument* pDoc = pDocSh->GetDocument();
-/*?*/       if ( pDoc->IsLoadingDone() )
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
-/*N*/   }
-/*N*/
 /*N*/   ULONG nOldTime = aIdleTimer.GetTimeout();
 /*N*/   ULONG nNewTime = nOldTime;
-/*N*/   if ( bMore )
-/*N*/   {
-/*?*/       nNewTime = SC_IDLE_MIN;
-/*?*/       nIdleCount = 0;
-/*N*/   }
+
+/*N*/   if ( nIdleCount < SC_IDLE_COUNT )
+/*N*/           ++nIdleCount;
 /*N*/   else
 /*N*/   {
-/*N*/       //  SC_IDLE_COUNT mal mit initialem Timeout, dann hochzaehlen
-/*N*/
-/*N*/       if ( nIdleCount < SC_IDLE_COUNT )
-/*N*/           ++nIdleCount;
-/*N*/       else
-/*N*/       {
-/*N*/           nNewTime += SC_IDLE_STEP;
-/*N*/           if ( nNewTime > SC_IDLE_MAX )
-/*N*/               nNewTime = SC_IDLE_MAX;
-/*N*/       }
+/*N*/       nNewTime += SC_IDLE_STEP;
+/*N*/       if ( nNewTime > SC_IDLE_MAX )
+/*N*/           nNewTime = SC_IDLE_MAX;
 /*N*/   }
+
 /*N*/   if ( nNewTime != nOldTime )
 /*N*/       aIdleTimer.SetTimeout( nNewTime );
 /*N*/
@@ -412,14 +380,14 @@ static USHORT nIdleCount = 0;
 
 IMPL_LINK( ScModule, SpellTimerHdl, Timer*, EMPTYARG )
 {
-    DBG_BF_ASSERT(0, "STRIP");
+    DBG_BF_ASSERT(0, "STRIP");  // IMPL_LINK()
     return 0;
 }
 
 /*N*/ IMPL_LINK( ScModule, CalcFieldValueHdl, EditFieldInfo*, EMPTYARG )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return 0;
+    DBG_BF_ASSERT(0, "STRIP");  // IMPL_LINK()
+    return 0;
 /*N*/ }
 
 }

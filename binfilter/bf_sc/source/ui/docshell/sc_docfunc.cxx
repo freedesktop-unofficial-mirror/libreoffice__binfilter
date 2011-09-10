@@ -339,8 +339,6 @@ using namespace ::com::sun::star;
 /*N*/   ScEditableTester aTester( pDoc, rMark );
 /*N*/   if (!aTester.IsEditable())
 /*N*/   {
-/*N*/       if (!bApi)
-/*N*/           rDocShell.ErrorMessage(aTester.GetMessageId());
 /*N*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -375,32 +373,15 @@ using namespace ::com::sun::star;
 /*N*/       if (pDoc->HasAttrib( aMarkRange, HASATTR_PAINTEXT ))
 /*N*/           nExtFlags |= SC_PF_LINES;
 /*N*/
-/*N*/
-/*N*/   if (bObjects)
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
-/*N*/
-/*N*/ //!   HideAllCursors();   // falls Zusammenfassung aufgehoben wird
 /*N*/   if (bSimple)
 /*N*/       pDoc->DeleteArea( aMarkRange.aStart.Col(), aMarkRange.aStart.Row(),
 /*N*/                         aMarkRange.aEnd.Col(),   aMarkRange.aEnd.Row(),
 /*N*/                         aMultiMark, nFlags );
-/*N*/   else
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   if (!AdjustRowHeight( aExtendedRange ))
 /*N*/       rDocShell.PostPaint( aExtendedRange, PAINT_GRID, nExtFlags );
-/*N*/   else if (nExtFlags & SC_PF_LINES)
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/
-/*N*/ //    rDocShell.UpdateOle(GetViewData());     //! an der View?
 /*N*/   aModificator.SetDocumentModified();
-/*N*/ //!   CellContentChanged();
-/*N*/ //!   ShowAllCursors();
 /*N*/
 /*N*/   return TRUE;
 /*N*/ }
@@ -418,8 +399,6 @@ using namespace ::com::sun::star;
 /*N*/   ScEditableTester aTester( pDoc, rPos.Tab(), rPos.Col(),rPos.Row(), rPos.Col(),rPos.Row() );
 /*N*/   if (!aTester.IsEditable())
 /*N*/   {
-/*N*/       if (!bApi)
-/*N*/           rDocShell.ErrorMessage(aTester.GetMessageId());
 /*N*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -454,8 +433,6 @@ using namespace ::com::sun::star;
 /*N*/       ScEditableTester aTester( pDoc, rPos.Tab(), rPos.Col(),rPos.Row(), rPos.Col(),rPos.Row() );
 /*N*/       if (!aTester.IsEditable())
 /*N*/       {
-/*N*/           if (!bApi)
-/*?*/               rDocShell.ErrorMessage(aTester.GetMessageId());
 /*N*/           pNewCell->Delete();
 /*N*/           return FALSE;
 /*N*/       }
@@ -675,8 +652,6 @@ using namespace ::com::sun::star;
 /*N*/   ScEditableTester aTester( pDoc, rPos.Tab(), rPos.Col(),rPos.Row(), rPos.Col(),rPos.Row() );
 /*N*/   if (!aTester.IsEditable())
 /*N*/   {
-/*?*/       if (!bApi)
-/*?*/           rDocShell.ErrorMessage(aTester.GetMessageId());
 /*?*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -718,8 +693,6 @@ using namespace ::com::sun::star;
 /*N*/   if ( !pDoc->IsSelectionEditable( rMark, &bOnlyNotBecauseOfMatrix )
 /*N*/           && !bOnlyNotBecauseOfMatrix )
 /*N*/   {
-/*?*/       if (!bApi)
-/*?*/           rDocShell.ErrorMessage(STR_PROTECTIONERR);
 /*?*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -763,8 +736,6 @@ using namespace ::com::sun::star;
 /*N*/   if ( !pDoc->IsSelectionEditable( rMark, &bOnlyNotBecauseOfMatrix )
 /*N*/           && !bOnlyNotBecauseOfMatrix )
 /*N*/   {
-/*?*/       if (!bApi)
-/*?*/           rDocShell.ErrorMessage(STR_PROTECTIONERR);
 /*?*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -787,8 +758,6 @@ using namespace ::com::sun::star;
 /*N*/   USHORT nExtFlags = 0;
 /*N*/   if (!AdjustRowHeight( aMultiRange ))
 /*N*/       rDocShell.PostPaint( aMultiRange, PAINT_GRID, nExtFlags );
-/*N*/   else if (nExtFlags & SC_PF_LINES)
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   aModificator.SetDocumentModified();
 /*N*/
@@ -821,8 +790,6 @@ using namespace ::com::sun::star;
 /*N*/       SFX_APP()->Broadcast( SfxSimpleHint( SC_HINT_TABLES_CHANGED ) );
 /*N*/       bSuccess = TRUE;
 /*N*/   }
-/*N*/   else if (!bApi)
-/*?*/       rDocShell.ErrorMessage(STR_TABINSERT_ERROR);
 /*N*/
 /*N*/   return bSuccess;
 /*N*/ }
@@ -835,8 +802,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   if ( !pDoc->IsDocEditable() )
 /*N*/   {
-/*N*/       if (!bApi)
-/*N*/           rDocShell.ErrorMessage(STR_PROTECTIONERR);
 /*N*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -854,8 +819,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       if (nVisCount <= 1)
 /*N*/       {
-/*N*/           if (!bApi)
-/*N*/               rDocShell.ErrorMessage(STR_PROTECTIONERR);  //! eigene Meldung?
 /*N*/           return FALSE;
 /*N*/       }
 /*N*/   }
@@ -878,8 +841,6 @@ using namespace ::com::sun::star;
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/   if ( !pDoc->IsDocEditable() )
 /*N*/   {
-/*?*/       if (!bApi)
-/*?*/           rDocShell.ErrorMessage(STR_PROTECTIONERR);
 /*?*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -934,18 +895,11 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   if ( !rDocShell.IsEditable() )
 /*N*/   {
-/*?*/       if (!bApi)
-/*?*/           rDocShell.ErrorMessage(STR_PROTECTIONERR);      //! eigene Meldung?
 /*?*/       return FALSE;
 /*N*/   }
 /*N*/
 /*N*/   BOOL bSuccess = FALSE;
-/*N*/
 /*N*/   BOOL bFormula = FALSE;
-/*N*/   if ( eMode == SC_SIZE_OPTIMAL )
-/*N*/   {
-/*N*/       //! Option "Formeln anzeigen" - woher nehmen?
-/*N*/   }
 /*N*/
 /*N*/   ScOutlineTable* pUndoTab = NULL;
 /*N*/
@@ -1059,9 +1013,7 @@ using namespace ::com::sun::star;
 /*N*/       return FALSE;                           // kein Umbruch gesetzt
 /*N*/
 /*?*/   nFlags &= ~CR_MANUALBREAK;
-/*?*/   if (bColumn)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
-/*?*/   else
+/*?*/   if ( !bColumn )
 /*?*/       pDoc->SetRowFlags( nPos, nTab, nFlags );
 /*?*/   pDoc->UpdatePageBreaks( nTab );
 /*?*/
@@ -1127,9 +1079,6 @@ using namespace ::com::sun::star;
 /*N*/   else if (!bApi)
 /*N*/   {
 /*N*/       //  different password was set before
-/*N*/
-/*N*/ //!       rDocShell.ErrorMessage(...);
-/*N*/
 /*N*/       InfoBox aBox( rDocShell.GetDialogParent(), String( ScResId( SCSTR_WRONGPASSWORD ) ) );
 /*N*/       aBox.Execute();
 /*N*/   }
@@ -1158,8 +1107,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   else if (!bApi)
 /*N*/   {
-/*N*/ //!       rDocShell.ErrorMessage(...);
-/*N*/
 /*N*/       InfoBox aBox( rDocShell.GetDialogParent(), String( ScResId( SCSTR_WRONGPASSWORD ) ) );
 /*N*/       aBox.Execute();
 /*N*/   }
@@ -1177,8 +1124,6 @@ using namespace ::com::sun::star;
 /*N*/   ScEditableTester aTester( pDoc, rMark );
 /*N*/   if (!aTester.IsEditable())
 /*N*/   {
-/*?*/       if (!bApi)
-/*?*/           rDocShell.ErrorMessage(aTester.GetMessageId());
 /*?*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -1202,8 +1147,6 @@ using namespace ::com::sun::star;
 /*N*/   ScEditableTester aTester( pDoc, rMark );
 /*N*/   if (!aTester.IsEditable())
 /*N*/   {
-/*N*/       if (!bApi)
-/*N*/           rDocShell.ErrorMessage(aTester.GetMessageId());
 /*N*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -1281,8 +1224,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       aModificator.SetDocumentModified();
 /*N*/   }
-/*N*/   else if (!bApi)
-/*N*/       rDocShell.ErrorMessage(aTester.GetMessageId());
 /*N*/
 /*N*/   return bSuccess;
 /*N*/ }
@@ -1339,8 +1280,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       bSuccess = TRUE;
 /*N*/   }
-/*N*/   else if (!bApi)
-/*N*/       rDocShell.ErrorMessage(aTester.GetMessageId());
 /*N*/
 /*N*/   return bSuccess;
 /*N*/ }
@@ -1371,8 +1310,6 @@ using namespace ::com::sun::star;
 /*N*/   ScEditableTester aTester( pDoc, nTab, nStartCol, nStartRow, nEndCol, nEndRow );
 /*N*/   if (!aTester.IsEditable())
 /*N*/   {
-/*?*/       if (!bApi)
-/*?*/           rDocShell.ErrorMessage(aTester.GetMessageId());
 /*?*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -1385,9 +1322,6 @@ using namespace ::com::sun::star;
 /*N*/   if ( pDoc->HasAttrib( nStartCol, nStartRow, nTab, nEndCol, nEndRow, nTab,
 /*N*/                           HASATTR_MERGED | HASATTR_OVERLAPPED ) )
 /*N*/   {
-/*?*/       // "Zusammenfassen nicht verschachteln !"
-/*?*/       if (!bApi)
-/*?*/           rDocShell.ErrorMessage(STR_MSSG_MERGECELLS_0);
 /*?*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -1640,8 +1574,6 @@ using namespace ::com::sun::star;
 /*N*/           aModificator.SetDocumentModified();
 /*N*/           bDone = TRUE;
 /*N*/       }
-/*N*/       else if (!bApi)
-/*?*/           rDocShell.ErrorMessage(aTester.GetMessageId());
 /*N*/   }
 /*N*/   return bDone;
 /*N*/ }

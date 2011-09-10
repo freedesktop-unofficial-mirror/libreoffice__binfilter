@@ -78,11 +78,6 @@ namespace binfilter {
 #define SC_PREVIEW_SIZE_Y   12400
 
 
-/*N*/ void ScDocShell::DoRecalc( BOOL /*bApi*/ )
-/*N*/ {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ void ScDocShell::DoHardRecalc( BOOL /*bApi*/ )
 /*N*/ {
 /*N*/   aDocument.CalcAll();
@@ -90,24 +85,6 @@ namespace binfilter {
 /*N*/   PostPaintGridAll();
 /*N*/ }
 
-
-/*N*/ void ScDocShell::NotifyStyle( const SfxStyleSheetHint& rHint )
-/*N*/ {
-/*N*/   USHORT nId = rHint.GetHint();
-/*N*/   const SfxStyleSheetBase* pStyle = rHint.GetStyleSheet();
-/*N*/   if (!pStyle)
-/*N*/       return;
-/*N*/
-/*N*/   if ( pStyle->GetFamily() == SFX_STYLE_FAMILY_PAGE )
-/*N*/   {
-/*N*/       if ( nId == SFX_STYLESHEET_MODIFIED )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   //  alles andere geht ueber Slots...
-/*N*/ }
 
 //  wie in printfun.cxx
 #define ZOOM_MIN    10
@@ -134,10 +111,6 @@ namespace binfilter {
 /*?*/       if (!aPrintFunc.UpdatePages())                          //  setzt Umbrueche auf allen Tabs
 /*?*/           bWarn = TRUE;
 /*?*/
-/*?*/       if (bWarn && !bApi)
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
 /*N*/   }
 /*N*/
 /*N*/   aModificator.SetDocumentModified();

@@ -175,10 +175,6 @@ namespace binfilter {
 /*N*/
 /*N*/   SvInPlaceObject::SetVisArea( aArea );
 /*N*/
-/*N*/   if (aDocument.IsEmbedded())
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/ }
 
 //
@@ -194,12 +190,6 @@ namespace binfilter {
 //  nach dem Laden von Vorlagen aus einem anderen Dokment (LoadStyles, Insert)
 //  muessen die SetItems (ATTR_PAGE_HEADERSET, ATTR_PAGE_FOOTERSET) auf den richtigen
 //  Pool umgesetzt werden, bevor der Quell-Pool geloescht wird.
-
-/*N*/ void lcl_AdjustPool( SfxStyleSheetBasePool* /*pStylePool*/ )
-/*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 
 /*N*/ void ScDocShell::LoadStylesArgs( ScDocShell& rSource, BOOL bReplace, BOOL bCellStyles, BOOL bPageStyles )
 /*N*/ {
@@ -260,7 +250,6 @@ namespace binfilter {
 /*N*/       // follow is never used
 /*N*/   }
 /*N*/
-/*N*/   lcl_AdjustPool( GetStyleSheetPool() );      // adjust SetItems
 /*N*/   UpdateAllRowHeights();
 /*N*/   PostPaint( 0,0,0, MAXCOL,MAXROW,MAXTAB, PAINT_GRID | PAINT_LEFT );      // Paint
 /*N*/
@@ -279,16 +268,6 @@ namespace binfilter {
 /*N*/   // nicht mehr benutzte Links raus
 /*N*/
 /*N*/   nCount = pLinkManager->GetLinks().Count();
-/*N*/   for (i=nCount; i>0; )
-/*N*/   {
-/*?*/       --i;
-/*?*/       ::binfilter::SvBaseLink* pBase = *pLinkManager->GetLinks()[i];
-/*?*/       if (pBase->ISA(ScTableLink))
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
-/*N*/   }
-/*N*/
 /*N*/
 /*N*/   // neue Links eintragen
 /*N*/
