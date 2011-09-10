@@ -911,10 +911,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   for (nRow = nSrcRow1 + nHeader; nRow <= nSrcRow2; nRow++)
 /*N*/   {
 /*N*/       BOOL bValidLine = TRUE;
-/*N*/       if (bIgnoreEmpty)
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/       if (bValidLine)
 /*N*/           bValidLine = pDoc->pTab[nSrcTab]->ValidQuery(nRow, aQuery);
 /*N*/       if (bValidLine)
@@ -976,10 +972,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   for (USHORT nRow = nSrcRow1 + nHeader; nRow <= nSrcRow2; nRow++)
 /*N*/   {
 /*N*/       BOOL bValidLine = TRUE;
-/*N*/       if (bIgnoreEmpty)
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/       if (bValidLine)
 /*N*/           bValidLine = pDoc->pTab[nSrcTab]->ValidQuery(nRow, aQuery);
 /*N*/       if (bValidLine)
@@ -1060,8 +1052,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/                           double nVal = pDoc->GetValue( aAdr );
 /*N*/                           ppDataArr[nRIndex][nCIndex].Update(nVal);
 /*N*/                       }
-/*N*/                       else
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/                   }
 /*N*/               }
 /*N*/           }

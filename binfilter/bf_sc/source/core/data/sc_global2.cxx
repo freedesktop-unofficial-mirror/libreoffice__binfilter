@@ -307,19 +307,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-BOOL ScQueryParam::operator==( const ScQueryParam& /*rOther*/ ) const
-{
-    BOOL bEqual = FALSE;
-    // Anzahl der Queries gleich?
-    DBG_BF_ASSERT(0, "STRIP");
-    return bEqual;
-}
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
 /*N*/ void ScQueryParam::Resize(USHORT nNew)
 /*N*/ {
 /*N*/   if ( nNew < MAXQUERY )
@@ -700,8 +687,6 @@ BOOL ScQueryParam::operator==( const ScQueryParam& /*rOther*/ ) const
 /*N*/       bMakeTotalRow(r.bMakeTotalRow)
 /*N*/ {
 /*N*/   SetLabelData    ( r.ppLabelArr, r.nLabels );
-/*N*/   SetPivotArrays  ( r.aColArr, r.aRowArr, r.aDataArr,
-/*N*/                     r.nColCount, r.nRowCount, r.nDataCount );
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -749,18 +734,6 @@ BOOL ScQueryParam::operator==( const ScQueryParam& /*rOther*/ ) const
 
 //------------------------------------------------------------------------
 
-/*N*/ void ScPivotParam::SetPivotArrays ( const PivotField*,
-/*N*/                                             const PivotField*,
-/*N*/                                             const PivotField*,
-/*N*/                                             USHORT,
-/*N*/                                             USHORT,
-/*N*/                                             USHORT )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-//------------------------------------------------------------------------
-
 /*N*/ ScPivotParam& ScPivotParam::operator=( const ScPivotParam& r )
 /*N*/ {
 /*N*/   nCol              = r.nCol;
@@ -772,8 +745,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   bMakeTotalRow     = r.bMakeTotalRow;
 /*N*/
 /*N*/   SetLabelData    ( r.ppLabelArr, r.nLabels );
-/*N*/   SetPivotArrays  ( r.aColArr, r.aRowArr, r.aDataArr,
-/*N*/                     r.nColCount, r.nRowCount, r.nDataCount );
 /*N*/
 /*N*/   return *this;
 /*N*/ }
@@ -806,13 +777,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ {
 /*N*/   delete pStrTargetVal;
 /*N*/ }
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
 
 //------------------------------------------------------------------------
 // struct ScTabOpParam
@@ -860,11 +824,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ void ScPostIt::AutoSetText( const String& rNewText )
 /*N*/ {
 /*N*/   aStrText   = rNewText;
-/*N*/     aStrDate   = ScGlobal::pLocaleData->getDate( Date() );
-/*N*/
-/*N*/   //  Der Einheitlichkeit halber das Datum immer ohne Uhrzeit (wie im Writer)
-/*N*/ //    aStrDate  += ", ";
-/*N*/ //  aStrDate  += ScGlobal::pLocaleData->getTime( Time() );
+/*N*/   aStrDate   = ScGlobal::pLocaleData->getDate( Date() );
 /*N*/
 /*N*/   SvtUserOptions aUserOpt;
 /*N*/   aStrAuthor = aUserOpt.GetID();
@@ -1265,7 +1225,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*?*/           r = ScGlobal::GetRscString( STR_NOREF_STR );
 /*?*/           return;
 /*N*/       }
-/*N*/ //        if( nFlags & ( SCA_TAB_ABSOLUTE | SCA_TAB_3D ) )
 /*N*/       if( nFlags & SCA_TAB_3D )
 /*N*/       {
 /*N*/           String aTabName;

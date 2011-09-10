@@ -520,8 +520,6 @@ void global_InitAppOptions();
 /*N*/   DELETEZ(pProtectedBrushItem);
 /*N*/     DELETEZ(pOutlineBitmaps);
 /*N*/     DELETEZ(pOutlineBitmapsHC);
-/*N*/ //    DELETEZ(pAnchorBitmap);
-/*N*/ //    DELETEZ(pGrayAnchorBitmap);
 /*N*/     DELETEZ(pEnglishFormatter);
 /*N*/     DELETEZ(pCaseTransliteration);
 /*N*/     DELETEZ(pTransliteration);
@@ -713,10 +711,9 @@ void global_InitAppOptions();
 /*N*/ }
 
 
-/*N*/ ScFunctionList::ScFunctionList() :
-/*N*/       nMaxFuncNameLen ( 0 )
-/*N*/ {
-/*N*/       DBG_BF_ASSERT(0, "STRIP");
+ScFunctionList::ScFunctionList() :
+    nMaxFuncNameLen ( 0 )
+{
 }
 
 //------------------------------------------------------------------------
@@ -762,10 +759,9 @@ void global_InitAppOptions();
 //========================================================================
 // class ScFunctionMgr:
 
-/*N*/ ScFunctionMgr::~ScFunctionMgr()
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+ScFunctionMgr::~ScFunctionMgr()
+{
+}
 
 /*N*/ String ColToAlpha( const USHORT nCol )
 /*N*/ {

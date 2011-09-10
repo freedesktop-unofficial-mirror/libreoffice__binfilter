@@ -182,17 +182,6 @@ extern BOOL bIsOlk, bOderSo;
 
 /*N*/ ScTable::~ScTable()
 /*N*/ {
-/*N*/   if (!pDocument->IsInDtorClear())
-/*N*/   {
-/*?*/       //  nicht im dtor die Pages in der falschen Reihenfolge loeschen
-/*?*/       //  (nTab stimmt dann als Page-Number nicht!)
-/*?*/       //  In ScDocument::Clear wird hinterher per Clear am DrawLayer alles geloescht.
-/*?*/
-/*?*/       ScDrawLayer* pDrawLayer = pDocument->GetDrawLayer();
-/*?*/       if (pDrawLayer)
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   delete[] pColWidth;
 /*N*/   delete[] pRowHeight;
 /*N*/   delete[] pColFlags;
@@ -214,9 +203,6 @@ DBG_BF_ASSERT(0, "STRIP");
 
 /*N*/ void ScTable::SetName( const String& rNewName )
 /*N*/ {
-/*N*/   String aMd( "D\344umling", RTL_TEXTENCODING_MS_1252 );  // ANSI
-/*N*/   if( rNewName == aMd )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   aName = rNewName;
 /*N*/ }
 
@@ -472,18 +458,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   rStartCol = nMinX;
 /*N*/   rStartRow = nMinY;
 /*N*/   return bFound;
-/*N*/ }
-
-/*N*/ void ScTable::GetDataArea( USHORT&, USHORT&, USHORT&, USHORT&,
-/*N*/                           BOOL )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void ScTable::GetNextPos( USHORT&, USHORT&, short, short,
-/*N*/                               BOOL, BOOL, const ScMarkData& )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ BOOL ScTable::GetNextMarkedCell( USHORT& rCol, USHORT& rRow, const ScMarkData& rMark )

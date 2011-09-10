@@ -280,14 +280,6 @@ public:
     void        ExtendPrintArea( OutputDevice* pDev,
                         USHORT nStartCol, USHORT nStartRow, USHORT& rEndCol, USHORT nEndRow );
 
-    void        GetDataArea( USHORT& rStartCol, USHORT& rStartRow, USHORT& rEndCol, USHORT& rEndRow,
-                                BOOL bIncludeOld );
-
-
-    void        GetNextPos( USHORT& rCol, USHORT& rRow, short nMovX, short nMovY,
-                                BOOL bMarked, BOOL bUnprotected, const ScMarkData& rMark );
-
-
     BOOL        HasData( USHORT nCol, USHORT nRow );
     BOOL        HasStringData( USHORT nCol, USHORT nRow );
     BOOL        HasValueData( USHORT nCol, USHORT nRow );

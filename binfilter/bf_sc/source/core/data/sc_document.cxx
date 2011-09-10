@@ -450,13 +450,11 @@ namespace binfilter {
 
 //  zusammenhaengender Bereich
 
-/*N*/ void ScDocument::GetDataArea( USHORT nTab, USHORT& rStartCol, USHORT& rStartRow,
-/*N*/                               USHORT& rEndCol, USHORT& rEndRow, BOOL bIncludeOld )
-/*N*/ {
-/*N*/   if (VALIDTAB(nTab))
-/*N*/       if (pTab[nTab])
-/*N*/           pTab[nTab]->GetDataArea( rStartCol, rStartRow, rEndCol, rEndRow, bIncludeOld );
-/*N*/ }
+void ScDocument::GetDataArea( USHORT nTab, USHORT& rStartCol, USHORT& rStartRow,
+                              USHORT& rEndCol, USHORT& rEndRow, BOOL bIncludeOld )
+{
+    DBG_BF_ASSERT(0, "STRIP");
+}
 
 
 
@@ -2420,18 +2418,11 @@ namespace binfilter {
 
 
 
-/*N*/ void ScDocument::GetNextPos( USHORT& rCol, USHORT& rRow, USHORT nTab, short nMovX, short nMovY,
-/*N*/                               BOOL bMarked, BOOL bUnprotected, const ScMarkData& rMark )
-/*N*/ {
-/*N*/   DBG_ASSERT( !nMovX || !nMovY, "GetNextPos: nur X oder Y" );
-/*N*/
-/*N*/   ScMarkData aCopyMark = rMark;
-/*N*/   aCopyMark.SetMarking(FALSE);
-/*N*/   aCopyMark.MarkToMulti();
-/*N*/
-/*N*/   if (nTab<=MAXTAB && pTab[nTab])
-/*N*/       pTab[nTab]->GetNextPos( rCol, rRow, nMovX, nMovY, bMarked, bUnprotected, aCopyMark );
-/*N*/ }
+void ScDocument::GetNextPos( USHORT& rCol, USHORT& rRow, USHORT nTab, short nMovX, short nMovY,
+                             BOOL bMarked, BOOL bUnprotected, const ScMarkData& rMark )
+{
+    DBG_BF_ASSERT(0, "STRIP");
+}
 
 //
 //  Datei-Operationen

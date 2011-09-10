@@ -285,10 +285,11 @@ using namespace ::com::sun::star;
 /*?*/   return nDim;
 /*N*/ }
 
-/*?*/ uno::Sequence< uno::Sequence<sheet::DataResult> > SAL_CALL ScDPSource::getResults()
-/*?*/                                                           throw(uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< uno::Sequence<sheet::DataResult> >(0);
-/*?*/ }
+uno::Sequence< uno::Sequence<sheet::DataResult> > SAL_CALL ScDPSource::getResults()
+    throw(uno::RuntimeException)
+{
+    return uno::Sequence< uno::Sequence<sheet::DataResult> >(0);
+}
 
 /*?*/ void SAL_CALL ScDPSource::refresh() throw(uno::RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");
@@ -398,9 +399,7 @@ using namespace ::com::sun::star;
 /*N*/       lcl_SetBoolInAny( aRet, getIgnoreEmptyRows() );
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_REPEATIF ) )
 /*N*/       lcl_SetBoolInAny( aRet, getRepeatIfEmpty() );
-/*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_DATADESC ) )             // read-only
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/   else
+/*N*/   else if ( !aNameStr.EqualsAscii( SC_UNO_DATADESC ) )             // read-only
 /*N*/   {
 /*N*/       OSL_FAIL("unknown property");
 /*N*/       //! THROW( UnknownPropertyException() );
@@ -630,8 +629,7 @@ using namespace ::com::sun::star;
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_USEDHIER ) )
 /*N*/   {
 /*?*/       INT32 nInt;
-/*?*/       if (aValue >>= nInt)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
+/*?*/       aValue >>= nInt;
 /*N*/   }
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_ORIENTAT ) )
 /*N*/   {
@@ -998,21 +996,18 @@ using namespace ::com::sun::star;
 
 /*N*/ ScDPLevel::~ScDPLevel()
 /*N*/ {
-/*N*/   //! release pSource
-/*N*/
-/*N*/   if ( pMembers )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ }
 
 
-/*?*/ uno::Reference<container::XNameAccess> SAL_CALL ScDPLevel::getMembers() throw(uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference<container::XNameAccess>(0);
-/*?*/ }
+uno::Reference<container::XNameAccess> SAL_CALL ScDPLevel::getMembers() throw(uno::RuntimeException)
+{
+    return uno::Reference<container::XNameAccess>(0);
+}
 
-/*?*/ uno::Sequence<sheet::MemberResult> SAL_CALL ScDPLevel::getResults() throw(uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
-/*?*/   return uno::Sequence<sheet::MemberResult>(0);       //! Error?
-/*?*/ }
+uno::Sequence<sheet::MemberResult> SAL_CALL ScDPLevel::getResults() throw(uno::RuntimeException)
+{
+    return uno::Sequence<sheet::MemberResult>(0);       //! Error?
+}
 
 /*N*/ ::rtl::OUString SAL_CALL ScDPLevel::getName() throw(uno::RuntimeException)
 /*N*/ {
@@ -1113,8 +1108,7 @@ using namespace ::com::sun::star;
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_SUBTOTAL ) )
 /*N*/   {
 /*?*/       uno::Sequence<sheet::GeneralFunction> aSeq;
-/*?*/       if ( aValue >>= aSeq )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
+/*?*/       aValue >>= aSeq;
 /*N*/   }
 /*N*/   else
 /*N*/   {

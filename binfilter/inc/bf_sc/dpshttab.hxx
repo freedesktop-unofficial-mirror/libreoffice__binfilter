@@ -46,10 +46,6 @@ struct ScSheetSourceDesc
 {
     ScRange         aSourceRange;
     ScQueryParam    aQueryParam;
-
-    BOOL operator== ( const ScSheetSourceDesc& rOther ) const
-        { return aSourceRange == rOther.aSourceRange &&
-                 aQueryParam  == rOther.aQueryParam; }
 };
 
  class ScSheetDPData_Impl;

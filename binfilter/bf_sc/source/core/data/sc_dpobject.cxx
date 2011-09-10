@@ -198,9 +198,6 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 
 /*N*/ void ScDPObject::SetSheetDesc(const ScSheetSourceDesc& rDesc)
 /*N*/ {
-/*N*/   if ( pSheetDesc && rDesc == *pSheetDesc )
-/*N*/       return;             // nothing to do
-/*N*/
 /*N*/   DELETEZ( pImpDesc );
 /*N*/   DELETEZ( pServDesc );
 /*N*/

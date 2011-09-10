@@ -435,11 +435,7 @@ namespace binfilter {
 /*?*/                   if ( ( pHiddenFlags[i] & CR_HIDDEN ) == 0 )
 /*?*/                       bAllHidden = FALSE;
 /*?*/
-/*?*/               BOOL bToggle = ( bShow != bAllHidden );
-/*?*/               if ( bToggle )
-/*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*N*/       }
 /*N*/   }

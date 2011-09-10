@@ -149,11 +149,9 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // Strings vergleichen:
 /*N*/
-/*N*/       if (pUserData)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/       else
+/*N*/       if ( !pUserData )
 /*N*/       {
-/*N*/             nResult = (short) ScGlobal::pTransliteration->compareString(
+/*N*/           nResult = (short) ScGlobal::pTransliteration->compareString(
 /*N*/               rData1.aStrValue, rData2.aStrValue );
 /*N*/       }
 /*N*/   }

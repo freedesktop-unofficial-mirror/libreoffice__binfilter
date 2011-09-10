@@ -1371,10 +1371,9 @@ public:
     void            Resize(USHORT nNew);
 
     ScQueryParam&   operator=   ( const ScQueryParam& r );
-    BOOL            operator==  ( const ScQueryParam& rOther ) const;
     void            Clear       ();
 
-     void           FillInExcelSyntax(String& aCellStr, USHORT nIndex);
+    void            FillInExcelSyntax(String& aCellStr, USHORT nIndex);
 
     void            Load(SvStream& rStream);
     void Store(SvStream&) const {}
@@ -1497,12 +1496,6 @@ struct ScPivotParam
     void            ClearLabelData  ();
     void            SetLabelData    ( LabelData**   ppLabArr,
                                       USHORT        nLab );
-    void            SetPivotArrays  ( const PivotField* pColArr,
-                                      const PivotField* pRowArr,
-                                      const PivotField* pDataArr,
-                                      USHORT            nColCnt,
-                                      USHORT            nRowCnt,
-                                      USHORT            nDataCnt );
 };
 
 

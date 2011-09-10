@@ -272,19 +272,6 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 /*N*/           pPage->SetSize( rSize );
 /*N*/           Broadcast( ScTabSizeChangedHint( nPageNo ) );   // SetWorkArea() an den Views
 /*N*/       }
-/*N*/
-/*N*/       // Detektivlinien umsetzen (an neue Hoehen/Breiten anpassen)
-/*N*/       //  auch wenn Groesse gleich geblieben ist
-/*N*/       //  (einzelne Zeilen/Spalten koennen geaendert sein)
-/*N*/
-/*N*/       ULONG nCount = pPage->GetObjCount();
-/*N*/       for ( ULONG i = 0; i < nCount; i++ )
-/*N*/       {
-/*N*/           SdrObject* pObj = pPage->GetObj( i );
-/*N*/           ScDrawObjData* pData = GetObjData( pObj );
-/*N*/           if( pData )
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/   }
 /*N*/ }
 
