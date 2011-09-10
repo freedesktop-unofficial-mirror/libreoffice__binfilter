@@ -66,11 +66,6 @@ void lcl_LoadRange( SvStream& rStream, ScRange** ppRange );
 /*N*/   USHORT nNewSizeX = 0;
 /*N*/   USHORT nNewSizeY = 0;
 /*N*/
-/*N*/   if (pOutlineTable)
-/*N*/   {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   if (pNewOutline)
 /*N*/   {
 /*N*/       pOutlineTable = new ScOutlineTable( *pNewOutline );
@@ -358,25 +353,15 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           if (nRow1==0 && nRow2==MAXROW && pColWidth && pDestTab->pColWidth)
 /*N*/               for (i=nCol1; i<=nCol2; i++)
 /*N*/               {
-/*N*/                   BOOL bChange = pCharts &&
-/*N*/                       ( pDestTab->pColFlags[i] & CR_HIDDEN ) != ( pColFlags[i] & CR_HIDDEN );
 /*N*/                   pDestTab->pColWidth[i] = pColWidth[i];
 /*N*/                   pDestTab->pColFlags[i] = pColFlags[i];
-/*N*/                   //! Aenderungen zusammenfassen?
-/*N*/                   if (bChange)
-/*?*/                   {   DBG_BF_ASSERT(0, "STRIP");}
 /*N*/               }
 /*N*/
 /*N*/           if (nCol1==0 && nCol2==MAXCOL && pRowHeight && pDestTab->pRowHeight)
 /*N*/               for (i=nRow1; i<=nRow2; i++)
 /*N*/               {
-/*N*/                   BOOL bChange = pCharts &&
-/*N*/                       ( pDestTab->pRowFlags[i] & CR_HIDDEN ) != ( pRowFlags[i] & CR_HIDDEN );
 /*N*/                   pDestTab->pRowHeight[i] = pRowHeight[i];
 /*N*/                   pDestTab->pRowFlags[i]  = pRowFlags[i];
-/*N*/                   //! Aenderungen zusammenfassen?
-/*N*/                   if (bChange)
-/*?*/                   {   DBG_BF_ASSERT(0, "STRIP");}
 /*N*/               }
 /*N*/
 /*N*/           pDestTab->SetOutlineTable( pOutlineTable );     // auch nur wenn bColRowFlags
@@ -429,8 +414,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   {
 /*N*/       if (pCell)
 /*N*/           aCol[nCol].Insert( nRow, pCell );
-/*N*/       else
-DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -441,8 +424,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   {
 /*N*/       if (pCell)
 /*N*/           aCol[nCol].Insert( nRow, nFormatIndex, pCell );
-/*N*/       else
-DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -451,8 +432,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ {
 /*N*/   if (pCell)
 /*N*/       aCol[rPos.Col()].Insert( rPos.Row(), pCell );
-/*N*/   else
-DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -494,11 +473,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       aCol[nCol].GetInputString( nRow, rString );
 /*N*/   else
 /*N*/       rString.Erase();
-/*N*/ }
-
-/*N*/ double ScTable::GetValue( USHORT, USHORT )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0.0;
 /*N*/ }
 
 /*N*/ BOOL ScTable::GetNote( USHORT nCol, USHORT nRow, ScPostIt& rNote)
@@ -574,12 +548,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   for (USHORT i=0; i<=MAXCOL; i++)
 /*N*/       aCol[i].SetDirty();
 /*N*/   pDocument->SetAutoCalc( bOldAutoCalc );
-/*N*/ }
-
-
-/*N*/ void ScTable::SetDirty( const ScRange& )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -823,34 +791,37 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
-/*N*/ BOOL ScTable::IsSelectionEditable( const ScMarkData& rMark,
-/*N*/           BOOL* pOnlyNotBecauseOfMatrix /* = NULL */ ) const
-/*N*/ {
-/*N*/   BOOL bIsEditable;
-/*N*/   if ( nLockCount )
-/*N*/       bIsEditable = FALSE;
-/*N*/   else if ( bProtected )
+BOOL ScTable::IsSelectionEditable(
+    const ScMarkData& rMark,
+    BOOL* pOnlyNotBecauseOfMatrix /* = NULL */
+) const
+{
+    BOOL bIsEditable;
+    if ( nLockCount )
+        bIsEditable = FALSE;
+    else if ( bProtected )
     {
-{DBG_BF_ASSERT(0, "STRIP");}
         bIsEditable = FALSE;
     }
-/*N*/   else
-/*N*/       bIsEditable = TRUE;
-/*N*/   if ( bIsEditable )
-/*N*/   {
-/*N*/       if ( HasSelectionMatrixFragment( rMark ) )
-/*N*/       {
-/*N*/           bIsEditable = FALSE;
-/*N*/           if ( pOnlyNotBecauseOfMatrix )
-/*N*/               *pOnlyNotBecauseOfMatrix = TRUE;
-/*N*/       }
-/*N*/       else if ( pOnlyNotBecauseOfMatrix )
-/*N*/           *pOnlyNotBecauseOfMatrix = FALSE;
-/*N*/   }
-/*N*/   else if ( pOnlyNotBecauseOfMatrix )
-/*N*/       *pOnlyNotBecauseOfMatrix = FALSE;
-/*N*/   return bIsEditable;
-/*N*/ }
+    else
+        bIsEditable = TRUE;
+
+    if ( bIsEditable )
+    {
+        if ( HasSelectionMatrixFragment( rMark ) )
+        {
+            bIsEditable = FALSE;
+            if ( pOnlyNotBecauseOfMatrix )
+                *pOnlyNotBecauseOfMatrix = TRUE;
+        }
+        else if ( pOnlyNotBecauseOfMatrix )
+            *pOnlyNotBecauseOfMatrix = FALSE;
+    }
+    else if ( pOnlyNotBecauseOfMatrix )
+        *pOnlyNotBecauseOfMatrix = FALSE;
+
+    return bIsEditable;
+}
 
 
 
@@ -882,22 +853,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   for (USHORT i=nCol1; i<=nCol2; i++)
 /*N*/       aCol[i].MergePatternArea( ppSet, nRow1, nRow2, bDeep );
 /*N*/ }
-
-
-/*N*/ void ScTable::MergeBlockFrame( SvxBoxItem*, SvxBoxInfoItem*, ScLineFlags&,
-/*N*/                   USHORT, USHORT, USHORT, USHORT ) const
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-
-/*N*/ void ScTable::ApplyBlockFrame( const SvxBoxItem*, const SvxBoxInfoItem*,
-/*N*/                   USHORT, USHORT, USHORT, USHORT )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-
 
 
 /*N*/ void ScTable::ApplyPatternArea( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
@@ -1307,9 +1262,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           if( !--nRecalcLvl )
 /*?*/               SetDrawPageSize();
 /*N*/
-/*N*/           ScChartListenerCollection* pCharts = pDocument->GetChartListenerCollection();
-/*N*/           if ( pCharts && pCharts->GetCount() )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/   }
 /*N*/   else
@@ -1353,13 +1305,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       else
 /*N*/           for (i=nStartRow; i<=nEndRow; i++)
 /*N*/               pRowFlags[i] |= CR_HIDDEN;
-/*N*/
-/*N*/       if ( bChanged )
-/*N*/       {
-/*N*/           ScChartListenerCollection* pCharts = pDocument->GetChartListenerCollection();
-/*N*/           if ( pCharts && pCharts->GetCount() )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/       }
 /*N*/
 /*N*/       nStartRow = nEndRow + 1;
 /*N*/   }
@@ -1436,15 +1381,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           nLastFound = nRow;
 /*N*/
 /*N*/   return nLastFound;
-/*N*/ }
-
-
-/*N*/ BOOL ScTable::UpdateOutlineCol( USHORT /*nStartCol*/, USHORT /*nEndCol*/, BOOL /*bShow*/ )
-/*N*/ {
-/*N*/   if (pOutlineTable && pColFlags)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
-/*N*/   else
-/*N*/       return FALSE;
 /*N*/ }
 
 

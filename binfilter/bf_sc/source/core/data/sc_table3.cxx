@@ -52,49 +52,6 @@
 #include <vector>
 namespace binfilter {
 
-// STATIC DATA -----------------------------------------------------------
-
-const USHORT nMaxSorts = 3;     // maximale Anzahl Sortierkriterien in aSortParam
-
-struct ScSortInfo
-{
-    ScBaseCell*     pCell;
-    USHORT          nOrg;
-    DECL_FIXEDMEMPOOL_NEWDEL( ScSortInfo );
-};
-/*N*/ const USHORT nMemPoolSortInfo = (0x8000 - 64) / sizeof(ScSortInfo);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScSortInfo, nMemPoolSortInfo, nMemPoolSortInfo )
-
-// END OF STATIC DATA -----------------------------------------------------
-
-
-
-
-
-
-
-
-
-/*N*/ void ScTable::DestroySortCollator()
-/*N*/ {
-/*N*/   if ( pSortCollator )
-/*N*/   {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
 //      Testen, ob beim Loeschen von Zwischenergebnissen andere Daten mit geloescht werden
 //      (fuer Hinweis-Box)
 
@@ -175,7 +132,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/             }
 /*N*/             else
-/*?*/                 nCellVal = GetValue( rEntry.nField, nRow );
+/*?*/                 nCellVal = 0.0;
 /*N*/           switch (rEntry.eOp)
 /*N*/           {
 /*N*/               case SC_EQUAL :
@@ -328,16 +285,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*?*/         delete [] pTest;
 /*N*/
 /*N*/   return bRet;
-/*N*/ }
-
-
-
-
-
-/*N*/ BOOL ScTable::CreateQueryParam(USHORT, USHORT, USHORT, USHORT, ScQueryParam&)
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-return FALSE;
 /*N*/ }
 
 

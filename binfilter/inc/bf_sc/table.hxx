@@ -62,7 +62,6 @@ class ScPrintSaverTab;
 class ScProgress;
 class ScProgress;
 class ScRangeList;
-class ScSortInfoArray;
 class ScStyleSheet;
 class ScTableLink;
 class ScUserListData;
@@ -232,7 +231,6 @@ public:
     void        GetInputString( USHORT nCol, USHORT nRow, String& rString );
     double      GetValue( const ScAddress& rPos ) const
                     { return aCol[rPos.Col()].GetValue( rPos.Row() ); }
-    double      GetValue( USHORT nCol, USHORT nRow );
     BOOL        GetNote( USHORT nCol, USHORT nRow, ScPostIt& rNote);
 
     CellType    GetCellType( const ScAddress& rPos ) const
@@ -290,7 +288,6 @@ public:
     void        ResetChanged( const ScRange& rRange );
 
     void        SetDirty();
-    void        SetDirty( const ScRange& );
     void        SetDirtyAfterLoad();
     void        SetDirtyVar();
     void        SetTableOpDirty( const ScRange& );
@@ -304,20 +301,12 @@ public:
                                     short nDx, short nDy, short nDz,
                                     ScDocument* pUndoDoc = NULL, BOOL bIncludeDraw = TRUE );
 
-    void        UpdateDrawRef( UpdateRefMode eUpdateRefMode, USHORT nCol1, USHORT nRow1, USHORT nTab1,
-                                    USHORT nCol2, USHORT nRow2, USHORT nTab2,
-                                    short nDx, short nDy, short nDz );
-
-
-
     void        UpdateInsertTab(USHORT nTable);
     void        UpdateDeleteTab( USHORT nTable, BOOL bIsMove, ScTable* pRefUndo = NULL );
     void        UpdateCompile( BOOL bForceIfNameInUse = FALSE );
     void        SetTabNo(USHORT nNewTab);
     BOOL        IsRangeNameInUse(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
                                   USHORT nIndex) const;
-    void        ReplaceRangeNamesInUse(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
-                                      const ScIndexMap& rMap );
 
     void        UpdateSelectionFunction( ScFunctionData& rData,
                         USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
@@ -341,14 +330,6 @@ public:
                                                 const ScMarkData& rMark, BOOL bDeep ) const;
     void                    MergePatternArea( SfxItemSet** ppSet, USHORT nCol1, USHORT nRow1,
                                                 USHORT nCol2, USHORT nRow2, BOOL bDeep ) const;
-    void                    MergeBlockFrame( SvxBoxItem* pLineOuter, SvxBoxInfoItem* pLineInner,
-                                            ScLineFlags& rFlags,
-                                            USHORT nStartCol, USHORT nStartRow,
-                                            USHORT nEndCol, USHORT nEndRow ) const;
-    void                    ApplyBlockFrame( const SvxBoxItem* pLineOuter,
-                                            const SvxBoxInfoItem* pLineInner,
-                                            USHORT nStartCol, USHORT nStartRow,
-                                            USHORT nEndCol, USHORT nEndRow );
 
     void        ApplyAttr( USHORT nCol, USHORT nRow, const SfxPoolItem& rAttr );
     void        ApplyPatternArea( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow, const ScPatternAttr& rAttr );
@@ -427,7 +408,6 @@ public:
     BYTE        GetColFlags( USHORT nCol ) const;
     BYTE        GetRowFlags( USHORT nRow ) const;
 
-    BOOL        UpdateOutlineCol( USHORT nStartCol, USHORT nEndCol, BOOL bShow );
     BOOL        UpdateOutlineRow( USHORT nStartRow, USHORT nEndRow, BOOL bShow );
 
     void        UpdatePageBreaks( const ScRange* pUserArea );
@@ -439,9 +419,6 @@ public:
     BOOL        ValidQuery(USHORT nRow, const ScQueryParam& rQueryParam,
                     BOOL* pSpecial = NULL, ScBaseCell* pCell = NULL,
                     BOOL* pbTestEqualCondition = NULL );
-    BOOL        CreateQueryParam(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, ScQueryParam& rQueryParam);
-
-
 
     void        DoColResize( USHORT nCol1, USHORT nCol2, USHORT nAdd );
 
@@ -451,8 +428,6 @@ public:
 
     void        IncRecalcLevel()        { ++nRecalcLvl; }
     void        DecRecalcLevel()        { if (!--nRecalcLvl) SetDrawPageSize(); }
-
-    void        DestroySortCollator();
 
 private:
 

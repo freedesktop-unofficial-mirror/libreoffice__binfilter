@@ -513,14 +513,6 @@ void ScDocument::GetDataArea( USHORT nTab, USHORT& rStartCol, USHORT& rStartRow,
 /*N*/           if (pTab[i])
 /*N*/               pTab[i]->InsertRow( nStartCol, nEndCol, nStartRow, nSize );
 /*N*/
-/*N*/       //  #82991# UpdateRef for drawing layer must be after inserting,
-/*N*/       //  when the new row heights are known.
-/*N*/       for (i=nStartTab; i<=nEndTab; i++)
-/*N*/           if (pTab[i])
-/*N*/               pTab[i]->UpdateDrawRef( URM_INSDEL,
-/*N*/                           nStartCol, nStartRow, nStartTab, nEndCol, MAXROW, nEndTab,
-/*N*/                           0, nSize, 0 );
-/*N*/
 /*N*/       if ( pChangeTrack && pChangeTrack->IsInDeleteUndo() )
 /*N*/       {   // durch Restaurierung von Referenzen auf geloeschte Bereiche ist
 /*N*/           // ein neues Listening faellig, bisherige Listener wurden in
@@ -1098,12 +1090,6 @@ void ScDocument::GetDataArea( USHORT nTab, USHORT& rStartCol, USHORT& rStartRow,
 /*N*/               {
 /*N*/                   do
 /*N*/                   {
-/*N*/                       for (k = 0; k <= MAXTAB; k++)
-/*N*/                       {
-/*N*/                           if ( pTab[k] && rMark.GetTableSelect(k) )
-/*N*/                               pTab[k]->ReplaceRangeNamesInUse(nC1_b, nR1_b,
-/*N*/                                   nC2_b, nR2_b, aClipRangeMap );
-/*N*/                       }
 /*N*/                       nC1_b = nC2_b + 1;
 /*N*/                       nC2_b = Min((USHORT)(nC1_b + nXw), nCol2);
 /*N*/                   } while (nC1_b <= nCol2);
@@ -1205,13 +1191,11 @@ void ScDocument::GetDataArea( USHORT nTab, USHORT& rStartCol, USHORT& rStartRow,
 /*N*/ }
 
 
-/*N*/ void ScDocument::GetValue( USHORT nCol, USHORT nRow, USHORT nTab, double& rValue )
-/*N*/ {
-/*N*/   if ( VALIDTAB(nTab) && pTab[nTab] )
-/*N*/       rValue = pTab[nTab]->GetValue( nCol, nRow );
-/*N*/   else
-/*N*/       rValue = 0.0;
-/*N*/ }
+void ScDocument::GetValue( USHORT nCol, USHORT nRow, USHORT nTab, double& rValue )
+{
+    DBG_BF_ASSERT(0, "STRIP");
+    rValue = 0.0;
+}
 
 
 /*N*/ double ScDocument::GetValue( const ScAddress& rPos )
@@ -1360,15 +1344,10 @@ void ScDocument::GetDataArea( USHORT nTab, USHORT& rStartCol, USHORT& rStartRow,
 /*N*/ }
 
 
-/*N*/ void ScDocument::SetDirty( const ScRange& rRange )
-/*N*/ {
-/*N*/   BOOL bOldAutoCalc = GetAutoCalc();
-/*N*/   bAutoCalc = FALSE;      // keine Mehrfachberechnung
-/*N*/   USHORT nTab2 = rRange.aEnd.Tab();
-/*N*/   for (USHORT i=rRange.aStart.Tab(); i<=nTab2; i++)
-/*N*/       if (pTab[i]) pTab[i]->SetDirty( rRange );
-/*N*/   SetAutoCalc( bOldAutoCalc );
-/*N*/ }
+void ScDocument::SetDirty( const ScRange& rRange )
+{
+    DBG_BF_ASSERT(0, "STRIP");
+}
 
 
 /*N*/  void ScDocument::SetTableOpDirty( const ScRange& rRange )
@@ -1956,11 +1935,6 @@ void ScDocument::GetDataArea( USHORT nTab, USHORT& rStartCol, USHORT& rStartRow,
 /*N*/       ScRange aRange;
 /*N*/       rMark.GetMarkArea(aRange);
 /*N*/       rLineInner.SetTable(aRange.aStart!=aRange.aEnd);
-/*N*/       for (USHORT i=0; i<=MAXTAB; i++)
-/*N*/           if (pTab[i] && rMark.GetTableSelect(i))
-/*N*/               pTab[i]->MergeBlockFrame( &rLineOuter, &rLineInner, aFlags,
-/*N*/                                         aRange.aStart.Col(), aRange.aStart.Row(),
-/*N*/                                         aRange.aEnd.Col(),   aRange.aEnd.Row() );
 /*N*/   }
 /*N*/
 /*N*/       //  Don't care Status auswerten
@@ -2346,22 +2320,12 @@ void ScDocument::GetDataArea( USHORT nTab, USHORT& rStartCol, USHORT& rStartRow,
 
 
 
-/*N*/ void ScDocument::ApplySelectionFrame( const ScMarkData& rMark,
-/*N*/                                     const SvxBoxItem* pLineOuter,
-/*N*/                                     const SvxBoxInfoItem* pLineInner )
-/*N*/ {
-/*N*/   if (rMark.IsMarked())
-/*N*/   {
-/*N*/       ScRange aRange;
-/*N*/       rMark.GetMarkArea(aRange);
-/*N*/       for (USHORT i=0; i<=MAXTAB; i++)
-/*N*/           if (pTab[i])
-/*N*/               if (rMark.GetTableSelect(i))
-/*N*/                   pTab[i]->ApplyBlockFrame( pLineOuter, pLineInner,
-/*N*/                                               aRange.aStart.Col(), aRange.aStart.Row(),
-/*N*/                                               aRange.aEnd.Col(),   aRange.aEnd.Row() );
-/*N*/   }
-/*N*/ }
+void ScDocument::ApplySelectionFrame( const ScMarkData& rMark,
+                                      const SvxBoxItem* pLineOuter,
+                                      const SvxBoxInfoItem* pLineInner )
+{
+    DBG_BF_ASSERT(0, "STRIP");
+}
 
 
 

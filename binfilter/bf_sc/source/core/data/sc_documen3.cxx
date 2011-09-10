@@ -477,14 +477,15 @@ using namespace ::com::sun::star;
 
 //  Outline anpassen
 
-/*N*/ BOOL ScDocument::UpdateOutlineCol( USHORT nStartCol, USHORT nEndCol, USHORT nTab, BOOL bShow )
-/*N*/ {
-/*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
-/*N*/       return pTab[nTab]->UpdateOutlineCol( nStartCol, nEndCol, bShow );
-/*N*/
-/*N*/   OSL_FAIL("missing tab");
-/*N*/   return FALSE;
-/*N*/ }
+BOOL ScDocument::UpdateOutlineCol( USHORT nStartCol, USHORT nEndCol, USHORT nTab, BOOL bShow )
+{
+    DBG_BF_ASSERT(0, "STRIP");
+    if ( nTab<=MAXTAB && pTab[nTab] )
+        return FALSE;
+
+    OSL_FAIL("missing tab");
+    return FALSE;
+}
 
 /*N*/ BOOL ScDocument::UpdateOutlineRow( USHORT nStartRow, USHORT nEndRow, USHORT nTab, BOOL bShow )
 /*N*/ {
@@ -495,14 +496,15 @@ using namespace ::com::sun::star;
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ BOOL ScDocument::CreateQueryParam(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, USHORT nTab, ScQueryParam& rQueryParam)
-/*N*/ {
-/*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
-/*N*/       return pTab[nTab]->CreateQueryParam(nCol1, nRow1, nCol2, nRow2, rQueryParam);
-/*N*/
-/*N*/   OSL_FAIL("missing tab");
-/*N*/   return FALSE;
-/*N*/ }
+BOOL ScDocument::CreateQueryParam(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, USHORT nTab, ScQueryParam& rQueryParam)
+{
+    DBG_BF_ASSERT(0, "STRIP");
+    if ( nTab<=MAXTAB && pTab[nTab] )
+        return FALSE;
+
+    OSL_FAIL("missing tab");
+    return FALSE;
+}
 
 //  Funktionen werden als 1 schon vom InputHandler eingefuegt
 #define SC_STRTYPE_NAMES        2

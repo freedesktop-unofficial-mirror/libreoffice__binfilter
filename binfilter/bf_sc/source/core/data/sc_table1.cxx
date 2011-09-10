@@ -193,7 +193,6 @@ extern BOOL bIsOlk, bOderSo;
 /*N*/   delete pRepeatColRange;
 /*N*/   delete pRepeatRowRange;
 /*N*/   delete pScenarioRanges;
-/*N*/   DestroySortCollator();
 /*N*/ }
 
 /*N*/ void ScTable::GetName( String& rName ) const
@@ -501,16 +500,6 @@ extern BOOL bIsOlk, bOderSo;
 /*N*/   return FALSE;                               // alle Spalten durch
 /*N*/ }
 
-/*N*/ void ScTable::UpdateDrawRef( UpdateRefMode /*eUpdateRefMode*/, USHORT /*nCol1*/, USHORT /*nRow1*/, USHORT nTab1,
-/*N*/                                   USHORT /*nCol2*/, USHORT /*nRow2*/, USHORT nTab2,
-/*N*/                                   short /*nDx*/, short /*nDy*/, short nDz )
-/*N*/ {
-/*N*/   if ( nTab >= nTab1 && nTab <= nTab2 && nDz == 0 )       // only within the table
-/*N*/   {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ }
-
 /*N*/ void ScTable::UpdateReference( UpdateRefMode eUpdateRefMode, USHORT nCol1, USHORT nRow1, USHORT nTab1,
 /*N*/                    USHORT nCol2, USHORT nRow2, USHORT nTab2, short nDx, short nDy, short nDz,
 /*N*/                    ScDocument* pUndoDoc, BOOL bIncludeDraw )
@@ -530,9 +519,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   for ( ; i<=iMax; i++)
 /*N*/       aCol[i].UpdateReference( eUpdateRefMode, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2,
 /*N*/                                   nDx, nDy, nDz, pUndoDoc );
-/*N*/
-/*N*/   if ( bIncludeDraw )
-/*N*/       UpdateDrawRef( eUpdateRefMode, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2, nDx, nDy, nDz );
 /*N*/
 /*N*/   if ( nTab >= nTab1 && nTab <= nTab2 && nDz == 0 )       // print ranges: only within the table
 /*N*/   {
@@ -650,13 +636,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   for (USHORT i = nCol1; !bInUse && (i <= nCol2) && (i <= MAXCOL); i++)
 /*N*/       bInUse = aCol[i].IsRangeNameInUse(nRow1, nRow2, nIndex);
 /*N*/   return bInUse;
-/*N*/ }
-
-/*N*/ void ScTable::ReplaceRangeNamesInUse(USHORT, USHORT,
-/*N*/                               USHORT, USHORT,
-/*N*/                                   const ScIndexMap& )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void ScTable::ExtendPrintArea( OutputDevice* pDev,
