@@ -38,7 +38,6 @@
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
-/*N*/ DBG_NAME(SfxFrameSetDescriptor)
 /*N*/ DBG_NAME(SfxFrameDescriptor)
 
 #define VERSION (USHORT) 3

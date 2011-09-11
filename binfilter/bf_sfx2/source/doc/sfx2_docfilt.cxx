@@ -44,10 +44,6 @@
 
 namespace binfilter {
 
-// STATIC DATA -----------------------------------------------------------
-
-/*N*/ DBG_NAME(SfxFilter)
-/*N*/
 /*N*/ SfxFilter::SfxFilter(  const String &rName,
 /*N*/                      const String &rWildCard,
 /*N*/                      SfxFilterFlags nType,

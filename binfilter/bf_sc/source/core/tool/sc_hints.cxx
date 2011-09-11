@@ -107,22 +107,6 @@ namespace binfilter {
 /*N*/   aUrl = rSourceUrl;
 /*N*/ }
 
-
-/*N*/ void ScLinkRefreshedHint::SetAreaLink( const ScAddress& rPos )
-/*N*/ {
-/*N*/   nLinkType = SC_LINKREFTYPE_AREA;
-/*N*/   aDestPos = rPos;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-//      ScAutoStyleHint - STYLE() function has been called
-// -----------------------------------------------------------------------
-
-
-
-
-
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

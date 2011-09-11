@@ -34,10 +34,6 @@
 namespace binfilter
 {
 
-// STATIC DATA -----------------------------------------------------------
-
-DBG_NAME(SvxMacroItem)
-
 // -----------------------------------------------------------------------
 
 TYPEINIT1_FACTORY(SvxMacroItem, SfxPoolItem, new SvxMacroItem(0));

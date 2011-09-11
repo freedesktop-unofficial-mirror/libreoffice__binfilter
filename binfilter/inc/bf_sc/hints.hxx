@@ -127,7 +127,6 @@ public:
                     ~ScLinkRefreshedHint();
 
     void            SetSheetLink( const String& rSourceUrl );
-    void            SetAreaLink( const ScAddress& rPos );
 
     USHORT              GetLinkType() const { return nLinkType; }
     const String&       GetUrl() const      { return aUrl; }

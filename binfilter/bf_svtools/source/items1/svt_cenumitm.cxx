@@ -47,8 +47,6 @@ namespace binfilter
 //
 //============================================================================
 
-DBG_NAME(SfxEnumItemInterface)
-
 //============================================================================
 TYPEINIT1(SfxEnumItemInterface, SfxPoolItem)
 
@@ -153,8 +151,6 @@ void SfxEnumItemInterface::SetBoolValue(BOOL)
 //
 //============================================================================
 
-DBG_NAME(CntEnumItem)
-
 //============================================================================
 CntEnumItem::CntEnumItem(USHORT which, SvStream & rStream):
     SfxEnumItemInterface(which)
@@ -185,8 +181,6 @@ void CntEnumItem::SetEnumValue(USHORT nTheValue)
 //  class CntBoolItem
 //
 //============================================================================
-
-DBG_NAME(CntBoolItem)
 
 //============================================================================
 TYPEINIT1_AUTOFACTORY(CntBoolItem, SfxPoolItem)
