@@ -187,7 +187,7 @@ void SfxEventConfiguration::RegisterEvent(USHORT nId, const String& rName)
 /*?*/               USHORT nEventId = (*pEvConfig->pEventArr)[n+1]->nEventId;
 /*?*/                 if ( nEventId == nId )
 /*?*/                 {
-/*?*/                   SvxMacro *pMacro = new SvxMacro( aInfo.GetQualifiedName(), aInfo.GetBasicName(), STARBASIC );
+/*?*/                   SvxMacro *pMacro = new SvxMacro( String(), String(), STARBASIC );
 /*?*/                   aLocalMacroTable.Insert( nEventId, pMacro );
 /*?*/                     break;
 /*?*/                 }
@@ -228,15 +228,11 @@ void SfxEventConfiguration::RegisterEvent(USHORT nId, const String& rName)
 /*N*/     pEvConfig->PropagateEvents_Impl( pObjShell, aMacroTable );
 /*N*/ }
 
-/*?*/ int SfxEventConfigItem_Impl::Load( SotStorage& /*rStorage*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
-
-//==========================================================================
-
-/*N*/ SfxEventConfigItem_Impl::~SfxEventConfigItem_Impl()
-/*N*/ {
-/*N*/ }
+int SfxEventConfigItem_Impl::Load( SotStorage& /*rStorage*/ )
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return 0;
+}
 
 //==========================================================================
 

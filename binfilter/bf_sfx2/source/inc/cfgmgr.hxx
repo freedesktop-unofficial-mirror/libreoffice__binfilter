@@ -44,7 +44,6 @@ private:
     SfxObjectShell* pObjShell;
     SfxConfigItemArr_Impl* pItemArr;
     USHORT          nErrno;
-    BOOL            bModified;
 
                     // to prevent from using
                     SfxConfigManager( const SfxConfigManager& );
@@ -82,15 +81,8 @@ public:
                     { return nErrno; }
 
     BOOL            LoadConfigItem( SfxConfigItem& );
-    BOOL            StoreConfigItem( SfxConfigItem& );
     BOOL            StoreAlwaysConfigItem( SfxConfigItem& );
 
-                    // Reload all items using a special stream
-    void            ReInitialize( const String& rStreamName );
-
-    void            SetModified(BOOL);
-    BOOL            IsModified()
-                    { return bModified; }
     SfxObjectShell* GetObjectShell() const
                     { return pObjShell; }
 };

@@ -78,137 +78,43 @@ namespace binfilter {
 /*N*/ };
 
 
-
-
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Das Environment wird im <SfxFrameObject::InPlaceActivate()> angelegt.
-    Durch die Verbindung mit dem Container Environment kann "uber die
-    UI-Tools und Fenster verhandelt werden.
-
-    [Querverweise]
-
-    <SvInPlaceEnvironment>, <SvContainerEnvironment>
-*/
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Die angelegten Fenster werden zerst"ort.
-*/
-
-
 //=========================================================================
 //============== SfxFrameObject ===========================================
 //=========================================================================
-/*N*/ SO2_IMPL_BASIC_CLASS1_DLL( SfxFrameObject, SvFactory, SvInPlaceObject,
-/*N*/             SvGlobalName( BF_SO3_IFRAME_CLASSID ) )
+SO2_IMPL_BASIC_CLASS1_DLL(
+    SfxFrameObject,
+    SvFactory,
+    SvInPlaceObject,
+    SvGlobalName( BF_SO3_IFRAME_CLASSID )
+)
 
 //=========================================================================
-/*?*/ SfxFrameObject::SfxFrameObject()
-/*?*/   : pImpl( new SfxFrameObject_Impl )
-/*  [Beschreibung]
-
-    Konstruktor der Klasse SfxFrameObject. Die Verbliste und das
-    Format werden global initialisiert.
-*/
-/*?*/ {
-/*?*/ }
+SfxFrameObject::SfxFrameObject()
+    : pImpl( new SfxFrameObject_Impl )
+{
+}
 
 //=========================================================================
-/*?*/ SfxFrameObject::~SfxFrameObject()
-/*  [Beschreibung]
+SfxFrameObject::~SfxFrameObject()
+{
+    delete pImpl;
+}
 
-    Destruktor der Klasse SfxFrameObject.
-*/
-/*?*/ {
-/*?*/   delete pImpl;
-/*?*/ }
-
-/*N*/ BOOL SfxFrameObject::Load
-/*N*/ (
-/*N*/   SvStorage * /*pStor*/   /* Storage aus dem das Objekt geladen wird. */
-/*N*/ )
-/*  [Beschreibung]
-
-    Nach dem Konstruktor muss diese Methode oder InitNew gerufen werden,
-    um das Objekt zu initialisieren.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, das Objekt wurde geladen.
-                    FALSE, das Objekt wurde nicht geladen, es
-                    muss sofort freigegeben werden.
-
-    [Querverweise]
-
-    <SvPersist::Load>
-*/
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return FALSE;
-/*N*/ }
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Ab diesen Zeitpunkt, bis zum <SfxFrameObject::SaveCompleted>,
-    darf auf den Storage im Objekt nicht zugegriffen werden.
-
-    [Querverweise]
-
-    <SvPersist::HandsOff>
-*/
+BOOL SfxFrameObject::Load
+(
+    SvStorage* /*pStor*/
+)
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return FALSE;
+}
 
 //=========================================================================
 
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Da ein Applet immer aktiviert wird, es ein Link ist und er
-    keine UI-Tools braucht, muss dieser Status zur"uckgegeben werden.
-
-    [R"uckgabewert]
-
-    ULONG           Es wird immer  SVOBJ_MISCSTATUS_LINK,
-                    SVOBJ_MISCSTATUS_INSIDEOUT und
-                    SVOBJ_MISCSTATUS_ACTIVATEWHENVISIBLE zur"uckgegeben
-
-    [Querverweise]
-
-    <SvPseudoObject::GetMiscStatus()>
-*/
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Dieser Typ von Objekt ist immer ein Link.
-
-    [R"uckgabewert]
-
-    BOOL            Immer TRUE.
-
-    [Querverweise]
-
-    <SvPseudoObject::IsLink()>
-*/
-
-/*?*/ void SfxFrameObject::SetFrameDescriptor( const SfxFrameDescriptor * /*pD*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
-
-/*?*/ const SfxFrameDescriptor* SfxFrameObject::GetFrameDescriptor() const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*?*/ }
-
-
-
-/*N*/ SfxFrameObjectFactoryPtr* SfxFrameObject::GetFactoryPtr()
-/*N*/ {
-/*N*/   return SFX_APP()->Get_Impl()->pSfxFrameObjectFactoryPtr;
-/*N*/ }
+SfxFrameObjectFactoryPtr* SfxFrameObject::GetFactoryPtr()
+{
+    return SFX_APP()->Get_Impl()->pSfxFrameObjectFactoryPtr;
+}
 
 }
 

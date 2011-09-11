@@ -57,7 +57,6 @@ public:
                                          BOOL bWait = TRUE );
     virtual                 ~SfxProgress();
 
-    virtual void            SetText( const String& rText );
     virtual BOOL            SetState( ULONG nVal, ULONG nNewRange = 0 );
     ULONG                   GetState() const { return nVal; }
 

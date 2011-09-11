@@ -149,7 +149,6 @@ namespace binfilter {
 /*N*/         {
 /*N*/                 break;
 /*N*/             case DATA_AVAILABLE :
-/*?*/                 m_pMedium->DataAvailable_Impl();
 /*N*/                 break;
 /*N*/             case DONE :
 /*N*/                 m_pMedium->Done_Impl( xLockBytes->GetError() );
@@ -193,17 +192,15 @@ namespace binfilter {
 /*N*/         : m_xInter( xInteraction )
 /*N*/         {}
 /*N*/
-/*N*/     ~SfxMediumHandler_Impl();
+/*N*/     ~SfxMediumHandler_Impl() {};
 /*N*/ };
 
-/*N*/ SfxMediumHandler_Impl::~SfxMediumHandler_Impl()
-/*N*/ {
-/*N*/ }
-
-/*N*/ void SAL_CALL SfxMediumHandler_Impl::handle( const ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionRequest >& /*xRequest*/ )
-/*N*/         throw( ::com::sun::star::uno::RuntimeException )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+void SAL_CALL SfxMediumHandler_Impl::handle(
+    const ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionRequest >& /*xRequest*/
+) throw( ::com::sun::star::uno::RuntimeException )
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 /*?*/ String ConvertDateTime_Impl(const SfxStamp &rTime, const LocaleDataWrapper& rWrapper);
 
@@ -333,10 +330,6 @@ namespace binfilter {
 /*N*/         pImp->aDoneLink.ClearPendingCall();
 /*N*/         pImp->aDoneLink.Call( (void*) nError );
 /*N*/     }
-/*N*/ }
-
-/*N*/ void SfxMedium::DataAvailable_Impl()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SfxMedium::Cancel_Impl()
@@ -692,12 +685,6 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-/*N*/ sal_Bool SfxMedium::TryStorage()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
-
-
-//------------------------------------------------------------------
 /*N*/ SvStorage* SfxMedium::GetOutputStorage( BOOL bUCBStorage )
 /*N*/ {
 /*N*/     // if the medium was constructed with a SvStorage: use this one, not a temp. storage
@@ -887,7 +874,6 @@ namespace binfilter {
 /*?*/
 /*?*/                     String aTemp;
 /*?*/                     ::utl::LocalFileHelper::ConvertURLToPhysicalName( aTmpName, aTemp );
-/*?*/                     SetPhysicalName_Impl( aTemp );
 /*?*/
 /*?*/                     pImp->bIsTemp = sal_True;
 /*?*/                     GetItemSet()->Put( SfxBoolItem( SID_DOC_READONLY, sal_True ) );
@@ -954,12 +940,12 @@ namespace binfilter {
 /*N*/ {
 /*N*/     if( pImp->pTempFile && ( !eError || eError & ERRCODE_WARNING_MASK ) )
 /*N*/     {
-/*N*/         Reference < ::com::sun::star::ucb::XCommandEnvironment > xEnv;
+/*N*/       Reference < ::com::sun::star::ucb::XCommandEnvironment > xEnv;
 /*N*/       Reference< XOutputStream > rOutStream;
 /*N*/
 /*N*/       // in case an output stream is provided from outside and the URL is correct
 /*N*/       // commit to the stream
-/*N*/         if( aLogicName.CompareToAscii( "private:stream", 14 ) == COMPARE_EQUAL )
+/*N*/       if( aLogicName.CompareToAscii( "private:stream", 14 ) == COMPARE_EQUAL )
 /*N*/       {
 /*N*/           SFX_ITEMSET_ARG( pSet, pOutStreamItem, SfxUnoAnyItem, SID_OUTPUTSTREAM, sal_False);
 /*N*/           if( pOutStreamItem && ( pOutStreamItem->GetValue() >>= rOutStream ) )
@@ -994,7 +980,7 @@ namespace binfilter {
 /*N*/                   catch( Exception& )
 /*N*/                   {}
 /*N*/               }
-/*N*/               }
+/*N*/           }
 /*N*/           else
 /*N*/           {
 /*N*/               OSL_FAIL( "Illegal Output stream parameter!\n" );
@@ -1006,7 +992,7 @@ namespace binfilter {
 /*N*/
 /*N*/           return;
 /*N*/       }
-/*N*/ DBG_BF_ASSERT(0, "STRIP"); return;
+            return;
 /*?*/     }
 /*N*/ }
 
@@ -1420,11 +1406,6 @@ namespace binfilter {
 /*N*/ }
 
 //----------------------------------------------------------------
-/*N*/ void SfxMedium::SetPhysicalName_Impl( const String& /*rNameP*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-//------------------------------------------------------------------
 /*N*/ sal_Bool SfxMedium::IsTemporary() const
 /*N*/ {
 /*N*/     return pImp->bIsTemp;

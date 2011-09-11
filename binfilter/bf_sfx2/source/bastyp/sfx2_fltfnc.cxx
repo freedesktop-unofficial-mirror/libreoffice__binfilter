@@ -180,9 +180,11 @@ public:
 
 //----------------------------------------------------------------
 
-/*?*/ ULONG SfxFilterContainer::Execute( SfxMedium& /*rMedium*/, SfxFrame*& /*pFrame*/) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
+ULONG SfxFilterContainer::Execute( SfxMedium& /*rMedium*/, SfxFrame*& /*pFrame*/) const
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return 0;
+}
 
 //----------------------------------------------------------------
 
@@ -488,8 +490,6 @@ void SfxFilterMatcher::AddContainer( SfxFilterContainer* pC )
 /*?*/               if ( aMime.EqualsAscii(CONTENT_TYPE_STR_X_CNT_HTTPFILE) )
 /*?*/                   // FilterDetection nur "uber den Content
 /*?*/                   return ERRCODE_NONE;
-/*?*/               else
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/
 /*?*/               if ( pFilter && aMime.EqualsAscii(CONTENT_TYPE_STR_APP_OCTSTREAM) )
 /*?*/               {
@@ -678,21 +678,12 @@ if( nErr == 1 || nErr == USHRT_MAX || nErr == ULONG_MAX )       \
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   // Jetzt einmal drueberiterieren und nur die perfekten Filter nehmen
-/*N*/   if( !pFilter )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   // Letzte Moeglichkeit ist die Befragung aller ObjectFactories.
 /*N*/   if( !pFilter )
 /*N*/   {
 /*N*/       // Achtung: hier k"onnte auch asynchron detected werden!
 /*?*/       if ( !rMedium.IsDownloadDone_Impl() )
 /*?*/           return ERRCODE_IO_PENDING;
-/*?*/
-/*?*/ //DV !!!! don't close InStream when using the new Medium
-/*?*/ //rMedium.CloseInStream();
-/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   *ppFilter = pFilter;

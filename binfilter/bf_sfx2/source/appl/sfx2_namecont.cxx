@@ -333,8 +333,7 @@ namespace SfxContainer_Impl
 /*?*/             sal_Bool bOldStorage = SotStorage::IsOLEStorage( aInitFileName );
 /*?*/             if( bOldStorage )
 /*?*/             {
-/*?*/                 meInitMode = OLD_BASIC_STORAGE;
-/*?*/                 importFromOldStorage( aInitFileName );
+/*?*/               meInitMode = OLD_BASIC_STORAGE;
 /*?*/               return sal_True;
 /*?*/             }
 /*?*/             else
@@ -718,23 +717,6 @@ namespace SfxContainer_Impl
 /*N*/   SfxLibrary_Impl* pImplLib = static_cast< SfxLibrary_Impl* >( xNameAccess.get() );
 /*N*/     return pImplLib;
 /*N*/ }
-
-
-// Storing with password encryption
-
-// Empty implementation, avoids unneccesary implementation in dlgcont.cxx
-/*?*/ sal_Bool SfxLibraryContainer_Impl::implStorePasswordLibrary( SfxLibrary_Impl* /*pLib*/,
-/*?*/     const OUString& /*aName*/, SotStorageRef /*xStorage*/ )
-/*?*/ {
-/*?*/     return sal_False;
-/*?*/ }
-
-/*?*/ sal_Bool SfxLibraryContainer_Impl::implLoadPasswordLibrary
-/*?*/     ( SfxLibrary_Impl* /*pLib*/, const OUString& /*Name*/, sal_Bool /*bVerifyPasswordOnly*/ )
-/*?*/         throw(WrappedTargetException, RuntimeException)
-/*?*/ {
-/*?*/     return sal_True;
-/*?*/ }
 
 
 #define EXPAND_PROTOCOL "vnd.sun.star.expand"
@@ -1159,10 +1141,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
                 if( bComplete )
                     loadLibrary( rLib.aName );
 
-                if( pImplLib->mbPasswordProtected )
-                    implStorePasswordLibrary( pImplLib, rLib.aName, xLibraryStor );
-                    // TODO: Check return value
-                else
+                if( !pImplLib->mbPasswordProtected )
                     implStoreLibrary( pImplLib, rLib.aName, xLibraryStor );
 
                 implStoreLibraryIndexFile( pImplLib, rLib, xLibraryStor );
@@ -1375,10 +1354,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*N*/   if( !bLoaded && xNameAccess->hasElements() )
 /*N*/   {
 /*N*/         if( pImplLib->mbPasswordProtected )
-/*N*/         {
-/*N*/             implLoadPasswordLibrary( pImplLib, Name );
 /*N*/             return;
-/*N*/         }
 /*N*/
 /*N*/       sal_Bool bLink = pImplLib->mbLink;
 /*N*/       sal_Bool bStorage = mxStorage.Is() && !bLink;
@@ -1505,11 +1481,14 @@ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryReadOnly( const OUString& N
 /*?*/ { return sal_False;
 /*?*/ }
 
-/*?*/ void SAL_CALL SfxLibraryContainer_Impl::changeLibraryPassword( const OUString& /*Name*/,
-/*?*/     const OUString& /*OldPassword*/, const OUString& /*NewPassword*/ )
-/*?*/         throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {
-/*?*/ }
+void SAL_CALL SfxLibraryContainer_Impl::changeLibraryPassword(
+    const OUString& /*Name*/,
+    const OUString& /*OldPassword*/,
+    const OUString& /*NewPassword*/
+) throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 // Methods XContainer
 /*N*/ void SAL_CALL SfxLibraryContainer_Impl::addContainerListener( const Reference< XContainerListener >& xListener )

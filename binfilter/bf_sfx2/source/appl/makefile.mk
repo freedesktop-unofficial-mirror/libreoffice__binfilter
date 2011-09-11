@@ -1,7 +1,7 @@
 #*************************************************************************
 #
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
-# 
+#
 # Copyright 2000, 2010 Oracle and/or its affiliates.
 #
 # OpenOffice.org - a multi-platform office productivity suite
@@ -61,12 +61,11 @@ SLOFILES =  \
     $(SLO)$/sfx2_appdata.obj \
     $(SLO)$/sfx2_app.obj \
     $(SLO)$/sfx2_appbas.obj \
-    $(SLO)$/sfx2_appdde.obj \
     $(SLO)$/sfx2_module.obj \
     $(SLO)$/sfx2_dlgcont.obj \
     $(SLO)$/sfx2_namecont.obj \
     $(SLO)$/sfx2_scriptcont.obj \
-    $(SLO)$/sfx2_imestatuswindow.obj 
+    $(SLO)$/sfx2_imestatuswindow.obj
 
 .IF "$(GUI)"=="WNT"
 SLOFILES += \
@@ -78,7 +77,7 @@ EXCEPTIONSFILES=\
     $(SLO)$/sfx2_appmain.obj			\
     $(SLO)$/sfx2_appmisc.obj			\
     $(SLO)$/sfx2_appinit.obj			\
-    $(SLO)$/sfx2_appcfg.obj			
+    $(SLO)$/sfx2_appcfg.obj
 
 # --- Targets -------------------------------------------------------
 

@@ -246,13 +246,13 @@ DECL_PTRHINT(/*empty*/, SfxDocumentInfoHint, SfxDocumentInfo);
 class SfxDocumentInfoItem : public SfxStringItem
 {
 private:
-    SfxDocumentInfo         aDocInfo;
+    SfxDocumentInfo     aDocInfo;
     bool                bHasTemplate;
     bool                bOwnFormat;
 
 public:
     TYPEINFO();
-    SfxDocumentInfoItem();
+    SfxDocumentInfoItem() : SfxStringItem() {}
 };
 
 }//end of namespace binfilter

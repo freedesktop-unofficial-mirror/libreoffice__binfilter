@@ -237,18 +237,9 @@ protected:
 
     virtual ::com::sun::star::uno::Any SAL_CALL importLibraryElement
         ( const ::rtl::OUString& aFile, SotStorageStreamRef xElementStream ) = 0;
-    virtual void SAL_CALL importFromOldStorage( const ::rtl::OUString& aFile ) = 0;
 
     void implStoreLibrary( SfxLibrary_Impl* pLib,
         const ::rtl::OUString& aName, SotStorageRef xStorage );
-
-    // Password encryption
-    virtual sal_Bool implStorePasswordLibrary( SfxLibrary_Impl* pLib, const ::rtl::OUString& aName,
-        SotStorageRef xStorage );
-    virtual sal_Bool implLoadPasswordLibrary( SfxLibrary_Impl* pLib, const ::rtl::OUString& Name,
-        sal_Bool bVerifyPasswordOnly=false )
-            throw(::com::sun::star::lang::WrappedTargetException,
-                  ::com::sun::star::uno::RuntimeException);
 
     // #56666, Creates another library container
     //         instance of the same derived class

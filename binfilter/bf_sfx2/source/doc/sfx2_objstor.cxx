@@ -298,7 +298,6 @@ sal_False           Das Objekt konnte nicht geladen werden
 
     pMedium = pMed;
     sal_Bool bOk = sal_False;
-    const SfxFilter* pFilter = pMed->GetFilter();
     SfxItemSet* pSet = pMedium->GetItemSet();
     if( !pImp->nEventId )
     {
@@ -335,16 +334,6 @@ sal_False           Das Objekt konnte nicht geladen werden
 
     /*SfxApplication* pApp =*/ SFX_APP();
     pImp->nLoadedFlags = 0;
-    sal_Bool bHasStorage = !pFilter || ( pFilter->IsOwnFormat() && pFilter->UsesStorage() );
-    if ( !bHasStorage && pFilter && ( pFilter->GetFilterFlags() & SFX_FILTER_PACKED ) )
-    {
-        bHasStorage = pMed->TryStorage();
-        if ( bHasStorage )
-        {
-            String aLclName( pMed->GetPhysicalName() );
-            ::utl::LocalFileHelper::ConvertPhysicalNameToURL( aLclName, aBaseURL );
-        }
-    }
 
     if ( pMedium->GetFilter() )
     {

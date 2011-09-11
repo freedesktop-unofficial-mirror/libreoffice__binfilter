@@ -268,12 +268,6 @@ void SfxScriptLibraryContainer::setLibraryPassword(
 /*N*/ }
 
 
-/*?*/ void SAL_CALL SfxScriptLibraryContainer::importFromOldStorage( const ::rtl::OUString& /*aFile*/ )
-/*?*/ {
-            OSL_FAIL("Strip");
-/*?*/ }
-
-
 // Storing with password encryption
 
 // Methods XLibraryContainerPassword
@@ -314,43 +308,20 @@ sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryPasswordVerified( const OU
         else
         {
             pImplLib->maPassword = Password;
-            bSuccess = implLoadPasswordLibrary( pImplLib, Name, sal_True );
-            if( bSuccess )
-            {
-                // The library gets modified by verifiying the password, because other-
-                // wise for saving the storage would be copied and that doesn't work
-                // with mtg's storages when the password is verified
-                pImplLib->mbModified = sal_True;
-                pImplLib->mbPasswordVerified = sal_True;
-
-                // Reload library to get source
-                if( pImplLib->mbLoaded )
-                    implLoadPasswordLibrary( pImplLib, Name );
-            }
         }
         return bSuccess;
 /*?*/ }
 
-/*?*/ void SAL_CALL SfxScriptLibraryContainer::changeLibraryPassword( const OUString& /*Name*/,
-/*?*/     const OUString& /*OldPassword*/, const OUString& /*NewPassword*/ )
-/*?*/         throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
+void SAL_CALL SfxScriptLibraryContainer::changeLibraryPassword(
+    const OUString& /*Name*/,
+    const OUString& /*OldPassword*/,
+    const OUString& /*NewPassword*/
+) throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 
-
-
-// Impl methods
-/*?*/ sal_Bool SfxScriptLibraryContainer::implStorePasswordLibrary( SfxLibrary_Impl* /*pLib*/,
-/*?*/     const ::rtl::OUString& /*aName*/, SotStorageRef /*xStorage*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*?*/ }
-
-/*?*/ sal_Bool SfxScriptLibraryContainer::implLoadPasswordLibrary
-/*?*/     ( SfxLibrary_Impl* /*pLib*/, const OUString& /*Name*/, sal_Bool /*bVerifyPasswordOnly*/ )
-/*?*/         throw(WrappedTargetException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*?*/ }
 
 
 //============================================================================

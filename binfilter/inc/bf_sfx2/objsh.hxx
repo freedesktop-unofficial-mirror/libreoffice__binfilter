@@ -292,16 +292,6 @@ public:
     String                      GetTitle( sal_uInt16 nMaxLen = 0 ) const;
     void                        InvalidateName();   // Zuruecksetzen auf unbenannt
 
-    // DDE-Interface
-    virtual long                DdeExecute( const String& rCmd );
-    virtual long                DdeGetData( const String& rItem,
-                                            const String& rMimeType,
-                                        ::com::sun::star::uno::Any & rValue );
-    virtual long                DdeSetData( const String& rItem,
-                                            const String& rMimeType,
-                                const ::com::sun::star::uno::Any & rValue );
-    virtual ::binfilter::SvLinkSource* DdeCreateLinkSource( const String& rItem );
-
     // Contents
     virtual SfxStyleSheetBasePool*  GetStyleSheetPool();
     void                            SetStyleSheetPool( SfxStyleSheetBasePool *pPoolIn ) {

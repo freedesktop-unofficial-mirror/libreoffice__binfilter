@@ -360,8 +360,7 @@ void SwXMLTextParagraphExport::_collectTextEmbeddedAutoStyles(
         SfxFrameObjectRef xFrame( rOLEObj.GetOleRef() );
         OSL_ENSURE( xFrame.Is(), "wrong class id for frame" );
 
-        lcl_addFrameProperties( xFrame->GetFrameDescriptor(), aStates,
-               GetAutoFramePropMapper()->getPropertySetMapper() );
+        lcl_addFrameProperties( NULL, aStates, GetAutoFramePropMapper()->getPropertySetMapper() );
     }
 
     Add( XML_STYLE_FAMILY_TEXT_FRAME, rPropSet, aStates );
@@ -433,8 +432,7 @@ void SwXMLTextParagraphExport::_exportTextEmbedded(
     switch( nType )
     {
     case SV_EMBEDDED_FRAME:
-        lcl_addFrameProperties( xFrame->GetFrameDescriptor(), aStates,
-            GetAutoFramePropMapper()->getPropertySetMapper() );
+        lcl_addFrameProperties( NULL, aStates, GetAutoFramePropMapper()->getPropertySetMapper() );
         break;
     case SV_EMBEDDED_OUTPLACE:
         lcl_addOutplaceProperties( pInfo, aStates,
@@ -553,17 +551,6 @@ void SwXMLTextParagraphExport::_exportTextEmbedded(
         }
         break;
     case SV_EMBEDDED_FRAME:
-        {
-            // It's a floating frame!
-            const SfxFrameDescriptor *pDescriptor = xFrame->GetFrameDescriptor();
-
-            lcl_addURL( rLclExport, pDescriptor->GetURL().GetMainURL( INetURLObject::NO_DECODE ) );
-
-            const String &rName = pDescriptor->GetName();
-            if (rName.Len())
-                rLclExport.AddAttribute( XML_NAMESPACE_DRAW, XML_FRAME_NAME, rName );
-            eElementName = XML_FLOATING_FRAME;
-        }
         break;
     default:
         OSL_ENSURE( !this, "unknown object type! Base class should have been called!" );

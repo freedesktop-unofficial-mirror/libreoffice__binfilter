@@ -783,7 +783,7 @@ namespace binfilter {
 /*?*/     BasicManager *pMgr = GetBasicManager();
 /*?*/     if( pApp->GetName() == rBasic )
 /*?*/         pMgr = pApp->GetBasicManager();
-/*?*/     ErrCode nRet = SfxMacroConfig::Call( pVCtrl, rMacro, pMgr, pArgs, pRet );
+/*?*/     ErrCode nRet = 0;
 /*?*/     pApp->LeaveBasicCall();
 /*?*/     return nRet;
 /*N*/ }

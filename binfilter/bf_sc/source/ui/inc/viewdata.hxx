@@ -74,7 +74,6 @@ class ScEditEngineDefaulter;
 class EditView;
 class EditStatus;
 class Outliner;
-class SfxObjectShell;
 class ScPatternAttr;
 class ScRangeListRef;
 class ScExtDocOptions;

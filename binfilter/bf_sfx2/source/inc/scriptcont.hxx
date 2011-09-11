@@ -60,18 +60,9 @@ class SfxScriptLibraryContainer : public SfxLibraryContainer_Impl, public OldBas
         throw(::com::sun::star::uno::Exception);
     virtual ::com::sun::star::uno::Any SAL_CALL importLibraryElement
         ( const ::rtl::OUString& aFile, SotStorageStreamRef xElementStream );
-    virtual void SAL_CALL importFromOldStorage( const ::rtl::OUString& aFile );
 
     virtual SfxLibraryContainer_Impl* createInstanceImpl( void ){DBG_BF_ASSERT(0, "STRIP");return NULL;}
 
-
-    // Password encryption
-    virtual sal_Bool implStorePasswordLibrary( SfxLibrary_Impl* pLib, const ::rtl::OUString& aName,
-        SotStorageRef xStorage );
-    virtual sal_Bool implLoadPasswordLibrary( SfxLibrary_Impl* pLib, const ::rtl::OUString& Name,
-        sal_Bool bVerifyPasswordOnly=false )
-            throw(::com::sun::star::lang::WrappedTargetException,
-                  ::com::sun::star::uno::RuntimeException);
 
     // OldBasicPassword interface
     virtual void setLibraryPassword( const String& rLibraryName, const String& rPassword );

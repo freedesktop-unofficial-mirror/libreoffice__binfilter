@@ -49,7 +49,6 @@ class SfxMiscCfg : public ::utl::ConfigItem
 
 public:
     SfxMiscCfg( );
-    ~SfxMiscCfg( );
 
     virtual void            Notify( const ::com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames);
     virtual void            Commit();

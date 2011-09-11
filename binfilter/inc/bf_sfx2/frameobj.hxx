@@ -83,13 +83,6 @@ public:
                             SO2_DECL_BASIC_CLASS_DLL(SfxFrameObject, GetFactoryPtr())
 
                             SfxFrameObject();
-
-    void                    SetFrameDescriptor( const SfxFrameDescriptor*);
-    const SfxFrameDescriptor*
-                            GetFrameDescriptor() const;
-
-#if _SOLAR__PRIVATE
-#endif
 };
 
 inline SfxFrameObjectFactoryPtr::SfxFrameObjectFactoryPtr()

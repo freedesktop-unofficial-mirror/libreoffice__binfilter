@@ -142,16 +142,16 @@ SfxDialogLibraryContainer::SfxDialogLibraryContainer( void )
 /*?*/ }
 
 
-/*?*/ Any SAL_CALL SfxDialogLibraryContainer::importLibraryElement
-/*?*/   ( const OUString& /*aFile*/, SotStorageStreamRef /*xElementStream*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); Any aAny; return aAny;
-/*?*/ }
-
-/*?*/ void SAL_CALL SfxDialogLibraryContainer::importFromOldStorage( const ::rtl::OUString& /*aFile*/ )
-/*?*/ {
-/*?*/     // Nothing to do here, old dialogs cannot be imported
-/*?*/ }
-
+Any SAL_CALL SfxDialogLibraryContainer::importLibraryElement
+(
+    const OUString& /*aFile*/,
+    SotStorageStreamRef /*xElementStream*/
+)
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    Any aAny;
+    return aAny;
+}
 
 
 //============================================================================

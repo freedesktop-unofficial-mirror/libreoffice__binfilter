@@ -42,15 +42,6 @@ namespace binfilter {
 
 /*N*/ TYPEINIT1_AUTOFACTORY(SfxDocumentInfoItem, SfxStringItem);
 
-//------------------------------------------------------------------------
-
-/*?*/ SfxDocumentInfoItem::SfxDocumentInfoItem() :
-/*?*/
-/*?*/   SfxStringItem()
-/*?*/
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
-
 //========================================================================
 
 static const char pDocInfoSlot[] = "SfxDocumentInfo";
@@ -391,6 +382,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/       aTitle( rTitle ), aWord( rWord )
 /*N*/ {
 /*N*/ }
+
 //------------------------------------------------------------------------
 /*N*/ const SfxDocUserKey& SfxDocUserKey::operator=(const SfxDocUserKey &rCopy)
 /*N*/ {
@@ -398,6 +390,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   aWord = rCopy.aWord;
 /*N*/   return *this;
 /*N*/ }
+
 // SfxDocumentInfo -------------------------------------------------------
 
 /*N*/ sal_Bool TestValidity_Impl( const String& rString, sal_Bool bURL )

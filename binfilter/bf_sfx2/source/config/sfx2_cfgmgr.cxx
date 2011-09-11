@@ -64,7 +64,6 @@ static const char pStorageName[] = "Configurations";
 /*N*/ SfxConfigManager::SfxConfigManager( SotStorage* pStorage )
 /*N*/   : pObjShell( NULL )
 /*N*/   , nErrno( ERR_NO )
-/*N*/   , bModified( FALSE )
 /*N*/ {
 /*N*/   DBG_CTOR(SfxConfigManager, 0);
 /*N*/
@@ -102,7 +101,6 @@ static const char pStorageName[] = "Configurations";
 /*N*/ SfxConfigManager::SfxConfigManager( SfxObjectShell& rShell )
 /*N*/     : pObjShell( &rShell )
 /*N*/   , nErrno( ERR_NO )
-/*N*/   , bModified( FALSE )
 /*N*/ {
 /*N*/   DBG_CTOR(SfxConfigManager, 0);
 /*N*/
@@ -153,10 +151,6 @@ static const char pStorageName[] = "Configurations";
 /*N*/ }
 
 // ------------------------------------------------------------------------
-
-/*?*/ void SfxConfigManager::SetModified(BOOL /*bMod*/)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
 
 /*N*/ BOOL SfxConfigManager::HasConfiguration( SotStorage& rStorage )
 /*N*/ {
@@ -335,10 +329,6 @@ static const char pStorageName[] = "Configurations";
 /*N*/     OSL_FAIL("ItemType not registered!");
 /*N*/     return FALSE;
 /*N*/ }
-
-/*?*/ BOOL SfxConfigManager::StoreConfigItem( SfxConfigItem& /*rCItem*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE;
-/*?*/ }
 
 /*N*/ static const char pHeader[] = "Star Framework Config File";
 /*N*/ #define CFG_STREAM_BUFFER_SIZE  5000

@@ -88,7 +88,6 @@ public:
     virtual BOOL        Store(SotStorage& rStorage) = 0;
     virtual String      GetStreamName() const = 0;
     virtual void        UseDefault() = 0;
-    virtual BOOL        ReInitialize();
 
             void        SetDefault( BOOL bOn = TRUE );
             void        SetModified( BOOL bSet = TRUE );

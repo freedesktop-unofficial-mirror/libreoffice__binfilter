@@ -45,24 +45,28 @@ static SfxModuleArr_Impl* pModules=0;
 
 /*N*/ TYPEINIT1(SfxModule, SfxShell);
 
-/*?*/ BOOL SfxModule::QueryUnload()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*?*/ }
+BOOL SfxModule::QueryUnload()
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return FALSE;
+}
 
-/*?*/ SfxModule* SfxModule::Load()
-/*?*/ {
-/*?*/   return 0;
-/*?*/ }
+SfxModule* SfxModule::Load()
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return 0;
+}
 
-/*?*/ void SfxModule::Free()
-/*?*/ {
-/*?*/ }
+void SfxModule::Free()
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 
-/*N*/ ResMgr* SfxModule::GetResMgr()
-/*N*/ {
-/*N*/   return pResMgr;
-/*N*/ }
+ResMgr* SfxModule::GetResMgr()
+{
+    return pResMgr;
+}
 
 //====================================================================
 /*N*/ SfxModule::SfxModule( ResMgr* pMgrP, BOOL bDummyP,

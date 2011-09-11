@@ -564,7 +564,6 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertFloatingFrame(
 
     SfxFrameDescriptor *pFrameDesc = new SfxFrameDescriptor( 0 );
 
-    pFrameDesc->SetURL( ::binfilter::StaticBaseUrl::RelToAbs( rHRef ) );
     pFrameDesc->SetName( rName );
 
     ScrollingMode eScrollMode = ScrollingAuto;
@@ -638,8 +637,6 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertFloatingFrame(
     SfxFrameObjectRef pFrame = new SfxFrameObject();
     pFrame->DoInitNew( pStor );
 
-    pFrame->EnableSetModified( FALSE );
-    pFrame->SetFrameDescriptor( pFrameDesc );
     pFrame->EnableSetModified( TRUE );
 
     SwFrmFmt *pFrmFmt = pDoc->Insert( *pTxtCrsr->GetPaM(),

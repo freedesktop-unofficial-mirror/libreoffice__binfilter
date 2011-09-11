@@ -108,8 +108,6 @@ friend class SfxFrameSetDescriptor;
     SfxFrameSetDescriptor*  pParentFrameSet;    // Der Vater
     SfxFrameSetDescriptor*  pFrameSet;          // Wenn Kinder da sind, die
                                                 // Set-Daten dazu
-    INetURLObject           aURL;
-    INetURLObject           aActualURL;
     String                  aName;
     Size                    aMargin;
     long                    nWidth;
@@ -129,14 +127,6 @@ public:
                             SfxFrameDescriptor(SfxFrameSetDescriptor* pSet);
                             ~SfxFrameDescriptor();
 
-                            // Eigenschaften
-
-                            // FileName/URL
-    const INetURLObject&    GetURL() const
-                            { return aURL; }
-    void                    SetURL( const String& rURL );
-    const INetURLObject&    GetActualURL() const
-                            { return aActualURL; }
     void                    SetReadOnly( BOOL bSet ) { bReadOnly = bSet;}
     BOOL                    IsReadOnly(  ) const { return bReadOnly;}
 
@@ -212,9 +202,6 @@ public:
                                 if ( pSet )
                                     pSet->pParentFrame = this;
                             }
-
-                            // Kopie z.B. f"ur die Views
-    SfxFrameDescriptor*     Clone(SfxFrameSetDescriptor *pFrame=NULL, BOOL bWithIds = TRUE ) const;
 
 };
 

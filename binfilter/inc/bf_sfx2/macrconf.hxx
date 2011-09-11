@@ -63,22 +63,21 @@ friend SvStream& operator << (SvStream& rStream, const SfxMacroInfo& rInfo);
 
     SfxObjectShell*         pDocShell;          // nur noch wg. Kompatib. drin
     String*                 pHelpText;
-    sal_uInt16                  nRefCnt;
-    sal_Bool                    bAppBasic;
+    sal_uInt16              nRefCnt;
+    sal_Bool                bAppBasic;
     String                  aLibName;
     String                  aModuleName;
     String                  aMethodName;
-    sal_uInt16                  nSlotId;
+    sal_uInt16              nSlotId;
     SfxSlot*                pSlot;
 
 public:
     SfxMacroInfo(SfxObjectShell *pDoc=NULL);
     ~SfxMacroInfo();
-    sal_Bool operator==(const SfxMacroInfo& rOther) const;
+
     int Store (SvStream&);
-    String              GetQualifiedName() const;
-    String              GetBasicName() const;
-    sal_Bool                IsAppMacro() const
+
+    sal_Bool            IsAppMacro() const
                         { return bAppBasic; }
     const String&       GetModuleName() const
                         { return aModuleName; }
@@ -104,8 +103,6 @@ friend class SfxEventConfiguration;
 public:
                             ~SfxMacroConfig();
 
-    static ErrCode          Call( SbxObject*, const String&, BasicManager*,
-                                SbxArray *pArgs=NULL, SbxValue *pRet=NULL );
     static SbMethod*        GetMethod_Impl( const String&, BasicManager* );
 
 #if _SOLAR__PRIVATE

@@ -81,8 +81,6 @@ namespace binfilter {
 /*N*/   DBG_CTOR(SfxFrameDescriptor, 0);
 /*N*/
 /*N*/   pImp = new SfxFrameDescriptor_Impl;
-/*N*/   if ( pParentFrameSet )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 
 /*N*/ SfxFrameDescriptor::~SfxFrameDescriptor()
@@ -91,18 +89,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( pFrameSet )
 /*N*/       delete pFrameSet;
-/*N*/   if ( pParentFrameSet )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   delete pImp;
-/*N*/ }
-
-/*?*/ void SfxFrameDescriptor::SetURL( const String& /*rURL*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
-
-/*N*/ SfxFrameDescriptor* SfxFrameDescriptor::Clone(
-/*N*/   SfxFrameSetDescriptor * /*pSet*/, BOOL /*bWithIds*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 /*N*/ SfxFrameProperties&   SfxFrameProperties::operator =(
@@ -126,7 +113,7 @@ namespace binfilter {
 /*N*/   bIsRootSet = rProp.bIsRootSet;
 /*N*/   bIsInColSet = rProp.bIsInColSet;
 /*N*/   bHasBorderInherited = rProp.bHasBorderInherited;
-/*N*/   pFrame = rProp.pFrame->Clone();
+/*N*/   pFrame = NULL;
 /*N*/   return *this;
 /*N*/ }
 

@@ -151,7 +151,6 @@ public:
                             SfxEventConfigItem_Impl( USHORT,
                                 SfxEventConfiguration*,
                                 SfxObjectShell* pObjSh = NULL );
-                            ~SfxEventConfigItem_Impl();
 
     void                    Init( SfxConfigManager* );
     virtual int             Load(SotStorage&);

@@ -74,8 +74,6 @@ struct SfxProgress_Impl : public SfxCancellable
     SfxObjectShellRef       xObjSh;
 
                             SfxProgress_Impl( const String& );
-    void                    Enable_Impl( BOOL );
-
 };
 
 //========================================================================
@@ -91,7 +89,6 @@ struct SfxProgress_Impl : public SfxCancellable
 #define aTypeLibInfo aProgressTypeLibImpl
 
 //========================================================================
-//#if (_MSC_VER < 1300)
 inline ULONG Get10ThSec()
 {
 #if defined (MSC) && defined (WIN)
@@ -102,21 +99,6 @@ inline ULONG Get10ThSec()
 
     return n10Ticks / CLOCKS_PER_SEC;
 }
-//#else
-//extern ULONG Get10ThSec();
-//#endif
-// -----------------------------------------------------------------------
-
-/*N*/ void SfxProgress_Impl::Enable_Impl( BOOL /*bEnable*/ )
-/*N*/ {
-/*N*/   SfxObjectShell* pDoc = bAllDocs ? NULL : (SfxObjectShell*) xObjSh;
-/*N*/
-/*N*/   if ( pDoc )
-/*N*/   {
-/*N*/   }
-/*N*/   else
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/ }
 
 // -----------------------------------------------------------------------
 
@@ -178,8 +160,6 @@ inline ULONG Get10ThSec()
 /*N*/   pImp->pActiveProgress = GetActiveProgress( pObjSh );
 /*N*/   if ( pObjSh )
 /*N*/       pObjSh->SetProgress_Impl(this);
-/*N*/   else if( !pImp->pActiveProgress )
-/*?*/         {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   Resume();
 /*N*/ }
 
@@ -229,36 +209,14 @@ inline ULONG Get10ThSec()
 /*N*/   Suspend();
 /*N*/   if ( pImp->xObjSh.Is() )
 /*N*/       pImp->xObjSh->SetProgress_Impl(0);
-/*N*/   else
-/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/   if ( pImp->bLocked )
-/*N*/         pImp->Enable_Impl(TRUE);
 /*N*/ }
 
 // -----------------------------------------------------------------------
-
-/*?*/ void SfxProgress::SetText
-/*?*/ (
-/*?*/   const String&   /*rText*/   /*  neuer Text */
-/*?*/ )
-
-/*  [Beschreibung]
-
-    "Andert den Text, der links neben dem Fortschritts-Balken
-    angezeigt wird.
-*/
-
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ BOOL SfxProgress::SetState
-/*N*/ (
-/*N*/   ULONG   nNewVal,    /* neuer Wert f"ur die Fortschritts-Anzeige */
-/*N*/
-/*N*/   ULONG   nNewRange   /* neuer Maximalwert, 0 f"ur Beibehaltung des alten */
-/*N*/ )
+BOOL SfxProgress::SetState
+(
+    ULONG   nNewVal,    /* neuer Wert f"ur die Fortschritts-Anzeige */
+    ULONG   nNewRange   /* neuer Maximalwert, 0 f"ur Beibehaltung des alten */
+)
 /*  [Beschreibung]
 
     Setzen des aktuellen Status; nach einem zeitlichen Versatz

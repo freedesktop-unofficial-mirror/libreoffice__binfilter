@@ -62,7 +62,7 @@ class SfxFilterListener : public ::cppu::WeakImplHelper1< ::com::sun::star::util
     public:
               SfxFilterListener( const ::rtl::OUString&    sFactory   ,
                                        SfxFilterContainer* pContainer );
-             ~SfxFilterListener(                                      );
+             ~SfxFilterListener() {};
 
     // uno interface
     public:

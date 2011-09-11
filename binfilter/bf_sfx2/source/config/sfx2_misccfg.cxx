@@ -45,23 +45,17 @@ using namespace ::com::sun::star::uno;
 
 using ::rtl::OUString;
 
-#define C2U(cChar) OUString::createFromAscii(cChar)
 /*--------------------------------------------------------------------
      Beschreibung:
  --------------------------------------------------------------------*/
 /*N*/ SfxMiscCfg::SfxMiscCfg() :
-/*N*/   ConfigItem(C2U("Office.Common") ),
+/*N*/   ConfigItem(OUString::createFromAscii("Office.Common") ),
 /*N*/   bPaperSize(FALSE),
 /*N*/   bPaperOrientation (FALSE),
 /*N*/   bNotFound (FALSE),
 /*N*/   nYear2000( SvNumberFormatter::GetYear2000Default() )
 /*N*/ {
 /*N*/   Load();
-/*N*/ }
-
-
-/*N*/ SfxMiscCfg::~SfxMiscCfg()
-/*N*/ {
 /*N*/ }
 
 
@@ -72,12 +66,12 @@ using ::rtl::OUString;
 /*N*/   {
 /*N*/       static const char* aPropNames[] =
 /*N*/       {
-/*N*/               "Print/Warning/PaperSize",              //  0
-/*N*/               "Print/Warning/PaperOrientation",       //  1
-/*N*/               "Print/Warning/NotFound",               //  2
+/*N*/           "Print/Warning/PaperSize",              //  0
+/*N*/           "Print/Warning/PaperOrientation",       //  1
+/*N*/           "Print/Warning/NotFound",               //  2
 /*N*/           "DateFormat/TwoDigitYear",              //  3
 /*N*/       };
-/*N*/         const int nCount = 4;
+/*N*/       const int nCount = 4;
 /*N*/       aNames.realloc(nCount);
 /*N*/       OUString* pNames = aNames.getArray();
 /*N*/       for(int i = 0; i < nCount; i++)
@@ -102,10 +96,10 @@ using ::rtl::OUString;
 /*N*/           {
 /*N*/               switch(nProp)
 /*N*/               {
-/*N*/                   case  0: bPaperSize        = *(sal_Bool*)pValues[nProp].getValue(); break;      //"Print/Warning/PaperSize",
-/*N*/                     case  1: bPaperOrientation = *(sal_Bool*)pValues[nProp].getValue();  break;     //"Print/Warning/PaperOrientation",
-/*N*/                     case  2: bNotFound         = *(sal_Bool*)pValues[nProp].getValue()  ;  break;   //"Print/Warning/NotFound",
-/*N*/                   case  3: pValues[nProp] >>= nYear2000;break;                                    //"DateFormat/TwoDigitYear",
+/*N*/                   case  0: bPaperSize        = *(sal_Bool*)pValues[nProp].getValue(); break;   //"Print/Warning/PaperSize",
+/*N*/                   case  1: bPaperOrientation = *(sal_Bool*)pValues[nProp].getValue(); break;   //"Print/Warning/PaperOrientation",
+/*N*/                   case  2: bNotFound         = *(sal_Bool*)pValues[nProp].getValue(); break;   //"Print/Warning/NotFound",
+/*N*/                   case  3: pValues[nProp] >>= nYear2000; break;                                //"DateFormat/TwoDigitYear",
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -119,9 +113,10 @@ using ::rtl::OUString;
 /*?*/ }
 
 
-/*?*/ void SfxMiscCfg::Commit()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
+void SfxMiscCfg::Commit()
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 }
 

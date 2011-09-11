@@ -81,24 +81,6 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 
 //==========================================================================
 
-/*?*/ sal_Bool SfxMacroInfo::operator==(const SfxMacroInfo&) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*?*/ }
-
-//==========================================================================
-
-/*?*/ String SfxMacroInfo::GetQualifiedName() const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");return String();
-/*?*/ }
-
-//==========================================================================
-
-/*?*/ String SfxMacroInfo::GetBasicName() const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");return String();
-/*?*/ }
-
-//==========================================================================
-
 /*?*/ SvStream& operator >> (SvStream& rStream, SfxMacroInfo& rInfo)
 /*?*/ {
 /*?*/   sal_uInt16 nAppBasic, nFileVersion;
@@ -149,7 +131,6 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/   {
 /*?*/       rStream << nVersion
 /*?*/               << (sal_uInt16) rInfo.bAppBasic;
-/*?*/       rStream.WriteByteString(rInfo.GetBasicName(),RTL_TEXTENCODING_UTF8);
 /*?*/       rStream.WriteByteString(rInfo.aLibName,RTL_TEXTENCODING_UTF8);
 /*?*/       rStream.WriteByteString(rInfo.aModuleName,RTL_TEXTENCODING_UTF8);
 /*?*/       rStream.WriteByteString(rInfo.aMethodName,RTL_TEXTENCODING_UTF8);
@@ -176,10 +157,6 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/   delete pImp;
 /*?*/ }
 
-/*?*/ ErrCode SfxMacroConfig::Call(SbxObject*,
-/*?*/   const String&, BasicManager*, SbxArray *, SbxValue *)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -53,7 +53,6 @@ class SfxDialogLibraryContainer : public SfxLibraryContainer_Impl
         throw(::com::sun::star::uno::Exception);
     virtual ::com::sun::star::uno::Any SAL_CALL importLibraryElement
         ( const ::rtl::OUString& aFile, SotStorageStreamRef xElementStream );
-    virtual void SAL_CALL importFromOldStorage( const ::rtl::OUString& aFile );
 
     virtual SfxLibraryContainer_Impl* createInstanceImpl( void ){DBG_BF_ASSERT(0, "STRIP");return NULL;}
 

@@ -68,14 +68,11 @@ namespace binfilter {
 /*N*/ }
 
 // ----------------------------------------------------------------------
-/*N*/ BOOL SfxConfigItem::StoreConfig()
-/*N*/ {
-/*N*/   BOOL bRet = FALSE;
-/*N*/     if ( m_pCfgMgr && m_bModified )
-/*?*/         bRet = m_pCfgMgr->StoreConfigItem( *this );
-/*N*/   m_bModified = FALSE;
-/*N*/   return bRet;
-/*N*/ }
+BOOL SfxConfigItem::StoreConfig()
+{
+    m_bModified = FALSE;
+    return FALSE;;
+}
 
 // ------------------------------------------------------------------------
 /*N*/ void SfxConfigItem::SetDefault( BOOL bOn )
@@ -89,16 +86,8 @@ namespace binfilter {
 /*N*/ void SfxConfigItem::SetModified( BOOL bMod )
 /*N*/ {
 /*N*/     if ( m_bInitialized )
-/*N*/     {
 /*N*/         m_bModified = bMod;
-/*N*/         if ( bMod && m_pCfgMgr )
-/*?*/             m_pCfgMgr->SetModified( bMod );
-/*N*/     }
 /*N*/ }
-
-/*?*/ BOOL SfxConfigItem::ReInitialize()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*?*/ }
 
 /*?*/ String SfxConfigItem::GetStreamName( USHORT /*nType*/ )
 /*?*/ {

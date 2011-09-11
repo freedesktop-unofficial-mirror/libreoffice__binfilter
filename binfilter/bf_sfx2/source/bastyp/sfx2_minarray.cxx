@@ -151,12 +151,6 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*?*/ BOOL SfxPtrArr::Replace( void* /*aOldElem*/, void* /*aNewElem*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ void SfxPtrArr::Insert( USHORT nPos, void* rElem )
 /*N*/ {
 /*N*/   DBG_MEMTEST();

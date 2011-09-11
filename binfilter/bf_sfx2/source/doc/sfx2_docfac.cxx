@@ -249,7 +249,7 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 )
 /*N*/ }
 
 /*?*/ const SfxObjectFactory* SfxObjectFactory::GetFactory( const String& rFactoryURL )
-/*?*/ { // #dochnoetig# DBG_BF_ASSERT(0, "STRIP"); return 0;
+/*?*/ {
 /*N*/   const SfxObjectFactory* pFactory = 0;
 /*N*/   String aFact( rFactoryURL );
 /*N*/   String aPrefix( DEFINE_CONST_UNICODE( "private:factory/" ) );

@@ -199,9 +199,10 @@ using ::rtl::OUString;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvxSearchItem::~SvxSearchItem()
-/*N*/ {
-/*N*/ }
+SvxSearchItem::~SvxSearchItem()
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 // -----------------------------------------------------------------------
 /*N*/ SfxPoolItem* SvxSearchItem::Clone( SfxItemPool * /*pPool*/) const
@@ -257,22 +258,28 @@ using ::rtl::OUString;
 /*N*/   return SFX_ITEM_PRESENTATION_NONE;
 /*N*/ }
 
-/*N*/ void SvxSearchItem::Notify( const Sequence< OUString > & /*rPropertyNames*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+void SvxSearchItem::Notify( const Sequence< OUString > & /*rPropertyNames*/ )
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
-/*N*/ bool SvxSearchItem::QueryValue( ::com::sun::star::uno::Any& /*rVal*/, BYTE /*nMemberId*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return true;
-/*N*/ }
+bool SvxSearchItem::QueryValue( ::com::sun::star::uno::Any& /*rVal*/, BYTE /*nMemberId*/ ) const
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return true;
+}
 
 // -----------------------------------------------------------------------
 
-/*N*/ bool SvxSearchItem::PutValue( const ::com::sun::star::uno::Any& /*rVal*/, BYTE /*nMemberId*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return true;
-/*N*/ }
+bool SvxSearchItem::PutValue( const ::com::sun::star::uno::Any& /*rVal*/, BYTE /*nMemberId*/ )
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return true;
+}
 
 void SvxSearchItem::Commit()
 {
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
 }
 
 }

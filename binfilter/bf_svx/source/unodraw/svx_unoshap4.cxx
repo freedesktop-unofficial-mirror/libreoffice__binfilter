@@ -714,99 +714,7 @@ void SAL_CALL SvxFrameShape::setPropertyValue( const OUString& aPropertyName, co
     {
         if( pMap->nWID >= OWN_ATTR_FRAME_URL && pMap->nWID <= OWN_ATTR_FRAME_MARGIN_HEIGHT )
         {
-            SfxFrameObjectRef xFrame = SfxFrameObjectRef( ((SdrOle2Obj*)pObj)->GetObjRef() );
-            DBG_ASSERT( xFrame.Is(), "wrong ole object inside frame" );
-            if( !xFrame.Is() )
-                return;
-
-            SfxFrameDescriptor *pDescriptor = xFrame->GetFrameDescriptor()->Clone( NULL );
-            DBG_ASSERT( pDescriptor, "no descriptor for frame!" );
-            if( !pDescriptor )
-                return;
-
-            switch( pMap->nWID )
-            {
-                case OWN_ATTR_FRAME_URL:
-                    {
-                        OUString aURL;
-                        if( aValue >>= aURL )
-                        {
-                            const String aStrURL( aURL );
-                            pDescriptor->SetURL( aStrURL );
-                            xFrame->SetFrameDescriptor( pDescriptor );
-                            bOwn = sal_True;
-                        }
-                    }
-                    break;
-                case OWN_ATTR_FRAME_NAME:
-                    {
-                        OUString aName;
-                        if( aValue >>= aName )
-                        {
-                            const String aStrName( aName );
-                            pDescriptor->SetName( aStrName );
-                            xFrame->SetFrameDescriptor( pDescriptor );
-                            bOwn = sal_True;
-                        }
-                    }
-                    break;
-                case OWN_ATTR_FRAME_ISAUTOSCROLL:
-                    {
-                        sal_Bool bScroll = sal_False;;
-                        if( !aValue.hasValue() )
-                        {
-                            pDescriptor->SetScrollingMode( ScrollingAuto );
-                            xFrame->SetFrameDescriptor( pDescriptor );
-                            bOwn = sal_True;
-                        }
-                        else if( aValue >>= bScroll )
-                        {
-                            pDescriptor->SetScrollingMode( bScroll ? ScrollingYes : ScrollingNo );
-                            xFrame->SetFrameDescriptor( pDescriptor );
-                            bOwn = sal_True;
-                        }
-                    }
-                    break;
-                case OWN_ATTR_FRAME_ISBORDER:
-                    {
-                        sal_Bool bBorder = sal_False;
-                        if( aValue >>= bBorder )
-                        {
-                            pDescriptor->SetFrameBorder( bBorder );
-                            xFrame->SetFrameDescriptor( pDescriptor );
-                            bOwn = sal_True;
-                        }
-                    }
-                    break;
-
-                case OWN_ATTR_FRAME_MARGIN_WIDTH:
-                    {
-                        sal_Int32 nMargin = 0;
-                        if( aValue >>= nMargin )
-                        {
-                            const Size aNewMargin( nMargin, pDescriptor->GetMargin().Height() );
-                            pDescriptor->SetMargin( aNewMargin );
-                            xFrame->SetFrameDescriptor( pDescriptor );
-                            bOwn = sal_True;
-                        }
-                    }
-                    break;
-                case OWN_ATTR_FRAME_MARGIN_HEIGHT:
-                    {
-                        sal_Int32 nMargin = 0;
-                        if( aValue >>= nMargin )
-                        {
-                            const Size aNewMargin( pDescriptor->GetMargin().Width(), nMargin );
-                            pDescriptor->SetMargin( aNewMargin );
-                            xFrame->SetFrameDescriptor( pDescriptor );
-                            bOwn = sal_True;
-                        }
-                    }
-                    break;
-            }
-
-            if( !bOwn )
-                throw IllegalArgumentException();
+            return;
         }
     }
 
@@ -841,41 +749,8 @@ Any SAL_CALL SvxFrameShape::getPropertyValue( const OUString& PropertyName ) thr
     {
         if( pMap->nWID >= OWN_ATTR_FRAME_URL && pMap->nWID <= OWN_ATTR_FRAME_MARGIN_HEIGHT )
         {
-            SfxFrameObjectRef xFrame = SfxFrameObjectRef( ((SdrOle2Obj*)pObj)->GetObjRef() );
-            DBG_ASSERT( xFrame.Is(), "wrong ole object inside frame" );
-            if( !xFrame.Is() )
-            {
-                Any aLclAny;
-                return aLclAny;
-            }
-
-            const SfxFrameDescriptor *pDescriptor = xFrame->GetFrameDescriptor();
-            DBG_ASSERT( pDescriptor, "no descriptor for frame!" );
-
-            switch( pMap->nWID )
-            {
-                case OWN_ATTR_FRAME_URL:
-                    return makeAny( OUString( pDescriptor->GetURL().GetMainURL( INetURLObject::NO_DECODE ) ) );
-                case OWN_ATTR_FRAME_NAME:
-                    return makeAny( OUString( pDescriptor->GetName() ) );
-                case OWN_ATTR_FRAME_ISAUTOSCROLL:
-                    if( pDescriptor->GetScrollingMode() == ScrollingAuto )
-                    {
-                        Any aLclAny;
-                        return aLclAny;
-                    }
-                    else
-                    {
-                        return makeAny( (sal_Bool)(pDescriptor->GetScrollingMode() == ScrollingYes) );
-                    }
-                case OWN_ATTR_FRAME_ISBORDER:
-                    return makeAny( (sal_Bool)pDescriptor->IsFrameBorderOn() );
-                case OWN_ATTR_FRAME_MARGIN_WIDTH:
-                    return makeAny( (sal_Int32)pDescriptor->GetMargin().Width() );
-                case OWN_ATTR_FRAME_MARGIN_HEIGHT:
-                    return makeAny( (sal_Int32)pDescriptor->GetMargin().Height() );
-            }
-            throw IllegalArgumentException();
+            Any aLclAny;
+            return aLclAny;
         }
     }
 

@@ -240,7 +240,6 @@ public:
     SvStream*           GetOutStream();
 
     sal_Bool            Commit();
-    sal_Bool            TryStorage();
     sal_Bool            IsStorage();
     SvStorage*          GetStorage();
     SvStorage*          GetOutputStorage( BOOL bUCBStorage = FALSE );
@@ -294,9 +293,7 @@ public:
     sal_Bool            IsDownloadDone_Impl();
     void                ClearBackup_Impl();
     void                Done_Impl( ErrCode );
-    void                DataAvailable_Impl();
     void                Cancel_Impl();
-    void                SetPhysicalName_Impl(const String& rName);
 
     void                DoInternalBackup_Impl( const ::ucbhelper::Content& aOriginalContent,
                                                 const String& aPrefix,
