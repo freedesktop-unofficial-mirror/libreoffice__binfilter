@@ -38,7 +38,8 @@ namespace binfilter {
 
 typedef ::boost::unordered_map
 <
-    PropertySetInfoKey,
+    ::com::sun::star::uno::Reference<
+        ::com::sun::star::beans::XPropertySetInfo >,
     sal_Bool,
     PropertySetInfoHash,
     PropertySetInfoHash
