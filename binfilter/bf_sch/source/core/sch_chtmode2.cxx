@@ -509,9 +509,6 @@ enum ChartStyleV0
 
 /*N*/ SdrObjGroup* ChartModel::CreateChart(const Rectangle &rRect)
 /*N*/ {
-/*N*/   if( pDocShell )
-/*N*/       pDocShell->SetWaitCursor( TRUE );
-/*N*/
 /*N*/   Rectangle aRect( rRect );
 /*N*/   SdrObjGroup* pGroup;
 /*N*/
@@ -622,9 +619,6 @@ enum ChartStyleV0
 /*?*/           pGroup = Create2DColChart(aRect);
 /*?*/           break;
 /*N*/   }
-/*N*/
-/*N*/   if( pDocShell )
-/*N*/       pDocShell->SetWaitCursor( FALSE );
 /*N*/
 /*N*/   SdrPage* pPage=GetPage( 0 );
 /*N*/   SdrObject* pObj = GetObjWithId( CHOBJID_DIAGRAM_AREA, *pPage );

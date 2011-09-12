@@ -147,8 +147,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( SvInPlaceObject::Load( pStor ) )
 /*N*/   {
-/*N*/       // Spaeter mal Childs on demand
-/*N*/ //        if( LoadChilds() )
 /*N*/           return TRUE;
 /*N*/   }
 /*N*/   return FALSE;
@@ -184,11 +182,16 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-/*N*/ ErrCode SfxInPlaceObject::Verb( long /*nVerb*/, SvEmbeddedClient * /*pCaller*/,
-/*N*/                               Window * /*pWindow*/, const Rectangle* /*pRect*/)
-/*N*/ {
-         return FALSE;
-/*N*/ }
+ErrCode SfxInPlaceObject::Verb(
+    long /*nVerb*/,
+    SvEmbeddedClient * /*pCaller*/,
+    Window * /*pWindow*/,
+    const Rectangle* /*pRect*/
+)
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return FALSE;
+}
 
 //--------------------------------------------------------------------
 
@@ -206,21 +209,24 @@ namespace binfilter {
 
 //-------------------------------------------------------------------------
 
-/*N*/ void SfxInPlaceObject::InPlaceActivate( BOOL /*bActivate*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+void SfxInPlaceObject::InPlaceActivate( BOOL /*bActivate*/ )
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 //--------------------------------------------------------------------
 
-/*N*/ void SfxInPlaceObject::Embed( BOOL /*bEmbed*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+void SfxInPlaceObject::Embed( BOOL /*bEmbed*/ )
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 //--------------------------------------------------------------------
 
-/*N*/ void SfxInPlaceObject::DocumentNameChanged( const String & /*rDocName*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+void SfxInPlaceObject::DocumentNameChanged( const String & /*rDocName*/ )
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 //--------------------------------------------------------------------
 

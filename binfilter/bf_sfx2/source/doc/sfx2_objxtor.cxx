@@ -315,13 +315,6 @@ extern AsynchronLink* pPendingCloser;
 
 //--------------------------------------------------------------------
 
-/*N*/ SfxObjectShell* SfxObjectShell::Current()
-/*N*/ {
-/*N*/   return 0;
-/*N*/ }
-
-//------------------------------------------------------------------------
-
 /*N*/ struct BoolEnv_Impl
 /*N*/ {
 /*N*/   SfxObjectShell_Impl* pImp;
@@ -356,7 +349,6 @@ extern AsynchronLink* pPendingCloser;
 /*N*/
 /*N*/   SfxApplication *pSfxApp = SFX_APP();
 /*N*/   pSfxApp->NotifyEvent( SfxEventHint(SFX_EVENT_PREPARECLOSEDOC, this) );
-/*N*/   sal_Bool bClose = sal_False;
 /*N*/
 /*N*/   // ggf. hinweisen, da\s unter Fremdformat gespeichert
 /*N*/   if( pMedium )
@@ -365,11 +357,6 @@ extern AsynchronLink* pPendingCloser;
 /*N*/                        SfxBoolItem, SID_DOC_IGNOREINFORMATIONLOST, sal_False);
 /*N*/       if( pIgnoreInformationLost && pIgnoreInformationLost->GetValue() )
 /*N*/           bUI = sal_False;
-/*N*/   }
-/*N*/   if ( bUI && !bClose && IsInformationLost() )
-/*N*/   {
-/*N*/       // minimierte restoren
-/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   pImp->bPreparedForClose = sal_True;

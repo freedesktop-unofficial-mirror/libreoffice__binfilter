@@ -123,16 +123,6 @@ SdOptions* SdModule::GetSdOptions(DocumentType eDocType)
             pImpressOptions = new SdOptions( SDCFG_IMPRESS );
         pOptions = pImpressOptions;
     }
-    if( pOptions )
-     {
-         UINT16 nMetric = pOptions->GetMetric();
-         SdDrawDocShell* pDocSh = PTR_CAST( SdDrawDocShell, SfxObjectShell::Current() );
-         SdDrawDocument* pDoc = NULL;
-         if (pDocSh)
-            pDoc = pDocSh->GetDoc();
-        if( nMetric != 0xffff && pDoc && eDocType == pDoc->GetDocumentType() )
-            PutItem( SfxUInt16Item( SID_ATTR_METRIC, nMetric ) );
-    }
     return(pOptions);
 }
 

@@ -232,7 +232,7 @@ zugeordnet, bis SaveCompleted() durchlaufen ist.
 sal_Bool SfxObjectShell::DoLoad(
     const String& /*rFileName*/, StreamMode /*nStreamMode*/, StorageMode /*nStorageMode*/)
 {
-    DBG_BF_ASSERT(0, "STRIP");
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
     return sal_False;
 }
 
@@ -718,12 +718,6 @@ sal_Bool SfxObjectShell::SaveTo_Impl
         const SfxStringItem *pVersionItem = pSet ? (const SfxStringItem*)
             SfxRequest::GetItem( pSet, SID_DOCINFO_COMMENTS, sal_False, TYPE(SfxStringItem) ) : NULL;
 
-        if ( pVersionItem )
-        {DBG_BF_ASSERT(0, "STRIP");
-        }
-        else if ( pImp->bIsSaving )
-        {DBG_BF_ASSERT(0, "STRIP");
-        }
     }
     // SetModified must be enabled when SaveCompleted is called, otherwise the modified flag of child objects will not be cleared
     EnableSetModified( sal_True );
@@ -768,15 +762,6 @@ sal_Bool SfxObjectShell::SaveTo_Impl
                 DoHandsOff();
         }
 
-        if ( bOk && pMedium && ( rMedium.GetName() == pMedium->GetName() ) )
-        {
-            // before we overwrite the original file, we will make a backup if there is a demand for that
-            const sal_Bool bDoBackup = SvtSaveOptions().IsBackup();
-            if ( bDoBackup )
-            {{DBG_BF_ASSERT(0, "STRIP");}
-            }
-        }
-
         if ( bOk )
         {
             // transfer data to its destinated location
@@ -784,30 +769,6 @@ sal_Bool SfxObjectShell::SaveTo_Impl
             RegisterTransfer( rMedium );
             bOk = rMedium.Commit();
             EnableSetModified( sal_True );
-
-            if ( bOk )
-            {
-                // watch: if the document was successfully saved into an own format, no "SaveCompleted" was called,
-                // this must be done by the caller ( because they want to do different calls )
-                if( xNewTempRef.Is() && xNewTempRef != GetStorage() )
-                {
-                    // if the new object storage is a temporary one, because the target format is an alien format
-                    //SaveCompleted( xNewTempRef );
-                }
-            }
-            else
-            {
-                // if the storing process fails on medium commit step it means that
-                // the new medium should contain successfully written temporary representation
-                // of the document, so the docshell can just switch to new medium.
-                // it is reasonable in case an open document suddenly became unavailable.
-
-                OUString aOrigName = pMedium ? OUString(pMedium->GetName()) : OUString();
-                if ( aOrigName.getLength() && aOrigName.compareToAscii( "private:", 8 ) != COMPARE_EQUAL
-                    && !::utl::UCBContentHelper::Exists( aOrigName ) )
-                {DBG_BF_ASSERT(0, "STRIP");
-                }
-            }
         }
     }
 
@@ -1211,10 +1172,6 @@ sal_Bool DocSh::ConvertTo( SfxMedium &rMedium )
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   if ( GetMedium()->GetFilter() && ( GetMedium()->GetFilter()->GetFilterFlags() & SFX_FILTER_PACKED ) )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/     // Save the document ( first as temporary file, then transfer to the target URL by committing the medium )
 /*N*/     sal_Bool bOk = sal_False;
 /*N*/     if ( !pNewFile->GetErrorCode() && SaveTo_Impl( *pNewFile, NULL, sal_True ) )
@@ -1270,19 +1227,9 @@ sal_Bool DocSh::ConvertTo( SfxMedium &rMedium )
 /*N*/   else
 /*N*/   {
 /*?*/       ::binfilter::StaticBaseUrl::SetBaseURL( aOldURL );
-/*?*/         SetError( pNewFile->GetErrorCode() );
+/*?*/       SetError( pNewFile->GetErrorCode() );
 /*?*/
-/*?*/         // reconnect to the old storage
-/*?*/         if ( IsHandsOff() )
-/*?*/             {
-                    // was DoSaveCompleted( pMedium ) but return value is not checked;
-                  }
-/*?*/         else
-/*?*/             {
-                    // was DoSaveCompleted( (SvStorage*)0 ); but return value is not checked;
-                  }
-/*?*/
-/*?*/         DELETEZ( pNewFile );
+/*?*/       DELETEZ( pNewFile );
 /*N*/   }
 /*N*/
 /*N*/     if( !bOk )

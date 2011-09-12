@@ -197,7 +197,7 @@ public:
     static SfxObjectShell*      GetNext( const SfxObjectShell& rPrev,
                                          const TypeId* pType = 0,
                                          sal_Bool bOnlyVisible = sal_True );
-    static SfxObjectShell*      Current();
+
     static SfxObjectShell*      GetWorkingDocument();
 
     virtual void                Invalidate(USHORT nId = 0);
@@ -285,7 +285,6 @@ public:
     SfxObjectCreateMode         GetCreateMode() const { return eCreateMode; }
     virtual void                MemoryError();
     SfxProgress*                GetProgress() const;
-    void                        SetWaitCursor( BOOL bSet ) const;
 
     // Naming Interface
     void                        SetTitle( const String& rTitle );

@@ -445,8 +445,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/           if( bRet )
 /*N*/           {
-/*N*/               SetWaitCursor( TRUE );
-/*N*/
 /*N*/               // Pool und StyleSheet Pool laden
 /*N*/               String aStyleSheetsStr( SCH_STYLE_SHEET_NAME );
 /*N*/
@@ -564,8 +562,6 @@ using namespace ::com::sun::star;
 /*N*/                   pChDoc->SetChanged( FALSE );
 /*N*/                   pChDoc->NewOrLoadCompleted( DOC_LOADED );
 /*N*/               }
-/*N*/
-/*N*/               SetWaitCursor( FALSE );
 /*N*/           }
 /*N*/
 /*N*/           if( pProgress )

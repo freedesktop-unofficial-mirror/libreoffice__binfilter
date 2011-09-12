@@ -289,9 +289,6 @@ namespace binfilter {
 
 /*N*/ void SfxEvents_Impl::BlowUpMacro( const ANY& rEvent, ANY& rRet, SfxObjectShell* pDoc )
 /*N*/ {
-/*N*/   if ( !pDoc )
-/*N*/       pDoc = SfxObjectShell::Current();
-/*N*/
 /*N*/   SEQUENCE < PROPERTYVALUE > aInProps;
 /*N*/   SEQUENCE < PROPERTYVALUE > aOutProps(2);
 /*N*/
@@ -303,7 +300,7 @@ namespace binfilter {
 /*N*/   if ( !nCount )
 /*N*/       return;
 /*N*/
-/*N*/     OUSTRING aType;
+/*N*/   OUSTRING aType;
 /*N*/   OUSTRING aScript;
 /*N*/   OUSTRING aLibrary;
 /*N*/   OUSTRING aMacroName;
@@ -347,10 +344,6 @@ namespace binfilter {
 /*?*/                   OUSTRING aBasMgrName( INetURLObject::decode( aScript.copy( 8, nHashPos-8 ), INET_HEX_ESCAPE, INetURLObject::DECODE_WITH_CHARSET ) );
 /*?*/                   if ( aBasMgrName.compareToAscii(".") == 0 )
 /*?*/                       aLibrary = pDoc->GetTitle( SFX_TITLE_APINAME );
-/*
-                    else if ( aBasMgrName.getLength() )
-                        aLibrary = aBasMgrName;
- */
 /*?*/                   else
 /*?*/                       aLibrary = SFX_APP()->GetName();
 /*?*/

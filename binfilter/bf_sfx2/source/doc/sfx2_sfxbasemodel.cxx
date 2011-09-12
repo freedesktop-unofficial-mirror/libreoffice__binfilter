@@ -532,8 +532,7 @@ sal_Bool SAL_CALL SfxBaseModel::attachResource(    const    OUSTRING&           
         if ( m_pData->m_pObjectShell.Is() && !m_pData->m_pObjectShell->GetMedium() )
         {
             sal_Bool bEmb;
-            if ( ( rArgs[0].Value >>= bEmb ) && bEmb )
-                {DBG_BF_ASSERT(0, "STRIP");}
+            rArgs[0].Value >>= bEmb;
         }
 
         return sal_True;
@@ -858,17 +857,6 @@ void SAL_CALL SfxBaseModel::close( sal_Bool bDeliverOwnership ) throw (CLOSEVETO
     if (pContainer!=NULL)
     {
         ::cppu::OInterfaceIteratorHelper pCloseIterator(*pContainer);
-        while (pCloseIterator.hasMoreElements())
-        {
-            try
-            {
-                DBG_BF_ASSERT(0, "STRIP");
-            }
-            catch( uno::RuntimeException& )
-            {
-                pCloseIterator.remove();
-            }
-        }
     }
 
     m_pData->m_bClosed = sal_True;
@@ -901,10 +889,11 @@ void SAL_CALL SfxBaseModel::removeCloseListener( const REFERENCE< XCLOSELISTENER
 
 //  XPrintable
 //________________________________________________________________________________________________________
-/*?*/ void SAL_CALL SfxBaseModel::print(const SEQUENCE< PROPERTYVALUE >& /*rOptions*/)
-/*?*/         throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
+void SAL_CALL SfxBaseModel::print(const SEQUENCE< PROPERTYVALUE >& /*rOptions*/)
+    throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException)
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 //________________________________________________________________________________________________________
 //  XStorable
@@ -1107,7 +1096,7 @@ ANY SAL_CALL SfxBaseModel::getTransferData( const DATAFLAVOR& /*aFlavor*/ )
                 ::com::sun::star::io::IOException,
                 ::com::sun::star::uno::RuntimeException)
 {
-    DBG_BF_ASSERT(0, "STRIP");
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
     ANY aAny;
     return aAny;
 }
@@ -1116,7 +1105,7 @@ ANY SAL_CALL SfxBaseModel::getTransferData( const DATAFLAVOR& /*aFlavor*/ )
 SEQUENCE< DATAFLAVOR > SAL_CALL SfxBaseModel::getTransferDataFlavors()
         throw (::com::sun::star::uno::RuntimeException)
 {
-    DBG_BF_ASSERT(0, "STRIP");
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
     SEQUENCE< DATAFLAVOR > aDATAFLAVOR(0);
     return aDATAFLAVOR;
 }

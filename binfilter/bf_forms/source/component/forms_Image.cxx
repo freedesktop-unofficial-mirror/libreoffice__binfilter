@@ -716,13 +716,6 @@ void OImageModel::SetURL( const ::rtl::OUString& rURL )
 
         if( xModel.is() )
         {
-            SfxObjectShell *pTestObjSh = SfxObjectShell::Current();
-            if( pTestObjSh )
-            {
-                Reference< XModel >  xTestModel = pTestObjSh->GetModel();
-                if( xTestModel == xModel )
-                    pObjSh = pTestObjSh;
-            }
             if( !pObjSh )
             {
                 SfxObjectShell *pLclTestObjSh = SfxObjectShell::GetFirst();

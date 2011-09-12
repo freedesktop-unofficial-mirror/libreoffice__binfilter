@@ -571,9 +571,10 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-/*?*/ void SfxObjectShell::MemoryError()
-/*?*/ {
-/*?*/ }
+void SfxObjectShell::MemoryError()
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 //--------------------------------------------------------------------
 
@@ -627,12 +628,10 @@ namespace binfilter {
 
 //-------------------------------------------------------------------------
 
-/*N*/ void SfxObjectShell::PrepareReload( )
-/*  [Beschreibung ]
-    Wird vor dem Reload gerufen und gibt die Moeglichkeit,
-    etwaige Caches zu leeren. */
-/*N*/ {
-/*N*/ }
+void SfxObjectShell::PrepareReload( )
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 //-------------------------------------------------------------------------
 
@@ -847,14 +846,7 @@ namespace binfilter {
 /*?*/   else if( rKV.GetKey().CompareIgnoreCaseToAscii( "expires" ) == COMPARE_EQUAL )
 /*?*/   {
 /*?*/       DateTime aDateTime;
-/*?*/       if( INetRFC822Message::ParseDateField( rKV.GetValue(), aDateTime ) )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
-/*?*/       else
-/*?*/       {
-/*?*/ //            OSL_FAIL( "Schlechtes ::com::sun::star::util::DateTime fuer Expired" );
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
+/*?*/       INetRFC822Message::ParseDateField( rKV.GetValue(), aDateTime );
 /*?*/   }
 /*?*/   else if( rKV.GetKey().CompareIgnoreCaseToAscii( "content-type" ) == COMPARE_EQUAL )
 /*?*/   {
@@ -864,9 +856,7 @@ namespace binfilter {
 /*?*/
 /*?*/       if( INetContentTypes::parse( sContent, sType, sSubType, &aParameters ) )
 /*?*/       {
-/*?*/           const INetContentTypeParameter * pCharset = aParameters.find("charset");
-/*?*/           if (pCharset != 0)
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
+/*?*/           /* const INetContentTypeParameter * pCharset = */ aParameters.find("charset");
 /*?*/       }
 /*?*/   }
 /*?*/ }
@@ -913,10 +903,6 @@ namespace binfilter {
 /*N*/   return bPreview;
 /*N*/ }
 
-/*N*/ void SfxObjectShell::SetWaitCursor( BOOL /*bSet*/ ) const
-/*N*/ {
-/*N*/ }
-
 /*N*/ String SfxObjectShell::GetAPIName() const
 /*N*/ {
 /*N*/   INetURLObject aURL( GetMedium()->GetName() );
@@ -928,9 +914,10 @@ namespace binfilter {
 /*N*/     return aLclName;
 /*N*/ }
 
-/*N*/ void SfxObjectShell::Invalidate( USHORT /*nId*/ )
-/*N*/ {
-/*N*/ }
+void SfxObjectShell::Invalidate( USHORT /*nId*/ )
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 // nMacroMode == -1 : uninitialized
 // other values as in /com/sun/star/document/MacroExecMode.hxx

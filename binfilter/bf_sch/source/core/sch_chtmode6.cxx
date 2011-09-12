@@ -94,11 +94,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SchChartDocShell* pDocSh = (SchChartDocShell*) pDocShell;
 /*N*/
-/*N*/   if (!pDocSh)
-/*N*/   {
-/*?*/       pDocSh = PTR_CAST(SchChartDocShell, SfxObjectShell::Current());
-/*N*/   }
-/*N*/
 /*N*/   if (pDocSh)
 /*N*/   {
 /*N*/       SfxPrinter* pPrinter = pDocSh->GetPrinter();
