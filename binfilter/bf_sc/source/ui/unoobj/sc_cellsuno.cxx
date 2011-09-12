@@ -979,9 +979,8 @@ void ScHelperFunctions::FillTableBorder( table::TableBorder& rBorder,
 //! lcl_ApplyBorder nach docfunc verschieben!
 
 void ScHelperFunctions::ApplyBorder( ScDocShell* pDocShell, const ScRangeList& rRanges,
-                        const SvxBoxItem& rOuter, const SvxBoxInfoItem& rInner )
+                        const SvxBoxItem&, const SvxBoxInfoItem& )
 {
-    ScDocument* pDoc = pDocShell->GetDocument();
     ULONG nCount = rRanges.Count();
     ULONG i;
     for (i=0; i<nCount; i++)
@@ -992,9 +991,6 @@ void ScHelperFunctions::ApplyBorder( ScDocShell* pDocShell, const ScRangeList& r
         ScMarkData aMark;
         aMark.SetMarkArea( aRange );
         aMark.SelectTable( nTab, TRUE );
-
-        pDoc->ApplySelectionFrame( aMark, &rOuter, &rInner );
-        // RowHeight bei Umrandung alleine nicht noetig
     }
 
     for (i=0; i<nCount; i++)

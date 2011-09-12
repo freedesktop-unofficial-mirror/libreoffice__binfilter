@@ -2312,23 +2312,6 @@ void ScDocument::SetDirty( const ScRange& )
 /*N*/   }
 /*N*/ }
 
-
-
-
-
-
-
-
-void ScDocument::ApplySelectionFrame( const ScMarkData&,
-                                      const SvxBoxItem*,
-                                      const SvxBoxInfoItem* )
-{
-    DBG_BF_ASSERT(0, "STRIP");
-}
-
-
-
-
 /*N*/ void ScDocument::ApplySelectionPattern( const ScPatternAttr& rAttr, const ScMarkData& rMark )
 /*N*/ {
 /*N*/   const SfxItemSet* pSet = &rAttr.GetItemSet();

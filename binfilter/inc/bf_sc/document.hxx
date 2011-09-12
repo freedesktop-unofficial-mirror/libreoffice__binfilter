@@ -811,9 +811,6 @@ public:
     void            GetSelectionFrame( const ScMarkData& rMark,
                                        SvxBoxItem&      rLineOuter,
                                        SvxBoxInfoItem&  rLineInner );
-    void            ApplySelectionFrame( const ScMarkData& rMark,
-                                         const SvxBoxItem* pLineOuter,
-                                         const SvxBoxInfoItem* pLineInner );
 
     ULONG           AddCondFormat( const ScConditionalFormat& rNew );
     void            FindConditionalFormat( ULONG nKey, ScRangeList& rRanges );
