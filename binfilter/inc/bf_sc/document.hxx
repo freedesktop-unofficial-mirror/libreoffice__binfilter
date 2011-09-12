@@ -541,7 +541,6 @@ public:
 
     BOOL            GetMatrixFormulaRange( const ScAddress& rCellPos, ScRange& rMatrix );
 
-    BOOL            IsEmbedded() const;
     void            SnapVisArea( Rectangle& rRect ) const;          // 1/100 mm
 
     BOOL            ValidTabName( const String& rName ) const;

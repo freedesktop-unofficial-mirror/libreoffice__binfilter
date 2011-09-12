@@ -511,12 +511,6 @@ BOOL ScDocument::CreateQueryParam(USHORT, USHORT, USHORT, USHORT, USHORT nTab, S
 #define SC_STRTYPE_DBNAMES      3
 #define SC_STRTYPE_HEADERS      4
 
-
-/*N*/ BOOL ScDocument::IsEmbedded() const
-/*N*/ {
-/*N*/   return bIsEmbedded;
-/*N*/ }
-
 /*N*/ ScRange ScDocument::GetRange( USHORT nTab, const Rectangle& rMMRect )
 /*N*/ {
 /*N*/   ScTable* pTable = pTab[nTab];

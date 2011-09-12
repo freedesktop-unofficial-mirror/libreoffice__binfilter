@@ -596,11 +596,6 @@ SvtSaveOptions::~SvtSaveOptions()
     }
 }
 
-sal_Bool SvtSaveOptions::IsBackup() const
-{
-    return pImp->pSaveOpt->IsBackup();
-}
-
 sal_Bool SvtSaveOptions::IsSaveDocView() const
 {
     return pImp->pSaveOpt->IsSaveDocView();

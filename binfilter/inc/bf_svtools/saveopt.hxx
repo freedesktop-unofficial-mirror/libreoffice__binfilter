@@ -62,8 +62,6 @@ public:
                             SvtSaveOptions();
                             virtual ~SvtSaveOptions();
 
-    sal_Bool                IsBackup() const;
-
     sal_Bool                IsSaveDocView() const;
 
     sal_Bool                IsSaveRelINet() const;
