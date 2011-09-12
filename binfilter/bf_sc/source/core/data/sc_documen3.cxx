@@ -475,18 +475,6 @@ using namespace ::com::sun::star;
          }
 /*N*/ }
 
-//  Outline anpassen
-
-BOOL ScDocument::UpdateOutlineCol( USHORT, USHORT, USHORT nTab, BOOL )
-{
-    DBG_BF_ASSERT(0, "STRIP");
-    if ( nTab<=MAXTAB && pTab[nTab] )
-        return FALSE;
-
-    OSL_FAIL("missing tab");
-    return FALSE;
-}
-
 /*N*/ BOOL ScDocument::UpdateOutlineRow( USHORT nStartRow, USHORT nEndRow, USHORT nTab, BOOL bShow )
 /*N*/ {
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )

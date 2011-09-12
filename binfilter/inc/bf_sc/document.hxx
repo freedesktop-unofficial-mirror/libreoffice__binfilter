@@ -921,7 +921,6 @@ public:
     // nDefault is setted to one possition in the current row/col where the Default style is
     BOOL            GetColDefault( USHORT nTab, USHORT nCol, USHORT nLastRow, USHORT& nDefault);
 
-    BOOL            UpdateOutlineCol( USHORT nStartCol, USHORT nEndCol, USHORT nTab, BOOL bShow );
     BOOL            UpdateOutlineRow( USHORT nStartRow, USHORT nEndRow, USHORT nTab, BOOL bShow );
 
     ScPatternAttr*      GetDefPattern() const;
