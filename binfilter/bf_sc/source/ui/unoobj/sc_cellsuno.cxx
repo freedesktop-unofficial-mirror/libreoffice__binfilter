@@ -4984,31 +4984,8 @@ uno::Reference<sheet::XSheetFilterDescriptor> SAL_CALL ScCellRangeObj::createFil
         aParam.nRow2 = (USHORT)aDataAddress.EndRow;
         aParam.nTab  = aDataAddress.Sheet;
 
-        ScDocument* pDoc = pDocSh->GetDocument();
-        BOOL bOk = pDoc->CreateQueryParam(
-                            aRange.aStart.Col(), aRange.aStart.Row(),
-                            aRange.aEnd.Col(), aRange.aEnd.Row(),
-                            aRange.aStart.Tab(), aParam );
-        if ( bOk )
-        {
-            //  im FilterDescriptor sind die Fields innerhalb des Bereichs gezaehlt
-            USHORT nFieldStart = aParam.bByRow ? (USHORT)aDataAddress.StartColumn : (USHORT)aDataAddress.StartRow;
-            USHORT nCount = aParam.GetEntryCount();
-            for (USHORT i=0; i<nCount; i++)
-            {
-                ScQueryEntry& rEntry = aParam.GetEntry(i);
-                if (rEntry.bDoQuery && rEntry.nField >= nFieldStart)
-                    rEntry.nField -= nFieldStart;
-            }
-
-            pNew->SetParam( aParam );
-            return pNew;
-        }
-        else
-        {
-            delete pNew;
-            return NULL;        // ungueltig -> null
-        }
+        delete pNew;
+        return NULL;        // ungueltig -> null
     }
 
     OSL_FAIL("kein Dokument oder kein Bereich");

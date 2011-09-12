@@ -979,10 +979,6 @@ public:
 
     SvNumberFormatter*  GetFormatTable() const;
 
-    BOOL            CreateQueryParam( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
-                                        USHORT nTab, ScQueryParam& rQueryParam );
-
-
     SfxPrinter*     GetPrinter();
     void            SetPrinter( SfxPrinter* pNewPrinter );
 

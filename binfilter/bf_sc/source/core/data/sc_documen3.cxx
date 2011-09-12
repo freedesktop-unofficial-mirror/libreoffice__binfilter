@@ -484,16 +484,6 @@ using namespace ::com::sun::star;
 /*N*/   return FALSE;
 /*N*/ }
 
-BOOL ScDocument::CreateQueryParam(USHORT, USHORT, USHORT, USHORT, USHORT nTab, ScQueryParam&)
-{
-    DBG_BF_ASSERT(0, "STRIP");
-    if ( nTab<=MAXTAB && pTab[nTab] )
-        return FALSE;
-
-    OSL_FAIL("missing tab");
-    return FALSE;
-}
-
 //  Funktionen werden als 1 schon vom InputHandler eingefuegt
 #define SC_STRTYPE_NAMES        2
 #define SC_STRTYPE_DBNAMES      3

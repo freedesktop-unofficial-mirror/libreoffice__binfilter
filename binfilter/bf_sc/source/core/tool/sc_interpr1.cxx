@@ -4216,7 +4216,7 @@ void ScInterpreter::ScCountEmptyCells()
 #endif
 
 
-BOOL ScInterpreter::GetDBParams(USHORT& rTab, ScQueryParam& rParam,
+BOOL ScInterpreter::GetDBParams(USHORT& /*rTab*/, ScQueryParam& rParam,
         BOOL& rMissingField )
 {
     BOOL bRet = FALSE;
@@ -4301,7 +4301,6 @@ BOOL ScInterpreter::GetDBParams(USHORT& rTab, ScQueryParam& rParam,
 
         if (nGlobalError == 0)
         {
-            USHORT  nField = nDBCol1;
             BOOL    bFound = TRUE;
             if ( rMissingField )
                 ;   // special case
@@ -4309,8 +4308,6 @@ BOOL ScInterpreter::GetDBParams(USHORT& rTab, ScQueryParam& rParam,
             {
                 if ( nVal <= 0 || nVal > (nDBCol2 - nDBCol1 + 1) )
                     bFound = FALSE;
-                else
-                    nField = Min(nDBCol2, (USHORT)(nDBCol1 + (USHORT)nVal - 1));
             }
             else
             {
@@ -4325,7 +4322,6 @@ BOOL ScInterpreter::GetDBParams(USHORT& rTab, ScQueryParam& rParam,
                     if (!bFound)
                         aLook.IncCol();
                 }
-                nField = aLook.Col();
             }
             if (bFound)
             {
@@ -4340,34 +4336,6 @@ BOOL ScInterpreter::GetDBParams(USHORT& rTab, ScQueryParam& rParam,
                 rParam.bCaseSens = FALSE;
                 rParam.bRegExp = FALSE;
                 rParam.bDuplicate = TRUE;
-                if (pDok->CreateQueryParam(nQCol1, nQRow1, nQCol2, nQRow2, nQTab1, rParam))
-                {
-                    // An allowed missing field parameter sets the result field
-                    // to any of the query fields, just to be able to return
-                    // some cell from the iterator.
-                    if ( rMissingField )
-                        nField = rParam.GetEntry(0).nField;
-
-                    rParam.nCol1 = nField;
-                    rParam.nCol2 = nField;
-                    rTab = nDBTab1;
-                    bRet = TRUE;
-                    USHORT nCount = rParam.GetEntryCount();
-                    for ( USHORT i=0; i < nCount; i++ )
-                    {
-                        ScQueryEntry& rEntry = rParam.GetEntry(i);
-                        if ( rEntry.bDoQuery )
-                        {
-                            sal_uInt32 nIndex = 0;
-                            rEntry.bQueryByString = !pFormatter->IsNumberFormat(
-                                *rEntry.pStr, nIndex, rEntry.nVal );
-                            if ( rEntry.bQueryByString && !rParam.bRegExp )
-                                rParam.bRegExp = MayBeRegExp( *rEntry.pStr, pDok );
-                        }
-                        else
-                            break;  // for
-                    }
-                }
             }
         }
     }
