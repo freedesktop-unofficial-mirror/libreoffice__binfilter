@@ -37,7 +37,6 @@
 #include <com/sun/star/lang/XServiceName.hpp>
 #include <com/sun/star/lang/XSingleServiceFactory.hpp>
 #include <com/sun/star/reflection/XIdlClass.hpp>
-#include <com/sun/star/reflection/XIdlClassProvider.hpp>
 #include <com/sun/star/beans/XIntrospectionAccess.hpp>
 #include <com/sun/star/beans/XIntrospection.hpp>
 #include <com/sun/star/beans/MethodConcept.hpp>
@@ -462,8 +461,6 @@ public:
 /*N*/                                     bSkip = (
 /*N*/                                         IsTypeName( sName,
 /*N*/                                             getCppuType((uno::Reference<uno::XInterface>*)0) ) ||
-/*N*/                                         IsTypeName( sName,
-/*N*/                                             getCppuType((uno::Reference<reflection::XIdlClassProvider>*)0) ) ||
 /*N*/                                         IsTypeName( sName,
 /*N*/                                             getCppuType((uno::Reference<lang::XServiceName>*)0) ) ||
 /*N*/                                         IsTypeName( sName,

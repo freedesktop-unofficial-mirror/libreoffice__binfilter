@@ -60,7 +60,6 @@
 #include <com/sun/star/container/XHierarchicalNameAccess.hpp>
 #include <com/sun/star/reflection/XIdlArray.hpp>
 #include <com/sun/star/reflection/XIdlReflection.hpp>
-#include <com/sun/star/reflection/XIdlClassProvider.hpp>
 #include <com/sun/star/reflection/XTypeDescription.hpp>
 #include <com/sun/star/bridge/oleautomation/NamedArgument.hpp>
 #include <com/sun/star/bridge/oleautomation/Date.hpp>
@@ -1238,8 +1237,6 @@ String Impl_GetSupportedInterfaces( SbUnoObject* pUnoObj )
         // Interface aus dem Any besorgen
         const Reference< XInterface > x = *(Reference< XInterface >*)aToInspectObj.getValue();
 
-        // XIdlClassProvider-Interface ansprechen
-        Reference< XIdlClassProvider > xClassProvider( x, UNO_QUERY );
         Reference< XTypeProvider > xTypeProvider( x, UNO_QUERY );
 
         aRet.AssignAscii( "Supported interfaces by object " );
@@ -1272,11 +1269,6 @@ String Impl_GetSupportedInterfaces( SbUnoObject* pUnoObj )
                     aRet.AppendAscii( "\"\n*** Please check type library\n" );
                 }
             }
-        }
-        else if( xClassProvider.is() )
-        {
-
-            OSL_FAIL( "XClassProvider not supported in UNO3" );
         }
     }
     return aRet;
@@ -1950,27 +1942,6 @@ SbUnoObject::SbUnoObject( const String& aName_, const Any& aUnoObj_ )
     {
         // #70197 Interface geht immer durch Typ im Any
         bFatalError = FALSE;
-
-        // Nach XIdlClassProvider-Interface fragen
-        Reference< XIdlClassProvider > xClassProvider( x, UNO_QUERY );
-        if( xClassProvider.is() )
-        {
-            // #67173 Echten Klassen-Namen eintragen
-            if( aName_.Len() == 0 )
-            {
-                Sequence< Reference< XIdlClass > > szClasses = xClassProvider->getIdlClasses();
-                UINT32 nLen = szClasses.getLength();
-                if( nLen )
-                {
-                    const Reference< XIdlClass > xImplClass = szClasses.getConstArray()[ 0 ];
-                    if( xImplClass.is() )
-                    {
-                        aClassName_ = String( xImplClass->getName() );
-                        bSetClassName = TRUE;
-                    }
-                }
-            }
-        }
     }
     if( bSetClassName )
         SetClassName( aClassName_ );
