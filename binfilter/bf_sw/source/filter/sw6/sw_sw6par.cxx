@@ -3493,8 +3493,9 @@ size_t Sw6Layout::PutRest(String &rStr,sal_Char *pCtrl)
                 else
                 {
                     ByteString aTmp( &pCtrl[2], pCtrl[1] );
-                    aTmp.Convert( RTL_TEXTENCODING_IBM_850,
-                                    gsl_getSystemTextEncoding() );
+                    aTmp = rtl::OUStringToOString(
+                        rtl::OStringToOUString(aTmp, RTL_TEXTENCODING_IBM_850),
+                        osl_getThreadTextEncoding());
                     aTmp.EraseLeadingChars();
                     aTmp.EraseTrailingChars();
                     aTmp.Insert('}');            // Mache versteckten Text
@@ -3565,8 +3566,10 @@ size_t Sw6Layout::PutRest(String &rStr,sal_Char *pCtrl)
                              (*pCtrl>='a' && *pCtrl<='z') )
                     {
                         ByteString aFld(pCtrl,p-pCtrl);
-                        aFld.Convert( RTL_TEXTENCODING_IBM_850,
-                                        gsl_getSystemTextEncoding() );
+                        aFld = rtl::OUStringToOString(
+                            rtl::OStringToOUString(aFld,
+                                RTL_TEXTENCODING_IBM_850),
+                            osl_getThreadTextEncoding());
                         nRet=(size_t)(p-pCtrl)+2;
                         aFld.Insert((sal_Char)(p-pCtrl),0);
                         aFld.Insert('+',0);
