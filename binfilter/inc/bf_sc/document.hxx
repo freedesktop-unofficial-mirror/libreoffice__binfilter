@@ -709,9 +709,6 @@ public:
                                     USHORT& rEndCol, USHORT nEndRow );
 
 
-    void            GetNextPos( USHORT& rCol, USHORT& rRow, USHORT nTab, short nMovX, short nMovY,
-                                BOOL bMarked, BOOL bUnprotected, const ScMarkData& rMark );
-
     BOOL            GetNextMarkedCell( USHORT& rCol, USHORT& rRow, USHORT nTab,
                                         const ScMarkData& rMark );
 

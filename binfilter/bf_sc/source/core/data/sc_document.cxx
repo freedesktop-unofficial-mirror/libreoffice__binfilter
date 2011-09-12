@@ -2359,22 +2359,6 @@ void ScDocument::SetDirty( const ScRange& )
 /*N*/   return xPoolHelper->GetStylePool();
 /*N*/ }
 
-
-
-
-
-
-void ScDocument::GetNextPos( USHORT&, USHORT&, USHORT, short, short,
-                             BOOL, BOOL, const ScMarkData& )
-{
-    DBG_BF_ASSERT(0, "STRIP");
-}
-
-//
-//  Datei-Operationen
-//
-
-
 /*N*/ void ScDocument::UpdStlShtPtrsFrmNms()
 /*N*/ {
 /*N*/   ScPatternAttr::pDoc = this;
