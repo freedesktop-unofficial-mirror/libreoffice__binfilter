@@ -271,7 +271,7 @@ namespace binfilter {
 
 
 /*N*/ BOOL ScDBDocFunc::Sort( USHORT nTab, const ScSortParam& rSortParam,
-/*N*/                           BOOL bRecord, BOOL bPaint, BOOL bApi )
+/*N*/                           BOOL bRecord, BOOL bPaint, BOOL )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
@@ -629,7 +629,7 @@ namespace binfilter {
 
 
 /*N*/ BOOL ScDBDocFunc::DoSubTotals( USHORT nTab, const ScSubTotalParam& rParam,
-/*N*/                               const ScSortParam* /*pForceNewSort*/, BOOL bRecord, BOOL bApi )
+/*N*/                               const ScSortParam* /*pForceNewSort*/, BOOL bRecord, BOOL )
 /*N*/ {
 /*N*/   //! auch fuer ScDBFunc::DoSubTotals benutzen!
 /*N*/   //  dann bleibt aussen:
@@ -712,7 +712,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ BOOL ScDBDocFunc::DataPilotUpdate( ScDPObject* pOldObj, const ScDPObject* pNewObj,
-/*N*/                                       BOOL bRecord, BOOL bApi )
+/*N*/                                       BOOL bRecord, BOOL )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/   WaitObject aWait( rDocShell.GetDialogParent() );

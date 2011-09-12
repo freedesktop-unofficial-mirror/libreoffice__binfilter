@@ -95,8 +95,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( *this );
 /*N*/
-/*N*/   BOOL bWarn = FALSE;
-/*N*/
 /*N*/   USHORT nTabCount = aDocument.GetTableCount();
 /*N*/   USHORT nUseTab = MAXTAB+1;
 /*N*/   for (USHORT nTab=0; nTab<nTabCount && nUseTab>MAXTAB; nTab++)
@@ -108,8 +106,7 @@ namespace binfilter {
 /*N*/   if (nUseTab<=MAXTAB)        // nicht verwendet -> nichts zu tun
 /*N*/   {
 /*?*/       ScPrintFunc aPrintFunc( this, GetPrinter(), nUseTab );  //! ohne CountPages auskommen
-/*?*/       if (!aPrintFunc.UpdatePages())                          //  setzt Umbrueche auf allen Tabs
-/*?*/           bWarn = TRUE;
+/*?*/       aPrintFunc.UpdatePages();                          //  setzt Umbrueche auf allen Tabs
 /*?*/
 /*N*/   }
 /*N*/

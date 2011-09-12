@@ -477,7 +477,7 @@ using namespace ::com::sun::star;
 
 //  Outline anpassen
 
-BOOL ScDocument::UpdateOutlineCol( USHORT nStartCol, USHORT nEndCol, USHORT nTab, BOOL bShow )
+BOOL ScDocument::UpdateOutlineCol( USHORT, USHORT, USHORT nTab, BOOL )
 {
     DBG_BF_ASSERT(0, "STRIP");
     if ( nTab<=MAXTAB && pTab[nTab] )
@@ -496,7 +496,7 @@ BOOL ScDocument::UpdateOutlineCol( USHORT nStartCol, USHORT nEndCol, USHORT nTab
 /*N*/   return FALSE;
 /*N*/ }
 
-BOOL ScDocument::CreateQueryParam(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, USHORT nTab, ScQueryParam& rQueryParam)
+BOOL ScDocument::CreateQueryParam(USHORT, USHORT, USHORT, USHORT, USHORT nTab, ScQueryParam&)
 {
     DBG_BF_ASSERT(0, "STRIP");
     if ( nTab<=MAXTAB && pTab[nTab] )

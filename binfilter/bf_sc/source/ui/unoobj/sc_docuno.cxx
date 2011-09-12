@@ -1326,7 +1326,7 @@ void SAL_CALL ScTableSheetsObj::insertNewByName( const ::rtl::OUString& aName, s
         throw uno::RuntimeException();      // no other exceptions specified
 }
 
-void SAL_CALL ScTableSheetsObj::moveByName( const ::rtl::OUString& aName, sal_Int16 nDestination )
+void SAL_CALL ScTableSheetsObj::moveByName( const ::rtl::OUString& aName, sal_Int16 )
                                             throw(uno::RuntimeException)
 {
     SolarMutexGuard aGuard;

@@ -766,9 +766,9 @@ void SfxObjectShell::PrepareReload( )
 
 //-------------------------------------------------------------------------
 
-/*N*/ ErrCode SfxObjectShell::CallBasic( const String& rMacro,
-/*N*/   const String& rBasic, SbxObject* pVCtrl, SbxArray* pArgs,
-/*N*/   SbxValue* pRet )
+/*N*/ ErrCode SfxObjectShell::CallBasic( const String& /*rMacro*/,
+/*N*/   const String& rBasic, SbxObject* /*pVCtrl*/, SbxArray* /*pArgs*/,
+/*N*/   SbxValue* /*pRet*/ )
 /*N*/ {
 /*N*/     SfxApplication* pApp = SFX_APP();
 /*N*/     if( pApp->GetName() != rBasic )
@@ -778,13 +778,7 @@ void SfxObjectShell::PrepareReload( )
 /*N*/             return ERRCODE_IO_ACCESSDENIED;
 /*N*/     }
 /*?*/
-/*?*/     pApp->EnterBasicCall();
-/*?*/     BasicManager *pMgr = GetBasicManager();
-/*?*/     if( pApp->GetName() == rBasic )
-/*?*/         pMgr = pApp->GetBasicManager();
-/*?*/     ErrCode nRet = 0;
-/*?*/     pApp->LeaveBasicCall();
-/*?*/     return nRet;
+/*?*/     return 0;
 /*N*/ }
 
 } //namespace binfilter

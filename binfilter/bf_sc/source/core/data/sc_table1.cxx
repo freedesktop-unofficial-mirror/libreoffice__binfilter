@@ -502,7 +502,7 @@ extern BOOL bIsOlk, bOderSo;
 
 /*N*/ void ScTable::UpdateReference( UpdateRefMode eUpdateRefMode, USHORT nCol1, USHORT nRow1, USHORT nTab1,
 /*N*/                    USHORT nCol2, USHORT nRow2, USHORT nTab2, short nDx, short nDy, short nDz,
-/*N*/                    ScDocument* pUndoDoc, BOOL bIncludeDraw )
+/*N*/                    ScDocument* pUndoDoc, BOOL /*bIncludeDraw*/ )
 /*N*/ {
 /*N*/   USHORT i;
 /*N*/   USHORT iMax;

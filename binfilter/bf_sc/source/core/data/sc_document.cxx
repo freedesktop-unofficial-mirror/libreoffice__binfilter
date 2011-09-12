@@ -450,8 +450,7 @@ namespace binfilter {
 
 //  zusammenhaengender Bereich
 
-void ScDocument::GetDataArea( USHORT nTab, USHORT& rStartCol, USHORT& rStartRow,
-                              USHORT& rEndCol, USHORT& rEndRow, BOOL bIncludeOld )
+void ScDocument::GetDataArea( USHORT, USHORT&, USHORT&, USHORT&, USHORT&, BOOL )
 {
     DBG_BF_ASSERT(0, "STRIP");
 }
@@ -1191,7 +1190,7 @@ void ScDocument::GetDataArea( USHORT nTab, USHORT& rStartCol, USHORT& rStartRow,
 /*N*/ }
 
 
-void ScDocument::GetValue( USHORT nCol, USHORT nRow, USHORT nTab, double& rValue )
+void ScDocument::GetValue( USHORT, USHORT, USHORT, double& rValue )
 {
     DBG_BF_ASSERT(0, "STRIP");
     rValue = 0.0;
@@ -1344,7 +1343,7 @@ void ScDocument::GetValue( USHORT nCol, USHORT nRow, USHORT nTab, double& rValue
 /*N*/ }
 
 
-void ScDocument::SetDirty( const ScRange& rRange )
+void ScDocument::SetDirty( const ScRange& )
 {
     DBG_BF_ASSERT(0, "STRIP");
 }
@@ -2320,9 +2319,9 @@ void ScDocument::SetDirty( const ScRange& rRange )
 
 
 
-void ScDocument::ApplySelectionFrame( const ScMarkData& rMark,
-                                      const SvxBoxItem* pLineOuter,
-                                      const SvxBoxInfoItem* pLineInner )
+void ScDocument::ApplySelectionFrame( const ScMarkData&,
+                                      const SvxBoxItem*,
+                                      const SvxBoxInfoItem* )
 {
     DBG_BF_ASSERT(0, "STRIP");
 }
@@ -2382,8 +2381,8 @@ void ScDocument::ApplySelectionFrame( const ScMarkData& rMark,
 
 
 
-void ScDocument::GetNextPos( USHORT& rCol, USHORT& rRow, USHORT nTab, short nMovX, short nMovY,
-                             BOOL bMarked, BOOL bUnprotected, const ScMarkData& rMark )
+void ScDocument::GetNextPos( USHORT&, USHORT&, USHORT, short, short,
+                             BOOL, BOOL, const ScMarkData& )
 {
     DBG_BF_ASSERT(0, "STRIP");
 }

@@ -347,7 +347,6 @@ sal_False           Das Objekt konnte nicht geladen werden
         SvStorageRef xStor( pMed->GetStorage() );
         if( pMed->GetLastStorageCreationState() == ERRCODE_NONE )
         {
-            DBG_ASSERT( pFilter, "No filter for storage found!" );
             if( xStor.Is() && !xStor->GetError() && pMed->GetFilter() && pMed->GetFilter()->GetVersion() < SOFFICE_FILEFORMAT_60 )
             {
                 // Undoobjekte aufraeumen, muss vor dem eigentlichen Laden erfolgen
@@ -644,7 +643,7 @@ void Lock_Impl( SfxObjectShell* /*pDoc*/, BOOL /*bLock*/ )
 sal_Bool SfxObjectShell::SaveTo_Impl
 (
     SfxMedium &rMedium, // Medium, in das gespeichert werden soll
-    const SfxItemSet* pSet,
+    const SfxItemSet* /*pSet*/,
     BOOL bPrepareForDirectAccess
 )
 
@@ -713,11 +712,6 @@ sal_Bool SfxObjectShell::SaveTo_Impl
         else
             // save to target
             bOk = false;
-
-        // look for a "version" parameter
-        const SfxStringItem *pVersionItem = pSet ? (const SfxStringItem*)
-            SfxRequest::GetItem( pSet, SID_DOCINFO_COMMENTS, sal_False, TYPE(SfxStringItem) ) : NULL;
-
     }
     // SetModified must be enabled when SaveCompleted is called, otherwise the modified flag of child objects will not be cleared
     EnableSetModified( sal_True );

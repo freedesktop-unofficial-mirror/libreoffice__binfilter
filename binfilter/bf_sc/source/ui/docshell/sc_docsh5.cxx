@@ -268,13 +268,10 @@ namespace binfilter {
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           ScDBCollection* pUndoColl = NULL;
-/*N*/
 /*N*/           String aNewName;
 /*N*/           if (eMode==SC_DB_IMPORT)
 /*N*/           {
 /*N*/               aDocument.CompileDBFormula( TRUE );         // CreateFormulaString
-/*N*/               pUndoColl = new ScDBCollection( *pColl );   // Undo fuer Import1-Bereich
 /*N*/
 /*N*/               String aImport = ScGlobal::GetRscString( STR_DBNAME_IMPORT );
 /*N*/               long nCount = 0;

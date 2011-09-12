@@ -326,7 +326,7 @@ extern AsynchronLink* pPendingCloser;
 
 /*N*/ sal_uInt16 SfxObjectShell::PrepareClose
 /*N*/ (
-/*N*/   sal_Bool    bUI,        // sal_True: Dialoge etc. erlaubt, sal_False: silent-mode
+/*N*/   sal_Bool    /*bUI*/,  // sal_True: Dialoge etc. erlaubt, sal_False: silent-mode
 /*N*/   sal_Bool    /*bForBrowsing*/
 /*N*/ )
 /*N*/ {
@@ -349,15 +349,6 @@ extern AsynchronLink* pPendingCloser;
 /*N*/
 /*N*/   SfxApplication *pSfxApp = SFX_APP();
 /*N*/   pSfxApp->NotifyEvent( SfxEventHint(SFX_EVENT_PREPARECLOSEDOC, this) );
-/*N*/
-/*N*/   // ggf. hinweisen, da\s unter Fremdformat gespeichert
-/*N*/   if( pMedium )
-/*N*/   {
-/*N*/       SFX_ITEMSET_ARG( pMedium->GetItemSet(), pIgnoreInformationLost,
-/*N*/                        SfxBoolItem, SID_DOC_IGNOREINFORMATIONLOST, sal_False);
-/*N*/       if( pIgnoreInformationLost && pIgnoreInformationLost->GetValue() )
-/*N*/           bUI = sal_False;
-/*N*/   }
 /*N*/
 /*N*/   pImp->bPreparedForClose = sal_True;
 /*N*/   return sal_True;

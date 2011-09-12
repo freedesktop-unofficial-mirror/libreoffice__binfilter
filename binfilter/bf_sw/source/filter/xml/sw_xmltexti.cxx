@@ -542,7 +542,7 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertPlugin(
 }
 Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertFloatingFrame(
         const OUString& rName,
-        const OUString& rHRef,
+        const OUString& /*rHRef*/,
         const OUString& rStyleName,
         sal_Int32 nWidth, sal_Int32 nHeight )
 {

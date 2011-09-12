@@ -324,7 +324,7 @@ using namespace ::com::sun::star;
 //------------------------------------------------------------------------
 
 /*N*/ BOOL ScDocFunc::DeleteContents( const ScMarkData& rMark, USHORT nFlags,
-/*N*/                                   BOOL /*bRecord*/, BOOL bApi )
+/*N*/                                   BOOL /*bRecord*/, BOOL )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
@@ -358,14 +358,11 @@ using namespace ::com::sun::star;
 /*N*/       pDoc->ExtendMerge( aExtendedRange, TRUE );
 /*N*/
 /*N*/   // keine Objekte auf geschuetzten Tabellen
-/*N*/   BOOL bObjects = FALSE;
 /*N*/   if ( nFlags & IDF_OBJECTS )
 /*N*/   {
-/*N*/       bObjects = TRUE;
 /*N*/       USHORT nTabCount = pDoc->GetTableCount();
 /*N*/       for (USHORT nTab=0; nTab<nTabCount; nTab++)
-/*N*/           if (aMultiMark.GetTableSelect(nTab) && pDoc->IsTabProtected(nTab))
-/*N*/               bObjects = FALSE;
+/*N*/           aMultiMark.GetTableSelect(nTab);
 /*N*/   }
 /*N*/
 /*N*/   USHORT nExtFlags = 0;                       // Linien interessieren nur, wenn Attribute
@@ -644,7 +641,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL ScDocFunc::SetNoteText( const ScAddress& rPos, const String& rText, BOOL bApi )
+/*N*/ BOOL ScDocFunc::SetNoteText( const ScAddress& rPos, const String& rText, BOOL )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
@@ -684,7 +681,7 @@ using namespace ::com::sun::star;
 //------------------------------------------------------------------------
 
 /*N*/ BOOL ScDocFunc::ApplyAttributes( const ScMarkData& rMark, const ScPatternAttr& rPattern,
-/*N*/                                   BOOL /*bRecord*/, BOOL bApi )
+/*N*/                                   BOOL /*bRecord*/, BOOL )
 /*N*/ {
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/
@@ -727,7 +724,7 @@ using namespace ::com::sun::star;
 
 
 /*N*/ BOOL ScDocFunc::ApplyStyle( const ScMarkData& rMark, const String& rStyleName,
-/*N*/                                   BOOL /*bRecord*/, BOOL bApi )
+/*N*/                                   BOOL /*bRecord*/, BOOL )
 /*N*/ {
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/
@@ -766,7 +763,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL ScDocFunc::InsertTable( USHORT nTab, const String& rName, BOOL /*bRecord*/, BOOL bApi )
+/*N*/ BOOL ScDocFunc::InsertTable( USHORT nTab, const String& rName, BOOL /*bRecord*/, BOOL )
 /*N*/ {
 /*N*/   BOOL bSuccess = FALSE;
 /*N*/   WaitObject aWait( rDocShell.GetDialogParent() );
@@ -794,7 +791,7 @@ using namespace ::com::sun::star;
 /*N*/   return bSuccess;
 /*N*/ }
 
-/*N*/ BOOL ScDocFunc::SetTableVisible( USHORT nTab, BOOL bVisible, BOOL bApi )
+/*N*/ BOOL ScDocFunc::SetTableVisible( USHORT nTab, BOOL bVisible, BOOL )
 /*N*/ {
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/   if ( pDoc->IsVisible( nTab ) == bVisible )
@@ -836,7 +833,7 @@ using namespace ::com::sun::star;
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ BOOL ScDocFunc::RenameTable( USHORT nTab, const String& rName, BOOL /*bRecord*/, BOOL bApi )
+/*N*/ BOOL ScDocFunc::RenameTable( USHORT nTab, const String& rName, BOOL /*bRecord*/, BOOL )
 /*N*/ {
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/   if ( !pDoc->IsDocEditable() )
@@ -886,7 +883,7 @@ using namespace ::com::sun::star;
 
 /*N*/ BOOL ScDocFunc::SetWidthOrHeight( BOOL bWidth, USHORT nRangeCnt, USHORT* pRanges, USHORT nTab,
 /*N*/                                       ScSizeMode eMode, USHORT nSizeTwips,
-/*N*/                                       BOOL /*bRecord*/, BOOL bApi )
+/*N*/                                       BOOL /*bRecord*/, BOOL )
 /*N*/ {
 /*N*/   if (!nRangeCnt)
 /*N*/       return TRUE;
@@ -1116,7 +1113,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL ScDocFunc::ClearItems( const ScMarkData& rMark, const USHORT* /*pWhich*/, BOOL bApi )
+/*N*/ BOOL ScDocFunc::ClearItems( const ScMarkData& rMark, const USHORT* /*pWhich*/, BOOL )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
@@ -1139,7 +1136,7 @@ using namespace ::com::sun::star;
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ BOOL ScDocFunc::ChangeIndent( const ScMarkData& rMark, BOOL /*bIncrement*/, BOOL bApi )
+/*N*/ BOOL ScDocFunc::ChangeIndent( const ScMarkData& rMark, BOOL /*bIncrement*/, BOOL )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
@@ -1160,7 +1157,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*N*/ BOOL ScDocFunc::AutoFormat( const ScRange& rRange, const ScMarkData* pTabMark,
-/*N*/                           USHORT nFormatNo, BOOL /*bRecord*/, BOOL bApi )
+/*N*/                           USHORT nFormatNo, BOOL /*bRecord*/, BOOL )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
@@ -1229,7 +1226,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*N*/ BOOL ScDocFunc::EnterMatrix( const ScRange& rRange, const ScMarkData* pTabMark,
-/*N*/                               const String& rString, BOOL bApi, BOOL bEnglish )
+/*N*/                               const String& rString, BOOL , BOOL bEnglish )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
@@ -1296,7 +1293,7 @@ using namespace ::com::sun::star;
 /*N*/       return DIR_LEFT;
 /*N*/ }
 
-/*N*/ BOOL ScDocFunc::MergeCells( const ScRange& rRange, BOOL bContents, BOOL /*bRecord*/, BOOL bApi )
+/*N*/ BOOL ScDocFunc::MergeCells( const ScRange& rRange, BOOL bContents, BOOL /*bRecord*/, BOOL )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
@@ -1504,7 +1501,7 @@ using namespace ::com::sun::star;
 /*N*/   return bDone;
 /*N*/ }
 
-/*N*/ BOOL ScDocFunc::InsertNameList( const ScAddress& rStartPos, BOOL bApi )
+/*N*/ BOOL ScDocFunc::InsertNameList( const ScAddress& rStartPos, BOOL )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
