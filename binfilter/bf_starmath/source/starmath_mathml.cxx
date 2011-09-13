@@ -90,8 +90,6 @@ using namespace ::binfilter::xmloff::token;
 using ::rtl::OUString;
 using ::rtl::OUStringBuffer;
 
-#include "mathtype.hxx"
-
 #include <starmath.hrc>
 #include <parse.hxx>
 #include <legacysmgr/legacy_binfilters_smgr.hxx>

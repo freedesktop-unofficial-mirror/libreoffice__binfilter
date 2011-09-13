@@ -83,11 +83,6 @@ namespace binfilter {
 // SmRectCache
 //
 
-
-/*N*/ SmRectCache::Key::Key(const XubString & /*rText*/, const Font & /*rFont*/)
-/*N*/ {
-/*N*/ }
-
 /*N*/ SmRectCache::SmRectCache()
 /*N*/ {
 /*N*/   pVirDev = 0;
@@ -100,34 +95,17 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ const SmRect * SmRectCache::Search(const Key & /*rKey*/) const
-/*N*/ {
-/*N*/   return 0;
-/*N*/ }
-
-
-/*N*/ const SmRect * SmRectCache::Add(const Key & /*rKey*/, const SmRect & /*rRect*/)
-/*N*/ {
-/*N*/   return (const SmRect *)-1;
-/*N*/ }
-
-
 /*N*/ VirtualDevice * SmRectCache::GetVirDev()
 /*N*/ {
 /*N*/   if (!pVirDev)
 /*N*/   {
-             pVirDev = new VirtualDevice;
+            pVirDev = new VirtualDevice;
 /*N*/       pVirDev->SetMapMode( MapMode(MAP_100TH_MM) );
 /*N*/   }
 /*N*/   DBG_ASSERT(pVirDev->GetMapMode().GetMapUnit() == MAP_100TH_MM,
 /*N*/              "Sm : falscher MapMode");
 /*N*/
 /*N*/   return pVirDev;
-/*N*/ }
-
-
-/*N*/ void SmRectCache::Reset()
-/*N*/ {
 /*N*/ }
 
 
@@ -276,40 +254,12 @@ int GetTextEncodingTabIndex( const String &rTxt, xub_StrLen nPos )
 /**************************************************************************/
 /**************************************************************************/
 
-/*?*/ void * SmFontPickList::CreateItem(const String& /*rString*/)
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*?*/ }
-
-/*?*/ void * SmFontPickList::CreateItem(const void * /*pItem*/)
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*?*/ }
-
-/*?*/ void SmFontPickList::DestroyItem(void * /*pItem*/)
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
-
-/*?*/ BOOL SmFontPickList::CompareItem(const void * /*pFirstItem*/, const void * /*pSecondItem*/) const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*?*/ }
-
-/*?*/ String SmFontPickList::GetStringItem(void * /*pItem*/)
-/*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); String   aString; return aString;
-/*?*/ }
-
-/*?*/ void SmFontPickList::LoadItem(SvStream& /*rStream*/, void * /*pItem*/)
-/*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
-
-/*?*/ void SmFontPickList::SaveItem(SvStream& /*rStream*/, const void * /*pItem*/) const
-/*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
+String SmFontPickList::GetStringItem(void * /*pItem*/)
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    String aString;
+    return aString;
+}
 
 ////////////////////////////////////////
 

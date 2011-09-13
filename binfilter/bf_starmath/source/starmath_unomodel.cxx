@@ -525,15 +525,7 @@ void SmModel::_setPropertyValues(const PropertyMapEntry** ppEntries, const Any* 
                 if (pPrinter)
                 {
                     OUString sPrinterName;
-                    if (*pValues >>= sPrinterName )
-                    {
-                        SfxPrinter *pNewPrinter = new SfxPrinter ( pPrinter->GetOptions().Clone(), sPrinterName );
-                        if (pNewPrinter->IsKnown())
-                            pDocSh->SetPrinter ( pNewPrinter );
-                        else
-                            delete pNewPrinter;
-                    }
-                    else
+                    if ( !(*pValues >>= sPrinterName) )
                         throw IllegalArgumentException();
                 }
             }
@@ -559,9 +551,6 @@ void SmModel::_setPropertyValues(const PropertyMapEntry** ppEntries, const Any* 
                     SfxItemSet *pItemSet = new SfxItemSet( pDocSh->GetPool(), nRange );
                     SmModule *pp = SM_MOD1();
                     pp->GetConfig()->ConfigToItemSet(*pItemSet);
-                    SfxPrinter *pPrinter = SfxPrinter::Create ( aStream, pItemSet );
-
-                    pDocSh->SetPrinter( pPrinter );
                 }
                 else
                     throw IllegalArgumentException();

@@ -36,7 +36,7 @@
 
 #include "symbol.hxx"
 #include <document.hxx>
-#include "mathtype.hxx"
+#include "node.hxx"
 
 #include <math.h>
 #include <float.h>
@@ -134,29 +134,6 @@ namespace binfilter {
 /*N*/   eScaleMode = SCALE_NONE;
 /*N*/   aNodeToken = rNodeToken;
 /*N*/     nAccIndex  = -1;
-/*N*/ }
-
-
-/*N*/ SmNode::~SmNode()
-/*N*/ {
-/*N*/ }
-
-
-/*N*/ BOOL SmNode::IsVisible() const
-/*N*/ {
-/*N*/     return FALSE;
-/*N*/ }
-
-
-/*N*/ USHORT SmNode::GetNumSubNodes() const
-/*N*/ {
-/*N*/   return 0;
-/*N*/ }
-
-
-/*N*/ SmNode * SmNode::GetSubNode(USHORT /*nIndex*/)
-/*N*/ {
-/*N*/   return NULL;
 /*N*/ }
 
 
@@ -383,20 +360,6 @@ void SmNode::SetColor(const Color& rColor)
 /*N*/           pNode->Arrange(rDev, rFormat);
 /*N*/ }
 
-/*N*/ void SmNode::CreateTextFromNode(String & /*rText*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-
-/*N*/ void SmNode::AdaptToX(const OutputDevice & /*rDev*/, ULONG /*nWidth*/)
-/*N*/ {
-/*N*/ }
-
-
-/*N*/ void SmNode::AdaptToY(const OutputDevice & /*rDev*/, ULONG /*nHeight*/)
-/*N*/ {
-/*N*/ }
-
 
 /*N*/ void SmNode::Draw(OutputDevice &rDev, const Point &rPosition) const
 /*N*/ {
@@ -519,12 +482,6 @@ SmStructureNode & SmStructureNode::operator = ( const SmStructureNode &rNode )
 /*N*/ }
 
 
-/*N*/ BOOL SmStructureNode::IsVisible() const
-/*N*/ {
-/*N*/   return FALSE;
-/*N*/ }
-
-
 /*N*/ USHORT SmStructureNode::GetNumSubNodes() const
 /*N*/ {
 /*N*/   return (USHORT) aSubNodes.GetSize();
@@ -535,35 +492,6 @@ SmStructureNode & SmStructureNode::operator = ( const SmStructureNode &rNode )
 /*N*/ {
 /*N*/   return aSubNodes.Get(nIndex);
 /*N*/ }
-
-
-
-///////////////////////////////////////////////////////////////////////////
-
-
-/*N*/ BOOL SmVisibleNode::IsVisible() const
-/*N*/ {
-/*N*/   return TRUE;
-/*N*/ }
-
-
-/*N*/ USHORT SmVisibleNode::GetNumSubNodes() const
-/*N*/ {
-/*N*/   return 0;
-/*N*/ }
-
-
-SmNode * SmVisibleNode::GetSubNode(USHORT /*nIndex*/)
-{
-    return NULL;
-}
-
-
-///////////////////////////////////////////////////////////////////////////
-
-
-///////////////////////////////////////////////////////////////////////////
-
 
 
 
@@ -799,7 +727,7 @@ SmNode * SmTableNode::GetLeftMost()
 /*N*/              * GetFont().GetSize().Height() / 100L;
 /*N*/
 /*N*/     // font specialist advised to change the width first
-/*N*/     pRootSym->AdaptToY(rDev, nHeight);
+/*N*/   pRootSym->AdaptToY(rDev, nHeight);
 /*N*/   pRootSym->AdaptToX(rDev, pBody->GetItalicWidth());
 /*N*/
 /*N*/   pRootSym->Arrange(rDev, rFormat);

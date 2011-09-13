@@ -488,28 +488,26 @@ static const char* aRootName = "Office.Math";
 
 /*N*/ void SmMathConfig::LoadFontFormatList()
 /*N*/ {
-/*N*/     if (!pFontFormatList)
-/*N*/         pFontFormatList = new SmFontFormatList;
-/*N*/     else
-/*?*/     {DBG_BF_ASSERT(0, "STRIP");}
+/*N*/   if (!pFontFormatList)
+/*N*/       pFontFormatList = new SmFontFormatList;
 /*N*/
-/*N*/     SmMathConfigItem aCfg( String::CreateFromAscii( aRootName ) );
+/*N*/   SmMathConfigItem aCfg( String::CreateFromAscii( aRootName ) );
 /*N*/
-/*N*/     Sequence< OUString > aNodes( aCfg.GetNodeNames( A2OU( FONT_FORMAT_LIST ) ) );
+/*N*/   Sequence< OUString > aNodes( aCfg.GetNodeNames( A2OU( FONT_FORMAT_LIST ) ) );
 /*N*/   const OUString *pNode = aNodes.getConstArray();
 /*N*/   INT32 nNodes = aNodes.getLength();
 /*N*/
 /*N*/   for (INT32 i = 0;  i < nNodes;  ++i)
 /*N*/   {
-/*N*/         SmFontFormat aFntFmt( ReadFontFormat( aCfg, pNode[i], A2OU( FONT_FORMAT_LIST ) ) );
-/*N*/         if (!pFontFormatList->GetFontFormat( pNode[i] ))
-/*N*/         {
-/*N*/             DBG_ASSERT( 0 == pFontFormatList->GetFontFormat( pNode[i] ),
+/*N*/       SmFontFormat aFntFmt( ReadFontFormat( aCfg, pNode[i], A2OU( FONT_FORMAT_LIST ) ) );
+/*N*/       if (!pFontFormatList->GetFontFormat( pNode[i] ))
+/*N*/       {
+/*N*/           DBG_ASSERT( 0 == pFontFormatList->GetFontFormat( pNode[i] ),
 /*N*/                     "FontFormat ID already exists" );
-/*N*/             pFontFormatList->AddFontFormat( pNode[i], aFntFmt );
-/*N*/         }
+/*N*/           pFontFormatList->AddFontFormat( pNode[i], aFntFmt );
+/*N*/       }
 /*N*/   }
-/*N*/     pFontFormatList->SetModified( FALSE );
+/*N*/   pFontFormatList->SetModified( FALSE );
 /*N*/ }
 
 
@@ -812,11 +810,11 @@ static const char* aRootName = "Office.Math";
 /*N*/     return pOther->bAutoRedraw;
 /*N*/ }
 
-/*N*/ IMPL_LINK( SmMathConfig, TimeOut, Timer *, EMPTYARG )
-/*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return 0;
-/*N*/ }
+IMPL_LINK( SmMathConfig, TimeOut, Timer *, EMPTYARG )
+{
+    DBG_BF_ASSERT(0, "STRIP");  // IMPL_LINK
+    return 0;
+}
 
 /////////////////////////////////////////////////////////////////
 

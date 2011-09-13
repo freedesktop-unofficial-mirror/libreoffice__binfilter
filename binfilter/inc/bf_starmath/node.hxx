@@ -105,40 +105,42 @@ protected:
     sal_Int32       nAccIndex;
 
 public:
-    virtual             ~SmNode();
+    virtual             ~SmNode() {};
 
-    virtual BOOL        IsVisible() const;
+    virtual BOOL        IsVisible() const { return FALSE; }
 
-    virtual USHORT      GetNumSubNodes() const;
-    virtual SmNode *    GetSubNode(USHORT nIndex);
-            const SmNode * GetSubNode(USHORT nIndex) const
+    virtual USHORT      GetNumSubNodes() const { return 0; }
+    virtual SmNode *    GetSubNode(USHORT nIndex) { return NULL; }
+
+    const SmNode * GetSubNode(USHORT nIndex) const
             {
                 return ((SmNode *) this)->GetSubNode(nIndex);
             }
 
     virtual SmNode *       GetLeftMost();
-            const SmNode * GetLeftMost() const
+
+    const SmNode * GetLeftMost() const
             {
                 return ((SmNode *) this)->GetLeftMost();
             }
 
-            USHORT &    Flags() { return nFlags; }
-            USHORT &    Attributes() { return nAttributes; }
+    USHORT &    Flags() { return nFlags; }
+    USHORT &    Attributes() { return nAttributes; }
 
-            BOOL IsDebug() const { return bIsDebug; }
-            BOOL IsPhantom() const { return bIsPhantom; }
-            void SetPhantom(BOOL bIsPhantom);
-            void SetColor(const Color &rColor);
+    BOOL IsDebug() const { return bIsDebug; }
+    BOOL IsPhantom() const { return bIsPhantom; }
+    void SetPhantom(BOOL bIsPhantom);
+    void SetColor(const Color &rColor);
 
-            void SetAttribut(USHORT nAttrib);
-            void ClearAttribut(USHORT nAttrib);
+    void SetAttribut(USHORT nAttrib);
+    void ClearAttribut(USHORT nAttrib);
 
-            const SmFace & GetFont() const { return aFace; };
-                  SmFace & GetFont()       { return aFace; };
+    const SmFace & GetFont() const { return aFace; };
+    SmFace & GetFont()       { return aFace; };
 
-            void SetFont(const SmFace &rFace);
-            void SetFontSize(const Fraction &rRelSize, USHORT nType);
-            void SetSize(const Fraction &rScale);
+    void SetFont(const SmFace &rFace);
+    void SetFontSize(const Fraction &rRelSize, USHORT nType);
+    void SetSize(const Fraction &rScale);
 
     virtual void Prepare(const SmFormat &rFormat, const SmDocShell &rDocShell);
     virtual void PrepareAttributes();
@@ -153,7 +155,7 @@ public:
     virtual void Move(const Point &rPosition);
     void MoveTo(const Point &rPosition) { Move(rPosition - GetTopLeft()); }
     virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
-    virtual void CreateTextFromNode(String &rText);
+    virtual void CreateTextFromNode(String /* &rText */) {};
 
     virtual void Draw(OutputDevice &rDev, const Point &rPosition) const;
 
@@ -164,8 +166,8 @@ public:
     SmScaleMode     GetScaleMode() const { return eScaleMode; }
     void            SetScaleMode(SmScaleMode eMode) { eScaleMode = eMode; }
 
-    virtual void AdaptToX(const OutputDevice &rDev, ULONG nWidth);
-    virtual void AdaptToY(const OutputDevice &rDev, ULONG nHeight);
+    virtual void AdaptToX(const OutputDevice& /* rDev */, ULONG /* nWidth */) {}
+    virtual void AdaptToY(const OutputDevice& /* rDev */, ULONG /* nHeight */) {}
 
     SmNodeType      GetType() const  { return eType; }
     const SmToken & GetToken() const { return aNodeToken; }
@@ -193,7 +195,7 @@ public:
              SmStructureNode( const SmStructureNode &rNode );
     virtual ~SmStructureNode();
 
-    virtual BOOL        IsVisible() const;
+    virtual BOOL        IsVisible() const { return FALSE; }
 
     virtual USHORT      GetNumSubNodes() const;
             void        SetNumSubNodes(USHORT nSize) { aSubNodes.SetSize(nSize); }
@@ -220,9 +222,9 @@ protected:
 
 public:
 
-    virtual BOOL        IsVisible() const;
-    virtual USHORT      GetNumSubNodes() const;
-    virtual SmNode *    GetSubNode(USHORT nIndex);
+    virtual BOOL        IsVisible() const { return FALSE; }
+    virtual USHORT      GetNumSubNodes() const { return 0; }
+    virtual SmNode *    GetSubNode(USHORT /* nIndex */) { return NULL; }
 };
 
 

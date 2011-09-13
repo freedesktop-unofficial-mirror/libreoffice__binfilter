@@ -174,8 +174,6 @@ public:
     //den SmPrinterAccess funktionieren.
     BOOL        HasPrinter()    { return 0 != pPrinter; }
     SfxPrinter *GetPrinter()    { GetPrt(); return pPrinter; }
-    void        SetPrinter( SfxPrinter * );
-
 
     void        SetText(const String& rBuffer);
     String&     GetText() { return (aText); }
