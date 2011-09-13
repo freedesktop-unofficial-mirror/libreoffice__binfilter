@@ -157,28 +157,14 @@ namespace binfilter {
 /*N*/ }
 
 //--------------------------------------------------------------------------------------------------------
-/*?*/ sal_Bool SAL_CALL SfxEvents_Impl::hasByName( const OUSTRING& /*rName*/ ) throw ( RUNTIMEEXCEPTION )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*?*/ }
-
-//--------------------------------------------------------------------------------------------------------
 //  --- XElementAccess ( parent of XNameAccess ) ---
 //--------------------------------------------------------------------------------------------------------
-/*?*/ UNOTYPE SAL_CALL SfxEvents_Impl::getElementType() throw ( RUNTIMEEXCEPTION )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); UNOTYPE aUNOTYPE; return aUNOTYPE;
-/*?*/ }
-
-//--------------------------------------------------------------------------------------------------------
-/*?*/ sal_Bool SAL_CALL SfxEvents_Impl::hasElements() throw ( RUNTIMEEXCEPTION )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");  return FALSE;
-/*?*/ }
-
-//--------------------------------------------------------------------------------------------------------
-// --- ::document::XEventListener ---
-//--------------------------------------------------------------------------------------------------------
-/*N*/ void SAL_CALL SfxEvents_Impl::notifyEvent( const DOCEVENTOBJECT& /*aEvent*/ ) throw( RUNTIMEEXCEPTION )
-/*N*/ {
-/*N*/ }
+UNOTYPE SAL_CALL SfxEvents_Impl::getElementType() throw ( RUNTIMEEXCEPTION )
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    UNOTYPE aUNOTYPE;
+    return aUNOTYPE;
+}
 
 //--------------------------------------------------------------------------------------------------------
 // --- ::lang::XEventListener ---
@@ -437,8 +423,6 @@ namespace binfilter {
 /*N*/       REFERENCE < XEVENTSSUPPLIER > xSup;
 /*N*/       if ( pNamedHint->GetObjShell() )
 /*N*/           xSup = REFERENCE < XEVENTSSUPPLIER >( pNamedHint->GetObjShell()->GetModel(), UNO_QUERY );
-/*N*/ //        else
-/*N*/ //            xSup = (XEVENTSSUPPLIER*) this;
 /*N*/
 /*N*/         DOCEVENTOBJECT aEvent( xSup, aName );
 /*N*/

@@ -107,15 +107,15 @@ public:
                                     throw( NOSUCHELEMENTEXCEPTION, WRAPPEDTARGETEXCEPTION,
                                            RUNTIMEEXCEPTION );
     virtual SEQUENCE< OUSTRING > SAL_CALL getElementNames() throw ( RUNTIMEEXCEPTION );
-    virtual sal_Bool SAL_CALL   hasByName( const OUSTRING& aName ) throw ( RUNTIMEEXCEPTION );
+    virtual sal_Bool SAL_CALL   hasByName( const OUSTRING& /* aName */ ) throw ( RUNTIMEEXCEPTION ) { return FALSE; }
 
     //  --- XElementAccess ( parent of XNameAccess ) ---
     virtual UNOTYPE SAL_CALL    getElementType() throw ( RUNTIMEEXCEPTION );
-    virtual sal_Bool SAL_CALL   hasElements() throw ( RUNTIMEEXCEPTION );
+    virtual sal_Bool SAL_CALL   hasElements() throw ( RUNTIMEEXCEPTION ) { return FALSE; }
 
     // --- ::document::XEventListener ---
-    virtual void SAL_CALL       notifyEvent( const DOCEVENTOBJECT& aEvent )
-                                    throw( RUNTIMEEXCEPTION );
+    virtual void SAL_CALL       notifyEvent( const DOCEVENTOBJECT& /* aEvent */ )
+                                    throw( RUNTIMEEXCEPTION ) {} ;
 
     // --- ::lang::XEventListener ---
     virtual void SAL_CALL       disposing( const EVENTOBJECT& Source )
@@ -142,7 +142,7 @@ public:
     SFX_DECL_XSERVICEINFO
     virtual REFERENCE< XNAMEREPLACE > SAL_CALL getEvents() throw( RUNTIMEEXCEPTION );
     virtual void SAL_CALL addEventListener( const REFERENCE< XDOCEVENTLISTENER >& xListener ) throw( RUNTIMEEXCEPTION );
-    virtual void SAL_CALL removeEventListener( const REFERENCE< XDOCEVENTLISTENER >& /*xListener*/ ) throw( RUNTIMEEXCEPTION ) {DBG_BF_ASSERT(0, "STRIP");}
+    virtual void SAL_CALL removeEventListener( const REFERENCE< XDOCEVENTLISTENER >& /*xListener*/ ) throw( RUNTIMEEXCEPTION ) {}
 };
 
 }//end of namespace binfilter

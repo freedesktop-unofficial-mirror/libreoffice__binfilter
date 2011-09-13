@@ -112,8 +112,6 @@ public:
     BOOL                    IsKnown() const { return bKnown; }
     BOOL                    IsOriginal() const { return bKnown; }
 
-    const SfxFont*          GetFontByName( const String &rFontName );
-
 };
 
 }//end of namespace binfilter

@@ -34,28 +34,21 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-/*N*/ SV_DECL_PTRARR_DEL(SfxFontArr_Impl,SfxFont*,10,5)
-
 // struct SfxPrinter_Impl ------------------------------------------------
 
 /*N*/ struct SfxPrinter_Impl
 /*N*/ {
-/*N*/   SfxFontArr_Impl*    mpFonts;
 /*N*/   BOOL                mbAll;
 /*N*/   BOOL                mbSelection;
 /*N*/   BOOL                mbFromTo;
 /*N*/   BOOL                mbRange;
 /*N*/
 /*N*/   SfxPrinter_Impl() :
-/*N*/       mpFonts     ( NULL ),
 /*N*/       mbAll       ( TRUE ),
 /*N*/       mbSelection ( TRUE ),
 /*N*/       mbFromTo    ( TRUE ),
 /*N*/       mbRange     ( TRUE ) {}
-/*N*/   ~SfxPrinter_Impl() { delete mpFonts; }
 /*N*/ };
-
-/*N*/ #define FONTS()   pImpl->mpFonts
 
 //--------------------------------------------------------------------
 
@@ -63,7 +56,7 @@ namespace binfilter {
 /*N*/                 const FontPitch eFontPitch, const CharSet eFontCharSet ):
 /*N*/   aName( aFontName ),
 /*N*/   eFamily( eFontFamily ),
-/*N*/       ePitch( eFontPitch ),
+/*N*/   ePitch( eFontPitch ),
 /*N*/   eCharSet( eFontCharSet )
 /*N*/ {
 /*N*/ }
@@ -149,12 +142,6 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
 /*N*/ SfxPrinter::~SfxPrinter()
 /*N*/ {
 /*N*/   delete pOptions;
@@ -167,16 +154,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   pOptions->Set(rNewOptions);
 /*N*/ }
-
-//--------------------------------------------------------------------
-
-/*N*/ SV_IMPL_PTRARR(SfxFontArr_Impl,SfxFont*)
-
-//--------------------------------------------------------------------
-
-/*?*/ const SfxFont* SfxPrinter::GetFontByName( const String & )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*?*/ }
 
 }
 

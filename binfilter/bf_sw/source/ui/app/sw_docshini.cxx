@@ -162,7 +162,6 @@ using namespace ::rtl;
         // fuer alle
 
 /*N*/       SwStdFontConfig* pStdFont = SW_MOD()->GetStdFontConfig();
-/*N*/       SfxPrinter* pPrt = pDoc->GetPrt();
 
 /*N*/       String sEntry;
 /*N*/         USHORT aFontWhich[] =
@@ -197,21 +196,13 @@ using namespace ::rtl;
 /*N*/             if(!pStdFont->IsFontDefault(nFontId))
 /*N*/             {
 /*?*/                 sEntry = pStdFont->GetFontFor(nFontId);
-/*?*/                 sal_Bool bDelete = sal_False;
-/*?*/                 const SfxFont* pFnt = pPrt ? pPrt->GetFontByName(sEntry): 0;
-/*?*/                 if(!pFnt)
-/*?*/                 {
-/*?*/                     pFnt = new SfxFont( FAMILY_DONTKNOW, sEntry, PITCH_DONTKNOW,
-/*?*/                                         ::gsl_getSystemTextEncoding() );
-/*?*/                     bDelete = sal_True;
-/*?*/                 }
+/*?*/                 const SfxFont* pFnt = NULL;
+/*?*/                 pFnt = new SfxFont( FAMILY_DONTKNOW, sEntry, PITCH_DONTKNOW,
+/*?*/                                     ::gsl_getSystemTextEncoding() );
 /*?*/                 pFontItem = new SvxFontItem(pFnt->GetFamily(), pFnt->GetName(),
-/*?*/                                     aEmptyStr, pFnt->GetPitch(), pFnt->GetCharSet(), nFontWhich);
-/*?*/                 if(bDelete)
-/*?*/                 {
-/*?*/                     delete (SfxFont*) pFnt;
-/*?*/                     bDelete = sal_False;
-/*?*/                 }
+/*?*/                                     aEmptyStr, pFnt->GetPitch(), pFnt->GetCharSet(),
+                                          nFontWhich);
+/*?*/                 delete (SfxFont*) pFnt;
 /*?*/             }
 /*N*/             else
 /*M*/             {
@@ -271,26 +262,18 @@ using namespace ::rtl;
 /*M*/             if(!pStdFont->IsFontDefault(aFontIdPoolId[nIdx]))
 /*M*/             {
 /*M*/                 sEntry = pStdFont->GetFontFor(aFontIdPoolId[nIdx]);
-/*M*/                 sal_Bool bDelete = sal_False;
-/*M*/                 const SfxFont* pFnt = pPrt ? pPrt->GetFontByName(sEntry): 0;
-/*M*/                 if(!pFnt)
-/*M*/                 {
-/*M*/                     pFnt = new SfxFont( FAMILY_DONTKNOW, sEntry, PITCH_DONTKNOW,
-/*M*/                                         ::gsl_getSystemTextEncoding() );
-/*M*/                     bDelete = sal_True;
-/*M*/                 }
+/*M*/                 const SfxFont* pFnt = NULL;
+/*M*/                 pFnt = new SfxFont( FAMILY_DONTKNOW, sEntry, PITCH_DONTKNOW,
+/*M*/                                    ::gsl_getSystemTextEncoding() );
 /*M*/                 SwTxtFmtColl *pColl = pDoc->GetTxtCollFromPool(aFontIdPoolId[nIdx + 1]);
-/*M*/               if( !bHTMLTemplSet ||
-/*M*/                   SFX_ITEM_SET != pColl->GetAttrSet().GetItemState(
+/*M*/                 if( !bHTMLTemplSet ||
+/*M*/                     SFX_ITEM_SET != pColl->GetAttrSet().GetItemState(
 /*M*/                                                   nFontWhich, sal_False ) )
-/*M*/               {
-/*M*/                   pColl->SetAttr(SvxFontItem(pFnt->GetFamily(), pFnt->GetName(),
-/*M*/                                       aEmptyStr, pFnt->GetPitch(), pFnt->GetCharSet(), nFontWhich));
-/*M*/               }
-/*M*/                 if(bDelete)
 /*M*/                 {
-/*M*/                     delete (SfxFont*) pFnt;
+/*M*/                   pColl->SetAttr(SvxFontItem(pFnt->GetFamily(), pFnt->GetName(),
+/*M*/                                  aEmptyStr, pFnt->GetPitch(), pFnt->GetCharSet(), nFontWhich));
 /*M*/                 }
+/*M*/                 delete (SfxFont*) pFnt;
 /*M*/             }
 /*M*/         }
 /*N*/     }
