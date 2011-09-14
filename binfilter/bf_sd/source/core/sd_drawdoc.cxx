@@ -155,7 +155,7 @@ SdDrawDocument::SdDrawDocument(DocumentType eType, SfxObjectShell* pDrDocSh) :
         SetSwapGraphics(TRUE);
     }
 
-        SetUIUnit( GetModuleFieldUnit(), Fraction( 1, 1 ) );    // default
+    SetUIUnit( FUNIT_INCH, Fraction( 1, 1 ) );    // default
 
     SetScaleUnit(MAP_100TH_MM);
     SetScaleFraction(Fraction(1, 1));
@@ -194,13 +194,6 @@ SdDrawDocument::SdDrawDocument(DocumentType eType, SfxObjectShell* pDrDocSh) :
 
     mpLocale = new ::com::sun::star::lang::Locale( MsLangId::convertLanguageToLocale( eRealLanguage ));
     mpCharClass = new CharClass( *mpLocale );
-
-    // If the current application language is a language that uses right-to-left text...
-    LanguageType eRealCTLLanguage = Application::GetSettings().GetLanguage();
-    if( MsLangId::isRightToLeft( eRealCTLLanguage ) )
-    {
-        DBG_BF_ASSERT(0, "STRIP");
-    }
 
     SetDefaultTabulator( 1250 );
 

@@ -813,8 +813,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if( SFX_MAPUNIT_RELATIVE != eUnit )
-nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
-/*N*/                                               SFX_FUNIT_TWIP );
+            nHeight = nNewHeight + 0;
 /*N*/   else
 /*N*/ #endif // !SVX_LIGHT
 /*N*/   if( 100 != nNewProp )

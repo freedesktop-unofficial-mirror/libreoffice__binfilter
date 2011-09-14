@@ -157,13 +157,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ int SvxColumnItem::operator==(const SfxPoolItem& rCmp) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return TRUE;
-/*N*/ }
-
-//------------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxColumnItem::Clone( SfxItemPool *pPool ) const
 /*N*/ {
 /*N*/   return new SvxColumnItem(*this);
@@ -222,7 +215,7 @@ namespace binfilter {
 /*N*/   nEndY   ( nEY ),
 /*N*/   bLimits ( limits )
 /*N*/
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
+/*N*/ {
 /*N*/ }
 
 }

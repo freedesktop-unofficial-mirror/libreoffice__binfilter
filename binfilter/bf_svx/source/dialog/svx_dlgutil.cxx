@@ -35,12 +35,6 @@
 #include "dlgutil.hxx"
 namespace binfilter {
 
-/*N*/ FieldUnit GetModuleFieldUnit( const SfxItemSet* /*pSet*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   FieldUnit eUnit = FUNIT_INCH;
-/*N*/   return eUnit;
-/*N*/ }
-
 // -----------------------------------------------------------------------
 
 /*N*/ long CalcToUnit( float nIn, SfxMapUnit eUnit )
@@ -72,13 +66,6 @@ namespace binfilter {
 /*N*/   return nRet;
 /*N*/ //!   return (long)(nTmp * 20);
 /*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*?*/ long ItemToControl( long, SfxMapUnit, SfxFieldUnit )
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
 
 // -----------------------------------------------------------------------
 

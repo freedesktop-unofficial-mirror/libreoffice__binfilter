@@ -158,7 +158,7 @@ class SvxColumnItem : public SfxPoolItem
     void DeleteAndDestroyColumns();
 
 protected:
-    virtual int              operator==( const SfxPoolItem& ) const;
+    virtual int     operator==( const SfxPoolItem& ) const { return TRUE; }
 
 
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;

@@ -33,15 +33,9 @@
 #include <bf_svtools/intitem.hxx>
 namespace binfilter {
 
-// Functions -------------------------------------------------------------
-
-// FieldUnit im MetricField oder -Box umsetzen
-FieldUnit GetModuleFieldUnit( const SfxItemSet* pSet = NULL );
-
 // Metriken umrechnen
 long        CalcToUnit( float nIn, SfxMapUnit eUnit );
 long        CalcToPoint( long nIn, SfxMapUnit eUnit, USHORT nFaktor );
-long        ItemToControl( long nIn, SfxMapUnit eItem, SfxFieldUnit eCtrl );
 
 #define OUTPUT_DRAWMODE_COLOR       (DRAWMODE_DEFAULT)
 
