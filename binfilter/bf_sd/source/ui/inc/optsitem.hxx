@@ -164,7 +164,7 @@ public:
     BOOL    IsDragStripes() const { Init(); return (BOOL) bDragStripes; }
     BOOL    IsHandlesBezier() const { Init(); return (BOOL) bHandlesBezier; }
     BOOL    IsHelplines() const { Init(); return (BOOL) bHelplines; }
-    UINT16  GetMetric() const { Init(); return( ( 0xffff == nMetric ) ? FUNIT_INCH : nMetric ); }
+    UINT16  GetMetric() const { Init(); return( ( 0xffff == nMetric ) ? (UINT16)FUNIT_INCH : nMetric ); }
     UINT16  GetDefTab() const { Init(); return nDefTab; }
 
     void    SetRulerVisible( BOOL bOn = TRUE ) { if( bRuler != bOn ) { OptionsChanged(); bRuler = bOn; } }

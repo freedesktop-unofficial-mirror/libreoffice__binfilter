@@ -110,7 +110,7 @@ public:
     virtual BOOL        IsVisible() const { return FALSE; }
 
     virtual USHORT      GetNumSubNodes() const { return 0; }
-    virtual SmNode *    GetSubNode(USHORT nIndex) { return NULL; }
+    virtual SmNode *    GetSubNode(USHORT /*nIndex*/) { return NULL; }
 
     const SmNode * GetSubNode(USHORT nIndex) const
             {

@@ -241,7 +241,7 @@ protected:
     virtual void    DestroyItem(void* /* pItem */)
                     {}
 
-    virtual BOOL    CompareItem(const void *pFirstItem, const void *pSecondItem) const
+    virtual BOOL    CompareItem(const void * /*pFirstItem*/, const void * /*pSecondItem*/) const
                     { return FALSE; }
 
     virtual String  GetStringItem(void *pItem);
