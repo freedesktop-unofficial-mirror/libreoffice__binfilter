@@ -277,18 +277,6 @@ struct TabInfo
 /*N*/
 /*N*/       if ( aStatus.AutoPageSize() )
 /*N*/           CheckAutoPageSize();
-/*N*/       else if ( nDiff )
-/*N*/       {
-/*N*/           for ( sal_uInt16 nView = 0; nView < aEditViews.Count(); nView++ )
-/*N*/           {
-/*N*/               EditView* pView = aEditViews[nView];
-/*N*/               ImpEditView* pImpView = pView->pImpEditView;
-/*N*/               if ( pImpView->DoAutoHeight() )
-/*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
-/*N*/           }
-/*N*/       }
 /*N*/   }
 /*N*/
 /*N*/   if ( aStatus.DoRestoreFont() )
@@ -373,12 +361,6 @@ struct TabInfo
 /*?*/           aSz.Height() = aInvSize.Width();
 /*N*/       }
 /*N*/       aInvalidRec = Rectangle( Point(), aSz );
-/*N*/
-/*N*/
-/*N*/       for ( sal_uInt16 nView = 0; nView < aEditViews.Count(); nView++ )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/   }
 /*N*/ }
 
@@ -609,10 +591,6 @@ struct TabInfo
 /*N*/       long nTextExtraYOffset = 0;
 /*N*/       long nTextXOffset = 0;
 /*N*/       long nTextLineHeight = 0;
-/*N*/       if ( GetTextRanger() )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/
 /*N*/       // Portion suchen, die nicht mehr in Zeile passt....
 /*N*/       TextPortion* pPortion(NULL);
@@ -774,10 +752,6 @@ struct TabInfo
 /*N*/                   sal_uInt16 nPos = nTmpPos - pLine->GetStart();
 /*N*/                   pLine->GetCharPosArray().Insert( pBuf, nLen, nPos );
 /*N*/               }
-/*N*/
-/*N*/                 // And now check for Compression:
-/*N*/                 if ( pPortion->GetLen() && GetAsianCompressionMode() )
-/*?*/                 {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/               nTmpWidth += pPortion->GetSize().Width();
 /*N*/
@@ -946,11 +920,6 @@ struct TabInfo
 /*N*/           DBG_ASSERT( (nPortionEnd-nPortionStart) == pPortion->GetLen(), "Doch eine andere Portion?!" );
 /*N*/           long nRemainingWidth = nMaxLineWidth - nTmpWidth;
 /*N*/           sal_Bool bCanHyphenate = ( aTmpFont.GetCharSet() != RTL_TEXTENCODING_SYMBOL );
-/*N*/             if ( bCompressedChars && ( pPortion->GetLen() > 1 ) && pPortion->GetExtraInfos() && pPortion->GetExtraInfos()->bCompressed )
-/*N*/             {
-/*?*/                 // I need the manipulated DXArray for determining the break postion...
-/*?*/                 DBG_BF_ASSERT(0, "STRIP");
-/*N*/             }
 /*N*/           ImpBreakLine( pParaPortion, pLine, pPortion, nPortionStart,
 /*N*/                                           nRemainingWidth, bCanHyphenate && bHyphenatePara );
 /*N*/       }
@@ -1065,15 +1034,6 @@ struct TabInfo
 /*N*/           if ( aTextSize.Width() < nMaxLineWidthFix )
 /*N*/               nMaxLineWidth = nMaxLineWidthFix;
 /*N*/       }
-/*N*/
-/*N*/         if ( bCompressedChars )
-/*N*/         {
-/*?*/             long nRemainingWidth = nMaxLineWidth - aTextSize.Width();
-/*?*/             if ( nRemainingWidth > 0 )
-/*?*/             {
-/*?*/                 DBG_BF_ASSERT(0, "STRIP");
-/*?*/             }
-/*N*/         }
 /*N*/
 /*N*/         if ( pLine->IsHangingPunctuation() )
 /*N*/       {
@@ -1716,37 +1676,10 @@ struct TabInfo
 /*N*/             // before final form of Teh Marbuta, Hah, Dal
 /*N*/             // 4. Priority:
 /*N*/             // before final form of Alef, Lam or Kaf
-/*N*/             if ( nIdx && nIdx + 1 == aWord.Len() &&
-/*N*/                  ( 0x629 == cCh || 0x62D == cCh || 0x62F == cCh ||
-/*N*/                    0x627 == cCh || 0x644 == cCh || 0x643 == cCh ) )
-/*N*/             {
-/*?*/                 DBG_BF_ASSERT(0, "STRIP");
-/*N*/             }
-/*N*/
 /*N*/             // 5. Priority:
 /*N*/             // before media Bah
-/*N*/             if ( nIdx && nIdx + 1 < aWord.Len() && 0x628 == cCh )
-/*N*/             {
-/*?*/                 DBG_ASSERT( 0 != cPrevCh, "No previous character" );
-/*?*/                 (void)cPrevCh;
-/*?*/
-/*?*/                 // check if next character is Reh, Yeh or Alef Maksura
-/*?*/                 xub_Unicode cNextCh = aWord.GetChar( nIdx + 1 );
-/*?*/
-/*?*/                 if ( 0x631 == cNextCh || 0x64A == cNextCh ||
-/*?*/                      0x649 == cNextCh )
-/*?*/                 {
-/*?*/                     DBG_BF_ASSERT(0, "STRIP");
-/*?*/                 }
-/*N*/             }
-/*N*/
 /*N*/             // 6. Priority:
 /*N*/             // other connecting possibilities
-/*N*/             if ( nIdx && nIdx + 1 == aWord.Len() &&
-/*N*/                  0x60C <= cCh && 0x6FE >= cCh )
-/*N*/             {
-/*?*/                 DBG_BF_ASSERT(0, "STRIP");
-/*N*/             }
 /*N*/
 /*N*/             // Do not consider Fathatan, Dammatan, Kasratan, Fatha,
 /*N*/             // Damma, Kasra, Shadda and Sukun when checking if
@@ -1810,12 +1743,6 @@ struct TabInfo
 /*N*/       // Kein neues GetTextSize, sondern Werte aus Array verwenden:
 /*N*/       DBG_ASSERT( nPos > pCurLine->GetStart(), "SplitTextPortion am Anfang der Zeile?" );
 /*N*/       pTextPortion->GetSize().Width() = pCurLine->GetCharPosArray()[ nPos-pCurLine->GetStart()-1 ];
-/*N*/
-/*N*/         if ( pTextPortion->GetExtraInfos() && pTextPortion->GetExtraInfos()->bCompressed )
-/*N*/         {
-/*?*/             // We need the original size from the portion
-/*?*/             DBG_BF_ASSERT(0, "STRIP");
-/*N*/         }
 /*N*/   }
 /*N*/   else
 /*?*/       pTextPortion->GetSize().Width() = (-1);
@@ -2521,20 +2448,6 @@ struct TabInfo
 /*?*/                                   if ( aStatus.DoRestoreFont() )
 /*?*/                                       GetRefDevice()->SetFont( aLclOldFont );
 /*?*/
-/*?*/                                   // add a meta file comment if we record to a metafile
-/*?*/                                   GDIMetaFile* pMtf = pOutDev->GetConnectMetaFile();
-/*?*/                                   if( pMtf )
-/*?*/                                   {
-/*?*/                                       SvxFieldItem* pFieldItem = PTR_CAST( SvxFieldItem, pAttr->GetItem() );
-/*?*/
-/*?*/                                       if( pFieldItem )
-/*?*/                                       {
-/*?*/                                           const SvxFieldData* pFieldData = pFieldItem->GetField();
-/*?*/                                           if( pFieldData )
-/*?*/                                               {DBG_BF_ASSERT(0, "STRIP");}
-/*?*/                                       }
-/*?*/                                   }
-/*?*/
 /*?*/                               }
 /*N*/                               else if ( pTextPortion->GetKind() == PORTIONKIND_HYPHENATOR )
 /*N*/                               {
@@ -2575,10 +2488,6 @@ struct TabInfo
 /*N*/                               else
 /*N*/                               {
 /*N*/                                   short nEsc = aTmpFont.GetEscapement();
-/*N*/                                   if ( nOrientation )
-/*N*/                                   {
-/*?*/                                       DBG_BF_ASSERT(0, "STRIP");
-/*N*/                                   }
 /*N*/                                   // nur ausgeben, was im sichtbaren Bereich beginnt:
 /*N*/                                   // Wichtig, weil Bug bei einigen Grafikkarten bei transparentem Font, Ausgabe bei neg.
 /*N*/                                   if ( nOrientation || ( !IsVertical() && ( ( aTmpPos.X() + nTxtWidth ) >= nFirstVisXPos ) )
@@ -2609,10 +2518,6 @@ struct TabInfo
 /*?*/                                                       bSpecialUnderline = sal_True;
 /*?*/                                               }
 /*?*/                                           }
-/*?*/                                           if ( bSpecialUnderline )
-/*?*/                                           {
-/*?*/                                               DBG_BF_ASSERT(0, "STRIP");
-/*?*/                                           }
 /*N*/                                       }
 /*N*/                                         Point aRealOutPos( aOutPos );
 /*N*/                                         if ( ( pTextPortion->GetKind() == PORTIONKIND_TEXT )
@@ -2627,8 +2532,6 @@ struct TabInfo
 /*N*/                                         {
 /*?*/                                             Point aTopLeft( aTmpPos );
 /*?*/                                             aTopLeft.Y() -= pLine->GetMaxAscent();
-/*?*/                                           if ( nOrientation )
-/*?*/                                           {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/                                             Rectangle aRect( aTopLeft, pTextPortion->GetSize() );
 /*?*/                                             pOutDev->DrawRect( aRect );
 /*N*/                                         }
@@ -2652,31 +2555,9 @@ struct TabInfo
 /*N*/ // R2L                                    nR2LWidth += nTxtWidth;
 /*N*/ // R2L                                }
 /*N*/
-/*N*/                               if ( pTextPortion->GetKind() == PORTIONKIND_FIELD )
-/*N*/                               {
-/*?*/                                   EditCharAttrib* pAttr = pPortion->GetNode()->GetCharAttribs().FindFeature( nIndex );
-/*?*/                                   DBG_ASSERT( pAttr, "Feld nicht gefunden" );
-/*?*/                                   DBG_ASSERT( pAttr && pAttr->GetItem()->ISA( SvxFieldItem ), "Feld vom falschen Typ!" );
-/*?*/
-/*?*/                                   // add a meta file comment if we record to a metafile
-/*?*/                                   GDIMetaFile* pMtf = pOutDev->GetConnectMetaFile();
-/*?*/                                   if( pMtf )
-/*?*/                                   {
-/*?*/                                       SvxFieldItem* pFieldItem = PTR_CAST( SvxFieldItem, pAttr->GetItem() );
-/*?*/
-/*?*/                                       if( pFieldItem )
-/*?*/                                       {
-/*?*/                                           const SvxFieldData* pFieldData = pFieldItem->GetField();
-/*?*/                                           if( pFieldData )
-/*?*/                                               {DBG_BF_ASSERT(0, "STRIP");}
-/*?*/                                       }
-/*?*/                                   }
-/*?*/
-/*N*/                               }
-/*N*/
 /*N*/                           }
 /*N*/                           break;
-/*N*/ //                            case PORTIONKIND_EXTRASPACE:
+/*N*/ //                        case PORTIONKIND_EXTRASPACE:
 /*N*/                           case PORTIONKIND_TAB:
 /*N*/                           {
 /*?*/                               if ( pTextPortion->GetExtraValue() && ( pTextPortion->GetExtraValue() != ' ' ) )

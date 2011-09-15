@@ -75,26 +75,11 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   DBG_CHKTHIS( EditView, 0 );
 /*N*/   DBG_CHKOBJ( pImpEditView->pEditEngine, EditEngine, 0 );
 /*N*/
-/*N*/   // Falls jemand gerade ein leeres Attribut hinterlassen hat,
-/*N*/   // und dann der Outliner die Selektion manipulitert:
-/*N*/   if ( !pImpEditView->GetEditSelection().HasRange() )
-/*N*/   {
-/*N*/       ContentNode* pNode = pImpEditView->GetEditSelection().Max().GetNode();
-/*N*/       PIMPEE->CursorMoved( pNode );
-/*N*/   }
 /*N*/   EditSelection aNewSelection( PIMPEE->ConvertSelection( rESel.nStartPara, rESel.nStartPos, rESel.nEndPara, rESel.nEndPos ) );
 /*N*/
 /*N*/   // Selektion darf nicht bei einem unsichtbaren Absatz Starten/Enden:
 /*N*/   ParaPortion* pPortion = PIMPEE->FindParaPortion( aNewSelection.Min().GetNode() );
-/*N*/   if ( !pPortion->IsVisible() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/   pPortion = PIMPEE->FindParaPortion( aNewSelection.Max().GetNode() );
-/*N*/   if ( !pPortion->IsVisible() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
+/*N*/                pPortion = PIMPEE->FindParaPortion( aNewSelection.Max().GetNode() );
 /*N*/
 /*N*/   pImpEditView->DrawSelection();  // alte Selektion 'weg-zeichnen'
 /*N*/   pImpEditView->SetEditSelection( aNewSelection );
@@ -160,7 +145,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/       // Das ControlWord hat mehr Gewicht:
 /*N*/       if ( !pImpEditView->DoAutoScroll() )
 /*N*/           bGotoCursor = sal_False;
-/*N*/       pImpEditView->ShowCursor( bGotoCursor, bForceVisCursor );
 /*N*/   }
 /*N*/ }
 
@@ -170,18 +154,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pImpEditView->GetCursor()->Hide();
 /*N*/ }
 
-
-/*N*/ void EditView::Cut()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void EditView::Copy()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void EditView::Paste()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

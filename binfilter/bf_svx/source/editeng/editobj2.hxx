@@ -233,9 +233,6 @@ public:
 
     virtual void            ClearPortionInfo();
 
-
-
-
     virtual void            MergeParaAttribs( const SfxItemSet& rAttribs, USHORT nStart, USHORT nEnd );
 
     virtual BOOL            HasField( TypeId Type = NULL ) const;
@@ -243,7 +240,13 @@ public:
     SfxItemSet              GetParaAttribs( USHORT nPara ) const;
 
     virtual void            GetStyleSheet( USHORT nPara, XubString& rName, SfxStyleFamily& eFamily ) const;
-    virtual void            SetStyleSheet( USHORT nPara, const XubString& rName, const SfxStyleFamily& eFamily );
+
+    virtual void            SetStyleSheet(
+                                USHORT /* nPara */,
+                                const XubString& /* rName */,
+                                const SfxStyleFamily& /* eFamily */
+                            ) {}
+
     virtual BOOL            ChangeStyleSheets(  const XubString& rOldName, SfxStyleFamily eOldFamily,
                                                 const String& rNewName, SfxStyleFamily eNewFamily );
     virtual void            ChangeStyleSheetName( SfxStyleFamily eFamily, const XubString& rOldName, const XubString& rNewName );

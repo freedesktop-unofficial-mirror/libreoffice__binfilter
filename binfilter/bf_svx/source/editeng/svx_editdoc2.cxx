@@ -49,35 +49,13 @@
 
 namespace binfilter {
 
-/*N*/ DBG_NAME( EE_ParaPortion )
+DBG_NAME( EE_ParaPortion )
 
-/*N*/ SV_IMPL_VARARR( CharPosArray, sal_Int32 );
-
-/*
-
-BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
-{
-    if ( GetParent() == rStyle.GetName() )
-        return TRUE;
-
-    if ( GetParent().Len() && ( GetParent() != GetName() ) )
-    {
-        EditStyleSheet* pS = (EditStyleSheet*)GetPool().Find( GetParent(), rStyle.GetFamily() );
-        if ( pS )
-            return pS->HasStyleAsAnyParent( rStyle );
-    }
-    return FALSE;
-}
-
-*/
+SV_IMPL_VARARR( CharPosArray, sal_Int32 );
 
 // -------------------------------------------------------------------------
 // class TextPortionList
 // -------------------------------------------------------------------------
-/*N*/ TextPortionList::TextPortionList()
-/*N*/ {
-/*N*/ }
-
 /*N*/ TextPortionList::~TextPortionList()
 /*N*/ {
 /*N*/   Reset();
@@ -120,10 +98,6 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*?*/   return ( Count() - 1 );
 /*N*/ }
 
-/*N*/ ExtraPortionInfo::~ExtraPortionInfo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 // -------------------------------------------------------------------------
 // class ParaPortion
 // -------------------------------------------------------------------------
@@ -152,7 +126,6 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/ {
 /*N*/   if ( bInvalid == FALSE )
 /*N*/   {
-/*N*/ //        nInvalidPosEnd = nStart;    // ??? => CreateLines
 /*N*/       nInvalidPosStart = ( nDiff >= 0 ) ? nStart : ( nStart + nDiff );
 /*N*/       nInvalidDiff = nDiff;
 /*N*/   }
@@ -172,7 +145,6 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/ //            nInvalidPosEnd = pNode->Len();
 /*N*/           DBG_ASSERT( ( nDiff >= 0 ) || ( (nStart+nDiff) >= 0 ), "MarkInvalid: Diff out of Range" );
 /*N*/           nInvalidPosStart = Min( nInvalidPosStart, (USHORT) ( nDiff < 0 ? nStart+nDiff : nDiff ) );
 /*N*/           nInvalidDiff = 0;
@@ -182,7 +154,6 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/   bInvalid = TRUE;
 /*N*/   aScriptInfos.Remove( 0, aScriptInfos.Count() );
 /*N*/   aWritingDirectionInfos.Remove( 0, aWritingDirectionInfos.Count() );
-/*N*/ //    aExtraCharInfos.Remove( 0, aExtraCharInfos.Count() );
 /*N*/ }
 
 /*N*/ void ParaPortion::MarkSelectionInvalid( USHORT nStart, USHORT /*nEnd*/ )
@@ -196,7 +167,6 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/   bSimple = FALSE;
 /*N*/   aScriptInfos.Remove( 0, aScriptInfos.Count() );
 /*N*/   aWritingDirectionInfos.Remove( 0, aWritingDirectionInfos.Count() );
-/*N*/ //    aExtraCharInfos.Remove( 0, aExtraCharInfos.Count() );
 /*N*/ }
 
 /*N*/ USHORT ParaPortion::GetLineNumber( USHORT nIndex )
@@ -297,40 +267,6 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/   }
 /*N*/   return 0xFFFF;  // solte mal ueber EE_PARA_NOT_FOUND erreicht werden!
 /*N*/ }
-
-
-
-
-
-/*N*/ void ConvertItem( SfxPoolItem& rPoolItem, MapUnit, MapUnit )
-/*N*/ {
-/*N*/   switch ( rPoolItem.Which() )
-/*N*/   {
-/*N*/       case EE_PARA_LRSPACE:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       break;
-/*N*/       case EE_PARA_ULSPACE:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       break;
-/*N*/       case EE_PARA_SBL:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       break;
-/*N*/       case EE_PARA_TABS:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       break;
-/*N*/       case EE_CHAR_FONTHEIGHT:
-/*N*/       case EE_CHAR_FONTHEIGHT_CJK:
-/*N*/       case EE_CHAR_FONTHEIGHT_CTL:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       break;
-/*N*/   }
-/*N*/ }
-
 
 }
 

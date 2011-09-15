@@ -36,10 +36,12 @@ namespace binfilter {
 
 SvxEditEngineViewForwarder::~SvxEditEngineViewForwarder()
 {
+    DBG_BF_ASSERT(0, "STRIP");
 }
 
 BOOL SvxEditEngineViewForwarder::IsValid() const
 {
+    DBG_BF_ASSERT(0, "STRIP");
     return sal_True;
 }
 
@@ -115,21 +117,22 @@ sal_Bool SvxEditEngineViewForwarder::SetSelection( const ESelection& rSelection 
 
 sal_Bool SvxEditEngineViewForwarder::Copy()
 {
-    mrView.Copy();
+    DBG_BF_ASSERT(0, "STRIP");
     return sal_True;
 }
 
 sal_Bool SvxEditEngineViewForwarder::Cut()
 {
-    mrView.Cut();
+    DBG_BF_ASSERT(0, "STRIP");
     return sal_True;
 }
 
 sal_Bool SvxEditEngineViewForwarder::Paste()
 {
-    mrView.Paste();
+    DBG_BF_ASSERT(0, "STRIP");
     return sal_True;
 }
+
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -235,11 +235,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   sal_Bool bAutoPageSize = pImpEditEngine->GetStatus().AutoPageSize();
 /*N*/   if ( bAutoPageSize || ( aNewSize.Width() != aOldSize.Width() ) )
 /*N*/   {
-/*N*/       for ( sal_uInt16 nView = 0; nView < pImpEditEngine->aEditViews.Count(); nView++ )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/
 /*N*/       if ( bAutoPageSize || pImpEditEngine->IsFormatted() )
 /*N*/       {
 /*N*/           // Aendern der Breite hat bei AutoPageSize keine Wirkung, da durch
@@ -354,14 +349,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   return pImpEditEngine->GetLineCount( nParagraph );
 /*N*/ }
 
-/*N*/ sal_uInt16 EditEngine::GetLineLen( sal_uInt16, sal_uInt16 ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*N*/ }
-
-/*?*/ sal_uInt32 EditEngine::GetLineHeight( sal_uInt16, sal_uInt16 )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");} return 0;
-/*?*/ }
-
 /*N*/ sal_uInt16 EditEngine::GetFirstLineOffset( sal_uInt16 nParagraph )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
@@ -370,11 +357,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   ParaPortion* pPortion = pImpEditEngine->GetParaPortions().SaveGetObject( nParagraph );
 /*N*/   return ( pPortion ? pPortion->GetFirstLineOffset() : 0 );
 /*N*/ }
-
-/*N*/ sal_uInt32 EditEngine::GetTextHeight( sal_uInt16 ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*N*/ }
-
 
 /*N*/ ESelection EditEngine::GetWord( const ESelection& rSelection, USHORT nWordType  ) const
 /*N*/ {
@@ -589,10 +571,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/     return pImpEditEngine->GetParaAttrib( nPara, nWhich );
-/*N*/ }
-
-/*N*/ void EditEngine::GetCharAttribs( sal_uInt16, EECharAttribArray& ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ SfxItemSet EditEngine::GetAttribs( const ESelection& rSel, BOOL bOnlyHardAttrib )
@@ -999,12 +977,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/ Rectangle EditEngine::GetCharacterBounds( const EPosition& rPos ) const
 /*N*/ {
 /*N*/     Rectangle aBounds;
-/*N*/     ContentNode* pNode = pImpEditEngine->GetEditDoc().SaveGetObject( rPos.nPara );
-/*N*/
-/*N*/   // #109151# Check against index, not paragraph
-/*N*/     if ( pNode && ( rPos.nIndex < pNode->Len() ) )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
+/*N*/     pImpEditEngine->GetEditDoc().SaveGetObject( rPos.nPara );
 /*N*/     return aBounds;
 /*N*/ }
 
@@ -1041,58 +1014,49 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 // =====================================================================
 // ======================   Virtuelle Methoden   =======================
 // =====================================================================
-/*N*/ void EditEngine::DrawingText( const Point&, const XubString&, USHORT, USHORT, const sal_Int32*, const SvxFont&, sal_uInt16, sal_uInt16, BYTE )
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/ }
+void EditEngine::DrawingText( const Point&, const XubString&, USHORT, USHORT, const sal_Int32*, const SvxFont&, sal_uInt16, sal_uInt16, BYTE )
+{
+    DBG_CHKTHIS( EditEngine, 0 );
+    DBG_BF_ASSERT(0, "STRIP");      // VIRTUAL
+}
 
-/*N*/ void EditEngine::PaintingFirstLine( sal_uInt16, const Point&, long, const Point&, short, OutputDevice* )
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/ }
+void EditEngine::PaintingFirstLine( sal_uInt16, const Point&, long, const Point&, short, OutputDevice* )
+{
+    DBG_CHKTHIS( EditEngine, 0 );
+    DBG_BF_ASSERT(0, "STRIP");      // VIRTUAL
+}
 
-/*N*/ void EditEngine::ParagraphInserted( sal_uInt16 )
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/
-/*N*/     if ( GetNotifyHdl().IsSet() )
-/*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
-/*N*/ }
+void EditEngine::ParagraphInserted( sal_uInt16 )
+{
+    DBG_CHKTHIS( EditEngine, 0 );
+    DBG_BF_ASSERT(0, "STRIP");      // VIRTUAL
+}
 
-/*N*/ void EditEngine::ParagraphDeleted( sal_uInt16 )
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/
-/*N*/     if ( GetNotifyHdl().IsSet() )
-/*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
-/*N*/ }
+void EditEngine::ParagraphDeleted( sal_uInt16 )
+{
+    DBG_CHKTHIS( EditEngine, 0 );
+    DBG_BF_ASSERT(0, "STRIP");      // VIRTUAL
+}
 
-/*N*/ sal_Bool EditEngine::FormattingParagraph( sal_uInt16 )
-/*N*/ {
-/*N*/   // return sal_True, wenn die Attribute geaendert wurden...
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/   return sal_False;
-/*N*/ }
+sal_Bool EditEngine::FormattingParagraph( sal_uInt16 )
+{
+    DBG_CHKTHIS( EditEngine, 0 );
+    DBG_BF_ASSERT(0, "STRIP");      // VIRTUAL
+    return sal_False;
+}
 
-/*N*/ void EditEngine::ParaAttribsChanged( sal_uInt16 /* nParagraph */ )
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/ }
+void EditEngine::ParaAttribsChanged( sal_uInt16 /* nParagraph */ )
+{
+    DBG_CHKTHIS( EditEngine, 0 );
+    DBG_BF_ASSERT(0, "STRIP");      // VIRTUAL
+}
 
 
-/*N*/ void EditEngine::ParagraphHeightChanged( sal_uInt16 )
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/
-/*N*/     if ( GetNotifyHdl().IsSet() )
-/*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
-/*N*/ }
+void EditEngine::ParagraphHeightChanged( sal_uInt16 )
+{
+    DBG_CHKTHIS( EditEngine, 0 );
+    DBG_BF_ASSERT(0, "STRIP");      // VIRTUAL
+}
 
 /*N*/ XubString EditEngine::GetUndoComment( sal_uInt16 nId ) const
 /*N*/ {
@@ -1252,10 +1216,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/           if( eNumType == SVX_NUM_CHAR_SPECIAL )
 /*N*/           {
 /*N*/               pNumberFormat->SetBulletChar( pOldBullet->GetSymbol() );
-/*N*/           }
-/*N*/           else if( eNumType == SVX_NUM_BITMAP )
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/       }
 /*N*/

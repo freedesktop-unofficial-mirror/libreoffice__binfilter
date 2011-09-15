@@ -101,13 +101,15 @@ DBG_NAME( EditUndo )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void EditUndoInsertChars::Undo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+void EditUndoInsertChars::Undo()
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
-/*N*/ void EditUndoInsertChars::Redo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+void EditUndoInsertChars::Redo()
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 /*N*/ BOOL EditUndoInsertChars::Merge( SfxUndoAction* pNextAction )
 /*N*/ {
@@ -127,17 +129,11 @@ DBG_NAME( EditUndo )
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ void EditUndoInsertChars::Repeat()
-/*N*/ {
-/*N*/   OSL_FAIL( "EditUndoInsertChars::Repeat nicht implementiert!" );
-/*N*/ }
-
-// -----------------------------------------------------------------------
-// EditUndoRemoveChars
-// ------------------------------------------------------------------------
-
-
-
+void EditUndoInsertChars::Repeat()
+{
+    OSL_FAIL( "EditUndoInsertChars::Repeat nicht implementiert!" );
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 // -----------------------------------------------------------------------
 // EditUndoInsertFeature
@@ -154,26 +150,21 @@ DBG_NAME( EditUndo )
 /*N*/   delete pFeature;
 /*N*/ }
 
-/*N*/ void EditUndoInsertFeature::Undo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+void EditUndoInsertFeature::Undo()
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
-/*N*/ void EditUndoInsertFeature::Redo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+void EditUndoInsertFeature::Redo()
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
-/*N*/ void EditUndoInsertFeature::Repeat()
-/*N*/ {
-/*N*/   OSL_FAIL( "EditUndoInsertFeature::Repeat nicht implementiert!" );
-/*N*/ }
-
-// -----------------------------------------------------------------------
-// EditUndoMoveParagraphs
-// ------------------------------------------------------------------------
-
-
-
-
+void EditUndoInsertFeature::Repeat()
+{
+    OSL_FAIL( "EditUndoInsertFeature::Repeat nicht implementiert!" );
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 // -----------------------------------------------------------------------
 // EditUndoSetStyleSheet
@@ -190,22 +181,21 @@ DBG_NAME( EditUndo )
 /*N*/   nPara = nP;
 /*N*/ }
 
-/*N*/ EditUndoSetStyleSheet::~EditUndoSetStyleSheet()
-/*N*/ {
-/*N*/ }
+void EditUndoSetStyleSheet::Undo()
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
-/*N*/ void EditUndoSetStyleSheet::Undo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+void EditUndoSetStyleSheet::Redo()
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
-/*N*/ void EditUndoSetStyleSheet::Redo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void EditUndoSetStyleSheet::Repeat()
-/*N*/ {
-/*N*/   OSL_FAIL( "EditUndoSetStyleSheet::Repeat nicht implementiert!" );
-/*N*/ }
+void EditUndoSetStyleSheet::Repeat()
+{
+    OSL_FAIL( "EditUndoSetStyleSheet::Repeat nicht implementiert!" );
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 // -----------------------------------------------------------------------
 // EditUndoSetParaAttribs
@@ -218,47 +208,21 @@ DBG_NAME( EditUndo )
 /*N*/   nPara = nP;
 /*N*/ }
 
-/*N*/ EditUndoSetParaAttribs::~EditUndoSetParaAttribs()
-/*N*/ {
-/*N*/ }
+void EditUndoSetParaAttribs::Undo()
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
-/*N*/ void EditUndoSetParaAttribs::Undo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+void EditUndoSetParaAttribs::Redo()
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
-/*N*/ void EditUndoSetParaAttribs::Redo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void EditUndoSetParaAttribs::Repeat()
-/*N*/ {
-/*N*/   OSL_FAIL( "EditUndoSetParaAttribs::Repeat nicht implementiert!" );
-/*N*/ }
-
-// -----------------------------------------------------------------------
-// EditUndoSetAttribs
-// ------------------------------------------------------------------------
-
-
-
-
-
-
-// -----------------------------------------------------------------------
-// EditUndoTransliteration
-// ------------------------------------------------------------------------
-
-
-
-
-
-// -----------------------------------------------------------------------
-// EditUndoMarkSelection
-// ------------------------------------------------------------------------
-
-
-
-
+void EditUndoSetParaAttribs::Repeat()
+{
+    OSL_FAIL( "EditUndoSetParaAttribs::Repeat nicht implementiert!" );
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 }
 

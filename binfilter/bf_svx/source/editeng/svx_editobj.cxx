@@ -159,94 +159,13 @@ EditTextObject::~EditTextObject()
     DBG_DTOR( EE_EditTextObject, 0 );
 }
 
-USHORT EditTextObject::GetParagraphCount() const
-{
-    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
-    return 0;
-}
-
-XubString EditTextObject::GetText( USHORT ) const
-{DBG_BF_ASSERT(0, "STRIP"); return XubString();
-}
-
-void EditTextObject::Insert( const EditTextObject&, USHORT )
-{
-    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
-}
-
-void EditTextObject::ClearPortionInfo()
-{
-    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
-}
-
-void EditTextObject::MergeParaAttribs( const SfxItemSet&, USHORT, USHORT )
-{
-    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
-}
-
-
-
-BOOL EditTextObject::HasField( TypeId ) const
-{
-    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
-    return FALSE;
-}
-
 SfxItemSet EditTextObject::GetParaAttribs( USHORT ) const
 {
     OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
     return SfxItemSet( *(SfxItemPool*)NULL );
 }
 
-void EditTextObject::GetStyleSheet( USHORT, XubString&, SfxStyleFamily& ) const
-{
-    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
-}
-
-void EditTextObject::SetStyleSheet( USHORT, const XubString&, const SfxStyleFamily& )
-{
-    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
-}
-
-BOOL EditTextObject::ChangeStyleSheets( const XubString&, SfxStyleFamily,
-                                            const XubString&, SfxStyleFamily )
-{
-    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
-    return FALSE;
-}
-
-void EditTextObject::ChangeStyleSheetName( SfxStyleFamily,
-                const XubString&, const XubString& )
-{
-    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
-}
-
-USHORT EditTextObject::GetUserType() const
-{
-    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
-    return 0;
-}
-
-void EditTextObject::SetUserType( USHORT )
-{
-    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
-}
-
-
-
-BOOL EditTextObject::IsVertical() const
-{
-    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
-    return FALSE;
-}
-
-void EditTextObject::SetVertical( BOOL /*bVertical*/ )
-{DBG_BF_ASSERT(0, "STRIP");
-}
-
-
-
-EditTextObject*    EditTextObject::Create( SvStream& rIStream, SfxItemPool* pGlobalTextObjectPool )
+EditTextObject* EditTextObject::Create( SvStream& rIStream, SfxItemPool* pGlobalTextObjectPool )
 {
     ULONG nStartPos = rIStream.Tell();
 
@@ -284,28 +203,6 @@ EditTextObject*    EditTextObject::Create( SvStream& rIStream, SfxItemPool* pGlo
     return pTxtObj;
 }
 
-
-void EditTextObject::CreateData( SvStream& /*rIStream*/ )
-{
-    OSL_FAIL( "CreateData: Basisklasse!" );
-}
-
-USHORT EditTextObject::GetVersion() const
-{
-    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
-    return 0;
-}
-
-
-void EditTextObject::AdjustImportedLRSpaceItems( BOOL /*bTurnOfBullets*/ )
-{
-    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
-}
-
-void EditTextObject::FinishLoad( SfxStyleSheetPool* /*pStyleSheetPool*/ )
-{
-    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
-}
 
 BinTextObject::BinTextObject( SfxItemPool* pP ) :
     EditTextObject( EE_FORMAT_BIN )
@@ -562,10 +459,6 @@ void BinTextObject::GetStyleSheet( USHORT nPara, XubString& rName, SfxStyleFamil
         rName = pC->GetStyle();
         rFamily = pC->GetFamily();
     }
-}
-
-void BinTextObject::SetStyleSheet( USHORT, const XubString&, const SfxStyleFamily& )
-{DBG_BF_ASSERT(0, "STRIP");
 }
 
 BOOL BinTextObject::ImpChangeStyleSheets(

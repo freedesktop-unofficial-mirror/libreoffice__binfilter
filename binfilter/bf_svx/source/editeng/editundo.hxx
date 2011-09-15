@@ -56,9 +56,6 @@ public:
                     TYPEINFO();
                     EditUndoInsertChars( ImpEditEngine* pImpEE, const EPaM& rEPaM, const String& rStr );
 
-    const EPaM&     GetEPaM() { return aEPaM; }
-    String&         GetStr() { return aText; }
-
     virtual void    Undo();
     virtual void    Redo();
     virtual void    Repeat();
@@ -67,10 +64,6 @@ public:
 
     virtual BOOL    Merge( SfxUndoAction *pNextAction );
 };
-
-// -----------------------------------------------------------------------
-// EditUndoRemoveChars
-// ------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------
 // EditUndoInsertFeature
@@ -112,7 +105,6 @@ public:
                         const XubString& rPrevName, SfxStyleFamily ePrevFamily,
                         const XubString& rNewName, SfxStyleFamily eNewFamily,
                         const SfxItemSet& rPrevParaAttribs );
-                    ~EditUndoSetStyleSheet();
 
     virtual void    Undo();
     virtual void    Redo();
@@ -133,7 +125,6 @@ private:
 
 public:
                     EditUndoSetParaAttribs( ImpEditEngine* pImpEE, USHORT nPara, const SfxItemSet& rPrevItems, const SfxItemSet& rNewItems );
-                    ~EditUndoSetParaAttribs();
 
     virtual void    Undo();
     virtual void    Redo();

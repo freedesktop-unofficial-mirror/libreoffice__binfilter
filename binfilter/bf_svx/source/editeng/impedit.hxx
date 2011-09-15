@@ -209,7 +209,6 @@ public:
 
     EVAnchorMode    GetAnchorMode() const           { return eAnchorMode; }
     void            ShowCursor( sal_Bool bGotoCursor, sal_Bool bForceVisCursor, BOOL test );
-    void            ShowCursor( sal_Bool bGotoCursor, sal_Bool bForceVisCursor, USHORT nShowCursorFlags = 0 );
 
     sal_Bool            IsInsertMode() const            { return ( ( nControl & EV_CNTRL_OVERWRITE ) == 0 ); }
 
@@ -221,7 +220,6 @@ public:
     sal_Bool            DoBigScroll() const             { return ( ( nControl & EV_CNTRL_BIGSCROLL ) != 0 ); }
     sal_Bool            DoAutoSize() const              { return ( ( nControl & EV_CNTRL_AUTOSIZE ) != 0 ); }
     sal_Bool            DoAutoWidth() const             { return ( ( nControl & EV_CNTRL_AUTOSIZEX) != 0 ); }
-    sal_Bool            DoAutoHeight() const            { return ( ( nControl & EV_CNTRL_AUTOSIZEY) != 0 ); }
     sal_Bool            DoInvalidateMore() const        { return ( ( nControl & EV_CNTRL_INVONEMORE ) != 0 ); }
 
     const Color&    GetBackgroundColor() const {
@@ -355,7 +353,6 @@ private:
     // Methoden...
     // ================================================================
 
-    void                CursorMoved( ContentNode* pPrevNode );
     void                ParaAttribsChanged( ContentNode* pNode );
     void                TextModified();
     void                CalcHeight( ParaPortion* pPortion );
@@ -815,7 +812,6 @@ inline Cursor* ImpEditView::GetCursor()
     return pCursor;
 }
 
-void ConvertItem( SfxPoolItem& rPoolItem, MapUnit eSourceUnit, MapUnit eDestUnit );
 BYTE GetCharTypeForCompression( xub_Unicode cChar );
 Point Rotate( const Point& rPoint, short nOrientation, const Point& rOrigin );
 

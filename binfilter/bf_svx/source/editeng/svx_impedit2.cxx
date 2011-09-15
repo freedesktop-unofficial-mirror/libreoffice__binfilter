@@ -400,21 +400,9 @@ using namespace ::com::sun::star;
 //  ----------------------------------------------------------------------
 //  MISC
 //  ----------------------------------------------------------------------
-/*N*/ void ImpEditEngine::CursorMoved( ContentNode* pPrevNode )
-/*N*/ {
-/*N*/   // Leere Attribute loeschen, aber nur, wenn Absatz nicht leer!
-/*N*/   if ( pPrevNode->GetCharAttribs().HasEmptyAttribs() && pPrevNode->Len() )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/ }
-
 /*N*/ void ImpEditEngine::TextModified()
 /*N*/ {
 /*N*/   bFormatted = FALSE;
-/*N*/
-/*N*/     if ( GetNotifyHdl().IsSet() )
-/*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
 /*N*/ }
 
 
@@ -874,13 +862,6 @@ using namespace ::com::sun::star;
 /*N*/   DeletedNodeInfo* pInf = new DeletedNodeInfo( (ULONG)pRight, nParagraphTobeDeleted );
 /*N*/   aDeletedNodes.Insert( pInf, aDeletedNodes.Count() );
 /*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if ( IsUndoEnabled() && !IsInUndo() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ #endif
-/*N*/
 /*N*/   if ( bBackward )
 /*N*/   {
 /*?*/       pLeft->SetStyleSheet( pRight->GetStyleSheet(), TRUE );
@@ -936,24 +917,8 @@ using namespace ::com::sun::star;
 /*N*/   EditPaM aStartPaM( aSel.Min() );
 /*N*/   EditPaM aEndPaM( aSel.Max() );
 /*N*/
-/*N*/   CursorMoved( aStartPaM.GetNode() ); // nur damit neu eingestellte Attribute verschwinden...
-/*N*/   CursorMoved( aEndPaM.GetNode() );   // nur damit neu eingestellte Attribute verschwinden...
-/*N*/
 /*N*/   DBG_ASSERT( aStartPaM.GetIndex() <= aStartPaM.GetNode()->Len(), "Index im Wald in ImpDeleteSelection" );
 /*N*/   DBG_ASSERT( aEndPaM.GetIndex() <= aEndPaM.GetNode()->Len(), "Index im Wald in ImpDeleteSelection" );
-/*N*/
-/*N*/   USHORT nStartNode = aEditDoc.GetPos( aStartPaM.GetNode() );
-/*N*/   USHORT nEndNode = aEditDoc.GetPos( aEndPaM.GetNode() );
-/*N*/
-/*N*/   DBG_ASSERT( nEndNode != USHRT_MAX, "Start > End ?!" );
-/*N*/   DBG_ASSERT( nStartNode <= nEndNode, "Start > End ?!" );
-/*N*/
-/*N*/   // Alle Nodes dazwischen entfernen....
-/*N*/   for ( ULONG z = nStartNode+1; z < nEndNode; z++ )
-/*N*/   {
-/*?*/       // Immer nStartNode+1, wegen Remove()!
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   if ( aStartPaM.GetNode() != aEndPaM.GetNode() )
 /*N*/   {
@@ -1131,7 +1096,6 @@ using namespace ::com::sun::star;
 /*N*/   if ( IsCallParaInsertedOrDeleted() )
 /*N*/       GetEditEnginePtr()->ParagraphInserted( nPos+1 );
 /*N*/
-/*N*/   CursorMoved( rPaM.GetNode() );  // falls leeres Attribut entstanden.
 /*N*/   TextModified();
 /*N*/   return aPaM;
 /*N*/ }

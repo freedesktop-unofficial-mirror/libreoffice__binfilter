@@ -168,13 +168,10 @@ public:
 
     String          GetText( USHORT nParagraph ) const;
     xub_StrLen          GetTextLen( USHORT nParagraph ) const;
-    sal_uInt32      GetTextHeight( USHORT nParagraph ) const;
 
     USHORT          GetParagraphCount() const;
 
     USHORT          GetLineCount( USHORT nParagraph ) const;
-    xub_StrLen      GetLineLen( USHORT nParagraph, USHORT nLine ) const;
-    sal_uInt32      GetLineHeight( USHORT nParagraph, USHORT nLine = 0 );
     USHORT          GetFirstLineOffset( USHORT nParagraph );
     ParagraphInfos  GetParagraphInfos( USHORT nPara );
     USHORT          FindParagraph( long nDocPosY );
@@ -198,15 +195,11 @@ public:
     void                SetParaAttribs( USHORT nPara, const SfxItemSet& rSet );
     const SfxItemSet&   GetParaAttribs( USHORT nPara ) const;
 
-    void                GetCharAttribs( USHORT nPara, EECharAttribArray& rLst ) const;
-
     SfxItemSet          GetAttribs( USHORT nPara, USHORT nStart, USHORT nEnd, sal_uInt8 nFlags = 0xFF ) const;
     SfxItemSet          GetAttribs( const ESelection& rSel, BOOL bOnlyHardAttrib = EditEngineAttribs_All );
 
     BOOL                HasParaAttrib( USHORT nPara, USHORT nWhich ) const;
     const SfxPoolItem&  GetParaAttrib( USHORT nPara, USHORT nWhich );
-
-
 
 
     SfxUndoManager& GetUndoManager();

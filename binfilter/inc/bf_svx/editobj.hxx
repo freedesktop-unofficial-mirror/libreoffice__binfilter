@@ -58,23 +58,31 @@ protected:
                         EditTextObject( USHORT nWhich );
                         EditTextObject( const EditTextObject& r );
 
-    virtual void        StoreData( SvStream& ) const {}
-    virtual void        CreateData( SvStream& rIStream );
+    virtual void        StoreData( SvStream& ) const
+                        {}
+
+    virtual void        CreateData( SvStream& /* rIStream */ )
+                        {}
 
 public:
     virtual             ~EditTextObject();
 
     USHORT              Which() const { return nWhich; }
 
-    virtual USHORT      GetUserType() const;    // Fuer OutlinerMode, der kann das aber nicht kompatibel speichern
-    virtual void        SetUserType( USHORT n );
+    virtual USHORT      GetUserType() const
+                        { return 0; }
 
+    virtual void        SetUserType( USHORT /* n */ )
+                        {}
 
-    virtual BOOL        IsVertical() const;
-    virtual
-    void                SetVertical( BOOL bVertical );
+    virtual BOOL        IsVertical() const
+                        { return FALSE; }
 
-    virtual USHORT      GetVersion() const; // Solange der Outliner keine Recordlaenge speichert
+    virtual void        SetVertical( BOOL bVertical )
+                        {}
+
+    virtual USHORT      GetVersion() const
+                        { return 0; }
 
     virtual EditTextObject* Clone() const = 0;
 
@@ -82,31 +90,60 @@ public:
     static EditTextObject*  Create( SvStream& rIStream,
                                 SfxItemPool* pGlobalTextObjectPool = 0 );
 
-    // Zur 5.1 hat sich die Bedeutung des LRSpaceItems fuer den Outliner geaendert...
-    virtual void            AdjustImportedLRSpaceItems( BOOL bTurnOfBullets );
-    virtual void            FinishLoad( SfxStyleSheetPool* pStyleSheetPool );
+    virtual void        AdjustImportedLRSpaceItems( BOOL /* bTurnOfBullets */ )
+                        {}
 
-    virtual USHORT      GetParagraphCount() const;
+    virtual void        FinishLoad( SfxStyleSheetPool* /* pStyleSheetPool */ )
+                        {}
 
-    virtual XubString   GetText( USHORT nParagraph ) const;
-    virtual void        Insert( const EditTextObject& rObj, USHORT nPara );
+    virtual USHORT      GetParagraphCount() const
+                        { return 0; }
 
-    virtual void        ClearPortionInfo();
+    virtual XubString   GetText( USHORT nParagraph ) const
+                        { return XubString(); }
 
+    virtual void        Insert( const EditTextObject& /* rObj */, USHORT /* nPara */ )
+                        {}
 
+    virtual void        ClearPortionInfo()
+                        {}
 
+    virtual void        MergeParaAttribs(
+                            const SfxItemSet& rAttribs,
+                            USHORT nStart = EE_CHAR_START,
+                            USHORT nEnd = EE_CHAR_END
+                        ) {}
 
-    virtual void        MergeParaAttribs( const SfxItemSet& rAttribs, USHORT nStart = EE_CHAR_START, USHORT nEnd = EE_CHAR_END );
-
-    virtual BOOL        HasField( TypeId aType = NULL ) const;
+    virtual BOOL        HasField( TypeId aType = NULL ) const
+                        { return FALSE; }
 
     virtual SfxItemSet  GetParaAttribs( USHORT nPara ) const;
 
-    virtual void        GetStyleSheet( USHORT nPara, XubString& rName, SfxStyleFamily& eFamily ) const;
-    virtual void        SetStyleSheet( USHORT nPara, const XubString& rName, const SfxStyleFamily& eFamily );
-    virtual BOOL        ChangeStyleSheets(  const XubString& rOldName, SfxStyleFamily eOldFamily,
-                                            const XubString& rNewName, SfxStyleFamily eNewFamily );
-    virtual void        ChangeStyleSheetName( SfxStyleFamily eFamily, const XubString& rOldName, const XubString& rNewName );
+    virtual void        GetStyleSheet(
+                            USHORT          /* nPara   */,
+                            XubString&      /* rName   */,
+                            SfxStyleFamily& /* eFamily */
+                        ) const {}
+
+    virtual void        SetStyleSheet(
+                            USHORT                  /* nPara   */,
+                            const XubString&        /* rName   */,
+                            const SfxStyleFamily&   /* eFamily */
+                        ) {}
+
+    virtual BOOL        ChangeStyleSheets(
+                            const XubString&    /* rOldName   */,
+                            SfxStyleFamily      /* eOldFamily */,
+                            const XubString&    /* rNewName   */,
+                            SfxStyleFamily      /* eNewFamily */
+                        )
+                        { return FALSE; }
+
+    virtual void        ChangeStyleSheetName(
+                            SfxStyleFamily      /* eFamily  */,
+                            const XubString&    /* rOldName */,
+                            const XubString&    /* rNewName */
+                        ) {}
 };
 
 }//end of namespace binfilter

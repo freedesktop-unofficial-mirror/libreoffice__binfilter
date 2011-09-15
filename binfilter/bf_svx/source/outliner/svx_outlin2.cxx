@@ -262,16 +262,18 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return pEditEngine->GetLineCount( (USHORT)nParagraph );
 /*N*/ }
 
-/*N*/ USHORT Outliner::GetLineLen( ULONG nParagraph, USHORT nLine ) const
+/*N*/ USHORT Outliner::GetLineLen( ULONG /* nParagraph */, USHORT /* nLine */ ) const
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
-/*N*/   return pEditEngine->GetLineLen( (USHORT)nParagraph, nLine );
+        DBG_BF_ASSERT(0, "STRIP");
+/*N*/   return 0;
 /*N*/ }
 
-/*?*/ ULONG Outliner::GetLineHeight( ULONG nParagraph, ULONG nLine )
+/*?*/ ULONG Outliner::GetLineHeight( ULONG /* nParagraph */, ULONG /* nLine */ )
 /*?*/ {
 /*?*/   DBG_CHKTHIS(Outliner,0);
-/*?*/   return pEditEngine->GetLineHeight( (USHORT)nParagraph, (USHORT)nLine );
+        DBG_BF_ASSERT(0, "STRIP");
+/*?*/   return 0;
 /*?*/ }
 
 /*N*/ void Outliner::QuickRemoveCharAttribs( USHORT nPara, USHORT nWhich )
@@ -320,7 +322,8 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ ULONG Outliner::GetTextHeight( ULONG nParagraph ) const
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
-/*N*/   return pEditEngine->GetTextHeight((USHORT)nParagraph );
+        DBG_BF_ASSERT(0, "STRIP");
+/*N*/   return 0;
 /*N*/ }
 
 /*N*/ Point Outliner::GetDocPos( const Point& rPaperPos ) const

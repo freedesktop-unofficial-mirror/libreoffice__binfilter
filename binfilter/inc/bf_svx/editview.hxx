@@ -103,9 +103,6 @@ public:
 
     const Rectangle&    GetVisArea() const;
 
-    void            Cut();
-    void            Copy();
-    void            Paste();
 };
 
 }//end of namespace binfilter

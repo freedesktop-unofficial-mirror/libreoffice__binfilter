@@ -687,11 +687,6 @@ SvStream& operator >> (SvStream& rIn, SdDrawDocument& rDoc)
     else
         rDoc.SetPresPause( 0 );
 
-    if (rDoc.nFileFormatVersion >= 18)
-    {
-        // Keine Aenderung
-    }
-
     /**************************************************************************
     * So machts der Writer, und so muessen es alle machen:
     * Bug 9714: Der CharSet an den Fonts muss geaendert werden, wenn
@@ -768,13 +763,6 @@ void SdDrawDocument::SetPresMouseAsPen(BOOL bNewPresMouseAsPen)
 {
     bPresMouseAsPen = bNewPresMouseAsPen;
 }
-
-/*************************************************************************
-|*
-|* "Ab Dia"-Parameter der Praesentation aendern
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*

@@ -165,97 +165,14 @@ XubString SvxEditEngineForwarder::CalcFieldValue( const SvxFieldItem& rField, US
     return rEditEngine.CalcFieldValue( rField, nPara, nPos, rpTxtColor, rpFldColor );
 }
 
-USHORT GetSvxEditEngineItemState( EditEngine& rEditEngine, const ESelection& rSel, USHORT nWhich )
+USHORT GetSvxEditEngineItemState(
+    EditEngine& rEditEngine,
+    const ESelection& rSel,
+    USHORT /* nWhich */
+)
 {
-    EECharAttribArray aAttribs;
-
-    const SfxPoolItem*  pLastItem = NULL;
-
-    SfxItemState eState = SFX_ITEM_DEFAULT;
-
-    // check all paragraphs inside the selection
-    for( USHORT nPara = rSel.nStartPara; nPara <= rSel.nEndPara; nPara++ )
-    {
-        SfxItemState eParaState = SFX_ITEM_DEFAULT;
-
-        // calculate start and endpos for this paragraph
-        USHORT nPos = 0;
-        if( rSel.nStartPara == nPara )
-            nPos = rSel.nStartPos;
-
-        USHORT nEndPos = rSel.nEndPos;
-        if( rSel.nEndPara != nPara )
-            nEndPos = rEditEngine.GetTextLen( nPara );
-
-
-        // get list of char attribs
-        rEditEngine.GetCharAttribs( nPara, aAttribs );
-
-        BOOL bEmpty = TRUE;     // we found no item inside the selektion of this paragraph
-        BOOL bGaps  = FALSE;    // we found items but theire gaps between them
-        USHORT nLastEnd = nPos;
-
-        const SfxPoolItem* pParaItem = NULL;
-
-        for( USHORT nAttrib = 0; nAttrib < aAttribs.Count(); nAttrib++ )
-        {
-            struct EECharAttrib aAttrib = aAttribs.GetObject( nAttrib );
-            DBG_ASSERT( aAttrib.pAttr, "GetCharAttribs gives corrupt data" );
-
-            const sal_Bool bEmptyPortion = aAttrib.nStart == aAttrib.nEnd;
-            if( (!bEmptyPortion && (aAttrib.nStart >= nEndPos)) || (bEmptyPortion && (aAttrib.nStart > nEndPos)) )
-                break;  // break if we are already behind our selektion
-
-            if( (!bEmptyPortion && (aAttrib.nEnd <= nPos)) || (bEmptyPortion && (aAttrib.nEnd < nPos)) )
-                continue;   // or if the attribute ends before our selektion
-
-            if( aAttrib.pAttr->Which() != nWhich )
-                continue; // skip if is not the searched item
-
-            // if we already found an item
-            if( pParaItem )
-            {
-                // ... and its different to this one than the state is dont care
-                if( *pParaItem != *aAttrib.pAttr )
-                    return SFX_ITEM_DONTCARE;
-            }
-            else
-            {
-                pParaItem = aAttrib.pAttr;
-            }
-
-            if( bEmpty )
-                bEmpty = FALSE;
-
-            if( !bGaps && aAttrib.nStart > nLastEnd )
-                bGaps = TRUE;
-
-            nLastEnd = aAttrib.nEnd;
-        }
-
-        if( !bEmpty && !bGaps && nLastEnd < ( nEndPos - 1 ) )
-            bGaps = TRUE;
-        if( bEmpty )
-            eParaState = SFX_ITEM_DEFAULT;
-        else if( bGaps )
-            eParaState = SFX_ITEM_DONTCARE;
-        else
-            eParaState = SFX_ITEM_SET;
-
-        // if we already found an item check if we found the same
-        if( pLastItem )
-        {
-            if( (pParaItem == NULL) || (*pLastItem != *pParaItem) )
-                return SFX_ITEM_DONTCARE;
-        }
-        else
-        {
-            pLastItem = pParaItem;
-            eState = eParaState;
-        }
-    }
-
-    return eState;
+    DBG_BF_ASSERT(0, "STRIP");
+    return SFX_ITEM_DEFAULT;
 }
 
 USHORT SvxEditEngineForwarder::GetItemState( const ESelection& rSel, USHORT nWhich ) const
@@ -323,9 +240,9 @@ Rectangle SvxEditEngineForwarder::GetCharBounds( USHORT nPara, USHORT nIndex ) c
             // #109151# Don't use paragraph height, but line height
             // instead. aLast is already CTL-correct
             if( bIsVertical)
-                aLast.SetSize( Size( rEditEngine.GetLineHeight(nPara,0), 1 ) );
+                aLast.SetSize( Size( 0, 1 ) );
             else
-                aLast.SetSize( Size( 1, rEditEngine.GetLineHeight(nPara,0) ) );
+                aLast.SetSize( Size( 1, 0 ) );
         }
 
         return aLast;
@@ -350,7 +267,7 @@ Rectangle SvxEditEngineForwarder::GetParaBounds( USHORT nPara ) const
         // Hargl. EditEngine's 'external' methods return the rotated
         // dimensions, 'internal' methods like GetTextHeight( n )
         // don't rotate.
-        nWidth = rEditEngine.GetTextHeight( nPara );
+        nWidth = 0;
         nHeight = rEditEngine.GetTextHeight();
         nTextWidth = rEditEngine.GetTextHeight();
 
@@ -359,7 +276,7 @@ Rectangle SvxEditEngineForwarder::GetParaBounds( USHORT nPara ) const
     else
     {
         nWidth = rEditEngine.CalcTextWidth();
-        nHeight = rEditEngine.GetTextHeight( nPara );
+        nHeight = 0;
 
         return Rectangle( 0, aPnt.Y(), nWidth, aPnt.Y() + nHeight );
     }
@@ -420,7 +337,8 @@ USHORT SvxEditEngineForwarder::GetLineCount( USHORT nPara ) const
 
 USHORT SvxEditEngineForwarder::GetLineLen( USHORT nPara, USHORT nLine ) const
 {
-    return rEditEngine.GetLineLen(nPara, nLine);
+    DBG_BF_ASSERT(0, "STRIP");
+    return 0;
 }
 
 sal_Bool SvxEditEngineForwarder::QuickFormatDoc( BOOL )

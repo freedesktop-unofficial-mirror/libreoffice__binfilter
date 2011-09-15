@@ -291,9 +291,6 @@ struct ExtraPortionInfo
     BOOL    bCompressed;
 
     long*    pOrgDXArray;
-
-            ~ExtraPortionInfo();
-
 };
 
 
@@ -356,7 +353,7 @@ SV_DECL_PTRARR( TextPortionArray, TextPortionPtr, 0, 8 )
 class TextPortionList : public TextPortionArray
 {
 public:
-            TextPortionList();
+            TextPortionList() {};
             ~TextPortionList();
 
     void    Reset();

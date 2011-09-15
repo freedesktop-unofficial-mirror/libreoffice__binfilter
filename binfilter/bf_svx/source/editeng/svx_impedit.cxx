@@ -31,27 +31,12 @@
 #pragma hdrstop
 #endif
 
-
-
-
 #include <vcl/window.hxx>
 
 #include <impedit.hxx>
 #include <editeng.hxx>
 
-
-
-
-
-
-
-
-
-
-
 #include "itemdata.hxx"
-
-
 
 #include <flditem.hxx>
 
@@ -80,11 +65,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ {
 /*N*/   // #100856# set state before notification
 /*N*/     aEditSelection = rEditSelection;
-/*N*/
-/*N*/     if ( pEditEngine->pImpEditEngine->GetNotifyHdl().IsSet() )
-/*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
 /*N*/ }
 
 
@@ -147,19 +127,6 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/           continue;
 /*?*/       if ( nParaStart > GetVisDocBottom() )
 /*?*/           break;
-/*?*/
-/*?*/       sal_uInt16 nStartLine = 0;
-/*?*/       sal_uInt16 nEndLine = pTmpPortion->GetLines().Count() -1;
-/*?*/       if ( nPara == nStartPara )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
-/*?*/       if ( nPara == nEndPara )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
-/*?*/
-/*?*/       // ueber die Zeilen iterieren....
-/*?*/       for ( sal_uInt16 nLine = nStartLine; nLine <= nEndLine; nLine++ )
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
 /*?*/   }
 /*?*/
 /*?*/   if ( pRegion )
@@ -247,13 +214,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return aRect;
 /*N*/ }
 
-/*N*/ void ImpEditView::ShowCursor( sal_Bool /*bGotoCursor*/, sal_Bool /*bForceVisCursor*/, USHORT /*nShowCursorFlags*/ )
-/*N*/ {
-/*N*/   // Kein ShowCursor bei einer leeren View...
-/*N*/   if ( ( aOutArea.Left() >= aOutArea.Right() ) && ( aOutArea.Top() >= aOutArea.Bottom() ) )
-/*N*/       return;
-/*N*/
-/*?*/ }
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

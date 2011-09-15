@@ -38,43 +38,19 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-sal_Bool SvxEditSourceHelper::GetAttributeRun( USHORT& nStartIndex, USHORT& nEndIndex, const EditEngine& rEE, USHORT nPara, USHORT nIndex )
+sal_Bool SvxEditSourceHelper::GetAttributeRun(
+    USHORT& nStartIndex,
+    USHORT& nEndIndex,
+    const EditEngine& rEE,
+    USHORT nPara,
+    USHORT /* nIndex */
+)
 {
-    EECharAttribArray aCharAttribs;
-
-    rEE.GetCharAttribs( nPara, aCharAttribs );
-
-    // find closest index in front of nIndex
-    USHORT nAttr, nCurrIndex;
-    sal_Int32 nClosestStartIndex;
-    for( nAttr=0, nClosestStartIndex=0; nAttr<aCharAttribs.Count(); ++nAttr )
-    {
-        nCurrIndex = aCharAttribs[nAttr].nStart;
-
-        if( nCurrIndex > nIndex )
-            break; // aCharAttribs array is sorted in increasing order for nStart values
-
-        if( nCurrIndex > nClosestStartIndex )
-        {
-            nClosestStartIndex = nCurrIndex;
-        }
-    }
-
-    // find closest index behind of nIndex
-    sal_Int32 nClosestEndIndex;
-    for( nAttr=0, nClosestEndIndex=rEE.GetTextLen(nPara); nAttr<aCharAttribs.Count(); ++nAttr )
-    {
-        nCurrIndex = aCharAttribs[nAttr].nEnd;
-
-        if( nCurrIndex > nIndex &&
-            nCurrIndex < nClosestEndIndex )
-        {
-            nClosestEndIndex = nCurrIndex;
-        }
-    }
+    sal_Int32 nClosestStartIndex = 0;
+    sal_Int32 nClosestEndIndex   = rEE.GetTextLen(nPara);
 
     nStartIndex = static_cast<USHORT>( nClosestStartIndex );
-    nEndIndex = static_cast<USHORT>( nClosestEndIndex );
+    nEndIndex   = static_cast<USHORT>( nClosestEndIndex );
 
     return sal_True;
 }

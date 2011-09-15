@@ -352,7 +352,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/                       else
 /*N*/                       {
 /*?*/                           SfxPoolItem* pNew = pX->GetItem()->Clone();
-/*?*/                           ConvertItem( *pNew, eSourceUnit, eDestUnit );
 /*?*/                           pAttr = MakeCharAttrib( aEditDoc.GetItemPool(), *pNew, pX->GetStart()+nStartPos, pX->GetEnd()+nStartPos );
 /*?*/                           delete pNew;
 /*N*/                       }

@@ -31,9 +31,6 @@
 #pragma hdrstop
 #endif
 
-
-
-
 #include <vcl/window.hxx>
 
 #include <impedit.hxx>
@@ -46,42 +43,6 @@ namespace binfilter {
 /*N*/ EditSelFunctionSet::EditSelFunctionSet()
 /*N*/ {
 /*N*/   pCurView = NULL;
-/*N*/ }
-
-/*N*/ void EditSelFunctionSet::CreateAnchor()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void EditSelFunctionSet::DestroyAnchor()
-/*N*/ {
-/*N*/   // Nur bei Mehrfachselektion
-/*N*/ }
-
-/*N*/ BOOL EditSelFunctionSet::SetCursorAtPoint( const Point& /*rPointPixel*/, BOOL )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return FALSE;
-/*N*/ }
-
-/*N*/ BOOL EditSelFunctionSet::IsSelectionAtPoint( const Point& /*rPointPixel*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/     return FALSE;
-/*N*/ }
-
-/*N*/ void EditSelFunctionSet::DeselectAtPoint( const Point& )
-/*N*/ {
-/*N*/ // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-/*N*/ // !  Implementieren, wenn Mehrfachselektion moeglich  !
-/*N*/ // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-/*N*/ }
-
-/*N*/ void EditSelFunctionSet::BeginDrag()
-/*N*/ {
-/*N*/   // Nur bei Mehrfachselektion
-/*N*/ }
-
-
-/*N*/ void EditSelFunctionSet::DeselectAll()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //  ----------------------------------------------------------------------

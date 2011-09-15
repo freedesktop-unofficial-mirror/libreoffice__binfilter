@@ -45,16 +45,23 @@ private:
 public:
                     EditSelFunctionSet();
 
-    virtual void    BeginDrag();
+    virtual void    BeginDrag()         {}
+    virtual void    CreateAnchor()      {}
+    virtual void    DestroyAnchor()     {}
 
-    virtual void    CreateAnchor();
-    virtual void    DestroyAnchor();
+    virtual BOOL    SetCursorAtPoint(
+                        const Point& /* rPointPixel */,
+                        BOOL bDontSelectAtCursor = FALSE
+                    )
+                    { return FALSE; }
 
-    virtual BOOL    SetCursorAtPoint( const Point& rPointPixel, BOOL bDontSelectAtCursor = FALSE );
+    virtual BOOL    IsSelectionAtPoint( const Point& /* rPointPixel */ )
+                    { return FALSE; }
 
-    virtual BOOL    IsSelectionAtPoint( const Point& rPointPixel );
-    virtual void    DeselectAtPoint( const Point& rPointPixel );
-    virtual void    DeselectAll();
+    virtual void    DeselectAtPoint( const Point& /* rPointPixel */ )
+                    {}
+
+    virtual void    DeselectAll()       {}
 
     void            SetCurView( EditView* pView )       { pCurView = pView; }
     EditView*       GetCurView()                        { return pCurView; }
@@ -65,8 +72,6 @@ public:
 //  ----------------------------------------------------------------------
 class EditSelectionEngine : public SelectionEngine
 {
-private:
-
 public:
                     EditSelectionEngine();
 
