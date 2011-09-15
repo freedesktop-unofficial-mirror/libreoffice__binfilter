@@ -319,7 +319,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ }
 
 
-/*N*/ ULONG Outliner::GetTextHeight( ULONG nParagraph ) const
+/*N*/ ULONG Outliner::GetTextHeight( ULONG ) const
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
         DBG_BF_ASSERT(0, "STRIP");

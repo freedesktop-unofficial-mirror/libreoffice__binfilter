@@ -51,7 +51,7 @@ public:
 
     virtual BOOL    SetCursorAtPoint(
                         const Point& /* rPointPixel */,
-                        BOOL bDontSelectAtCursor = FALSE
+                        BOOL = FALSE
                     )
                     { return FALSE; }
 

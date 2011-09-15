@@ -166,8 +166,8 @@ XubString SvxEditEngineForwarder::CalcFieldValue( const SvxFieldItem& rField, US
 }
 
 USHORT GetSvxEditEngineItemState(
-    EditEngine& rEditEngine,
-    const ESelection& rSel,
+    EditEngine&,
+    const ESelection&,
     USHORT /* nWhich */
 )
 {
@@ -335,7 +335,7 @@ USHORT SvxEditEngineForwarder::GetLineCount( USHORT nPara ) const
     return rEditEngine.GetLineCount(nPara);
 }
 
-USHORT SvxEditEngineForwarder::GetLineLen( USHORT nPara, USHORT nLine ) const
+USHORT SvxEditEngineForwarder::GetLineLen( USHORT, USHORT ) const
 {
     DBG_BF_ASSERT(0, "STRIP");
     return 0;

@@ -78,7 +78,7 @@ public:
     virtual BOOL        IsVertical() const
                         { return FALSE; }
 
-    virtual void        SetVertical( BOOL bVertical )
+    virtual void        SetVertical( BOOL )
                         {}
 
     virtual USHORT      GetVersion() const
@@ -99,7 +99,7 @@ public:
     virtual USHORT      GetParagraphCount() const
                         { return 0; }
 
-    virtual XubString   GetText( USHORT nParagraph ) const
+    virtual XubString   GetText( USHORT ) const
                         { return XubString(); }
 
     virtual void        Insert( const EditTextObject& /* rObj */, USHORT /* nPara */ )
@@ -109,12 +109,12 @@ public:
                         {}
 
     virtual void        MergeParaAttribs(
-                            const SfxItemSet& rAttribs,
-                            USHORT nStart = EE_CHAR_START,
-                            USHORT nEnd = EE_CHAR_END
+                            const SfxItemSet&,
+                            USHORT = EE_CHAR_START,
+                            USHORT = EE_CHAR_END
                         ) {}
 
-    virtual BOOL        HasField( TypeId aType = NULL ) const
+    virtual BOOL        HasField( TypeId = NULL ) const
                         { return FALSE; }
 
     virtual SfxItemSet  GetParaAttribs( USHORT nPara ) const;

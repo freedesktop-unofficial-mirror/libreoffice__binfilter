@@ -78,8 +78,8 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   EditSelection aNewSelection( PIMPEE->ConvertSelection( rESel.nStartPara, rESel.nStartPos, rESel.nEndPara, rESel.nEndPos ) );
 /*N*/
 /*N*/   // Selektion darf nicht bei einem unsichtbaren Absatz Starten/Enden:
-/*N*/   ParaPortion* pPortion = PIMPEE->FindParaPortion( aNewSelection.Min().GetNode() );
-/*N*/                pPortion = PIMPEE->FindParaPortion( aNewSelection.Max().GetNode() );
+/*N*/   PIMPEE->FindParaPortion( aNewSelection.Min().GetNode() ); // WaE cleanup: left in for potential side effects
+/*N*/   PIMPEE->FindParaPortion( aNewSelection.Max().GetNode() ); // WaE cleanup: left in for potential side effects
 /*N*/
 /*N*/   pImpEditView->DrawSelection();  // alte Selektion 'weg-zeichnen'
 /*N*/   pImpEditView->SetEditSelection( aNewSelection );
@@ -133,19 +133,8 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ }
 
 
-/*N*/ void EditView::ShowCursor( sal_Bool bGotoCursor, sal_Bool bForceVisCursor )
+/*N*/ void EditView::ShowCursor( sal_Bool, sal_Bool )
 /*N*/ {
-/*N*/   DBG_CHKTHIS( EditView, 0 );
-/*N*/   DBG_CHKOBJ( pImpEditView->pEditEngine, EditEngine, 0 );
-/*N*/
-/*N*/ // Draw vertraegt die Assertion nicht, spaeter mal aktivieren
-/*N*/
-/*N*/   if ( pImpEditView->pEditEngine->HasView( this ) )
-/*N*/   {
-/*N*/       // Das ControlWord hat mehr Gewicht:
-/*N*/       if ( !pImpEditView->DoAutoScroll() )
-/*N*/           bGotoCursor = sal_False;
-/*N*/   }
 /*N*/ }
 
 /*N*/ void EditView::HideCursor()

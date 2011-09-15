@@ -528,7 +528,6 @@ struct TabInfo
 /*N*/   TabInfo aCurrentTab;
 /*N*/
 /*N*/   BOOL bForceOneRun = bEmptyNodeWithPolygon;
-/*N*/     BOOL bCompressedChars = FALSE;
 /*N*/
 /*N*/   while ( ( nIndex < pNode->Len() ) || bForceOneRun )
 /*N*/   {
@@ -688,7 +687,6 @@ struct TabInfo
 /*?*/                           bBrokenLine = sal_True;
 /*N*/                       }
 /*N*/                       pLine->GetCharPosArray().Insert( pPortion->GetSize().Width(), nTmpPos-pLine->GetStart() );
-/*N*/                         bCompressedChars = FALSE;
 /*N*/                   }
 /*N*/                   break;
 /*N*/                   case EE_FEATURE_LINEBR:
@@ -698,7 +696,6 @@ struct TabInfo
 /*N*/                       bEOL = sal_True;
 /*N*/                       bLineBreak = sal_True;
 /*N*/                       pPortion->GetKind() = PORTIONKIND_LINEBREAK;
-/*N*/                         bCompressedChars = FALSE;
 /*N*/                       pLine->GetCharPosArray().Insert( pPortion->GetSize().Width(), nTmpPos-pLine->GetStart() );
 /*N*/                   }
 /*N*/                   break;
@@ -729,7 +726,6 @@ struct TabInfo
 /*N*/                       }
 /*N*/                         // Compression in Fields????
 /*N*/                         // I think this could be a little bit difficult and is not very usefull
-/*N*/                         bCompressedChars = FALSE;
 /*N*/                   }
 /*N*/                   break;
 /*N*/                   default:    OSL_FAIL( "Was fuer ein Feature ?" );
@@ -1649,7 +1645,6 @@ struct TabInfo
 /*N*/         xub_StrLen nIdx = 0;
 /*N*/         xub_StrLen nKashidaPos = STRING_LEN;
 /*N*/         xub_Unicode cCh;
-/*N*/         xub_Unicode cPrevCh = 0;
 /*N*/
 /*N*/         while ( nIdx < aWord.Len() )
 /*N*/         {
@@ -1680,12 +1675,6 @@ struct TabInfo
 /*N*/             // before media Bah
 /*N*/             // 6. Priority:
 /*N*/             // other connecting possibilities
-/*N*/
-/*N*/             // Do not consider Fathatan, Dammatan, Kasratan, Fatha,
-/*N*/             // Damma, Kasra, Shadda and Sukun when checking if
-/*N*/             // a character can be connected to previous character.
-/*N*/             if ( cCh < 0x64B || cCh > 0x652 )
-/*N*/                 cPrevCh = cCh;
 /*N*/
 /*N*/             ++nIdx;
 /*N*/         } // end of current word
