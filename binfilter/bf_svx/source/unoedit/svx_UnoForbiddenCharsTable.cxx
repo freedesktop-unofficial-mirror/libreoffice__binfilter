@@ -101,7 +101,7 @@ void SvxUnoForbiddenCharsTable::setForbiddenCharacters(const Locale& rLocale, co
     onChange();
 }
 
-void SvxUnoForbiddenCharsTable::removeForbiddenCharacters( const Locale& rLocale )
+void SvxUnoForbiddenCharsTable::removeForbiddenCharacters( const Locale& )
     throw(RuntimeException)
 {
     SolarMutexGuard aGuard;
