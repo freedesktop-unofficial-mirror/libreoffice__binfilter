@@ -33,6 +33,8 @@
 
 #include <hintids.hxx>
 
+#include <comphelper/string.hxx>
+
 #include <bf_so3/persist.hxx>
 #include <bf_so3/embobj.hxx>
 #include <bf_svtools/urihelper.hxx>
@@ -352,7 +354,11 @@ namespace binfilter {
         : rRdr( rR )
     {
         if( nOffset )
-            sReadTxt.Expand( nOffset );
+        {
+            rtl::OStringBuffer aBuf;
+            sReadTxt = comphelper::string::padToLength(aBuf, nOffset, ' ')
+                .makeStringAndClear();
+        }
         pOldTxt = rRdr.GetReadTxt();
         rRdr.SetReadTxt( &sReadTxt );
     }

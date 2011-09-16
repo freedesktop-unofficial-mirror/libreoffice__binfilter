@@ -31,6 +31,7 @@
 
 #include <string.h>
 #include <tools/string.hxx>
+#include <comphelper/string.hxx>
 
 #include <crypter.hxx>
 
@@ -49,8 +50,9 @@ Crypter::Crypter( const ByteString& r )
     { 0xAB, 0x9E, 0x43, 0x05, 0x38, 0x12, 0x4d, 0x44,
       0xD5, 0x7e, 0xe3, 0x84, 0x98, 0x23, 0x3f, 0xba };
 
-    ByteString aPasswd( r );
-    aPasswd.Expand( PASSWDLEN, ' ' );
+    rtl::OStringBuffer aBuf(r);
+    comphelper::string::padToLength(aBuf, PASSWDLEN, ' ');
+    ByteString aPasswd(aBuf.makeStringAndClear());
     memcpy( cPasswd, cEncode, PASSWDLEN );
     Encrypt( aPasswd );
     memcpy( cPasswd, aPasswd.GetBuffer(), PASSWDLEN );
