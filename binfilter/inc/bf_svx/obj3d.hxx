@@ -498,9 +498,6 @@ public:
     // DisplayGeometry rausruecken
     B3dGeometry& GetDisplayGeometry();
 
-    // Schattenattribute holen
-    BOOL DoDrawShadow();
-
 private:
     void SetInvertNormals(BOOL bNew);
 

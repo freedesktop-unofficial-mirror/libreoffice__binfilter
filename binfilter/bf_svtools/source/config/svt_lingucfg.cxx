@@ -539,12 +539,6 @@ SvtLinguConfigItem & SvtLinguConfig::GetConfigItem()
 }
 
 
-Sequence< OUString > SvtLinguConfig::GetNodeNames( const OUString &rNode )
-{
-    return GetConfigItem().GetNodeNames( rNode );
-}
-
-
 BOOL SvtLinguConfig::GetOptions( SvtLinguOptions &rOptions ) const
 {
     return GetConfigItem().GetOptions( rOptions );

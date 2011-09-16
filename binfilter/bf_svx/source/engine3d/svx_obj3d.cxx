@@ -1947,33 +1947,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Schattenattribute holen
-|*
-\************************************************************************/
-
-/*N*/ BOOL E3dCompoundObject::DoDrawShadow()
-/*N*/ {
-/*N*/   const SfxItemSet& rSet = GetItemSet();
-/*N*/   BOOL bRetval(FALSE);
-/*N*/   BOOL bShadOn = ((SdrShadowItem&)(rSet.Get(SDRATTR_SHADOW))).GetValue();
-/*N*/
-/*N*/   if(bShadOn)
-/*N*/   {
-/*?*/       bRetval = TRUE;
-/*?*/
-/*?*/       if(((XFillStyleItem&)(rSet.Get(XATTR_FILLSTYLE))).GetValue() == XFILL_NONE)
-/*?*/       {
-/*?*/           if(((XLineStyleItem&)(rSet.Get(XATTR_LINESTYLE))).GetValue() == XLINE_NONE)
-/*?*/           {
-/*?*/               bRetval = FALSE;
-/*?*/           }
-/*?*/       }
-/*N*/   }
-/*N*/   return bRetval;
-/*N*/ }
-
-/*************************************************************************
-|*
 |* Create vertical polygons for line polygon
 |*
 \************************************************************************/

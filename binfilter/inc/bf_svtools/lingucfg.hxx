@@ -151,12 +151,6 @@ public:
     SvtLinguConfig();
     virtual ~SvtLinguConfig();
 
-    //
-    // borrowed from utl::ConfigItem
-    //
-    com::sun::star::uno::Sequence< rtl::OUString >
-        GetNodeNames( const rtl::OUString &rNode );
-
     BOOL    GetOptions( SvtLinguOptions &rOptions ) const;
 };
 
