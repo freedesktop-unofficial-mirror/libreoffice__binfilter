@@ -62,8 +62,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ DBG_NAME( EditEngine )
 /*N*/ DBG_NAMEEX( EditView )
 
-SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
-
 
 // ----------------------------------------------------------------------
 // EditEngine
@@ -201,16 +199,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   }
 /*N*/   return pRemoved;
 /*N*/ }
-
-
-
-
-/*N*/ sal_Bool EditEngine::HasView( EditView* pView ) const
-/*N*/ {
-/*N*/   return pImpEditEngine->GetEditViews().GetPos( pView ) != USHRT_MAX;
-/*N*/ }
-
-
 
 /*N*/ void EditEngine::SetDefTab( sal_uInt16 nDefTab )
 /*N*/ {
@@ -440,12 +428,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/   pImpEditEngine->SetNotifyHdl( rLink );
-/*N*/ }
-
-/*N*/ Link EditEngine::GetNotifyHdl() const
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/   return pImpEditEngine->GetNotifyHdl();
 /*N*/ }
 
 /*N*/ void EditEngine::SetBeginMovingParagraphsHdl( const Link& rLink )

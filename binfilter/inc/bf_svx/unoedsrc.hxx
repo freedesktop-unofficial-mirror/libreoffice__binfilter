@@ -50,7 +50,6 @@ class SvxTextForwarder;
 class SvxViewForwarder;
 class SvxEditViewForwarder;
 class SvxFieldItem;
-class EECharAttribArray;
 
 /** Wrapper class for unified EditEngine/Outliner access
 

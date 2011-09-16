@@ -138,7 +138,6 @@ public:
     BOOL            IsForceAutoColor() const;
 
     EditView*       RemoveView( EditView* pEditView );
-    BOOL            HasView( EditView* pView ) const;
 
     void            SetPaperSize( const Size& rSize );
     const Size&     GetPaperSize() const;
@@ -227,7 +226,6 @@ public:
     void            SetStatusEventHdl( const Link& rLink );
 
     void            SetNotifyHdl( const Link& rLink );
-    Link            GetNotifyHdl() const;
 
 
     // Flat-Mode: Keine Zeichenformatierung auswerten => Fuer Outliner

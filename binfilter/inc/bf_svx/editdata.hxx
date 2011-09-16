@@ -308,17 +308,6 @@ struct ParagraphInfos
     BOOL    bValid; // Bei einer Abfrage waehrend der Formatierung ungueltig!
 };
 
-struct EECharAttrib
-{
-    const SfxPoolItem*  pAttr;
-
-    USHORT              nPara;
-    xub_StrLen          nStart;
-    xub_StrLen          nEnd;
-};
-
-SV_DECL_VARARR( EECharAttribArray, EECharAttrib, 0, 4 )
-
 struct MoveParagraphsInfo
 {
     USHORT  nStartPara;
