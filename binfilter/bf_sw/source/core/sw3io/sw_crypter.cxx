@@ -49,13 +49,8 @@ Crypter::Crypter( const ByteString& r )
     { 0xAB, 0x9E, 0x43, 0x05, 0x38, 0x12, 0x4d, 0x44,
       0xD5, 0x7e, 0xe3, 0x84, 0x98, 0x23, 0x3f, 0xba };
 
-    xub_StrLen nLen = r.Len();
-    if( nLen > PASSWDLEN ) nLen = PASSWDLEN;
     ByteString aPasswd( r );
-    if( nLen > PASSWDLEN )
-        aPasswd.Erase( nLen );
-    else
-        aPasswd.Expand( PASSWDLEN, ' ' );
+    aPasswd.Expand( PASSWDLEN, ' ' );
     memcpy( cPasswd, cEncode, PASSWDLEN );
     Encrypt( aPasswd );
     memcpy( cPasswd, aPasswd.GetBuffer(), PASSWDLEN );
