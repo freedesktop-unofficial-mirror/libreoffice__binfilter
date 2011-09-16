@@ -57,13 +57,6 @@ public:
     // Zeichenmethode
     virtual bool Paint(ExtOutputDevice&, const SdrPaintInfoRec&) const;
 
-    // Die Kontur fuer TextToContour
-
-
-protected:
-
-
-
 };
 
 }//end of namespace binfilter

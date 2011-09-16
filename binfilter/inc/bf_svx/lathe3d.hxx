@@ -56,12 +56,6 @@ class E3dLatheObj : public E3dCompoundObject
     // #78972#
     PolyPolygon3D   maLinePolyPolygon;
 
-    // #107245# unsigned        bLatheSmoothed              : 1;
-    // #107245# unsigned        bLatheSmoothFrontBack       : 1;
-    // #107245# unsigned        bLatheCharacterMode         : 1;
-    // #107245# unsigned        bLatheCloseFront            : 1;
-    // #107245# unsigned        bLatheCloseBack             : 1;
-
  protected:
     void SetDefaultAttributes(E3dDefaultAttributes& rDefault);
 
@@ -138,18 +132,6 @@ class E3dLatheObj : public E3dCompoundObject
     const PolyPolygon3D& GetPolyPoly3D() { return aPolyPoly3D; }
 
     double GetLatheScale() const { return fLatheScale; }
-
-    // #107245#
-    // void SetLatheSmoothed(BOOL bNew);
-    // BOOL GetLatheSmoothed() const { return bLatheSmoothed; }
-    // void SetLatheSmoothFrontBack(BOOL bNew);
-    // BOOL GetLatheSmoothFrontBack() const { return bLatheSmoothFrontBack; }
-    // void SetLatheCharacterMode(BOOL bNew);
-    // BOOL GetLatheCharacterMode() const { return bLatheCharacterMode; }
-    // void SetLatheCloseFront(BOOL bNew);
-    // BOOL GetLatheCloseFront() const { return bLatheCloseFront; }
-    // void SetLatheCloseBack(BOOL bNew);
-    // BOOL GetLatheCloseBack() const { return bLatheCloseBack; }
 
     // private support routines for ItemSet access. NULL pointer means clear item.
     virtual void PostItemChange(const sal_uInt16 nWhich);

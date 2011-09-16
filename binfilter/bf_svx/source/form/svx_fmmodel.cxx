@@ -67,12 +67,6 @@ struct FmFormModelImplData
 |* Ctor
 |*
 \************************************************************************/
-
-/*************************************************************************
-|*
-|* Ctor
-|*
-\************************************************************************/
 /*N*/ FmFormModel::FmFormModel(const XubString& rPath, SfxItemPool* pPool, SvPersist* pPers)
 /*N*/           :SdrModel(rPath, pPool, pPers)
 /*N*/           ,m_pImpl(NULL)
@@ -86,12 +80,6 @@ struct FmFormModelImplData
 /*N*/   m_pImpl->sNextPageId = '0';
 /*N*/ #endif
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Ctor
-|*
-\************************************************************************/
 
 /*************************************************************************
 |*
@@ -161,47 +149,21 @@ struct FmFormModelImplData
 |* InsertPage
 |*
 \************************************************************************/
-/*N*/ void FmFormModel::InsertPage(SdrPage* pPage, sal_uInt16 nPos)
-/*N*/ {
-/*?*/       SetObjectShell(pObjShell);
-/*N*/
-/*N*/   SdrModel::InsertPage( pPage, nPos );
-/*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if ( !m_pImpl->bMovingPage )
-/*N*/   {
-/*N*/       // this flag here is kind of a hack.
-/*N*/       // When a page is moved, the SdrModel::MovePage calls an InsertPage only, but
-/*N*/       // no preceding RemovePage. Thus, we (as a derivee) don't have a chance to see
-/*N*/       // that the page which is just being inserted is (in real) already a part of the
-/*N*/       // model. Especially, we do not have a change to notice that the UndoEnvironment
-/*N*/       // already _knows_ the forms we're just going to add below.
-/*N*/       //
-/*N*/       // The real solution to this would have been to fix SdrModel::MovePage, which
-/*N*/       // is buggy in it's current form (as it violates the semantics of InsertPage, which
-/*N*/       // is: insert a page which /currently is not part of any model/).
-/*N*/       // However, this change in the SdrModel is much too risky.
-/*N*/       //
-/*N*/       // Another solution to this would have been to track (in the UndoEnv) which pages
-/*N*/       // we know, and ignore any AddForms calls which are for such a page.
-/*N*/       // But I refuse to do this (much more) work to hack a bug in the SdrModel.
-/*N*/       //
-/*N*/       // I the decision is to do this "small hack" here (which I don't consider really
-/*N*/       // bad).
-/*N*/       //
-/*N*/       // #i3235#
-/*N*/   }
-/*N*/ #endif
-/*N*/ }
+void FmFormModel::InsertPage(SdrPage* pPage, sal_uInt16 nPos)
+{
+    SetObjectShell(pObjShell);
+    SdrModel::InsertPage( pPage, nPos );
+}
 
 /*************************************************************************
 |*
 |* MovePage
 |*
 \************************************************************************/
-/*?*/ void FmFormModel::MovePage( USHORT, USHORT )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
+void FmFormModel::MovePage( USHORT, USHORT )
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 /*************************************************************************
 |*

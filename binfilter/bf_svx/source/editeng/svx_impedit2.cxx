@@ -1612,8 +1612,10 @@ using namespace ::com::sun::star;
 /*N*/   nCurIndex = GetChar( pPortion, pLine, aDocPos.X(), bSmart );
 /*N*/   aPaM.SetIndex( nCurIndex );
 /*N*/
-/*N*/   if ( nCurIndex && ( nCurIndex == pLine->GetEnd() ) &&
-/*N*/        ( pLine != pPortion->GetLines().GetObject( pPortion->GetLines().Count()-1) ) )
+/*N*/   if (  nCurIndex
+           && ( nCurIndex == pLine->GetEnd() )
+           && ( pLine != pPortion->GetLines().GetObject( pPortion->GetLines().Count()-1) )
+           )
 /*N*/     {
 /*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }

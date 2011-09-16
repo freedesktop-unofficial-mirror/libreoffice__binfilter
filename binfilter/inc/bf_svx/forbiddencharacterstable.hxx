@@ -66,7 +66,6 @@ public:
 
     const ::com::sun::star::i18n::ForbiddenCharacters* GetForbiddenCharacters( USHORT nLanuage, BOOL bGetDefault ) const;
     void    SetForbiddenCharacters(  USHORT nLanuage , const ::com::sun::star::i18n::ForbiddenCharacters& );
-    void    ClearForbiddenCharacters( USHORT nLanuage );
 };
 
 }//end of namespace binfilter

@@ -53,27 +53,6 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::linguistic2;
 
 
-
-
-
-
-
-
-#ifndef SVX_LIGHT
-#endif
-
-
-
-
-
-#ifndef SVX_LIGHT
-#endif
-
-
-
-
-
-
 /*N*/ EditTextObject*   ImpEditEngine::CreateTextObject()
 /*N*/ {
 /*N*/   EditSelection aCompleteSelection;
@@ -232,18 +211,6 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/
 /*?*/           // Die Zeilen
 /*?*/           nCount = pParaPortion->GetLines().Count();
-/*?*/           for ( n = 0; n < nCount; n++ )
-/*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
-/*?*/ #ifdef DBG_UTIL
-/*?*/           USHORT nTest, nTPLen = 0, nTxtLen = 0;
-/*?*/           for ( nTest = pParaPortion->GetTextPortions().Count(); nTest; )
-/*?*/               nTPLen += pParaPortion->GetTextPortions().GetObject( --nTest )->GetLen();
-/*?*/           for ( nTest = pParaPortion->GetLines().Count(); nTest; )
-/*?*/               nTxtLen += pParaPortion->GetLines().GetObject( --nTest )->GetLen();
-/*?*/           DBG_ASSERT( ( nTPLen == pParaPortion->GetNode()->Len() ) && ( nTxtLen == pParaPortion->GetNode()->Len() ), "CreateBinTextObject: ParaPortion not completely formatted!" );
-/*?*/ #endif
 /*?*/       }
 /*N*/   }
 /*N*/   return pTxtObj;
@@ -396,9 +363,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/               }
 /*N*/               if ( !bConvertItems )
 /*N*/                   SetParaAttribs( aEditDoc.GetPos( aPaM.GetNode() ), pC->GetParaAttribs() );
-/*N*/               else
-/*N*/               {DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
 /*N*/             }
 /*N*/           if ( bNewContent && bUsePortionInfo )
 /*N*/           {
@@ -424,18 +388,6 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/               // Die Zeilen
 /*?*/               pParaPortion->GetLines().Reset();
 /*?*/               nCount = pXP->aLines.Count();
-/*?*/               for ( sal_uInt16 m = 0; m < nCount; m++ )
-/*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
-/*?*/ #ifdef DBG_UTIL
-/*?*/               USHORT nTest, nTPLen = 0, nTxtLen = 0;
-/*?*/               for ( nTest = pParaPortion->GetTextPortions().Count(); nTest; )
-/*?*/                   nTPLen += pParaPortion->GetTextPortions().GetObject( --nTest )->GetLen();
-/*?*/               for ( nTest = pParaPortion->GetLines().Count(); nTest; )
-/*?*/                   nTxtLen += pParaPortion->GetLines().GetObject( --nTest )->GetLen();
-/*?*/               DBG_ASSERT( ( nTPLen == pParaPortion->GetNode()->Len() ) && ( nTxtLen == pParaPortion->GetNode()->Len() ), "InsertBinTextObject: ParaPortion not completely formatted!" );
-/*?*/ #endif
 /*N*/           }
 /*N*/       }
 /*N*/       if ( !bParaAttribs ) // DefFont wird bei FastInsertParagraph nicht berechnet
@@ -478,16 +430,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ {
 /*N*/   return SvxCreateLocale( GetLanguage( rPaM ) );
 /*N*/ }
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -525,16 +525,7 @@ void SAL_CALL Svx3DCubeObject::setPropertyValue( const OUString& aPropertyName, 
             ((E3dCubeObj*)pObj)->SetCubeSize(aLclSize);
         }
     }
-    else if(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_POS_IS_CENTER)) )
-    {
-        // sal_Bool bPosIsCenter in das Objekt packen
-        if( aValue.getValueType() == ::getCppuBooleanType() )
-        {
-            sal_Bool bNew = *(sal_Bool*)aValue.getValue();
-            ((E3dCubeObj*)pObj)->SetPosIsCenter(bNew);
-        }
-    }
-    else
+    else if( !(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_POS_IS_CENTER))) )
     {
         SvxShape::setPropertyValue( aPropertyName, aValue );
     }
@@ -627,21 +618,13 @@ void SAL_CALL Svx3DSphereObject::setPropertyValue( const OUString& aPropertyName
     {
         // Position in das Objekt packen
         drawing::Position3D aUnoPos;
-        if( aValue >>= aUnoPos )
-        {
-            Vector3D aPos(aUnoPos.PositionX, aUnoPos.PositionY, aUnoPos.PositionZ);
-            ((E3dSphereObj*)pObj)->SetCenter(aPos);
-        }
+        aValue >>= aUnoPos;
     }
     else if(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_SIZE)))
     {
         // Groesse in das Objekt packen
         drawing::Direction3D aDir;
-        if( aValue >>= aDir )
-        {
-            Vector3D aPos(aDir.DirectionX, aDir.DirectionY, aDir.DirectionZ);
-            ((E3dSphereObj*)pObj)->SetSize(aPos);
-        }
+        aValue >>= aDir;
     }
     else
     {
@@ -1069,16 +1052,7 @@ void SAL_CALL Svx3DPolygonObject::setPropertyValue( const OUString& aPropertyNam
         // Polygon setzen
         ((E3dPolygonObj*)pObj)->SetPolyTexture3D(aNewPolyPolygon);
     }
-    else if(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_LINEONLY)) )
-    {
-        // sal_Bool bLineOnly in das Objekt packen
-        if( aValue.getValueType() == ::getCppuBooleanType() )
-        {
-            sal_Bool bNew = *(sal_Bool*)aValue.getValue();
-            ((E3dPolygonObj*)pObj)->SetLineOnly(bNew);
-        }
-    }
-    else
+    else if( !(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_LINEONLY)) ))
     {
         SvxShape::setPropertyValue(aPropertyName, aValue);
     }

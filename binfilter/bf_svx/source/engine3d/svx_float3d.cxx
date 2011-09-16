@@ -39,22 +39,22 @@
 #include "float3d.hrc"
 namespace binfilter {
 
-/*N*/ SFX_IMPL_DOCKINGWINDOW( Svx3DChildWindow, SID_3D_WIN )
-
+SFX_IMPL_DOCKINGWINDOW( Svx3DChildWindow, SID_3D_WIN )
 
 /*************************************************************************
 |*
 |* Ableitung vom SfxChildWindow als "Behaelter" fuer Effekte
 |*
 \************************************************************************/
-/*N*/ Svx3DChildWindow::Svx3DChildWindow( Window* pParent,
-/*N*/                                                        USHORT nId,
-/*N*/                                                        SfxBindings* pBindings,
-/*N*/                                                        SfxChildWinInfo* pInfo ) :
-/*N*/   SfxChildWindow( pParent, nId )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+Svx3DChildWindow::Svx3DChildWindow(
+    Window* pParent,
+    USHORT nId,
+    SfxBindings* pBindings,
+    SfxChildWinInfo* pInfo
+) : SfxChildWindow( pParent, nId )
+{
+    DBG_BF_ASSERT(0, "STRIP");  // CONSTRUCTOR
+}
 
 
 }

@@ -91,7 +91,6 @@ public:
     void SetCubeSize(const Vector3D& rNew);
     const Vector3D& GetCubeSize() { return aCubeSize; }
 
-    void SetPosIsCenter(BOOL bNew);
     BOOL GetPosIsCenter() { return (BOOL)bPosIsCenter; }
 
     UINT16 GetSideFlags() { return nSideFlags; }

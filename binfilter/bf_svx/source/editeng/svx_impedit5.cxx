@@ -46,13 +46,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if ( pStylePool != pSPool )
 /*N*/   {
-/*N*/ //        if ( pStylePool )
-/*N*/ //            EndListening( *pStylePool, TRUE );
-/*N*/
 /*N*/       pStylePool = pSPool;
-/*N*/
-/*N*/ //        if ( pStylePool )
-/*N*/ //            StartListening( *pStylePool, TRUE );
 /*N*/   }
 /*N*/ }
 
@@ -129,10 +123,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   DBG_ASSERT( !IsInUndo(), "InsertUndo im Undomodus!" );
-/*N*/   if ( pUndoMarkSelection )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/   GetUndoManager().AddUndoAction( pUndo, bTryMerge );
 /*N*/ #endif
 /*N*/ }
@@ -164,12 +154,6 @@ namespace binfilter {
 /*N*/   DBG_CHKOBJ( GetEditEnginePtr(), EditEngine, 0 );
 /*N*/
 /*N*/   aSel.Adjust( aEditDoc );
-/*N*/
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/ //    if ( ( aSel.Min().GetNode() == aSel.Max().GetNode() ) && ( bOnlyHardAttrib == EditEngineAttribs_All ) )
-/*N*/ //        return GetAttribs( aEditDoc.GetPos( aSel.Min().GetNode() ), aSel.Min().GetIndex(), aSel.Max().GetIndex(), GETATTRIBS_ALL );
-/*N*/ #endif
-/*N*/
 /*N*/
 /*N*/   SfxItemSet aCurSet( GetEmptyItemSet() );
 /*N*/
@@ -236,7 +220,6 @@ namespace binfilter {
 /*N*/                       // => Lieber nicht invalidieren, UMSTELLEN!
 /*N*/                       // Besser waere, Absatzweise ein ItemSet zu fuellen
 /*N*/                       // und dieses mit dem gesmten vergleichen.
-/*N*/   //                      aCurSet.InvalidateItem( nWhich );
 /*N*/                       if ( nWhich <= EE_PARA_END )
 /*?*/                           aCurSet.InvalidateItem( nWhich );
 /*N*/                   }
@@ -384,15 +367,6 @@ namespace binfilter {
 /*N*/           nEndPos = aSel.Max().GetIndex();
 /*N*/
 /*N*/       // ueber die Items iterieren...
-/*N*/ #ifdef EDITDEBUG
-/*N*/ //        FILE* fp = fopen( "d:\\debug.log", "a" );
-/*N*/ //        if ( fp )
-/*N*/ //        {
-/*N*/ //            fprintf( fp, "\n\n=> Zeichen-Attribute: Absatz %i, %i-%i\n", nNode, nStartPos, nEndPos );
-/*N*/ //            DbgOutItemSet( fp, rSet, TRUE, FALSE );
-/*N*/ //            fclose( fp );
-/*N*/ //        }
-/*N*/ #endif
 /*N*/
 /*N*/       for ( USHORT nWhich = EE_ITEMS_START; nWhich <= EE_CHAR_END; nWhich++)
 /*N*/       {
@@ -482,16 +456,6 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( !pNode )
 /*N*/       return;
-/*N*/
-/*N*/ #ifdef EDITDEBUG
-/*N*/ //        FILE* fp = fopen( "d:\\debug.log", "a" );
-/*N*/ //        if ( fp )
-/*N*/ //        {
-/*N*/ //            fprintf( fp, "\n\n=> Absatz-Attribute: Absatz %i\n", nPara );
-/*N*/ //            DbgOutItemSet( fp, rSet, TRUE, FALSE );
-/*N*/ //            fclose( fp );
-/*N*/ //        }
-/*N*/ #endif
 /*N*/
 /*N*/   if ( !( pNode->GetContentAttribs().GetItems() == rSet ) )
 /*N*/   {

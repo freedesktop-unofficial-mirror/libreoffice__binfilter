@@ -41,10 +41,6 @@
 #include <algorithm>
 
 
-
-
-
-
 //------------------------------------------------------------------------
 //
 // Project-local header
@@ -52,11 +48,9 @@
 //------------------------------------------------------------------------
 
 #include "unoedprx.hxx"
-
 #include "unotext.hxx"
-
 #include "editeng.hxx"
-#include "AccessibleStringWrap.hxx"
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -723,20 +717,7 @@ Rectangle SvxAccessibleTextAdapter::GetCharBounds( USHORT nPara, USHORT nIndex )
     if( aIndex.InBullet() )
     {
         EBulletInfo aBulletInfo = GetBulletInfo( nPara );
-
-        OutputDevice* pOutDev = GetRefDevice();
-
-        DBG_ASSERT(pOutDev!=NULL, "SvxAccessibleTextAdapter::GetCharBounds: No ref device");
-
-        // preset if anything goes wrong below
         aRect = aBulletInfo.aBounds; // better than nothing
-        if( pOutDev )
-        {
-            AccessibleStringWrap aStringWrap( *pOutDev, aBulletInfo.aFont, aBulletInfo.aText );
-
-            if( aStringWrap.GetCharacterBounds( aIndex.GetBulletOffset(), aRect ) )
-                aRect.Move( aBulletInfo.aBounds.Left(), aBulletInfo.aBounds.Top() );
-        }
     }
     else
     {
@@ -750,18 +731,9 @@ Rectangle SvxAccessibleTextAdapter::GetCharBounds( USHORT nPara, USHORT nIndex )
             if( pOutDev )
             {
                 ESelection aSel = MakeEESelection( aIndex );
-
                 SvxFont aFont = EditEngine::CreateSvxFontFromItemSet( mrTextForwarder->GetAttribs( aSel ) );
-                AccessibleStringWrap aStringWrap( *pOutDev,
-                                                  aFont,
-                                                  mrTextForwarder->GetText( aSel ) );
-
                 Rectangle aStartRect = mrTextForwarder->GetCharBounds( nPara, static_cast< USHORT >( aIndex.GetEEIndex() ) );
-
-                if( !aStringWrap.GetCharacterBounds( aIndex.GetFieldOffset(), aRect ) )
-                    aRect = aStartRect;
-                else
-                    aRect.Move( aStartRect.Left(), aStartRect.Top() );
+                aRect = aStartRect;
             }
         }
     }
@@ -835,16 +807,10 @@ sal_Bool SvxAccessibleTextAdapter::GetIndexAtPoint( const Point& rPoint, USHORT&
             if( !pOutDev )
                 return sal_False;
 
-            AccessibleStringWrap aStringWrap( *pOutDev, aBulletInfo.aFont, aBulletInfo.aText );
-
             Point aPoint = rPoint;
             aPoint.Move( -aBulletInfo.aBounds.Left(), -aBulletInfo.aBounds.Top() );
 
-            DBG_ASSERT(aStringWrap.GetIndexAtPoint( aPoint ) >= 0 &&
-                       aStringWrap.GetIndexAtPoint( aPoint ) <= USHRT_MAX,
-                       "SvxAccessibleTextIndex::SetIndex: index value overflow");
-
-            nIndex = static_cast< USHORT > (aStringWrap.GetIndexAtPoint( aPoint ));
+            nIndex = 0;
             return sal_True;
         }
     }
@@ -860,19 +826,12 @@ sal_Bool SvxAccessibleTextAdapter::GetIndexAtPoint( const Point& rPoint, USHORT&
 
         ESelection aSelection = MakeEESelection( aIndex );
         SvxFont aFont = EditEngine::CreateSvxFontFromItemSet( mrTextForwarder->GetAttribs( aSelection ) );
-        AccessibleStringWrap aStringWrap( *pOutDev,
-                                          aFont,
-                                          mrTextForwarder->GetText( aSelection ) );
 
         Rectangle aRect = mrTextForwarder->GetCharBounds( nPara, aIndex.GetEEIndex() );
         Point aPoint = rPoint;
         aPoint.Move( -aRect.Left(), -aRect.Top() );
 
-        DBG_ASSERT(aIndex.GetIndex() + aStringWrap.GetIndexAtPoint( rPoint ) >= 0 &&
-                   aIndex.GetIndex() + aStringWrap.GetIndexAtPoint( rPoint ) <= USHRT_MAX,
-                   "SvxAccessibleTextIndex::SetIndex: index value overflow");
-
-        nIndex = static_cast< USHORT >(aIndex.GetIndex() + aStringWrap.GetIndexAtPoint( aPoint ));
+        nIndex = static_cast< USHORT >( aIndex.GetIndex() );
         return sal_True;
     }
 

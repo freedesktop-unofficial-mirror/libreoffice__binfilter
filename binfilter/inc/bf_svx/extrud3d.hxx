@@ -126,18 +126,6 @@ public:
     const PolyPolygon3D &GetExtrudePolygon() { return aExtrudePolygon; }
 
 
-    // #107245#
-    // void SetExtrudeSmoothed(BOOL bNew);
-    // BOOL GetExtrudeSmoothed() const { return bExtrudeSmoothed; }
-    // void SetExtrudeSmoothFrontBack(BOOL bNew);
-    // BOOL GetExtrudeSmoothFrontBack() const { return bExtrudeSmoothFrontBack; }
-    // void SetExtrudeCharacterMode(BOOL bNew);
-    // BOOL GetExtrudeCharacterMode() const { return bExtrudeCharacterMode; }
-    // void SetExtrudeCloseFront(BOOL bNew);
-    // BOOL GetExtrudeCloseFront() const { return bExtrudeCloseFront; }
-    // void SetExtrudeCloseBack(BOOL bNew);
-    // BOOL GetExtrudeCloseBack() const { return bExtrudeCloseBack; }
-
     // private support routines for ItemSet access. NULL pointer means clear item.
     virtual void PostItemChange(const sal_uInt16 nWhich);
 

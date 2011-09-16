@@ -488,20 +488,6 @@ namespace binfilter {
 /*N*/   ReCreateGeometry();
 /*N*/ }
 
-/*************************************************************************
-|*
-|* Lokale Parameter setzen mit Geometrieneuerzeugung
-|*
-\************************************************************************/
-
-/*N*/ void E3dSphereObj::SetCenter(const Vector3D& /*rNew*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void E3dSphereObj::SetSize(const Vector3D& /*rNew*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 //////////////////////////////////////////////////////////////////////////////
 // private support routines for ItemSet access
 
@@ -525,20 +511,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Get the name of the object (singular)
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Get the name of the object (plural)
-|*
-\************************************************************************/
-
 
 // EOF
 }

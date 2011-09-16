@@ -29,40 +29,21 @@
 
 #include "xdef.hxx"
 
-
-
-
-
-
-
-
-
-
-
-
 #include "globl3d.hxx"
 
 #include "polysc3d.hxx"
 
 
-
-
-
-
-
-
 namespace binfilter {
-
-#define ITEMVALUE(ItemSet,Id,Cast)  ((const Cast&)(ItemSet).Get(Id)).GetValue()
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-/*N*/ TYPEINIT1(E3dPolyScene, E3dScene);
+TYPEINIT1(E3dPolyScene, E3dScene);
 
-/*N*/ E3dPolyScene::E3dPolyScene()
-/*N*/ : E3dScene()
-/*N*/ {
-/*N*/ }
+E3dPolyScene::E3dPolyScene()
+    : E3dScene()
+{
+}
 
 /*************************************************************************
 |*
@@ -70,10 +51,10 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ UINT16 E3dPolyScene::GetObjIdentifier() const
-/*N*/ {
-/*N*/   return E3D_POLYSCENE_ID;
-/*N*/ }
+UINT16 E3dPolyScene::GetObjIdentifier() const
+{
+    return E3D_POLYSCENE_ID;
+}
 
 /*************************************************************************
 |*
@@ -81,10 +62,14 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ bool E3dPolyScene::Paint(ExtOutputDevice& /*rOut*/,
-/*N*/   const SdrPaintInfoRec& /*rInfoRec*/) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
+bool E3dPolyScene::Paint(
+    ExtOutputDevice& /*rOut*/,
+    const SdrPaintInfoRec& /*rInfoRec*/
+) const
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return FALSE;
+}
 
 }
 

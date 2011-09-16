@@ -269,20 +269,14 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void E3dExtrudeObj::CreateWireframe(Polygon3D& /*rWirePoly*/, const Matrix4D* /*pTf*/,
-/*N*/   E3dDragDetail eDetail)
-/*N*/ {
-/*N*/   if ( eDetail == E3DDETAIL_ALLLINES ||
-/*N*/       (eDetail == E3DDETAIL_DEFAULT && GetDragDetail() == E3DDETAIL_ALLLINES) )
-/*N*/   {
-/*N*/       // Detailliert erzeugen
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       // call parent
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ }
+void E3dExtrudeObj::CreateWireframe(
+    Polygon3D& /*rWirePoly*/,
+    const Matrix4D* /*pTf*/,
+    E3dDragDetail /* eDetail */
+)
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 /*************************************************************************
 |*

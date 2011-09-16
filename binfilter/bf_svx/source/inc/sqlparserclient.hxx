@@ -53,8 +53,6 @@ namespace svxform
     protected:
         OSQLParserClient(
             const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& _rxORB);
-
-    protected:
     };
 
 //........................................................................

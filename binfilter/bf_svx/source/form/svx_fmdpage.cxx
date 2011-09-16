@@ -56,9 +56,12 @@ namespace binfilter {
 /*N*/   DBG_DTOR(SvxFmDrawPage,NULL);
 /*N*/ }
 
-/*N*/ ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL SvxFmDrawPage::getImplementationId() throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); ::com::sun::star::uno::Sequence< sal_Int8 > a; return a;
-/*N*/ }
+::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL SvxFmDrawPage::getImplementationId() throw(::com::sun::star::uno::RuntimeException)
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    ::com::sun::star::uno::Sequence< sal_Int8 > a;
+    return a;
+}
 
 /*N*/ ::com::sun::star::uno::Any SAL_CALL SvxFmDrawPage::queryAggregation( const ::com::sun::star::uno::Type& aType ) throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {

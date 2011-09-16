@@ -207,17 +207,6 @@ namespace binfilter {
 /*N*/       NotePoint( Cut( nBottom, rLst, rNxt ) );
 /*N*/   if( nCut & 2 )
 /*N*/       NotePoint( Cut( nTop, rLst, rNxt ) );
-/*N*/   if( rLst.X() != rNxt.X() && rLst.Y() != rNxt.Y() )
-/*N*/   {
-/*N*/       if( nLowDiff && ( ( nCut & 1 ) || nLast == 1 || nNext == 1 ) )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       if( nUpDiff && ( ( nCut & 2 ) || nLast == 2 || nNext == 2 ) )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/   }
 /*N*/ }
 
 
@@ -300,11 +289,7 @@ namespace binfilter {
 /*N*/           else
 /*N*/           {
 /*N*/               // Der erste Punkt des Polygons liegt innerhalb der Zeile.
-/*N*/               if( nLast )
-/*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
-/*N*/               else
+/*N*/               if( !nLast )
 /*N*/               {
 /*N*/                   if( bMultiple || !nAct )
 /*N*/                   {
@@ -357,10 +342,6 @@ namespace binfilter {
 /*N*/                   {
 /*N*/                       if( !nNext )
 /*N*/                           NotePoint( A(rNext) );
-/*N*/                       else if( nNext & 1 )
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/                       else
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/                   }
 /*N*/                   nLast = nNext;
 /*N*/                   if( ++nIdx == nCount && !IsClosed() )

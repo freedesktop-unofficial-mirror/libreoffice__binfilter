@@ -58,24 +58,35 @@ using namespace ::connectivity;
 /*?*/ }
 
 //-----------------------------------------------------------------------------
-/*?*/ ::com::sun::star::lang::Locale OSystemParseContext::getPreferredLocale( ) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); ::com::sun::star::lang::Locale alocal; return alocal;
-/*?*/ }
+::com::sun::star::lang::Locale OSystemParseContext::getPreferredLocale( ) const
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    ::com::sun::star::lang::Locale alocal;
+    return alocal;
+}
 
 //-----------------------------------------------------------------------------
-/*?*/ ::rtl::OUString OSystemParseContext::getErrorMessage(ErrorCode) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); String astring; return astring;
-/*?*/ }
+::rtl::OUString OSystemParseContext::getErrorMessage(ErrorCode) const
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    String astring;
+    return astring;
+}
 
 //-----------------------------------------------------------------------------
-/*?*/ ::rtl::OString OSystemParseContext::getIntlKeywordAscii(InternationalKeyCode) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); ByteString aKeyword; return aKeyword;
-/*?*/ }
+::rtl::OString OSystemParseContext::getIntlKeywordAscii(InternationalKeyCode) const
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    ByteString aKeyword;
+    return aKeyword;
+}
 
 // -----------------------------------------------------------------------------
-/*?*/ IParseContext::InternationalKeyCode OSystemParseContext::getIntlKeyCode(const ::rtl::OString&) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return KEY_NONE;
-/*?*/ }
+IParseContext::InternationalKeyCode OSystemParseContext::getIntlKeyCode(const ::rtl::OString&) const
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return KEY_NONE;
+}
 
 
 // =============================================================================

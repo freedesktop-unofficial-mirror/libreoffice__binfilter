@@ -91,7 +91,7 @@ using namespace ::binfilter::svxform;
 /*N*/               pObjFactory->pNewObj = new FmFormObj(pObjFactory->nIdentifier);
 /*N*/           }   break;
 /*?*/           default:
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
+                    break;
 /*?*/       }
 /*?*/   }
 /*N*/

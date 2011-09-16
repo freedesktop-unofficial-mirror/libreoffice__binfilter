@@ -262,7 +262,7 @@ class E3dObject : public SdrAttrObj
     BOOL GetSelected() { return bIsSelected; }
 
     // Aufbrechen
-    virtual SdrAttrObj* GetBreakObj();
+    virtual SdrAttrObj* GetBreakObj() { return NULL; }
 };
 
 /*************************************************************************

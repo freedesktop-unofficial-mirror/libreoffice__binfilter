@@ -96,14 +96,6 @@ using namespace ::binfilter::svxform;
 /*N*/   ::com::sun::star::uno::Reference< ::com::sun::star::container::XIndexContainer >    xNewParent;
 /*N*/   ::com::sun::star::uno::Sequence< ::com::sun::star::script::ScriptEventDescriptor>   aNewEvents;
 /*N*/
-/*N*/   // calc the new parent for my model (within the new page's forms hierarchy)
-/*N*/   // do we have a history ? (from :Clone)
-/*N*/   if (m_xEnvironmentHistory.is())
-/*N*/   {
-/*N*/       // the element in *m_pEnvironmentHistory which is equivalent to my new parent (which (perhaps) has to be created within _pNewPage->GetForms)
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   if (!xNewParent.is())
 /*N*/   {
 /*N*/       // are we a valid part of our current page forms ?
@@ -118,10 +110,6 @@ using namespace ::binfilter::svxform;
 /*?*/               if (xSearch == xOldForms)
 /*?*/                   break;
 /*?*/               xSearch = ::com::sun::star::uno::Reference< ::com::sun::star::container::XChild > (xSearch->getParent(), ::com::sun::star::uno::UNO_QUERY);
-/*?*/           }
-/*?*/           if (xSearch.is())   // implies xSearch == xOldForms, which means we're a valid part of our current page forms hierarchy
-/*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*N*/       }
 /*N*/   }

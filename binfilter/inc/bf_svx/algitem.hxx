@@ -36,6 +36,8 @@
 #include <bf_svtools/eitem.hxx>
 #include <bf_svx/svxenum.hxx>
 class SvStream;
+
+
 namespace binfilter {
 
 

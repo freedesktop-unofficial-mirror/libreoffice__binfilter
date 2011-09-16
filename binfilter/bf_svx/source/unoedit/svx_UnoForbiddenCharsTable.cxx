@@ -109,9 +109,6 @@ void SvxUnoForbiddenCharsTable::removeForbiddenCharacters( const Locale& rLocale
     if(!mxForbiddenChars.is())
         throw RuntimeException();
 
-    const LanguageType eLang = SvxLocaleToLanguage( rLocale );
-    mxForbiddenChars->ClearForbiddenCharacters( eLang );
-
     onChange();
 }
 

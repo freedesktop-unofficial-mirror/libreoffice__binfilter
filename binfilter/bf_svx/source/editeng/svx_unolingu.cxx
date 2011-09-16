@@ -85,227 +85,6 @@ using namespace ::com::sun::star::linguistic2;
 
 ///////////////////////////////////////////////////////////////////////////
 
-// static member initialization
-BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
-
-/*N*/ void SvxLinguConfigUpdate::UpdateAll()
-/*N*/ {
-/*N*/ }
-
-///////////////////////////////////////////////////////////////////////////
-
-
-//! Dummy implementation in order to avoid loading of lingu DLL
-//! when only the XSupportedLocales interface is used.
-//! The dummy accesses the real implementation (and thus loading the DLL)
-//! when "real" work needs to be done only.
-/*N*/ class ThesDummy_Impl :
-/*N*/     public cppu::WeakImplHelper1< XThesaurus >
-/*N*/ {
-/*N*/     Reference< XThesaurus >     xThes;      // the real one...
-/*N*/     Sequence< Locale >         *pLocaleSeq;
-/*N*/
-/*N*/     void GetCfgLocales();
-/*N*/
-/*N*/     void GetThes_Impl();
-/*N*/
-/*N*/ public:
-/*N*/     ThesDummy_Impl() : pLocaleSeq(0)  {}
-/*N*/     ~ThesDummy_Impl();
-/*N*/
-/*N*/     // XSupportedLocales
-/*N*/     virtual ::com::sun::star::uno::Sequence<
-/*N*/           ::com::sun::star::lang::Locale > SAL_CALL
-/*N*/       getLocales()
-/*N*/           throw(::com::sun::star::uno::RuntimeException);
-/*N*/     virtual sal_Bool SAL_CALL
-/*N*/         hasLocale( const ::com::sun::star::lang::Locale& rLocale )
-/*N*/           throw(::com::sun::star::uno::RuntimeException);
-/*N*/
-/*N*/   // XThesaurus
-/*N*/     virtual ::com::sun::star::uno::Sequence<
-/*N*/           ::com::sun::star::uno::Reference<
-/*N*/               ::com::sun::star::linguistic2::XMeaning > > SAL_CALL
-/*N*/         queryMeanings( const ::rtl::OUString& rTerm,
-/*N*/                 const ::com::sun::star::lang::Locale& rLocale,
-/*N*/                 const ::com::sun::star::beans::PropertyValues& rProperties )
-/*N*/           throw(::com::sun::star::lang::IllegalArgumentException,
-/*N*/                 ::com::sun::star::uno::RuntimeException);
-/*N*/ };
-
-
-/*N*/ ThesDummy_Impl::~ThesDummy_Impl()
-/*N*/ {
-/*N*/     delete pLocaleSeq;
-/*N*/ }
-
-
-/*N*/ void ThesDummy_Impl::GetCfgLocales()
-/*N*/ {
-/*N*/     if (!pLocaleSeq)
-/*N*/     {
-/*N*/         SvtLinguConfig aCfg;
-/*N*/         String  aNode( A2OU( "ServiceManager/ThesaurusList" ) );
-/*N*/         Sequence < OUString > aNodeNames( aCfg.GetNodeNames( aNode ) );
-/*N*/         const OUString *pNodeNames = aNodeNames.getConstArray();
-/*N*/         INT32 nLen = aNodeNames.getLength();
-/*N*/         pLocaleSeq = new Sequence< Locale >( nLen );
-/*N*/         Locale *pLocale = pLocaleSeq->getArray();
-/*N*/         for (INT32 i = 0;  i < nLen;  ++i)
-/*N*/         {
-/*N*/             pLocale[i] = SvxCreateLocale(
-/*N*/                             MsLangId::convertIsoStringToLanguage( pNodeNames[i] ) );
-/*N*/         }
-/*N*/     }
-/*N*/ }
-
-
-/*N*/ void ThesDummy_Impl::GetThes_Impl()
-/*N*/ {
-/*N*/     // update configuration before accessing the service
-/*N*/     if (!SvxLinguConfigUpdate::IsUpdated())
-/*?*/         SvxLinguConfigUpdate::UpdateAll();
-/*N*/
-/*N*/     if (!xThes.is())
-/*N*/     {
-/*N*/         Reference< XLinguServiceManager > xLngSvcMgr( GetLngSvcMgr_Impl() );
-/*N*/         if (xLngSvcMgr.is())
-/*N*/             xThes = xLngSvcMgr->getThesaurus();
-/*N*/
-/*?*/         if (xThes.is())
-/*?*/         {
-/*?*/             // no longer needed...
-/*?*/             delete pLocaleSeq;    pLocaleSeq = 0;
-/*?*/         }
-/*N*/     }
-/*N*/ }
-
-
-/*N*/ uno::Sequence< lang::Locale > SAL_CALL
-/*N*/         ThesDummy_Impl::getLocales()
-/*N*/             throw(uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Sequence< lang::Locale > aa; return aa;
-/*N*/ }
-
-
-/*N*/ sal_Bool SAL_CALL
-/*N*/         ThesDummy_Impl::hasLocale( const lang::Locale& rLocale )
-/*N*/             throw(uno::RuntimeException)
-/*N*/ {
-/*N*/     if (SvxLinguConfigUpdate::IsUpdated())
-/*N*/         GetThes_Impl();
-/*N*/     if (xThes.is())
-/*?*/         return xThes->hasLocale( rLocale );
-/*N*/     else if (!pLocaleSeq)
-/*N*/         GetCfgLocales();
-/*N*/     BOOL bFound = FALSE;
-/*N*/     INT32 nLen = pLocaleSeq->getLength();
-/*N*/     const Locale *pLocale = pLocaleSeq->getConstArray();
-/*N*/     const Locale *pEnd = pLocale + nLen;
-/*N*/     for ( ;  pLocale < pEnd  &&  !bFound;  ++pLocale)
-/*N*/     {
-/*N*/         bFound = pLocale->Language == rLocale.Language  &&
-/*N*/                  pLocale->Country  == rLocale.Country   &&
-/*N*/                  pLocale->Variant  == rLocale.Variant;
-/*N*/     }
-/*N*/     return bFound;
-/*N*/ }
-
-
-/*N*/ uno::Sequence< uno::Reference< linguistic2::XMeaning > > SAL_CALL
-/*N*/         ThesDummy_Impl::queryMeanings(
-/*N*/                 const ::rtl::OUString& /*rTerm*/,
-/*N*/                 const lang::Locale& /*rLocale*/,
-/*N*/                 const beans::PropertyValues& /*rProperties*/ )
-/*N*/             throw(lang::IllegalArgumentException,
-/*N*/                   uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Sequence< uno::Reference< linguistic2::XMeaning > > aRes;return aRes;
-/*N*/ }
-
-
-///////////////////////////////////////////////////////////////////////////
-
-
-//! Dummy implementation in order to avoid loading of lingu DLL.
-//! The dummy accesses the real implementation (and thus loading the DLL)
-//! when it needs to be done only.
-/*N*/ class SpellDummy_Impl :
-/*N*/     public cppu::WeakImplHelper1< XSpellChecker1 >
-/*N*/ {
-/*N*/     Reference< XSpellChecker1 >     xSpell;      // the real one...
-/*N*/
-/*N*/     void    GetSpell_Impl();
-/*N*/
-/*N*/ public:
-/*N*/
-/*N*/   // XSupportedLanguages (for XSpellChecker1)
-/*N*/     virtual ::com::sun::star::uno::Sequence< sal_Int16 > SAL_CALL
-/*N*/       getLanguages()
-/*N*/           throw(::com::sun::star::uno::RuntimeException);
-/*N*/     virtual sal_Bool SAL_CALL
-/*N*/       hasLanguage( sal_Int16 nLanguage )
-/*N*/           throw(::com::sun::star::uno::RuntimeException);
-/*N*/
-/*N*/   // XSpellChecker1 (same as XSpellChecker but sal_Int16 for language)
-/*N*/   virtual sal_Bool SAL_CALL
-/*N*/         isValid( const ::rtl::OUString& rWord, sal_Int16 nLanguage,
-/*N*/                 const ::com::sun::star::beans::PropertyValues& rProperties )
-/*N*/           throw(::com::sun::star::lang::IllegalArgumentException,
-/*N*/                 ::com::sun::star::uno::RuntimeException);
-/*N*/   virtual ::com::sun::star::uno::Reference<
-/*N*/           ::com::sun::star::linguistic2::XSpellAlternatives > SAL_CALL
-/*N*/         spell( const ::rtl::OUString& rWord, sal_Int16 nLanguage,
-/*N*/                 const ::com::sun::star::beans::PropertyValues& rProperties )
-/*N*/           throw(::com::sun::star::lang::IllegalArgumentException,
-/*N*/                 ::com::sun::star::uno::RuntimeException);
-/*N*/ };
-
-
-/*N*/ void SpellDummy_Impl::GetSpell_Impl()
-/*N*/ { DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-
-/*N*/ uno::Sequence< sal_Int16 > SAL_CALL
-/*N*/     SpellDummy_Impl::getLanguages()
-/*N*/         throw(uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< sal_Int16 >();
-/*N*/ }
-
-
-/*N*/ sal_Bool SAL_CALL
-/*N*/     SpellDummy_Impl::hasLanguage( sal_Int16 /*nLanguage*/ )
-/*N*/         throw(uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE;
-/*N*/ }
-
-
-/*N*/ sal_Bool SAL_CALL
-/*N*/     SpellDummy_Impl::isValid( const ::rtl::OUString& rWord, sal_Int16 nLanguage,
-/*N*/             const beans::PropertyValues& rProperties )
-/*N*/         throw(lang::IllegalArgumentException,
-/*N*/               uno::RuntimeException)
-/*N*/ {
-/*?*/     GetSpell_Impl();
-/*?*/     BOOL bRes = TRUE;
-/*?*/     if (xSpell.is())
-/*?*/         bRes = xSpell->isValid( rWord, nLanguage, rProperties );
-/*?*/     return bRes;
-/*N*/ }
-
-
-/*N*/ uno::Reference< linguistic2::XSpellAlternatives > SAL_CALL
-/*N*/     SpellDummy_Impl::spell( const ::rtl::OUString& /*rWord*/, sal_Int16 /*nLanguage*/,
-/*N*/             const beans::PropertyValues& /*rProperties*/ )
-/*N*/         throw(lang::IllegalArgumentException,
-/*N*/               uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Reference< linguistic2::XSpellAlternatives > xRes; return xRes;
-/*N*/ }
-
-
-///////////////////////////////////////////////////////////////////////////
-
-
 //! Dummy implementation in order to avoid loading of lingu DLL.
 //! The dummy accesses the real implementation (and thus loading the DLL)
 //! when it needs to be done only.
@@ -357,10 +136,6 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 /*N*/ void HyphDummy_Impl::GetHyph_Impl()
 /*N*/ {
-/*N*/     // update configuration before accessing the service
-/*N*/     if (!SvxLinguConfigUpdate::IsUpdated())
-/*N*/         SvxLinguConfigUpdate::UpdateAll();
-/*N*/
 /*N*/     if (!xHyph.is())
 /*N*/     {
 /*N*/         Reference< XLinguServiceManager > xLngSvcMgr( GetLngSvcMgr_Impl() );
@@ -370,11 +145,12 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/ }
 
 
-/*N*/ uno::Sequence< lang::Locale > SAL_CALL
-/*N*/     HyphDummy_Impl::getLocales()
-/*N*/         throw(uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< lang::Locale >();
-/*N*/ }
+uno::Sequence< lang::Locale > SAL_CALL HyphDummy_Impl::getLocales()
+    throw(uno::RuntimeException)
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return uno::Sequence< lang::Locale >();
+}
 
 
 /*N*/ sal_Bool SAL_CALL
@@ -561,15 +337,6 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/     //! use dummy implementation in order to avoid loading of lingu DLL
 /*N*/     xHyph = new HyphDummy_Impl;
 /*N*/
-/*
-    if (!xLngSvcMgr.is())
-        xLngSvcMgr = GetLngSvcMgr_Impl();
-
-    if (xLngSvcMgr.is())
-    {
-        xHyph = xLngSvcMgr->getHyphenator();
-    }
-*/
 /*N*/   return xHyph;
 /*N*/ }
 
@@ -596,32 +363,15 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 ///////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-
 //TL:TODO: remove argument or provide SvxGetIgnoreAllList with the same one
 
-
-
 ///////////////////////////////////////////////////////////////////////////
-
 
 #include <com/sun/star/linguistic2/XHyphenatedWord.hpp>
 
-
-
 ///////////////////////////////////////////////////////////////////////////
-
-
-
-///////////////////////////////////////////////////////////////////////////
-
 
 //TL:TODO: soll mal den rictigen Rückgabetyp bekommen!
-
-
 
 /*N*/ LanguageType SvxLocaleToLanguage( const Locale& rLocale )
 /*N*/ {

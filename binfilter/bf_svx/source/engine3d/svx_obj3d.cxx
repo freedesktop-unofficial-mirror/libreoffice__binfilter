@@ -139,18 +139,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Aufbrechen, default-Implementierungen
-|*
-\************************************************************************/
-
-
-/*N*/ SdrAttrObj* E3dObject::GetBreakObj()
-/*N*/ {
-/*N*/   return 0L;
-/*N*/ }
-
-/*************************************************************************
-|*
 |* SetRectsDirty muss ueber die lokale SdrSubList gehen
 |*
 \************************************************************************/
@@ -1109,12 +1097,7 @@ namespace binfilter {
 /*N*/   E3dScene* pScene = GetScene();
 /*N*/   if(pScene)
 /*N*/   {
-/*N*/       // Schatten beruecksichtigen
-/*N*/       if(DoDrawShadow())
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-
-        // Linienbreite beruecksichtigen
+            // Linienbreite beruecksichtigen
 /*N*/       INT32 nLineWidth = ((const XLineWidthItem&)(GetItem(XATTR_LINEWIDTH))).GetValue();
 /*N*/       if(nLineWidth)
 /*N*/       {

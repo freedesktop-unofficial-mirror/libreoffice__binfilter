@@ -37,7 +37,6 @@
 #define ITEMID_HORJUSTIFY       0
 #define ITEMID_VERJUSTIFY       0
 #define ITEMID_ORIENTATION      0
-#define ITEMID_LINEBREAK        0
 #define ITEMID_MARGIN           0
 
 #include <tools/stream.hxx>
@@ -194,10 +193,11 @@ using namespace ::com::sun::star;
 /*N*/ }
 //------------------------------------------------------------------------
 
-/*?*/ USHORT SvxHorJustifyItem::GetValueCount() const
-/*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
+USHORT SvxHorJustifyItem::GetValueCount() const
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return 0;
+}
 
 // class SvxVerJustifyItem -----------------------------------------------
 
@@ -272,10 +272,11 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*?*/ USHORT SvxVerJustifyItem::GetValueCount() const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
+USHORT SvxVerJustifyItem::GetValueCount() const
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return 0;
+}
 
 // class SvxOrientationItem ----------------------------------------------
 
@@ -348,10 +349,11 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*?*/ USHORT SvxOrientationItem::GetValueCount() const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
+USHORT SvxOrientationItem::GetValueCount() const
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return 0;
+}
 
 // class SvxMarginItem ---------------------------------------------------
 

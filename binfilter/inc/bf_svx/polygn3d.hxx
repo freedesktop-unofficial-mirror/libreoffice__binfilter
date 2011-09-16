@@ -82,7 +82,6 @@ public:
 
     // LineOnly?
     BOOL GetLineOnly() { return bLineOnly; }
-    void SetLineOnly(BOOL bNew);
 };
 
 }//end of namespace binfilter

@@ -86,10 +86,6 @@ public:
     // Give out simple line geometry
     virtual void GetLineGeometry(PolyPolygon3D& rLinePolyPolygon) const;
 
-    // Lokale Parameter setzen mit Geometrieneuerzeugung
-    void SetCenter(const Vector3D& rNew);
-    void SetSize(const Vector3D& rNew);
-
     // private support routines for ItemSet access. NULL pointer means clear item.
     virtual void PostItemChange(const sal_uInt16 nWhich);
 

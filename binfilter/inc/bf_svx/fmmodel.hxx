@@ -51,7 +51,6 @@ class FmFormModel :
 {
 private:
     FmFormModelImplData*    m_pImpl;
-//  FmXUndoEnvironment*     pUndoEnv;
     SfxObjectShell*         pObjShell;
     sal_Bool            bStreamingOldVersion;
 
