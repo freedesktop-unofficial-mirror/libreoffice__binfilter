@@ -87,10 +87,11 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*?*/ int SvxColorTableItem::operator==( const SfxPoolItem& /*rItem*/ ) const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
+int SvxColorTableItem::operator==( const SfxPoolItem& /*rItem*/ ) const
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return 0;
+}
 
 // -----------------------------------------------------------------------
 
@@ -130,10 +131,11 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*?*/ int SvxGradientListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
+int SvxGradientListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return 0;
+}
 
 // -----------------------------------------------------------------------
 
@@ -173,10 +175,11 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*?*/ int SvxHatchListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
+int SvxHatchListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return 0;
+}
 
 // -----------------------------------------------------------------------
 
@@ -216,10 +219,11 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*?*/ int SvxBitmapListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
+int SvxBitmapListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return 0;
+}
 
 // -----------------------------------------------------------------------
 
@@ -260,10 +264,11 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*?*/ int SvxDashListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
+int SvxDashListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return 0;
+}
 
 // -----------------------------------------------------------------------
 

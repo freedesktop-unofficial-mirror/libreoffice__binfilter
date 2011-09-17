@@ -62,30 +62,9 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvxFieldData::SvxFieldData()
-/*N*/ {
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ SvxFieldData::~SvxFieldData()
-/*N*/ {
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SvxFieldData* SvxFieldData::Clone() const
 /*N*/ {
 /*N*/   return new SvxFieldData;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ int SvxFieldData::operator==( const SvxFieldData& rFld ) const
-/*N*/ {
-/*N*/   DBG_ASSERT( Type() == rFld.Type(), "==: Verschiedene Typen" );
-/*N*/   (void)rFld;
-/*N*/   return TRUE;    // Basicklasse immer gleich.
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -97,17 +76,6 @@ namespace binfilter {
 // -----------------------------------------------------------------------
 
 /*N*/ void SvxFieldData::Save( SvPersistStream & /*rStm*/ ) {}
-
-
-/*?*/ MetaAction* SvxFieldData::createBeginComment() const
-/*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*?*/ }
-
-/*?*/ MetaAction* SvxFieldData::createEndComment() const
-/*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");return NULL;
-/*?*/ }
 
 // -----------------------------------------------------------------------
 

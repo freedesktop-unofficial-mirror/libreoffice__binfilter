@@ -53,14 +53,16 @@ class SvxFieldData : public SvPersistBase
 public:
                             SV_DECL_PERSIST1( SvxFieldData, SvPersistBase, 1 )
 
-                            SvxFieldData();
-    virtual                 ~SvxFieldData();
+                            SvxFieldData()  {}
+    virtual                 ~SvxFieldData() {}
 
     virtual SvxFieldData*   Clone() const;
-    virtual int             operator==( const SvxFieldData& ) const;
 
-    virtual MetaAction* createBeginComment() const;
-    virtual MetaAction* createEndComment() const;
+    virtual int             operator==( const SvxFieldData& ) const
+                            { return TRUE; }
+
+    virtual MetaAction* createBeginComment() const  { return NULL; }
+    virtual MetaAction* createEndComment() const    { return NULL; }
 };
 
 /*
@@ -175,13 +177,13 @@ public:
                             SvxURLField();
                             SvxURLField( const XubString& rURL, const XubString& rRepres, SvxURLFormat eFmt = SVXURLFORMAT_URL );
 
-    const XubString&            GetURL() const { return aURL; }
+    const XubString&        GetURL() const { return aURL; }
     void                    SetURL( const XubString& rURL ) { aURL = rURL; }
 
-    const XubString&            GetRepresentation() const { return aRepresentation; }
+    const XubString&        GetRepresentation() const { return aRepresentation; }
     void                    SetRepresentation( const XubString& rRep ) { aRepresentation= rRep; }
 
-    const XubString&            GetTargetFrame() const { return aTargetFrame; }
+    const XubString&        GetTargetFrame() const { return aTargetFrame; }
     void                    SetTargetFrame( const XubString& rFrm ) { aTargetFrame = rFrm; }
 
     SvxURLFormat            GetFormat() const { return eFormat; }

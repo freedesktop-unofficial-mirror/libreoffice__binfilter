@@ -48,13 +48,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*?*/ SvxVector3DItem::SvxVector3DItem()
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SvxVector3DItem::SvxVector3DItem( USHORT nWhich, const Vector3D& rVal ) :
 /*N*/   SfxPoolItem( nWhich ),
 /*N*/   aVal( rVal )

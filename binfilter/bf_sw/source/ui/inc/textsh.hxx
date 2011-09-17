@@ -34,8 +34,6 @@ class Button;
 namespace binfilter {
 
 
-class SvxHyperlinkItem;
-
 class SwTextShell: public SwBaseShell
 {
 

@@ -69,7 +69,7 @@ public:
     virtual SvStream& Store( SvStream& rStream, USHORT ) const { return rStream; }
     virtual USHORT           GetVersion( USHORT nFileVersion ) const;
     virtual SfxPoolItem*     Create( SvStream&, USHORT ) const;
-    virtual USHORT           GetValueCount() const;
+    virtual USHORT           GetValueCount() const  { return 0; }
 
     // MS VC4.0 kommt durcheinander
     void             SetValue( USHORT nNewVal )

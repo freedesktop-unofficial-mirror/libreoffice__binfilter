@@ -89,9 +89,9 @@ public:
         //Breite des Schattens auf der jeweiligen Seite berechnen.
     USHORT CalcShadowSpace( USHORT nShadow ) const;
 
-    virtual USHORT          GetValueCount() const;
-    virtual USHORT          GetEnumValue() const;
-    virtual void            SetEnumValue( USHORT nNewVal );
+    virtual USHORT          GetValueCount() const   { return 0; }
+    virtual USHORT          GetEnumValue() const    { return 0; }
+    virtual void            SetEnumValue( USHORT /* nNewVal */ )  {}
 };
 
 inline SvxShadowItem &SvxShadowItem::operator=( const SvxShadowItem& rFmtShadow )

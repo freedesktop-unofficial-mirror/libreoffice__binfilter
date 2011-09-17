@@ -990,27 +990,6 @@ using namespace ::com::sun::star;
 /*N*/   return new SvxShadowItem( Which(), &aColor, _nWidth, (SvxShadowLocation)cLoc );
 /*N*/ }
 
-// -----------------------------------------------------------------------
-
-/*?*/ sal_uInt16 SvxShadowItem::GetValueCount() const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
-/*?*/ sal_uInt16 SvxShadowItem::GetEnumValue() const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
-/*?*/ void SvxShadowItem::SetEnumValue( sal_uInt16 /*nVal*/ )
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
-
 // class SvxBorderLine  --------------------------------------------------
 
 /*N*/ SvxBorderLine::SvxBorderLine( const Color *pCol, sal_uInt16 nOut, sal_uInt16 nIn,
@@ -1083,9 +1062,10 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvxBoxItem& SvxBoxItem::operator=( const SvxBoxItem& /*rBox*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return *this;
-/*N*/ }
+SvxBoxItem& SvxBoxItem::operator=( const SvxBoxItem& /*rBox*/ )
+{
+    return *this;
+}
 
 // -----------------------------------------------------------------------
 
@@ -1104,19 +1084,19 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ int SvxBoxItem::operator==( const SfxPoolItem& rAttr ) const
-/*N*/ {
-/*N*/   DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unequal types" );
-/*N*/
-/*N*/   return (
-/*N*/       ( nTopDist == ( (SvxBoxItem&)rAttr ).nTopDist ) &&
-/*N*/       ( nBottomDist == ( (SvxBoxItem&)rAttr ).nBottomDist )   &&
-/*N*/       ( nLeftDist == ( (SvxBoxItem&)rAttr ).nLeftDist )   &&
-/*N*/       ( nRightDist == ( (SvxBoxItem&)rAttr ).nRightDist ) &&
-/*N*/       CmpBrdLn( pTop, ( (SvxBoxItem&)rAttr ).GetTop() )           &&
-/*N*/       CmpBrdLn( pBottom, ( (SvxBoxItem&)rAttr ).GetBottom() )     &&
-/*N*/       CmpBrdLn( pLeft, ( (SvxBoxItem&)rAttr ).GetLeft() )         &&
-/*N*/       CmpBrdLn( pRight, ( (SvxBoxItem&)rAttr ).GetRight() ) );
+int SvxBoxItem::operator==( const SfxPoolItem& rAttr ) const
+{
+    DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unequal types" );
+
+    return (
+           ( nTopDist    == ( (SvxBoxItem&)rAttr ).nTopDist )
+        && ( nBottomDist == ( (SvxBoxItem&)rAttr ).nBottomDist )
+        && ( nLeftDist   == ( (SvxBoxItem&)rAttr ).nLeftDist )
+        && ( nRightDist  == ( (SvxBoxItem&)rAttr ).nRightDist )
+        && CmpBrdLn( pTop, ( (SvxBoxItem&)rAttr ).GetTop() )
+        && CmpBrdLn( pBottom, ( (SvxBoxItem&)rAttr ).GetBottom() )
+        && CmpBrdLn( pLeft, ( (SvxBoxItem&)rAttr ).GetLeft() )
+        && CmpBrdLn( pRight, ( (SvxBoxItem&)rAttr ).GetRight() ) );
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -1185,7 +1165,7 @@ using namespace ::com::sun::star;
 /*N*/   if( bDistMember )
 /*N*/       rVal <<= (sal_Int32)(bConvert ? UTWIP_TO_MM100(nDist) : nDist);
 /*N*/   else
-/*N*/           rVal <<= aRetLine;
+/*N*/       rVal <<= aRetLine;
 /*N*/
 /*N*/   return sal_True;
 /*N*/ }
@@ -1260,10 +1240,7 @@ using namespace ::com::sun::star;
 /*N*/           return sal_False;
 /*N*/
 /*N*/         table::BorderLine aBorderLine;
-/*N*/         if( rVal >>= aBorderLine )
-/*N*/         {
-/*N*/             // usual struct
-/*N*/         }
+/*N*/         if ( rVal >>= aBorderLine ) {}
 /*N*/         else if (rVal.getValueTypeClass() == uno::TypeClass_SEQUENCE )
 /*N*/         {
 /*N*/             // serialization for basic macro recording
@@ -1724,13 +1701,6 @@ using namespace ::com::sun::star;
 /*N*/   return new SvxFmtBreakItem( (const SvxBreak)eBreak, Which() );
 /*N*/ }
 
-// -----------------------------------------------------------------------
-
-/*?*/ sal_uInt16 SvxFmtBreakItem::GetValueCount() const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
-
 // class SvxFmtKeepItem -------------------------------------------------
 
 /*N*/ SfxPoolItem* SvxFmtKeepItem::Clone( SfxItemPool* ) const
@@ -1762,18 +1732,19 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*?*/ int SvxLineItem::operator==( const SfxPoolItem& /*rAttr*/ ) const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/
-/*?*/ }
+int SvxLineItem::operator==( const SfxPoolItem& /*rAttr*/ ) const
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return 0;
+}
 
 // -----------------------------------------------------------------------
 
-/*?*/ SfxPoolItem* SvxLineItem::Clone( SfxItemPool* ) const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*?*/ }
+SfxPoolItem* SvxLineItem::Clone( SfxItemPool* ) const
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+    return NULL;
+}
 
 
 // -----------------------------------------------------------------------
@@ -1803,36 +1774,6 @@ public:
 
     SvxBrushItem_Impl( BfGraphicObject* p ) : pGraphicObject( p ), nGraphicTransparency(0) {}
 };
-
-// class SvxBrushItemLink_Impl -------------------------------------------
-
-class SvxBrushItemLink_Impl : public SfxBrushItemLink
-{
-    virtual Graphic                     GetGraphic( const String& rLink, const String& rFilter );
-    virtual CreateSvxBrushTabPage       GetBackgroundTabpageCreateFunc();
-    virtual GetSvxBrushTabPageRanges    GetBackgroundTabpageRanges();
-};
-
-// -----------------------------------------------------------------------
-
-/*?*/ Graphic SvxBrushItemLink_Impl::GetGraphic( const String& /*rLink*/, const String& /*rFilter*/)
-/*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); Graphic aResult; return aResult;
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
-/*?*/ CreateSvxBrushTabPage SvxBrushItemLink_Impl::GetBackgroundTabpageCreateFunc()
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
-/*?*/ GetSvxBrushTabPageRanges SvxBrushItemLink_Impl::GetBackgroundTabpageRanges()
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*?*/ }
 
 // -----------------------------------------------------------------------
 
@@ -2386,19 +2327,6 @@ GraphicFilter* GetGrfFilter();
 /*?*/           }
 /*?*/
 /*?*/           SfxMediumRef xRef( pImpl->xMedium );
-/*?*/           // Ref halten wg. synchr. DoneCallback
-/*?*/           if( pImpl->aDoneLink.IsSet() )
-/*?*/           {
-/*?*/               // Auf besonderen Wunsch des Writers wird der synchrone und der
-/*?*/               // asynchrone Fall was die Benachrichtigung angeht unterschiedlich
-/*?*/               // behandelt. Der Callback erfolgt nur bei asynchronem Eintreffen
-/*?*/               // der Daten
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
-/*?*/           else
-/*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
 /*N*/       }
 /*N*/   }
 /*N*/ #endif

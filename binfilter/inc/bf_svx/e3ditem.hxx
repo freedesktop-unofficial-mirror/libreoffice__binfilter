@@ -46,11 +46,13 @@ class SvxVector3DItem: public SfxPoolItem
 
 public:
                             TYPEINFO();
-                            SvxVector3DItem();
+                            SvxVector3DItem() {}
                             SvxVector3DItem( USHORT nWhich, const Vector3D& rVal );
                             SvxVector3DItem( const SvxVector3DItem& );
-                            ~SvxVector3DItem() {
-                                 DBG_DTOR(SvxVector3DItem, 0); }
+                            ~SvxVector3DItem()
+                            {
+                                DBG_DTOR(SvxVector3DItem, 0);
+                            }
 
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
