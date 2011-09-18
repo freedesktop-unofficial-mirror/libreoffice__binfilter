@@ -165,8 +165,6 @@ public:
 
 // ----------------------------------------------------------------------
 // Inline Metoden aus Node.hxx - erst hier ist der TxtNode bekannt !!
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline       SwGrfNode   *SwNode::GetGrfNode()
 {
      return ND_GRFNODE == nNodeType ? (SwGrfNode*)this : 0;
@@ -175,7 +173,6 @@ inline const SwGrfNode   *SwNode::GetGrfNode() const
 {
      return ND_GRFNODE == nNodeType ? (const SwGrfNode*)this : 0;
 }
-#endif
 
 #ifndef _FESHVIEW_ONLY_INLINE_NEEDED
 inline BOOL SwGrfNode::IsLinkedFile() const

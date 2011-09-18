@@ -91,14 +91,11 @@ inline SwFmtSurround &SwFmtSurround::operator=( const SwFmtSurround &rCpy )
     return *this;
 }
 
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.hxx; revisit with gcc3
 inline const SwFmtSurround &SwAttrSet::GetSurround(BOOL bInP) const
     { return (const SwFmtSurround&)Get( RES_SURROUND,bInP); }
 
 inline const SwFmtSurround &SwFmt::GetSurround(BOOL bInP) const
     { return aSet.GetSurround(bInP); }
-#endif
 
 } //namespace binfilter
 #endif

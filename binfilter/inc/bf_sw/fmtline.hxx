@@ -63,14 +63,11 @@ public:
     void SetCountLines( BOOL b )     { bCountLines = b;    }
 };
 
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline const SwFmtLineNumber &SwAttrSet::GetLineNumber(BOOL bInP) const
     { return (const SwFmtLineNumber&)Get( RES_LINENUMBER,bInP); }
 
 inline const SwFmtLineNumber &SwFmt::GetLineNumber(BOOL bInP) const
     { return aSet.GetLineNumber(bInP); }
-#endif
 
 } //namespace binfilter
 #endif

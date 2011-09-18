@@ -116,27 +116,21 @@ public:
 
 //***************************************************************************
 
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline const SwTblBoxNumFormat      &SwAttrSet::GetTblBoxNumFmt(BOOL bInP) const
     {   return (const SwTblBoxNumFormat&)Get( RES_BOXATR_FORMAT,bInP); }
 inline const SwTblBoxFormula        &SwAttrSet::GetTblBoxFormula(BOOL bInP) const
     {   return (const SwTblBoxFormula&)Get( RES_BOXATR_FORMULA,bInP); }
 inline const SwTblBoxValue          &SwAttrSet::GetTblBoxValue(BOOL bInP) const
     {   return (const SwTblBoxValue&)Get( RES_BOXATR_VALUE, bInP); }
-#endif
 
 //***************************************************************************
 
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline const SwTblBoxNumFormat      &SwFmt::GetTblBoxNumFmt(BOOL bInP) const
     {   return aSet.GetTblBoxNumFmt(bInP); }
 inline const SwTblBoxFormula        &SwFmt::GetTblBoxFormula(BOOL bInP) const
     {   return aSet.GetTblBoxFormula(bInP); }
 inline const SwTblBoxValue          &SwFmt::GetTblBoxValue(BOOL bInP) const
     {   return aSet.GetTblBoxValue(bInP); }
-#endif
 
 } //namespace binfilter
 #endif

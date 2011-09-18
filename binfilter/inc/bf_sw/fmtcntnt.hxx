@@ -45,7 +45,6 @@ class SwFmtCntnt: public SfxPoolItem
     SwFmtCntnt &operator=( const SwFmtCntnt & ); //Kopieren verboten
 
 public:
-//  SwFmtCntnt( const SwNodeIndex *pStartNodeIdx = 0 );
     SwFmtCntnt( const SwStartNode* pStartNode = 0 );
     SwFmtCntnt( const SwFmtCntnt &rCpy );
     ~SwFmtCntnt();
@@ -60,14 +59,11 @@ public:
     void SetNewCntntIdx( const SwNodeIndex *pIdx );
 };
 
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.hxx; revisit with gcc3
 inline const SwFmtCntnt &SwAttrSet::GetCntnt(BOOL bInP) const
     { return (const SwFmtCntnt&)Get( RES_CNTNT,bInP); }
 
 inline const SwFmtCntnt &SwFmt::GetCntnt(BOOL bInP) const
     { return aSet.GetCntnt(bInP); }
-#endif
 
 } //namespace binfilter
 #endif

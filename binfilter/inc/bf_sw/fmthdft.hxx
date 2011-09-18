@@ -96,8 +96,6 @@ public:
     void SetActive( BOOL bNew = TRUE ) { bActive = bNew; }
 };
 
-#if !(defined(MACOSX) && ( __GNUC__ <  3 ) )
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline const SwFmtHeader &SwAttrSet::GetHeader(BOOL bInP) const
     { return (const SwFmtHeader&)Get( RES_HEADER,bInP); }
 inline const SwFmtFooter &SwAttrSet::GetFooter(BOOL bInP) const
@@ -107,7 +105,6 @@ inline const SwFmtHeader &SwFmt::GetHeader(BOOL bInP) const
     { return aSet.GetHeader(bInP); }
 inline const SwFmtFooter &SwFmt::GetFooter(BOOL bInP) const
     { return aSet.GetFooter(bInP); }
-#endif
 
 } //namespace binfilter
 #endif

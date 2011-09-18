@@ -102,14 +102,11 @@ public:
                                       const SvxULSpaceItem *pULSpace ) const;
 };
 
-#if !(defined(MACOSX) &&  ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline const SwFmtFrmSize &SwAttrSet::GetFrmSize(BOOL bInP) const
     { return (const SwFmtFrmSize&)Get( RES_FRM_SIZE,bInP); }
 
 inline const SwFmtFrmSize &SwFmt::GetFrmSize(BOOL bInP) const
     { return aSet.GetFrmSize(bInP); }
-#endif
 
 } //namespace binfilter
 #endif

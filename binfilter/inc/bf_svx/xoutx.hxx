@@ -83,11 +83,6 @@ struct ImpData
 |*
 \************************************************************************/
 
-#if defined(MACOSX) && (__GNUC__ < 3)
-static Brush aBrush;
-static Pen aPen;
-#endif
-
 class XOutputDevice
 {
 private:

@@ -452,15 +452,9 @@ protected:
 
     // access, lazy initialization and destruction of backpatchers
     // Code is implemented in XMLPropertyBackpatcher.cxx
-#if     !(defined(MACOSX) && (__GNUC__ < 3))
     inline XMLPropertyBackpatcher<sal_Int16>& GetFootnoteBP();
     inline XMLPropertyBackpatcher<sal_Int16>& GetSequenceIdBP();
     inline XMLPropertyBackpatcher< ::rtl::OUString> & GetSequenceNameBP();
-#else
-    XMLPropertyBackpatcher<sal_Int16>& GetFootnoteBP();
-    XMLPropertyBackpatcher<sal_Int16>& GetSequenceIdBP();
-    XMLPropertyBackpatcher< ::rtl::OUString> & GetSequenceNameBP();
-#endif
 
 public:
 

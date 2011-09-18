@@ -276,7 +276,6 @@ public:
 
     // fuers Umhaengen der TxtFmtCollections (Outline-Nummerierung!!)
     virtual void Modify( SfxPoolItem*, SfxPoolItem* );
-//  virtual BOOL GetInfo( SfxPoolItem& ) const;
 
     // aus SwIndexReg
     virtual void Update( const SwIndex & aPos, USHORT xub_StrLen,
@@ -317,17 +316,15 @@ inline SwTxtFmtColl* SwTxtNode::GetTxtColl() const
 // fuer den IBM-Compiler nicht inlinen wg. 42876
 #ifndef ICC
 // Inline Metoden aus Node.hxx - erst hier ist der TxtNode bekannt !!
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline       SwTxtNode   *SwNode::GetTxtNode()
 {
      return ND_TEXTNODE == nNodeType ? (SwTxtNode*)this : 0;
 }
+
 inline const SwTxtNode   *SwNode::GetTxtNode() const
 {
      return ND_TEXTNODE == nNodeType ? (const SwTxtNode*)this : 0;
 }
-#endif
 #endif
 
 inline void SwTxtNode::Cut(SwTxtNode *pDest, const SwIndex &rDestStart,

@@ -33,15 +33,10 @@
 #include <format.hxx>       //fuer Implementierung der inlines
 namespace binfilter {
 
-//------------------------ Inlines ---------------------------------
-
-
 /******************************************************************************
  *  Implementierung der FrameAttribut Methoden vom SwAttrSet
  ******************************************************************************/
 
-#if ! (defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline const SvxPaperBinItem &SwAttrSet::GetPaperBin(BOOL bInP) const
     { return (const SvxPaperBinItem&)Get( RES_PAPER_BIN,bInP); }
 inline const SvxLRSpaceItem &SwAttrSet::GetLRSpace(BOOL bInP) const
@@ -100,8 +95,6 @@ inline const SvxMacroItem &SwFmt::GetMacro(BOOL bInP) const
     { return aSet.GetMacro(bInP); }
 inline const SvxFrameDirectionItem  &SwFmt::GetFrmDir(BOOL bInP) const
     { return aSet.GetFrmDir(bInP); }
-
-#endif
 
 } //namespace binfilter
 #endif //_FRMATR_HXX

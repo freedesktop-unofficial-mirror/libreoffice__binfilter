@@ -105,17 +105,15 @@ inline SwGrfFmtColl* SwNoTxtNode::GetGrfColl() const
 }
 
 // Inline Metoden aus Node.hxx - erst hier ist der TxtNode bekannt !!
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline SwNoTxtNode *SwNode::GetNoTxtNode()
 {
     return ND_NOTXTNODE & nNodeType ? (SwNoTxtNode*)this : 0;
 }
+
 inline const SwNoTxtNode *SwNode::GetNoTxtNode() const
 {
     return ND_NOTXTNODE & nNodeType ? (const SwNoTxtNode*)this : 0;
 }
-#endif
 
 } //namespace binfilter
 #endif  // _NDNOTXT_HXX

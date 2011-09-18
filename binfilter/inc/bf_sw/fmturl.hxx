@@ -80,14 +80,11 @@ public:
 };
 
 
-#if ! (defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline const SwFmtURL &SwAttrSet::GetURL(BOOL bInP) const
     { return (const SwFmtURL&)Get( RES_URL,bInP); }
 
 inline const SwFmtURL &SwFmt::GetURL(BOOL bInP) const
     { return aSet.GetURL(bInP); }
-#endif
 
 } //namespace binfilter
 #endif

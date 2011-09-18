@@ -55,10 +55,6 @@ namespace binfilter {
 class ChartModel;
 class SchChartDocShell;
 } //namespace binfilter
-// GrP gcc 2.95.2 on Mac OS X chokes on this huge template class.
-// Expand the template by hand.
-//#if ! (defined(MACOSX) && ( __GNUC__ < 3 ))
-#if 1
 
 //  Construct a WeakImplHelper14 with the emphasis on 14.
 //  Fourteen interfaces are two to many to use the newer template definition
@@ -80,121 +76,6 @@ __DEF_IMPLHELPER_PRE(14)
     __IFC_WRITEOFFSET(13) __IFC_WRITEOFFSET(14)
 __DEF_IMPLHELPER_POST(14)
 
-// !defined(MACOSX)
-#else
-// defined(MACOSX) && (__GNUC__ < 3 )
-
-namespace cppu {
-    struct ClassData14 : public ClassDataBase
-    {
-        Type_Offset arType2Offset[ 14 ];
-        ClassData14( ) SAL_THROW( () )
-            : ClassDataBase( 14 )
-            {}
-    };
-
-    class SAL_NO_VTABLE ImplHelperBase14
-        : public ::com::sun::star::lang::XTypeProvider
-        , public ::com::sun::star::chart::XDiagram,
-                      public ::com::sun::star::chart::XAxisZSupplier,
-                      public ::com::sun::star::chart::XTwoAxisXSupplier,
-                      public ::com::sun::star::chart::XTwoAxisYSupplier,
-                      public ::com::sun::star::chart::XStatisticDisplay,
-                      public ::com::sun::star::chart::X3DDisplay,
-                      public ::com::sun::star::beans::XPropertySet,
-                      public ::com::sun::star::beans::XMultiPropertySet,
-                      public ::com::sun::star::beans::XPropertyState,
-                      public ::com::sun::star::beans::XMultiPropertyStates,
-                      public ::com::sun::star::lang::XServiceInfo,
-                      public ::com::sun::star::lang::XUnoTunnel,
-                      public ::com::sun::star::lang::XComponent,
-                      public ::com::sun::star::lang::XEventListener
-    {
-    protected:
-        ClassData & SAL_CALL getClassData( ClassDataBase & s_aCD ) SAL_THROW( () )
-            {
-                ClassData & rCD = * static_cast< ClassData * >( &s_aCD );
-                if (! rCD.bOffsetsInit)
-                {
-                    ::osl::MutexGuard aGuard( getImplHelperInitMutex() );
-                    if (! rCD.bOffsetsInit)
-                    {
-                        char * pBase = (char *)this;
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::chart::XDiagram > *)0 ),
-                                             (char *)(::com::sun::star::chart::XDiagram *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::chart::XAxisZSupplier > *)0 ),
-                                             (char *)(::com::sun::star::chart::XAxisZSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::chart::XTwoAxisXSupplier > *)0 ),
-                                             (char *)(::com::sun::star::chart::XTwoAxisXSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::chart::XTwoAxisYSupplier > *)0 ),
-                                             (char *)(::com::sun::star::chart::XTwoAxisYSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::chart::XStatisticDisplay > *)0 ),
-                                             (char *)(::com::sun::star::chart::XStatisticDisplay *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::chart::X3DDisplay > *)0 ),
-                                             (char *)(::com::sun::star::chart::X3DDisplay *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > *)0 ),
-                                             (char *)(::com::sun::star::beans::XPropertySet *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XMultiPropertySet > *)0 ),
-                                             (char *)(::com::sun::star::beans::XMultiPropertySet *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyState > *)0 ),
-                                             (char *)(::com::sun::star::beans::XPropertyState *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XMultiPropertyStates > *)0 ),
-                                             (char *)(::com::sun::star::beans::XMultiPropertyStates *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XServiceInfo > *)0 ),
-                                             (char *)(::com::sun::star::lang::XServiceInfo *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XUnoTunnel > *)0 ),
-                                             (char *)(::com::sun::star::lang::XUnoTunnel *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent > *)0 ),
-                                             (char *)(::com::sun::star::lang::XComponent *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XEventListener > *)0 ),
-                                             (char *)(::com::sun::star::lang::XEventListener *)this - pBase );
-                        rCD.bOffsetsInit = sal_True;
-                    }
-                }
-                return rCD;
-            }
-    };
-
-
-    class SAL_NO_VTABLE ImplHelper14
-        : public ImplHelperBase14
-    {
-        static ClassData14 s_aCD;
-    public:
-        virtual ::com::sun::star::uno::Any SAL_CALL queryInterface( const ::com::sun::star::uno::Type & rType ) throw (::com::sun::star::uno::RuntimeException)
-            { return getClassData( s_aCD ).query( rType, (ImplHelperBase14 *)this ); }
-        virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes() throw (::com::sun::star::uno::RuntimeException)
-            { return getClassData( s_aCD ).getTypes(); }
-        virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId() throw (::com::sun::star::uno::RuntimeException)
-            { return getClassData( s_aCD ).getImplementationId(); }
-    };
-
-
-    class SAL_NO_VTABLE WeakImplHelper14
-        : public ::cppu::OWeakObject
-        , public ImplHelperBase14
-    {
-        static ClassData14 s_aCD;
-    public:
-        virtual ::com::sun::star::uno::Any SAL_CALL queryInterface( const ::com::sun::star::uno::Type & rType ) throw (::com::sun::star::uno::RuntimeException)
-            {
-                ::com::sun::star::uno::Any aRet( getClassData( s_aCD ).query( rType, (ImplHelperBase14 *)this ) );
-                return (aRet.hasValue() ? aRet : OWeakObject::queryInterface( rType ));
-            }
-        virtual void SAL_CALL acquire() throw ()
-            { OWeakObject::acquire(); }
-        virtual void SAL_CALL release() throw ()
-            { OWeakObject::release(); }
-        virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes() throw (::com::sun::star::uno::RuntimeException)
-            { return getClassData( s_aCD ).getTypes(); }
-        virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId() throw (::com::sun::star::uno::RuntimeException)
-            { return getClassData( s_aCD ).getImplementationId(); }
-    };
-
-  // namespace ::cppu
-}
-
-#endif
 namespace binfilter {
     class ChXDiagram : public ::cppu::WeakImplHelper14
  <

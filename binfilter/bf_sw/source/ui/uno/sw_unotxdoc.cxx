@@ -124,12 +124,6 @@ using namespace ::com::sun::star::i18n;
 using ::rtl::OUString;
 using ::osl::FileBase;
 
-#if defined(MACOSX) && ( __GNUC__ < 3 )
-static cppu::ClassData27 cppu::ImplHelper27::s_aCD;
-static cppu::ClassData27 cppu::WeakImplHelper27::s_aCD;
-#endif
-
-
 #define SW_CREATE_DASH_TABLE            0x01
 #define SW_CREATE_GRADIENT_TABLE        0x02
 #define SW_CREATE_HATCH_TABLE           0x03

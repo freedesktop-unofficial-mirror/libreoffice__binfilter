@@ -128,17 +128,15 @@ public:
 
 
 // Inline Metoden aus Node.hxx - erst hier ist der TxtNode bekannt !!
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline SwOLENode *SwNode::GetOLENode()
 {
      return ND_OLENODE == nNodeType ? (SwOLENode*)this : 0;
 }
+
 inline const SwOLENode *SwNode::GetOLENode() const
 {
      return ND_OLENODE == nNodeType ? (const SwOLENode*)this : 0;
 }
-#endif
 
 } //namespace binfilter
 #endif  // _NDOLE_HXX

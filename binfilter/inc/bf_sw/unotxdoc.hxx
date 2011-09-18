@@ -72,8 +72,6 @@
 #include <cppuhelper/implbase4.hxx> // helper for implementations
 #include <RefreshListenerContainer.hxx>
 
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP Mac OS X internal compiler error; revisit with gcc3
 #define __IFC27 Ifc1, Ifc2, Ifc3, Ifc4, Ifc5, Ifc6, Ifc7, Ifc8, Ifc9, Ifc10, Ifc11, Ifc12, Ifc13, Ifc14, Ifc15, Ifc16, \
 Ifc17, Ifc18, Ifc19, Ifc20, Ifc21, Ifc22, Ifc23, Ifc24, Ifc25, Ifc26, Ifc27
 
@@ -108,7 +106,6 @@ public Ifc25, public Ifc26, public Ifc27
 #include <cppuhelper/implbase_ex_post.hxx>
 __DEF_IMPLHELPER_EX( 27 )
 
-#endif
 namespace binfilter {
 
 class SwDoc;
@@ -126,171 +123,6 @@ SV_DECL_PTRARR(ActionContextArr, UnoActionContextPtr, 4, 4)
 /******************************************************************************
  *
  ******************************************************************************/
-
-#if defined(MACOSX) && ( __GNUC__ < 3 )
-// [ed] Explicit template instantiation to workaround compiler ICE
-
-namespace cppu
-{
-    struct ClassData27 : public ClassDataBase
-    {
-        Type_Offset arType2Offset[ 27 ];
-        ClassData27( ) SAL_THROW( () )
-            : ClassDataBase( 27 )
-            {}
-    };
-
-    class SAL_NO_VTABLE ImplHelperBase27
-        : public ::com::sun::star::lang::XTypeProvider
-        , public ::com::sun::star::text::XTextDocument, public ::com::sun::star::text::XLineNumberingProperties, public ::com::sun::star::text::XChapterNumberingSupplier, public ::com::sun::star::text::XFootnotesSupplier,
-public ::com::sun::star::text::XEndnotesSupplier, public ::com::sun::star::util::XReplaceable, public ::com::sun::star::text::XPagePrintable, public ::com::sun::star::text::XReferenceMarksSupplier, public ::com::sun::star::text::XTextTablesSupplier,
-public ::com::sun::star::text::XTextFramesSupplier, public ::com::sun::star::text::XBookmarksSupplier, public ::com::sun::star::text::XTextSectionsSupplier, public ::com::sun::star::text::XTextGraphicObjectsSupplier, public ::com::sun::star::text::XTextEmbeddedObjectsSupplier,
-public ::com::sun::star::text::XTextFieldsSupplier, public ::com::sun::star::style::XStyleFamiliesSupplier, public ::com::sun::star::lang::XServiceInfo, public ::com::sun::star::drawing::XDrawPageSupplier, public ::com::sun::star::text::XDocumentIndexesSupplier,
-public ::com::sun::star::beans::XPropertySet, public ::com::sun::star::beans::XPropertyState, public ::com::sun::star::document::XLinkTargetSupplier, public ::com::sun::star::document::XRedlinesSupplier, public ::com::sun::star::util::XRefreshable,
-public ::com::sun::star::util::XLinkUpdate, public ::com::sun::star::lang::XUnoTunnel, public ::com::sun::star::view::XRenderable
-    {
-    protected:
-        ClassData & SAL_CALL getClassData( ClassDataBase & s_aCD ) SAL_THROW( () )
-            {
-                ClassData & rCD = * static_cast< ClassData * >( &s_aCD );
-                if (! rCD.bOffsetsInit)
-                {
-                    ::osl::MutexGuard aGuard( getImplHelperInitMutex() );
-                    if (! rCD.bOffsetsInit)
-                    {
-                        char * pBase = (char *)this;
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextDocument > *)0 ),
-                                             (char *)(::com::sun::star::text::XTextDocument *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::text::XLineNumberingProperties > *)0 ),
-                                             (char *)(::com::sun::star::text::XLineNumberingProperties *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::text::XChapterNumberingSupplier > *)0 ),
-                                             (char *)(::com::sun::star::text::XChapterNumberingSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::text::XFootnotesSupplier > *)0 ),
-                                             (char *)(::com::sun::star::text::XFootnotesSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::text::XEndnotesSupplier > *)0 ),
-                                             (char *)(::com::sun::star::text::XEndnotesSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::util::XReplaceable > *)0 ),
-                                             (char *)(::com::sun::star::util::XReplaceable *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::text::XPagePrintable > *)0 ),
-                                             (char *)(::com::sun::star::text::XPagePrintable *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::text::XReferenceMarksSupplier > *)0 ),
-                                             (char *)(::com::sun::star::text::XReferenceMarksSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextTablesSupplier > *)0 ),
-                                             (char *)(::com::sun::star::text::XTextTablesSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextFramesSupplier > *)0 ),
-                                             (char *)(::com::sun::star::text::XTextFramesSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::text::XBookmarksSupplier > *)0 ),
-                                             (char *)(::com::sun::star::text::XBookmarksSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextSectionsSupplier > *)0 ),
-                                             (char *)(::com::sun::star::text::XTextSectionsSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextGraphicObjectsSupplier > *)0 ),
-                                             (char *)(::com::sun::star::text::XTextGraphicObjectsSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextEmbeddedObjectsSupplier > *)0 ),
-                                             (char *)(::com::sun::star::text::XTextEmbeddedObjectsSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextFieldsSupplier > *)0 ),
-                                             (char *)(::com::sun::star::text::XTextFieldsSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::style::XStyleFamiliesSupplier > *)0 ),
-                                             (char *)(::com::sun::star::style::XStyleFamiliesSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XServiceInfo > *)0 ),
-                                             (char *)(::com::sun::star::lang::XServiceInfo *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XDrawPageSupplier > *)0 ),
-                                             (char *)(::com::sun::star::drawing::XDrawPageSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::text::XDocumentIndexesSupplier > *)0 ),
-                                             (char *)(::com::sun::star::text::XDocumentIndexesSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > *)0 ),
-                                             (char *)(::com::sun::star::beans::XPropertySet *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyState > *)0 ),
-                                             (char *)(::com::sun::star::beans::XPropertyState *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::document::XLinkTargetSupplier > *)0 ),
-                                             (char *)(::com::sun::star::document::XLinkTargetSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::document::XRedlinesSupplier > *)0 ),
-                                             (char *)(::com::sun::star::document::XRedlinesSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::util::XRefreshable > *)0 ),
-                                             (char *)(::com::sun::star::util::XRefreshable *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::util::XLinkUpdate > *)0 ),
-                                             (char *)(::com::sun::star::util::XLinkUpdate *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XUnoTunnel > *)0 ),
-                                             (char *)(::com::sun::star::lang::XUnoTunnel *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::view::XRenderable > *)0 ),
-                                             (char *)(::com::sun::star::view::XRenderable *)this - pBase );
-                        rCD.bOffsetsInit = sal_True;
-                    }
-                }
-                return rCD;
-            }
-    };
-
-
-    class SAL_NO_VTABLE ImplHelper27
-        : public ImplHelperBase27
-    {
-        static ClassData27 s_aCD;
-    public:
-        virtual ::com::sun::star::uno::Any SAL_CALL queryInterface( const ::com::sun::star::uno::Type & rType ) throw (::com::sun::star::uno::RuntimeException)
-            { return getClassData( s_aCD ).query( rType, (ImplHelperBase27 *)this ); }
-        virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes() throw (::com::sun::star::uno::RuntimeException)
-            { return getClassData( s_aCD ).getTypes(); }
-        virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId() throw (::com::sun::star::uno::RuntimeException)
-            { return getClassData( s_aCD ).getImplementationId(); }
-    };
-
-    class SAL_NO_VTABLE WeakImplHelper27
-        : public ::cppu::OWeakObject
-        , public ImplHelperBase27
-    {
-        static ClassData27 s_aCD;
-    public:
-        virtual ::com::sun::star::uno::Any SAL_CALL queryInterface( const ::com::sun::star::uno::Type & rType ) throw (::com::sun::star::uno::RuntimeException)
-            {
-                ::com::sun::star::uno::Any aRet( getClassData( s_aCD ).query( rType, (ImplHelperBase27 *)this ) );
-                return (aRet.hasValue() ? aRet : OWeakObject::queryInterface( rType ));
-            }
-        virtual void SAL_CALL acquire() throw ()
-            { OWeakObject::acquire(); }
-        virtual void SAL_CALL release() throw ()
-            { OWeakObject::release(); }
-        virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes() throw (::com::sun::star::uno::RuntimeException)
-            { return getClassData( s_aCD ).getTypes(); }
-        virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId() throw (::com::sun::star::uno::RuntimeException)
-            { return getClassData( s_aCD ).getImplementationId(); }
-    };
-
-    class SAL_NO_VTABLE WeakAggImplHelper27
-        : public ::cppu::OWeakAggObject
-        , public ImplHelperBase27
-    {
-        static ClassData27 s_aCD;
-    public:
-        virtual ::com::sun::star::uno::Any SAL_CALL queryInterface( const ::com::sun::star::uno::Type & rType ) throw (::com::sun::star::uno::RuntimeException)
-            { return OWeakAggObject::queryInterface( rType ); }
-        virtual ::com::sun::star::uno::Any SAL_CALL queryAggregation( const ::com::sun::star::uno::Type & rType ) throw (::com::sun::star::uno::RuntimeException)
-            {
-                ::com::sun::star::uno::Any aRet( getClassData( s_aCD ).query( rType, (ImplHelperBase27 *)this ) );
-                return (aRet.hasValue() ? aRet : OWeakAggObject::queryAggregation( rType ));
-            }
-        virtual void SAL_CALL acquire() throw ()
-            { OWeakAggObject::acquire(); }
-        virtual void SAL_CALL release() throw ()
-            { OWeakAggObject::release(); }
-        virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes() throw (::com::sun::star::uno::RuntimeException)
-            { return getClassData( s_aCD ).getTypes(); }
-        virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId() throw (::com::sun::star::uno::RuntimeException)
-            { return getClassData( s_aCD ).getImplementationId(); }
-    };
-
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-    template< class Ifc1, class Ifc2, class Ifc3, class Ifc4, class Ifc5, class Ifc6, class Ifc7, class Ifc8, class Ifc9, class Ifc10, class Ifc11, class Ifc12 >
-    ClassData12 ImplHelper12< Ifc1, Ifc2, Ifc3, Ifc4, Ifc5, Ifc6, Ifc7, Ifc8, Ifc9, Ifc10, Ifc11, Ifc12 >::s_aCD = ClassData12( 0 );
-    template< class Ifc1, class Ifc2, class Ifc3, class Ifc4, class Ifc5, class Ifc6, class Ifc7, class Ifc8, class Ifc9, class Ifc10, class Ifc11, class Ifc12 >
-    ClassData12 WeakImplHelper12< Ifc1, Ifc2, Ifc3, Ifc4, Ifc5, Ifc6, Ifc7, Ifc8, Ifc9, Ifc10, Ifc11, Ifc12 >::s_aCD = ClassData12( 1 );
-    template< class Ifc1, class Ifc2, class Ifc3, class Ifc4, class Ifc5, class Ifc6, class Ifc7, class Ifc8, class Ifc9, class Ifc10, class Ifc11, class Ifc12 >
-    ClassData12 WeakAggImplHelper12< Ifc1, Ifc2, Ifc3, Ifc4, Ifc5, Ifc6, Ifc7, Ifc8, Ifc9, Ifc10, Ifc11, Ifc12 >::s_aCD = ClassData12( 2 );
-#endif
-
-}
-
-typedef cppu::WeakImplHelper27 SwXTextDocumentBaseClass;
-#else
 
 typedef cppu::WeakImplHelper27
 <
@@ -324,7 +156,6 @@ typedef cppu::WeakImplHelper27
 >
 SwXTextDocumentBaseClass;
 
-#endif /* MACOSX */
 class SwXTextDocument : public SwXTextDocumentBaseClass,
     public SvxFmMSFactory,
     public SfxBaseModel
@@ -353,7 +184,6 @@ class SwXTextDocument : public SwXTextDocumentBaseClass,
     ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameAccess > *          pxXTextFieldMasters;
     ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameAccess > *          pxXTextSections;
     ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameAccess > *          pxXBookmarks;
-//  ::com::sun::star::uno::Reference< ::com::sun::star::container::XIndexAccess > *     pxXTextShapes;
     ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameAccess > *          pxXTextTables;
     ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameAccess > *          pxXTextFrames;
     ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameAccess > *          pxXGraphicObjects;

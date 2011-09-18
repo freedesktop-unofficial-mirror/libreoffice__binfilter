@@ -110,11 +110,6 @@ using rtl::OUString;
 
 extern SchUnoPropertyMapProvider aSchMapProvider;
 
-#if defined(MACOSX) && ( __GNUC__ < 3 )
-static cppu::ClassData14 cppu::ImplHelper14::s_aCD;
-static cppu::ClassData14 cppu::WeakImplHelper14::s_aCD;
-#endif
-
 #define MATRIX4D_TO_HOMOGEN_MATRIX( m, h ) \
     h.Line1.Column1 = m[0][0]; \
     h.Line1.Column2 = m[0][1]; \

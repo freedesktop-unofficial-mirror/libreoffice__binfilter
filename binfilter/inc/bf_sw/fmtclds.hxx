@@ -161,14 +161,11 @@ public:
     //den Anwender die Spalte ist - geliefert.
 };
 
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline const SwFmtCol &SwAttrSet::GetCol(BOOL bInP) const
     { return (const SwFmtCol&)Get( RES_COL,bInP); }
 
 inline const SwFmtCol &SwFmt::GetCol(BOOL bInP) const
     { return aSet.GetCol(bInP); }
-#endif
 
 } //namespace binfilter
 #endif

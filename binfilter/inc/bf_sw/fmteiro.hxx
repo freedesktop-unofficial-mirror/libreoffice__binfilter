@@ -51,14 +51,11 @@ public:
     virtual USHORT           GetVersion( USHORT nFFVer ) const;
 };
 
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline const SwFmtEditInReadonly &SwAttrSet::GetEditInReadonly(BOOL bInP) const
     { return (const SwFmtEditInReadonly&)Get( RES_EDIT_IN_READONLY,bInP); }
 
 inline const SwFmtEditInReadonly &SwFmt::GetEditInReadonly(BOOL bInP) const
     { return aSet.GetEditInReadonly(bInP); }
-#endif
 
 } //namespace binfilter
 #endif

@@ -83,12 +83,6 @@
 #include <unicode/ubidi.h>
 namespace binfilter {
 
-#if defined(MACOSX) && ( __GNUC__ < 3 )
-// moved from editundo.hxx
-const EPaM& EditUndoRemoveChars::GetEPaM() { return aEPaM; }
-String& EditUndoRemoveChars::GetStr() { return aText; }
-#endif
-
 using namespace ::com::sun::star;
 
 /*N*/ USHORT lcl_CalcExtraSpace( const SvxLineSpacingItem& rLSItem )

@@ -52,14 +52,11 @@ public:
 };
 
 
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline const SwFmtNoBalancedColumns &SwAttrSet::GetBalancedColumns(BOOL bInP) const
     { return (const SwFmtNoBalancedColumns&)Get( RES_COLUMNBALANCE, bInP ); }
 
 inline const SwFmtNoBalancedColumns &SwFmt::GetBalancedColumns(BOOL bInP) const
     { return aSet.GetBalancedColumns( bInP ); }
-#endif
 
 } //namespace binfilter
 #endif

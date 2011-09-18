@@ -129,8 +129,6 @@ inline SwFmtHoriOrient &SwFmtHoriOrient::operator=( const SwFmtHoriOrient &rCpy 
     return *this;
 }
 
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx
 inline const SwFmtVertOrient &SwAttrSet::GetVertOrient(BOOL bInP) const
     { return (const SwFmtVertOrient&)Get( RES_VERT_ORIENT,bInP); }
 inline const SwFmtHoriOrient &SwAttrSet::GetHoriOrient(BOOL bInP) const
@@ -140,7 +138,6 @@ inline const SwFmtVertOrient &SwFmt::GetVertOrient(BOOL bInP) const
     { return aSet.GetVertOrient(bInP); }
 inline const SwFmtHoriOrient &SwFmt::GetHoriOrient(BOOL bInP) const
     { return aSet.GetHoriOrient(bInP); }
-#endif
 
 } //namespace binfilter
 #endif

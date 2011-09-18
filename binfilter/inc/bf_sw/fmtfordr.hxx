@@ -68,14 +68,11 @@ inline SwFmtFillOrder &SwFmtFillOrder::operator=( const SwFmtFillOrder &rCpy )
     return *this;
 }
 
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline const SwFmtFillOrder &SwAttrSet::GetFillOrder(BOOL bInP) const
     { return (const SwFmtFillOrder&)Get( RES_FILL_ORDER,bInP); }
 
 inline const SwFmtFillOrder &SwFmt::GetFillOrder(BOOL bInP) const
     { return aSet.GetFillOrder(bInP); }
-#endif
 
 } //namespace binfilter
 #endif

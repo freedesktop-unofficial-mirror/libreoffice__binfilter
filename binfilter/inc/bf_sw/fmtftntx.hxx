@@ -118,19 +118,15 @@ public:
     virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const;
 };
 
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline const SwFmtFtnAtTxtEnd &SwAttrSet::GetFtnAtTxtEnd(BOOL bInP) const
     { return (const SwFmtFtnAtTxtEnd&)Get( RES_FTN_AT_TXTEND, bInP); }
 inline const SwFmtEndAtTxtEnd &SwAttrSet::GetEndAtTxtEnd(BOOL bInP) const
     { return (const SwFmtEndAtTxtEnd&)Get( RES_END_AT_TXTEND, bInP); }
 
-
 inline const SwFmtFtnAtTxtEnd &SwFmt::GetFtnAtTxtEnd(BOOL bInP) const
     { return aSet.GetFtnAtTxtEnd(bInP); }
 inline const SwFmtEndAtTxtEnd &SwFmt::GetEndAtTxtEnd(BOOL bInP) const
     { return aSet.GetEndAtTxtEnd(bInP); }
-#endif
 
 } //namespace binfilter
 #endif

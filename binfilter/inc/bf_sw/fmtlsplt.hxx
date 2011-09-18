@@ -48,14 +48,11 @@ public:
     virtual USHORT           GetVersion( USHORT nFFVer ) const;
 };
 
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline const SwFmtLayoutSplit &SwAttrSet::GetLayoutSplit(BOOL bInP) const
     { return (const SwFmtLayoutSplit&)Get( RES_LAYOUT_SPLIT,bInP); }
 
 inline const SwFmtLayoutSplit &SwFmt::GetLayoutSplit(BOOL bInP) const
     { return aSet.GetLayoutSplit(bInP); }
-#endif
 
 } //namespace binfilter
 #endif

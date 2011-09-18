@@ -78,14 +78,11 @@ public:
     void SetAnchor( const SwPosition *pPos );
 };
 
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline const SwFmtAnchor &SwAttrSet::GetAnchor(BOOL bInP) const
      { return (const SwFmtAnchor&)Get( RES_ANCHOR,bInP); }
 
  inline const SwFmtAnchor &SwFmt::GetAnchor(BOOL bInP) const
      { return aSet.GetAnchor(bInP); }
-#endif
 
 } //namespace binfilter
 #endif
