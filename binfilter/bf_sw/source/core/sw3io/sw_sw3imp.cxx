@@ -1646,9 +1646,9 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*N*/   {
 /*?*/       sal_Char buf[ 17 ];
 /*?*/       snprintf( buf, sizeof(buf), "%08"SAL_PRIxUINT32"%08"SAL_PRIxUINT32, nDate, nTime );
-/*?*/       ByteString aTest( buf );
+/*?*/       rtl::OStringBuffer aTest( buf );
 /*?*/       pCrypter->Encrypt( aTest );
-/*?*/       return sal_Bool( !memcmp( cPasswd, aTest.GetBuffer(), PASSWDLEN ) );
+/*?*/       return sal_Bool( !memcmp( cPasswd, aTest.getStr(), PASSWDLEN ) );
 /*N*/   }
 /*N*/   else
 /*N*/       return sal_Bool( ( nFileFlags & SWGF_HAS_PASSWD ) == 0 );
@@ -1664,9 +1664,9 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*?*/       pCrypter = new Crypter( pRoot->GetKey() );
 /*?*/       sal_Char buf[ 17 ];
 /*?*/       snprintf( buf, sizeof(buf), "%08"SAL_PRIxUINT32"%08"SAL_PRIxUINT32, nDate, nTime );
-/*?*/       ByteString aTest( buf );
+/*?*/       rtl::OStringBuffer aTest( buf );
 /*?*/       pCrypter->Encrypt( aTest );
-/*?*/       memcpy( cPasswd, aTest.GetBuffer(), aTest.Len() );
+/*?*/       memcpy( cPasswd, aTest.getStr(), aTest.getLength() );
 /*?*/       nFileFlags|= SWGF_HAS_PASSWD;
 /*N*/   }
 /*N*/ }

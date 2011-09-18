@@ -52,40 +52,40 @@ Crypter::Crypter( const ByteString& r )
 
     rtl::OStringBuffer aBuf(r);
     comphelper::string::padToLength(aBuf, PASSWDLEN, ' ');
-    ByteString aPasswd(aBuf.makeStringAndClear());
     memcpy( cPasswd, cEncode, PASSWDLEN );
-    Encrypt( aPasswd );
-    memcpy( cPasswd, aPasswd.GetBuffer(), PASSWDLEN );
+    Encrypt( aBuf );
+    memcpy( cPasswd, aBuf.getStr(), PASSWDLEN );
 }
 
 
 
-void Crypter::Encrypt( ByteString& r ) const
+void Crypter::Encrypt( rtl::OStringBuffer& r ) const
 {
-    xub_StrLen nLen = r.Len();
+    sal_Int32 nLen = r.getLength(), i = 0;
     if( !nLen )
         return ;
 
     xub_StrLen nCryptPtr = 0;
     BYTE cBuf[ PASSWDLEN ];
     memcpy( cBuf, cPasswd, PASSWDLEN );
-    BYTE* pSrc = (BYTE*)r.GetBufferAccess();
     BYTE* p = cBuf;
 
     while( nLen-- )
     {
-        *pSrc = *pSrc ^ ( *p ^ (BYTE) ( cBuf[ 0 ] * nCryptPtr ) );
+        r.setCharAt(i, r[i] ^ ( *p ^ (BYTE) ( cBuf[ 0 ] * nCryptPtr ) ));
         *p += ( nCryptPtr < (PASSWDLEN-1) ) ? *(p+1) : cBuf[ 0 ];
-        if( !*p ) *p += 1;
+        if( !*p )
+            *p += 1;
         p++;
-        if( ++nCryptPtr >= PASSWDLEN ) nCryptPtr = 0, p = cBuf;
-        pSrc++;
+        if( ++nCryptPtr >= PASSWDLEN )
+            nCryptPtr = 0, p = cBuf;
+        ++i;
     }
 }
 
 
 
-void Crypter::Decrypt( ByteString& r ) const
+void Crypter::Decrypt( rtl::OStringBuffer& r ) const
 {
     Encrypt( r );
 }

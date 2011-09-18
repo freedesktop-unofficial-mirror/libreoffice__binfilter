@@ -32,7 +32,7 @@
 #include <tools/tenccvt.hxx>
 #include <bf_svtools/useroptions.hxx>
 #include <sot/exchange.hxx>
-#include "rtl/tencinfo.h"
+#include <rtl/tencinfo.h>
 
 #include "fcontnr.hxx"
 #include "openflag.hxx"
@@ -185,11 +185,13 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/         }
 /*N*/         else
 /*N*/         {
-/*N*/             ByteString aTemp;
 /*N*/             if ( nLen>1 )
 /*N*/             {
-/*N*/                 rStream.Read( aTemp.AllocBuffer( (xub_StrLen)( nLen - 1 ) ), nLen );
-/*N*/                 aString = String( aTemp, nEncoding );
+/*N*/                 rtl::OString aTemp = read_uInt8s_AsOString(rStream, nLen-1);
+/*N*/                 sal_uInt8 nTerminator = 0;
+/*N*/                 rStream >> nTerminator;
+/*N*/                 DBG_ASSERT( nTerminator == 0, "expected string to be NULL terminated" );
+/*N*/                 aString = rtl::OStringToOUString(aTemp, nEncoding);
 /*N*/             }
 /*N*/             else
 /*N*/                 aString = String();

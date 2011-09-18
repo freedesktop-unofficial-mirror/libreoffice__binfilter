@@ -677,7 +677,11 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/   ByteString aText8;
 /*N*/   pStrm->ReadByteString( aText8 );
 /*N*/   if( pCrypter )
-            pCrypter->Decrypt( aText8 );
+        {
+            rtl::OStringBuffer aBuffer(aText8);
+            pCrypter->Decrypt( aBuffer );
+            aText8 = aBuffer.makeStringAndClear();
+        }
 /*N*/   String aText( aText8, eSrcSet );
 /*N*/   if( !pNd )
 /*N*/   {

@@ -262,15 +262,12 @@ BOOL GIFReader::ReadExtension()
                     // Appl.-Extension hat Laenge 11
                     if ( cSize == 0x0b )
                     {
-                        ByteString  aAppId;
-                        ByteString  aAppCode;
-
-                        rIStm.Read( aAppId.AllocBuffer( 8 ), 8 );
-                        rIStm.Read( aAppCode.AllocBuffer( 3 ), 3 );
+                        rtl::OString aAppId = read_uInt8s_AsOString(rIStm, 8);
+                        rtl::OString aAppCode = read_uInt8s_AsOString(rIStm, 3);
                         rIStm >> cSize;
 
                         // NetScape-Extension
-                        if( aAppId == "NETSCAPE" && aAppCode == "2.0" && cSize == 3 )
+                        if( aAppId.equalsL(RTL_CONSTASCII_STRINGPARAM("NETSCAPE")) && aAppCode.equalsL(RTL_CONSTASCII_STRINGPARAM("2.0")) && cSize == 3 )
                         {
                             rIStm >> cByte;
 
@@ -297,7 +294,7 @@ BOOL GIFReader::ReadExtension()
                             else
                                 rIStm.SeekRel( -1 );
                         }
-                        else if ( aAppId == "STARDIV " && aAppCode == "5.0" && cSize == 9 )
+                        else if ( aAppId.equalsL(RTL_CONSTASCII_STRINGPARAM("STARDIV ")) && aAppCode.equalsL(RTL_CONSTASCII_STRINGPARAM("5.0")) && cSize == 9 )
                         {
                             rIStm >> cByte;
 

@@ -30,9 +30,9 @@
 #define _SW3CRYPT_HXX
 
 #include <bf_svtools/bf_solar.h>
+#include <rtl/strbuf.hxx>
 class String;
 namespace binfilter {
-
 
 #define PASSWDLEN 16
 
@@ -44,8 +44,8 @@ public:
     short GetMaxPasswdLen() const { return PASSWDLEN; }
     short GetMinPasswdLen() const { return 5;         }
 
-    void Encrypt( ByteString& rTxt ) const;
-    void Decrypt( ByteString& rTxt ) const;
+    void Encrypt( rtl::OStringBuffer& rTxt ) const;
+    void Decrypt( rtl::OStringBuffer& rTxt ) const;
 };
 
 } //namespace binfilter
