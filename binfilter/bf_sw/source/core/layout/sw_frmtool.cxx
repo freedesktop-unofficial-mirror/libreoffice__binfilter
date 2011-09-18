@@ -73,7 +73,6 @@
 #include "txtfrm.hxx"
 #include "notxtfrm.hxx"
 #include "flyfrms.hxx"
-#include "frmsh.hxx"
 #include "pagedesc.hxx"
 #include "section.hxx"
 #include "sectfrm.hxx"
@@ -683,19 +682,6 @@ namespace binfilter {
 /*N*/       pCnt->SetCompletePaint();
 /*N*/
 /*N*/
-/*N*/   //Wenn sich meine PrtArea in der Fix-Size geaendert hat, so muss mein
-/*N*/   //Nachfolger dazu angeregt werden sich auch neu zu Formatieren.
-/*N*/
-/*N*/ //MA: Ist das wirklich noetig? Auf keinen Fall sollte das doch notwendig sein,
-/*N*/ //wenn der Frm das erste Mal formatiert wurde (alte PrtArea == 0).
-/*  if ( pCnt->GetNext() &&
-         pCnt->Prt().Width() != aPrt.Width() )
-    {
-        pCnt->GetNext()->Prepare( PREP_FIXSIZE_CHG );
-        pCnt->GetNext()->_InvalidatePrt();
-        pCnt->GetNext()->InvalidateSize();
-    }
-*/
 /*N*/     SWRECTFN( pCnt )
 /*N*/     if ( pCnt->IsInTab() && ( POS_DIFF( pCnt->Frm(), aFrm ) ||
 /*N*/                            pCnt->Frm().SSize() != aFrm.SSize()))
@@ -708,67 +694,7 @@ namespace binfilter {
 /*N*/           pCell->InvalidatePrt(); //fuer vertikale Ausrichtung.
 /*N*/   }
 /*N*/
-/*N*/     bool bFirst = (aFrm.*fnRect->fnGetWidth)() == 0;
-/*N*/
-/*N*/   if ( pCnt->IsNoTxtFrm() )
-/*N*/   {
-/*N*/       //Aktive PlugIn's oder OLE-Objekte sollten etwas von der Veraenderung
-/*N*/       //mitbekommen, damit sie Ihr Window entsprechend verschieben.
-/*N*/       ViewShell *pSh  = pCnt->GetShell();
-/*N*/       if ( pSh )
-/*N*/       {
-/*N*/           SwOLENode *pNd;
-/*N*/           if ( 0 != (pNd = pCnt->GetNode()->GetOLENode()) &&
-/*N*/                (pNd->GetOLEObj().IsOleRef() ||
-/*N*/                 pNd->IsOLESizeInvalid()) )
-/*N*/           {
-/*N*/               OSL_ENSURE( pCnt->IsInFly(), "OLE not in FlyFrm" );
-/*N*/               SwFlyFrm *pFly = pCnt->FindFlyFrm();
-/*N*/               SvEmbeddedObjectRef xObj( (SvInPlaceObject*) pNd->GetOLEObj().GetOleRef() );
-/*N*/               SwFEShell *pFESh = 0;
-/*N*/               ViewShell *pTmp = pSh;
-/*N*/               do
-/*N*/               {   if ( pTmp->ISA( SwCrsrShell ) )
-/*N*/                   {
-/*N*/                       pFESh = (SwFEShell*)pTmp;
-                        // #108369#: Here used to be the condition if (!bFirst).
-                        // I think this should mean "do not call CalcAndSetScale"
-                        // if the frame is formatted for the first time.
-                        // Unfortunately this is not valid anymore since the
-                        // SwNoTxtFrm already gets a width during CalcLowerPreps.
-                        // Nevertheless, the indention of !bFirst seemed to be
-                        // to assure that the OLE objects have already been notified
-                        // if necessary before calling CalcAndSetScale.
-                        // So I replaced !bFirst by !IsOLESizeInvalid. There is
-                        // one additional problem specific to the word import:
-                        // The layout is calculated _before_ calling PrtOLENotify,
-                        // and the OLE objects are not invalidated during import.
-                        // Therefore I added the condition !IsUpdateExpFld,
-                        // have a look at the occurrence of CalcLayout in
-                        // uiview/view.cxx.
-/*N*/                         if ( !pNd->IsOLESizeInvalid() &&
-/*N*/                              !pSh->GetDoc()->IsUpdateExpFld() )
-/*N*/                           pFESh->CalcAndSetScale( xObj, &pFly->Prt(), &pFly->Frm());
-/*N*/                   }
-/*N*/                   pTmp = (ViewShell*)pTmp->GetNext();
-/*N*/               } while ( pTmp != pSh );
-/*N*/
-/*N*/               if ( pFESh && pNd->IsOLESizeInvalid() )
-/*N*/               {
-/*N*/                   pNd->SetOLESizeInvalid( FALSE );
-/*N*/                   xObj->OnDocumentPrinterChanged( pNd->GetDoc()->GetPrt() );
-/*N*/                   pFESh->CalcAndSetScale( xObj );//Client erzeugen lassen.
-/*N*/               }
-/*N*/           }
-/*N*/           //dito Animierte Grafiken
-/*N*/           if ( Frm().HasArea() && ((SwNoTxtFrm*)pCnt)->HasAnimation() )
-/*N*/           {
-/*?*/               ((SwNoTxtFrm*)pCnt)->StopAnimation();
-/*?*/               pSh->InvalidateWindows( Frm() );
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
+/*N*/   bool bFirst = (aFrm.*fnRect->fnGetWidth)() == 0;
 /*N*/   if ( bFirst )
 /*N*/   {
 /*N*/       pCnt->SetRetouche();    //fix(13870)
@@ -2302,15 +2228,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/       pFly->NotifyBackground( pFly->FindPageFrm(), aFrm, PREP_FLY_ARRIVE );
 /*N*/   }
 /*N*/   else if ( rOld.SSize() != aFrm.SSize() )
-/*N*/   {   //Groessenaenderung, den Bereich der Verlassen wurde bzw. jetzt
-/*N*/       //ueberdeckt wird invalidieren.
-/*N*/       //Der Einfachheit halber wird hier bewusst jeweils ein Twip
-/*N*/       //unnoetig invalidiert.
-/*N*/
-/*N*/       ViewShell *pSh = pFly->GetShell();
-/*N*/       if( pSh && rOld.HasArea() )
-/*N*/           pSh->InvalidateWindows( rOld );
-/*N*/
+/*N*/   {
 /*N*/       if ( rOld.Left() != aFrm.Left() )
 /*?*/       {   SwRect aTmp( rOld );
 /*?*/           aTmp.Union( aFrm );
@@ -2568,10 +2486,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/   }
 /*N*/   if ( pFlyFrm && pAnchor->GetUpper() && pAnchor->IsInTab() )//MA_FLY_HEIGHT
 /*N*/       pAnchor->GetUpper()->InvalidateSize();
-/*N*/
-/*N*/   ViewShell *pSh;
-/*N*/   if( bInva && 0 != (pSh = pPage->GetShell()) )
-/*N*/       pSh->InvalidateWindows( rRect );
 /*N*/ }
 
 /*N*/ #ifdef _MSC_VER

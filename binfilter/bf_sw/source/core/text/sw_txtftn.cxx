@@ -52,7 +52,6 @@
 #include "porftn.hxx"
 #include "porfly.hxx"
 #include "itrform2.hxx"
-#include "frmsh.hxx"
 #include "ftnfrm.hxx"   // FindErgoSumFrm(), FindQuoVadisFrm(),
 #include "pagedesc.hxx"
 #include "sectfrm.hxx"  // SwSectionFrm
@@ -573,14 +572,9 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/               //wachsen.
 /*N*/                 if ( pFtnFrm->GetFollow() && nDiff > 0 )
 /*N*/               {
-/*?*/                     SwTwips nHeight = (pCont->Frm().*fnRect->fnGetHeight)();
 /*?*/                   pBoss->RearrangeFtns( nDeadLine, sal_False, pFtn );
 /*?*/                   ValidateBodyFrm();
 /*?*/                   ValidateFrm();
-/*?*/                   ViewShell *pSh = GetShell();
-/*?*/                     if ( pSh && nHeight == (pCont->Frm().*fnRect->fnGetHeight)() )
-/*?*/                       //Damit uns nix durch die Lappen geht.
-/*?*/                       pSh->InvalidateWindows( pCont->Frm() );
 /*?*/               }
 /*?*/               bInFtnConnect = sal_False;
 /*?*/               return;

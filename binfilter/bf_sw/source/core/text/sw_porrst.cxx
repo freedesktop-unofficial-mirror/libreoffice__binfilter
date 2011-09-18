@@ -51,7 +51,6 @@
 #include <inftxt.hxx>
 #include <tgrditem.hxx>
 #include <pagedesc.hxx> // SwPageDesc
-#include <frmsh.hxx>
 #include <frmatr.hxx>
 #include <atrhndl.hxx>
 namespace binfilter {
@@ -150,7 +149,6 @@ namespace binfilter {
 /*N*/
 /*N*/     SwFont *pFnt;
 /*N*/   const SwTxtNode& rTxtNode = *GetTxtNode();
-/*N*/   ViewShell *pSh = GetShell();
 /*N*/   if ( rTxtNode.HasSwAttrSet() )
 /*N*/   {
 /*N*/       const SwAttrSet *pAttrSet = &( rTxtNode.GetSwAttrSet() );
@@ -158,30 +156,16 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       SwFontAccess aFontAccess( &rTxtNode.GetAnyFmtColl(), pSh);
+/*N*/       SwFontAccess aFontAccess( &rTxtNode.GetAnyFmtColl(), NULL);
 /*N*/         pFnt = new SwFont( *aFontAccess.Get()->GetFont() );
-/*N*/       pFnt->ChkMagic( pSh, pFnt->GetActual() );
+/*N*/       pFnt->ChkMagic( NULL, pFnt->GetActual() );
 /*N*/   }
 /*N*/
 /*N*/     if ( IsVertical() )
 /*?*/         pFnt->SetVertical( 2700 );
 /*N*/
-/*N*/   OutputDevice *pOut = pSh ? pSh->GetOut() : 0;
-/*N*/   if ( !pOut || !rTxtNode.GetDoc()->IsBrowseMode() ||
-/*N*/        ( pSh->GetViewOptions()->IsPrtFormat() ) )
-/*N*/   {
-/*N*/         pOut = &rTxtNode.GetDoc()->GetRefDev();
-/*N*/   }
-/*N*/
-/*N*/   const SwDoc* pDoc = rTxtNode.GetDoc();
-  /*N*/     if( ::binfilter::IsShowChanges( pDoc->GetRedlineMode() ) )
-/*N*/   {
-/*N*/       MSHORT nRedlPos = pDoc->GetRedlinePos( rTxtNode );
-/*N*/         if( MSHRT_MAX != nRedlPos )
-/*N*/         {
-                DBG_BF_ASSERT(0, "STRIP");
-/*N*/         }
-/*N*/     }
+/*N*/   OutputDevice *pOut = NULL;
+/*N*/   pOut = &rTxtNode.GetDoc()->GetRefDev();
 /*N*/
 /*N*/   SwTwips nRet;
 /*N*/   if( !pOut )
@@ -191,8 +175,8 @@ namespace binfilter {
 /*N*/   else
 /*N*/   {
 /*N*/       pFnt->SetFntChg( sal_True );
-/*N*/       pFnt->ChgPhysFnt( pSh, pOut );
-/*N*/       nRet = pFnt->GetHeight( pSh, pOut );
+/*N*/       pFnt->ChgPhysFnt( NULL, pOut );
+/*N*/       nRet = pFnt->GetHeight( NULL, pOut );
 /*N*/   }
 /*N*/   delete pFnt;
 /*N*/   return nRet;
@@ -305,21 +289,17 @@ namespace binfilter {
 /*N*/                       }
 /*N*/                       else
 /*N*/                       {
-/*N*/                           ViewShell *pSh = GetShell();
-/*N*/                           SwFontAccess aFontAccess( pFmt, pSh );
+/*N*/                           SwFontAccess aFontAccess( pFmt, NULL );
 /*N*/                           SwFont aFnt( *aFontAccess.Get()->GetFont() );
 /*N*/                           OutputDevice *pOut = 0;
-/*N*/                           if( !GetTxtNode()->GetDoc()->IsBrowseMode() ||
-/*N*/                               (pSh && pSh->GetViewOptions()->IsPrtFormat()) )
+/*N*/                           if( !GetTxtNode()->GetDoc()->IsBrowseMode() )
 /*N*/                                 pOut = &GetTxtNode()->GetDoc()->GetRefDev();
-/*N*/                             if( pSh && !pOut )
-/*?*/                               pOut = pSh->GetWin();
 /*N*/                           if( !pOut )
 /*?*/                               pOut = GetpApp()->GetDefaultDevice();
 /*N*/                           MapMode aOldMap( pOut->GetMapMode() );
 /*N*/                           pOut->SetMapMode( MapMode( MAP_TWIP ) );
-/*N*/                           aFnt.ChgFnt( pSh, pOut );
-/*N*/                           rRegDiff = aFnt.GetHeight( pSh, pOut );
+/*N*/                           aFnt.ChgFnt( NULL, pOut );
+/*N*/                           rRegDiff = aFnt.GetHeight( NULL, pOut );
 /*N*/                           KSHORT nNettoHeight = rRegDiff;
 /*N*/                           switch( rSpace.GetLineSpaceRule() )
 /*N*/                           {
@@ -361,7 +341,7 @@ namespace binfilter {
 /*N*/                           }
 /*N*/                           pDesc->SetRegHeight( rRegDiff );
 /*N*/                           pDesc->SetRegAscent( rRegDiff - nNettoHeight +
-/*N*/                                                aFnt.GetAscent( pSh, pOut ) );
+/*N*/                                                aFnt.GetAscent( NULL, pOut ) );
 /*N*/                           pOut->SetMapMode( aOldMap );
 /*N*/                       }
 /*N*/                   }

@@ -53,7 +53,7 @@
 #include <crstate.hxx>
 #include <frmtool.hxx>
 #include <hints.hxx>
-#include <frmsh.hxx>
+
 namespace binfilter {
 
 

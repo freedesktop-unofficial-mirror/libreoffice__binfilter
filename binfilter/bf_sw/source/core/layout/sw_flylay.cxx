@@ -53,12 +53,10 @@
 #include <fmtanchr.hxx>
 #include <fmtornt.hxx>
 #include <fmtfsize.hxx>
+#include "rootfrm.hxx"
 #include "tabfrm.hxx"
 #include "flyfrms.hxx"
 
-#ifdef ACCESSIBLE_LAYOUT
-#include <frmsh.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

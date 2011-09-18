@@ -57,12 +57,12 @@
 #include "hints.hxx"
 
 #include "ftnidx.hxx"
+#include "rootfrm.hxx"
 #include "bodyfrm.hxx"
 #include "ftnfrm.hxx"
 #include "tabfrm.hxx"
 #include "txtfrm.hxx"
 #include "flyfrms.hxx"
-#include "frmsh.hxx"
 #include "pagedesc.hxx"
 #include <bf_svx/frmdiritem.hxx>
 namespace binfilter {
@@ -188,10 +188,7 @@ namespace binfilter {
 /*N*/   if ( pDoc->IsBrowseMode() )
 /*N*/   {
 /*N*/       Frm().Height( 0 );
-/*N*/       ViewShell *pSh = GetShell();
-/*N*/       long nWidth = pSh ? pSh->VisArea().Width():0;
-/*N*/       if ( !nWidth )
-/*N*/           nWidth = 5000L;     //aendert sich sowieso
+/*N*/       long nWidth = 5000L;    //aendert sich sowieso
 /*N*/       Frm().Width ( nWidth );
 /*N*/   }
 /*N*/   else
@@ -263,21 +260,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/       delete pSortedObjs;
 /*N*/       pSortedObjs = 0;        //Auf 0 setzen, sonst rauchts beim Abmdelden von Flys!
-/*N*/   }
-/*N*/
-/*N*/   //Damit der Zugriff auf zerstoerte Seiten verhindert werden kann.
-/*N*/   if ( !IsEmptyPage() ) //#59184# sollte fuer Leerseiten unnoetig sein.
-/*N*/   {
-/*N*/       SwDoc *pDoc = GetFmt()->GetDoc();
-/*N*/       if( pDoc && !pDoc->IsInDtor() )
-/*N*/       {
-/*N*/           ViewShell *pSh = GetShell();
-/*N*/           if ( pSh )
-/*N*/           {
-/*N*/               SwViewImp *pImp = pSh->Imp();
-/*N*/               pImp->SetFirstVisPageInvalid();
-/*N*/           }
-/*N*/       }
 /*N*/   }
 /*N*/ }
 
@@ -493,9 +475,6 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ void SwPageFrm::Modify( SfxPoolItem * pOld, SfxPoolItem * pNew )
 /*N*/ {
-/*N*/   ViewShell *pSh = GetShell();
-/*N*/   if ( pSh )
-/*N*/       pSh->SetFirstVisPageInvalid();
 /*N*/   BYTE nInvFlags = 0;
 /*N*/
 /*N*/   if( pNew && RES_ATTRSET_CHG == pNew->Which() )
@@ -872,9 +851,8 @@ namespace binfilter {
 
 /*N*/ void SwPageFrm::Cut()
 /*N*/ {
-/*N*/     AdjustRootSize( CHG_CUTPAGE, 0 );
+/*N*/   AdjustRootSize( CHG_CUTPAGE, 0 );
 /*N*/
-/*N*/   ViewShell *pSh = GetShell();
 /*N*/   if ( !IsEmptyPage() )
 /*N*/   {
 /*N*/       if ( GetNext() )
@@ -904,9 +882,6 @@ namespace binfilter {
 /*N*/               }
 /*N*/           }
 /*N*/       }
-/*N*/       //Window aufraeumen
-/*N*/       if ( pSh && pSh->GetWin() )
-/*N*/           pSh->InvalidateWindows( Frm() );
 /*N*/   }
 /*N*/
 /*N*/   // die Seitennummer der Root runterzaehlen.
@@ -922,8 +897,6 @@ namespace binfilter {
 /*N*/
 /*N*/   // Alle Verbindungen kappen.
 /*N*/   Remove();
-/*N*/   if ( pSh )
-/*N*/       pSh->SetFirstVisPageInvalid();
 /*N*/ }
 
 /*************************************************************************
@@ -964,11 +937,7 @@ namespace binfilter {
 /*N*/       _InvalidateSize();
 /*N*/   InvalidatePos();
 /*N*/
-/*N*/     AdjustRootSize( CHG_NEWPAGE, 0 );
-/*N*/
-/*N*/   ViewShell *pSh = GetShell();
-/*N*/   if ( pSh )
-/*N*/       pSh->SetFirstVisPageInvalid();
+/*N*/   AdjustRootSize( CHG_NEWPAGE, 0 );
 /*N*/ }
 
 /*************************************************************************

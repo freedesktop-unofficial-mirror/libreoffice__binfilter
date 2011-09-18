@@ -48,7 +48,6 @@
 #include <viewsh.hxx>       // ViewShell
 #include <frmatr.hxx>
 #include <flyfrms.hxx>
-#include <frmsh.hxx>
 #include <txtcfg.hxx>
 #include <itrform2.hxx>     // SwTxtFormatter
 #include <widorp.hxx>       // Widows and Orphans
@@ -1198,12 +1197,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       }
 /*N*/       SwTwips nRght = Max( nOldWidth, pNew->Width() +
 /*N*/                            pNew->GetHangingMargin() );
-/*N*/       ViewShell *pSh = GetShell();
-/*N*/       const SwViewOption *pOpt = pSh ? pSh->GetViewOptions() : 0;
-/*N*/       if( pOpt && (pOpt->IsParagraph() || pOpt->IsLineBreak()) )
-/*?*/           nRght += ( Max( nOldAscent, pNew->GetAscent() ) );
-/*N*/       else
-/*N*/           nRght += ( Max( nOldAscent, pNew->GetAscent() ) / 4);
+/*N*/       nRght += ( Max( nOldAscent, pNew->GetAscent() ) / 4);
 /*N*/       nRght += rLine.GetLeftMargin();
 /*N*/       if( rRepaint.GetOfst() || rRepaint.GetRightOfst() < nRght )
 /*N*/           rRepaint.SetRightOfst( nRght );

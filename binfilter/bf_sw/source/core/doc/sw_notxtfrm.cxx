@@ -46,7 +46,6 @@
 #include <dflyobj.hxx>
 #include <notxtfrm.hxx>
 #include <ndgrf.hxx>
-#include <frmsh.hxx>
 
 #include <mdiexp.hxx>
 #include <comcore.hrc>

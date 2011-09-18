@@ -65,7 +65,6 @@
 #include <widorp.hxx>       // SwFrmBreak
 #include <txtcache.hxx>
 #include <fntcache.hxx>     // GetLineSpace benutzt pLastFont
-#include <frmsh.hxx>
 #include <wrong.hxx>        // SwWrongList
 #include <lineinfo.hxx>
 
@@ -266,27 +265,15 @@ namespace binfilter {
 
 /*N*/ sal_Bool SwTxtFrm::IsHiddenNow() const
 /*N*/ {
-/*N*/     SwFrmSwapper aSwapper( this, sal_True );
+/*N*/   SwFrmSwapper aSwapper( this, sal_True );
 /*N*/
 /*N*/   if( !Frm().Width() && IsValid() && GetUpper()->IsValid() )
-/*N*/                                      //bei Stackueberlauf (StackHack) invalid!
 /*N*/   {
-/*N*/         OSL_ENSURE( Frm().Width(), "SwTxtFrm::IsHiddenNow: thin frame" );
+/*N*/       OSL_ENSURE( Frm().Width(), "SwTxtFrm::IsHiddenNow: thin frame" );
 /*N*/       return sal_True;
 /*N*/   }
 /*N*/
-/*N*/     if( !GetTxtNode()->IsVisible() )
-/*N*/   {
-/*N*/       const ViewShell *pVsh = GetShell();
-/*N*/       if ( !pVsh )
-/*N*/           return sal_False;
-/*N*/
-/*N*/         return ! pVsh->GetWin() ||
-/*N*/                (!pVsh->GetViewOptions()->IsShowHiddenPara()      &&
-/*N*/               !pVsh->GetViewOptions()->IsFldName());
-/*N*/   }
-/*N*/   else
-/*N*/       return sal_False;
+/*N*/   return sal_False;
 /*N*/ }
 
 
@@ -534,19 +521,6 @@ namespace binfilter {
 /*M*/   if( IsInRange( aFrmFmtSetRange, nWhich ) || RES_FMT_CHG == nWhich )
 /*M*/   {
 /*M*/       SwCntntFrm::Modify( pOld, pNew );
-/*M*/       if( nWhich == RES_FMT_CHG && GetShell() )
-/*M*/       {
-/*M*/           // Collection hat sich geaendert
-/*M*/           Prepare( PREP_CLEAR );
-/*M*/           _InvalidatePrt();
-/*M*/             SET_WRONG( 0, STRING_LEN, Invalidate );
-/*N*/             SetDerivedR2L( sal_False );
-/*N*/             CheckDirChange();
-/*N*/             // OD 09.12.2002 #105576# - Force complete paint due to existing
-/*N*/             // indents.
-/*N*/             SetCompletePaint();
-/*M*/           InvalidateLineNum();
-/*M*/       }
 /*M*/       return;
 /*M*/   }
 /*M*/
@@ -879,12 +853,6 @@ namespace binfilter {
 /*M*/
 /*M*/             if( nCount )
 /*M*/           {
-/*M*/               if( GetShell() )
-/*M*/               {
-/*M*/                   Prepare( PREP_CLEAR );
-/*M*/                   _InvalidatePrt();
-/*M*/               }
-/*M*/
 /*M*/               if( nClear )
 /*M*/               {
 /*M*/                   SwAttrSetChg aOldSet( *(SwAttrSetChg*)pOld );
@@ -926,16 +894,6 @@ namespace binfilter {
 /*M*/       }
 /*M*/       break;
 /*M*/
-/* Seit dem neuen Blocksatz muessen wir immer neu formatieren:
-         case RES_PARATR_ADJUST:
-        {
-             if( GetShell() )
-            {
-                Prepare( PREP_CLEAR );
-            }
-            break;
-        }
-*/
 /*M*/       // 6870: SwDocPosUpdate auswerten.
 /*M*/       case RES_DOCPOS_UPDATE:
 /*M*/       {
@@ -1754,7 +1712,6 @@ public:
 /*N*/ KSHORT SwTxtFrm::GetLineSpace() const
 /*N*/ {
 /*N*/   KSHORT nRet = 0;
-/*N*/   long nTmp;
 /*N*/
 /*N*/   const SwAttrSet* pSet = GetAttrSet();
 /*N*/   const SvxLineSpacingItem &rSpace = pSet->GetLineSpacing();
@@ -1762,49 +1719,6 @@ public:
 /*N*/   switch( rSpace.GetInterLineSpaceRule() )
 /*N*/   {
 /*N*/       case SVX_INTER_LINE_SPACE_PROP:
-/*N*/       {
-/*N*/           ViewShell* pVsh = (ViewShell*)GetShell();
-/*N*/           if ( !pVsh )
-/*N*/               break;
-/*N*/           OutputDevice *pOut = pVsh->GetOut();
-/*N*/           if( !pVsh->GetDoc()->IsBrowseMode() ||
-/*N*/               pVsh->GetViewOptions()->IsPrtFormat() )
-/*N*/           {
-/*N*/                 pOut = &GetTxtNode()->GetDoc()->GetRefDev();
-/*N*/           }
-/*N*/             SwFont aFont( pSet, GetTxtNode()->GetDoc() );
-/*N*/           // Wir muessen dafuer sorgen, dass am OutputDevice der Font
-/*N*/           // korrekt restauriert wird, sonst droht ein Last!=Owner.
-/*N*/           if ( pLastFont )
-/*N*/           {
-/*N*/               SwFntObj *pOldFont = pLastFont;
-/*N*/               pLastFont = NULL;
-/*N*/               aFont.SetFntChg( sal_True );
-/*N*/               aFont.ChgPhysFnt( pVsh, pOut );
-/*N*/               nRet = aFont.GetHeight( pVsh, pOut );
-/*N*/               pLastFont->Unlock();
-/*N*/               pLastFont = pOldFont;
-/*N*/               pLastFont->SetDevFont( pVsh, pOut );
-/*N*/           }
-/*N*/           else
-/*N*/           {
-/*?*/               Font aOldFont = pOut->GetFont();
-/*?*/               aFont.SetFntChg( sal_True );
-/*?*/               aFont.ChgPhysFnt( pVsh, pOut );
-/*?*/               nRet = aFont.GetHeight( pVsh, pOut );
-/*?*/               pLastFont->Unlock();
-/*?*/               pLastFont = NULL;
-/*?*/               pOut->SetFont( aOldFont );
-/*N*/           }
-/*N*/           nTmp = nRet;
-/*N*/           nTmp *= rSpace.GetPropLineSpace();
-/*N*/           nTmp /= 100;
-/*N*/           nTmp -= nRet;
-/*N*/           if ( nTmp > 0 )
-/*N*/               nRet = (KSHORT)nTmp;
-/*N*/           else
-/*N*/               nRet = 0;
-/*N*/       }
 /*N*/           break;
 /*?*/       case SVX_INTER_LINE_SPACE_FIX:
 /*?*/           if ( rSpace.GetInterLineSpace() > 0 )

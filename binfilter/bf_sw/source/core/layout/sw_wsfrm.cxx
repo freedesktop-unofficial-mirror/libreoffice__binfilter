@@ -39,6 +39,7 @@
 
 #include <horiornt.hxx>
 
+#include <rootfrm.hxx>
 #include <fmtornt.hxx>
 #include <pagefrm.hxx>
 #include <section.hxx>
@@ -60,7 +61,6 @@
 #include <ftnfrm.hxx>
 #include <tabfrm.hxx>
 #include <flyfrms.hxx>
-#include <frmsh.hxx>
 #include <sectfrm.hxx>
 #include <fmtclds.hxx>
 #include <txtfrm.hxx>
@@ -1020,17 +1020,11 @@ namespace binfilter {
 /*N*/   long nBrowseAdd = 0;
 /*N*/   if ( bBrowse && GetUpper()->IsPageFrm() ) // nur (Page)BodyFrms
 /*N*/   {
-/*N*/       ViewShell *pSh = GetShell();
 /*N*/       SwLayoutFrm *pUp = GetUpper();
 /*N*/       long nChg;
 /*N*/       const long nUpPrtBottom = pUp->Frm().Height() -
 /*N*/                                 pUp->Prt().Height() - pUp->Prt().Top();
 /*N*/       SwRect aInva( pUp->Frm() );
-/*N*/       if ( pSh )
-/*N*/       {
-/*N*/           aInva.Pos().X() = pSh->VisArea().Left();
-/*N*/           aInva.Width( pSh->VisArea().Width() );
-/*N*/       }
 /*N*/       if ( nDiff > 0 )
 /*N*/       {
 /*N*/           nChg = BROWSE_HEIGHT - pUp->Frm().Height();
@@ -1039,7 +1033,6 @@ namespace binfilter {
 /*N*/           if ( !IsBodyFrm() )
 /*N*/           {
 /*?*/               SetCompletePaint();
-/*?*/               if ( !pSh || pSh->VisArea().Height() >= pUp->Frm().Height() )
 /*?*/               {
 /*?*/                   //Ersteinmal den Body verkleinern. Der waechst dann schon
 /*?*/                   //wieder.
@@ -1069,14 +1062,6 @@ namespace binfilter {
 /*N*/           //mindestens so gross wie die VisArea.
 /*N*/           nChg = nDiff;
 /*N*/           long nInvaAdd = 0;
-/*N*/           if ( pSh && !pUp->GetPrev() &&
-/*N*/                pUp->Frm().Height() + nDiff < pSh->VisArea().Height() )
-/*N*/           {
-/*?*/               //Das heisst aber wiederum trotzdem, das wir geeignet invalidieren
-/*?*/               //muessen.
-/*?*/               nChg = pSh->VisArea().Height() - pUp->Frm().Height();
-/*?*/               nInvaAdd = -(nDiff - nChg);
-/*N*/           }
 /*N*/
 /*N*/           //Invalidieren inklusive unterem Rand.
 /*N*/           long nBorder = nUpPrtBottom + 20;
@@ -1094,27 +1079,14 @@ namespace binfilter {
 /*N*/           //(NotifyFlys).
 /*N*/           pUp->InvalidateSize();
 /*N*/       }
-/*N*/       if ( !bTst )
-/*N*/       {
-/*N*/           //Unabhaengig von nChg
-/*N*/           if ( pSh && aInva.HasArea() && pUp->GetUpper() )
-/*?*/               pSh->InvalidateWindows( aInva );
-/*N*/       }
 /*N*/       if ( !bTst && nChg )
 /*N*/       {
 /*N*/           const SwRect aOldRect( pUp->Frm() );
 /*N*/           pUp->Frm().SSize().Height() += nChg;
 /*N*/           pUp->Prt().SSize().Height() += nChg;
-/*N*/           if ( pSh )
-/*N*/               pSh->Imp()->SetFirstVisPageInvalid();
 /*N*/
 /*N*/           if ( GetNext() )
 /*?*/               GetNext()->_InvalidatePos();
-/*N*/
-/*N*/           //Ggf. noch ein Repaint ausloesen.
-/*N*/           const SvxGraphicPosition ePos = pUp->GetFmt()->GetBackground().GetGraphicPos();
-/*N*/           if ( ePos != GPOS_NONE && ePos != GPOS_TILED )
-/*?*/               pSh->InvalidateWindows( pUp->Frm() );
 /*N*/
 /*N*/           if ( pUp->GetUpper() )
 /*N*/           {
@@ -2676,17 +2648,6 @@ namespace binfilter {
 /*N*/   {
 /*?*/       const SwFrm *pRel = GetUpper();
 /*?*/       long nRel = LONG_MAX;
-/*?*/       const ViewShell *pSh = GetShell();
-/*?*/       if ( pRel->IsPageBodyFrm() && GetFmt()->GetDoc()->IsBrowseMode() &&
-/*?*/            pSh && pSh->VisArea().Width())
-/*?*/       {
-/*?*/           nRel = pSh->VisArea().Width();
-/*?*/           const Size aBorder = pSh->GetOut()->PixelToLogic( pSh->GetBrowseBorder() );
-/*?*/           nRel -= 2*aBorder.Width();
-/*?*/           long nDiff = nRel - pRel->Prt().Width();
-/*?*/           if ( nDiff > 0 )
-/*?*/               nRel -= nDiff;
-/*?*/       }
 /*?*/       nRel = Min( nRel, pRel->Prt().Width() );
 /*?*/       nRet = nRel * nPercent / 100;
 /*N*/   }

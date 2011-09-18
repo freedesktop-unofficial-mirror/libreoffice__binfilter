@@ -538,10 +538,6 @@ public:
 
     inline BOOL HasFixSize() const { return bFixSize; }
 
-    //Kann 0 liefern, pruefen auch ob die Shell zum richtigen Dokument
-    //gehoert. Impl in frmsh.hxx
-    inline ViewShell *GetShell() const;
-
     //Prueft alle Seiten ab der Uebergebenen und korrigiert ggf.
     static void CheckPageDescs( SwPageFrm *pStart, BOOL bNotifyFields = TRUE );
 

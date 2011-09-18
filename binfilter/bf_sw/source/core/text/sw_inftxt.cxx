@@ -58,7 +58,6 @@
 #include <inftxt.hxx>   // SwTxtInfo
 #include <noteurl.hxx>  // SwNoteURL
 #include <porftn.hxx>   // SwFtnPortion
-#include <frmsh.hxx>
 #include <itratr.hxx>
 namespace binfilter {
 
@@ -184,26 +183,17 @@ extern const sal_Char sBulletFntName[];
 /*N*/   pFrm = pFrame;
 /*N*/   SwTxtInfo::CtorInit( pFrm );
 /*N*/   const SwTxtNode *pNd = pFrm->GetTxtNode();
-/*N*/   pVsh = pFrm->GetShell();
+/*N*/   pVsh = NULL;
 /*N*/
-/*N*/     // Get the output and reference device
-/*N*/     if ( pVsh )
-/*N*/     {
-/*N*/         pOut = pVsh->GetOut();
-/*N*/         pRef = &pVsh->GetRefDev();
-/*N*/         bOnWin = pVsh->GetWin() || OUTDEV_WINDOW == pOut->GetOutDevType();
-/*N*/     }
-/*N*/     else
-/*N*/     {
-/*N*/         //Zugriff ueber StarONE, es muss keine Shell existieren oder aktiv sein.
-/*N*/         if ( pNd->GetDoc()->IsBrowseMode() ) //?!?!?!?
-/*N*/             //in Ermangelung eines Besseren kann hier ja wohl nur noch das
-/*N*/             //AppWin genommen werden?
-/*N*/             pOut = GetpApp()->GetDefaultDevice();
-/*N*/         else
-/*N*/             pOut = pNd->GetDoc()->GetPrt(); //Muss es geben (oder sal_True uebergeben?)
-/*N*/         pRef = pOut;
-/*N*/     }
+/*N*/   //Zugriff ueber StarONE, es muss keine Shell existieren oder aktiv sein.
+/*N*/   if ( pNd->GetDoc()->IsBrowseMode() ) //?!?!?!?
+/*N*/       //in Ermangelung eines Besseren kann hier ja wohl nur noch das
+/*N*/       //AppWin genommen werden?
+/*N*/       pOut = GetpApp()->GetDefaultDevice();
+/*N*/   else
+/*N*/       pOut = pNd->GetDoc()->GetPrt(); //Muss es geben (oder sal_True uebergeben?)
+
+/*N*/   pRef = pOut;
 /*N*/
 /*N*/ #ifdef DBG_UTIL
 /*N*/     ChkOutDev( *this );
@@ -238,9 +228,7 @@ extern const sal_Char sBulletFntName[];
 /*N*/     //
 /*N*/     // The Options
 /*N*/     //
-/*N*/     pOpt = pVsh ?
-/*N*/            pVsh->GetViewOptions() :
-/*N*/            SW_MOD()->GetViewOption(pNd->GetDoc()->IsHTMLMode()); //Options vom Module wg. StarONE
+/*N*/     pOpt = SW_MOD()->GetViewOption(pNd->GetDoc()->IsHTMLMode()); //Options vom Module wg. StarONE
 /*N*/
 /*N*/     // bURLNotify wird gesetzt, wenn MakeGraphic dies vorbereitet
 /*N*/     // TODO: Aufdröseln

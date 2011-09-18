@@ -55,7 +55,6 @@
 #include "tabfrm.hxx"
 #include "ftnfrm.hxx"
 #include "txtfrm.hxx"
-#include "frmsh.hxx"
 #include "pagedesc.hxx"
 #include "sectfrm.hxx"
 #include "dbg_lay.hxx"
@@ -551,97 +550,10 @@ namespace binfilter {
 /*N*/                   pAccess = new SwBorderAttrAccess( SwFrm::GetCache(), this );
 /*N*/                   pAttrs = pAccess->Get();
 /*N*/               }
-/*N*/               //Bei der BrowseView gelten feste Einstellungen.
-/*N*/               ViewShell *pSh = GetShell();
-/*N*/               if ( pSh && GetFmt()->GetDoc()->IsBrowseMode() )
-/*N*/               {
-/*N*/                   const Size aBorder = pSh->GetOut()->PixelToLogic( pSh->GetBrowseBorder() );
-/*N*/                   const long nTop    = pAttrs->CalcTopLine()   + aBorder.Height();
-/*N*/                   const long nBottom = pAttrs->CalcBottomLine()+ aBorder.Height();
-/*N*/
-/*N*/                   long nWidth = 0;
-/*N*/                   if ( nWidth < pSh->VisArea().Width() )
-/*N*/                       nWidth = pSh->VisArea().Width();
-/*N*/                   nWidth = Max( nWidth, 2L * aBorder.Width() + 4L*MM50 );
-/*N*/                   Frm().Width( nWidth );
-/*N*/
-/*N*/                   SwLayoutFrm *pBody = FindBodyCont();
-/*N*/                   if ( pBody && pBody->Lower() && pBody->Lower()->IsColumnFrm() )
-/*N*/                   {
-/*N*/                       //Fuer Spalten gilt eine feste Hoehe
-/*N*/                       Frm().Height( pAttrs->GetSize().Height() );
-/*N*/                   }
-/*N*/                   else
-/*N*/                   {
-/*N*/                       //Fuer Seiten ohne Spalten bestimmt der Inhalt die
-/*N*/                       //Groesse.
-/*N*/                       long nBot = Frm().Top() + nTop;
-/*N*/                       SwFrm *pFrm = Lower();
-/*N*/                       while ( pFrm )
-/*N*/                       {
-/*N*/                           long nTmp = 0;
-/*N*/                           SwFrm *pCnt = ((SwLayoutFrm*)pFrm)->ContainsAny();
-/*N*/                           while ( pCnt && (pCnt->GetUpper() == pFrm ||
-/*N*/                                            ((SwLayoutFrm*)pFrm)->IsAnLower( pCnt )))
-/*N*/                           {
-/*N*/                               nTmp += pCnt->Frm().Height();
-/*N*/                               if( pCnt->IsTxtFrm() &&
-/*N*/                                   ((SwTxtFrm*)pCnt)->IsUndersized() )
-/*N*/                                   nTmp += ((SwTxtFrm*)pCnt)->GetParHeight()
-/*N*/                                           - pCnt->Prt().Height();
-/*N*/                               else if( pCnt->IsSctFrm() &&
-/*N*/                                        ((SwSectionFrm*)pCnt)->IsUndersized() )
-/*N*/                                   nTmp += ((SwSectionFrm*)pCnt)->Undersize();
-/*N*/                               pCnt = pCnt->FindNext();
-/*N*/                           }
-/*N*/                             // consider invalid body frame properties
-/*N*/                             if ( pFrm->IsBodyFrm() &&
-/*N*/                                  ( !pFrm->GetValidSizeFlag() ||
-/*N*/                                    !pFrm->GetValidPrtAreaFlag() ) &&
-/*N*/                                  ( pFrm->Frm().Height() < pFrm->Prt().Height() )
-/*N*/                                )
-/*N*/                             {
-/*N*/                                 nTmp = Min( nTmp, pFrm->Frm().Height() );
-/*N*/                             }
-/*N*/                             else
-/*N*/                             {
-/*N*/                                 // assert invalid lower property
-/*N*/                                 OSL_ENSURE( !(pFrm->Frm().Height() < pFrm->Prt().Height()),
-/*N*/                                         "SwPageFrm::MakeAll(): Lower with frame height < printing height" );
-/*N*/                                 nTmp += pFrm->Frm().Height() - pFrm->Prt().Height();
-/*N*/                             }
-/*N*/                           if ( !pFrm->IsBodyFrm() )
-/*N*/                               nTmp = Min( nTmp, pFrm->Frm().Height() );
-/*N*/                           nBot += nTmp;
-/*N*/                           // Hier werden die absatzgebundenen Objekte ueberprueft,
-/*N*/                           // ob sie ueber den Body/FtnCont hinausragen.
-/*N*/                           if( pSortedObjs && !pFrm->IsHeaderFrm() &&
-/*N*/                               !pFrm->IsFooterFrm() )
-/*N*/                               lcl_CheckObjects( pSortedObjs, pFrm, nBot );
-/*N*/                           pFrm = pFrm->GetNext();
-/*N*/                       }
-/*N*/                       nBot += nBottom;
-/*N*/                       //Und die Seitengebundenen
-/*N*/                       if ( pSortedObjs )
-/*N*/                           lcl_CheckObjects( pSortedObjs, this, nBot );
-/*N*/                       nBot -= Frm().Top();
-/*N*/                       if ( !GetPrev() )
-/*N*/                           nBot = Max( nBot, pSh->VisArea().Height() );
-/*N*/                       Frm().Height( nBot );
-/*N*/                   }
-/*N*/                   Prt().Left ( pAttrs->CalcLeftLine() + aBorder.Width() );
-/*N*/                   Prt().Top  ( nTop );
-/*N*/                   Prt().Width( Frm().Width() - ( Prt().Left()
-/*N*/                       + pAttrs->CalcRightLine() + aBorder.Width() ) );
-/*N*/                   Prt().Height( Frm().Height() - (nTop + nBottom) );
-/*N*/                   bValidSize = bValidPrtArea = TRUE;
-/*N*/               }
-/*N*/               else
-/*N*/               {   //FixSize einstellen, bei Seiten nicht vom Upper sondern vom
-/*N*/                   //Attribut vorgegeben.
-/*N*/                   Frm().SSize( pAttrs->GetSize() );
-/*N*/                   Format( pAttrs );
-/*N*/               }
+/*N*/               //FixSize einstellen, bei Seiten nicht vom Upper sondern vom
+/*N*/               //Attribut vorgegeben.
+/*N*/               Frm().SSize( pAttrs->GetSize() );
+/*N*/               Format( pAttrs );
 /*N*/           }
 /*N*/       }
 /*N*/   } //while ( !bValidPos || !bValidSize || !bValidPrtArea )
@@ -737,134 +649,93 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-/*N*/ BOOL SwCntntFrm::MakePrtArea( const SwBorderAttrs &rAttrs )
-/*N*/ {
-/*N*/   BOOL bSizeChgd = FALSE;
-/*N*/
-/*N*/   if ( !bValidPrtArea )
-/*N*/   {
-/*N*/       bValidPrtArea = TRUE;
-/*N*/
-/*N*/         SWRECTFN( this )
-/*N*/       const bool bTxtFrm = IsTxtFrm();
-/*N*/       SwTwips nUpper = 0;
-/*N*/       if ( bTxtFrm && ((SwTxtFrm*)this)->IsHiddenNow() )
-/*N*/       {
-/*N*/           if ( ((SwTxtFrm*)this)->HasFollow() )
-/*N*/               ((SwTxtFrm*)this)->JoinFrm();
-/*N*/
-/*N*/             if( (Prt().*fnRect->fnGetHeight)() )
-/*N*/               ((SwTxtFrm*)this)->HideHidden();
-/*N*/             Prt().Pos().X() = Prt().Pos().Y() = 0;
-/*N*/             (Prt().*fnRect->fnSetWidth)( (Frm().*fnRect->fnGetWidth)() );
-/*N*/             (Prt().*fnRect->fnSetHeight)( 0 );
-/*N*/             nUpper = -( (Frm().*fnRect->fnGetHeight)() );
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           //Vereinfachung: CntntFrms sind immer in der Hoehe Variabel!
-/*N*/
-/*N*/           //An der FixSize gibt der umgebende Frame die Groesse vor, die
-/*N*/           //Raender werden einfach abgezogen.
-/*N*/             const long nLeft = rAttrs.CalcLeft( this );
-/*N*/ #ifdef BIDI
-/*N*/             const long nRight = ((SwBorderAttrs&)rAttrs).CalcRight( this );
-/*N*/             (this->*fnRect->fnSetXMargins)( nLeft, nRight );
-/*N*/ #else
-/*N*/             (this->*fnRect->fnSetXMargins)( nLeft, rAttrs.CalcRight() );
-/*N*/ #endif
-/*N*/
-/*N*/           ViewShell *pSh = GetShell();
-/*N*/             SwTwips nWidthArea;
-/*N*/             if( pSh && 0!=(nWidthArea=(pSh->VisArea().*fnRect->fnGetWidth)()) &&
-/*N*/                 GetUpper()->IsPageBodyFrm() &&  // nicht dagegen bei BodyFrms in Columns
-/*N*/                 pSh->GetDoc()->IsBrowseMode() )
-/*N*/           {
-/*N*/               //Nicht ueber die Kante des sichbaren Bereiches hinausragen.
-/*N*/               //Die Seite kann breiter sein, weil es Objekte mit "ueberbreite"
-/*N*/               //geben kann (RootFrm::ImplCalcBrowseWidth())
-/*N*/               long nMinWidth = 0;
-/*N*/
-/*N*/               for (USHORT i = 0; GetDrawObjs() && i < GetDrawObjs()->Count();++i)
-/*N*/               {
-/*N*/                   SdrObject *pObj = (*GetDrawObjs())[i];
-/*N*/                   SwFrmFmt *pFmt = ::binfilter::FindFrmFmt( pObj );
-/*N*/                   const bool bFly = pObj->IsWriterFlyFrame();
-/*N*/                   if ( ( bFly &&
-/*N*/                        WEIT_WECH == ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Frm().Width() ) || (
-/*N*/                        pFmt->GetFrmSize().GetWidthPercent() ) )
-/*N*/                       continue;
-/*N*/
-/*N*/                   if ( FLY_IN_CNTNT == pFmt->GetAnchor().GetAnchorId() )
-/*N*/                       nMinWidth = Max( nMinWidth,
-/*N*/                                     bFly ? pFmt->GetFrmSize().GetWidth()
-/*N*/                                          : pObj->GetBoundRect().GetWidth() );
-/*N*/               }
-/*N*/
-/*N*/               const Size aBorder = pSh->GetOut()->PixelToLogic( pSh->GetBrowseBorder() );
-/*N*/                 long nWidth = nWidthArea - 2 * ( IsVertical() ?
-/*N*/                                            aBorder.Width() : aBorder.Height() );
-/*N*/                 nWidth -= (Prt().*fnRect->fnGetLeft)();
-/*N*/               nWidth -= rAttrs.CalcRightLine();
-/*N*/               nWidth = Max( nMinWidth, nWidth );
-/*N*/                 (Prt().*fnRect->fnSetWidth)( Min( nWidth,
-/*N*/                                             (Prt().*fnRect->fnGetWidth)() ) );
-/*N*/           }
-/*N*/
-/*N*/             if ( (Prt().*fnRect->fnGetWidth)() <= MINLAY )
-/*N*/           {
-/*N*/               //Die PrtArea sollte schon wenigstens MINLAY breit sein, passend
-/*N*/               //zu den Minimalwerten des UI
-/*N*/                 (Prt().*fnRect->fnSetWidth)( Min( long(MINLAY),
-/*N*/                                              (Frm().*fnRect->fnGetWidth)() ) );
-/*N*/                 SwTwips nTmp = (Frm().*fnRect->fnGetWidth)() -
-/*N*/                                (Prt().*fnRect->fnGetWidth)();
-/*N*/                 if( (Prt().*fnRect->fnGetLeft)() > nTmp )
-/*N*/                     (Prt().*fnRect->fnSetLeft)( nTmp );
-/*N*/           }
-/*N*/
-/*N*/           //Fuer die VarSize gelten folgende Regeln:
-/*N*/           //1. Der erste einer Kette hat keinen Rand nach oben
-/*N*/           //2. Nach unten gibt es nie einen Rand
-/*N*/           //3. Der Rand nach oben ist das Maximum aus dem Abstand des
-/*N*/           //   Prev nach unten und dem eigenen Abstand nach oben.
-/*N*/           //Die drei Regeln werden auf die Berechnung der Freiraeume, die von
-/*N*/           //UL- bzw. LRSpace vorgegeben werden, angewand. Es gibt in alle
-/*N*/           //Richtungen jedoch ggf. trotzdem einen Abstand; dieser wird durch
-/*N*/           //Umrandung und/oder Schatten vorgegeben.
-/*N*/           //4. Der Abstand fuer TextFrms entspricht mindestens dem Durchschuss
-/*N*/
-/*N*/           nUpper = CalcUpperSpace( &rAttrs, NULL );
-/*N*/             // in balanced columned section frames we do not want the
-/*N*/             // common border
-/*N*/             sal_Bool bCommonBorder = sal_True;
-/*N*/             if ( IsInSct() && GetUpper()->IsColBodyFrm() )
-/*N*/             {
-/*N*/                 const SwSectionFrm* pSct = FindSctFrm();
-/*N*/                 bCommonBorder = pSct->GetFmt()->GetBalancedColumns().GetValue();
-/*N*/             }
-/*N*/             SwTwips nLower = bCommonBorder ?
-/*N*/                              rAttrs.GetBottomLine( this ) :
-/*N*/                              rAttrs.CalcBottomLine();
-/*N*/
-/*N*/             (Prt().*fnRect->fnSetPosY)( (!bVert || bReverse) ? nUpper : nLower);
-/*N*/             nUpper += nLower;
-/*N*/             nUpper -= (Frm().*fnRect->fnGetHeight)() -
-/*N*/                       (Prt().*fnRect->fnGetHeight)();
-/*N*/       }
-/*N*/       //Wenn Unterschiede zwischen Alter und neuer Groesse,
-/*N*/       //Grow() oder Shrink() rufen
-/*N*/       if ( nUpper )
-/*N*/       {
-/*N*/           if ( nUpper > 0 )
-/*N*/                 GrowFrm( nUpper );
-/*N*/           else
-/*N*/                 ShrinkFrm( -nUpper );
-/*N*/           bSizeChgd = TRUE;
-/*N*/       }
-/*N*/   }
-/*N*/   return bSizeChgd;
-/*N*/ }
+BOOL SwCntntFrm::MakePrtArea( const SwBorderAttrs &rAttrs )
+{
+    BOOL bSizeChgd = FALSE;
+
+    if ( !bValidPrtArea )
+    {
+        bValidPrtArea = TRUE;
+
+        SWRECTFN( this )
+        const bool bTxtFrm = IsTxtFrm();
+        SwTwips nUpper = 0;
+        if ( bTxtFrm && ((SwTxtFrm*)this)->IsHiddenNow() )
+        {
+            if ( ((SwTxtFrm*)this)->HasFollow() )
+                ((SwTxtFrm*)this)->JoinFrm();
+
+            if( (Prt().*fnRect->fnGetHeight)() )
+                ((SwTxtFrm*)this)->HideHidden();
+
+            Prt().Pos().X() = Prt().Pos().Y() = 0;
+            (Prt().*fnRect->fnSetWidth)( (Frm().*fnRect->fnGetWidth)() );
+            (Prt().*fnRect->fnSetHeight)( 0 );
+            nUpper = -( (Frm().*fnRect->fnGetHeight)() );
+        }
+        else
+        {
+            //Vereinfachung: CntntFrms sind immer in der Hoehe Variabel!
+
+            //An der FixSize gibt der umgebende Frame die Groesse vor, die
+            //Raender werden einfach abgezogen.
+            const long nLeft = rAttrs.CalcLeft( this );
+#ifdef BIDI
+            const long nRight = ((SwBorderAttrs&)rAttrs).CalcRight( this );
+            (this->*fnRect->fnSetXMargins)( nLeft, nRight );
+#else
+            (this->*fnRect->fnSetXMargins)( nLeft, rAttrs.CalcRight() );
+#endif
+
+            if ( (Prt().*fnRect->fnGetWidth)() <= MINLAY )
+            {
+                //Die PrtArea sollte schon wenigstens MINLAY breit sein, passend
+                //zu den Minimalwerten des UI
+                (Prt().*fnRect->fnSetWidth)( Min( long(MINLAY), (Frm().*fnRect->fnGetWidth)() ) );
+                SwTwips nTmp = (Frm().*fnRect->fnGetWidth)() - (Prt().*fnRect->fnGetWidth)();
+                if( (Prt().*fnRect->fnGetLeft)() > nTmp )
+                    (Prt().*fnRect->fnSetLeft)( nTmp );
+            }
+
+            //Fuer die VarSize gelten folgende Regeln:
+            //1. Der erste einer Kette hat keinen Rand nach oben
+            //2. Nach unten gibt es nie einen Rand
+            //3. Der Rand nach oben ist das Maximum aus dem Abstand des
+            //   Prev nach unten und dem eigenen Abstand nach oben.
+            //Die drei Regeln werden auf die Berechnung der Freiraeume, die von
+            //UL- bzw. LRSpace vorgegeben werden, angewand. Es gibt in alle
+            //Richtungen jedoch ggf. trotzdem einen Abstand; dieser wird durch
+            //Umrandung und/oder Schatten vorgegeben.
+            //4. Der Abstand fuer TextFrms entspricht mindestens dem Durchschuss
+
+            nUpper = CalcUpperSpace( &rAttrs, NULL );
+            // in balanced columned section frames we do not want the
+            // common border
+            sal_Bool bCommonBorder = sal_True;
+            if ( IsInSct() && GetUpper()->IsColBodyFrm() )
+            {
+                const SwSectionFrm* pSct = FindSctFrm();
+                bCommonBorder = pSct->GetFmt()->GetBalancedColumns().GetValue();
+            }
+            SwTwips nLower = bCommonBorder ? rAttrs.GetBottomLine( this ) : rAttrs.CalcBottomLine();
+
+            (Prt().*fnRect->fnSetPosY)( (!bVert || bReverse) ? nUpper : nLower);
+            nUpper += nLower;
+            nUpper -= (Frm().*fnRect->fnGetHeight)() - (Prt().*fnRect->fnGetHeight)();
+        }
+        //Wenn Unterschiede zwischen Alter und neuer Groesse,
+        //Grow() oder Shrink() rufen
+        if ( nUpper )
+        {
+            if ( nUpper > 0 )
+                GrowFrm( nUpper );
+            else
+                ShrinkFrm( -nUpper );
+            bSizeChgd = TRUE;
+        }
+    }
+    return bSizeChgd;
+}
 
 /*************************************************************************
 |*

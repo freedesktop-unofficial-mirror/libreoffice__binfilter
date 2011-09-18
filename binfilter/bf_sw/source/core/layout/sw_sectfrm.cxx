@@ -52,7 +52,6 @@
 #include "flyfrm.hxx"       // SwFlyFrm
 #include "ftnfrm.hxx"       // SwFtnFrm
 #include "dbg_lay.hxx"
-#include "frmsh.hxx"
 #include <bf_svx/lrspitem.hxx>
 #include <bf_svx/brshitem.hxx>
 #include <fmtftntx.hxx>

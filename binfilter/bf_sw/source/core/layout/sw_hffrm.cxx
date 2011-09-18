@@ -48,7 +48,6 @@
 #include "frmtool.hxx"
 #include "dflyobj.hxx"
 #include "frmfmt.hxx"
-#include "frmsh.hxx"
 #include "ndindex.hxx"
 #include "hfspacingitem.hxx"
 namespace binfilter {
@@ -758,10 +757,6 @@ namespace binfilter {
 /*N*/   else if ( pLay && pLay->IsFooterFrm() )
 /*N*/   {   //Footer entfernen falls vorhanden.
 /*N*/       ::binfilter::DelFlys( pLay, this );
-/*N*/       ViewShell *pSh;
-/*N*/       if ( pLay->GetPrev() && 0 != (pSh = GetShell()) &&
-/*N*/            pSh->VisArea().HasArea() )
-/*?*/           pSh->InvalidateWindows( pSh->VisArea() );
 /*N*/       pLay->Cut();
 /*N*/       delete pLay;
 /*N*/   }

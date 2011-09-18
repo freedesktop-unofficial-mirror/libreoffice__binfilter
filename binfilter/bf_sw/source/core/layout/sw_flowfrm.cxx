@@ -63,7 +63,6 @@
 #include "txtfrm.hxx"
 #include "tabfrm.hxx"
 #include "pagedesc.hxx"
-#include "frmsh.hxx"
 #include "fmtornt.hxx"
 #include "flyfrms.hxx"
 #include "sectfrm.hxx"
@@ -512,9 +511,6 @@ namespace binfilter {
 /*N*/   OSL_ENSURE( pParent, "Kein Parent uebergeben." );
 /*N*/   OSL_ENSURE( rThis.GetUpper(), "Wo kommen wir denn her?" );
 /*N*/
-/*N*/   //Sparsamer benachrichtigen wenn eine Action laeuft.
-/*N*/   ViewShell *pSh = rThis.GetShell();
-/*N*/
 /*N*/   SwFrm *pPre = rThis.GetIndPrev();
 /*N*/   if ( pPre )
 /*N*/   {
@@ -560,11 +556,6 @@ namespace binfilter {
 /*N*/           SwCntntFrm *pCnt = ((SwLayoutFrm*)&rThis)->ContainsCntnt();
 /*N*/           if ( pCnt )
 /*N*/               pCnt->InvalidatePage( pPage );
-/*N*/       }
-/*N*/       else if ( pSh && pSh->GetDoc()->GetLineNumberInfo().IsRestartEachPage()
-/*N*/                 && pPage->FindFirstBodyCntnt() == &rThis )
-/*N*/       {
-/*?*/           rThis._InvalidateLineNum();
 /*N*/       }
 /*N*/   }
 /*N*/   if ( bInvaLay || (pSibling && pSibling->IsLayoutFrm()) )
@@ -1491,9 +1482,6 @@ namespace binfilter {
 /*N*/               rThis.Prepare( PREP_BOSS_CHGD, 0, FALSE );
 /*N*/               if( !bSamePage )
 /*N*/               {
-/*N*/                   ViewShell *pSh = rThis.GetShell();
-/*N*/                   if ( pSh )
-/*N*/                       pSh->GetDoc()->SetNewFldLst();  //Wird von CalcLayout() hinterher erledigt!
 /*N*/                   pNewPage->InvalidateSpelling();
 /*N*/                   pNewPage->InvalidateAutoCompleteWords();
 /*N*/               }
@@ -1790,9 +1778,6 @@ namespace binfilter {
 /*N*/       if( pNewPage != pOldPage )
 /*N*/       {
 /*N*/           rThis.Prepare( PREP_BOSS_CHGD, (const void*)pOldPage, FALSE );
-/*N*/           ViewShell *pSh = rThis.GetShell();
-/*N*/           if ( pSh )
-/*N*/               pSh->GetDoc()->SetNewFldLst();  //Wird von CalcLayout() hinterher eledigt!
 /*N*/           pNewPage->InvalidateSpelling();
 /*N*/           pNewPage->InvalidateAutoCompleteWords();
 /*N*/             // no <CheckPageDesc(..)> in online layout

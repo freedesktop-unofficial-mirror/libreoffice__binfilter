@@ -43,7 +43,6 @@
 #include <horiornt.hxx>
 
 #include <doc.hxx>          // SwDoc
-#include <frmsh.hxx>
 #include <breakit.hxx>
 
 //////////////////////////

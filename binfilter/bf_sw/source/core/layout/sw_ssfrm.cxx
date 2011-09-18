@@ -53,7 +53,6 @@
 #include <bf_svx/boxitem.hxx>
 #include <bf_svx/shaditem.hxx>
 #include <viewsh.hxx>
-#include <frmsh.hxx>
 namespace binfilter {
 
     // No inline cause we need the function pointers

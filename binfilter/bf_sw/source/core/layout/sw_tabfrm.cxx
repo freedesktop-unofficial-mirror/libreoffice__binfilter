@@ -66,7 +66,6 @@
 #include "flyfrms.hxx"
 #include "txtfrm.hxx"       //HasFtn()
 #include "htmltbl.hxx"
-#include "frmsh.hxx"
 #include "sectfrm.hxx"  //SwSectionFrm
 namespace binfilter {
 
@@ -949,9 +948,6 @@ namespace binfilter {
 /*N*/                       }
 /*N*/                       else if ( GetFollow() == GetNext() )
 /*N*/                           ((SwTabFrm*)GetFollow())->MoveFwd( TRUE, FALSE );
-/*N*/                       ViewShell *pSh;
-/*N*/                       if ( 0 != (pSh = GetShell()) )
-/*N*/                           pSh->Imp()->ResetScroll();
 /*N*/                   }
 /*N*/                   continue;
 /*N*/               }
@@ -1316,21 +1312,6 @@ namespace binfilter {
 /*N*/             (this->*fnRect->fnSetXMargins)( 0, 0 );
 /*N*/       else
 /*N*/             (this->*fnRect->fnSetXMargins)( nLeftSpacing, nRightSpacing );
-/*N*/
-/*N*/         ViewShell *pSh;
-/*N*/       if ( bCheckBrowseWidth && GetFmt()->GetDoc()->IsBrowseMode() &&
-/*N*/            GetUpper()->IsPageBodyFrm() &&  // nur PageBodyFrms, nicht etwa ColBodyFrms
-/*N*/            0 != (pSh = GetShell()) && pSh->VisArea().Width() )
-/*N*/       {
-/*N*/           //Nicht ueber die Kante des sichbaren Bereiches hinausragen.
-/*N*/           //Die Seite kann breiter sein, weil es Objekte mit "ueberbreite"
-/*N*/           //geben kann (RootFrm::ImplCalcBrowseWidth())
-/*N*/           const Size aBorder = pSh->GetOut()->PixelToLogic( pSh->GetBrowseBorder() );
-/*N*/           long nWidth = pSh->VisArea().Width() - 2 * aBorder.Width();
-/*N*/           nWidth -= Prt().Left();
-/*N*/           nWidth -= pAttrs->CalcRightLine();
-/*N*/           Prt().Width( Min( nWidth, Prt().Width() ) );
-/*N*/       }
 /*N*/
 /*N*/         if ( nOldHeight != (Prt().*fnRect->fnGetHeight)() )
 /*N*/           bValidSize = FALSE;

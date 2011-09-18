@@ -63,7 +63,6 @@
 #include "frmtool.hxx"
 #include "frmfmt.hxx"
 #include "hints.hxx"
-#include "frmsh.hxx"
 #include "tabfrm.hxx"
 #include "txtfrm.hxx"
 #include "ndnotxt.hxx"
@@ -296,24 +295,6 @@ namespace binfilter {
 /*N*/   if ( !pDrawObj )
 /*?*/       return;
 /*N*/
-/*N*/   //Bei den SdrPageViews abmelden falls das Objekt dort noch selektiert ist.
-/*N*/   if ( !GetFmt()->GetDoc()->IsInDtor() )
-/*N*/   {
-/*N*/       ViewShell *p1St = GetShell();
-/*N*/       if ( p1St )
-/*N*/       {
-/*N*/           ViewShell *pSh = p1St;
-/*N*/           do
-/*N*/           {   //z.Zt. kann das Drawing nur ein Unmark auf alles, weil das
-/*N*/               //Objekt bereits Removed wurde.
-/*N*/               if( pSh->HasDrawView() )
-/*N*/                   pSh->Imp()->GetDrawView()->UnmarkAll();
-/*N*/               pSh = (ViewShell*)pSh->GetNext();
-/*N*/
-/*N*/           } while ( pSh != p1St );
-/*N*/       }
-/*N*/   }
-/*N*/
 /*N*/   //VirtObject mit in das Grab nehmen. Wenn das letzte VirObject
 /*N*/   //zerstoert wird, mussen das DrawObject und DrawContact ebenfalls
 /*N*/   //zerstoert werden.
@@ -339,30 +320,6 @@ namespace binfilter {
 /*N*/   if ( pMyContact )
 /*N*/       delete pMyContact;      //zerstoert den Master selbst.
 /*N*/ }
-
-/*************************************************************************
-|*
-|*  SwFlyFrm::ChainFrames()
-|*
-|*************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|*  SwFlyFrm::FindChainNeighbour()
-|*
-|*************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|*  SwFlyFrm::FindLastLower()
-|*
-|*************************************************************************/
-
-
 
 /*************************************************************************
 |*
@@ -472,7 +429,6 @@ namespace binfilter {
 /*M*/ {
 /*M*/   BOOL bClear = TRUE;
 /*M*/   const USHORT nWhich = pOld ? pOld->Which() : pNew ? pNew->Which() : 0;
-/*M*/   GetShell();
 /*M*/   switch( nWhich )
 /*M*/   {
 /*M*/       case RES_VERT_ORIENT:
@@ -1820,34 +1776,17 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 /*N*/   if( pRel ) // LAYER_IMPL
 /*N*/   {
 /*N*/       long nRelWidth = LONG_MAX, nRelHeight = LONG_MAX;
-/*N*/       const ViewShell *pSh = GetShell();
-/*N*/       if ( ( pRel->IsBodyFrm() || pRel->IsPageFrm() ) &&
-/*N*/            GetFmt()->GetDoc()->IsBrowseMode() &&
-/*N*/            pSh && pSh->VisArea().HasArea() )
-/*N*/       {
-/*?*/           nRelWidth  = pSh->VisArea().Width();
-/*?*/           nRelHeight = pSh->VisArea().Height();
-/*?*/           const Size aBorder = pSh->GetOut()->PixelToLogic( pSh->GetBrowseBorder() );
-/*?*/           nRelWidth -= 2*aBorder.Width();
-/*?*/           long nDiff = nRelWidth - pRel->Prt().Width();
-/*?*/           if ( nDiff > 0 )
-/*?*/               nRelWidth -= nDiff;
-/*?*/           nRelHeight -= 2*aBorder.Height();
-/*?*/           nDiff = nRelHeight - pRel->Prt().Height();
-/*?*/           if ( nDiff > 0 )
-/*?*/               nRelHeight -= nDiff;
-/*N*/       }
 /*N*/       nRelWidth  = Min( nRelWidth,  pRel->Prt().Width() );
 /*N*/       nRelHeight = Min( nRelHeight, pRel->Prt().Height() );
-/*N*/         if( !pRel->IsPageFrm() )
-/*N*/         {
-/*N*/             const SwPageFrm* pPage = FindPageFrm();
-/*N*/             if( pPage )
-/*N*/             {
-/*N*/                 nRelWidth  = Min( nRelWidth,  pPage->Prt().Width() );
-/*N*/                 nRelHeight = Min( nRelHeight, pPage->Prt().Height() );
-/*N*/             }
-/*N*/         }
+/*N*/       if( !pRel->IsPageFrm() )
+/*N*/       {
+/*N*/           const SwPageFrm* pPage = FindPageFrm();
+/*N*/           if( pPage )
+/*N*/           {
+/*N*/               nRelWidth  = Min( nRelWidth,  pPage->Prt().Width() );
+/*N*/               nRelHeight = Min( nRelHeight, pPage->Prt().Height() );
+/*N*/           }
+/*N*/       }
 /*N*/
 /*N*/       if ( rSz.GetWidthPercent() && rSz.GetWidthPercent() != 0xFF )
 /*N*/           aRet.Width() = nRelWidth * rSz.GetWidthPercent() / 100;

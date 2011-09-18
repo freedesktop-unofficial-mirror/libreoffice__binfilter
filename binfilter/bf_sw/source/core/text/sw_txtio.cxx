@@ -50,7 +50,6 @@
 #include "portox.hxx"
 #include "pordrop.hxx"
 #include "pormulti.hxx"
-#include "frmsh.hxx"
 
 // So kann man die Layoutstruktur ausgeben lassen
 // #define AMA_LAYOUT
