@@ -1292,23 +1292,11 @@ void SAL_CALL SdXImpressDocument::render( sal_Int32 nRenderer, const uno::Any& /
     if( pDocShell && pDoc )
     {
         uno::Reference< awt::XDevice >  xRenderDevice;
-        const sal_Int32                 nPageNumber = nRenderer + 1;
 
         for( sal_Int32 nProperty = 0, nPropertyCount = rxOptions.getLength(); nProperty < nPropertyCount; ++nProperty )
         {
             if( rxOptions[ nProperty ].Name == OUString( RTL_CONSTASCII_USTRINGPARAM( "RenderDevice" ) ) )
                 rxOptions[ nProperty].Value >>= xRenderDevice;
-        }
-
-        if( xRenderDevice.is() && nPageNumber && ( nPageNumber <= pDoc->GetSdPageCount( PK_STANDARD ) ) )
-        {
-            VCLXDevice*     pDevice = VCLXDevice::GetImplementation( xRenderDevice );
-            OutputDevice*   pOut = pDevice ? pDevice->GetOutputDevice() : NULL;
-
-            if( pOut )
-            {
-                DBG_BF_ASSERT(0, "STRIP");
-            }
         }
     }
 }

@@ -343,9 +343,6 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/   {
 /*N*/       if( nId == ( pNewColl = (*pTxtFmtCollTbl)[ n ] )->GetPoolFmtId() )
 /*N*/       {
-/*N*/           if( pDesc )
-/*N*/               pNewColl->GetPresentation( ePres, eCoreMetric,
-/*N*/                                          ePresMetric, *pDesc );
 /*N*/           return pNewColl;
 /*N*/       }
 /*N*/       if( !pDesc && pNewColl->GetOutlineLevel() < MAXLEVEL )
@@ -1068,17 +1065,11 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/   {
 /*N*/       if( pDesc )
 /*N*/       {
-/*?*/           String aStr;
-/*?*/           aSet.GetPresentation( ePres, eCoreMetric, ePresMetric, aStr );
 /*?*/           pDesc->AppendAscii( sKomma );
-/*?*/           *pDesc += aStr;
 /*N*/       }
 /*N*/       else
 /*N*/       {
 /*N*/           pNewColl->SetAttr( aSet );
-/*N*/           // JP 31.08.95: erzeugen einer PoolVorlage ist keine Modifikation
-/*N*/           //              (Bug: 18545)
-/*N*/           // SetModified();
 /*N*/       }
 /*N*/   }
 /*N*/   return pNewColl;
@@ -1162,9 +1153,6 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*M*/           if( nId == ( pNewFmt = (SwFmt*)(*pArray[ nArrCnt ] )[ n ] )->
 /*M*/                   GetPoolFmtId() )
 /*M*/           {
-/*M*/               if( pDesc )
-/*M*/                   pNewFmt->GetPresentation( ePres, eCoreMetric,
-/*M*/                                             ePresMetric, *pDesc );
 /*M*/               return pNewFmt;
 /*M*/           }
 /*M*/
@@ -1368,17 +1356,11 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*M*/   {
 /*M*/       if( pDesc )
 /*M*/       {
-/*M*/           String aStr;
-/*M*/           aSet.GetPresentation( ePres, eCoreMetric, ePresMetric, aStr );
 /*M*/           pDesc->AppendAscii( sKomma );
-/*M*/           *pDesc += aStr;
 /*M*/       }
 /*M*/       else
 /*M*/       {
 /*M*/           pNewFmt->SetAttr( aSet );
-/*M*/           // JP 31.08.95: erzeugen einer PoolVorlage ist keine Modifikation
-/*M*/           //              (Bug: 18545)
-/*M*/           // SetModified();
 /*M*/       }
 /*M*/   }
 /*M*/   return pNewFmt;
@@ -1558,19 +1540,13 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/   {
 /*N*/       if( pDesc )
 /*N*/       {
-/*?*/           String aStr;
-/*?*/           aSet.GetPresentation( ePres, eCoreMetric, ePresMetric, aStr );
 /*?*/           pDesc->AppendAscii( sKomma );
-/*?*/           *pDesc += aStr;
 /*N*/       }
 /*N*/       else
 /*N*/       {
 /*N*/           if( bSetLeft )
 /*N*/               pNewPgDsc->GetLeft().SetAttr( aSet );
 /*N*/           pNewPgDsc->GetMaster().SetAttr( aSet );
-/*N*/           // JP 31.08.95: erzeugen einer PoolVorlage ist keine Modifikation
-/*N*/           //              (Bug: 18545)
-/*N*/           // SetModified();
 /*N*/       }
 /*N*/   }
 /*N*/   return pNewPgDsc;

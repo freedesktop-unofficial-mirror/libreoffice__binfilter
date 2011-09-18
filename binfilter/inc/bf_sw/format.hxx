@@ -130,10 +130,7 @@ public:
     void SetPoolHelpId( USHORT nId ) { nPoolHelpId = nId; }
     BYTE GetPoolHlpFileId() const { return nPoolHlpFileId; }
     void SetPoolHlpFileId( BYTE nId ) { nPoolHlpFileId = nId; }
-    // erfrage die Attribut-Beschreibung, returnt den reingereichten String
-    void GetPresentation( SfxItemPresentation ePres,
-        SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, String &rText ) const
-        { aSet.GetPresentation( ePres, eCoreMetric, ePresMetric, rText ); }
+
     // Das Format-ID fuer Lesen/Schreiben:
     USHORT GetFmtId() const  { return nFmtId;    }
     void   SetWritten()      { bWritten = TRUE;  }

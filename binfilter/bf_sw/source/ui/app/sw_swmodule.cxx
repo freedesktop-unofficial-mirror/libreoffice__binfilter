@@ -56,7 +56,6 @@
 #include <wdocsh.hxx>
 #include <globdoc.hxx>
 #include <usrpref.hxx>
-#include <uinums.hxx>
 #include <prtopt.hxx>
 #include <modcfg.hxx>
 #include <fontcfg.hxx>
@@ -115,7 +114,6 @@ using namespace ::rtl;
 /*N*/   pWebUsrPref(0),
 /*N*/   pPrtOpt(0),
 /*N*/   pWebPrtOpt(0),
-/*N*/   pChapterNumRules(0),
 /*N*/   pStdFontConfig(0),
 /*N*/   pDBConfig(0),
 /*N*/   pColorConfig(0),

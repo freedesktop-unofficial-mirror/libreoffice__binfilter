@@ -433,54 +433,54 @@ static const char pStarMathDoc[] = "StarMathDocument";
 /*N*/ }
 
 
-/*N*/ BOOL SmDocShell::Load(SvStorage *pStor)
-/*N*/ {
-/*N*/   BOOL bRet = FALSE;
-/*N*/   if( SfxInPlaceObject::Load( pStor ))
-/*N*/   {
-/*N*/       String aTmpStr( C2S( "Equation Native" ));
-/*N*/       if( pStor->IsStream( aTmpStr ))
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       else if( pStor->IsStream(C2S("content.xml")) ||
-/*N*/                pStor->IsStream(C2S("Content.xml")) )
-/*N*/       {
-/*?*/           // is this a fabulous math package ?
-/*?*/              Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
-/*?*/           SmXMLWrapper aEquation(xModel);
-/*?*/           SfxMedium aMedium(pStor);
-/*?*/              ULONG nError = aEquation.Import(aMedium);
-/*?*/              bRet = 0 == nError;
-/*?*/              SetError( nError );
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/             bRet = Try3x(pStor, STREAM_READWRITE);
-/*N*/
-/*N*/           if( !bRet )
-/*N*/           {
-/*?*/               pStor->Remove(String::CreateFromAscii(pStarMathDoc));
-/*?*/                   bRet = Try2x(pStor, STREAM_READWRITE);
-/*?*/               pStor->Remove(C2S("\1Ole10Native"));
-/*N*/           }
-/*N*/           else
-/*N*/             {
-/*N*/                 long nVersion = pStor->GetVersion();
-/*N*/                 if ( nVersion <= SOFFICE_FILEFORMAT_40 )
-/*N*/                     ConvertText( aText, CONVERT_40_TO_50 );
-/*N*/                 if ( nVersion <= SOFFICE_FILEFORMAT_50 )
-/*N*/                     ConvertText( aText, CONVERT_50_TO_60 );
-/*N*/                 if (pTree)
-/*?*/                 {   delete pTree;
-/*?*/                     pTree = NULL;
-/*N*/                 }
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/   FinishedLoading( SFX_LOADED_ALL );
-/*N*/   return bRet;
-/*N*/ }
+BOOL SmDocShell::Load(SvStorage *pStor)
+{
+    BOOL bRet = FALSE;
+    if( SfxInPlaceObject::Load( pStor ))
+    {
+        String aTmpStr( C2S( "Equation Native" ));
+        if( !pStor->IsStream( aTmpStr ) )
+        {
+            if (  pStor->IsStream(C2S("content.xml"))
+               || pStor->IsStream(C2S("Content.xml"))
+            )
+            {
+                // is this a fabulous math package ?
+                Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
+                SmXMLWrapper aEquation(xModel);
+                SfxMedium aMedium(pStor);
+                ULONG nError = aEquation.Import(aMedium);
+                bRet = 0 == nError;
+                SetError( nError );
+            }
+            else
+            {
+                bRet = Try3x(pStor, STREAM_READWRITE);
+                if( !bRet )
+                {
+                    pStor->Remove(String::CreateFromAscii(pStarMathDoc));
+                    bRet = Try2x(pStor, STREAM_READWRITE);
+                    pStor->Remove(C2S("\1Ole10Native"));
+                }
+                else
+                {
+                    long nVersion = pStor->GetVersion();
+                    if ( nVersion <= SOFFICE_FILEFORMAT_40 )
+                        ConvertText( aText, CONVERT_40_TO_50 );
+                    if ( nVersion <= SOFFICE_FILEFORMAT_50 )
+                        ConvertText( aText, CONVERT_50_TO_60 );
+                    if (pTree)
+                    {
+                        delete pTree;
+                        pTree = NULL;
+                    }
+                }
+            }
+        }
+    }
+    FinishedLoading( SFX_LOADED_ALL );
+    return bRet;
+}
 
 /*N*/ void SmDocShell::HandsOff()
 /*N*/ {

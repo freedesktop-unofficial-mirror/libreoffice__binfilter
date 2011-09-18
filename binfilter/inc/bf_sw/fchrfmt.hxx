@@ -57,11 +57,15 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
     virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
-    virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-                                    SfxMapUnit eCoreMetric,
-                                    SfxMapUnit ePresMetric,
-                                    String &rText,
-                                    const ::IntlWrapper*    pIntl = 0 ) const;
+
+    virtual SfxItemPresentation GetPresentation(
+                SfxItemPresentation     /* ePres */,
+                SfxMapUnit              /* eCoreMetric */,
+                SfxMapUnit              /* ePresMetric */,
+                String&                 /* rText */,
+                const ::IntlWrapper*    /* pIntl */ = NULL
+            ) const
+            {   return SFX_ITEM_PRESENTATION_NONE; }
 
     virtual bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
 

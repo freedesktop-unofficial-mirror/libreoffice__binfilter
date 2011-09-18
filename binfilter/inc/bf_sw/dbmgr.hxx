@@ -252,7 +252,6 @@ public:
     BOOL            ToNextRecord(const String& rDataSource, const String& rTableOrQuery, sal_Int32 nCommandType = -1);
 
     sal_uInt32      GetSelectedRecordId();
-    sal_Bool        ToRecordId(sal_Int32 nSet);
 
     const SwDBData& GetAddressDBName();
 

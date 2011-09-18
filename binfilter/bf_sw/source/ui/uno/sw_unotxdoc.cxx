@@ -1971,8 +1971,6 @@ SwDoc* SwXTextDocument::GetRenderDoc( const uno::Any& rSelection )
     rSelection >>= xModel;
     if (xModel == pDocShell->GetModel())
         pDoc = pDocShell->GetDoc();
-    else
-        DBG_BF_ASSERT(0, "STRIP");
     return pDoc;
 }
 
@@ -2046,8 +2044,6 @@ void SAL_CALL SwXTextDocument::render(
         throw IllegalArgumentException();
     if (nRenderer >= pDoc->GetPageCount())
         return;
-
-    DBG_BF_ASSERT(0, "STRIP");
 }
 
 void * SAL_CALL SwXTextDocument::operator new( size_t t) throw()

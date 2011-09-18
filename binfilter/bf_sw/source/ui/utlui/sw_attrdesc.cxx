@@ -26,37 +26,21 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-
-
-
 #include <fchrfmt.hxx>
-
 #include <horiornt.hxx>
-
 #include <fmtclds.hxx>
 #include <hfspacingitem.hxx>
 #include <paratr.hxx>
 #include <pagedesc.hxx>
 #include <attrdesc.hrc>
+
 namespace binfilter {
 
-/*N*/ TYPEINIT2(SwFmtCharFmt,SfxPoolItem,SwClient);
-
-// erfrage die Attribut-Beschreibung
-/*N*/ void SwAttrSet::GetPresentation(
-/*N*/       SfxItemPresentation /*ePres*/,
-/*N*/       SfxMapUnit /*eCoreMetric*/,
-/*N*/       SfxMapUnit /*ePresMetric*/,
-/*N*/       String & /*rText*/ ) const
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-}
-
+TYPEINIT2(SwFmtCharFmt,SfxPoolItem,SwClient);
 
 /*N*/ void SwPageDesc::GetPresentation(
 /*N*/       SfxItemPresentation /*ePres*/,
@@ -66,43 +50,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ {
 /*N*/   rText = GetName();
 /*N*/ }
-
-
-// ATT_CHARFMT *********************************************
-
-
-/*N*/ SfxItemPresentation SwFmtCharFmt::GetPresentation
-/*N*/ (
-/*N*/   SfxItemPresentation /*ePres*/,
-/*N*/   SfxMapUnit          /*eCoreUnit*/,
-/*N*/   SfxMapUnit          /*ePresUnit*/,
-/*N*/   String&             /*rText*/,
-/*N*/     const ::IntlWrapper* /*pIntl*/
-/*N*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return SFX_ITEM_PRESENTATION_NONE;
-/*N*/ }
-
-// ATT_INETFMT *********************************************
-
-
-
-
-/*************************************************************************
-|*    class     SwFmtDrop
-*************************************************************************/
-
-
-
-/*************************************************************************
-|*    class     SwRegisterItem
-*************************************************************************/
-
-
-
-/*************************************************************************
-|*    class     SwNumRuleItem
-*************************************************************************/
 
 
 /*************************************************************************
@@ -121,81 +68,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/     // no UI support available
 /*N*/     return SfxBoolItem::GetPresentation( ePres, eCoreUnit, ePresUnit, rText, pIntl );
 /*N*/ }
-
-
-
-/******************************************************************************
- *  Frame-Attribute:
- ******************************************************************************/
-
-
-
-//Kopfzeile, fuer Seitenformate
-//Client von FrmFmt das den Header beschreibt.
-
-
-
-//Fusszeile, fuer Seitenformate
-//Client von FrmFmt das den Footer beschreibt.
-
-
-
-
-
-
-//VertOrientation, wie und woran orientiert --
-//  sich der FlyFrm in der Vertikalen -----------
-
-
-
-//HoriOrientation, wie und woran orientiert --
-//  sich der FlyFrm in der Hoizontalen ----------
-
-
-
-//FlyAnchor, Anker des Freifliegenden Rahmen ----
-
-
-
-
-
-//Der ColumnDescriptor --------------------------
-
-
-
-//URL's und Maps
-
-
-
-
-//SwFmtEditInReadonly
-
-
-
-
-
-
-
-
-
-
-
-//SwHeaderAndFooterEatSpacingItem
-
-
-/*M*/ SfxItemPresentation SwHeaderAndFooterEatSpacingItem::GetPresentation
-/*M*/ (
-/*M*/   SfxItemPresentation /*ePres*/,
-/*M*/   SfxMapUnit          /*eCoreUnit*/,
-/*M*/   SfxMapUnit          /*ePresUnit*/,
-/*M*/   String&             /*rText*/,
-/*M*/   const ::IntlWrapper*  /*pIntl*/
-/*M*/ ) const
-/*M*/ {
-/*M*/   return SFX_ITEM_PRESENTATION_NONE;
-/*M*/ }
-
-
 
 }
 

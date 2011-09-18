@@ -57,7 +57,6 @@
 #include <modcfg.hxx>
 #include <fontcfg.hxx>
 #include <barcfg.hxx>
-#include <uinums.hxx>
 #include <dbconfig.hxx>
 
 #include <bf_sfx2/app.hxx>
@@ -106,7 +105,6 @@ namespace binfilter {
 /*M*/             DELETEZ(pModuleConfig);
 /*M*/             DELETEZ(pPrtOpt)      ;
 /*M*/             DELETEZ(pWebPrtOpt)   ;
-/*M*/             DELETEZ(pChapterNumRules);
 /*M*/             DELETEZ(pStdFontConfig)     ;
 /*M*/             DELETEZ(pAuthorNames)       ;
 /*M*/             DELETEZ(pDBConfig);

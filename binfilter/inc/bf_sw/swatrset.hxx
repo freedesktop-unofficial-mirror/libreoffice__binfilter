@@ -196,9 +196,6 @@ public:
 
     int Intersect_BC( const SfxItemSet& rSet, SwAttrSet* pOld, SwAttrSet* pNew );
 
-     void GetPresentation( SfxItemPresentation ePres,
-         SfxMapUnit eCoreMetric,    SfxMapUnit ePresMetric, String &rText ) const;
-
     SwAttrPool* GetPool() const { return (SwAttrPool*)SfxItemSet::GetPool(); }
 
     // kopiere die Attribute ggfs. ueber Dokumentgrenzen

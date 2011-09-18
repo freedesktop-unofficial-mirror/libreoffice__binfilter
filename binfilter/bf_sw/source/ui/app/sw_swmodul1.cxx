@@ -66,7 +66,6 @@
 
 #include <docsh.hxx>
 #include <dbmgr.hxx>
-#include <uinums.hxx>
 #include <prtopt.hxx>       // fuer PrintOptions
 #include <doc.hxx>
 #include <cmdid.h>

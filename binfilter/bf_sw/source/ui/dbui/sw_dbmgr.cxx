@@ -340,11 +340,6 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/ }
 
 
-/*N*/ sal_Bool SwNewDBMgr::ToRecordId(sal_Int32)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
-
-
 /*N*/ BOOL SwNewDBMgr::OpenDataSource(const String& rDataSource, const String& rTableOrQuery, sal_Int32 nCommandType)
 /*N*/ {
 /*?*/     SwDBData aData;

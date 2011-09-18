@@ -639,9 +639,6 @@ void SwXViewSettings::_setSingleValue( const comphelper::PropertyInfo & rInfo, c
         }
         break;
         case HANDLE_VIEWSET_ONLINE_LAYOUT :
-        {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-        }
         break;
         case HANDLE_VIEWSET_HELP_URL :
         {
@@ -730,12 +727,8 @@ void SwXViewSettings::_getSingleValue( const comphelper::PropertyInfo & rInfo, :
         }
         break;
         case HANDLE_VIEWSET_ONLINE_LAYOUT:
-            DBG_BF_ASSERT(0, "STRIP");
         break;
         case HANDLE_VIEWSET_HELP_URL :
-        {
-            DBG_BF_ASSERT(0, "STRIP");
-        }
         break;
         default: OSL_FAIL("Diese Id gibt's nicht!");
     }

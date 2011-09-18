@@ -648,17 +648,17 @@ SwDBNumSetFieldType::SwDBNumSetFieldType()
 /*N*/   return pTmp;
 /*N*/ }
 
-/*N*/ void SwDBNumSetField::Evaluate(SwDoc* pDoc)
-/*N*/ {
-/*N*/   SwNewDBMgr* pMgr = pDoc->GetNewDBMgr();
-/*N*/   const SwDBData& aTmpData = GetDBData();
-/*N*/
-/*N*/   if( bCondValid && pMgr && pMgr->IsInMerge() &&
-/*N*/                         pMgr->IsDataSourceOpen(aTmpData.sDataSource, aTmpData.sCommand, sal_True))
-/*N*/   {   // Bedingug OK -> aktuellen Set einstellen
-/*N*/       pMgr->ToRecordId(Max((USHORT)aPar2.ToInt32(), USHORT(1))-1);
-/*N*/   }
-/*N*/ }
+void SwDBNumSetField::Evaluate(SwDoc* pDoc)
+{
+    SwNewDBMgr* pMgr = pDoc->GetNewDBMgr();
+    const SwDBData& aTmpData = GetDBData();
+
+    if( bCondValid
+    && pMgr
+    && pMgr->IsInMerge()
+    && pMgr->IsDataSourceOpen(aTmpData.sDataSource, aTmpData.sCommand, sal_True)
+    );  // IsDataSourceOpen() may have a side effect
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: LogDBName

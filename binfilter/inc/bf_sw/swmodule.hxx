@@ -82,7 +82,6 @@ class SwModule: public SwModuleDummy , public SfxListener
     SwMasterUsrPref*    pWebUsrPref;
     SwPrintOptions*     pPrtOpt;
     SwPrintOptions*     pWebPrtOpt;
-    SwChapterNumRules*  pChapterNumRules;
     SwStdFontConfig*    pStdFontConfig;
     SwDBConfig*         pDBConfig;
     ColorConfig*        pColorConfig;
