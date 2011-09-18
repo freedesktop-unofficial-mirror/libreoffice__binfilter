@@ -426,7 +426,7 @@ namespace binfilter {
 /*N*/           SwRect aOldRect( *pOldBoundRect );
 /*N*/           if( aOldRect.HasArea() )
 /*N*/               Notify_Background( pThis->GetMaster(),pPage, aOldRect,
-/*N*/                                   PREP_FLY_LEAVE,TRUE);
+/*N*/                                   PREP_FLY_LEAVE);
 /*N*/       }
 /*N*/       SwRect aRect( pThis->GetMaster()->GetBoundRect() );
 /*N*/       if( aRect.HasArea() )
@@ -434,7 +434,7 @@ namespace binfilter {
 /*N*/           SwPageFrm *pPg = pThis->FindPage( aRect );
 /*N*/           if( pPg )
 /*N*/               Notify_Background( pThis->GetMaster(), pPg, aRect,
-/*N*/                                   PREP_FLY_ARRIVE, TRUE );
+/*N*/                                   PREP_FLY_ARRIVE );
 /*N*/       }
 /*N*/       ClrContourCache( pThis->GetMaster() );
 /*N*/
@@ -459,7 +459,7 @@ namespace binfilter {
 /*N*/                 aOldRect.Pos() += pDrawVirtObj->GetOffset();
 /*N*/                 if( aOldRect.HasArea() )
 /*N*/                     Notify_Background( pDrawVirtObj ,pPage2,
-/*N*/                                        aOldRect, PREP_FLY_LEAVE,TRUE);
+/*N*/                                        aOldRect, PREP_FLY_LEAVE);
 /*N*/             }
 /*N*/             SwRect aRect( pDrawVirtObj->GetBoundRect() );
 /*N*/             if( aRect.HasArea() )
@@ -471,7 +471,7 @@ namespace binfilter {
 /*N*/                     pPg = (SwPageFrm*)::binfilter::FindPage( aRect, pPg );
 /*N*/                 if( pPg )
 /*N*/                     Notify_Background( pDrawVirtObj, pPg, aRect,
-/*N*/                                         PREP_FLY_ARRIVE, TRUE );
+/*N*/                                         PREP_FLY_ARRIVE );
 /*N*/             }
 /*N*/             ClrContourCache( pDrawVirtObj );
 /*N*/         }
@@ -629,7 +629,7 @@ namespace binfilter {
 /*N*/           }
 /*N*/           ConnectToLayout( pAnch );
 /*N*/           if( pPg && aOldRect.HasArea() )
-/*N*/               Notify_Background(GetMaster(),pPg,aOldRect,PREP_FLY_LEAVE,TRUE);
+/*N*/               Notify_Background(GetMaster(),pPg,aOldRect,PREP_FLY_LEAVE);
 /*N*/           lcl_Notify( this, NULL );
 /*N*/
 /*N*/           // #86973#

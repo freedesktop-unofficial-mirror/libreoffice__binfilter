@@ -1160,8 +1160,6 @@ namespace binfilter {
 /*N*/         // #i9040# - adjust variable name.
 /*N*/         const SwTwips nWishedTableWidth = CalcRel( rSz, TRUE );
 /*M*/
-/*M*/       BOOL bCheckBrowseWidth = FALSE;
-/*M*/
 /*N*/         // #i9040# - insert new variables for left/right spacing.
 /*N*/         SwTwips nLeftSpacing  = 0;
 /*N*/         SwTwips nRightSpacing = 0;
@@ -1248,7 +1246,6 @@ namespace binfilter {
 /*N*/                   //Nur die fuer die Umrandung benoetigten Freiraeume
 /*N*/                   //werden beruecksichtigt.
 /*N*/                   //Die Attributwerte von LRSpace werden bewusst missachtet!
-/*N*/                   bCheckBrowseWidth = TRUE;
 /*N*/                     nLeftSpacing  = nLeftLine + nLeftOffset;
 /*N*/                     nRightSpacing = nRightLine + nRightOffset;
 /*N*/               break;
@@ -1285,7 +1282,6 @@ namespace binfilter {
 /*N*/                 {
 /*N*/                   //Linker Rand und die Breite zaehlen (Word-Spezialitaet)
 /*N*/                     // #i9040# - no width alignment in online mode.
-/*N*/                     //bCheckBrowseWidth = TRUE;
 /*N*/                     nLeftSpacing = pAttrs->CalcLeft( this );
 /*N*/                   if( nLeftOffset )
 /*N*/                   {

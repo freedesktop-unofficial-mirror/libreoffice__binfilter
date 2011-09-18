@@ -2335,7 +2335,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/ }
 
 /*N*/ void Notify_Background( SdrObject *pObj, SwPageFrm *pPage, const SwRect& rRect,
-/*N*/                       const PrepareHint eHint, const BOOL bInva )
+/*N*/                       const PrepareHint eHint )
 /*N*/ {
 /*N*/
 /*N*/   //Wenn der Frm gerade erstmalig sinnvoll positioniert wurde, braucht der

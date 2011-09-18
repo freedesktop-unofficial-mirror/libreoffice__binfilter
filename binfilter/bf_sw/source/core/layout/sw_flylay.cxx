@@ -105,7 +105,7 @@ namespace binfilter {
 /*N*/ void SwFlyFreeFrm::NotifyBackground( SwPageFrm *pPage1,
 /*N*/                                    const SwRect& rRect, PrepareHint eHint )
 /*N*/ {
-/*N*/   ::binfilter::Notify_Background( GetVirtDrawObj(), pPage1, rRect, eHint, TRUE );
+/*N*/   ::binfilter::Notify_Background( GetVirtDrawObj(), pPage1, rRect, eHint );
 /*N*/ }
 
 /*************************************************************************

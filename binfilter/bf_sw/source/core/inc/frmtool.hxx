@@ -114,7 +114,7 @@ void RegistFlys( SwPageFrm*, const SwLayoutFrm* );
 void Notify( SwFlyFrm *pFly, SwPageFrm *pOld, const SwRect &rOld );
 
 void Notify_Background( SdrObject *pObj, SwPageFrm *pPage, const SwRect& rRect,
-                        const PrepareHint eHint, const BOOL bInva );
+                        const PrepareHint eHint );
 
 const SwFrm* GetVirtualUpper( const SwFrm* pFrm, const Point& rPos );
 
