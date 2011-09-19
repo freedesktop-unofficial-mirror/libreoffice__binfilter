@@ -1088,8 +1088,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
     // es noch nicht, dann erzeuge es
 
 /*N*/ typedef SwFmt* (SwDoc::*FnMakeFmt)( const String &, SwFmt * );
-/*M*/ SwFmt* SwDoc::GetFmtFromPool( USHORT nId, String* pDesc,
-/*M*/   SfxItemPresentation ePres, SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric )
+/*M*/ SwFmt* SwDoc::GetFmtFromPool( USHORT nId, String* pDesc )
 /*M*/ {
 /*M*/   SwFmt *pNewFmt, *pDeriveFmt;
 /*M*/

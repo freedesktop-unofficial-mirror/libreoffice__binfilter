@@ -1280,7 +1280,7 @@ struct ImplRenderPaintProc
     {}
 };
 
-void SAL_CALL SdXImpressDocument::render( sal_Int32 nRenderer, const uno::Any& /*rSelection*/,
+void SAL_CALL SdXImpressDocument::render( sal_Int32, const uno::Any& /*rSelection*/,
                                           const uno::Sequence< beans::PropertyValue >& rxOptions )
     throw (lang::IllegalArgumentException, uno::RuntimeException)
 {

@@ -954,10 +954,7 @@ public:
         SfxMapUnit ePresMetric = SFX_MAPUNIT_TWIP,
         BOOL bRegardLanguage = TRUE );
         // return das geforderte automatische  Format - Basis-Klasse !
-    SwFmt* GetFmtFromPool( sal_uInt16 nId, String* pDescription = 0,
-        SfxItemPresentation ePres = SFX_ITEM_PRESENTATION_COMPLETE,
-        SfxMapUnit eCoreMetric = SFX_MAPUNIT_TWIP,
-        SfxMapUnit ePresMetric = SFX_MAPUNIT_TWIP );
+    SwFmt* GetFmtFromPool( sal_uInt16 nId, String* pDescription = 0 );
         // returne das geforderte automatische Format
     SwFrmFmt* GetFrmFmtFromPool( sal_uInt16 nId, String* pDescription = 0 )
         { return (SwFrmFmt*)GetFmtFromPool( nId, pDescription ); }

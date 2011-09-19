@@ -653,11 +653,12 @@ void SwDBNumSetField::Evaluate(SwDoc* pDoc)
     SwNewDBMgr* pMgr = pDoc->GetNewDBMgr();
     const SwDBData& aTmpData = GetDBData();
 
-    if( bCondValid
+    bCondValid
     && pMgr
     && pMgr->IsInMerge()
-    && pMgr->IsDataSourceOpen(aTmpData.sDataSource, aTmpData.sCommand, sal_True)
-    );  // IsDataSourceOpen() may have a side effect
+    && pMgr->IsDataSourceOpen(
+        aTmpData.sDataSource, aTmpData.sCommand, sal_True);
+        // IsDataSourceOpen() may have a side effect
 }
 
 /*--------------------------------------------------------------------
