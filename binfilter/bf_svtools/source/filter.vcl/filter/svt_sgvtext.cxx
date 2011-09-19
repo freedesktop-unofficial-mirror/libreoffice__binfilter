@@ -980,7 +980,8 @@ void DrawChar(OutputDevice& rOut, UCHAR c, ObjTextType T, PointType Pos, USHORT 
 {
     SetTextContext(rOut,T,UpcasePossible(c),DrehWink,FitXMul,FitXDiv,FitYMul,FitYDiv);
     if ((T.Schnitt & TextKaptBit)!=0 && UpcasePossible(c)) c=Upcase(c);
-    String s( (char)c, RTL_TEXTENCODING_IBM_437 );
+    rtl::OUString s(reinterpret_cast<sal_Char*>(&c), 1,
+        RTL_TEXTENCODING_IBM_437);
     rOut.DrawText( Point( Pos.x, Pos.y ), s );
 }
 
