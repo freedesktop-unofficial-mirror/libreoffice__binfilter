@@ -66,45 +66,6 @@ bool bInSizeNotify = FALSE;
 
 /*N*/ TYPEINIT0(ViewShell);
 
-/******************************************************************************
-|*
-|*  ViewShell::InvalidateWindows()
-|*
-******************************************************************************/
-
-/*N*/ void ViewShell::InvalidateWindows( const SwRect &rRect )
-/*N*/ {
-/*N*/     ViewShell *pSh = this;
-/*N*/     do
-/*N*/     {
-/*N*/         if ( pSh->GetWin() )
-/*N*/         {
-/*N*/             if ( pSh->IsPreView() )
-/*?*/                 DBG_BF_ASSERT(0, "STRIP");
-/*N*/             else if ( pSh->VisArea().IsOver( rRect ) )
-/*N*/                 pSh->GetWin()->Invalidate( rRect.SVRect() );
-/*N*/         }
-/*N*/         pSh = (ViewShell*)pSh->GetNext();
-/*N*/
-/*N*/     } while ( pSh != this );
-/*N*/ }
-
-/******************************************************************************
-|*
-|*  ViewShell::SetFirstVisPageInvalid()
-|*
-******************************************************************************/
-
-/*N*/ void ViewShell::SetFirstVisPageInvalid()
-/*N*/ {
-/*N*/   ViewShell *pSh = this;
-/*N*/   do
-/*N*/   {   pSh->Imp()->SetFirstVisPageInvalid();
-/*N*/       pSh = (ViewShell*)pSh->GetNext();
-/*N*/
-/*N*/   } while ( pSh != this );
-/*N*/ }
-
 /*N*/ OutputDevice& ViewShell::GetRefDev() const
 /*N*/ {
 /*N*/     OutputDevice* pTmpOut = 0;

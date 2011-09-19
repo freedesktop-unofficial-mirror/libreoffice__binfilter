@@ -73,7 +73,6 @@ public:
     void GetGrfArea( SwRect &rRect, SwRect * = 0, BOOL bMirror = TRUE ) const;
 
     void StopAnimation( OutputDevice* = 0 ) const;
-    BOOL HasAnimation()  const;
 
     // Routinen fuer den Grafik-Cache
     USHORT GetWeight() { return nWeight; }

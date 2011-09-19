@@ -485,37 +485,6 @@ namespace binfilter {
 |*  SwPageFrm::MakeAll()
 |*
 |*************************************************************************/
-
-/*N*/ void lcl_CheckObjects( SwSortDrawObjs* pSortedObjs, SwFrm* pFrm, long& rBot )
-/*N*/ {
-/*N*/   //Und dann kann es natuerlich noch Absatzgebundene
-/*N*/   //Rahmen geben, die unterhalb ihres Absatzes stehen.
-/*N*/   long nMax = 0;
-/*N*/   for ( USHORT i = 0; i < pSortedObjs->Count(); ++i )
-/*N*/   {
-/*N*/       SdrObject *pObj = (*pSortedObjs)[i];
-/*N*/       long nTmp = 0;
-/*N*/       if ( pObj->IsWriterFlyFrame() )
-/*N*/       {
-/*N*/           SwFlyFrm *pFly = ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm();
-/*N*/           if( pFly->Frm().Top() != WEIT_WECH &&
-/*N*/               ( pFrm->IsPageFrm() ? pFly->IsFlyLayFrm() :
-/*N*/                 ( pFly->IsFlyAtCntFrm() &&
-/*N*/                   ( pFrm->IsBodyFrm() ? pFly->GetAnchor()->IsInDocBody() :
-/*N*/                                         pFly->GetAnchor()->IsInFtn() ) ) ) )
-/*N*/           {
-/*N*/               nTmp = pFly->Frm().Bottom();
-/*N*/           }
-/*N*/       }
-/*N*/       else
-/*N*/           nTmp = pObj->GetBoundRect().Bottom();
-/*N*/       nMax = Max( nTmp, nMax );
-/*N*/   }
-/*N*/   ++nMax; //Unterkante vs. Hoehe!
-/*N*/   rBot = Max( rBot, nMax );
-/*N*/ }
-
-
 /*N*/ void SwPageFrm::MakeAll()
 /*N*/ {
 /*N*/   PROTOCOL_ENTER( this, PROT_MAKEALL, 0, 0 )
