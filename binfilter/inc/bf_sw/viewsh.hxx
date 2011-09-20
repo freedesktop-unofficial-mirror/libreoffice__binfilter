@@ -131,7 +131,12 @@ public:
           SwViewImp *Imp() { return pImp; }
     const SwViewImp *Imp() const { return pImp; }
 
+    void InvalidateWindows( const SwRect &rRect );
+
     const SwRect &VisArea() const { return aVisArea; }
+
+    //Invalidierung der ersten Sichtbaren Seite fuer alle Shells im Ring.
+    void SetFirstVisPageInvalid();
 
     inline SwDoc *GetDoc()  const { return pDoc; }  //niemals 0.
 
@@ -180,6 +185,9 @@ public:
     void PrintPreViewPage( SwPrtOptions& rOptions, sal_uInt16 nRowCol,
                            SfxProgress& rProgress,
                            const SwPagePreViewPrtData* = 0 );
+
+    // Abfragen/Erzeugen DrawView + PageView
+    sal_Bool HasDrawView() const;
 
     //sorge dafuer, das auf jedenfall die MarkListe aktuell ist (Bug 57153)
 

@@ -302,6 +302,13 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*N*/       pGrfNd->GetGrfObj().StopAnimation( pOut, long(this) );
 /*N*/ }
 
+
+/*N*/ BOOL SwNoTxtFrm::HasAnimation() const
+/*N*/ {
+/*N*/   const SwGrfNode* pGrfNd = GetNode()->GetGrfNode();
+/*N*/   return pGrfNd && pGrfNd->IsAnimated();
+/*N*/ }
+
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

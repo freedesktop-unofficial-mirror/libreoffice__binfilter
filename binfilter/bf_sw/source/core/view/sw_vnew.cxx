@@ -118,6 +118,11 @@ namespace binfilter {
 /*N*/     delete mpTmpRef;
 /*N*/     delete pAccOptions;
 /*N*/ }
+
+/*N*/ BOOL ViewShell::HasDrawView() const
+/*N*/ {
+/*N*/   return Imp()->HasDrawView();
+/*N*/ }
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
