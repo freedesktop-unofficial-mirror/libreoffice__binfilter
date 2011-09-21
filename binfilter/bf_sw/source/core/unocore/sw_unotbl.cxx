@@ -3152,15 +3152,6 @@ void SwXTextTable::setName(const OUString& rName) throw( uno::RuntimeException )
 //Window??
                         SchDLL::Update( rOObj.GetOleRef(), pData, 0/*GetWin()*/ );
                     }
-                    SwFrm *pFrm;
-                    SwClientIter aIter( *((SwOLENode*)pNd) );
-                    for( pFrm = (SwFrm*)aIter.First( TYPE(SwFrm) ); pFrm;
-                            pFrm = (SwFrm*)aIter.Next() )
-                    {
-//InvalidateWindows?
-//                        if ( pFrm->Frm().HasArea() )
-//                            ((ViewShell*)this)->InvalidateWindows( pFrm->Frm() );
-                    }
                 }
             }
             aIdx.Assign( *pStNd->EndOfSectionNode(), + 1 );
