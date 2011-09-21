@@ -564,8 +564,6 @@ ByteString SwSwgReader::GetAsciiText( BOOL bReq )
 
 
     // Expr-Felder in Shared-Formaten?
- // if( nStatus & SWGSTAT_UPDATEEXPR )
- //     pDoc->SetUpdateExpFldStat();
     if( !IsError( nErrno ))
     {
         if( nOptions == SWGRD_NORMAL )
@@ -586,8 +584,6 @@ ByteString SwSwgReader::GetAsciiText( BOOL bReq )
             pDoc->SetModified();
         }
     }
-    if( bNew )
-        pDoc->SetInfo( *pInfo );
     pDoc->SetNewDoc( FALSE );
     return nErrno;
  }

@@ -371,50 +371,11 @@ sal_Bool SwXStyleFamilies::hasElements(void) throw( RuntimeException )
 }
 
 void SwXStyleFamilies::loadStylesFromURL(const OUString& rURL,
-    const Sequence< PropertyValue >& aOptions)
+    const Sequence< PropertyValue >& /* aOptions */)
     throw( io::IOException, RuntimeException )
 {
     SolarMutexGuard aGuard;
-    sal_Bool    bLoadStyleText = sal_True;
-    sal_Bool    bLoadStylePage = sal_True;
-    sal_Bool    bLoadStyleOverwrite = sal_True;
-    sal_Bool    bLoadStyleNumbering = sal_True;
-    sal_Bool    bLoadStyleFrame = sal_True;
-    if(IsValid() && rURL.getLength())
-    {
-        const Any* pVal;
-        int nCount = aOptions.getLength();
-        const PropertyValue* pArray = aOptions.getConstArray();
-        for(int i = 0; i < nCount; i++)
-            if( ( pVal = &pArray[i].Value)->getValueType() ==
-                    ::getBooleanCppuType() )
-            {
-                String sName = pArray[i].Name;
-                sal_Bool bVal = *(sal_Bool*)pVal->getValue();
-                if( sName.EqualsAscii(SW_PROP_NAME_STR(UNO_NAME_OVERWRITE_STYLES     )))
-                    bLoadStyleOverwrite = bVal;
-                else if( sName.EqualsAscii(SW_PROP_NAME_STR(UNO_NAME_LOAD_NUMBERING_STYLES )))
-                    bLoadStyleNumbering = bVal;
-                else if( sName.EqualsAscii(SW_PROP_NAME_STR(UNO_NAME_LOAD_PAGE_STYLES   )))
-                    bLoadStylePage = bVal;
-                else if( sName.EqualsAscii(SW_PROP_NAME_STR(UNO_NAME_LOAD_FRAME_STYLES     )))
-                    bLoadStyleFrame = bVal;
-                else if( sName.EqualsAscii(SW_PROP_NAME_STR(UNO_NAME_LOAD_TEXT_STYLES      )))
-                    bLoadStyleText = bVal;
-            }
-
-        SwgReaderOption aOpt;
-        aOpt.SetFrmFmts( bLoadStyleFrame );
-        aOpt.SetTxtFmts( bLoadStyleText );
-        aOpt.SetPageDescs( bLoadStylePage );
-        aOpt.SetNumRules( bLoadStyleNumbering );
-        aOpt.SetMerge( !bLoadStyleOverwrite );
-
-        ULONG nErr = pDocShell->LoadStylesFromFile( rURL, aOpt, TRUE );
-        if( nErr )
-            throw io::IOException();
-    }
-    else
+    if( !(IsValid() && rURL.getLength()) )
         throw RuntimeException();
 }
 

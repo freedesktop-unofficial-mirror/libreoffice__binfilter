@@ -1326,13 +1326,9 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*?*/       String aTableName;
 /*?*/       InString( *pStrm, aTableName );
 /*?*/
-/*?*/       if( nVersion < SWG_REGISTER )
-/*?*/       {
-/*?*/           SfxDocumentInfo aInfo( *pDoc->GetInfo() );
-/*?*/           aInfo.SetDefaultTarget( aTableName );
-/*?*/           pDoc->SetInfo( aInfo );
-/*?*/       }
-/*?*/       else if( nVersion >= SWG_DBTABLE )
+/*?*/       if( !( nVersion < SWG_REGISTER )
+              && ( nVersion >= SWG_DBTABLE )
+              )
 /*?*/       {
 /*?*/           aData3.sCommand = aTableName;
 /*?*/       }

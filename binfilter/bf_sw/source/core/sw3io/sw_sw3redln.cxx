@@ -104,7 +104,7 @@ namespace binfilter {
 /*N*/       if( bNormal && !bInsert )
 /*N*/           nAuthorIdx = pDoc->InsertRedlineAuthor(aStringPool.Find(nStrIdx));
 /*N*/       else
-/*N*/           nAuthorIdx = pDoc->GetRedlineAuthor();
+/*N*/           nAuthorIdx = 0;
 /*N*/
 /*N*/       pData = new SwRedlineData( (SwRedlineType)cType, nAuthorIdx,
 /*N*/                                  DateTime( nDate2, nTime2 ), aComment,

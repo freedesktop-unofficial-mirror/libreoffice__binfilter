@@ -89,13 +89,6 @@ using namespace ::com::sun::star::lang;
                 folgenden aus.
 ------------------------------------------------------------------------*/
 
-/*M*/ void SwModule::ApplyUsrPref(const SwViewOption& /*rUsrPref*/, SwView* /*pActView*/,
-/*M*/                           sal_uInt16 /*nDest*/ )
-/*M*/ {DBG_BF_ASSERT(0, "STRIP");
-/*M*/ }
-
-
-
 /*N*/ SwPrintOptions*   SwModule::GetPrtOptions(sal_Bool bWeb)
 /*N*/ {
 /*N*/   if(bWeb && !pWebPrtOpt)
@@ -111,15 +104,6 @@ using namespace ::com::sun::star::lang;
 /*N*/ }
 
 /*--------------------------------------------------------------------
-    Beschreibung: Redlining
- --------------------------------------------------------------------*/
-
-/*N*/ sal_uInt16 SwModule::GetRedlineAuthor()
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*N*/ }
-
-/*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
 
@@ -127,11 +111,6 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ {
 /*N*/   return *pAuthorNames->GetObject(nPos);
 /*N*/ }
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
 
 /*--------------------------------------------------------------------
     Beschreibung:

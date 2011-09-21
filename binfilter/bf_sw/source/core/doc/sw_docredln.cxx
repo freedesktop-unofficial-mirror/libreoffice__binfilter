@@ -64,10 +64,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       const SwRedlineTbl& rTbl = pDoc->GetRedlineTbl();
 /*N*/
-/*N*/         // verify valid redline positions
-/*N*/       for( USHORT i = 0; i < rTbl.Count(); ++i )
-/*?*/             {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/
 /*N*/         for( USHORT j = 0; j < rTbl.Count(); ++j )
 /*N*/         {
 /*N*/             // check for empty redlines
@@ -117,7 +113,6 @@ namespace binfilter {
 /*N*/               pFnc = &SwRedline::Hide;
 /*N*/               break;
 /*N*/           case REDLINE_SHOW_DELETE:
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/               break;
 /*N*/
 /*N*/           default:
@@ -166,11 +161,6 @@ Verhalten von Delete-Redline:
                                           ueberlappt
 */
 
-/*N*/ BOOL SwDoc::AppendRedline( SwRedline* /*pNewRedl*/, BOOL /*bCallDelete*/ )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
-
 /*N*/ BOOL SwDoc::DeleteRedline( const SwPaM& rRange, BOOL /*bSaveInUndo*/,
 /*N*/                           USHORT /*nDelType*/ )
 /*N*/ {
@@ -178,22 +168,13 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/       !rRange.HasMark() || *rRange.GetMark() == *rRange.GetPoint() )
 /*N*/       return FALSE;
 /*N*/
-/*N*/   BOOL bChg = FALSE;
-/*N*/
 /*N*/   const SwPosition* pStt = rRange.Start();
 /*N*/   pStt == rRange.GetPoint() ? rRange.GetMark() : rRange.GetPoint();
 
 /*N*/   USHORT n = 0;
 /*N*/   GetRedline( *pStt, &n );
-/*N*/   for( ; n < pRedlineTbl->Count() ; ++n )
-/*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
-/*N*/   if( bChg )
-/*N*/       SetModified();
-/*N*/
-/*N*/   return bChg;
+/*N*/   return FALSE;
 /*N*/ }
 
 /*N*/ BOOL SwDoc::DeleteRedline( const SwStartNode& rNode, BOOL bSaveInUndo,
@@ -207,23 +188,14 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ USHORT SwDoc::GetRedlinePos( const SwNode& rNd, USHORT /*nType*/ ) const
 /*N*/ {
 /*N*/   rNd.GetIndex();
-/*N*/   for( USHORT n = 0; n < pRedlineTbl->Count() ; ++n )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/   return USHRT_MAX;
 /*N*/ }
 
 /*N*/ const SwRedline* SwDoc::GetRedline( const SwPosition& /*rPos*/,
 /*N*/                                   USHORT* pFndPos ) const
 /*N*/ {
-/*N*/   register USHORT nO = pRedlineTbl->Count(), nU = 0;
-/*N*/   if( nO > 0 )
-/*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/   if( pFndPos )
-/*N*/       *pFndPos = nU;
+/*N*/       *pFndPos = 0;
 /*N*/   return 0;
 /*N*/ }
 
@@ -233,12 +205,6 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
                         const SwPosition* pEndRng);
 
 // Kommentar am Redline setzen
-
-// legt gebenenfalls einen neuen Author an
-/*N*/ USHORT SwDoc::GetRedlineAuthor()
-/*N*/ {
-/*N*/ return SW_MOD()->GetRedlineAuthor(); //SW50.SDW
-/*N*/ }
 
     // fuer die Reader usw. - neuen Author in die Tabelle eintragen
 /*N*/ USHORT SwDoc::InsertRedlineAuthor( const String& rNew )

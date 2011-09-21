@@ -1038,11 +1038,6 @@ public:
             // kann auch 0 sein !!!
     const SfxDocumentInfo* GetpInfo() const { return pSwgInfo; }
 
-        // setze ueber die DocShell in den entsp. Storage-Stream. Hier wird
-        // jetzt die DocInfo verwaltet. Fuer die Felder ist am Doc eine Kopie
-        // der Info, um einen schnellen Zugriff zu ermoeglichen.
-        // (impl. in docsh2.cxx)
-    void SetInfo( const SfxDocumentInfo& rInfo );
         // die DocInfo hat siche geaendert (Notify ueber die DocShell)
         // stosse die entsp. Felder zum Updaten an.
     void DocInfoChgd( const SfxDocumentInfo& rInfo );
@@ -1059,15 +1054,6 @@ public:
     const SwPageDesc& GetPageDesc( sal_uInt16 i ) const { return *aPageDescs[i]; }
     SwPageDesc* FindPageDescByName( const String& rName,
                                     sal_uInt16* pPos = 0 ) const;
-
-        // kopiere die Kopzeile (mit dem Inhalt!) aus dem SrcFmt
-        // ins DestFmt ( auch ueber Doc grenzen hinaus!)
-    void CopyHeader( const SwFrmFmt& /*rSrcFmt*/, SwFrmFmt& /*rDestFmt*/ )
-    { DBG_BF_ASSERT(0, "STRIP"); }
-        // kopiere die Fusszeile (mit dem Inhalt!) aus dem SrcFmt
-        // ins DestFmt ( auch ueber Doc grenzen hinaus!)
-    void CopyFooter( const SwFrmFmt& /*rSrcFmt*/, SwFrmFmt& /*rDestFmt*/ )
-    { DBG_BF_ASSERT(0, "STRIP"); }
 
         //fuer Reader
     SwPageDesc& _GetPageDesc( sal_uInt16 i ) const { return *aPageDescs[i]; }
@@ -1210,38 +1196,17 @@ public:
                  SwTableNode* IsIdxInTbl( const SwNodeIndex& rIdx );
     inline const SwTableNode* IsIdxInTbl( const SwNodeIndex& rIdx ) const;
 
-        // erzeuge aus dem makierten Bereich eine ausgeglichene Tabelle
-        // erzeuge aus der Tabelle wieder normalen Text
-        // einfuegen von Spalten/Zeilen in der Tabelle
-    sal_Bool InsertCol( const SwCursor& /*rCursor*/,
-                        sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True ){DBG_BF_ASSERT(0, "STRIP"); (void)nCnt; (void)bBehind; return FALSE;}
-    sal_Bool InsertRow( const SwCursor& /*rCursor*/,
-                    sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True ){DBG_BF_ASSERT(0, "STRIP"); (void)nCnt; (void)bBehind; return FALSE;}
-    sal_Bool DeleteRow( const SwCursor& /*rCursor*/ ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
-    sal_Bool DeleteCol( const SwCursor& /*rCursor*/ ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
         // teilen / zusammenfassen von Boxen in der Tabelle
     sal_Bool SplitTbl( const SwSelBoxes& rBoxes, sal_Bool bVert = sal_True,
                        sal_uInt16 nCnt = 1, sal_Bool bSameHeight = sal_False );
-        // returnt den enum TableMergeErr
-    sal_uInt16 MergeTbl( SwPaM& /*rPam*/ ){DBG_BF_ASSERT(0, "STRIP"); return 0;}
     String GetUniqueTblName() const;
 
-        // aus der FEShell wg.. Undo und bModified
-
-    // Direktzugriff fuer Uno
-    void SetTabCols(SwTable& /*rTab*/, const SwTabCols& /*rNew*/, SwTabCols& /*rOld*/,
-                                    const SwTableBox* /*pStart*/, sal_Bool /*bCurRowOnly*/){DBG_BF_ASSERT(0, "STRIP");}
-
-    void SetHeadlineRepeat( SwTable& /*rTable*/, sal_Bool /*bSet*/ ){DBG_BF_ASSERT(0, "STRIP");}
         // Erfrage wie attributiert ist
         // setze das TabelleAttribut Undo auf:
         // setze das InsertDB als Tabelle Undo auf:
         // setze die Spalten/Zeilen/ZTellen Breite/Hoehe
     SwTableBoxFmt* MakeTableBoxFmt();
     SwTableLineFmt* MakeTableLineFmt();
-    // teste ob die Box ein numerischen Wert darstellt und aender dann ggfs.
-    // das Format der Box
-    void SetTblBoxFormulaAttrs( SwTableBox& /*rBox*/, const SfxItemSet& /*rSet*/ ){DBG_BF_ASSERT(0, "STRIP");}
     void ClearBoxNumAttrs( const SwNodeIndex& rNode );
 
 
@@ -1368,7 +1333,6 @@ public:
     void SetRedlineMode( sal_uInt16 eMode );
 
     const SwRedlineTbl& GetRedlineTbl() const { return *pRedlineTbl; }
-    sal_Bool AppendRedline( SwRedline* pPtr, sal_Bool bCallDelete = sal_True );
     sal_Bool DeleteRedline( const SwPaM& rPam, sal_Bool bSaveInUndo = sal_True,
                         sal_uInt16 nDelType = USHRT_MAX );
     sal_Bool DeleteRedline( const SwStartNode& rSection, sal_Bool bSaveInUndo = sal_True,
@@ -1381,9 +1345,6 @@ public:
     void SetRedlineMove( sal_Bool bFlag )       { bIsRedlineMove = bFlag; }
 
 
-    // alle Redline invalidieren, die Darstellung hat sich geaendert
-    // legt gegebenenfalls einen neuen Author an
-    sal_uInt16 GetRedlineAuthor();
     // fuer die Reader usw. - neuen Author in die Tabelle eintragen
     sal_uInt16 InsertRedlineAuthor( const String& );
     // Kommentar am Redline an der Position setzen
@@ -1425,9 +1386,7 @@ public:
     sal_Bool ChgAnchor( const SdrMarkList &rMrkList, int eAnchorId,
                         sal_Bool bSameOnly, sal_Bool bPosCorr );
 
-    void SetTabBorders( const SwCursor& /*rCursor*/, const SfxItemSet& /*rSet*/ ){DBG_BF_ASSERT(0, "STRIP");}
     void GetTabBorders( const SwCursor& rCursor, SfxItemSet& rSet ) const;
-    void SetBoxAttr( const SwCursor& /*rCursor*/, const SfxPoolItem& /*rNew*/ ){DBG_BF_ASSERT(0, "STRIP");}
 
     int Chain( SwFrmFmt &rSource, const SwFrmFmt &rDest );
     void Unchain( SwFrmFmt &rFmt );

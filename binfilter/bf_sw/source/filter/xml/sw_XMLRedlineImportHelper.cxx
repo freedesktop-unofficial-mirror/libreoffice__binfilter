@@ -673,7 +673,6 @@ void XMLRedlineImportHelper::InsertIntoDocument(RedlineInfo* pRedlineInfo)
 
         // set redline mode (without doing the associated book-keeping)
         pDoc->SetRedlineMode_intern(REDLINE_ON);
-        pDoc->AppendRedline(pRedline);
         pDoc->SetRedlineMode_intern(REDLINE_NONE);
     }
 }

@@ -126,7 +126,7 @@ using namespace ::rtl;
 /*N*/
 /*N*/         sal_Bool bWeb = ISA( SwWebDocShell );
 /*N*/         if ( bWeb )
-/*?*/           bHTMLTemplSet = SetHTMLTemplate( *GetDoc() );//Styles aus HTML.vor
+/*?*/           bHTMLTemplSet = FALSE;//Styles aus HTML.vor
 /*N*/       else if( ISA( SwGlobalDocShell ) )
 /*?*/           GetDoc()->SetGlobalDoc();       // Globaldokument
 /*N*/
@@ -148,11 +148,6 @@ using namespace ::rtl;
 /*N*/       }
         // set forbidden characters if necessary
 /*N*/         SvxAsianConfig aAsian;
-/*N*/         Sequence<Locale> aLocales =  aAsian.GetStartEndCharLocales();
-/*N*/         if(aLocales.getLength())
-/*N*/         {
-/*?*/             DBG_BF_ASSERT(0, "STRIP");
-/*N*/         }
 /*N*/         pDoc->SetKernAsianPunctuation(!aAsian.IsKerningWesternTextOnly());
 /*N*/         pDoc->SetCharCompressType((SwCharCompressType)aAsian.GetCharDistanceCompression());
 /*N*/         pDoc->SetPrintData(*SW_MOD()->GetPrtOptions(bWeb));
@@ -385,8 +380,6 @@ using namespace ::rtl;
 /*N*/
 /*N*/   if( !pIo )
 /*N*/       pIo = new Sw3Io( *pDoc );
-/*N*/   else
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   SetPool(&pDoc->GetAttrPool());
 
@@ -477,13 +470,9 @@ using namespace ::rtl;
 /*N*/       switch( GetCreateMode() )
 /*N*/       {
 /*N*/       case SFX_CREATE_MODE_ORGANIZER:
-              {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 nErr = pIo->LoadStyles( pStor );
 /*?*/           break;
 /*N*/       case SFX_CREATE_MODE_INTERNAL:
 /*N*/       case SFX_CREATE_MODE_EMBEDDED:
-/*N*/           if ( bXML )
-/*N*/           {DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
             // SfxProgress unterdruecken, wenn man Embedded ist
 /*N*/           SW_MOD()->SetEmbeddedLoadSave( sal_True );
             // kein break;
@@ -642,10 +631,7 @@ using namespace ::rtl;
 /*?*/           if( bXML )
 /*?*/           {
                             OSL_ASSERT("ReadXML removed");
-
 /*?*/           }
-/*?*/           else
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/       }
 /*?*/       else
 /*?*/       {
@@ -656,12 +642,6 @@ using namespace ::rtl;
 /*?*/           const SfxFilter* pFltr = SwIoSystem::GetFileFilter(rNm);
 /*?*/           if( !pFltr || !pFltr->GetUserData().EqualsAscii( FILTER_SWG ))
 /*?*/               break;
-/*?*/
-/*?*/           SfxMedium aMed( rNm, STREAM_STD_READ, FALSE );
-/*?*/           if( 0 == ( nErr = aMed.GetInStream()->GetError() ) )
-/*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
 /*?*/       }
 /*?*/
 /*?*/       if( !bXML )

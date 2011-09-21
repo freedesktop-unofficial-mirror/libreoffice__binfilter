@@ -184,7 +184,7 @@ protected:
 public:
             SwViewOption();                     // CTOR
             SwViewOption(const SwViewOption&);  //
-            ~SwViewOption();                    //
+            ~SwViewOption() {}                  //
 
     USHORT GetPixelTwips() const { return nPixelTwips; }
 
@@ -207,10 +207,6 @@ public:
                                     ? TRUE : FALSE; }
     inline void SetTab( BOOL b )        {
         (b != 0) ? (nCoreOptions |= VIEWOPT_1_TAB ) : ( nCoreOptions &= ~VIEWOPT_1_TAB); }
-
-#ifdef VERTICAL_LAYOUT
-#else
-#endif
 
     inline BOOL IsBlank(BOOL bHard = FALSE) const
                     { return !bReadonly && (nCoreOptions & VIEWOPT_1_BLANK) &&
@@ -237,9 +233,6 @@ public:
                                     ? TRUE : FALSE; }
     inline void SetLineBreak( BOOL b )
         { (b != 0) ? (nCoreOptions |= VIEWOPT_1_LINEBREAK ) : ( nCoreOptions &= ~VIEWOPT_1_LINEBREAK); }
-#ifdef VERTICAL_LAYOUT
-#else
-#endif
 
     inline BOOL IsPageBreak() const     { return !bReadonly && (nCoreOptions & VIEWOPT_1_PAGEBREAK) ? TRUE : FALSE; }
     inline void SetPageBreak( BOOL b )
@@ -537,10 +530,6 @@ public:
     static BOOL     IsVisitedLinks()    {return IsAppearanceFlag(VIEWOPT_VISITED_LINKS    );}
     static BOOL     IsFieldShadings()   {return IsAppearanceFlag(VIEWOPT_FIELD_SHADINGS);}
     static BOOL     IsSectionBoundaries() {return IsAppearanceFlag(VIEWOPT_SECTION_BOUNDARIES);}
-
-    static void     SetAppearanceFlag(sal_Int32 nFlag, BOOL bSet, BOOL bSaveInConfig = FALSE);
-
-    void    SetDocBoundaries(BOOL bSet)   {SetAppearanceFlag(VIEWOPT_DOC_BOUNDARIES, bSet);}
 
     static void     ApplyColorConfigValues(const ColorConfig& rConfig);
 };

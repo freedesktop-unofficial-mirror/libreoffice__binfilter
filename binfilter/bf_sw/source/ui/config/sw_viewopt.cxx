@@ -196,10 +196,6 @@ static const char aPostItStr[] = "  ";
 /*N*/ }
 
 
-/*N*/ SwViewOption::~SwViewOption()
-/*N*/ {
-/*N*/ }
-
 /*************************************************************************/
 /*N*/ AuthorCharAttr::AuthorCharAttr() :
 /*N*/   nItemId (SID_ATTR_CHAR_UNDERLINE),
@@ -268,11 +264,6 @@ static const char aPostItStr[] = "  ";
 /*N*/     aPageBreakColor.SetColor(aValue.nColor);
 /*N*/
 /*N*/     aScriptIndicatorColor.SetColor(rConfig.GetColorValue(WRITERSCRIPTINDICATOR).nColor);
-/*N*/ }
-
-/*************************************************************************/
-/*N*/ void SwViewOption::SetAppearanceFlag(sal_Int32 /*nFlag*/, BOOL /*bSet*/, BOOL /*bSaveInConfig*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*************************************************************************/

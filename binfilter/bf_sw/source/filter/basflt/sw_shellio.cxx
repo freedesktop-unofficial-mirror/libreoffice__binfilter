@@ -78,7 +78,6 @@ using namespace ::com::sun::star;
 /*N*/   // ist ein Medium angegeben, dann aus diesem die Streams besorgen
 /*N*/   if( 0 != (po->pMedium = pMedium ) && !po->SetStrmStgPtr() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/      return ERR_SWG_FILE_FORMAT_ERROR;
 /*N*/   }
 /*N*/
@@ -131,12 +130,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   while( TRUE )
 /*N*/   {
-/*N*/       if( pCrsr )
-/*N*/       {
-/*?*/           // Pam auf den Node davor setzen damit er nicht mit verschoben wird
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/
 /*N*/       // Speicher mal alle Fly's
 /*N*/       if( pCrsr )
 /*?*/           aFlyFrmArr.Insert( pDoc->GetSpzFrmFmts(), 0L );
@@ -165,11 +158,6 @@ using namespace ::com::sun::star;
 /*N*/           else
 /*N*/               nEndCntnt = nLen - nEndCntnt;
 /*N*/           pPam->GetPoint()->nContent.Assign( pCNd, nEndCntnt );
-/*N*/       }
-/*N*/
-/*N*/       if( pCrsr )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       pPam = (SwPaM *) pPam->GetNext();
@@ -353,10 +341,6 @@ using namespace ::com::sun::star;
 /*?*/               // for the help.
                                 OSL_ASSERT("ReadXML removed");
 /*?*/           }
-/*?*/           else
-/*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
 /*?*/       }
 /*?*/
 /*?*/       OSL_ENSURE( !pTemplate || ::binfilter::IsDocument(
@@ -376,7 +360,6 @@ using namespace ::com::sun::star;
 /*N*/   if( pTemplate )
 /*N*/   {
 /*?*/       rDoc.RemoveAllFmtLanguageDependencies();
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   return bRet;
@@ -469,11 +452,6 @@ void Reader::ResetFrmFmts( SwDoc& rDoc )
     }
 }
 
-
-/*N*/ BOOL SetHTMLTemplate( SwDoc & /*rDoc*/ )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
 
 }
 

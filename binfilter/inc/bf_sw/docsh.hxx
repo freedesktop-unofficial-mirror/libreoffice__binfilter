@@ -191,9 +191,6 @@ public:
     void EnterWait( BOOL bLockDispatcher );
     void LeaveWait( BOOL bLockDispatcher );
 
-    ULONG LoadStylesFromFile( const String& rURL, SwgReaderOption& rOpt,
-                                BOOL bUnoCall );
-
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString >  GetEventNames();
 };
 

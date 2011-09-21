@@ -3547,16 +3547,6 @@ BOOL SwW4WParser::ContinueHdFtDefinition( BOOL bFollow,
     pCtrlStck->SetEndForClosedEntries( aTmpPos );
     *pCurPaM->GetPoint() = aTmpPos;
 
-    if( bShareHdFtCntntOfFirstPgDsc )
-    {
-        if( bDoTheHeader )
-            pDoc->CopyHeader( pThisPageDesc->GetMaster(),
-                              pOpen1stPgPageDesc->GetMaster() );
-        else
-            pDoc->CopyFooter( pThisPageDesc->GetMaster(),
-                              pOpen1stPgPageDesc->GetMaster() );
-    }
-
     return bRet;
 }
 
@@ -3779,20 +3769,6 @@ SwPageDesc* SwW4WParser::CreatePageDesc( USHORT eCreateMode )
         // store old HdFtShare value
         UseOnPage eOldUse = pLastActPageDesc->ReadUseOn();
 
-        // copy even header content section
-        if( ! (    (eCreateMode & CRPGD_REMOVE_HD)
-                && (nHdFtType   & W4W_EVEN) ) )
-        {
-            pDoc->CopyHeader( pLastActPageDesc->GetMaster(),
-                              pPageDesc->GetMaster() );
-        }
-        // copy even footer content section
-        if( ! (    (eCreateMode & CRPGD_REMOVE_FT)
-                && (nHdFtType   & W4W_EVEN) ) )
-        {
-            pDoc->CopyFooter( pLastActPageDesc->GetMaster(),
-                              pPageDesc->GetMaster() );
-        }
         // copy odd header content section
         if( ! (    (eCreateMode & CRPGD_REMOVE_HD)
                 && (nHdFtType   & W4W_ODD) ) )
@@ -3800,9 +3776,6 @@ SwPageDesc* SwW4WParser::CreatePageDesc( USHORT eCreateMode )
             if( eOldUse & PD_HEADERSHARE )
                 pPageDesc->GetLeft().SetAttr(
                     pLastActPageDesc->GetMaster().GetHeader() );
-             else
-                pDoc->CopyHeader( pLastActPageDesc->GetLeft(),
-                                  pPageDesc->GetLeft() );
         }
         // copy odd footer content section
         if( ! (    (eCreateMode & CRPGD_REMOVE_FT)
@@ -3811,9 +3784,6 @@ SwPageDesc* SwW4WParser::CreatePageDesc( USHORT eCreateMode )
             if( eOldUse & PD_FOOTERSHARE )
                 pPageDesc->GetLeft().SetAttr(
                     pLastActPageDesc->GetMaster().GetFooter() );
-             else
-                pDoc->CopyFooter( pLastActPageDesc->GetLeft(),
-                                  pPageDesc->GetLeft() );
         }
 
         // Look which old UseOn values shall continue

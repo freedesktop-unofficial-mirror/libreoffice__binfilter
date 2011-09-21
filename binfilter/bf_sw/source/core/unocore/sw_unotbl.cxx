@@ -164,14 +164,8 @@ void lcl_SetSpecialProperty(SwFrmFmt* pFmt, const SfxItemPropertyMap* pMap, cons
     switch(pMap->nWID)
     {
         case  FN_TABLE_HEADLINE_REPEAT:
-
         {
-            SwTable* pTable = SwTable::FindTable( pFmt );
-            {
-                UnoActionContext aAction(pFmt->GetDoc());
-                sal_Bool bVal = *(sal_Bool*)aValue.getValue();
-                pFmt->GetDoc()->SetHeadlineRepeat( *pTable, bVal);
-            }
+            UnoActionContext aAction(pFmt->GetDoc());
         }
         break;
         case  FN_TABLE_IS_RELATIVE_WIDTH:
@@ -503,10 +497,6 @@ void lcl_SetTblSeparators(const uno::Any& rVal, SwTable* pTable, SwTableBox* pBo
             }
             nLastValue = aCols[i];
         }
-        if(!bError)
-        {
-            pDoc->SetTabCols(*pTable, aCols, aOldCols, pBox, bRow );
-        }
     }
 }
 
@@ -567,7 +557,6 @@ void lcl_setValue( SwXCell &rCell, double nVal )
 
         SwTblBoxValue aVal(nVal);
         aSet.Put(aVal);
-        pDoc->SetTblBoxFormulaAttrs( *rCell.pBox, aSet );
         //Tabelle aktualisieren
         SwTableFmlUpdate aTblUpdate( SwTable::FindTable( rCell.GetFrmFmt() ));
         pDoc->UpdateTblFlds( &aTblUpdate );
@@ -780,7 +769,6 @@ void SwXCell::setFormula(const OUString& rFormula) throw( uno::RuntimeException 
             aSet.Put(SwTblBoxNumFormat(0));
         }
         aSet.Put(aFml);
-        GetDoc()->SetTblBoxFormulaAttrs( *pBox, aSet );
         //Tabelle aktualisieren
         SwTableFmlUpdate aTblUpdate( SwTable::FindTable( GetFrmFmt() ));
         pLclDoc->UpdateTblFlds( &aTblUpdate );
@@ -1433,7 +1421,7 @@ sal_Bool SwXTextTableCursor::mergeRange(void) throw( uno::RuntimeException )
 
         {
             UnoActionContext aContext(pUnoCrsr->GetDoc());
-            bRet = TBLMERGE_OK == pTblCrsr->GetDoc()->MergeTbl(*pTblCrsr);
+            bRet = TBLMERGE_OK == 0;
             if(bRet)
             {
                 USHORT nCount = pTblCrsr->GetBoxesCount();
@@ -1503,20 +1491,9 @@ void SwXTextTableCursor::setPropertyValue(const OUString& rPropertyName,
             switch(pMap->nWID )
             {
                 case FN_UNO_TABLE_CELL_BACKGROUND:
-                {
-                    SvxBrushItem aBrush;
-                    aBrush.PutValue(aValue, pMap->nMemberId);
-                    pDoc->SetBoxAttr( *pUnoCrsr, aBrush );
-
-                }
-                break;
+                    break;
                 case RES_BOXATR_FORMAT:
-                {
-                    SfxUInt32Item aNumberFormat(RES_BOXATR_FORMAT);
-                    aNumberFormat.PutValue(aValue, 0);
-                    pDoc->SetBoxAttr( *pUnoCrsr, aNumberFormat);
-                }
-                break;
+                    break;
                 case FN_UNO_PARA_STYLE:
                     lcl_SetTxtFmtColl(aValue, *pUnoCrsr);
                 break;
@@ -2873,7 +2850,6 @@ void SwXTextTable::setPropertyValue(const OUString& rPropertyName,
                             aSet.Put(aBox);
                             aSet.Put(aBoxInfo);
 
-                            pDoc->SetTabBorders(*pCrsr, aSet);
                             delete pUnoCrsr;
                         }
                     }
@@ -3434,13 +3410,7 @@ void SwXCellRange::setPropertyValue(const OUString& rPropertyName,
             switch(pMap->nWID )
             {
                 case FN_UNO_TABLE_CELL_BACKGROUND:
-                {
-                    SvxBrushItem aBrush;
-                    ((SfxPoolItem&)aBrush).PutValue(aValue, pMap->nMemberId);
-                    pDoc->SetBoxAttr( *pTblCrsr, aBrush );
-
-                }
-                break;
+                    break;
                 case RES_BOX :
                 {
                     SfxItemSet aSet(pDoc->GetAttrPool(),
@@ -3473,17 +3443,10 @@ void SwXCellRange::setPropertyValue(const OUString& rPropertyName,
                     SvxBoxItem aBoxItem((const SvxBoxItem&)aSet.Get(RES_BOX));
                     ((SfxPoolItem&)aBoxItem).PutValue(aValue, pMap->nMemberId);
                     aSet.Put(aBoxItem);
-                    pDoc->SetTabBorders( *pTblCrsr, aSet );
                 }
                 break;
                 case RES_BOXATR_FORMAT:
-                {
-                    SwUnoTableCrsr* pLclCrsr = *pTblCrsr;
-                    SfxUInt32Item aNumberFormat(RES_BOXATR_FORMAT);
-                    ((SfxPoolItem&)aNumberFormat).PutValue(aValue, 0);
-                    pDoc->SetBoxAttr( *pLclCrsr, aNumberFormat);
-                }
-                break;
+                    break;
                 case FN_UNO_RANGE_ROW_LABEL:
                 {
                     sal_Bool bTmp = *(sal_Bool*)aValue.getValue();
@@ -4174,7 +4137,6 @@ void SwXTableRows::insertByIndex(sal_Int32 nIndex, sal_Int32 nCount) throw( uno:
                     UnoActionRemoveContext aRemoveContext(pUnoCrsr->GetDoc());
                 }
 
-                pFrmFmt->GetDoc()->InsertRow(*pUnoCrsr, (sal_uInt16)nCount, bAppend);
                 delete pUnoCrsr;
             }
         }
@@ -4218,7 +4180,6 @@ void SwXTableRows::removeByIndex(sal_Int32 nIndex, sal_Int32 nCount) throw( uno:
                     pCrsr->MakeBoxSels();
                     {   // Die Klammer ist wichtig
                         UnoActionContext aAction(pFrmFmt->GetDoc());
-                        pFrmFmt->GetDoc()->DeleteRow(*pUnoCrsr);
                         delete pUnoCrsr;
                         bSuccess = TRUE;
                     }
@@ -4369,7 +4330,6 @@ void SwXTableColumns::insertByIndex(sal_Int32 nIndex, sal_Int32 nCount) throw( u
                     UnoActionRemoveContext aRemoveContext(pUnoCrsr->GetDoc());
                 }
 
-                pFrmFmt->GetDoc()->InsertCol(*pUnoCrsr, (sal_uInt16)nCount, bAppend);
                 delete pUnoCrsr;
             }
         }
@@ -4413,7 +4373,6 @@ void SwXTableColumns::removeByIndex(sal_Int32 nIndex, sal_Int32 nCount) throw( u
                     pCrsr->MakeBoxSels();
                     {   // Die Klammer ist wichtig
                         UnoActionContext aAction(pFrmFmt->GetDoc());
-                        pFrmFmt->GetDoc()->DeleteCol(*pUnoCrsr);
                         delete pUnoCrsr;
                         bSuccess = TRUE;
                     }

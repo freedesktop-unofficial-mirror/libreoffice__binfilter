@@ -5396,54 +5396,8 @@ BOOL SwSw6Parser::CallParser()
             }
             if (Anz>1)                  // LeseDocInfo
             {
-                if (ReadDocInfo())
-                {
-                    SfxDocumentInfo aInfo(*pDoc->GetInfo());
-                    SfxStamp aTmp;
-                    if (pDat->DocInfo.Autor.Len())
-                    {
-                        aTmp=aInfo.GetCreated();
-                        aTmp.SetName(pDat->DocInfo.Autor);
-                        aInfo.SetCreated(aTmp);
-                    }
-                    if (pDat->DocInfo.Kateg.Len())
-                    {
-                        aInfo.SetTitle(pDat->DocInfo.Kateg);
-                    }
-                    short n;
-                    for (n=0; n<4; n++)
-                    {
-                        if (pDat->DocInfo.Thema[n].Len())
-                        {
-                            String s(aInfo.GetTheme());
-                            if (s.Len() &&
-                                s.GetChar( s.Len() ) !=' ' &&
-                                s.GetChar( s.Len() ) !='-')
-                            {
-                                s.Insert(' ');
-                            }
-                            s+=pDat->DocInfo.Thema[n];
-                            aInfo.SetTheme(s);
-                        }
-                    } // for n
-                    for (n=0; n<4; n++)
-                    {
-                        if (pDat->DocInfo.Keys[n].Len())
-                        {
-                            String s(aInfo.GetKeywords());
-                            if (s.Len() &&
-                                s.GetChar( s.Len() )!=' ' &&
-                                s.GetChar( s.Len() )!='-')
-                            {
-                                s.Insert(' ');
-                            }
-                            s+=pDat->DocInfo.Keys[n];
-                            aInfo.SetKeywords(s);
-                        }
-                    } // for n
-                    pDoc->SetInfo(aInfo);
-                }
-                else return FALSE;
+                if ( !ReadDocInfo() )
+                    return FALSE;
             }
             if (Anz>2)                  // LeseLayInfo
             {

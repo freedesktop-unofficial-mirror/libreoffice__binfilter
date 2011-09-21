@@ -326,17 +326,10 @@ extern void _InitFilter();
 extern void _FinitFilter();
 extern SwRead ReadRtf, ReadAscii, ReadSwg, ReadSw3, ReadHTML;
 
-extern BOOL SetHTMLTemplate( SwDoc &rDoc ); //Fuer Vorlagen aus HTML.vor laden shellio.cxx
-
 
 /*
  * Schreiben, Writer
  */
-
-
-#ifndef SW_DECL_WRITER_DEFINED
-#define SW_DECL_WRITER_DEFINED
-#endif
 
 
 // Die folgende Klasse ist ein Wrappe fuer die Basic-I/O-Funktionen

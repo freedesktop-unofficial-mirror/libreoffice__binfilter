@@ -148,11 +148,6 @@ using namespace ::rtl;
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SwDoc::SetInfo( const SfxDocumentInfo& /*rInfo*/ )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ void SwDocShell::FillClass( SvGlobalName * pClassName,
 /*N*/                                  ULONG * pClipFormat,
 /*N*/                                  String * pAppName,
@@ -224,13 +219,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       EnableSetModified( TRUE );
 /*N*/   }
 /*N*/   Broadcast(SfxSimpleHint(SFX_HINT_DOCCHANGED));
-/*N*/ }
-
-/*N*/ULONG SwDocShell::LoadStylesFromFile( const String& /*rURL*/,
-/*N*/                   SwgReaderOption& /*rOpt*/, BOOL /*bUnoCall*/ )
-/*N*/{
-/*N*/   ULONG nErr = 0;DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return nErr;
 /*N*/ }
 
 }

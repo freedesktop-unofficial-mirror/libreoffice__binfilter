@@ -135,8 +135,6 @@ public:
     // Benutzereinstellungen modifizieren
     const SwMasterUsrPref *GetUsrPref(sal_Bool bWeb) const;
     const SwViewOption* GetViewOption(sal_Bool bWeb);
-    void                ApplyUsrPref(const SwViewOption &, SwView*,
-                                     sal_uInt16 nDest = VIEWOPT_DEST_VIEW );
 
     // ConfigItems erzeugen
     SwModuleOptions*    GetModuleConfig()       { return pModuleConfig;}
@@ -150,9 +148,8 @@ public:
     void SetEmbeddedLoadSave( sal_Bool bFlag )  { bEmbeddedLoadSave = bFlag; }
 
     // Redlining
-     sal_uInt16         GetRedlineAuthor();
-     const String&      GetRedlineAuthor(sal_uInt16 nPos);
-/*N*/   sal_uInt16          InsertRedlineAuthor(const String& rAuthor); //SW50.SDW
+    const String&      GetRedlineAuthor(sal_uInt16 nPos);
+    sal_uInt16          InsertRedlineAuthor(const String& rAuthor); //SW50.SDW
 
     // returne den definierten DocStat - WordDelimiter
     const String&       GetDocStatWordDelim() const;
