@@ -3437,7 +3437,6 @@ BOOL SwW4WParser::ContinueHdFtDefinition( BOOL bFollow,
     //JP 29.5.2001: Bug #74471#:
     // "share" the content of the header / footer of the first and the
     // following pagedesc.
-    BOOL bShareHdFtCntntOfFirstPgDsc = FALSE;
     if( pOpen1stPgPageDesc && W4W_EVENODD == (nHdFtType & W4W_MASK1) )
     {
         SwFrmFmt* pTmp = &pOpen1stPgPageDesc->GetMaster();
@@ -3448,7 +3447,6 @@ BOOL SwW4WParser::ContinueHdFtDefinition( BOOL bFollow,
                 pTmp->SetAttr( SwFmtHeader( TRUE ));
             else
                 pTmp->SetAttr( SwFmtFooter( TRUE ));
-            bShareHdFtCntntOfFirstPgDsc = TRUE;
         }
     }
 

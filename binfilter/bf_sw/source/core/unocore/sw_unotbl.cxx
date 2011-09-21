@@ -464,7 +464,7 @@ void lcl_GetTblSeparators(uno::Any& rRet, SwTable* pTable, SwTableBox* pBox, sal
 
 }
 
-void lcl_SetTblSeparators(const uno::Any& rVal, SwTable* pTable, SwTableBox* pBox, sal_Bool bRow, SwDoc* pDoc)
+void lcl_SetTblSeparators(const uno::Any& rVal, SwTable* pTable, SwTableBox* pBox, sal_Bool bRow)
 {
     SwTabCols aOldCols;
 
@@ -481,7 +481,6 @@ void lcl_SetTblSeparators(const uno::Any& rVal, SwTable* pTable, SwTableBox* pBo
     if(pSepSeq && pSepSeq->getLength() == nOldCount)
     {
         SwTabCols aCols(aOldCols);
-        sal_Bool bError = sal_False;
         const TableColumnSeparator* pArray = pSepSeq->getConstArray();
         sal_Int32 nLastValue = 0;
         for(sal_uInt16 i = 0; i < nOldCount; i++)
@@ -492,7 +491,6 @@ void lcl_SetTblSeparators(const uno::Any& rVal, SwTable* pTable, SwTableBox* pBo
                 long(aCols[i] - long(nLastValue)) < 0 ||
                 UNO_TABLE_COLUMN_SUM < aCols[i] )
             {
-                bError = sal_True;
                 break;
             }
             nLastValue = aCols[i];
@@ -1121,7 +1119,7 @@ void SwXTextTableRow::setPropertyValue(const OUString& rPropertyName,
                 case FN_UNO_TABLE_COLUMN_SEPARATORS:
                 {
                     SwTable* pLclTable = SwTable::FindTable( pFmt );
-                    lcl_SetTblSeparators(aValue, pLclTable, pLine->GetTabBoxes()[0], sal_True, pDoc);
+                    lcl_SetTblSeparators(aValue, pLclTable, pLine->GetTabBoxes()[0], sal_True);
                 }
                 break;
                 default:
@@ -2859,7 +2857,7 @@ void SwXTextTable::setPropertyValue(const OUString& rPropertyName,
                 {
                     UnoActionContext(pFmt->GetDoc());
                     SwTable* pTable = SwTable::FindTable( pFmt );
-                    lcl_SetTblSeparators(aValue, pTable, pTable->GetTabLines()[0]->GetTabBoxes()[0], sal_False, pFmt->GetDoc());
+                    lcl_SetTblSeparators(aValue, pTable, pTable->GetTabLines()[0]->GetTabBoxes()[0], sal_False);
                 }
                 break;
                 case FN_UNO_TABLE_COLUMN_RELATIVE_SUM:/*_readonly_*/ break;
@@ -4113,10 +4111,8 @@ void SwXTableRows::insertByIndex(sal_Int32 nIndex, sal_Int32 nCount) throw( uno:
         {
             String sTLName = lcl_GetCellName(0, (sal_Int16)nIndex);
             const SwTableBox* pTLBox = pTable->GetTblBox( sTLName );
-            sal_Bool bAppend = sal_False;
             if(!pTLBox)
             {
-                bAppend = sal_True;
                 // am Ende anfuegen, dazu muss der Cursor in die letzte Zeile!
                 SwTableLines& rLines = pTable->GetTabLines();
                 SwTableLine* pLine = rLines.GetObject(rLines.Count() -1);
@@ -4307,10 +4303,8 @@ void SwXTableColumns::insertByIndex(sal_Int32 nIndex, sal_Int32 nCount) throw( u
         {
             String sTLName = lcl_GetCellName((sal_Int16)nIndex, 0);
             const SwTableBox* pTLBox = pTable->GetTblBox( sTLName );
-            sal_Bool bAppend = sal_False;
             if(!pTLBox)
             {
-                bAppend = sal_True;
                 // am Ende anfuegen, dazu muss der Cursor in die letzte Spalte!
                 SwTableLines& rLines = pTable->GetTabLines();
                 SwTableLine* pLine = rLines.GetObject(0);

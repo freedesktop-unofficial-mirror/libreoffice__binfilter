@@ -1595,7 +1595,7 @@ BOOL  SwDocStyleSheetPool::SetParent(
 /*N*/           aLst.Append( cType, *rList[i] );
 /*N*/ }
 
-void  SwStyleSheetIterator::Notify( SfxBroadcaster&, const SfxHint& rHint )
+void  SwStyleSheetIterator::Notify( SfxBroadcaster&, const SfxHint& )
 {
     DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
 }
