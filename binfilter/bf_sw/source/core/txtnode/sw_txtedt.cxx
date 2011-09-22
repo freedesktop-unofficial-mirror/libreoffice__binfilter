@@ -158,8 +158,7 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 
 
 
-/*M*/ void SwTxtNode::RstAttr(const SwIndex &rIdx, xub_StrLen, USHORT,
-/*M*/                       const SfxItemSet*, BOOL)
+/*M*/ void SwTxtNode::RstAttr(const SwIndex &rIdx)
 /*M*/ {
 /*M*/   // Attribute?
 /*M*/   if ( !GetpSwpHints() )

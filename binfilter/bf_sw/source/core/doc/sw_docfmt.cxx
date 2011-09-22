@@ -139,17 +139,12 @@ struct ParaRstFmt
 /*N*/   if( pTxtNode && pTxtNode->GetpSwpHints() )
 /*N*/   {
 /*N*/       SwIndex aSt( pTxtNode, 0 );
-/*N*/       USHORT nEnd = pTxtNode->Len();
 /*N*/
 /*N*/       if( &pPara->pSttNd->nNode.GetNode() == pTxtNode &&
 /*N*/           pPara->pSttNd->nContent.GetIndex() )
 /*?*/           aSt = pPara->pSttNd->nContent.GetIndex();
 /*N*/
-/*N*/       if( &pPara->pEndNd->nNode.GetNode() == rpNd )
-/*N*/           nEnd = pPara->pEndNd->nContent.GetIndex();
-/*N*/
-/*?*/           pTxtNode->RstAttr( aSt, nEnd - aSt.GetIndex(), pPara->nWhich,
-/*?*/                               pPara->pDelSet, pPara->bInclRefToxMark );
+/*?*/       pTxtNode->RstAttr( aSt );
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }

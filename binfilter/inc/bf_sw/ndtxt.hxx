@@ -142,8 +142,7 @@ public:
     // loesche alle TextAttribute die als Attribut im Set vorhanden sind
     // (Set-Pointer != 0 ) oder alle deren Which-Wert mit nWhich mappen
     // oder wenn Which = 0, alle.
-    void    RstAttr( const SwIndex &rIdx, xub_StrLen nLen, USHORT nWhich = 0,
-                    const SfxItemSet* pSet = 0, BOOL bInclRefToxMark = FALSE );
+    void    RstAttr( const SwIndex &rIdx );
 
     // loesche das Text-Attribut (muss beim Pool abgemeldet werden!)
     void    DestroyAttr( SwTxtAttr* pAttr );
