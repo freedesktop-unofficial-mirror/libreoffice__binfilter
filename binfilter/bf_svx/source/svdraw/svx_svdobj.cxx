@@ -1408,6 +1408,7 @@ static double SMALLEST_DASH_WIDTH(26.95);
 /*N*/   return TRUE;
 /*N*/ }
 
+SAL_WNODEPRECATED_DECLARATIONS_PUSH
 /*N*/ ::std::auto_ptr< SdrLineGeometry >  SdrObject::CreateLinePoly( OutputDevice&      rOut,
 /*N*/                                                                BOOL               bForceOnePixel,
 /*N*/                                                                BOOL               bForceTwoPixel,
@@ -1442,6 +1443,7 @@ static double SMALLEST_DASH_WIDTH(26.95);
 /*N*/     else
 /*?*/       return ::std::auto_ptr< SdrLineGeometry > (NULL);
 /*N*/ }
+SAL_WNODEPRECATED_DECLARATIONS_POP
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -1479,6 +1481,7 @@ class ImpSkeleton;
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
+SAL_WNODEPRECATED_DECLARATIONS_PUSH
 /*N*/ ::std::auto_ptr< SdrLineGeometry > SdrObject::ImpPrepareLineGeometry( ExtOutputDevice& rXOut, const SfxItemSet& rSet,
 /*N*/                                                                       BOOL bIsLineDraft) const
 /*N*/ {
@@ -1511,7 +1514,7 @@ class ImpSkeleton;
 /*N*/
 /*N*/   return ::std::auto_ptr< SdrLineGeometry > (0L);
 /*N*/ }
-
+SAL_WNODEPRECATED_DECLARATIONS_POP
 
 /*N*/ void SdrObject::ImpDrawColorLineGeometry(
 /*N*/   ExtOutputDevice& rXOut, const SfxItemSet& rSet, SdrLineGeometry& rLineGeometry) const

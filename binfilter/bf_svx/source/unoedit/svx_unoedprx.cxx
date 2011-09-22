@@ -320,7 +320,9 @@ SvxEditSource* SvxEditSourceAdapter::Clone() const
 {
     if( mbEditSourceValid && mpAdaptee.get() )
     {
+        SAL_WNODEPRECATED_DECLARATIONS_PUSH
         ::std::auto_ptr< SvxEditSource > pClonedAdaptee( mpAdaptee->Clone() );
+        SAL_WNODEPRECATED_DECLARATIONS_POP
 
         if( pClonedAdaptee.get() )
         {
@@ -408,6 +410,7 @@ SfxBroadcaster& SvxEditSourceAdapter::GetBroadcaster() const
     return maDummyBroadcaster;
 }
 
+SAL_WNODEPRECATED_DECLARATIONS_PUSH
 void SvxEditSourceAdapter::SetEditSource( ::std::auto_ptr< SvxEditSource > pAdaptee )
 {
     if( pAdaptee.get() )
@@ -423,6 +426,7 @@ void SvxEditSourceAdapter::SetEditSource( ::std::auto_ptr< SvxEditSource > pAdap
         mbEditSourceValid = sal_False;
     }
 }
+SAL_WNODEPRECATED_DECLARATIONS_POP
 
 //--------------------------------------------------------------------------------------
 
