@@ -68,8 +68,6 @@
 #include <bf_svtools/svstdarr.hxx>
 #include <unotools/charclass.hxx>
 
-#if OSL_DEBUG_LEVEL > 1
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star::i18n;
@@ -223,17 +221,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/
 /*N*/   // Was? Die Unterlaufsituation ist nicht in der Portion-Kette ?
 /*N*/   OSL_ENSURE( pPor, "SwTxtFormatter::UnderFlow: overflow but underflow" );
-/*N*/
-/*N*/   if( rInf.IsFtnInside() && pPor && !rInf.IsQuick() )
-/*N*/   {
-/*?*/       SwLinePortion *pTmp = pPor->GetPortion();
-/*?*/       while( pTmp )
-/*?*/       {
-/*?*/           if( pTmp->IsFtnPortion() )
-                    {DBG_BF_ASSERT(0, "STRIP");}
-/*?*/           pTmp = pTmp->GetPortion();
-/*?*/       }
-/*N*/   }
 /*N*/
     /*--------------------------------------------------
      * 9849: Schnellschuss
@@ -482,9 +469,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/         }
 /*N*/         else if ( bHasGrid && ! pGridKernPortion && ! pMulti )
 /*N*/         {
-/*?*/             // insert a grid kerning portion
-/*?*/             if ( ! pGridKernPortion )
-                        {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/
 /*?*/             // if we have a new GridKernPortion, we initially calculate
 /*?*/             // its size so that its ends on the grid
@@ -497,10 +481,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*?*/                                     (pPageFrm->*fnRect->fnGetPrtLeft)();
 /*?*/
 /*?*/             SwTwips nStartX = rInf.X() + GetLeftMargin();
-/*?*/             if ( bVert )
-/*?*/             {
-                    {DBG_BF_ASSERT(0, "STRIP");}
-/*?*/             }
 /*?*/
 /*?*/             const SwTwips nOfst = nStartX - nGridOrigin;
 /*?*/             if ( nOfst )
@@ -520,9 +500,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/         }
 /*N*/
 /*N*/       // the multi-portion has it's own format function
-/*N*/         if( pPor->IsMultiPortion() && ( !pMulti || pMulti->IsBidi() ) )
-            {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/       else
+/*N*/         if( !( pPor->IsMultiPortion() && ( !pMulti || pMulti->IsBidi() ) ) )
 /*N*/           bFull = pPor->Format( rInf );
 /*N*/
 /*N*/       if( rInf.IsRuby() && !rInf.GetRest() )
@@ -948,8 +926,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/         if ( ! pPor && ! pCurr->GetPortion() )
 /*M*/         {
 /*M*/             GETGRID( GetTxtFrm()->FindPageFrm() )
-/*M*/             if ( pGrid )
-/*?*/                 {DBG_BF_ASSERT(0, "STRIP"); }
 /*M*/         }
 /*M*/
 /*M*/       // 2) Die Zeilenreste (mehrzeilige Felder)
@@ -1007,8 +983,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/         if ( ! pPor && ! pCurr->GetPortion() )
 /*M*/         {
 /*M*/             GETGRID( GetTxtFrm()->FindPageFrm() )
-/*M*/             if ( pGrid )
-/*?*/                 {DBG_BF_ASSERT(0, "STRIP"); }
 /*M*/         }
 /*M*/     }
 /*M*/   return pPor;
@@ -1114,15 +1088,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/
 /*M*/   if( !pPor )
 /*M*/   {
-/*M*/         if( !pMulti || pMulti->IsBidi() )
-/*M*/       {   // We open a multiportion part, if we enter a multi-line part
-/*M*/           // of the paragraph.
-/*M*/           xub_StrLen nEnd = rInf.GetIdx();
-/*M*/             SwMultiCreator* pCreate = rInf.GetMultiCreator( nEnd, pMulti );
-/*M*/           if( pCreate )
-/*M*/           {DBG_BF_ASSERT(0, "STRIP");
-/*M*/           }
-/*M*/       }
 /*M*/       // 5010: Tabs und Felder
 /*M*/       xub_Unicode cChar = rInf.GetHookChar();
 /*M*/
@@ -1232,27 +1197,9 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/
 /*M*/                 const SfxPoolItem* pItem;
 /*M*/                 USHORT nDir = 0;
-/*M*/                 if( SFX_ITEM_SET == rSet.GetItemState( RES_CHRATR_ROTATE,
-/*M*/                     sal_True, &pItem ))
+/*M*/                 if( SFX_ITEM_SET == rSet.GetItemState( RES_CHRATR_ROTATE, sal_True, &pItem ))
 /*M*/                     nDir = ((SvxCharRotateItem*)pItem)->GetValue();
 /*M*/
-/*M*/                 if ( 0 != nDir )
-/*M*/                 {
-/*?*/                    DBG_BF_ASSERT(0, "STRIP");
-/*M*/                 }
-/*M*/             }
-/*M*/         }
-/*M*/         else if ( pPor->InNumberGrp() )
-/*M*/         {
-/*M*/             const SwFont* pNumFnt = ((SwFldPortion*)pPor)->GetFont();
-/*M*/
-/*M*/             if ( pNumFnt )
-/*M*/             {
-/*N*/                 USHORT nDir = pNumFnt->GetOrientation( rInf.GetTxtFrm()->IsVertical() );
-/*M*/                 if ( 0 != nDir )
-/*M*/                 {
-/*?*/                    DBG_BF_ASSERT(0, "STRIP");
-/*M*/                 }
 /*M*/             }
 /*M*/         }
 /*M*/     }
@@ -1365,11 +1312,9 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/         // build new portions for this line
 /*M*/         BuildPortions( GetInfo() );
 /*M*/
-/*M*/         if( GetInfo().IsStop() )
-/*M*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*M*/       }
-/*M*/       else if( GetInfo().IsDropInit() )
+/*M*/       if(  !GetInfo().IsStop()
+              && GetInfo().IsDropInit()
+              )
 /*M*/       {
 /*M*/           DropInit();
 /*M*/           GetInfo().SetDropInit( sal_False );
@@ -1446,11 +1391,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/
 /*M*/     // adjust text if kana compression is enabled
 /*M*/     GetInfo().GetParaPortion()->GetScriptInfo();
-/*M*/
-/*M*/     if ( GetInfo().CompressLine() )
-/*M*/     {
-/*?*/      DBG_BF_ASSERT(0, "STRIP");
-/*M*/     }
 /*M*/
 /*M*/     CalcAdjustLine( pCurr );
 /*M*/
@@ -1603,8 +1543,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/         {
 /*N*/             SwTwips nTmpY = Y() + pCurr->GetAscent() + nLineHeight - pCurr->Height();
 /*N*/             SWRECTFN( pFrm )
-/*N*/             if ( bVert )
-                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/             nTmpY = (*fnRect->fnYDiff)( nTmpY, RegStart() );
 /*N*/             KSHORT nDiff = KSHORT( nTmpY % RegDiff() );
 /*N*/             if( nDiff )
@@ -1633,10 +1571,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/   rInf.First( short(FirstLeft()) );
 /*N*/   rInf.RealWidth( KSHORT(rInf.Right()) - KSHORT(GetLeftMargin()) );
 /*N*/   rInf.Width( rInf.RealWidth() );
-/*N*/   if( ((SwTxtFormatter*)this)->GetRedln() )
-/*N*/   {
-            {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/   }
 /*N*/ }
 
 /*************************************************************************

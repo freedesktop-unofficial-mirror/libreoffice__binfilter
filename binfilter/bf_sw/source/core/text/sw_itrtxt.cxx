@@ -303,8 +303,6 @@ namespace binfilter {
 /*?*/             // we are inside the GetCharRect recursion for multi portions
 /*?*/             // we center the portion in its surrounding line
 /*?*/             nOfst = ( pCurr->Height() - nPorHeight ) / 2 + nPorAscent;
-/*?*/         else
-                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/     }
 /*N*/     else
 /*N*/     {

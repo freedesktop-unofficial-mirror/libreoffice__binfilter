@@ -67,7 +67,6 @@ public:
     SwFldPortion( const XubString &rExpand, SwFont *pFnt = 0 );
     ~SwFldPortion();
 
-    void TakeNextOffset( const SwFldPortion* pFld );
     void CheckScript( const SwTxtSizeInfo &rInf );
     inline sal_Bool HasFont() const { return 0 != pFnt; }
 

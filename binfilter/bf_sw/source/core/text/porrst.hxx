@@ -61,7 +61,7 @@ public:
             SwBreakPortion( const SwLinePortion &rPortion );
     // liefert 0 zurueck, wenn keine Nutzdaten enthalten sind.
     virtual SwLinePortion *Compress();
-    virtual void Paint( const SwTxtPaintInfo& ) const{DBG_BF_ASSERT(0, "STRIP");} ;
+    virtual void Paint( const SwTxtPaintInfo& ) const { DBG_BF_ASSERT(0, "STRIP"); }
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
     USHORT GetRestWidth() const { return nRestWidth; }
 
@@ -102,7 +102,7 @@ public:
 #endif
 
     virtual void FormatEOL( SwTxtFormatInfo &rInf );
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const;
+    virtual void Paint( const SwTxtPaintInfo &rInf ) const { DBG_BF_ASSERT(0, "STRIP"); }
 
     OUTPUT_OPERATOR
 };
@@ -117,10 +117,8 @@ class SwArrowPortion : public SwLinePortion
     sal_Bool bLeft;
 public:
             SwArrowPortion( const SwLinePortion &rPortion );
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const;
+    virtual void Paint( const SwTxtPaintInfo &rInf ) const { DBG_BF_ASSERT(0, "STRIP"); }
     virtual SwLinePortion *Compress();
-#ifndef VERTICAL_LAYOUT
-#endif
     inline sal_Bool IsLeft() const { return bLeft; }
     inline const Point& GetPos() const { return aPos; }
     OUTPUT_OPERATOR

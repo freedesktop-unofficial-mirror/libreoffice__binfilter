@@ -719,12 +719,6 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*?*/                 }
 /*?*/             }
 /*N*/         }
-/*N*/ #ifdef BIDI
-/*N*/         // we search for connecting opportunities (kashida)
-/*N*/         else if ( bAdjustBlock && i18n::ScriptType::COMPLEX == nScript )
-/*N*/         {DBG_BF_ASSERT(0, "STRIP");
-/*N*/         }
-/*N*/ #endif
 /*N*/
 /*N*/         if ( nChg >= rTxt.Len() )
 /*N*/             break;

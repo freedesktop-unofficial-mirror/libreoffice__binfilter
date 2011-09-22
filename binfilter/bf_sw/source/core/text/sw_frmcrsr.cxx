@@ -39,19 +39,12 @@
 
 #include "pagefrm.hxx"
 
-
-
-
-
-
 #include <unicode/ubidi.h>
 
 #include "txtcfg.hxx"
 #include "itrtxt.hxx"       // SwTxtCursor
 #include "crstate.hxx"      // SwTxtCursor
 
-#if OSL_DEBUG_LEVEL > 1
-#endif
 namespace binfilter {
 
 #define MIN_OFFSET_STEP 10
@@ -73,16 +66,11 @@ namespace binfilter {
 /*N*/ {
 /*N*/   // 8810: vgl. 1170, RightMargin in der letzten Masterzeile...
 /*N*/   const xub_StrLen nOffset = rPos.nContent.GetIndex();
-/*N*/     SwTxtFrm *pFrmAtPos = pFrm;
-/*N*/     if( !bNoScroll || pFrm->GetFollow() )
-/*N*/     {
-/*N*/         pFrmAtPos = pFrm->GetFrmAtPos( rPos );
-/*N*/         if( nOffset < pFrmAtPos->GetOfst() &&
-/*N*/             !pFrmAtPos->IsFollow() )
-/*N*/         {
-                DBG_BF_ASSERT(0, "STRIP");
-/*N*/         }
-/*N*/     }
+/*N*/   SwTxtFrm *pFrmAtPos = pFrm;
+/*N*/   if( !bNoScroll || pFrm->GetFollow() )
+/*N*/   {
+/*N*/       pFrmAtPos = pFrm->GetFrmAtPos( rPos );
+/*N*/   }
 /*N*/   while( pFrm != pFrmAtPos )
 /*N*/   {
 /*?*/       pFrm = pFrmAtPos;
@@ -221,11 +209,6 @@ namespace binfilter {
 /*N*/             pCMS->aRealHeight.Y() = bVert ? -rOrig.Width() : rOrig.Height();
 /*N*/       }
 /*N*/
-/*N*/ #ifdef BIDI
-/*N*/         if ( pFrm->IsRightToLeft() )
-                {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/ #endif
-/*N*/
 /*N*/         bRet = sal_True;
 /*N*/   }
 /*N*/   else
@@ -234,8 +217,6 @@ namespace binfilter {
 /*N*/           return sal_False;
 /*N*/
 /*N*/         SwFrmSwapper aSwapper( pFrm, sal_True );
-/*N*/         if ( bVert )
-                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/         sal_Bool bGoOn = sal_True;
 /*N*/       xub_StrLen nOffset = rPos.nContent.GetIndex();
@@ -253,32 +234,21 @@ namespace binfilter {
 /*N*/                               : aLine.GetCharRect( &rOrig, nOffset, pCMS, nMaxY );
 /*N*/           }
 /*N*/
-/*N*/ #ifdef BIDI
-/*N*/             if ( pFrm->IsRightToLeft() )
-                    {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/ #endif
-/*N*/             if ( bVert )
-                    {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/
-/*N*/             if( pFrm->IsUndersized() && pCMS && !pFrm->GetNext() &&
-/*N*/                 (rOrig.*fnRect->fnGetBottom)() == nUpperMaxY &&
-/*N*/                 pFrm->GetOfst() < nOffset &&
-/*N*/                 !pFrm->IsFollow() && !bNoScroll &&
-/*N*/                 pFrm->GetTxtNode()->GetTxt().Len() != nNextOfst )
-                    {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/           else
+/*N*/           if( !(  pFrm->IsUndersized()
+                     && pCMS
+                     && !pFrm->GetNext()
+                     && (rOrig.*fnRect->fnGetBottom)() == nUpperMaxY
+                     && pFrm->GetOfst() < nOffset
+                     && !pFrm->IsFollow()
+                     && !bNoScroll
+                     && pFrm->GetTxtNode()->GetTxt().Len() != nNextOfst
+                     )
+                )
 /*N*/               bGoOn = sal_False;
 /*N*/       } while ( bGoOn );
 /*N*/
 /*N*/         if ( pCMS )
 /*N*/         {
-/*N*/ #ifdef BIDI
-/*N*/             if ( pFrm->IsRightToLeft() )
-/*N*/             {
-                    DBG_BF_ASSERT(0, "STRIP");
-/*N*/             }
-/*N*/ #endif
-/*N*/
 /*N*/             if ( bVert )
 /*N*/             {
 /*?*/                 if ( pCMS->bRealHeight )
@@ -291,10 +261,6 @@ namespace binfilter {
 /*?*/                                                     pCMS->aRealHeight.X() +
 /*?*/                                                     pCMS->aRealHeight.Y() );
 /*?*/                     }
-/*?*/                 }
-/*?*/                 if( pCMS->b2Lines && pCMS->p2Lines)
-/*?*/                 {
-                        DBG_BF_ASSERT(0, "STRIP");
 /*?*/                 }
 /*N*/             }
 /*N*/
@@ -375,10 +341,7 @@ namespace binfilter {
 /*N*/       rOrig = SwRect( aPnt1, aPnt2 );
 /*N*/       return sal_True;
 /*N*/   }
-/*N*/   else
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-         return FALSE;
-/*N*/   }
+        return FALSE;
 /*N*/ }
 
 /*************************************************************************
@@ -428,15 +391,6 @@ struct SwFillData
 /*N*/   ((SwTxtFrm*)this)->GetFormatted();
 /*N*/
 /*N*/     Point aOldPoint( rPoint );
-/*N*/
-/*N*/     if ( IsVertical() )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
-/*N*/
-/*N*/ #ifdef BIDI
-/*N*/     if ( IsRightToLeft() )
-/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/ #endif
 /*N*/
 /*N*/     SwFillData *pFillData = ( pCMS && pCMS->pFill ) ?
 /*N*/                         new SwFillData( pCMS, pPos, Frm(), rPoint ) : NULL;
@@ -517,9 +471,6 @@ struct SwFillData
 /*N*/           }
 /*N*/       }
 /*N*/   }
-/*N*/     if( pFillData && FindPageFrm()->Frm().IsInside( aOldPoint ) )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
 /*N*/
 /*N*/     if ( IsVertical() )
 /*N*/         ((SwTxtFrm*)this)->SwapWidthAndHeight();
@@ -548,77 +499,6 @@ struct SwFillData
 /*N*/   }
 /*N*/     return _GetCrsrOfst( pPos, rPoint, nChgFrm != 0, pCMS );
 /*N*/ }
-
-/*************************************************************************
- *                      SwTxtFrm::LeftMargin()
- *************************************************************************/
-
-/*
- * Layout-orientierte Cursorbewegungen
- */
-
-/*
- * an den Zeilenanfang
- */
-
-
-/*************************************************************************
- *                      SwTxtFrm::RightMargin()
- *************************************************************************/
-
-/*
- * An das Zeilenende:Das ist die Position vor dem letzten
- * Character in der Zeile. Ausnahme: In der letzten Zeile soll
- * der Cursor auch hinter dem letzten Character stehen koennen,
- * um Text anhaengen zu koennen.
- *
- */
-
-
-/*************************************************************************
- *                      SwTxtFrm::_UnitUp()
- *************************************************************************/
-
-//Die beiden folgenden Methoden versuchen zunaechst den Crsr in die
-//nachste/folgende Zeile zu setzen. Gibt es im Frame keine vorhergehende/
-//folgende Zeile, so wird der Aufruf an die Basisklasse weitergeleitet.
-//Die Horizontale Ausrichtung des Crsr wird hinterher von der CrsrShell
-//vorgenommen.
-
-class SwSetToRightMargin
-{
-    sal_Bool bRight;
-public:
-    inline SwSetToRightMargin() : bRight( sal_False ) { }
-    inline ~SwSetToRightMargin() { SwTxtCursor::SetRightMargin( bRight ); }
-    inline void SetRight( const sal_Bool bNew ) { bRight = bNew; }
-};
-
-
-//
-// Used for Bidi. nPos is the logical position in the string, bLeft indicates
-// if left arrow or right arrow was pressed. The return values are:
-// nPos: the new visual position
-// bLeft: whether the break iterator has to add or subtract from the
-//          current position
-
-
-/*************************************************************************
- *                      SwTxtFrm::_UnitDown()
- *************************************************************************/
-
-
-/*************************************************************************
- *                   virtual SwTxtFrm::UnitUp()
- *************************************************************************/
-
-
-/*************************************************************************
- *                   virtual SwTxtFrm::UnitDown()
- *************************************************************************/
-
-
-
 
 }
 

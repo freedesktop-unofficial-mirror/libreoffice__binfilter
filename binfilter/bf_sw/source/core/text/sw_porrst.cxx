@@ -71,11 +71,6 @@ namespace binfilter {
 
 
 /*************************************************************************
- *                  SwBreakPortion::CalcViewWidth()
- *************************************************************************/
-
-
-/*************************************************************************
  *                 virtual SwBreakPortion::Format()
  *************************************************************************/
 
@@ -111,11 +106,6 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void SwKernPortion::Paint( const SwTxtPaintInfo & /*rInf*/ ) const
-/*N*/ {
-            DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ void SwKernPortion::FormatEOL( SwTxtFormatInfo &rInf )
 /*N*/ {
 /*N*/     if ( bGridKern )
@@ -130,16 +120,11 @@ namespace binfilter {
 /*N*/   rInf.GetLast()->FormatEOL( rInf );
 /*N*/ }
 
-/*N*/ SwArrowPortion::SwArrowPortion( const SwLinePortion & /*rPortion*/ ) :
-/*N*/   bLeft( sal_True )
-/*N*/ {
-/*N*/ DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void SwArrowPortion::Paint( const SwTxtPaintInfo & /*rInf*/ ) const
-/*N*/ {
-/*N*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+SwArrowPortion::SwArrowPortion( const SwLinePortion & /*rPortion*/ ) :
+    bLeft( sal_True )
+{
+    DBG_BF_ASSERT(0, "STRIP");  // CONSTRUCTOR
+}
 
 /*N*/ SwLinePortion *SwArrowPortion::Compress() { return this; }
 

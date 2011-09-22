@@ -64,11 +64,6 @@ using namespace ::com::sun::star;
 /*N*/     return pClone;
 /*N*/ }
 
-/*N*/ void SwFldPortion::TakeNextOffset( const SwFldPortion* /*pFld*/ )
-/*N*/ {
-/*N*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ SwFldPortion::SwFldPortion( const XubString &rExpand, SwFont *pFnt1 )
 /*N*/   : aExpand(rExpand)
 /*N*/   , pFnt(pFnt1)
@@ -306,9 +301,6 @@ public:
 /*M*/           // ergibt sich durch nRest.
 /*M*/             xub_StrLen nNextOfst = aExpand.Len() - nRest;
 /*M*/
-/*M*/             if ( IsQuoVadisPortion() )
-/*?*/                { DBG_BF_ASSERT(0, "STRIP"); }
-/*M*/
 /*M*/           XubString aNew( aExpand, nNextOfst, STRING_LEN );
 /*M*/           aExpand.Erase( nNextOfst, STRING_LEN );
 /*M*/
@@ -319,9 +311,9 @@ public:
 /*M*/                           // kein break;
 /*M*/               case ' ' :
 /*M*/               case CH_TAB    :
-/*M*/                 case CHAR_HARDHYPHEN:               // non-breaking hyphen
-/*N*/                 case CHAR_SOFTHYPHEN:
-/*N*/                 case CHAR_HARDBLANK:
+/*M*/               case CHAR_HARDHYPHEN:               // non-breaking hyphen
+/*N*/               case CHAR_SOFTHYPHEN:
+/*N*/               case CHAR_HARDBLANK:
 /*M*/               {
 /*M*/                   aNew.Erase( 0, 1 );
 /*M*/                   ++nNextOfst;

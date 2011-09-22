@@ -80,23 +80,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/          (   pFrm->IsVertical() &&
 /*N*/              pFrm->Frm().Height() == pFrm->GetUpper()->Prt().Height() ) )
 /*N*/       pFrm->bValidSize = sal_True;
-/*
-    pFrm->bValidPrtArea = sal_True;
-    //Die Position validieren um nicht unnoetige (Test-)Moves zu provozieren.
-    //Dabei darf allerdings nicht eine tatsaechlich falsche Coordinate
-    //validiert werden.
-    if ( !pFrm->bValidPos )
-    {
-        //Leider muessen wir dazu die korrekte Position berechnen.
-        Point aOld( pFrm->Frm().Pos() );
-        pFrm->MakePos();
-        if ( aOld != pFrm->Pos() )
-        {
-            pFrm->Frm().Pos( aOld );
-            pFrm->bValidPos = sal_False;
-        }
-    }
-*/
 /*N*/ }
 
 /*N*/ void SwTxtFrm::ValidateFrm()
@@ -172,11 +155,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/
 /*N*/     UNDO_SWAP( this )
 /*N*/ }
-
-/*************************************************************************
- *                      SwTxtFrm::FindBodyFrm()
- *************************************************************************/
-
 
 /*************************************************************************
  *                      SwTxtFrm::FindBodyFrm()
@@ -600,21 +578,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   // Alle Fussnoten des zu zerstoerenden Follows werden auf uns
 /*N*/   // umgehaengt.
 /*N*/   xub_StrLen nStart = pFoll->GetOfst();
-/*N*/   if ( pFoll->HasFtn() )
-/*N*/   {
-/*?*/       const SwpHints *pHints = pFoll->GetTxtNode()->GetpSwpHints();
-/*?*/       if( pHints )
-/*?*/       {
-/*?*/           for( MSHORT i = 0; i < pHints->Count(); ++i )
-/*?*/           {
-/*?*/               const SwTxtAttr *pHt = (*pHints)[i];
-/*?*/               if( RES_TXTATR_FTN==pHt->Which() && *pHt->GetStart()>=nStart )
-/*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
-/*?*/           }
-/*?*/       }
-/*N*/   }
 /*N*/
 /*N*/ #ifdef DBG_UTIL
 /*N*/     else if ( pFoll->GetValidPrtAreaFlag() ||
@@ -651,24 +614,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   SetFollow( pNew );
 /*N*/
 /*N*/   pNew->Paste( GetUpper(), GetNext() );
-/*N*/
-/*N*/   // Wenn durch unsere Aktionen Fussnoten in pNew landen,
-/*N*/   // so muessen sie umgemeldet werden.
-/*N*/   if ( HasFtn() )
-/*N*/   {
-/*?*/       const SwpHints *pHints = GetTxtNode()->GetpSwpHints();
-/*?*/       if( pHints )
-/*?*/       {
-/*?*/           for( MSHORT i = 0; i < pHints->Count(); ++i )
-/*?*/           {
-/*?*/               const SwTxtAttr *pHt = (*pHints)[i];
-/*?*/               if( RES_TXTATR_FTN==pHt->Which() && *pHt->GetStart()>=nTxtPos )
-/*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
-/*?*/           }
-/*?*/       }
-/*N*/   }
 /*N*/
 /*N*/ #ifdef DBG_UTIL
 /*N*/   else
@@ -788,11 +733,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*?*/                 Shrink( nChgHeight PHEIGHT );
 /*?*/               SwRect &rRepaint = *(pPara->GetRepaint());
 /*?*/
-/*?*/                 if ( bVert )
-/*?*/                 {
-                        DBG_BF_ASSERT(0, "STRIP");
-/*?*/                 }
-/*?*/                 else
+/*?*/                 if ( !bVert )
 /*?*/                     rRepaint.Chg( Frm().Pos() + Prt().Pos(), Prt().SSize() );
 /*?*/
 /*?*/               // 6792: Rrand < LRand und Repaint
@@ -941,12 +882,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   if( nNew )
 /*N*/       SplitFrm( nEnd );
 /*N*/
-/*N*/   const SwFrm *pBodyFrm = (const SwFrm*)(FindBodyFrm());
-/*N*/
-/*N*/     const long nBodyHeight = pBodyFrm ? ( IsVertical() ?
-/*N*/                                           pBodyFrm->Frm().Width() :
-/*N*/                                           pBodyFrm->Frm().Height() ) : 0;
-/*N*/
 /*N*/   // Wenn die aktuellen Werte berechnet wurden, anzeigen, dass
 /*N*/   // sie jetzt gueltig sind.
 /*N*/   *(pPara->GetReformat()) = SwCharRange();
@@ -1016,13 +951,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*?*/                 nNew |= 3;
 /*?*/             }
 /*N*/       }
-/*N*/       // Wenn sich die Resthoehe geaendert hat, z.B. durch RemoveFtn()
-/*N*/       // dann muessen wir auffuellen, um Oszillationen zu vermeiden!
-/*N*/         if( bDummy && pBodyFrm &&
-/*N*/            nBodyHeight < ( IsVertical() ?
-/*N*/                            pBodyFrm->Frm().Width() :
-/*N*/                            pBodyFrm->Frm().Height() ) )
-                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/
 /*N*/   // In AdjustFrm() stellen wir uns selbst per Grow/Shrink ein,
@@ -1046,52 +974,9 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/
 /*N*/     AdjustFrm( nChg, bHasToFit );
 
-/*
-    // FME 16.07.2003 #i16930# - removed this code because it did not
-    // work correctly. In SwCntntFrm::MakeAll, the frame did not move to the
-    // next page, instead the print area was recalculated and
-    // Prepare( PREP_POS_CHGD, (const void*)&bFormatted, FALSE ) invalidated
-    // the other flags => loop
-
-    // OD 04.04.2003 #108446# - handle special case:
-    // If text frame contains no content and just has splitted, because of a
-    // line stop, it has to move forward. To force this forward move without
-    // unnecessary formatting of its footnotes and its follow, especially in
-    // columned sections, adjust frame height to zero (0) and do not perform
-    // the intrinsic format of the follow.
-    // The formating method <SwCntntFrm::MakeAll()> will initiate the move forward.
-    sal_Bool bForcedNoIntrinsicFollowCalc = sal_False;
-    if ( nEnd == 0 &&
-         rLine.IsStop() && HasFollow() && nNew == 1
-       )
-    {
-        AdjustFrm( -Frm().SSize().Height(), bHasToFit );
-        Prt().Pos().Y() = 0;
-        Prt().Height( Frm().Height() );
-        if ( FollowFormatAllowed() )
-        {
-            bForcedNoIntrinsicFollowCalc = sal_True;
-            ForbidFollowFormat();
-        }
-    }
-    else
-    {
-        AdjustFrm( nChg, bHasToFit );
-    }
- */
 
 /*N*/   if( HasFollow() || IsInFtn() )
 /*N*/       _AdjustFollow( rLine, nEnd, nStrLen, nNew );
-
-    // FME 16.07.2003 #i16930# - removed this code because it did not work
-    // correctly
-    // OD 04.04.2003 #108446# - allow intrinsic format of follow, if above
-    // special case has forbit it.
-/*    if ( bForcedNoIntrinsicFollowCalc )
-    {
-        AllowFollowFormat();
-    }
- */
 
 /*N*/     pPara->SetPrepMustFit( sal_False );
 /*N*/
@@ -1640,11 +1525,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/ {
 /*N*/   const xub_StrLen nStrLen = GetTxt().Len();
 /*N*/
-/*N*/   // AMA: Wozu soll das gut sein? Scheint mir zuoft zu einem kompletten
-/*N*/   // Formatieren und Repainten zu fuehren???
-/*N*/ //    if ( !(*pPara->GetDelta()) )
-/*N*/ //        *(pPara->GetDelta()) = nStrLen;
-/*N*/ //    else
 /*N*/   if ( !nStrLen )
 /*N*/   {
 /*N*/       // Leere Zeilen werden nicht lange gequaelt:
@@ -1681,12 +1561,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/
 /*N*/     if( 1 < aLine.GetDropLines() )
 /*N*/   {
-/*N*/       if( SVX_ADJUST_LEFT != aLine.GetAdjust() &&
-/*N*/           SVX_ADJUST_BLOCK != aLine.GetAdjust() )
-/*N*/       {
-                DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/
 /*N*/       if( aLine.IsPaintDrop() )
 /*N*/       {
 /*N*/           aLine.CalcDropRepaint();
@@ -1879,40 +1753,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*M*/                   pPre->InvalidatePos();
 /*M*/           }
 /*M*/       }
-/*M*/       MSHORT nMaxRepeat = 2;
-/*M*/       if( bChkAtCnt && nRepeat < nMaxRepeat )
-/*M*/       {
-/*M*/           sal_Bool bRepeat = sal_False;
-/*M*/           MSHORT nRepAdd = 0;
-/*M*/           SwDrawObjs *pObjs;
-/*M*/           SwTxtFrm *pMaster = IsFollow() ? FindMaster() : this;
-/*M*/             if( pMaster && !pMaster->IsFlyLock() )
-/*M*/           {
-/*M*/               if ( 0 != (pObjs = pMaster->GetDrawObjs()) )
-/*M*/               {
-/*M*/                   MSHORT nAutoCnt = 0;
-/*M*/                   for( MSHORT i = 0; i < pObjs->Count(); ++i )
-/*M*/                   {
-/*M*/                       SdrObject *pO = (*pObjs)[i];
-/*M*/                       if ( pO->IsWriterFlyFrame() )
-/*M*/                       {
-/*M*/                           SwFlyFrm *pFly = ((SwVirtFlyDrawObj*)pO)->GetFlyFrm();
-/*M*/                           if( pFly->IsAutoPos() && !::binfilter::IsInProgress( pFly ) )
-/*M*/                           {DBG_BF_ASSERT(0, "STRIP");
-/*M*/                           }
-/*M*/                       }
-/*M*/                   }
-/*M*/                   if( nAutoCnt > 11 )
-/*M*/                       nMaxRepeat = nAutoCnt/4;
-/*M*/               }
-/*M*/           }
-/*M*/           if( bRepeat )
-/*M*/               nRepeat += nRepAdd;
-/*M*/           else
-/*M*/               nRepeat = 0;
-/*M*/       }
-/*M*/       else
-/*M*/           nRepeat = 0;
+/*M*/       nRepeat = 0;
 /*M*/   } while( nRepeat );
 /*M*/
 /*M*/   ChgThisLines();
@@ -2009,8 +1850,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   do
 /*N*/   {   //DBG_LOOP;
 /*N*/       nStart = aLine.FormatLine( nStart );
-/*N*/       if( aInf.IsNewLine() || (!aInf.IsStop() && nStart < nEnd) )
-                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   } while( aLine.Next() );
 /*N*/
 /*N*/     // Last exit: die Hoehen muessen uebereinstimmen.

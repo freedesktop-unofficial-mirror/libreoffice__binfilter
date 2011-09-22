@@ -57,9 +57,6 @@
 #include <pormulti.hxx>     // SwMultiPortion
 namespace binfilter {
 
-extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
-                       const SwScriptInfo* pSI );
-
 // Nicht reentrant !!!
 // wird in GetCharRect gesetzt und im UnitUp/Down ausgewertet.
 sal_Bool SwTxtCursor::bRightMargin = sal_False;
@@ -265,13 +262,6 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/ }
 
 /*************************************************************************
- *                      SwTxtCursor::GetEndCharRect()
- *************************************************************************/
-
-// 1170: Antikbug: Shift-Ende vergisst das letzte Zeichen ...
-
-
-/*************************************************************************
  * void SwTxtCursor::_GetCharRect(..)
  * internal function, called by SwTxtCursor::GetCharRect() to calculate
  * the relative character position in the current line.
@@ -336,8 +326,6 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/         while( pPor && !pPor->GetLen() && ! bInsideFirstField )
 /*N*/       {
 /*N*/           nX += pPor->Width();
-/*N*/           if ( pPor->InSpaceGrp() && nSpaceAdd )
-                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           if( bNoTxt )
 /*N*/               nFirst1 = nX;
 /*N*/           // 8670: EndPortions zaehlen hier einmal als TxtPortions.
@@ -419,9 +407,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/                                     ! bWidth ? 0 : 1;
 /*N*/                 if ( aInf.GetIdx() + pPor->GetLen() < nOfst + nExtra )
 /*N*/               {
-/*N*/                   if ( pPor->InSpaceGrp() && nSpaceAdd )
-                            {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/                   else
+/*N*/                   if ( !( pPor->InSpaceGrp() && nSpaceAdd ) )
 /*N*/                   {
 /*N*/                         if( pPor->InFixMargGrp() && ! pPor->IsMarginPortion() )
 /*N*/                       {
@@ -466,10 +452,6 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/               }
 /*N*/               else
 /*N*/               {
-/*N*/                   if( pPor->IsMultiPortion() )
-/*N*/                   {
-                            DBG_BF_ASSERT(0, "STRIP");
-/*N*/                   }
 /*N*/                   if ( pPor->PrtWidth() )
 /*N*/                   {
 /*N*/                       xub_StrLen nOldLen = pPor->GetLen();
@@ -656,13 +638,6 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*?*/                   }
 /*?*/                   pOrig->Width( nTmp );
 /*N*/               }
-/*N*/
-/*N*/                 // travel inside field portion?
-/*N*/                 if ( pCMS->pSpecialPos )
-/*N*/                 {
-/*N*/                     // apply attributes to font
-                        DBG_BF_ASSERT(0, "STRIP");
-/*N*/                 }
 /*N*/             }
 /*N*/         }
 /*N*/
@@ -871,9 +846,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/   }
 /*N*/
 /*N*/     KSHORT nWidth30 = 0;
-/*N*/     if ( pPor->IsPostItsPortion() )
-                {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/     else
+/*N*/     if ( !pPor->IsPostItsPortion() )
 /*N*/         nWidth30 = ! nWidth && pPor->GetLen() && pPor->InToxRefOrFldGrp() ?
 /*N*/                      30 :
 /*N*/                      nWidth;
@@ -916,9 +889,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*?*/           }
 /*?*/       }
 /*?*/
-/*?*/         if ( pPor->IsPostItsPortion() )
-                {DBG_BF_ASSERT(0, "STRIP");}
-/*?*/         else
+/*?*/         if ( !pPor->IsPostItsPortion() )
 /*?*/             nWidth30 = ! nWidth && pPor->GetLen() && pPor->InToxRefOrFldGrp() ?
 /*?*/                          30 :
 /*?*/                          nWidth;
@@ -1044,10 +1015,6 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/     if( nWidth > nX ||
 /*N*/       ( nWidth == nX && pPor->IsMultiPortion() && ((SwMultiPortion*)pPor)->IsDouble() ) )
 /*N*/   {
-/*N*/       if( pPor->IsMultiPortion() )
-/*N*/       {
-                DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/       if( pPor->InTxtGrp() )
 /*N*/       {
 /*N*/           BYTE nOldProp;
@@ -1099,12 +1066,6 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/           }
 /*N*/           if( nOldProp )
 /*?*/               ((SwFont*)GetFnt())->SetProportion( nOldProp );
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           if( nChgNode && pPos && pPor->IsFlyCntPortion()
-/*N*/               && !( (SwFlyCntPortion*)pPor )->IsDraw() )
-                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/   }
 /*N*/   nOffset = nCurrStart + nLength;

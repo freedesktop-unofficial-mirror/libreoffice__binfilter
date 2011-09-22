@@ -54,9 +54,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/ void SwAttrIter::Chg( SwTxtAttr *pHt )
 /*N*/ {
 /*N*/     OSL_ENSURE( pHt && pFnt, "No attribute of font available for change");
-/*N*/     if( pRedln && pRedln->IsOn() )
-            {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/   else
+/*N*/     if( !( pRedln && pRedln->IsOn() ) )
 /*N*/         aAttrHandler.PushAndChg( *pHt, *pFnt );
 /*N*/   nChgCnt++;
 /*N*/ }
@@ -69,9 +67,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/ {
 /*N*/     OSL_ENSURE( pHt && pFnt, "No attribute of font available for reset");
 /*N*/     // get top from stack after removing pHt
-/*N*/     if( pRedln && pRedln->IsOn() )
-            {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/   else
+/*N*/     if( !( pRedln && pRedln->IsOn() ) )
 /*N*/         aAttrHandler.PopAndChg( *pHt, *pFnt );
 /*N*/   nChgCnt--;
 /*N*/ }
@@ -150,8 +146,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ sal_Bool SwAttrIter::SeekStartAndChg( OutputDevice *pOut, const sal_Bool bParaFont )
 /*N*/ {
-/*N*/     if ( pRedln && pRedln->ExtOn() )
-            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     // reset font to its original state
 /*N*/     aAttrHandler.Reset();
@@ -160,10 +154,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/     nStartIndex = nEndIndex = nPos = nChgCnt = 0;
 /*N*/   if( nPropFont )
 /*?*/       pFnt->SetProportion( nPropFont );
-/*N*/     if( pRedln )
-/*N*/   {
-            DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   if ( pHints && !bParaFont )
 /*N*/   {
@@ -249,16 +239,11 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ sal_Bool SwAttrIter::Seek( const xub_StrLen nNewPos )
 /*N*/ {
-/*N*/     if ( pRedln && pRedln->ExtOn() )
-            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   if( pHints )
 /*N*/   {
 /*N*/       if( !nNewPos || nNewPos < nPos )
 /*N*/       {
-/*N*/             if( pRedln )
-                    {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/
 /*N*/             // reset font to its original state
 /*N*/             aAttrHandler.Reset();
 /*N*/             aAttrHandler.ResetFont( *pFnt );
@@ -267,22 +252,12 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/               pFnt->SetProportion( nPropFont );
 /*N*/           nStartIndex = nEndIndex = nPos = 0;
 /*N*/           nChgCnt = 0;
-/*N*/
-/*N*/             // Achtung!
-/*N*/             // resetting the font here makes it necessary to apply any
-/*N*/             // changes for extended input directly to the font
-/*N*/             if ( pRedln && pRedln->ExtOn() )
-/*N*/             {
-                    DBG_BF_ASSERT(0, "STRIP");
-/*N*/             }
 /*N*/       }
 /*N*/       SeekFwd( nNewPos );
 /*N*/   }
 /*N*/
 /*N*/     pFnt->SetActual( WhichFont( nNewPos, 0, pScriptInfo ) );
 /*N*/
-/*N*/     if( pRedln )
-            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   nPos = nNewPos;
 /*N*/
 /*N*/   if( nPropFont )
@@ -308,51 +283,8 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/           if ( nNextEnd<nNext ) nNext = nNextEnd; // Wer ist naeher?
 /*N*/       }
 /*N*/   }
-/*N*/     if( pRedln )
-            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   return nNext;
 /*N*/ }
-
-#if OSL_DEBUG_LEVEL > 1
-/*************************************************************************
- *                      SwAttrIter::Dump()
- *************************************************************************/
-
-
-#endif
-
-class SwMinMaxArgs
-{
-public:
-    OutputDevice *pOut;
-    ULONG &rMin;
-    ULONG &rMax;
-    ULONG &rAbsMin;
-    long nRowWidth;
-    long nWordWidth;
-    long nWordAdd;
-    xub_StrLen nNoLineBreak;
-    SwMinMaxArgs( OutputDevice *pOutI, ULONG& rMinI, ULONG &rMaxI, ULONG &rAbsI )
-        : pOut( pOutI ), rMin( rMinI ), rMax( rMaxI ), rAbsMin( rAbsI )
-        { nRowWidth = nWordWidth = nWordAdd = 0; nNoLineBreak = STRING_LEN; }
-    void Minimum( long nNew ) { if( (long)rMin < nNew ) rMin = nNew; }
-    void NewWord() { nWordAdd = nWordWidth = 0; }
-};
-
-
-
-class SwMinMaxNodeArgs
-{
-public:
-    ULONG nMaxWidth;    // Summe aller Rahmenbreite
-    long nMinWidth;     // Breitester Rahmen
-    long nLeftRest;     // noch nicht von Rahmen ueberdeckter Platz im l. Rand
-    long nRightRest;    // noch nicht von Rahmen ueberdeckter Platz im r. Rand
-    long nLeftDiff;     // Min/Max-Differenz des Rahmens im linken Rand
-    long nRightDiff;    // Min/Max-Differenz des Rahmens im rechten Rand
-    ULONG nIndx;        // Indexnummer des Nodes
-    void Minimum( long nNew ) { if( nNew > nMinWidth ) nMinWidth = nNew; }
-};
 
 }
 

@@ -107,7 +107,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       case RES_SCRIPTFLD:
 /*N*/       case RES_POSTITFLD:
-                {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           break;
 /*?*/
 /*?*/       case RES_COMBINED_CHARS:
@@ -115,8 +114,6 @@ namespace binfilter {
 /*?*/               String sStr( pFld->GetCntnt( bName ));
 /*?*/               if( bName )
 /*?*/                   pRet = new SwFldPortion( sStr );
-/*?*/               else
-                        {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           }
 /*?*/           break;
 /*N*/
@@ -160,19 +157,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/       case RES_GETEXPFLD:
 /*N*/       {
-/*N*/           if( !bName && pSh )
-/*N*/           {
-/*N*/               SwGetExpField* pExpFld = (SwGetExpField*)pFld;
-                        /*N*/               if( !::binfilter::lcl_IsInBody( pFrame ) )
-/*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
-/*N*/               else if( !pExpFld->IsInBodyTxt() )
-/*N*/               {
-/*N*/                   // war vorher anders, also erst expandieren, dann umsetzen!!
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
-/*N*/           }
 /*N*/           pRet = new SwFldPortion( pFld->GetCntnt( bName ) );
 /*N*/           break;
 /*N*/       }
@@ -187,8 +171,6 @@ namespace binfilter {
 /*N*/           break;
 /*N*/       }
 /*?*/       case RES_REFPAGEGETFLD:
-/*?*/           if( !bName && pSh )
-                        /*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           pRet = new SwFldPortion( pFld->GetCntnt( bName ) );
 /*?*/           break;
 /*N*/
@@ -242,9 +224,6 @@ namespace binfilter {
 /*N*/   SwLinePortion *pRet = 0;
 /*N*/   if( !pHint )
 /*N*/   {
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/ //        aDbstream << "NewExtraPortion: hint not found?" << endl;
-/*N*/ #endif
 /*?*/       pRet = new SwTxtPortion;
 /*?*/       pRet->SetLen( 1 );
 /*?*/       rInf.SetLen( 1 );
@@ -269,16 +248,12 @@ namespace binfilter {
 /*?*/           break;
 /*?*/       }
 /*?*/       case RES_TXTATR_HARDBLANK :
-/*?*/       {
-                {DBG_BF_ASSERT(0, "STRIP");}
-/*?*/       }
 /*N*/       case RES_TXTATR_FIELD :
 /*N*/       {
 /*N*/           pRet = NewFldPortion( rInf, pHint );
 /*N*/           break;
 /*N*/       }
 /*?*/       case RES_TXTATR_REFMARK :
-                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       case RES_TXTATR_TOXMARK :
 /*N*/       {
 /*N*/           pRet = new SwIsoToxPortion;
@@ -288,9 +263,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if( !pRet )
 /*N*/   {
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/ //        aDbstream << "NewExtraPortion: unknown hint" << endl;
-/*N*/ #endif
 /*?*/       const XubString aNothing;
 /*?*/       pRet = new SwFldPortion( aNothing );
 /*?*/       rInf.SetLen( 1 );
@@ -333,8 +305,6 @@ namespace binfilter {
 /*?*/           pRet = new SwGrfNumPortion( (SwFrm*)GetTxtFrm(),rNumFmt.GetBrush(),
 /*?*/               rNumFmt.GetGraphicOrientation(), rNumFmt.GetGraphicSize(),
 /*?*/               bLeft, bCenter, nMinDist );
-/*?*/           if( !rInf.IsTest() )
-                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/       else
 /*N*/       {

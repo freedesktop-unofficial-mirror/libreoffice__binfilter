@@ -80,9 +80,6 @@ using namespace ::com::sun::star::beans;
 #define DRAW_SPECIAL_OPTIONS_ROTATE 2
 #endif
 
-// steht im number.cxx
-extern const sal_Char sBulletFntName[];
-
 /*************************************************************************
  *                      SwLineInfo::SwLineInfo()
  *************************************************************************/
@@ -366,11 +363,6 @@ extern const sal_Char sBulletFntName[];
  *                      SwTxtSizeInfo::GetTxtBreak()
  *************************************************************************/
 
-
-/*************************************************************************
- *                      SwTxtSizeInfo::GetTxtBreak()
- *************************************************************************/
-
 /*N*/ xub_StrLen SwTxtSizeInfo::GetTxtBreak( const long nLineWidth,
 /*N*/                                        const xub_StrLen nMaxLen,
 /*N*/                                        const USHORT nComp ) const
@@ -570,8 +562,6 @@ extern Color aGlobalRetoucheColor;
 /*N*/       return sal_False;
 /*N*/
 /*N*/   uno::Reference< XHyphenator > xHyph = ::binfilter::GetHyphenator();
-/*N*/   if (bInterHyph && xHyph.is())
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   if( !xHyph.is() || !xHyph->hasLocale( pBreakIt->GetLocale(eTmp) ) )
 /*N*/       return sal_False;

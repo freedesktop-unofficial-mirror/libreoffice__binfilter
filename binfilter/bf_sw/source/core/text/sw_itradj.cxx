@@ -161,8 +161,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/       if ( pPos->InTxtGrp() )
 /*N*/           nGluePortion += ((SwTxtPortion*)pPos)->GetSpaceCnt( GetInfo(), nCharCnt );
-/*N*/       else if( pPos->IsMultiPortion() )
-                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/       if( pPos->InGlueGrp() )
 /*N*/       {
@@ -201,11 +199,6 @@ namespace binfilter {
 /*N*/       pPos = pPos->GetPortion();
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
- *                    SwTxtAdjuster::CalcKanaAdj()
- *************************************************************************/
-
 
 /*************************************************************************
  *                    SwTxtAdjuster::CalcRightMargin()
@@ -411,16 +404,9 @@ namespace binfilter {
 /*N*/   SwFlyPortion *pFlyPortion = 0;
 /*N*/
 /*N*/     SwRect aLineVert( rCurrRect );
-/*N*/     if ( GetTxtFrm()->IsRightToLeft() )
-/*?*/         {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   // aFlyRect ist dokumentglobal !
 /*N*/     SwRect aFlyRect( aTxtFly.GetFrm( aLineVert ) );
-/*N*/
-/*N*/     if ( GetTxtFrm()->IsRightToLeft() )
-/*?*/         {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/     if ( GetTxtFrm()->IsVertical() )
-/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/   // Wenn ein Frame ueberlappt, wird eine Portion eroeffnet.
 /*N*/   if( aFlyRect.HasArea() )
@@ -444,14 +430,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   return pFlyPortion;
 /*N*/ }
-
-/*************************************************************************
- *                SwTxtPainter::_CalcDropAdjust()
- *************************************************************************/
-
-// 6721: Drops und Adjustment
-// CalcDropAdjust wird ggf. am Ende von Format() gerufen.
-
 
 /*************************************************************************
  *                SwTxtAdjuster::CalcDropRepaint()

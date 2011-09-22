@@ -118,18 +118,9 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/
 /*N*/         if ( LANGUAGE_THAI == aLang )
 /*N*/         {
-                DBG_BF_ASSERT(0, "STRIP");
 /*?*/             return nCnt;
 /*N*/         }
 /*N*/     }
-/*N*/
-/*N*/ #ifdef BIDI
-/*N*/     // Kashida Justification: Insert Kashidas
-/*N*/     if ( nEnd > nPos && pSI && COMPLEX == nScript )
-/*N*/     {
-            DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
-/*N*/ #endif
 /*N*/
 /*N*/     // Here starts the good old "Look for blanks and add space to them" part.
 /*N*/               // Note: We do not want to add space to an isolated latin blank in front
@@ -463,8 +454,6 @@ using namespace ::com::sun::star::i18n::ScriptType;
 // rInf.nIdx steht auf dem naechsten Wort, nIdx-1 ist der letzte
 // Buchstabe der Portion.
 
-
-
 /*N*/ void SwTxtPortion::FormatEOL( SwTxtFormatInfo &rInf )
 /*N*/ {
 /*N*/ #ifndef USED
@@ -504,17 +493,6 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/   }
 /*N*/ }
 
-/*************************************************************************
- *               virtual SwTxtPortion::GetCrsrOfst()
- *************************************************************************/
-
-
-
-
-/*************************************************************************
- *               SwTxtPortion::GetCrsrOfst()
- *************************************************************************/
-
 
 /*************************************************************************
  *                virtual SwTxtPortion::GetTxtSize()
@@ -526,23 +504,6 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/     return rInf.GetTxtSize();
 /*N*/ }
 
-/*************************************************************************
- *               virtual SwTxtPortion::Paint()
- *************************************************************************/
-
-
-
-
-/*************************************************************************
- *              virtual SwTxtPortion::GetExpTxt()
- *************************************************************************/
-
-
-
-/*N*/ sal_Bool SwTxtPortion::GetExpTxt( const SwTxtSizeInfo &/*rInf*/, XubString &/*rTxt*/ ) const
-/*N*/ {
-/*N*/   return sal_False;
-/*N*/ }
 
 /*************************************************************************
  *        xub_StrLen SwTxtPortion::GetSpaceCnt()
@@ -584,15 +545,8 @@ using namespace ::com::sun::star::i18n::ScriptType;
 
 
 /*************************************************************************
- *              virtual SwTxtPortion::HandlePortion()
- *************************************************************************/
-
-
-/*************************************************************************
  *                      class SwHolePortion
  *************************************************************************/
-
-
 
 /*N*/ SwHolePortion::SwHolePortion( const SwTxtPortion &rPor )
 /*N*/   : nBlankWidth( 0 )
@@ -604,24 +558,6 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/ }
 
 /*N*/ SwLinePortion *SwHolePortion::Compress() { return this; }
-
-/*************************************************************************
- *               virtual SwHolePortion::Paint()
- *************************************************************************/
-
-
-
-
-/*************************************************************************
- *                 virtual SwHolePortion::Format()
- *************************************************************************/
-
-
-
-
-/*************************************************************************
- *              virtual SwHolePortion::HandlePortion()
- *************************************************************************/
 
 
 }
