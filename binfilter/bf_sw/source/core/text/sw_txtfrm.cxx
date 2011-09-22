@@ -278,16 +278,6 @@ namespace binfilter {
 
 
 /*************************************************************************
- *                        SwTxtFrm::HideHidden()
- *************************************************************************/
-// Entfernt die Anhaengsel des Textfrms wenn dieser hidden ist
-
-/*N*/ void SwTxtFrm::HideHidden()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-
-/*************************************************************************
  *                      SwTxtFrm::FindBrk()
  *
  * Liefert die erste Trennmoeglichkeit in der aktuellen Zeile zurueck.

@@ -49,9 +49,7 @@
 #include <pagedesc.hxx> // SwPageDesc
 #include <tgrditem.hxx>
 
-// Enable this to use the helpclass SwRVPMark
-#if OSL_DEBUG_LEVEL > 1
-#endif
+
 namespace binfilter {
 
 // globale Variablen, werden in FntCache.Hxx bekanntgegeben
@@ -70,10 +68,6 @@ OutputDevice* SwFntObj::pPixOut = NULL;
 
 extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 
-#ifdef _RVP_MARK_HXX
-
-
-#endif
 
 /*************************************************************************
 |*
@@ -178,7 +172,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/       return nPrtAscent + nLeading;
 /*N*/   }
 /*N*/
-/*N*/     CreateScrFont( pSh, *pOut );  // eventuell Bildschirmanpassung durchfuehren
 /*N*/   return nScrAscent;
 /*N*/ }
 
@@ -205,7 +198,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/       return nPrtHeight + nLeading;
 /*N*/   }
 /*N*/
-/*N*/     CreateScrFont( pSh, *pOut );  // eventuell Bildschirmanpassung durchfuehren
 /*N*/   if ( nScrHeight == USHRT_MAX ) // ScreenHeight noch nicht bekannt?
 /*N*/   {
 /*N*/       const Font aOldFnt( pOut->GetFont() );
@@ -214,18 +206,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/       ((OutputDevice*)pOut)->SetFont( aOldFnt );
 /*N*/   }
 /*N*/   return nScrHeight;
-/*N*/ }
-
-/*************************************************************************
- *
- *  SwFntObj::CreateScrFont( const ViewShell *pSh, const OutputDevice& rOut )
- *
- *  pOut is the output device, not the reference device
- *
- *************************************************************************/
-
-/*N*/ void SwFntObj::CreateScrFont( const ViewShell* /*pSh*/, const OutputDevice& /*rOut*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -318,7 +298,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/            OUTDEV_PRINTER != pOut->GetOutDevType() ) &&
 /*N*/          OUTDEV_WINDOW != pRefDev->GetOutDevType() )
 /*N*/     {
-/*?*/         CreateScrFont( pSh, *pOut );
 /*?*/         if( !GetScrFont()->IsSameInstance( pOut->GetFont() ) )
 /*?*/             pOut->SetFont( *pScrFont );
 /*?*/         if( pPrinter && ( !pPrtFont->IsSameInstance( pPrinter->GetFont() ) ) )
@@ -348,37 +327,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 #define WRONG_SHOW_MIN 5
 #define WRONG_SHOW_SMALL 11
 #define WRONG_SHOW_MEDIUM 15
-
-/*************************************************************************
- *
- * void SwFntObj::DrawText( ... )
- *
- *  Beschreibung: Textausgabe
- *                  auf dem Bildschirm          => DrawTextArray
- *                  auf dem Drucker, !Kerning   => DrawText
- *                  auf dem Drucker + Kerning   => DrawStretchText
- *
- *************************************************************************/
-
-
-/*N*/ sal_Bool lcl_IsMonoSpaceFont( const OutputDevice* /*pOut*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_False;
-/*N*/ }
-
-// ER 09.07.95 20:34
-// mit -Ox Optimierung stuerzt's unter win95 ab
-// JP 12.07.95: unter WNT auch (i386);       Alpha ??
-// global optimization off
-#ifdef _MSC_VER
-#pragma optimize("g",off)
-#endif
-
-
-
-// Optimierung war fuer DrawText() ausgeschaltet
-#ifdef _MSC_VER
-#pragma optimize("",on)
-#endif
 
 
 /*************************************************************************
@@ -439,36 +387,21 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*?*/         }
 /*N*/     }
 /*N*/
-/*N*/     const BOOL bCompress = rInf.GetKanaComp() && nLn &&
-/*N*/                            rInf.GetFont() &&
-/*N*/                            SW_CJK == rInf.GetFont()->GetActual() &&
-/*N*/                            rInf.GetScriptInfo() &&
-/*N*/                            rInf.GetScriptInfo()->CountCompChg() &&
-/*N*/                      lcl_IsMonoSpaceFont( rInf.GetpOut() );
+/*N*/   OSL_ENSURE( rInf.GetScriptInfo() && rInf.GetScriptInfo()->CountCompChg(),
+                    "Compression without info" );
 /*N*/
-/*N*/   OSL_ENSURE( !bCompress || ( rInf.GetScriptInfo() && rInf.GetScriptInfo()->
-/*N*/           CountCompChg()), "Compression without info" );
-/*N*/
-/*N*/     // This is the part used e.g., for cursor travelling
-/*N*/     // See condition for DrawText or DrawTextArray (bDirectPrint)
-/*N*/     if ( pPrinter && pPrinter != rInf.GetpOut() )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/   else
+/*N*/   // This is the part used e.g., for cursor travelling
+/*N*/   // See condition for DrawText or DrawTextArray (bDirectPrint)
+/*N*/   if ( !( pPrinter && pPrinter != rInf.GetpOut() ) )
 /*N*/   {
-/*N*/         if( !pPrtFont->IsSameInstance( rInf.GetpOut()->GetFont() ) )
-/*N*/             rInf.GetpOut()->SetFont( *pPrtFont );
-/*N*/       if( bCompress )
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/             aTxtSize.Width() = rInf.GetpOut()->GetTextWidth( rInf.GetText(),
+/*N*/       if( !pPrtFont->IsSameInstance( rInf.GetpOut()->GetFont() ) )
+/*N*/           rInf.GetpOut()->SetFont( *pPrtFont );
+
+/*N*/       aTxtSize.Width() = rInf.GetpOut()->GetTextWidth( rInf.GetText(),
 /*N*/                                                              rInf.GetIdx(), nLn );
-/*N*/           rInf.SetKanaDiff( 0 );
-/*N*/       }
+/*N*/       rInf.SetKanaDiff( 0 );
 /*N*/
-/*N*/         aTxtSize.Height() = rInf.GetpOut()->GetTextHeight();
+/*N*/       aTxtSize.Height() = rInf.GetpOut()->GetTextHeight();
 /*N*/   }
 /*N*/
 /*N*/   if ( rInf.GetKern() && nLn )
@@ -606,14 +539,8 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/ {
 /*N*/   ChgFnt( rInf.GetShell(), rInf.GetpOut() );
 /*N*/
-/*N*/     const BOOL bCompress = rInf.GetKanaComp() && rInf.GetLen() &&
-/*N*/                            SW_CJK == GetActual() &&
-/*N*/                            rInf.GetScriptInfo() &&
-/*N*/                            rInf.GetScriptInfo()->CountCompChg() &&
-/*N*/                      lcl_IsMonoSpaceFont( rInf.GetpOut() );
-/*N*/
-/*N*/     OSL_ENSURE( !bCompress || ( rInf.GetScriptInfo() && rInf.GetScriptInfo()->
-/*N*/             CountCompChg()), "Compression without info" );
+/*N*/     OSL_ENSURE( rInf.GetScriptInfo() && rInf.GetScriptInfo()->CountCompChg(),
+                      "Compression without info" );
 /*N*/
 /*N*/   USHORT nTxtBreak = 0;
 /*N*/   long nKern = 0;
@@ -653,9 +580,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/         }
 /*N*/     }
 /*N*/
-/*N*/     if( aSub[nActual].IsCapital() && nLn )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/   else
+/*N*/     if( !( aSub[nActual].IsCapital() && nLn ) )
 /*N*/   {
 /*N*/       nKern = CheckKerning();
 /*N*/
@@ -719,40 +644,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/         }
 /*N*/   }
 /*N*/
-/*N*/     if ( ! bCompress )
-/*N*/         return nTxtBreak;
-/*N*/
-/*N*/     nTxtBreak -= rInf.GetIdx();
-/*N*/
-/*N*/     if( nTxtBreak < nLn )
-/*N*/   {
-/*N*/         if( !nTxtBreak && nLn )
-/*N*/           nLn = 1;
-/*N*/       else if( nLn > 2 * nTxtBreak )
-/*N*/           nLn = 2 * nTxtBreak;
-/*N*/       sal_Int32 *pKernArray = new sal_Int32[ nLn ];
-/*N*/       rInf.GetOut().GetTextArray( rInf.GetText(), pKernArray,
-/*N*/                                   rInf.GetIdx(), nLn );
-/*N*/         if( rInf.GetScriptInfo()->Compress( pKernArray, rInf.GetIdx(), nLn,
-/*N*/                           rInf.GetKanaComp(), (USHORT)GetHeight( nActual ) ) )
-/*N*/       {
-/*N*/           long nKernAdd = nKern;
-/*N*/           xub_StrLen nTmpBreak = nTxtBreak;
-/*N*/           if( nKern && nTxtBreak )
-/*N*/               nKern *= nTxtBreak - 1;
-/*N*/           while( nTxtBreak<nLn && nTextWidth >= pKernArray[nTxtBreak] +nKern )
-/*N*/           {
-/*N*/               nKern += nKernAdd;
-/*N*/               ++nTxtBreak;
-/*N*/           }
-/*N*/           if( rInf.GetHyphPos() )
-/*N*/               *rInf.GetHyphPos() += nTxtBreak - nTmpBreak; // It's not perfect
-/*N*/       }
-/*N*/       delete[] pKernArray;
-/*N*/     }
-/*N*/     nTxtBreak += rInf.GetIdx();
-/*N*/
-/*N*/     return nTxtBreak;
+/*N*/   return nTxtBreak;
 /*N*/ }
 
 extern Color aGlobalRetoucheColor;

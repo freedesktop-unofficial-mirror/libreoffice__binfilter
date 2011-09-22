@@ -605,20 +605,12 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   xub_StrLen nCloseStart = 0;
 /*N*/   xub_StrLen nClosePos = sRet.Search('>', nCloseStart);
 /*N*/   xub_StrLen nOpenPos = sRet.Search('<', nOpenStart);
-/*N*/   if(nOpenPos != STRING_NOTFOUND && nOpenPos > 0)
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/   else
+/*N*/   if( !( nOpenPos != STRING_NOTFOUND && nOpenPos > 0) )
 /*N*/       nOpenStart = nClosePos;
 /*N*/   nOpenPos = sRet.Search('<', ++nOpenStart);
 /*N*/   while(nOpenPos != STRING_NOTFOUND)
 /*N*/   {
-/*N*/       if(nClosePos < nOpenPos - 1)
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       else
+/*N*/       if( !( nClosePos < nOpenPos - 1) )
 /*N*/       {
 /*N*/           nCloseStart = nClosePos;
 /*N*/           nOpenStart = nOpenPos;
@@ -626,9 +618,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/       nClosePos = sRet.Search('>', ++nCloseStart);
 /*N*/       nOpenPos = sRet.Search('<', ++nOpenStart);
 /*N*/   }
-/*N*/   //is there any text at the end?
-/*N*/   if(nClosePos != STRING_NOTFOUND && nClosePos < sRet.Len() - 1)
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
+
 /*N*/   if(eType != TOX_INDEX)
 /*N*/   {
 /*N*/       // set most left tab stop to right alignment and FillChar == '.'

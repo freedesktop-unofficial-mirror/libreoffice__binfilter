@@ -786,21 +786,6 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/   return aTxtSize;
 /*N*/ }
 
-/*************************************************************************
- *                    SwFont::GetTxtBreak()
- *************************************************************************/
-
-
-/*************************************************************************
- *                    SwFont::GetTxtBreak()
- *************************************************************************/
-
-
-/*************************************************************************
- *                    SwSubFont::_DrawText()
- *************************************************************************/
-
-
 
 /*************************************************************************
  *                    SwSubFont::_GetCrsrOfst()
@@ -815,41 +800,17 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/                                                : rInf.GetLen();
 /*N*/   rInf.SetLen( nLn );
 /*N*/   xub_StrLen nCrsr = 0;
-/*N*/   if( IsCapital() && nLn )
-            {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/   else
+/*N*/   if( !( IsCapital() && nLn ) )
 /*N*/   {
 /*N*/       const XubString &rOldTxt = rInf.GetText();
 /*N*/       short nOldKern = rInf.GetKern();
 /*N*/       rInf.SetKern( CheckKerning() );
 /*N*/       SV_STAT( nGetTextSize );
-/*N*/       if ( !IsCaseMap() )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/       else
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/       rInf.SetKern( nOldKern );
 /*N*/       rInf.SetText( rOldTxt );
 /*N*/   }
 /*N*/   return nCrsr;
 /*N*/ }
-
-/*************************************************************************
- *                    SwSubFont::CalcEsc()
- *************************************************************************/
-
-
-// used during painting of small capitals
-
-/*************************************************************************
- *                      SwUnderlineFont::~SwUnderlineFont
- *
- * Used for the "continuous underline" feature.
- *************************************************************************/
-
-
-
-//Helper for filters to find true lineheight of a font
 
 }
 

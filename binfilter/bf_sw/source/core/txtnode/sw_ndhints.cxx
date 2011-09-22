@@ -39,17 +39,10 @@ namespace binfilter {
 /*N*/ _SV_IMPL_SORTAR_ALG( SwpHtEnd, SwTxtAttr* )
 
 #ifdef NIE
-
-/*N*/ void DumpHints( const SwpHtStart &rHtStart,
-/*N*/               const SwpHtEnd &rHtEnd )
-/*N*/ {
-#ifdef DBG_UTIL
-        DBG_BF_ASSERT(0, "STRIP");
-/*N*/ #endif
-/*N*/ }
-/*N*/ #else
-/*N*/ inline void DumpHints(const SwpHtStart &, const SwpHtEnd &) { }
-/*N*/ #endif
+void DumpHints( const SwpHtStart &rHtStart, const SwpHtEnd &rHtEnd ) {}
+#else
+inline void DumpHints(const SwpHtStart &, const SwpHtEnd &) { }
+#endif
 
 /*************************************************************************
  *                        inline IsEqual()

@@ -477,7 +477,6 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertApplet(
     lcl_putHeightAndWidth( aItemSet, nHeight, nWidth);
 
     SwApplet_Impl aAppletImpl ( aItemSet );
-    aAppletImpl.CreateApplet ( rCode, rName, bMayScript, rHRef );
 
     SwFrmFmt *pFrmFmt = pDoc->Insert( *pTxtCrsr->GetPaM(),
                                        aAppletImpl.GetApplet(),

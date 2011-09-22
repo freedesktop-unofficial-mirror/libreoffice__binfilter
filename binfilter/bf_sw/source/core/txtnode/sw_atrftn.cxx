@@ -67,12 +67,6 @@ namespace binfilter {
 /*N*/ }
 
 
-int SwFmtFtn::operator==( const SfxPoolItem& /*rAttr*/ ) const
-{
-    {DBG_BF_ASSERT(0, "STRIP");} return 0;
-}
-
-
 /*N*/ SfxPoolItem* SwFmtFtn::Clone( SfxItemPool* ) const
 /*N*/ {
 /*N*/   SwFmtFtn* pNew  = new SwFmtFtn;
@@ -91,11 +85,6 @@ void SwFmtFtn::SetEndNote( BOOL b )
         bEndNote = b;
     }
 }
-
-/*N*/ SwFmtFtn::~SwFmtFtn()
-/*N*/ {
-/*N*/ }
-
 
 
     // returnt den anzuzeigenden String der Fuss-/Endnote
@@ -206,11 +195,6 @@ void SwFmtFtn::SetEndNote( BOOL b )
 /*?*/               // Es kann sein, dass die Inserts schon geloescht wurden.
 /*?*/               pDoc->DeleteSection( &pStartNode->GetNode() );
 /*?*/           }
-/*?*/           else
-/*?*/               // Werden die Nodes nicht geloescht mussen sie bei den Seiten
-/*?*/               // abmeldet (Frms loeschen) werden, denn sonst bleiben sie
-/*?*/               // stehen (Undo loescht sie nicht!)
-                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/       DELETEZ( pStartNode );
 /*N*/

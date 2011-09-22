@@ -71,9 +71,7 @@ public:
 #ifdef VERTICAL_LAYOUT
     void SetRstHeight( const SwTxtMargin &rLine )
     {
-        if ( pFrm->IsVertical() )
-            {DBG_BF_ASSERT(0, "STRIP");}
-        else
+        if ( !pFrm->IsVertical() )
             nRstHeight = rLine.Y() - nOrigin;
     }
 #else

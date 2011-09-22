@@ -116,7 +116,6 @@ using rtl::OUString;
 
 BOOL lcl_IsNumeric(const String& rStr)
 {
-          DBG_BF_ASSERT(0, "STRIP");
     for(xub_StrLen i = 0; i < rStr.Len(); i++)
     {
         sal_Unicode c = rStr.GetChar(i);

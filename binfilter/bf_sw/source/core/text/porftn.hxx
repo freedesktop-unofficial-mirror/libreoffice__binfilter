@@ -48,9 +48,9 @@ public:
                   KSHORT nOrig = KSHRT_MAX );
     inline KSHORT& Orig() { return nOrigHeight; }
 
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const;
+    virtual void Paint( const SwTxtPaintInfo &rInf ) const { DBG_BF_ASSERT(0, "STRIP"); }
     virtual sal_Bool GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const;
-    virtual SwPosSize GetTxtSize( const SwTxtSizeInfo &rInfo ) const;
+    virtual SwPosSize GetTxtSize( const SwTxtSizeInfo& /*rInfo*/ ) const { DBG_BF_ASSERT(0, "STRIP"); return 0; }
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
 
     const SwTxtFtn* GetTxtFtn() const { return pFtn; };

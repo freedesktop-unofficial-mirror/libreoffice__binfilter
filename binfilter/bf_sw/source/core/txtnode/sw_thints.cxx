@@ -162,10 +162,8 @@ using namespace ::com::sun::star::i18n;
 /*?*/           ((SwTxtFtn*)pNew)->SetSeqNo( ((SwFmtFtn&)rAttr).GetTxtFtn()->GetSeqRefNo() );
 /*N*/       break;
 /*?*/   case RES_TXTATR_HARDBLANK:
-            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       break;
 /*?*/     case RES_CHRATR_TWO_LINES:
-            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       break;
 /*N*/   case RES_TXTATR_REFMARK:
 /*N*/       pNew = nStt == nEnd
@@ -177,7 +175,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/       break;
 /*N*/   case RES_UNKNOWNATR_CONTAINER:
 /*?*/   case RES_TXTATR_UNKNOWN_CONTAINER:
-            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       break;
 /*N*/   case RES_TXTATR_CJK_RUBY:
 /*N*/       pNew = new SwTxtRuby( (SwFmtRuby&)rNew, nStt, nEnd );
@@ -647,12 +644,10 @@ using namespace ::com::sun::star::i18n;
 /*N*/           ( RES_TXTATR_BEGIN <= nWhich && RES_TXTATR_END > nWhich ) ||
 /*N*/           ( RES_UNKNOWNATR_BEGIN <= nWhich && RES_UNKNOWNATR_END > nWhich )) )
 /*N*/       {
-/*N*/           if( RES_TXTATR_CHARFMT == pItem->Which() &&
-/*N*/               GetDoc()->GetDfltCharFmt()==((SwFmtCharFmt*)pItem)->GetCharFmt())
-/*N*/           {
-                    DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
-/*N*/           else
+/*N*/           if( !(  RES_TXTATR_CHARFMT == pItem->Which()
+                     && GetDoc()->GetDfltCharFmt()==((SwFmtCharFmt*)pItem)->GetCharFmt()
+                     )
+                  )
 /*N*/           {
 /*N*/               pNew = MakeTxtAttr( *pItem, nStt, nEnd );
 /*N*/               if( pNew )
@@ -815,12 +810,10 @@ using namespace ::com::sun::star::i18n;
 /*N*/                   if( nEnd <= *pAttrEnd )     // hinter oder genau Ende
 /*N*/                       (*fnMergeAttr)( aFmtSet, pHt->GetAttr() );
 /*N*/                   else
-/*N*/ //                    else if( pHt->GetAttr() != aFmtSet.Get( pHt->Which() ) )
 /*N*/                       // uneindeutig
 /*N*/                       bChkInvalid = TRUE;
 /*N*/               }
-/*N*/               else if( nAttrStart < nEnd      // reicht in den Bereich
-/*N*/ )//                        && pHt->GetAttr() != aFmtSet.Get( pHt->Which() ) )
+/*N*/               else if( nAttrStart < nEnd )    // reicht in den Bereich
 /*N*/                   bChkInvalid = TRUE;
 /*N*/
 /*N*/               if( bChkInvalid )
@@ -932,11 +925,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/       if ( !pNd->pSwpHints )
 /*N*/           pNd->pSwpHints = new SwpHints();
-/*N*/
-/*N*/       if( aThisSet.Count() )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/   }
 /*N*/
 /*N*/   if( pNd->pSwpHints->CanBeDeleted() )
@@ -1311,19 +1299,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/ }
 
 /*************************************************************************
- *                      SwpHints::Forget( ... )
- *************************************************************************/
-
-/*
- * Forget: Hints, die genau den gleichen Bereich umfassen wie
- * ein nachfolgender mit gleichem Attribut oder eine nachfolgende Zeichen-
- * vorlage, duerfen nicht eingefuegt werden.
- * Solche Hints koennen entstehen, wenn durch SwTxtNode::RstAttr
- * ein Attribut in zwei Teile zerlegt wird und der zweite Teil einen
- * identischen Bereich mit einem inneren Attribut bekaeme.
- */
-
-/*************************************************************************
  *                      SwpHints::Insert()
  *************************************************************************/
 
@@ -1409,10 +1384,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/                       // das Feld am richtigen FeldTypen haengen!
 /*N*/                       SwSetExpFieldType* pFldType = (SwSetExpFieldType*)
 /*N*/                                   pDoc->InsertFldType( *pFld->GetTyp() );
-/*N*/                       if( pFldType != pFld->GetTyp() )
-/*N*/                       {
-/*?*/                           DBG_BF_ASSERT(0, "STRIP");
-/*N*/                       }
 /*N*/                       pFldType->SetSeqRefNo( *(SwSetExpField*)pFld );
 /*N*/                   }
 /*N*/                   break;
@@ -1426,8 +1397,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/                   bInsFldType = ((SwDDEFieldType*)pFld->GetTyp())->IsDeleted();
 /*N*/                   break;
 /*N*/               }
-/*N*/               if( bInsFldType )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           }
 /*N*/       }
 /*N*/       break;
@@ -1436,29 +1405,12 @@ using namespace ::com::sun::star::i18n;
 /*N*/       break;
 /*N*/   case RES_TXTATR_REFMARK:
 /*N*/       ((SwTxtRefMark*)pHint)->ChgTxtNode( &rNode );
-/*N*/       if( rNode.GetNodes().IsDocNodes() )
-/*N*/       {
-/*N*/           //search for a refernce with the same name
-/*N*/           SwTxtAttr* pHt;
-/*N*/           xub_StrLen *pHtEnd2, *pHintEnd;
-/*N*/           for( USHORT n = 0, nEnd = Count(); n < nEnd; ++n )
-/*N*/               if( RES_TXTATR_REFMARK == (pHt = GetHt( n ))->Which() &&
-/*N*/                   pHint->GetAttr() == pHt->GetAttr() &&
-/*N*/                   0 != ( pHtEnd2 = pHt->GetEnd() ) &&
-/*N*/                   0 != ( pHintEnd = pHint->GetEnd() ) )
-/*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
-/*N*/       }
 /*N*/       break;
 /*N*/   case RES_TXTATR_TOXMARK:
 /*N*/       ((SwTxtTOXMark*)pHint)->ChgTxtNode( &rNode );
 /*N*/       break;
 /*N*/
 /*N*/   case RES_TXTATR_CJK_RUBY:
-/*N*/       {
-                DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/       break;
 /*N*/   }
 /*N*/
@@ -1562,10 +1514,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/                           && *pOther->GetStart() < nHtEnd
 /*N*/                           && ( bReplace || *pOther->GetEnd() > nHtEnd ) )
 /*N*/                       {
-/*?*/                           if( !bOtherFmt )
-/*?*/                           {
-                                    DBG_BF_ASSERT(0, "STRIP");
-/*?*/                           }
 /*?*/                           if( bOtherFmt )
 /*?*/                               nHtEnd = *pOther->GetStart();
 /*N*/                       }
@@ -1934,18 +1882,9 @@ using namespace ::com::sun::star::i18n;
 /*N*/   {
 /*N*/   case RES_TXTATR_REFMARK:
 /*N*/   case RES_TXTATR_TOXMARK:
-/*N*/
-/*N*/ //    case RES_TXTATR_FIELD:          ??????
-/*N*/ //    case RES_TXTATR_FLYCNT,                             // 29
-/*N*/
 /*N*/   case RES_TXTATR_FTN:
 /*N*/       cRet = CH_TXTATR_INWORD;
 /*N*/       break;
-/*N*/
-/*N*/       // depends on the character ??
-/*N*/ //    case RES_TXTATR_HARDBLANK:
-/*N*/ //        cRet = CH_TXTATR_INWORD;
-/*N*/ //        break;
 /*N*/   }
 /*N*/   return cRet;
 /*N*/ }

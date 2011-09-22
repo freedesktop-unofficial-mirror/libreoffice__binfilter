@@ -236,9 +236,7 @@ namespace binfilter {
 /*N*/   KSHORT nTmpHeight = pCurr1->GetRealHeight();
 /*N*/   KSHORT nAscent = pCurr1->GetAscent() + nTmpHeight - pCurr1->Height();
 /*N*/   sal_uInt8 nFlags = SETBASE_ULSPACE;
-/*N*/   if( GetMulti() )
-                {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/   else
+/*N*/   if( !GetMulti() )
 /*N*/       aTmpInf.Y( aTmpInf.Y() + nAscent );
 /*N*/
 /*N*/   while( pPos )
@@ -251,11 +249,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/           lcl_MaxAscDescent( pFirst, nTmpAscent, nTmpDescent,
 /*N*/                              nFlyAsc, nFlyDesc, pPos );
-/*N*/           if( pPos->IsGrfNumPortion() )
-/*N*/           {
-                    DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
-/*N*/           else
+/*N*/           if( !pPos->IsGrfNumPortion() )
 /*N*/           {
 /*N*/                 Point aBase( aTmpInf.GetPos() );
 /*N*/
@@ -264,8 +258,6 @@ namespace binfilter {
 /*N*/                     nFlyDesc, nFlags );
 /*N*/           }
 /*N*/       }
-/*N*/       if( pPos->IsMultiPortion() && ((SwMultiPortion*)pPos)->HasFlyInCntnt() )
-                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       pPos->Move( aTmpInf );
 /*N*/       pPos = pPos->GetPortion();
 /*N*/   }
@@ -286,10 +278,6 @@ namespace binfilter {
 /*N*/   SwLinePortion *pFirst = pCurr->GetFirstPortion();
 /*N*/   SwLinePortion *pPos = pFirst;
 /*N*/   sal_uInt8 nFlags = SETBASE_NOFLAG;
-/*N*/   if( GetMulti() && GetMulti()->HasRotation() )
-/*N*/   {
-            DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   long nTmpAscent, nTmpDescent, nFlyAsc, nFlyDesc;
 /*N*/
@@ -354,8 +342,6 @@ namespace binfilter {
 /*N*/
 /*N*/             aLineVert = aLine;
 /*N*/             aInter = rInf.GetTxtFly()->GetFrm( aLineVert );
-/*N*/             if ( pFrm->IsVertical() )
-                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/             // new flys from below?
 /*N*/           if( !pPos->IsFlyPortion() )
@@ -463,16 +449,8 @@ namespace binfilter {
 /*N*/                 + nLeftMar - nLeftMin , nHeight );
 /*N*/
 /*N*/     SwRect aLineVert( aLine );
-/*N*/     if ( pFrm->IsRightToLeft() )
-                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     SwRect aInter( pTxtFly->GetFrm( aLineVert ) );
-/*N*/
-/*N*/     if ( pFrm->IsRightToLeft() )
-                {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/
-/*N*/     if ( pFrm->IsVertical() )
-            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     if( aInter.IsOver( aLine ) )
 /*N*/   {
@@ -539,10 +517,7 @@ namespace binfilter {
 /*N*/           // ausweichen oder die Oberkante des naechsten Rahmens, den wir
 /*N*/           // beachten muessen. Wir koennen also jetzt getrost bis zu diesem
 /*N*/           // Wert anwachsen, so sparen wir einige Leerzeilen.
-/*N*/             sal_Bool bVert = pFrm->IsVertical();
 /*N*/             long nNextTop = pTxtFly->GetNextTop();
-/*N*/             if ( bVert )
-                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/             if( nNextTop > aInter.Bottom() )
 /*N*/           {
 /*N*/                 SwTwips nH = nNextTop - aInter.Top();
@@ -658,10 +633,6 @@ namespace binfilter {
 /*N*/
 /*N*/   Point aBase( GetLeftMargin() + rInf.X(), Y() + nAscent );
 /*N*/   sal_uInt8 nMode = IsQuick() ? SETBASE_QUICK : 0;
-/*N*/   if( GetMulti() && GetMulti()->HasRotation() )
-/*N*/   {
-            DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/     Point aTmpBase( aBase );
 /*N*/
@@ -1262,16 +1233,9 @@ namespace binfilter {
 /*N*/       }
 /*N*/       XPolyPolygon aXPoly;
 /*N*/       XPolyPolygon *pXPoly = NULL;
-/*N*/       if ( pObj->IsWriterFlyFrame() )
+/*N*/       if ( !( pObj->IsWriterFlyFrame() ) )
 /*N*/       {
-/*N*/           // Vorsicht #37347: Das GetContour() fuehrt zum Laden der Grafik,
-/*N*/           // diese aendert dadurch ggf. ihre Groesse, ruft deshalb ein
-/*N*/           // ClrObject() auf.
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/             if( !pObj->ISA( E3dObject ) )
+/*N*/           if( !pObj->ISA( E3dObject ) )
 /*N*/               pObj->TakeXorPoly( aXPoly, sal_True );
 /*N*/           pXPoly = new XPolyPolygon();
 /*N*/           pObj->TakeContour( *pXPoly );
@@ -1343,22 +1307,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   return aRet;
 /*N*/ }
-
-/*************************************************************************
- *                      SwContourCache::ShowContour()
- * zeichnet die PolyPolygone des Caches zu Debugzwecken.
- *************************************************************************/
-#ifdef DBG_UTIL
-
-#endif
-
-/*************************************************************************
- *                      SwTxtFly::ShowContour()
- * zeichnet die PolyPolygone des Caches zu Debugzwecken.
- *************************************************************************/
-#ifdef DBG_UTIL
-
-#endif
 
 /*************************************************************************
  *                      SwTxtFly::ForEach()

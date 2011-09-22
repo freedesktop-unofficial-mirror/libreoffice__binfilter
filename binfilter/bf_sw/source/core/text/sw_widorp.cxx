@@ -34,8 +34,6 @@
 
 #include "ftnboss.hxx"
 #include "paratr.hxx"
-#ifdef DBG_UTIL
-#endif
 
 #include <bf_svx/orphitem.hxx>
 #include <bf_svx/widwitem.hxx>
@@ -134,9 +132,7 @@ namespace binfilter {
 /*N*/     // nOrigin is an absolut value, rLine referes to the swapped situation.
 /*N*/
 /*N*/     SwTwips nTmpY(0);
-/*N*/     if ( pFrm->IsVertical() )
-                {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/     else
+/*N*/     if ( !( pFrm->IsVertical() ) )
 /*N*/         nTmpY = rLine.Y() + rLine.GetLineHeight();
 /*N*/
 /*N*/     SwTwips nLineHeight = (*fnRect->fnYDiff)( nTmpY , nOrigin );
@@ -365,11 +361,7 @@ namespace binfilter {
 /*N*/     SwTwips nOldHeight(0);
 /*N*/     SwTwips nTmpY = rLine.Y() + rLine.GetLineHeight();
 /*N*/
-/*N*/     if ( bVert )
-/*N*/     {
-            DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
-/*N*/     else
+/*N*/     if ( !bVert )
 /*N*/         nOldHeight = (pFrm4->Prt().*fnRect->fnGetHeight)();
 /*N*/
 /*N*/     const SwTwips nChg = (*fnRect->fnYDiff)( nTmpY, nDocPrtTop + nOldHeight );

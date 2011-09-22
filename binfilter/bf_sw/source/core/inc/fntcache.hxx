@@ -130,7 +130,6 @@ public:
 
     Size  GetTextSize( SwDrawTextInfo &rInf );
 
-    void CreateScrFont( const ViewShell *pSh, const OutputDevice& rOut );
     void CreatePrtFont( const OutputDevice& rOut );
 };
 

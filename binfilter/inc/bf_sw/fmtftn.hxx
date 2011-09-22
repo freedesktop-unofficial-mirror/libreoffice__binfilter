@@ -53,10 +53,10 @@ class SwFmtFtn: public SfxPoolItem
 
 public:
     SwFmtFtn( BOOL bEndNote = FALSE );
-    ~SwFmtFtn();
+    ~SwFmtFtn() {}
 
     // "pure virtual Methoden" vom SfxPoolItem
-    virtual int             operator==( const SfxPoolItem& ) const;
+    virtual int             operator==( const SfxPoolItem& ) const {DBG_BF_ASSERT(0, "STRIP"); return 0; }
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
     virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }

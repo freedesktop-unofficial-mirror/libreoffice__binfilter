@@ -1796,8 +1796,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*M*/                 long nPrtHeight = (Prt().*fnRect->fnGetHeight)();
 /*M*/                 if( nPrtHeight )
 /*M*/               {
-/*M*/                   HideHidden();
-/*M*/                     Shrink( nPrtHeight );
+/*M*/                   Shrink( nPrtHeight );
 /*M*/               }
 /*M*/               ChgThisLines();
 /*M*/               return;

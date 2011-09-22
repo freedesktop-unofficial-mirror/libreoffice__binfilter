@@ -527,7 +527,7 @@ void SwXMLTextParagraphExport::_exportTextEmbedded(
             {
                 const SvCommand& rCommand = rCommands [ --i ];
                 const String &rLclName = rCommand.GetCommand();
-                USHORT nLclType = SwApplet_Impl::GetOptionType( rLclName, TRUE );
+                USHORT nLclType = 0;
                 if ( nLclType == SWHTML_OPTTYPE_TAG)
                     rLclExport.AddAttribute( XML_NAMESPACE_DRAW, rLclName, rCommand.GetArgument());
                 else if (SWHTML_OPTTYPE_PARAM == nLclType ||
@@ -595,8 +595,7 @@ void SwXMLTextParagraphExport::_exportTextEmbedded(
             for ( ULONG i = 0; i < nCommands; i++)
             {
                 const SvCommand& rCommand = rCommands [ i ];
-                const String& rName = rCommand.GetCommand();
-                if (SwApplet_Impl::GetOptionType( rName, FALSE ) == SWHTML_OPTTYPE_TAG )
+                if (0 == SWHTML_OPTTYPE_TAG )
                     lcl_addParam (rLclExport, rCommand );
             }
         }

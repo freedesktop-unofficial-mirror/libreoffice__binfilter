@@ -333,7 +333,6 @@ public:
 
     // Hidden
     sal_Bool IsHiddenNow() const;       // bHidden && pOut == pPrt
-    void HideHidden();              // Anhaengsel entfernen wenn Hidden
 
     // Ftn
     void RemoveFtn( const xub_StrLen nStart = 0,

@@ -115,11 +115,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-int SwFmtFld::operator==( const SfxPoolItem& /*rAttr*/ ) const
-{
-        DBG_BF_ASSERT(0, "STRIP"); return 0;
-}
-
 /*N*/ SfxPoolItem* SwFmtFld::Clone( SfxItemPool* ) const
 /*N*/ {
 /*N*/   return new SwFmtFld( *this );
@@ -171,14 +166,6 @@ int SwFmtFld::operator==( const SfxPoolItem& /*rAttr*/ ) const
 /*?*/           return;
 /*N*/   }
 /*N*/
-/*N*/   if( RES_USERFLD == GetFld()->GetTyp()->Which() )
-/*N*/   {
-/*?*/       SwUserFieldType* pType = (SwUserFieldType*)GetFld()->GetTyp();
-/*?*/       if(!pType->IsValid())
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
-/*N*/   }
 /*N*/   pTxtAttr->Expand();
 /*N*/ }
 

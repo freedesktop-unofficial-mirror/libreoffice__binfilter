@@ -165,12 +165,7 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*M*/   if ( !GetpSwpHints() )
 /*M*/       return;
 /*M*/
-/*M*/   USHORT i = 0;
 /*M*/   xub_StrLen nStart = rIdx.GetIndex();
-/*M*/   xub_StrLen nEnd = nStart + nLen;
-/*M*/   xub_StrLen *pAttrEnd;
-/*M*/   xub_StrLen nAttrStart;
-/*M*/   SwTxtAttr *pHt;
 /*M*/
 /*M*/   BOOL    bChanged = FALSE;
 /*M*/
@@ -178,51 +173,9 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*M*/   xub_StrLen nMin = aText.Len();
 /*M*/   xub_StrLen nMax = nStart;
 /*M*/
-/*M*/     // We have to remember the "new" attributes, which have
-/*M*/     // been introduced by splitting surrounding attributes (case 4).
-/*M*/     // They may not be forgotten inside the "Forget" function
-/*M*/     std::vector< const SwTxtAttr* > aNewAttributes;
-/*M*/
-/*M*/   // durch das Attribute-Array, bis der Anfang des Geltungsbereiches
-/*M*/   // des Attributs hinter dem Bereich liegt
-/*M*/   while( (i < pSwpHints->Count()) &&
-/*M*/               ((( nAttrStart = *(*pSwpHints)[i]->GetStart()) < nEnd )
-/*M*/                   || nLen==0) )
-/*M*/   {
-/*M*/       pHt = pSwpHints->GetHt(i);
-/*M*/
-/*M*/       // Attribute ohne Ende bleiben drin!
-/*M*/       if ( 0 == (pAttrEnd=pHt->GetEnd()) )
-/*M*/       {
-/*M*/           i++;
-/*M*/           continue;
-/*M*/       }
-/*M*/
-/*M*/       // loesche alle TextAttribute die als Attribut im Set vorhanden sind
-/*M*/       if( pSet ? SFX_ITEM_SET != pSet->GetItemState( pHt->Which(), FALSE )
-/*M*/                : ( nWhich ? nWhich != pHt->Which()
-/*M*/                           : (!bInclRefToxMark &&
-/*M*/                               ( RES_TXTATR_REFMARK == pHt->Which() ||
-/*M*/                               RES_TXTATR_TOXMARK == pHt->Which() ))))
-/*M*/       {
-/*M*/           // Es sollen nur Attribute mit nWhich beachtet werden
-/*M*/           i++;
-/*M*/           continue;
-/*M*/       }
-/*M*/
-/*M*/
-/*M*/       if( nStart <= nAttrStart )          // Faelle: 1,3,5
-/*M*/       {DBG_BF_ASSERT(0, "STRIP");
-/*M*/       }
-/*M*/       else                                // Faelle: 2,4,5
-/*M*/           if( *pAttrEnd > nStart )        // Faelle: 2,4
-/*M*/           {DBG_BF_ASSERT(0, "STRIP");
-/*M*/       }
-/*M*/       ++i;
-/*M*/   }
-/*M*/
 /*M*/   if ( pSwpHints && pSwpHints->CanBeDeleted() )
 /*M*/       DELETEZ( pSwpHints );
+
 /*M*/   if(bChanged)
 /*M*/   {
 /*M*/       if ( pSwpHints )

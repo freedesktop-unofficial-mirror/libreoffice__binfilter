@@ -66,8 +66,6 @@
 
 using namespace ::com::sun::star;
 
-#define C2S(cChar) String::CreateFromAscii(cChar)
-
 #include <cfgid.h>
 
 #include <shells.hrc>
@@ -82,11 +80,6 @@ namespace binfilter {
 /*M*/   }
 /*M*/   else if(rHint.ISA(SfxItemSetHint))
 /*M*/   {
-/*M*/       if( SFX_ITEM_SET == ((SfxItemSetHint&)rHint).GetItemSet().GetItemState(SID_ATTR_PATHNAME))
-/*M*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*M*/       }
-/*M*/
 /*M*/       if( SFX_ITEM_SET == ((SfxItemSetHint&)rHint).GetItemSet().
 /*M*/                   GetItemState( SID_ATTR_ADDRESS, sal_False ))
 /*M*/           bAuthorInitialised = FALSE;
@@ -94,11 +87,7 @@ namespace binfilter {
 /*M*/   else if(rHint.ISA(SfxSimpleHint))
 /*M*/   {
 /*M*/         ULONG nHintId = ((SfxSimpleHint&)rHint).GetId();
-/*M*/         if(SFX_HINT_COLORS_CHANGED == nHintId ||
-/*N*/            SFX_HINT_ACCESSIBILITY_CHANGED == nHintId )
-/*M*/         {DBG_BF_ASSERT(0, "STRIP");
-/*N*/         }
-/*M*/         else if(SFX_HINT_DEINITIALIZING == nHintId)
+/*M*/         if(SFX_HINT_DEINITIALIZING == nHintId)
 /*M*/         {
 /*M*/             DELETEZ(pWebUsrPref);
 /*M*/             DELETEZ(pUsrPref)   ;

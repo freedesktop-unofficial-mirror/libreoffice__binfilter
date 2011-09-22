@@ -46,30 +46,6 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::linguistic2;
 using namespace ::com::sun::star::i18n;
 
-/*************************************************************************
- *                      SwTxtFormatInfo::HyphWord()
- *************************************************************************/
-
-
-/*************************************************************************
- *                      SwTxtFrm::Hyphenate
- *
- * Wir formatieren eine Zeile fuer die interaktive Trennung
- *************************************************************************/
-
-
-/*************************************************************************
- *                      SwTxtFormatter::Hyphenate
- *
- * Wir formatieren eine Zeile fuer die interaktive Trennung
- *************************************************************************/
-// Wir koennen davon ausgehen, dass bereits formatiert wurde.
-// Fuer die CeBIT'93 gehen wir den einfachen, sicheren Weg:
-// Die Zeile wird einfach neu formatiert, der Hyphenator wird dann
-// so vorbereitet, wie ihn die UI erwartet.
-// Hier stehen natuerlich enorme Optimierungsmoeglichkeiten offen.
-
-
 
 /*************************************************************************
  *                      SwTxtPortion::CreateHyphen()
@@ -90,9 +66,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/   SwTxtSizeInfo aInf( rInf );
 /*N*/
 /*N*/   // first case: hyphenated word has alternative spelling
-/*N*/   if ( xHyphWord.is() && xHyphWord->isAlternativeSpelling() ) {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/   } else {
+/*N*/   if ( !( xHyphWord.is() && xHyphWord->isAlternativeSpelling() ) ) {
 /*N*/       // second case: no alternative spelling
 /*N*/       SwHyphPortion aHyphPor;
 /*N*/       aHyphPor.SetLen( 1 );
@@ -155,10 +129,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   return sal_True;
 /*N*/ }
 
-/*************************************************************************
- *              virtual SwHyphPortion::HandlePortion()
- *************************************************************************/
-
 
 /*************************************************************************
  *                 virtual SwHyphPortion::Format()
@@ -183,15 +153,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/   return bFull;
 /*N*/ }
-
-/*************************************************************************
- *              virtual SwHyphStrPortion::GetExpTxt()
- *************************************************************************/
-
-
-/*************************************************************************
- *              virtual SwHyphStrPortion::HandlePortion()
- *************************************************************************/
 
 
 /*************************************************************************

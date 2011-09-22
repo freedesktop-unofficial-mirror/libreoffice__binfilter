@@ -629,9 +629,6 @@ BOOL SwCntntFrm::MakePrtArea( const SwBorderAttrs &rAttrs )
             if ( ((SwTxtFrm*)this)->HasFollow() )
                 ((SwTxtFrm*)this)->JoinFrm();
 
-            if( (Prt().*fnRect->fnGetHeight)() )
-                ((SwTxtFrm*)this)->HideHidden();
-
             Prt().Pos().X() = Prt().Pos().Y() = 0;
             (Prt().*fnRect->fnSetWidth)( (Frm().*fnRect->fnGetWidth)() );
             (Prt().*fnRect->fnSetHeight)( 0 );

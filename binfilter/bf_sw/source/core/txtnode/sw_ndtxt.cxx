@@ -208,9 +208,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/       SwIndex aIdx( this );
 /*?*/       Cut( pNode, aIdx, nSplitPos );
 /*?*/
-/*?*/       if( GetWrong() )
-                {DBG_BF_ASSERT(0, "STRIP");}
-/*?*/
 /*?*/       SetWrongDirty( TRUE );
 /*?*/
 /*?*/       if( pNode->pSwpHints )
@@ -272,7 +269,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/       // with length zero, because we have to notify about the changed
 /*?*/       // text node.
 /*?*/       if( nTxtLen != nSplitPos )
-/*?*/
 /*?*/       {
 /*?*/           // dann sage den Frames noch, das am Ende etwas "geloescht" wurde
 /*?*/           if( 1 == nTxtLen - nSplitPos )
@@ -286,31 +282,16 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/               pNode->SwModify::Modify( 0, &aHint );
 /*?*/           }
 /*?*/       }
-/*?*/       if( pSwpHints )
-                {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       pNode->MakeFrms( *this );       // neue Frames anlegen.
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/         SwWrongList *pList = GetWrong();
-/*N*/         pWrong = NULL;
+/*N*/       pWrong = NULL;
 /*N*/
 /*N*/       SetWrongDirty( TRUE );
 /*N*/
 /*N*/       SwIndex aIdx( this );
 /*N*/       Cut( pNode, aIdx, rPos.nContent.GetIndex() );
-/*N*/
-/*N*/       // JP 01.10.96: alle leeren und nicht zu expandierenden
-/*N*/       //              Attribute loeschen
-/*N*/       if( pSwpHints )
-/*N*/       {
-                DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/
-/*N*/         if( pList )
-/*N*/         {
-                DBG_BF_ASSERT(0, "STRIP");
-/*N*/         }
 /*N*/
 /*N*/       if ( GetDepends() )
 /*N*/           MakeFrms( *pNode );     // neue Frames anlegen.
@@ -342,18 +323,9 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       SwTxtNode *pTxtNode = aIdx.GetNode().GetTxtNode();
 /*N*/       xub_StrLen nOldLen = aText.Len();
 /*N*/         SwWrongList *pList = GetWrong();
-/*N*/         if( pList )
-/*N*/         {
-                DBG_BF_ASSERT(0, "STRIP");
-/*N*/         }
-/*N*/         else
-/*N*/         {
+/*N*/         if( !pList )
 /*N*/             pList = pTxtNode->GetWrong();
-/*N*/             if( pList )
-/*N*/             {
-                    DBG_BF_ASSERT(0, "STRIP");
-/*N*/             }
-/*N*/         }
+
 /*N*/       { // wg. SwIndex
 /*N*/           pTxtNode->Cut( this, SwIndex(pTxtNode), pTxtNode->Len() );
 /*N*/       }
@@ -388,18 +360,9 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       SwTxtNode *pTxtNode = aIdx.GetNode().GetTxtNode();
 /*N*/       xub_StrLen nLen = pTxtNode->Len();
 /*N*/         SwWrongList *pList = pTxtNode->GetWrong();
-/*N*/         if( pList )
-/*N*/         {
-                DBG_BF_ASSERT(0, "STRIP");
-/*N*/         }
-/*N*/         else
-/*N*/         {
+/*N*/         if( !pList )
 /*N*/             pList = GetWrong();
-/*N*/             if( pList )
-/*N*/             {
-                    DBG_BF_ASSERT(0, "STRIP");
-/*N*/             }
-/*N*/         }
+
 /*N*/       { // wg. SwIndex
 /*N*/           pTxtNode->Cut( this, SwIndex( this ), SwIndex(pTxtNode), nLen );
 /*N*/       }
@@ -427,10 +390,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/ {
 /*N*/   OSL_ENSURE( !pAttrSet, "AttrSet ist doch gesetzt" );
 /*N*/   pAttrSet = new SwAttrSet( rPool, aTxtNodeSetRange );
-/*N*/ //FEATURE::CONDCOLL
-/*N*/ //    pAttrSet->SetParent( &GetFmtColl()->GetAttrSet() );
 /*N*/   pAttrSet->SetParent( &GetAnyFmtColl().GetAttrSet() );
-/*N*/ //FEATURE::CONDCOLL
 /*N*/ }
 
 
@@ -512,8 +472,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/                                       *pHt->GetStart(), *pHt->GetEnd() );
 /*N*/               }
 /*N*/
-/*N*/ //JP 01.10.96: fuers SplitNode sollte das Flag nicht geloescht werden!
-/*N*/ //                pHt->SetDontExpand( FALSE );
 /*N*/           }
 /*N*/           // AMA: Durch das Loeschen koennen Attribute gleiche Start-
 /*N*/           //      und/oder Endwerte erhalten, die vorher echt ungleich
@@ -822,7 +780,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       // Wenn wir es mit einem Fussnoten-Attribut zu tun haben,
 /*N*/       // muessen wir natuerlich auch den Fussnotenbereich kopieren.
 /*N*/       case RES_TXTATR_FTN :
-            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           break;
 /*N*/
 /*N*/       // Beim Kopieren von Feldern in andere Dokumente
@@ -832,8 +789,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       case RES_TXTATR_FIELD :
 /*N*/           {
 /*N*/               const SwFmtFld& rFld = pHt->GetFld();
-/*N*/               if( pOtherDoc )
-                        {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/               // Tabellenformel ??
 /*N*/               if( RES_TABLEFLD == rFld.GetFld()->GetTyp()->Which()
@@ -874,17 +829,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/           }
 /*N*/           break;
 /*?*/       case RES_TXTATR_INETFMT :
-/*?*/           // Wenn wir es mit benutzerdefinierten INet-Zeichenvorlagen
-/*?*/           // zu tun haben, muessen wir natuerlich auch die Formate kopieren.
-/*?*/           if( pOtherDoc && pDest && pDest->GetpSwpHints()
-/*?*/               && USHRT_MAX != pDest->GetpSwpHints()->GetPos( pNewHt ) )
-/*?*/           {
-/*?*/               const SwDoc* pDoc;
-/*?*/               if( 0!=( pDoc = ((SwTxtINetFmt*)pHt)->GetTxtNode().GetDoc() ) )
-/*?*/               {
-                        DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
-/*?*/           }
 /*?*/           //JP 24.04.98: Bug 49753 - ein TextNode muss am Attribut
 /*?*/           //              gesetzt sein, damit die Vorlagen erzeugt
 /*?*/           //              werden koenne
@@ -2062,7 +2006,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/                       ++rTxtStt;
 /*N*/                       break;
 /*N*/                   case RES_TXTATR_HARDBLANK:
-                            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/                       break;
 /*N*/                   case RES_TXTATR_FTN:
 /*N*/                       rTxt.Erase( nPos, 1 );

@@ -54,11 +54,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-int SwFmtFlyCnt::operator==( const SfxPoolItem& /*rAttr*/ ) const
-{
-    DBG_BF_ASSERT(0, "STRIP"); return 0;
-}
-
 /*N*/ SfxPoolItem* SwFmtFlyCnt::Clone( SfxItemPool* ) const
 /*N*/ {
 /*N*/   return new SwFmtFlyCnt( pFmt );

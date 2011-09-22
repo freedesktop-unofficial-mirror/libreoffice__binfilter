@@ -60,11 +60,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-int SwFmtRefMark::operator==( const SfxPoolItem& /*rAttr*/ ) const
-{
-    {DBG_BF_ASSERT(0, "STRIP");} return 0;
-}
-
 /*N*/ SfxPoolItem* SwFmtRefMark::Clone( SfxItemPool* ) const
 /*N*/ {
 /*N*/   return new SwFmtRefMark( *this );
