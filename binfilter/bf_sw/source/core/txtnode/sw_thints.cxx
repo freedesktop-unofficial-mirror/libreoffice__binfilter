@@ -1373,11 +1373,9 @@ using namespace ::com::sun::star::i18n;
 /*N*/           // gehts ins normale Nodes-Array?
 /*N*/           if( rNode.GetNodes().IsDocNodes() )
 /*N*/           {
-/*N*/               BOOL bInsFldType = FALSE;
 /*N*/               switch( pFld->GetTyp()->Which() )
 /*N*/               {
 /*N*/               case RES_SETEXPFLD:
-/*N*/                   bInsFldType = ((SwSetExpFieldType*)pFld->GetTyp())->IsDeleted();
 /*N*/                   if( GSE_SEQ & ((SwSetExpFieldType*)pFld->GetTyp())->GetType() )
 /*N*/                   {
 /*N*/                       // bevor die ReferenzNummer gesetzt wird, sollte
@@ -1388,13 +1386,11 @@ using namespace ::com::sun::star::i18n;
 /*N*/                   }
 /*N*/                   break;
 /*N*/               case RES_USERFLD:
-/*N*/                   bInsFldType = ((SwUserFieldType*)pFld->GetTyp())->IsDeleted();
 /*N*/                   break;
 /*N*/
 /*N*/               case RES_DDEFLD:
 /*N*/                   if( pDoc->IsNewFldLst() )
 /*N*/                       ((SwDDEFieldType*)pFld->GetTyp())->IncRefCnt();
-/*N*/                   bInsFldType = ((SwDDEFieldType*)pFld->GetTyp())->IsDeleted();
 /*N*/                   break;
 /*N*/               }
 /*N*/           }

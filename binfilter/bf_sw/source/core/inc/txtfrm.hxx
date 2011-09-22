@@ -115,7 +115,7 @@ class SwTxtFrm: public SwCntntFrm
 
     // WidowsAndOrphans, AdjustFrm, AdjustFollow
     void FormatAdjust( SwTxtFormatter &rLine, WidowsAndOrphans &rFrmBreak,
-                       const xub_StrLen nStrLen, const sal_Bool bDummy );
+                       const xub_StrLen nStrLen );
 
     sal_Bool bLocked        : 1;        // im Format?
     sal_Bool bFormatted     : 1;        // nach Format auf sal_True

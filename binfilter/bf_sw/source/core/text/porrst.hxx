@@ -102,7 +102,7 @@ public:
 #endif
 
     virtual void FormatEOL( SwTxtFormatInfo &rInf );
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const { DBG_BF_ASSERT(0, "STRIP"); }
+    virtual void Paint( const SwTxtPaintInfo & ) const { DBG_BF_ASSERT(0, "STRIP"); }
 
     OUTPUT_OPERATOR
 };
@@ -117,7 +117,7 @@ class SwArrowPortion : public SwLinePortion
     sal_Bool bLeft;
 public:
             SwArrowPortion( const SwLinePortion &rPortion );
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const { DBG_BF_ASSERT(0, "STRIP"); }
+    virtual void Paint( const SwTxtPaintInfo & ) const { DBG_BF_ASSERT(0, "STRIP"); }
     virtual SwLinePortion *Compress();
     inline sal_Bool IsLeft() const { return bLeft; }
     inline const Point& GetPos() const { return aPos; }

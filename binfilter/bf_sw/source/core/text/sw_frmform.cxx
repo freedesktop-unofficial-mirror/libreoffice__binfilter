@@ -579,15 +579,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   // umgehaengt.
 /*N*/   xub_StrLen nStart = pFoll->GetOfst();
 /*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/     else if ( pFoll->GetValidPrtAreaFlag() ||
-/*N*/               pFoll->GetValidSizeFlag() )
-/*N*/     {
-/*N*/       pFoll->CalcFtnFlag();
-/*N*/       OSL_ENSURE( !pFoll->HasFtn(), "Missing FtnFlag." );
-/*N*/   }
-/*N*/ #endif
-/*N*/
 /*N*/   pFoll->MoveFlyInCnt( this, nStart, STRING_LEN );
 /*N*/     pFoll->SetFtn( FALSE );
 /*N*/   pFoll->Cut();
@@ -614,14 +605,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   SetFollow( pNew );
 /*N*/
 /*N*/   pNew->Paste( GetUpper(), GetNext() );
-/*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/   else
-/*N*/   {
-/*N*/       CalcFtnFlag( nTxtPos-1 );
-/*N*/       OSL_ENSURE( !HasFtn(), "Missing FtnFlag." );
-/*N*/   }
-/*N*/ #endif
 /*N*/
 /*N*/   MoveFlyInCnt( pNew, nTxtPos, STRING_LEN );
 /*N*/
@@ -788,14 +771,14 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/               // ist. Mal sehen, ob's klappt ...
 /*N*/               aLine.TruncLines();
 /*N*/               aFrmBreak.SetRstHeight( aLine );
-/*N*/               FormatAdjust( aLine, aFrmBreak, aInf.GetTxt().Len(), aInf.IsStop() );
+/*N*/               FormatAdjust( aLine, aFrmBreak, aInf.GetTxt().Len() );
 /*N*/           }
 /*N*/           else
 /*N*/           {
 /*N*/               if( !GetFollow() )
 /*N*/               {
 /*N*/                   FormatAdjust( aLine, aFrmBreak,
-/*N*/                                 aInf.GetTxt().Len(), aInf.IsStop() );
+/*N*/                                 aInf.GetTxt().Len() );
 /*N*/               }
 /*N*/               else if ( !aFrmBreak.IsKeepAlways() )
 /*N*/               {
@@ -853,8 +836,7 @@ MSHORT FormatLevel::nLevel = 0;
 
 /*N*/ void SwTxtFrm::FormatAdjust( SwTxtFormatter &rLine,
 /*N*/                            WidowsAndOrphans &rFrmBreak,
-/*N*/                              const xub_StrLen nStrLen,
-/*N*/                              const sal_Bool bDummy )
+/*N*/                              const xub_StrLen nStrLen )
 /*N*/ {
 /*N*/     SWAP_IF_NOT_SWAPPED( this )
 /*N*/
@@ -1435,7 +1417,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       // Bei OnceMore lohnt sich kein FormatAdjust
 /*N*/       if( bAdjust || !rLine.GetDropFmt() || !rLine.CalcOnceMore() )
 /*N*/       {
-/*N*/           FormatAdjust( rLine, aFrmBreak, nStrLen, rInf.IsStop() );
+/*N*/           FormatAdjust( rLine, aFrmBreak, nStrLen );
 /*N*/       }
 /*N*/       if( rRepaint.HasArea() )
 /*N*/           SetRepaint();
@@ -1636,7 +1618,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*M*/           return;
 /*M*/       }
 /*M*/
-/*M*/         sal_Bool bChkAtCnt = sal_False;
 /*M*/       const xub_StrLen nStrLen = GetTxtNode()->GetTxt().Len();
 /*M*/       if ( nStrLen || !FormatEmpty() )
 /*M*/       {
@@ -1744,7 +1725,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*M*/                   ValidateFrm();
 /*M*/                   SetWidow( sal_False );
 /*M*/               }
-/*M*/               bChkAtCnt = sal_True;
 /*M*/           }
 /*M*/           if( IsEmptyMaster() )
 /*M*/           {

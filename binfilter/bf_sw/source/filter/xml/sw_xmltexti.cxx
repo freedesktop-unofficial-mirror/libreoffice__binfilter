@@ -454,10 +454,10 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertOLEObject(
 }
 
 Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertApplet(
-        const OUString &rName,
-        const OUString &rCode,
-        sal_Bool bMayScript,
-        const OUString& rHRef,
+        const OUString &,
+        const OUString &,
+        sal_Bool,
+        const OUString&,
         sal_Int32 nWidth, sal_Int32 nHeight )
 {
     // this method will modify the document directly -> lock SolarMutex

@@ -555,7 +555,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   if( !nPos1 )
 /*N*/       return NULL;
 /*N*/   xub_StrLen nMultiPos = nPos1 - pLine->GetLen();
-/*N*/   const SwMultiPortion *pTmpMulti = NULL;
 /*N*/   const SwMultiPortion *pMulti1 = NULL;
 /*N*/   const SwLinePortion* pPor = pLine->GetFirstPortion();
 /*N*/   SwFldPortion *pFld = NULL;
@@ -566,13 +565,10 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/           if( !pMulti1 )
 /*N*/           {
 /*N*/               nMultiPos += pPor->GetLen();
-/*N*/               pTmpMulti = NULL;
 /*N*/           }
 /*N*/       }
 /*N*/       if( pPor->InFldGrp() )
 /*N*/       {
-/*?*/           if( !pMulti1 )
-/*?*/               pTmpMulti = NULL;
 /*?*/           pFld = (SwFldPortion*)pPor;
 /*N*/       }
 /*N*/       else if( pPor->IsMultiPortion() )
@@ -585,7 +581,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/ #endif
 /*?*/
 /*?*/           pFld = NULL;
-/*?*/           pTmpMulti = (SwMultiPortion*)pPor;
 /*N*/       }
 /*N*/       pPor = pPor->GetPortion();
 /*N*/   }

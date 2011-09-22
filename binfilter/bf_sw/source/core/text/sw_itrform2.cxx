@@ -1175,35 +1175,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/       }
 /*M*/   }
 /*M*/
-/*M*/     // Special portions containing numbers (footnote anchor, footnote number,
-/*M*/     // numbering) can be contained in a rotated portion, if the user
-/*M*/     // choose a rotated character attribute.
-/*M*/     if ( pPor && ! pMulti )
-/*M*/     {
-/*M*/         if ( pPor->IsFtnPortion() )
-/*M*/         {
-/*M*/             const SwTxtFtn* pTxtFtn = ((SwFtnPortion*)pPor)->GetTxtFtn();
-/*M*/
-/*M*/             if ( pTxtFtn )
-/*M*/             {
-/*M*/                 SwFmtFtn& rFtn = (SwFmtFtn&)pTxtFtn->GetFtn();
-/*M*/                 const SwDoc *pDoc = rInf.GetTxtFrm()->GetNode()->GetDoc();
-/*M*/                 const SwEndNoteInfo* pInfo;
-/*M*/                 if( rFtn.IsEndNote() )
-/*M*/                     pInfo = &pDoc->GetEndNoteInfo();
-/*M*/                 else
-/*M*/                     pInfo = &pDoc->GetFtnInfo();
-/*M*/                 const SwAttrSet& rSet = pInfo->GetAnchorCharFmt((SwDoc&)*pDoc)->GetAttrSet();
-/*M*/
-/*M*/                 const SfxPoolItem* pItem;
-/*M*/                 USHORT nDir = 0;
-/*M*/                 if( SFX_ITEM_SET == rSet.GetItemState( RES_CHRATR_ROTATE, sal_True, &pItem ))
-/*M*/                     nDir = ((SvxCharRotateItem*)pItem)->GetValue();
-/*M*/
-/*M*/             }
-/*M*/         }
-/*M*/     }
-/*M*/
 /*M*/     // Der Font wird im Outputdevice eingestellt,
 /*M*/   // der Ascent und die Hoehe werden berechnet.
 /*M*/   if( !pPor->GetAscent() && !pPor->Height() )
