@@ -1143,9 +1143,6 @@ namespace binfilter {
 /*N*/   bOrganizer = bOrg;
 /*N*/ }
 
-/*N*/ SwDocStyleSheetPool::~SwDocStyleSheetPool()
-/*N*/ {
-/*N*/ }
 
 /*N*/ SfxStyleSheetBase& SwDocStyleSheetPool::Make(
 /*N*/       const String&   rName,
@@ -1166,27 +1163,12 @@ namespace binfilter {
 
 
 
-
-
-
 /*N*/ SfxStyleSheetIterator*  SwDocStyleSheetPool::CreateIterator(
 /*N*/                       SfxStyleFamily eFam, USHORT nInMask )
 /*N*/ {
 /*N*/   return new SwStyleSheetIterator( this, eFam, nInMask );
 /*N*/ }
 
-
-
-
-BOOL  SwDocStyleSheetPool::SetParent(
-    SfxStyleFamily /*eFam*/,
-    const String& /*rStyle*/,
-    const String& /*rParent*/
-)
-{
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-    return FALSE;
-}
 
 /*N*/ SfxStyleSheetBase* SwDocStyleSheetPool::Find( const String& rName,
 /*N*/                                           SfxStyleFamily eFam, USHORT n )
@@ -1594,11 +1576,6 @@ BOOL  SwDocStyleSheetPool::SetParent(
 /*N*/       for ( USHORT i=0; i < rList.Count(); ++i )
 /*N*/           aLst.Append( cType, *rList[i] );
 /*N*/ }
-
-void  SwStyleSheetIterator::Notify( SfxBroadcaster&, const SfxHint& )
-{
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-}
 
 
 }

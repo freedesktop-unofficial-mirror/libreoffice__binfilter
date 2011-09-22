@@ -163,7 +163,7 @@ public:
     virtual SfxStyleSheetBase* First();
     virtual SfxStyleSheetBase* Next();
 
-    virtual void Notify( SfxBroadcaster&, const SfxHint& );
+    virtual void Notify( SfxBroadcaster&, const SfxHint& ) { DBG_BF_ASSERT(0, "STRIP"); }
 };
 
 /*--------------------------------------------------------------------
@@ -179,13 +179,12 @@ class SwDocStyleSheetPool : public SfxStyleSheetBasePool
 
 public:
     SwDocStyleSheetPool( SwDoc&, BOOL bOrganizer = FALSE );
-    virtual ~SwDocStyleSheetPool();
+    virtual ~SwDocStyleSheetPool() {}
 
     virtual SfxStyleSheetBase& Make(const String&, SfxStyleFamily, USHORT nMask, USHORT nPos = 0xffff);
     virtual SfxStyleSheetBase* Find( const String&, SfxStyleFamily eFam,
                                     USHORT n=0xFFFF );
-    virtual BOOL SetParent( SfxStyleFamily eFam, const String &rStyle,
-                            const String &rParent );
+    virtual BOOL SetParent( SfxStyleFamily, const String&, const String& ) { DBG_BF_ASSERT(0, "STRIP"); return FALSE; }
 
     void    SetItemSet(const SfxItemSet& rSet) { aStyleSheet.SetItemSet(rSet); }
 
