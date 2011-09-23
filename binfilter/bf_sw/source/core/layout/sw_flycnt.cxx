@@ -249,11 +249,6 @@ namespace binfilter {
 /*?*/       SwOszControl::pStk5 = 0;
 /*N*/ }
 
-/*N*/ bool IsInProgress( const SwFlyFrm* /*pFly*/ )
-/*N*/ {
-        DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
-
 /*N*/ bool SwOszControl::IsInProgress( const SwFlyFrm *pFly )
 /*N*/ {
 /*N*/   if ( SwOszControl::pStk1 && !pFly->IsLowerOf( SwOszControl::pStk1 ) )

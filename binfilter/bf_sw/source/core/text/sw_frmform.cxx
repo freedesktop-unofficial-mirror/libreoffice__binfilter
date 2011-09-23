@@ -56,8 +56,6 @@
 
 namespace binfilter {
 
-extern bool IsInProgress( const SwFlyFrm *pFly );
-
 class FormatLevel
 {
     static MSHORT nLevel;

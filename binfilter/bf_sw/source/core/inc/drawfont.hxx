@@ -163,11 +163,6 @@ public:
     // examines the range [ nStart, nStart + nEnd ] if there are kanas
     // returns start index of kana entry in array, otherwise USHRT_MAX
     USHORT HasKana( xub_StrLen nStart, const xub_StrLen nEnd ) const;
-
-    // modifies the kerning array according to a given compress value
-    long Compress( sal_Int32* pKernArray, xub_StrLen nIdx, xub_StrLen nLen,
-                   const USHORT nCompress, const USHORT nFontHeight,
-                   Point* pPoint = NULL ) const;
 };
 
 inline void SwScriptInfo::SetInvalidity( const xub_StrLen nPos )

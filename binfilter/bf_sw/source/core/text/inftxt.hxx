@@ -232,15 +232,6 @@ public:
                    const xub_StrLen _nLen = STRING_LEN )
            { CtorInit( _pFrm, _pFnt, _nIdx, _nLen ); }
 
-    // GetMultiAttr returns the text attribute of the multiportion,
-    // if rPos is inside any multi-line part.
-    // rPos will set to the end of the multi-line part.
-#ifdef BIDI
-    SwMultiCreator* GetMultiCreator( xub_StrLen &rPos, SwMultiPortion* pM ) const;
-#else
-    SwMultiCreator* GetMultiCreator( xub_StrLen &rPos ) const;
-#endif
-
     inline sal_Bool OnWin() const { return bOnWin; }
     inline void SetOnWin( const sal_Bool bNew ) { bOnWin = bNew; }
     inline sal_Bool NotEOL() const { return bNotEOL; }
