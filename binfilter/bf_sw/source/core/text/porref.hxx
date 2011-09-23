@@ -43,20 +43,6 @@ public:
 };
 
 /*************************************************************************
- *                      class SwIsoRefPortion
- *************************************************************************/
-
-class SwIsoRefPortion : public SwRefPortion
-{
-public:
-    SwIsoRefPortion(){DBG_BF_ASSERT(0, "STRIP");};
-
-    // Accessibility: pass information about this portion to the PortionHandler
-
-    OUTPUT_OPERATOR
-};
-
-/*************************************************************************
  *                  inline - Implementations
  *************************************************************************/
 

@@ -717,8 +717,6 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/                   // Bei benutzerdefinierten Vorlagen werden die Help-Ids
 /*N*/                   // im Doc gesetzt.
 /*N*/                   pFmt->SetPoolFmtId( p->nId );
-/*N*/                   if( p->aHelpFile.Len() )
-/*?*/                           DBG_BF_ASSERT(0, "STRIP");
 /*N*/                   pFmt->SetPoolHelpId( (USHORT)p->nHelpId );
 /*N*/               }
 /*N*/               else
@@ -865,11 +863,7 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/           {
 /*?*/               SwStyleCondColl* pCColl = (*p->pCondColls)[n];
 /*?*/               SwTxtFmtColl* pDColl = rDoc.FindTxtFmtCollByName( pCColl->sColl );
-/*?*/               if( pDColl )
-/*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
-/*?*/               else
+/*?*/               if( !pDColl )
                     {
 /*?*/                   OSL_ENSURE( !this, "Collection nicht gefunden" );
                     }
@@ -947,10 +941,6 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/ void Sw3IoImp::LoadStyleSheets( BOOL bNew )
 /*N*/ {
 /*N*/   OSL_ENSURE( !HasRecSizes(), "Hier darf es noch keine RecSizes geben" );
-/*N*/   // Bisher wurde allenfalls der Drawing-Layer gelesen. Deshalb
-/*N*/   // kann es hier noch gar keine RecSizes geben. Besser ist aber besser ...
-/*N*/   if( HasRecSizes() )
-            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   SfxItemPool *pTmp = pDoc->GetAttrPool().GetSecondaryPool();
 /*N*/   pDoc->GetAttrPool().SetSecondaryPool( 0 );

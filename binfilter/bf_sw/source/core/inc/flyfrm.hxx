@@ -143,9 +143,7 @@ public:
     virtual BOOL GetInfo( SfxPoolItem& ) const;
     virtual void ChgSize( const Size& aNewSize );
 
-    virtual void Cut();
-#ifdef DBG_UTIL
-#endif
+    virtual void Cut() {}
 
     SwTwips _Shrink( SwTwips, SZPTR BOOL bTst );
     SwTwips _Grow  ( SwTwips, SZPTR BOOL bTst );

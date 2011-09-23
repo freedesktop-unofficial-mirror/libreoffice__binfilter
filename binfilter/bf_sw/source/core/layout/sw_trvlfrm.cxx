@@ -57,49 +57,6 @@
 namespace binfilter {
 
 
-//Fuer SwFlyFrm::GetCrsrOfst
-
-
-/*************************************************************************
-|*
-|*  SwLayoutFrm::GetCrsrOfst()
-|*
-|*  Beschreibung:       Sucht denjenigen CntntFrm, innerhalb dessen
-|*                      PrtArea der Point liegt.
-|*
-|*************************************************************************/
-
-/*************************************************************************
-|*
-|*  SwPageFrm::GetCrsrOfst()
-|*
-|*  Beschreibung:       Sucht die Seite, innerhalb der der gesuchte Point
-|*                      liegt.
-|*
-|*************************************************************************/
-
-
-/*************************************************************************
-|*
-|*  SwRootFrm::GetCrsrOfst()
-|*
-|*  Beschreibung:       Reicht Primaer den Aufruf an die erste Seite weiter.
-|*                      Wenn der 'reingereichte Point veraendert wird,
-|*                      so wird FALSE zurueckgegeben.
-|*
-|*************************************************************************/
-
-/*************************************************************************
-|*
-|*  SwCellFrm::GetCrsrOfst()
-|*
-|*  Beschreibung        Wenn es sich um eine Cntnt-tragende Cell handelt wird
-|*                      der Crsr notfalls mit Gewalt in einen der CntntFrms
-|*                      gesetzt.
-|*                      In geschuetzte Zellen gibt es hier keinen Eingang.
-|*
-|*************************************************************************/
-
 /*************************************************************************
 |*
 |*  SwFlyFrm::GetCrsrOfst()
@@ -131,97 +88,45 @@ namespace binfilter {
 
 /*N*/ typedef const SwCntntFrm *(*GetNxtPrvCnt)( const SwCntntFrm* );
 
-//Frame in wiederholter Headline?
-/*N*/ bool lcl_IsInRepeatedHeadline( const SwFrm* /*pFrm*/,
-/*N*/                                   const SwTabFrm** /*ppTFrm*/ = 0 )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
-
 
 //Ueberspringen geschuetzter Tabellenzellen. Optional auch
 //Ueberspringen von wiederholten Headlines.
 //MA 26. Jan. 98: Chg auch andere Geschuetzte Bereiche ueberspringen.
-/*N*/ const SwCntntFrm * MA_FASTCALL lcl_MissProtectedFrames( const SwCntntFrm *pCnt,
-/*N*/                                                      GetNxtPrvCnt fnNxtPrv,
-/*N*/                                                      bool bMissHeadline,
-/*N*/                                                      bool bInReadOnly )
-/*N*/ {
-/*N*/   if ( pCnt && pCnt->IsInTab() )
-/*N*/   {
-/*N*/       BOOL bProtect = TRUE;
-/*N*/       while ( pCnt && bProtect )
-/*N*/       {
-/*N*/           const SwLayoutFrm *pCell = pCnt->GetUpper();
-/*N*/           while ( pCell && !pCell->IsCellFrm() )
-/*?*/               pCell = pCell->GetUpper();
-/*N*/           if ( !pCell ||
-/*N*/                   ((bInReadOnly || !pCell->GetFmt()->GetProtect().IsCntntProtected()) &&
-/*N*/                    (!bMissHeadline || !lcl_IsInRepeatedHeadline( pCell ) )))
-/*N*/               bProtect = FALSE;
-/*N*/           else
-/*?*/               pCnt = (*fnNxtPrv)( pCnt );
-/*N*/       }
-/*N*/   }
-/*N*/   else if ( !bInReadOnly )
-/*N*/       while ( pCnt && pCnt->IsProtected() )
-/*N*/           pCnt = (*fnNxtPrv)( pCnt );
-/*N*/
-/*N*/   return pCnt;
-/*N*/ }
+const SwCntntFrm * MA_FASTCALL lcl_MissProtectedFrames(
+    const SwCntntFrm *pCnt,
+    GetNxtPrvCnt fnNxtPrv,
+    bool /* bMissHeadline */,
+    bool bInReadOnly
+)
+{
+    if ( pCnt && pCnt->IsInTab() )
+    {
+        BOOL bProtect = TRUE;
+        while ( pCnt && bProtect )
+        {
+            const SwLayoutFrm *pCell = pCnt->GetUpper();
+            while ( pCell && !pCell->IsCellFrm() )
+                pCell = pCell->GetUpper();
+
+            if (  !pCell
+               || (  bInReadOnly
+                  || !pCell->GetFmt()->GetProtect().IsCntntProtected()
+                  )
+               )
+                bProtect = FALSE;
+            else
+                pCnt = (*fnNxtPrv)( pCnt );
+        }
+    }
+    else if ( !bInReadOnly )
+        while ( pCnt && pCnt->IsProtected() )
+            pCnt = (*fnNxtPrv)( pCnt );
+
+    return pCnt;
+}
 
 
 
-
-/*************************************************************************
-|*
-|*  SwRootFrm::GetCurrPage()
-|*
-|*  Beschreibung:       Liefert die Nummer der aktuellen Seite.
-|*          Wenn die Methode einen PaM bekommt, so ist die aktuelle Seite
-|*          diejenige in der der PaM sitzt. Anderfalls ist die aktuelle
-|*          Seite die erste Seite innerhalb der VisibleArea.
-|*          Es wird nur auf den vorhandenen Seiten gearbeitet!
-|*
-|*************************************************************************/
-
-/*************************************************************************
-|*
-|*  SwRootFrm::SetCurrPage()
-|*
-|*  Beschreibung:       Liefert einen PaM der am Anfang der gewuenschten
-|*          Seite sitzt.
-|*          Formatiert wird soweit notwendig
-|*          Liefert Null, wenn die Operation nicht moeglich ist.
-|*          Der PaM sitzt in der letzten Seite, wenn die Seitenzahl zu gross
-|*          gewaehlt wurde.
-|*
-|*************************************************************************/
-
-/*************************************************************************
-|*
-|*    SwCntntFrm::StartxxPage(), EndxxPage()
-|*
-|*    Beschreibung      Cursor an Anfang/Ende der aktuellen/vorherigen/
-|*      naechsten Seite. Alle sechs Methoden rufen GetFrmInPage() mit der
-|*      entsprechenden Parametrisierung.
-|*      Zwei Parameter steuern die Richtung: einer bestimmt die Seite, der
-|*      andere Anfang/Ende.
-|*      Fuer die Bestimmung der Seite und des Cntnt (Anfang/Ende) werden
-|*      die im folgenden definierten Funktionen benutzt.
-|*
-|*************************************************************************/
-
-
-
-
-
-//Jetzt koennen auch die Funktionspointer initalisiert werden;
-//sie sind in cshtyp.hxx declariert.
-
-//Liefert den ersten/den letzten Contentframe (gesteuert ueber
-//den Parameter fnPosPage) in der
-//aktuellen/vorhergehenden/folgenden Seite (gesteuert durch den
-//Parameter fnWhichPage).
 
 /*************************************************************************
 |*
@@ -588,45 +493,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*  SwRootFrm::GetNextPrevCntntPos()
-|*
-|*  Beschreibung        Es wird der naechstliegende Cntnt zum uebergebenen
-|*                      Point gesucht. Es wird nur im BodyText gesucht.
-|*
-|*************************************************************************/
-
-//!!!!! Es wird nur der vertikal naechstliegende gesucht.
-// only in tables we try to find the right column
-
-/*************************************************************************
-|*
-|*  SwRootFrm::GetPagePos()
-|*
-|*  Beschreibung:   Liefert die absolute Dokumentpositon der gewuenschten
-|*          Seite.
-|*          Formatiert wird nur soweit notwendig und nur dann wenn bFormat=TRUE
-|*          Liefert Null, wenn die Operation nicht moeglich ist.
-|*          Die Pos ist die der letzten Seite, wenn die Seitenzahl zu gross
-|*          gewaehlt wurde.
-|*
-|*************************************************************************/
-
-/** get page frame by phyiscal page number
-
-    @return pointer to the page frame with the given physical page number
-*/
-
-/*************************************************************************
-|*
-|*  SwRootFrm::IsDummyPage(USHORT)
-|*
-|*  Description: Returns TRUE, when the given physical pagenumber does't exist
-|*               or this page is an empty page.
-|*************************************************************************/
-
-
-/*************************************************************************
-|*
 |*    SwFrm::IsProtected()
 |*
 |*    Beschreibung      Ist der Frm bzw. die Section in der er steht
@@ -810,55 +676,6 @@ namespace binfilter {
 /*N*/              pFrm->GetAttrSet()->GetPageDesc().GetNumOffset();
 /*N*/   return nPhyPage;
 /*N*/ }
-
-/*************************************************************************
-|*
-|*  SwRootFrm::MakeTblCrsrs()
-|*
-|*************************************************************************/
-//Ermitteln und einstellen derjenigen Zellen die von der Selektion
-//eingeschlossen sind.
-
-
-
-/*************************************************************************
-|*
-|*  SwRootFrm::CalcFrmRects
-|*
-|*************************************************************************/
-
-/*
- * nun koennen folgende Situationen auftreten:
- *  1. Start und Ende liegen in einer Bildschirm - Zeile und im
- *     gleichen Node
- *      -> aus Start und End ein Rectangle, dann Ok
- *  2. Start und Ende liegen in einem Frame (dadurch im gleichen Node!)
- *      -> Start nach rechts, End nach links erweitern,
- *         und bei mehr als 2 Bildschirm - Zeilen, das dazwischen
- *         liegende berechnen
- *  3. Start und Ende liegen in verschiedenen Frames
- *      -> Start nach rechts erweitern, bis Frame-Ende Rect berechnen
- *         Ende nach links erweitern, bis Frame-Start Rect berechnen
- *         und bei mehr als 2 Frames von allen dazwischen liegenden
- *         Frames die PrtArea dazu.
- *  4. Wenn es sich um eine Tabellenselektion handelt wird fuer jeden
- *     PaM im Ring der CellFrm besorgt, dessen PrtArea wird zu den
- *     Rechtecken addiert.
- *
- * Grosser Umbau wg. der FlyFrm; denn diese muessen ausgespart werden.
- * Ausnahmen: - Der Fly in dem die Selektion stattfindet (wenn sie in einem Fly
- *              stattfindet).
- *            - Die Flys, die vom Text unterlaufen werden.
- * Arbeitsweise: Zuerst wird eine SwRegion mit der Root initialisiert.
- *               Aus der Region werden die zu invertierenden Bereiche
- *               ausgestantzt. Die Region wird Komprimiert und letztlich
- *               invertiert. Damit liegen dann die zu invertierenden
- *               Rechtecke vor.
- *               Am Ende werden die Flys aus der Region ausgestanzt.
- */
-
-
-
 
 }
 

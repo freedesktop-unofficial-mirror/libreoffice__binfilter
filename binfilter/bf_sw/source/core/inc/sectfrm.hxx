@@ -105,7 +105,6 @@ public:
     inline BOOL _ToMaximize() const
         { if( !pSection ) return FALSE; return ToMaximize( FALSE ); }
     BOOL MoveAllowed( const SwFrm* ) const;
-    BOOL CalcMinDiff( SwTwips& rMinDiff ) const;
     // Uebergibt man kein bOverSize bzw. FALSE, so ist der Returnwert
     // >0 fuer Undersized-Frames, ==0 sonst.
     // Uebergibt man TRUE, so kann es auch einen negativen Returnwert geben,

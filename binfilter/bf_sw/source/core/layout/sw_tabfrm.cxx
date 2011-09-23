@@ -508,11 +508,6 @@ namespace binfilter {
 /*N*/         aNotify.AddHeightOfst( Join() );
 /*N*/     }
 /*N*/
-/*N*/   if ( bResizeHTMLTable ) //Optimiertes Zusammenspiel mit Grow/Shrink des Inhaltes
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
-/*N*/
 /*N*/   BOOL bMakePage  = TRUE;     //solange TRUE kann eine neue Seite
 /*N*/                               //angelegt werden (genau einmal)
 /*N*/   BOOL bMovedBwd  = FALSE;    //Wird TRUE wenn der Frame zurueckfliesst
@@ -564,11 +559,6 @@ namespace binfilter {
 /*N*/       {
 /*N*/             if ( aOldPos.Y() != (Frm().*fnRect->fnGetTop)() )
 /*N*/           {
-/*N*/               SwHTMLTableLayout *pLayout = GetTable()->GetHTMLTableLayout();
-/*N*/               if( pLayout )
-/*N*/               {DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
-/*N*/
 /*N*/               bValidPrtArea = FALSE;
 /*N*/               aNotify.SetLowersComplete( FALSE );
 /*N*/           }
@@ -597,17 +587,9 @@ namespace binfilter {
 /*N*/       {
 /*N*/             const BOOL bOptLower = (Frm().*fnRect->fnGetHeight)() == 0;
 /*N*/
-/*N*/             const long nOldPrtWidth = (Prt().*fnRect->fnGetWidth)();
-/*N*/             const long nOldFrmWidth = (Frm().*fnRect->fnGetWidth)();
 /*N*/             const Point aOldPrtPos  = (Prt().*fnRect->fnGetPos)();
 /*N*/           Format( pAttrs );
 /*N*/
-/*N*/           SwHTMLTableLayout *pLayout = GetTable()->GetHTMLTableLayout();
-/*N*/           if ( /*!bOptLower &&*/ pLayout &&
-/*N*/                  ((Prt().*fnRect->fnGetWidth)() != nOldPrtWidth ||
-/*N*/                   (Frm().*fnRect->fnGetWidth)() != nOldFrmWidth) )
-/*N*/             {DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
 /*N*/             if ( !bOptLower && aOldPrtPos != (Prt().*fnRect->fnGetPos)() )
 /*N*/               aNotify.SetLowersComplete( FALSE );
 /*N*/
@@ -642,16 +624,7 @@ namespace binfilter {
 /*N*/                               if ( bFtnsInDoc )
 /*N*/                                   MoveLowerFtns( 0, pOldBoss, 0, TRUE );
 /*N*/
-/*N*/                                 long nOldTop = (Frm().*fnRect->fnGetTop)();
 /*N*/                               MakePos();
-/*N*/                                 if( nOldTop != (Frm().*fnRect->fnGetTop)() )
-/*N*/                               {
-/*N*/                                   SwHTMLTableLayout *pLayout1 =
-/*N*/                                       GetTable()->GetHTMLTableLayout();
-/*N*/                                   if( pLayout1 )
-/*N*/                                   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/                                   }
-/*N*/                               }
 /*N*/
 /*N*/                               if ( bOldPrev != (0 != GetPrev()) )
 /*N*/                               {
@@ -722,12 +695,6 @@ namespace binfilter {
 /*N*/                     MakePos();
 /*N*/                     if( nOldTop != (Frm().*fnRect->fnGetTop)() )
 /*N*/                   {
-/*N*/                       SwHTMLTableLayout *pLayout =
-/*N*/                           GetTable()->GetHTMLTableLayout();
-/*N*/                       if( pLayout )
-/*N*/                       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/                       }
-/*N*/
 /*N*/                       bValidPrtArea = FALSE;
 /*N*/                       Format( pAttrs );
 /*N*/                   }
@@ -2654,12 +2621,6 @@ namespace binfilter {
 /*?*/       }
 /*N*/   }
 /*N*/
-/*M*/   if( (bAttrSetChg &&
-/*M*/        SFX_ITEM_SET == ((SwAttrSetChg*)pNew)->GetChgSet()->GetItemState( RES_PROTECT, FALSE )) ||
-/*M*/       RES_PROTECT == pNew->Which() )
-/*M*/   {DBG_BF_ASSERT(0, "STRIP");
-/*M*/   }
-/*M*/
 /*N*/   SwLayoutFrm::Modify( pOld, pNew );
 /*N*/ }
 }

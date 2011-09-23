@@ -614,7 +614,6 @@ namespace binfilter {
 /*N*/             break;
 /*N*/
 /*N*/       case RES_PAGEDESC_FTNINFO:
-/*N*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/           break;
 /*N*/         case RES_FRAMEDIR :
 /*?*/             CheckDirChange();

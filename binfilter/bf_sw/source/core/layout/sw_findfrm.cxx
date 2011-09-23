@@ -247,23 +247,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/   return FALSE;
 /*N*/ }
 
-/** method to check relative position of layout frame to
-    a given layout frame.
-
-    refactoring of pseudo-local method <lcl_Apres(..)> in <txtftn.cxx>
-
-    @param _aCheckRefLayFrm
-    constant reference of an instance of class <SwLayoutFrm> which
-    is used as the reference for the relative position check.
-
-    @author OD
-
-    @return true, if <this> is positioned before the layout frame <p>
-*/
-/*N*/ bool SwLayoutFrm::IsBefore( const SwLayoutFrm* /*_pCheckRefLayFrm*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
-
 /*************************************************************************
 |*
 |*  SwFrm::GetPrevLayoutLeaf()
@@ -309,6 +292,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/
 /*N*/   return pLayoutFrm;
 /*N*/ }
+
 /*************************************************************************
 |*
 |*  SwFrm::GetNextLayoutLeaf
@@ -1016,11 +1000,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/       else if ( pFrm->IsFtnFrm() )
 /*N*/           bInfFtn = TRUE;
 /*N*/
-/*N*/ //MA: 06. Apr. 94, oberhalb eines Fly geht es nicht weiter!
-/*N*/ //        if ( pFrm->IsFlyFrm() )
-/*N*/ //            pFrm = ((SwFlyFrm*)pFrm)->GetAnchor();
-/*N*/ //        else
-/*N*/           pFrm = pFrm->GetUpper();
+/*N*/       pFrm = pFrm->GetUpper();
 /*N*/
 /*N*/   } while ( pFrm && !pFrm->IsPageFrm() ); //Oberhalb der Seite kommt nix
 /*N*/ }

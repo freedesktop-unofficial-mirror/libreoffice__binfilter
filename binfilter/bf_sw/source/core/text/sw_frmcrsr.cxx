@@ -230,8 +230,8 @@ namespace binfilter {
 /*N*/               nNextOfst = aLine.GetEnd();
 /*N*/               // Siehe Kommentar in AdjustFrm
 /*N*/               // 1170: das letzte Zeichen der Zeile mitnehmen?
-/*N*/               bRet = bRightMargin ? aLine.GetEndCharRect( &rOrig, nOffset, pCMS, nMaxY )
-/*N*/                               : aLine.GetCharRect( &rOrig, nOffset, pCMS, nMaxY );
+/*N*/               bRet = bRightMargin ? FALSE
+/*N*/                                   : aLine.GetCharRect( &rOrig, nOffset, pCMS, nMaxY );
 /*N*/           }
 /*N*/
 /*N*/           if( !(  pFrm->IsUndersized()

@@ -651,28 +651,6 @@ namespace binfilter {
 /*N*/   InvalidateNxtFtnCnts( pPage );
 /*N*/ }
 
-/*************************************************************************
-|*
-|*  SwFrm::GetNextFtnLeaf()
-|*
-|*  Beschreibung        Liefert das naechste LayoutBlatt in den das
-|*      Frame gemoved werden kann.
-|*      Neue Seiten werden nur dann erzeugt, wenn der Parameter TRUE ist.
-|*
-|*************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|*  SwFrm::GetPrevFtnLeaf()
-|*
-|*  Beschreibung        Liefert das vorhergehende LayoutBlatt in das der
-|*      Frame gemoved werden kann.
-|*
-|*************************************************************************/
-
-
 
 /*************************************************************************
 |*
@@ -695,13 +673,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-
-/*************************************************************************
-|*
-|*  SwRootFrm::UpdateFtnNums()
-|*
-|*************************************************************************/
-
 
 
 /*************************************************************************
@@ -1062,11 +1033,7 @@ namespace binfilter {
 /*N*/   {
 /*?*/       SwSectionFrm* pMySect = ImplFindSctFrm();
 /*?*/       BOOL bEndnt = pNew->GetAttr()->GetFtn().IsEndNote();
-/*?*/       if( bEndnt )
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
-/*?*/       else
+/*?*/       if( !bEndnt )
 /*?*/       {
 /*?*/           bDontLeave = pMySect->IsFtnAtEnd();
 /*?*/           if( pSibling )
@@ -1416,21 +1383,6 @@ namespace binfilter {
 /*?*/       return;
 /*N*/   }
 /*N*/
-/*N*/   // Wenn es auf der Seite/Spalte bereits einen FtnCont gibt,
-/*N*/   // kann in einen spaltigen Bereich keiner erzeugt werden.
-/*N*/   if( pBoss->IsInSct() && pBoss->IsColumnFrm() && !pPage->IsFtnPage() )
-/*N*/   {
-/*?*/       SwSectionFrm* pSct = pBoss->FindSctFrm();
-/*?*/       if( bEnd ? !pSct->IsEndnAtEnd() : !pSct->IsFtnAtEnd() )
-/*?*/       {
-/*?*/           SwFtnContFrm* pFtnCont = pSct->FindFtnBossFrm(!bEnd)->FindFtnCont();
-/*?*/           if( pFtnCont )
-/*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
-/*?*/       }
-/*N*/   }
-/*N*/
 /*N*/   SwFtnFrm *pNew = new SwFtnFrm( pDoc->GetDfltFrmFmt(), pRef, pAttr );
 /*N*/   {
 /*N*/       SwNodeIndex aIdx( *pAttr->GetStartNode(), 1 );
@@ -1472,6 +1424,7 @@ namespace binfilter {
 /*N*/   else
 /*?*/       delete pNew;
 /*N*/ }
+
 /*************************************************************************
 |*
 |*  SwFtnBossFrm::FindFtn()
@@ -1516,6 +1469,7 @@ namespace binfilter {
 /*N*/
 /*N*/   return 0;
 /*N*/ }
+
 /*************************************************************************
 |*
 |*  SwFtnBossFrm::RemoveFtn()
@@ -1546,54 +1500,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   FindPageFrm()->UpdateFtnNum();
 /*N*/ }
-
-/*************************************************************************
-|*
-|*  SwFtnBossFrm::ChangeFtnRef()
-|*
-|*************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|*  SwFtnBossFrm::CollectFtns()
-|*
-|*************************************************************************/
-
-
-/// add parameter <_bCollectOnlyPreviousFtns> in
-/// order to control, if only footnotes, which are positioned before the
-/// footnote boss frame <this> have to be collected.
-
-
-/*************************************************************************
-|*
-|*  SwFtnBossFrm::_CollectFtns()
-|*
-|*************************************************************************/
-
-/// add parameters <_bCollectOnlyPreviousFtns> and
-/// <_pRefFtnBossFrm> in order to control, if only footnotes, which are positioned
-/// before the given reference footnote boss frame have to be collected.
-/// Note: if parameter <_bCollectOnlyPreviousFtns> is true, then parameter
-/// <_pRefFtnBossFrm> have to be referenced to an object.
-/// Adjust parameter names.
-
-/*************************************************************************
-|*
-|*  SwFtnBossFrm::_MoveFtns()
-|*
-|*************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|*  SwFtnBossFrm::MoveFtns()
-|*
-|*************************************************************************/
-
 
 
 /*************************************************************************
@@ -1936,12 +1842,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*  SwPageFrm::SetColMaxFtnHeight()
-|*
-|*************************************************************************/
-
-/*************************************************************************
-|*
 |*  SwLayoutFrm::MoveLowerFtns
 |*
 |*************************************************************************/
@@ -1962,15 +1862,8 @@ namespace binfilter {
 /*?*/   if ( pNewBoss == pOldBoss )
 /*?*/       return FALSE;
 /*?*/
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
+/*?*/   return FALSE;
 /*N*/ }
-
-/*************************************************************************
-|*
-|*  SwLayoutFrm::MoveFtnCntFwd()
-|*
-|*************************************************************************/
-
 
 
 /*************************************************************************

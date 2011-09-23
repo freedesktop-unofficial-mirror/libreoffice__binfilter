@@ -269,10 +269,7 @@ protected:
 public:
     inline SwTxtCursor( SwTxtFrm* _pFrm, SwTxtSizeInfo* _pInf )
            { CtorInit( _pFrm, _pInf ); }
-    sal_Bool GetCharRect(SwRect *, const xub_StrLen, SwCrsrMoveState* = 0,
-        const long nMax = 0 );
-    sal_Bool GetEndCharRect(SwRect *, const xub_StrLen, SwCrsrMoveState* = 0,
-                            const long /*nMax*/ = 0 ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} ;
+    sal_Bool GetCharRect(SwRect *, const xub_StrLen, SwCrsrMoveState* = 0, const long nMax = 0 );
     xub_StrLen GetCrsrOfst( SwPosition *pPos, const Point &rPoint,
                 const MSHORT nChgNode, const SwCrsrMoveState* = 0 ) const;
     // 1170: beruecksichtigt Mehrdeutigkeiten; Implementierung s.u.

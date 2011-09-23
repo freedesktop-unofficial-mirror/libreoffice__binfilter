@@ -48,7 +48,6 @@ class SwpHints;
 class SwTxtAttr;
 class SwAttrSet;
 class SwTxtNode;
-class SwRedlineItr;
 class ViewShell;
 
 #ifdef VERTICAL_LAYOUT
@@ -74,7 +73,6 @@ protected:
 private:
     OutputDevice *pLastOut;
     MSHORT nChgCnt;
-    SwRedlineItr *pRedln;
     xub_StrLen nStartIndex, nEndIndex, nPos;
     BYTE nPropFont;
     void SeekFwd( const xub_StrLen nPos );
@@ -95,7 +93,6 @@ protected:
         , pFnt(0)
         , pLastOut(0)
         , nChgCnt(0)
-        , pRedln(0)
         , nPropFont(0)
         {}
 
@@ -106,13 +103,11 @@ public:
         , pFnt(0)
         , pLastOut(0)
         , nChgCnt(0)
-        , pRedln(0)
         , nPropFont(0)
         { CtorInit( rTxtNode, rScrInf ); }
 
     virtual ~SwAttrIter();
 
-    inline SwRedlineItr *GetRedln() { return pRedln; }
     // Liefert im Parameter die Position des naechsten Wechsels vor oder an
     // der uebergebenen Characterposition zurueck. Liefert sal_False, wenn vor
     // oder an dieser Position kein Wechsel mehr erfolgt, sal_True sonst.

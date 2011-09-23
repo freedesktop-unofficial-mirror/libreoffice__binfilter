@@ -36,7 +36,6 @@
 #include <horiornt.hxx>
 
 #include <rootfrm.hxx>
-#include <redlnitr.hxx>
 #include <itrtxt.hxx>
 #include <com/sun/star/i18n/ScriptType.hdl>
 namespace binfilter {
@@ -53,9 +52,8 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ void SwAttrIter::Chg( SwTxtAttr *pHt )
 /*N*/ {
-/*N*/     OSL_ENSURE( pHt && pFnt, "No attribute of font available for change");
-/*N*/     if( !( pRedln && pRedln->IsOn() ) )
-/*N*/         aAttrHandler.PushAndChg( *pHt, *pFnt );
+/*N*/   OSL_ENSURE( pHt && pFnt, "No attribute of font available for change");
+/*N*/   aAttrHandler.PushAndChg( *pHt, *pFnt );
 /*N*/   nChgCnt++;
 /*N*/ }
 
@@ -65,10 +63,9 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ void SwAttrIter::Rst( SwTxtAttr *pHt )
 /*N*/ {
-/*N*/     OSL_ENSURE( pHt && pFnt, "No attribute of font available for reset");
-/*N*/     // get top from stack after removing pHt
-/*N*/     if( !( pRedln && pRedln->IsOn() ) )
-/*N*/         aAttrHandler.PopAndChg( *pHt, *pFnt );
+/*N*/   OSL_ENSURE( pHt && pFnt, "No attribute of font available for reset");
+/*N*/   // get top from stack after removing pHt
+/*N*/   aAttrHandler.PopAndChg( *pHt, *pFnt );
 /*N*/   nChgCnt--;
 /*N*/ }
 
@@ -78,7 +75,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ SwAttrIter::~SwAttrIter()
 /*N*/ {
-/*N*/   delete pRedln;
 /*N*/   delete pFnt;
 /*N*/ }
 

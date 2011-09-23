@@ -497,10 +497,6 @@ namespace binfilter {
 /*N*/           pPrvSct = NULL; // damit nicht gemergt wird
 /*N*/       }
 /*N*/   }
-/*N*/   // Der Inhalt wird eingefuegt..
-/*N*/   if( pSave )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/   // jetzt koennen eventuell zwei Teile des uebergeordneten Bereich verschmelzen
 /*N*/   if( pPrvSct && !pPrvSct->IsJoinLocked() )
 /*N*/   {
@@ -587,10 +583,6 @@ namespace binfilter {
 /*N*/   SwCntntFrm *pRet = NULL;
 /*N*/   SwFtnFrm *pFtnFrm = NULL;
 /*N*/   SwSectionFrm *pSect = this;
-/*N*/   if( nMode )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/   BOOL bFtnFound = nMode == FINDMODE_ENDNOTE;
 /*N*/   do
 /*N*/   {
@@ -603,10 +595,6 @@ namespace binfilter {
 /*N*/   if( ( nMode == FINDMODE_ENDNOTE ) && pFtnFrm )
 /*?*/       pRet = pFtnFrm->ContainsCntnt();
 /*N*/   return pRet;
-/*N*/ }
-
-/*N*/ BOOL SwSectionFrm::CalcMinDiff( SwTwips& /*rMinDiff*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*************************************************************************
@@ -687,10 +675,6 @@ namespace binfilter {
 /*N*/     SetUndersized( !bMaximize && nDiff >= 0 );
 /*N*/     BOOL bCalc = ( IsUndersized() || bMaximize ) && ( nDiff ||
 /*N*/                  (Prt().*fnRect->fnGetTop)() > (Frm().*fnRect->fnGetHeight)() );
-/*N*/     if( !bCalc && !bGrow && IsAnyNoteAtEnd() && !IsInFtn() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/   if( bCalc )
 /*N*/   {
 /*N*/         nDiff = (*fnRect->fnYDiff)( nDeadLine, (Frm().*fnRect->fnGetTop)() );
@@ -1813,14 +1797,6 @@ namespace binfilter {
 /*N*/       case RES_FMT_CHG:
 /*N*/       {
 /*?*/           GetFmt()->GetCol();
-/*?*/           if( !IsInFtn() )
-/*?*/           {
-/*?*/               //Dummer Fall. Bei der Zuweisung einer Vorlage k�nnen wir uns
-/*?*/               //nicht auf das alte Spaltenattribut verlassen. Da diese
-/*?*/               //wenigstens anzahlgemass fuer ChgColumns vorliegen muessen,
-/*?*/               //bleibt uns nur einen temporaeres Attribut zu basteln.
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
 /*?*/           rInvFlags |= 0x01;
 /*?*/           bClear = FALSE;
 /*N*/       }
@@ -1849,10 +1825,6 @@ namespace binfilter {
 /*?*/           break;
 /*?*/
 /*?*/       case RES_END_AT_TXTEND:
-/*?*/           if( !IsInFtn() )
-/*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
 /*?*/           break;
 /*?*/       case RES_COLUMNBALANCE:
 /*?*/           rInvFlags |= 0x01;
@@ -1864,8 +1836,6 @@ namespace binfilter {
 /*?*/             break;
 /*M*/
 /*M*/       case RES_PROTECT:
-/*M*/           { DBG_BF_ASSERT(0, "STRIP");
-/*M*/           }
 /*M*/           break;
 /*M*/
 /*N*/       default:
@@ -1908,10 +1878,6 @@ namespace binfilter {
 /*N*/   if( !IsEndnAtEnd() )
 /*N*/       return 0 != pCont;
 /*?*/   BOOL bRet = FALSE;
-/*?*/   while( pCont && !bRet )
-/*?*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*?*/   }
 /*?*/   return bRet;
 /*N*/ }
 

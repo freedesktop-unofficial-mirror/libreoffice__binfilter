@@ -71,14 +71,12 @@
 
 #include <tools/debug.hxx>
 namespace binfilter {
-class SwImplProtocol;
 class SwFrm;
 class SwImplEnterLeave;
 
 class SwProtocol
 {
     static ULONG nRecord;
-    static SwImplProtocol* pImpl;
     static BOOL Start() { return 0 != ( PROT_INIT & nRecord ); }
 public:
     static ULONG Record() { return nRecord; }

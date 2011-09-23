@@ -34,7 +34,6 @@
 
 #include "txtcfg.hxx"
 #include "itrform2.hxx"
-#include "redlnitr.hxx" // SwRedlineItr
 #include "porfly.hxx"   // SwFlyCntPortion
 #include <porrst.hxx>       // SwHangingPortion
 #include <pormulti.hxx>     // SwMultiPortion

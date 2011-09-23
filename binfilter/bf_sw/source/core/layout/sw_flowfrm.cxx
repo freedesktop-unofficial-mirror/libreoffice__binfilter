@@ -686,8 +686,6 @@ namespace binfilter {
 
 /*N*/ SwLayoutFrm *SwFrm::GetLeaf( MakePageType eMakePage, BOOL bFwd )
 /*N*/ {
-/*N*/   if ( IsInFtn() )
-/*?*/   {   DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   if ( IsInSct() )
 /*N*/       return bFwd ? GetNextSctLeaf( eMakePage ) : GetPrevSctLeaf( eMakePage );
 /*N*/   return bFwd ? GetNextLeaf( eMakePage ) : GetPrevLeaf( eMakePage );
@@ -1231,9 +1229,6 @@ namespace binfilter {
 /*N*/               nUpper = Max( nUpper, long(((SwTxtFrm*)pPre)->GetLineSpace()) );
 /*N*/       }
 /*N*/   }
-/*N*/   else if( rThis.GetAttrSet()->GetDoc()->IsParaSpaceMaxAtPages() &&
-/*N*/            1)
-/*?*/   {   DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   nUpper += pAttrs->GetTopLine( &rThis );
 /*N*/
@@ -1381,8 +1376,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ //!!!!MoveFtnCntFwd muss ggf. mitgepflegt werden.
 /*N*/   SwFtnBossFrm *pOldBoss = rThis.FindFtnBossFrm();
-/*N*/   if ( rThis.IsInFtn() )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   if( !IsFwdMoveAllowed() && !bMoveAlways )
 /*N*/   {
@@ -1538,11 +1531,7 @@ namespace binfilter {
 /*N*/       if( !bEndnote )
 /*N*/           pOldBoss = pOldBoss->FindFtnBossFrm( TRUE );
 /*N*/       SwFtnBossFrm *pRefBoss = pRef->FindFtnBossFrm( !bEndnote );
-/*N*/               if ( pOldBoss != pRefBoss &&
-/*N*/              // use <SwLayoutFrm::IsBefore(..)>
-/*N*/              ( !bEndnote ||
-/*N*/                pRefBoss->IsBefore( pOldBoss ) )
-/*N*/            )
+/*N*/       if ( pOldBoss != pRefBoss && !bEndnote )
 /*?*/           pNewUpper = rThis.GetLeaf( MAKEPAGE_FTN, FALSE );
 /*N*/   }
 /*N*/   else if ( IsPageBreak( TRUE ) ) //PageBreak zu beachten?
@@ -1746,10 +1735,6 @@ namespace binfilter {
 /*?*/               }
 /*?*/               if( pTmp )
 /*?*/                   pNewUpper = (SwSectionFrm*)pTmp;
-/*?*/               else
-/*?*/               {
-/*?*/                     DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
 /*?*/           }
 /*N*/       }
 /*N*/       BOOL bUnlock = FALSE;

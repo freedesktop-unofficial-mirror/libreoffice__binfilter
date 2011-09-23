@@ -78,18 +78,6 @@ public:
     OUTPUT_OPERATOR
 };
 
-/*************************************************************************
- *                      class SwPostItsPortion
- *************************************************************************/
-
-class SwPostItsPortion : public SwExpandPortion
-{
-public:
-    SwPostItsPortion( sal_Bool /*bScrpt*/ ){DBG_BF_ASSERT(0, "STRIP");};
-    OUTPUT_OPERATOR
-};
-
-
 CLASSIO( SwExpandPortion )
 CLASSIO( SwBlankPortion )
 

@@ -261,8 +261,6 @@ namespace binfilter {
 /*N*/                               //bereits im MakeAll formatiert und sollten
 /*N*/                               //damit auf der richtigen Seite stehen.
 /*N*/                               if ( pPage != pFlyPage && pFrm->IsFlyFrm() )
-/*N*/ //                                     (pFrm->IsFlyFrm() || pOldPage != pPage ||
-/*N*/ //                                      WEIT_WECH == pFly->Frm().Top()) )
 /*N*/                               {
 /*?*/                                   OSL_ENSURE( pFlyPage, "~SwFrmNotify: Fly from Nowhere" );
 /*?*/                                   if( pFlyPage )
@@ -744,8 +742,6 @@ namespace binfilter {
 /*?*/                           aAnch.SetAnchor( 0 );
 /*?*/                           aAnch.SetPageNum( pPage->GetPhyPageNum() );
 /*?*/                           pFmt->SetAttr( aAnch );
-/*?*/                           if ( RES_DRAWFRMFMT != pFmt->Which() )
-/*?*/                           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/                       }
 /*N*/                   }
 /*N*/               }
@@ -1309,11 +1305,6 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*N*/         delete pPageMaker;
 /*N*/         if( pDoc->GetLayoutCache() )
 /*N*/         {
-/*N*/ #ifdef DBG_UTIL
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/             DBG_BF_ASSERT(0, "STRIP");
-/*N*/ #endif
-/*N*/ #endif
 /*N*/             pDoc->GetLayoutCache()->ClearImpl();
 /*N*/         }
 /*N*/     }
@@ -1619,23 +1610,6 @@ void SwBorderAttrs::_GetTopLine( const SwFrm *pFrm )
     {
         nRet = 0;
     }
-    /*
-    if ( nRet && pFrm->GetPrev() && pFrm->IsCntntFrm() && pFrm->GetPrev()->IsCntntFrm() )
-    {
-        SwBorderAttrAccess aAccess( SwFrm::GetCache(), pFrm->GetPrev() );
-        const SwBorderAttrs &rAttrs = *aAccess.Get();
-        if ( nRet == rAttrs.CalcTopLine() )
-        {
-            if ( (GetBox().GetLeft() || GetBox().GetRight() || GetBox().GetBottom()) &&
-                 rAttrs.GetShadow() == rShadow   &&
-                 CmpLines( rAttrs.GetBox().GetTop(), rBox.GetTop() ) &&
-                 CmpLeftRight( rAttrs, pFrm, pFrm->GetPrev() ) )
-            {
-                nRet = 0;
-            }
-        }
-    }
-    */
 
     bCachedGetTopLine = bCacheGetLine;
 
@@ -1651,23 +1625,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
     {
         nRet = 0;
     }
-    /*
-    if ( nRet && pFrm->GetNext() && pFrm->IsCntntFrm() && pFrm->GetNext()->IsCntntFrm() )
-    {
-        SwBorderAttrAccess aAccess( SwFrm::GetCache(), pFrm->GetNext() );
-        const SwBorderAttrs &rAttrs = *aAccess.Get();
-        if ( nRet == rAttrs.CalcBottomLine() )
-        {
-            if ( (GetBox().GetLeft() || GetBox().GetRight() || GetBox().GetTop()) &&
-                 rAttrs.GetShadow() == rShadow   &&
-                 CmpLines( rAttrs.GetBox().GetBottom(), rBox.GetBottom() ) &&
-                 CmpLeftRight( rAttrs, pFrm, pFrm->GetNext() ) )
-            {
-                nRet = 0;
-            }
-        }
-    }
-    */
     bCachedGetBottomLine = bCacheGetLine;
 
     nGetBottomLine = nRet;
@@ -1719,12 +1676,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/   bFlysOnly( bFlys )
 /*N*/ {
 /*N*/ }
-
-/*************************************************************************
-|*
-|*  SwOrderIter::Top()
-|*
-|*************************************************************************/
 
 
 /*************************************************************************
@@ -1793,12 +1744,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/   }
 /*N*/   return pCurrent;
 /*N*/ }
-
-/*************************************************************************
-|*
-|*  SwOrderIter::Prev()
-|*
-|*************************************************************************/
 
 
 /*************************************************************************
@@ -2412,18 +2357,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/       }
 /*N*/       pCnt = pCnt->GetNextCntntFrm();
 /*N*/   }
-// #108745# Sorry, but this causes nothing but trouble. I remove these lines
-// taking the risk that the footer frame will have a wrong height
-//  if( pPage->Lower() )
-//  {
-//      SwFrm* pFrm = pPage->Lower();
-//      while( pFrm->GetNext() )
-//          pFrm = pFrm->GetNext();
-//      if( pFrm->IsFooterFrm() &&
-//          ( ( pFrm->Frm().IsOver( pObj->GetBoundRect() ) ||
-//              pFrm->Frm().IsOver( rRect ) ) ) )
-//           pFrm->InvalidateSize();
-//  }
 
 /*N*/   if( pPage->GetSortedObjs() )
 /*N*/   {
@@ -2614,9 +2547,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 
 
 //---------------------------------
-
-
-
 
 
 /*N*/ const SwFrm* MA_FASTCALL FindPage( const SwRect &rRect, const SwFrm *pPage )

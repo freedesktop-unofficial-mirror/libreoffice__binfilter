@@ -130,14 +130,7 @@
 namespace binfilter {
 
 /*N*/ ULONG SwProtocol::nRecord = 0;
-/*N*/ SwImplProtocol* SwProtocol::pImpl = NULL;
 
-
-/*N*/ class SwImplProtocol
-/*N*/ {
-/*N*/ public:
-    SwImplProtocol(){DBG_BF_ASSERT(0, "STRIP");}
-/*N*/ };
 
 /* --------------------------------------------------
  * Durch das PROTOCOL_ENTER-Makro wird ein SwEnterLeave-Objekt erzeugt,
@@ -155,10 +148,6 @@ namespace binfilter {
  * --------------------------------------------------*/
 
 
-
-
-
-
 // Die folgende Funktion wird beim Anziehen der Writer-DLL durch TxtInit(..) aufgerufen
 // und ermoeglicht dem Debuggenden Funktionen und/oder FrmIds freizuschalten
 
@@ -167,10 +156,6 @@ namespace binfilter {
 /*N*/   nRecord = 0;
 /*N*/   XubString aName( "dbg_lay.go", RTL_TEXTENCODING_MS_1252 );
 /*N*/   SvFileStream aStream( aName, STREAM_READ );
-/*N*/   if( aStream.IsOpen() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/     aStream.Close();
 /*N*/ }
 

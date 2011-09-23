@@ -310,14 +310,12 @@ namespace binfilter {
 /*N*/ IMPL_OUTOP( SwToxPortion )
 /*N*/ IMPL_OUTOP( SwRefPortion )
 /*N*/ IMPL_OUTOP( SwIsoToxPortion )
-/*N*/ IMPL_OUTOP( SwIsoRefPortion )
 /*N*/ IMPL_OUTOP( SwSoftHyphPortion )
 /*N*/ IMPL_OUTOP( SwTabPortion )
 /*N*/ IMPL_OUTOP( SwTabLeftPortion )
 /*N*/ IMPL_OUTOP( SwTabRightPortion )
 /*N*/ IMPL_OUTOP( SwTabCenterPortion )
 /*N*/ IMPL_OUTOP( SwTabDecimalPortion )
-/*N*/ IMPL_OUTOP( SwPostItsPortion )
 /*N*/ IMPL_OUTOP( SwQuoVadisPortion )
 /*N*/ IMPL_OUTOP( SwErgoSumPortion )
 /*N*/ IMPL_OUTOP( SwHolePortion )
@@ -560,15 +558,6 @@ namespace binfilter {
 /*N*/   return rOs;
 /*N*/ }
 /*N*/
-/*N*/ SvStream &SwIsoRefPortion::operator<<( SvStream &rOs ) const //$ ostream
-/*N*/ {
-/*N*/   CONSTCHAR( pTxt, " {ISOREF:" );
-/*N*/   rOs << pTxt;
-/*N*/   SwRefPortion::operator<<( rOs );
-/*N*/   rOs << pClose;
-/*N*/   return rOs;
-/*N*/ }
-/*N*/
 /*N*/ SvStream &SwHyphPortion::operator<<( SvStream &rOs ) const //$ ostream
 /*N*/ {
 /*N*/   CONSTCHAR( pTxt, " {HYPH:" );
@@ -613,15 +602,6 @@ namespace binfilter {
 /*N*/   SwLinePortion::operator<<( rOs );
 /*N*/   if( IsFollow() )
 /*N*/       rOs << " F!";
-/*N*/   rOs << pClose;
-/*N*/   return rOs;
-/*N*/ }
-/*N*/
-/*N*/ SvStream &SwPostItsPortion::operator<<( SvStream &rOs ) const //$ ostream
-/*N*/ {
-/*N*/   CONSTCHAR( pTxt, " {POSTITS" );
-/*N*/   rOs << pTxt;
-/*N*/   SwLinePortion::operator<<( rOs );
 /*N*/   rOs << pClose;
 /*N*/   return rOs;
 /*N*/ }

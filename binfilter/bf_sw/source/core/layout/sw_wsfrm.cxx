@@ -2924,8 +2924,7 @@ namespace binfilter {
 /*N*/               // ein Spalteninhalt (nDiff) oder ein Fly herausragt.
 /*N*/               // Bei spaltigen Bereichen wird beruecksichtigt, dass mit dem
 /*N*/               // Besitz eines nichtleeren Follows die Groesse festgelegt ist.
-/*N*/               if ( nDiff || ::binfilter::lcl_IsFlyHeightClipped( this ) ||
-/*N*/                    ( IsSctFrm() && ((SwSectionFrm*)this)->CalcMinDiff( nMinDiff ) ) )
+/*N*/               if ( nDiff || ::binfilter::lcl_IsFlyHeightClipped( this ) )
 /*N*/               {
 /*N*/                     long nPrtHeight = (Prt().*fnRect->fnGetHeight)();
 /*N*/                   // Das Minimum darf nicht kleiner sein als unsere PrtHeight,
@@ -3064,9 +3063,6 @@ namespace binfilter {
 /*N*/       {
 /*?*/           if( pCnt->IsInSct() )
 /*?*/           {
-/*?*/               // Siehe oben bei Tabellen
-/*?*/               if( !pLastSctCnt )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/               if( pLastSctCnt == pCnt )
 /*?*/                   pLastSctCnt = NULL;
 /*?*/           }
@@ -3087,10 +3083,6 @@ namespace binfilter {
 /*?*/               // damit Bereiche im Innern der Tabelle richtig invalidiert werden.
 /*?*/               // Sollte die Tabelle selbst in einem Bereich stehen, so wird an
 /*?*/               // diesem die Invalidierung bis zu dreimal durchgefuehrt, das ist vertretbar.
-/*?*/               if( !pLastTabCnt )
-/*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
 /*?*/               if( pLastTabCnt == pCnt )
 /*?*/               {
 /*?*/                   pLastTabCnt = NULL;

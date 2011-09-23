@@ -164,10 +164,10 @@ class SwGrfNumPortion : public SwNumberPortion
 public:
     SwGrfNumPortion( SwFrm* /*pFrm*/, const SvxBrushItem* /*pGrfBrush*/,
                      const SwFmtVertOrient* /*pGrfOrient*/, const Size& /*rGrfSize*/,
-                     const sal_Bool bLeft1, const sal_Bool bCenter1, const KSHORT nMinDst ):SwNumberPortion( aEmptyStr, NULL, bLeft1, bCenter1, nMinDst )
-                     {DBG_BF_ASSERT(0, "STRIP");} ;
-void SetBase( long /*nLnAscent*/, long /*nLnDescent*/,
-              long /*nFlyAscent*/, long /*nFlyDescent*/ ){DBG_BF_ASSERT(0, "STRIP");} ;
+                     const sal_Bool bLeft1, const sal_Bool bCenter1, const KSHORT nMinDst )
+        : SwNumberPortion( aEmptyStr, NULL, bLeft1, bCenter1, nMinDst )
+        {DBG_BF_ASSERT(0, "STRIP");}    // CONSTRUCTOR
+
     OUTPUT_OPERATOR
 };
 

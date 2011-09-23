@@ -136,20 +136,6 @@ public:
     // less than the PrtArea-Height of the layoutframe himself
     SwTwips InnerHeight() const;
 
-    /** method to check relative position of layout frame to
-        a given layout frame.
-
-        refactoring of pseudo-local method <lcl_Apres(..)> in <txtftn.cxx>
-
-        @param _aCheckRefLayFrm
-        constant reference of an instance of class <SwLayoutFrm> which
-        is used as the reference for the relative position check.
-
-        @author OD
-
-        @return true, if <this> is positioned before the layout frame <p>
-    */
-    bool IsBefore( const SwLayoutFrm* _pCheckRefLayFrm ) const;
 };
 
 //Um doppelte Implementierung zu sparen wird hier ein bischen gecasted

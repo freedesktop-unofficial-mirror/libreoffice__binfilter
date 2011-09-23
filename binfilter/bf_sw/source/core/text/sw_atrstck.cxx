@@ -132,12 +132,6 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 };
 
 /*************************************************************************
- *                      lcl_GetItem
- * extracts pool item of type nWhich from rAttr
- *************************************************************************/
-
-
-/*************************************************************************
  *                      lcl_ChgHyperLinkColor
  * returns if the color attribute has to be changed for hyperlinks
  *************************************************************************/
@@ -354,12 +348,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/                 if ( Push( rAttr, *pItem , rFnt ) )
 /*M*/                 {
 /*M*/                     // we let pItem change rFnt
-/*M*/                     if ( lcl_ChgHyperLinkColor( rAttr, *pItem, pShell ) )
-/*M*/                     {DBG_BF_ASSERT(0, "STRIP");
-/*M*/                         // for hyperlinks we still have to evaluate
-/*M*/                         // the appearence settings
-/*M*/                     }
-/*M*/                     else
+/*M*/                     if ( !lcl_ChgHyperLinkColor( rAttr, *pItem, pShell ) )
 /*M*/                         FontChg( *pItem, rFnt, sal_True );
 /*M*/                 }
 /*M*/             }
@@ -457,13 +446,6 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*N*/  }
 
 /*************************************************************************
- *                      SwAttrHandler::Pop()
- *
- * only used during redlining
- *************************************************************************/
-
-
-/*************************************************************************
  *                      SwAttrHandler::ActivateTop()
  *************************************************************************/
 /*M*/ void SwAttrHandler::ActivateTop( SwFont& rFnt, const USHORT nAttr )
@@ -488,13 +470,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/             const SfxPoolItem* pItemNext;
 /*M*/             pFmtNext->GetItemState( nAttr, TRUE, &pItemNext );
 /*M*/
-/*M*/             if ( lcl_ChgHyperLinkColor( *pTopAt, *pItemNext, pShell ) )
-/*M*/             {
-/*M*/                 // for hyperlinks we still have to evaluate
-/*M*/                 // the appearence settings
-/*?*/                 DBG_BF_ASSERT(0, "STRIP");
-/*M*/             }
-/*M*/             else
+/*M*/             if ( !lcl_ChgHyperLinkColor( *pTopAt, *pItemNext, pShell ) )
 /*M*/                 FontChg( *pItemNext, rFnt, sal_False );
 /*M*/         }
 /*M*/         else
@@ -509,12 +485,6 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/         rFnt.GetRef()--;
 /*M*/     else if ( RES_TXTATR_TOXMARK == nAttr )
 /*M*/         rFnt.GetTox()--;
-/*M*/     else if ( RES_TXTATR_CJK_RUBY == nAttr )
-/*M*/     {
-/*M*/         // ruby stack has no more attributes
-/*M*/         // check, if an rotation attribute has to be applied
-/*?*/        DBG_BF_ASSERT(0, "STRIP");
-/*M*/     }
 /*M*/ }
 
 /*************************************************************************
@@ -658,10 +628,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/             const SwTxtAttr* pTwoLineAttr = aAttrStack[ nTwoLineStack ].Top();
 /*M*/
 /*M*/             if ( pTwoLineAttr )
-/*M*/             {
-/*?*/                DBG_BF_ASSERT(0, "STRIP");
 /*?*/                 bTwoLineAct = ((SvxTwoLinesItem*)pTwoLineItem)->GetValue();
-/*M*/             }
 /*M*/             else
 /*M*/                 bTwoLineAct =
 /*M*/                     ((SvxTwoLinesItem*)pDefaultArray[ nTwoLineStack ])->GetValue();
@@ -697,11 +664,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/             USHORT nRotateStack = StackPos[ RES_CHRATR_ROTATE ];
 /*M*/             const SwTxtAttr* pRotateAttr = aAttrStack[ nRotateStack ].Top();
 /*M*/
-/*M*/             if ( pRotateAttr )
-/*M*/             {
-/*?*/                DBG_BF_ASSERT(0, "STRIP");
-/*M*/             }
-/*M*/             else
+/*M*/             if ( !pRotateAttr )
 /*M*/                 rFnt.SetVertical(
 /*M*/                     ((SvxCharRotateItem*)pDefaultArray[ nRotateStack ])->GetValue(),
 /*M*/                      bVertLayout

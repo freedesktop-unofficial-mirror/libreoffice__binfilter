@@ -93,7 +93,7 @@ public:
 class SwErgoSumPortion : public SwFldPortion
 {
 public:
-SwErgoSumPortion( const XubString &rExp, const XubString& ):SwFldPortion( rExp ){DBG_BF_ASSERT(0, "STRIP");} ;
+    SwErgoSumPortion( const XubString &rExp, const XubString& ):SwFldPortion( rExp ){DBG_BF_ASSERT(0, "STRIP");} ;
     OUTPUT_OPERATOR
 };
 

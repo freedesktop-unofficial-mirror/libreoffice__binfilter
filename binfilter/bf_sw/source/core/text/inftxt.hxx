@@ -139,7 +139,6 @@ public:
                  SvxParaVertAlignItem::AUTOMATIC != nVertAlign; }
 #endif
 
-//  friend ostream &operator<<( ostream &rOS, const SwLineInfo &rInf );
     friend SvStream &operator<<( SvStream &rOS, const SwLineInfo &rInf );
 };
 
@@ -372,8 +371,6 @@ public:
         { return ( pKanaComp && nKanaIdx < pKanaComp->Count() )
                    ? (*pKanaComp)[nKanaIdx] : 0; }
 
-#ifdef DBG_UTIL
-#endif
 };
 
 /*************************************************************************
@@ -421,17 +418,6 @@ public:
 
     inline SwTxtFly *GetTxtFly() { return &aTxtFly; }
     inline const SwTxtFly *GetTxtFly() const { return &aTxtFly; }
-    inline void DrawText( const XubString &rText, const SwLinePortion &rPor,
-                          const xub_StrLen nIdx = 0,
-                          const xub_StrLen nLen = STRING_LEN,
-                          const sal_Bool bKern = sal_False) const;
-    inline void DrawText( const SwLinePortion &rPor, const xub_StrLen nLen,
-                          const sal_Bool bKern = sal_False ) const;
-    inline void DrawWrongText( const SwLinePortion &rPor, const xub_StrLen nLen,
-                          const sal_Bool bKern = sal_False ) const;
-#ifdef VERTICAL_LAYOUT
-#endif
-
 
     inline SwTwips GetPaintOfst() const;
     inline void SetPaintOfst( const SwTwips nNew );
@@ -797,27 +783,6 @@ inline SwTwips SwTxtPaintInfo::GetPaintOfst() const
 inline void SwTxtPaintInfo::SetPaintOfst( const SwTwips nNew )
 {
     GetParaPortion()->GetRepaint()->SetOfst( nNew );
-}
-
-
-inline void SwTxtPaintInfo::DrawText( const XubString&,
-                            const SwLinePortion&,
-                            const xub_StrLen , const xub_StrLen,
-                            const sal_Bool ) const
-{
-    DBG_BF_ASSERT(0, "STRIP");
-}
-
-inline void SwTxtPaintInfo::DrawText( const SwLinePortion&,
-        const xub_StrLen, const sal_Bool ) const
-{
-    DBG_BF_ASSERT(0, "STRIP");
-}
-
-inline void SwTxtPaintInfo::DrawWrongText( const SwLinePortion&,
-                                const xub_StrLen, const sal_Bool ) const
-{
-    DBG_BF_ASSERT(0, "STRIP");
 }
 
 /*************************************************************************

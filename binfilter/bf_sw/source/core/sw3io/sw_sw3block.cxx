@@ -94,7 +94,7 @@ sal_Char N_BLOCKINFO[] = "AutotextInfo";
 /*N*/   // Haben wir schon einen Persist?
 /*N*/   if( pDoc->GetPersist() )
 /*N*/       return TRUE;
-        DBG_BF_ASSERT(0, "STRIP"); return FALSE;
+        return FALSE;
 /*N*/ }
 
 // ggf. eine SvPersist-Instanz freigeben

@@ -47,10 +47,7 @@
 
 //////////////////////////
 
-
-
 #include <txtfrm.hxx>       // SwTxtFrm
-#include <redlnitr.hxx>
 #include <extinput.hxx>
 
 namespace binfilter {
@@ -158,47 +155,9 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/               nInputStt = pExtInp->Start()->nContent.GetIndex();
 /*N*/                 Seek( 0 );
 /*N*/           }
-/*N*/
-/*N*/             pRedln = new SwRedlineItr( rTxtNode, *pFnt, aAttrHandler, nRedlPos,
-/*N*/                                         bShow, pArr, nInputStt );
-/*N*/
-/*N*/           if( pRedln->IsOn() )
-/*N*/               ++nChgCnt;
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
- * SwRedlineItr - Der Redline-Iterator
- *
- * Folgende Informationen/Zustaende gibt es im RedlineIterator:
- *
- * nFirst ist der erste Index der RedlineTbl, der mit dem Absatz ueberlappt.
- *
- * nAct ist der zur Zeit aktive ( wenn bOn gesetzt ist ) oder der naechste
- * in Frage kommende Index.
- * nStart und nEnd geben die Grenzen des Objekts innerhalb des Absatzes an.
- *
- * Wenn bOn gesetzt ist, ist der Font entsprechend manipuliert worden.
- *
- * Wenn nAct auf MSHRT_MAX gesetzt wurde ( durch Reset() ), so ist zur Zeit
- * kein Redline aktiv, nStart und nEnd sind invalid.
- *************************************************************************/
-
-
-
-// Der Return-Wert von SwRedlineItr::Seek gibt an, ob der aktuelle Font
-// veraendert wurde durch Verlassen (-1) oder Betreten eines Bereichs (+1)
-
-
-
-
-
-
-
-
-
-
 
 }
 

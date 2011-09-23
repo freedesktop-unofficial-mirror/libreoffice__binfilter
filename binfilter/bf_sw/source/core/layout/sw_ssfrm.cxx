@@ -219,15 +219,8 @@ namespace binfilter {
 
 /*N*/ void SwFrm::CheckDirChange()
 /*N*/ {
-/*N*/     BOOL bOldVert = GetVerticalFlag();
-/*N*/     BOOL bOldRev = IsReverse();
-/*N*/     BOOL bOldR2L = GetRightToLeftFlag();
 /*N*/     SetInvalidVert( TRUE );
 /*N*/     SetInvalidR2L( TRUE );
-/*N*/     BOOL bChg = bOldR2L != IsRightToLeft();
-/*N*/     if( ( IsVertical() != bOldVert ) || bChg || IsReverse() != bOldRev )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
 /*N*/ }
 
 /*
@@ -342,10 +335,6 @@ namespace binfilter {
 /*?*/                     --nPos;
 /*?*/                 if( nPos || pTxtNd != &(rFtnIdxs[ nPos ]->GetTxtNode()) )
 /*?*/                     ++nPos;
-/*?*/             }
-/*?*/             while( nPos < rFtnIdxs.Count() )
-/*?*/             {
-/*?*/                 DBG_BF_ASSERT(0, "STRIP");
 /*?*/             }
 /*N*/         }
 /*N*/   }

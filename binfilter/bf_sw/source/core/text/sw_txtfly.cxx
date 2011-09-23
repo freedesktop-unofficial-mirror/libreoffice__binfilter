@@ -287,10 +287,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/           lcl_MaxAscDescent( pFirst, nTmpAscent, nTmpDescent,
 /*N*/                              nFlyAsc, nFlyDesc, pPos );
-/*N*/           if( pPos->IsGrfNumPortion() )
-/*N*/               ((SwGrfNumPortion*)pPos)->SetBase( nTmpAscent, nTmpDescent,
-/*N*/                                                  nFlyAsc, nFlyDesc );
-/*N*/           else
+/*N*/           if( !pPos->IsGrfNumPortion() )
 /*N*/           {
 /*N*/                 Point aBase;
 /*N*/                 if (!GetInfo().GetTxtFrm()->IsVertical())

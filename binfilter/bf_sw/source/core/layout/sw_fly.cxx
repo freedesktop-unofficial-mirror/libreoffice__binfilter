@@ -153,15 +153,6 @@ namespace binfilter {
 /*N*/   //Objekte/Rahmen gehoeren die dann angemeldet werden.
 /*N*/   InitDrawObj( FALSE );
 /*N*/
-/*N*/   //Fuer Verkettungen kann jetzt die Verbindung aufgenommen werden. Wenn
-/*N*/   //ein Nachbar nicht existiert, so macht das nichts, denn dieser wird ja
-/*N*/   //irgendwann Konsturiert und nimmt dann die Verbindung auf.
-/*N*/   const SwFmtChain &rChain = pFmt->GetChain();
-/*N*/   if ( rChain.GetPrev() || rChain.GetNext() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   if ( !GetPrevLink() ) //Inhalt gehoert sonst immer dem Master und meiner Zaehlt nicht
 /*N*/   {
 /*N*/       const SwFmtCntnt &rCntnt = pFmt->GetCntnt();
@@ -194,12 +185,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( GetFmt() && !GetFmt()->GetDoc()->IsInDtor() )
 /*N*/   {
-/*N*/       //Aus der Verkettung loessen.
-/*N*/       if ( GetPrevLink() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/       if ( GetNextLink() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/
 /*N*/       //Unterstruktur zerstoeren, wenn dies erst im LayFrm DTor passiert ist's
 /*N*/       //zu spaet, denn dort ist die Seite nicht mehr erreichbar (muss sie aber
 /*N*/       //sein, damit sich ggf. weitere Flys abmelden koennen).
@@ -461,9 +446,7 @@ namespace binfilter {
 /*M*/           break;
 /*M*/
 /*M*/       case RES_PROTECT:
-/*M*/           {DBG_BF_ASSERT(0, "STRIP");
 /*M*/           break;
-/*M*/           }
 /*M*/
 /*M*/       case RES_COL:
 /*M*/           {
@@ -477,9 +460,7 @@ namespace binfilter {
 /*M*/
 /*M*/       case RES_FRM_SIZE:
 /*M*/       case RES_FMT_CHG:
-/*M*/       {DBG_BF_ASSERT(0, "STRIP");
 /*M*/           break;
-/*M*/       }
 /*M*/       case RES_UL_SPACE:
 /*M*/       case RES_LR_SPACE:
 /*M*/           {
@@ -515,8 +496,6 @@ namespace binfilter {
 /*M*/             break;
 /*M*/
 /*M*/         case RES_OPAQUE:
-/*M*/           {DBG_BF_ASSERT(0, "STRIP");
-/*M*/           }
 /*M*/           break;
 /*M*/
 /*M*/       case RES_URL:
@@ -543,8 +522,6 @@ namespace binfilter {
 /*M*/           break;
 /*M*/
 /*M*/       case RES_CHAIN:
-/*M*/           {DBG_BF_ASSERT(0, "STRIP");
-/*M*/           }
 /*M*/
 /*M*/       default:
 /*M*/           bClear = FALSE;
@@ -600,15 +577,6 @@ namespace binfilter {
 /*N*/           pFrm->InvalidateSize();
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-|*  SwFlyFrm::ChgRelPos()
-|*
-|*  Beschreibung        Aenderung der relativen Position, die Position wird
-|*      damit automatisch Fix, das Attribut wird entprechend angepasst.
-|*
-|*************************************************************************/
 
 /*************************************************************************
 |*
@@ -765,7 +733,7 @@ namespace binfilter {
 //                          problems in method <SwCntntFrm::_WouldFit(..)>,
 //                          which assumes that the follows are formatted.
 //                          Thus, <bNoCalcFollow> no longer used by <FormatWidthCols(..)>.
-//void CalcCntnt( SwLayoutFrm *pLay, BOOL bNoColl )
+
 /*N*/ void CalcCntnt( SwLayoutFrm *pLay,
 /*N*/                 bool bNoColl,
 /*N*/                 bool bNoCalcFollow )
@@ -775,10 +743,6 @@ namespace binfilter {
 /*N*/   if( pLay->IsSctFrm() )
 /*N*/   {
 /*N*/       pSect = (SwSectionFrm*)pLay;
-/*N*/       if( pSect->IsEndnAtEnd() && !bNoColl )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/       pSect->CalcFtnCntnt();
 /*N*/   }
 /*N*/   else
@@ -794,8 +758,6 @@ namespace binfilter {
 /*?*/           {
 /*?*/               if( pSect->IsEndnAtEnd() )
 /*?*/               {
-/*?*/                   if( bCollect )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/                   BOOL bLock = pSect->IsFtnLock();
 /*?*/                   pSect->SetFtnLock( TRUE );
 /*?*/                   pSect->CalcFtnCntnt();
@@ -943,10 +905,6 @@ namespace binfilter {
 /*N*/               && pFrm->FindSctFrm()->IsAnFollow( pSect ) ) ) ) ) );
 /*N*/       if( pSect )
 /*N*/       {
-/*N*/           if( bCollect )
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
 /*N*/           if( pSect->HasFollow() )
 /*N*/           {
 /*N*/               SwSectionFrm* pNxt = pSect->GetFollow();
@@ -1388,16 +1346,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*  SwFlyFrm::Cut()
-|*
-|*************************************************************************/
-
-/*N*/ void SwFlyFrm::Cut()
-/*N*/ {
-/*N*/ }
-
-/*************************************************************************
-|*
 |*  SwFrm::AppendFly(), RemoveFly()
 |*
 |*************************************************************************/
@@ -1527,10 +1475,7 @@ void SwFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
             }
             break;
         case FLY_IN_CNTNT:
-        {
-            /*nothing to do*/;
-        }
-        break;
+            break;
         default:    OSL_FAIL( "<SwFrm::AppendVirtDrawObj(..) - unknown anchor type." );
     }
 

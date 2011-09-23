@@ -74,13 +74,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*  SwFlyAtCntFrm::CheckCharRect()
-|*
-|*************************************************************************/
-
-
-/*************************************************************************
-|*
 |*  SwFlyAtCntFrm::Modify()
 |*
 |*************************************************************************/
@@ -1280,11 +1273,6 @@ namespace binfilter {
 /*N*/
 /*N*/ }
 
-// Wer weicht wem aus bzw. welcher Bereich ist "linker"/"rechter" als welcher?
-/*N*/ BOOL MA_FASTCALL lcl_Minor( SwRelationOrient /*eRelO*/, SwRelationOrient /*eRelO2*/,
-/*N*/   BOOL /*bLeft*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
 
 /*N*/ void SwFlyAtCntFrm::MakeFlyPos()
 /*N*/ {
@@ -2019,94 +2007,8 @@ namespace binfilter {
 /*N*/                                     else if( REL_FRM_LEFT == eRelO2 )
 /*N*/                                         eRelO2 = REL_FRM_RIGHT;
 /*N*/                                 }
-/*N*/                                 if ( eHOri2 == eHOri &&
-/*N*/                                     lcl_Minor( eRelO, eRelO2, HORI_LEFT == eHOri ) )
-/*N*/                                 {
-/*N*/                                     //Die Berechnung wird dadurch etwas aufwendiger, das die
-/*N*/                                     //Ausgangsbasis der Flys unterschiedlich sein koennen.
-/*N*/                                     if( bVert )
-/*N*/                                     {
-/*N*/                                         const SvxULSpaceItem &rULI = pFly->GetFmt()->GetULSpace();
-/*N*/                                         const SwTwips nFlyTop = pFly->Frm().Top() - rULI.GetUpper();
-/*N*/                                         const SwTwips nFlyBot = pFly->Frm().Bottom() + rULI.GetLower();
-/*N*/                                         if( nFlyTop <= aTmpFrm.Bottom() + rUL.GetLower() &&
-/*N*/                                             nFlyBot >= aTmpFrm.Top() - rUL.GetUpper() )
-/*N*/                                         {
-/*N*/                                             if ( eHOri == HORI_LEFT )
-/*N*/                                             {
-/*N*/                                                 SwTwips nTmp = nFlyBot + 1
-/*N*/                                                     + rUL.GetUpper()
-/*N*/                                                     - GetAnchor()->Frm().Top();
-/*N*/                                                 if( nTmp > nRelPosX &&
-/*N*/                                                     nTmp + Frm().Height() +
-/*N*/                                                     GetAnchor()->Frm().Top() +
-/*N*/                                                     rUL.GetLower() <=
-/*N*/                                                     pPage3->Frm().Height() +
-/*N*/                                                     pPage3->Frm().Top() )
-/*N*/                                                 {
-/*N*/                                                     nRelPosX = nTmp;
-/*N*/                                                 }
-/*N*/                                             }
-/*N*/                                             else if ( eHOri == HORI_RIGHT )
-/*N*/                                             {
-/*N*/                                                 SwTwips nTmp = nFlyTop - 1
-/*N*/                                                     - rUL.GetLower()
-/*N*/                                                     - Frm().Height()
-/*N*/                                                     - GetAnchor()->Frm().Top();
-/*N*/                                                 if( nTmp < nRelPosX &&
-/*N*/                                                     nTmp - rUL.GetUpper() +
-/*N*/                                                     GetAnchor()->Frm().Top()
-/*N*/                                                     >= pPage3->Frm().Top() )
-/*N*/                                                 {
-/*N*/                                                     nRelPosX = nTmp;
-/*N*/                                                 }
-/*N*/                                             }
-/*N*/                                             aTmpFrm.Pos().Y() = GetAnchor()->Frm().Top() + nRelPosX;
-/*N*/                                         }
-/*N*/                                     }
-/*N*/                                     else
-/*N*/                                     {
-/*N*/                                         const SvxLRSpaceItem &rLRI = pFly->GetFmt()->GetLRSpace();
-/*N*/                                         const SwTwips nFlyLeft = pFly->Frm().Left() - rLRI.GetLeft();
-/*N*/                                         const SwTwips nFlyRight = pFly->Frm().Right() + rLRI.GetRight();
-/*N*/                                         if( nFlyLeft <= aTmpFrm.Right() + rLR.GetRight() &&
-/*N*/                                             nFlyRight >= aTmpFrm.Left() - rLR.GetLeft() )
-/*N*/                                         {
-/*N*/                                             if ( eHOri == HORI_LEFT )
-/*N*/                                             {
-/*N*/                                                 SwTwips nTmp = nFlyRight + 1
-/*N*/                                                     + rLR.GetLeft()
-/*N*/                                                     - GetAnchor()->Frm().Left();
-/*N*/                                                 if( nTmp > nRelPosX &&
-/*N*/                                                     nTmp + Frm().Width() +
-/*N*/                                                     GetAnchor()->Frm().Left() +
-/*N*/                                                     rLR.GetRight() <=
-/*N*/                                                     pPage3->Frm().Width() +
-/*N*/                                                     pPage3->Frm().Left() )
-/*N*/                                                 {
-/*N*/                                                     nRelPosX = nTmp;
-/*N*/                                                 }
-/*N*/                                             }
-/*N*/                                             else if ( eHOri == HORI_RIGHT )
-/*N*/                                             {
-/*N*/                                                 SwTwips nTmp = nFlyLeft - 1
-/*N*/                                                     - rLR.GetRight()
-/*N*/                                                     - Frm().Width()
-/*N*/                                                     - GetAnchor()->Frm().Left();
-/*N*/                                                 if( nTmp < nRelPosX &&
-/*N*/                                                     nTmp - rLR.GetLeft() +
-/*N*/                                                     GetAnchor()->Frm().Left()
-/*N*/                                                     >= pPage3->Frm().Left() )
-/*N*/                                                 {
-/*N*/                                                     nRelPosX = nTmp;
-/*N*/                                                 }
-/*N*/                                             }
-/*N*/                                             aTmpFrm.Pos().X() = GetAnchor()->Frm().Left() + nRelPosX;
-/*N*/                                         }
-/*N*/                                     }
-/*N*/                                 }
-/*N*/                           }
-/*N*/                       }
+/*N*/                             }
+/*N*/                         }
 /*N*/                   }
 /*N*/                   pFly = ((SwVirtFlyDrawObj*)aIter.Next())->GetFlyFrm();
 /*N*/               }
@@ -2151,7 +2053,6 @@ namespace binfilter {
 /*N*/         FindPageFrm()->InvalidateSize();
 /*N*/     if ( !bValidPos && !GetAnchor()->IsValid() )
 /*N*/     {
-/*N*/ //      OSL_ENSURE( StackHack::IsLocked(), "invalid Anchor" );
 /*N*/         bValidPos = TRUE;
 /*N*/     }
 /*N*/ }
