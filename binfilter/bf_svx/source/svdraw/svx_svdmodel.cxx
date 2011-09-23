@@ -400,17 +400,6 @@ using namespace ::com::sun::star;
 /*N*/   delete mpOutlinerCache;
 /*N*/
 /*N*/   ClearUndoBuffer();
-/*N*/ #ifdef DBG_UTIL
-/*N*/   if(pAktUndoGroup)
-/*N*/   {
-/*?*/       ByteString aStr("Im Dtor des SdrModel steht noch ein offenes Undo rum: \"");
-/*?*/
-/*?*/       aStr += ByteString(pAktUndoGroup->GetComment(), gsl_getSystemTextEncoding());
-/*?*/       aStr += '\"';
-/*?*/
-/*?*/       OSL_FAIL(aStr.GetBuffer());
-/*N*/   }
-/*N*/ #endif
 /*N*/   if (pAktUndoGroup!=NULL) delete pAktUndoGroup;
 /*N*/   Clear();
 /*N*/   delete pLayerAdmin;

@@ -117,10 +117,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       UINT32 nReadAnz(nAktPos - nFilePos);
 /*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/       ImpCheckRecordIntegrity();
-/*N*/ #endif
-/*N*/
 /*N*/       if(nReadAnz != nBlkSize)
 /*N*/       {
 /*N*/           // FilePos korregieren
@@ -137,10 +133,6 @@ namespace binfilter {
 /*N*/       Write();
 /*N*/       // und die FilePos restaurieren.
 /*N*/       rStream.Seek(nAktPos);
-/*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/       ImpCheckRecordIntegrity();
-/*N*/ #endif
 /*N*/   }
 /*N*/   else
 /*N*/       OSL_FAIL("SdrIOHeader::CloseRecord(): Falscher StreamMode angegeben.");
@@ -207,150 +199,6 @@ namespace binfilter {
 /*N*/   else
 /*?*/       return 0;
 /*N*/ }
-
-#ifdef DBG_UTIL
-
-/*N*/ void SdrIOHeader::ImpGetRecordName(ByteString& rStr, INT32 nSubRecCount,
-/*N*/   INT32 nSubRecReadCount) const
-/*N*/ {
-/*N*/   rStr = "CheckRecordIntegrity (ID=";
-/*N*/   rStr += cMagic[0];
-/*N*/   rStr += cMagic[1];
-/*N*/   rStr += cHdrID[0];
-/*N*/   rStr += cHdrID[1];
-/*N*/   rStr += ')';
-/*N*/
-/*N*/   if(nSubRecCount != -1)
-/*N*/   {
-/*N*/       rStr += " (";
-/*N*/
-/*N*/       if(nSubRecReadCount != -1)
-/*N*/       {
-/*N*/           rStr += ByteString_CreateFromInt32( nSubRecReadCount );
-/*N*/           rStr += " von ";
-/*N*/           rStr += ByteString_CreateFromInt32( nSubRecCount );
-/*N*/           rStr += " Records gelesen)";
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           rStr += ByteString_CreateFromInt32( nSubRecCount );
-/*N*/           rStr += " Records)";
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-/*N*/ BOOL SdrIOHeader::ImpHasSubRecords() const
-/*N*/ {
-/*N*/   // nicht jeder Record hat SubRecords
-/*N*/   return IsID(SdrIOModlID) ||
-/*N*/          IsID(SdrIOPageID) ||
-/*N*/          IsID(SdrIOMaPgID) ||
-/*N*/          IsID(SdrIODObjID);
-/*N*/ }
-
-// Testet die Integritaet eines Records. Innerhalb eines Records
-// muessen alle Daten in Subrecords (SdrDownCompat) untergebracht sein.
-
-/*N*/ void SdrIOHeader::ImpCheckRecordIntegrity()
-/*N*/ {
-/*N*/   UINT32 nFilePos0(rStream.Tell());
-/*N*/
-/*N*/   if(IsMagic() && ImpHasSubRecords())
-/*N*/   {
-/*N*/       // nicht jeder Record hat SubRecords
-/*N*/       // Seek an den Recordanfang
-/*N*/       rStream.Seek(nFilePos);
-/*N*/       Read();
-/*N*/
-/*N*/       // Anzahl der vorhandenen SubRecords
-/*N*/       UINT32 nHasSubRecCount(0);
-/*N*/       // Anzahl der SubRecords bis nFilePos0
-/*N*/       UINT32 nReadSubRecCount(0);
-/*N*/       UINT32 nAktFilePos(rStream.Tell());
-/*N*/       BOOL bFilePos0Hit(nAktFilePos == nFilePos0);
-/*N*/
-/*N*/       while(!rStream.GetError() && !rStream.IsEof() && nAktFilePos < nFilePos + nBlkSize)
-/*N*/       {
-/*N*/           UINT32 nSubRecSiz;
-/*N*/
-/*N*/           nHasSubRecCount++;
-/*N*/           rStream >> nSubRecSiz;
-/*N*/           nAktFilePos += nSubRecSiz;
-/*N*/           rStream.Seek(nAktFilePos);
-/*N*/
-/*N*/           if(nAktFilePos <= nFilePos0)
-/*N*/               nReadSubRecCount++;
-/*N*/
-/*N*/           if(nAktFilePos == nFilePos0)
-/*N*/               // Aha, nFilePos0 ist ok.
-/*N*/               bFilePos0Hit = TRUE;
-/*N*/       }
-/*N*/
-/*N*/       ByteString aStr;
-/*N*/
-/*N*/       if(nAktFilePos != nFilePos+nBlkSize)
-/*N*/           aStr += "- SubRecord-Strukturfehler.\n";
-/*N*/
-/*N*/       if(nFilePos0 > nAktFilePos)
-/*N*/       {
-/*?*/           UINT32 nToMuch(nFilePos0 - nAktFilePos);
-/*?*/
-/*?*/           aStr += "- ";
-/*?*/
-/*?*/           if(nToMuch == 1)
-/*?*/               aStr += "1 Byte";
-/*?*/           else
-/*?*/           {
-/*?*/               aStr += ByteString_CreateFromInt32( nToMuch );
-/*?*/               aStr += " Bytes";
-/*?*/           }
-/*?*/
-/*?*/           aStr += " zuviel gelesen.\n";
-/*N*/       }
-
-/*N*/       if(!bFilePos0Hit)
-/*N*/           aStr += "- Aktuelle Fileposition liegt nicht am Ende eines SubRecords.\n";
-/*N*/
-/*N*/       if(aStr.Len())
-/*N*/       {
-/*?*/           ByteString aStr2;
-/*?*/
-/*?*/           aStr.Insert(":\n", 0);
-/*?*/           ImpGetRecordName(aStr2, nHasSubRecCount, nReadSubRecCount);
-/*?*/           aStr.Insert(aStr2, 0);
-/*?*/           OSL_FAIL(aStr.GetBuffer());
-/*N*/       }
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       // keine SubRecords vorhanden, also nur FilePos pruefen
-/*N*/       if(nFilePos0 > nFilePos + nBlkSize)
-/*N*/       {
-/*?*/           ByteString aStr;
-/*?*/           UINT32 nToMuch(nFilePos0 - nFilePos+nBlkSize);
-/*?*/
-/*?*/           ImpGetRecordName(aStr);
-/*?*/           aStr += ":\nAus dem Record wurde";
-/*?*/
-/*?*/           if(nToMuch == 1)
-/*?*/               aStr += "1 Byte";
-/*?*/           else
-/*?*/           {
-/*?*/               aStr += "n ";
-/*?*/               aStr += ByteString_CreateFromInt32( nToMuch );
-/*?*/               aStr += " Bytes";
-/*?*/           }
-/*?*/
-/*?*/           aStr += " zuviel gelesen. FilePos wird korregiert";
-/*?*/
-/*?*/           OSL_FAIL(aStr.GetBuffer());
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   // Fileposition restaurieren
-/*N*/   rStream.Seek(nFilePos0);
-/*N*/ }
-#endif
 
 /*N*/ SdrIOHeaderLookAhead::SdrIOHeaderLookAhead(SvStream& rNewStream, BOOL bAutoOpen)
 /*N*/ : SdrIOHeader(rNewStream, STREAM_READ, SdrIOEndeID, FALSE)
@@ -515,40 +363,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       UINT32 nReadAnz(nAktPos - nSubRecPos);
 /*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/       if(nReadAnz > nSubRecSiz)
-/*N*/       {
-/*?*/           ByteString aErrMsg("SdrDownCompat::CloseSubRecord(), ");
-/*?*/
-/*?*/           aErrMsg += "RedordID";
-/*?*/
-/*?*/           if(!pRecId)
-/*?*/               aErrMsg += " unbekannt";
-/*?*/           else
-/*?*/           {
-/*?*/               aErrMsg += '=';
-/*?*/               aErrMsg += pRecId;
-/*?*/           }
-/*?*/
-/*?*/           aErrMsg += ":\nAus dem Record wurde";
-/*?*/
-/*?*/           UINT32 nToMuch(nReadAnz - nSubRecSiz);
-/*?*/
-/*?*/           if(nToMuch == 1)
-/*?*/               aErrMsg += " 1 Byte";
-/*?*/           else
-/*?*/           {
-/*?*/               aErrMsg += "n ";
-/*?*/               aErrMsg += ByteString_CreateFromInt32( nToMuch );
-/*?*/               aErrMsg += " Bytes";
-/*?*/           }
-/*?*/
-/*?*/           aErrMsg += " zuviel gelesen, FilePos korregiert.";
-/*?*/
-/*?*/           OSL_FAIL(aErrMsg.GetBuffer());
-/*N*/       }
-#endif
-
 /*N*/       if(nReadAnz != nSubRecSiz)
 /*N*/       {
 /*N*/           // den Rest ueberspringen

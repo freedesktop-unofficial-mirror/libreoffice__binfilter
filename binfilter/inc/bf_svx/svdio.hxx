@@ -163,14 +163,6 @@ protected:
     virtual void Write();
     virtual void Read();
 
-#if _SOLAR__PRIVATE
-#ifdef DBG_UTIL
-    void ImpCheckRecordIntegrity();
-    void ImpGetRecordName(ByteString& rStr, INT32 nSubRecCount=-1, INT32 nSubRecReadCount=-1) const;
-    BOOL ImpHasSubRecords() const;
-#endif
-#endif // __PRIVATE
-
 public:
     SdrIOHeader(SvStream& rNewStream, UINT16 nNewMode, const char cID[2]=SdrIOEndeID, BOOL bAutoOpen=TRUE);
     virtual ~SdrIOHeader();
