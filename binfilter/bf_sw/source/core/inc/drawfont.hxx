@@ -157,12 +157,6 @@ public:
     // obtain the end of a SwBidiPortion
     xub_StrLen NextDirChg( const xub_StrLen nPos,
                            const BYTE* pLevel = 0 ) const;
-    BYTE DirType( const xub_StrLen nPos ) const;
-
-
-    // examines the range [ nStart, nStart + nEnd ] if there are kanas
-    // returns start index of kana entry in array, otherwise USHRT_MAX
-    USHORT HasKana( xub_StrLen nStart, const xub_StrLen nEnd ) const;
 };
 
 inline void SwScriptInfo::SetInvalidity( const xub_StrLen nPos )

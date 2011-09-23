@@ -868,51 +868,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/   return STRING_LEN;
 /*N*/ }
 
-/*N*/ BYTE SwScriptInfo::DirType( const xub_StrLen nPos ) const
-/*N*/ {
-/*N*/     USHORT nEnd = CountDirChg();
-/*N*/     for( USHORT nX = 0; nX < nEnd; ++nX )
-/*N*/     {
-/*?*/         if( nPos < GetDirChg( nX ) )
-/*?*/             return GetDirType( nX );
-/*N*/     }
-/*N*/
-/*N*/     return 0;
-/*N*/ }
-
 #endif
-
-/*************************************************************************
- *                        SwScriptInfo::CompType(..)
- * returns the type of the compressed character
- *************************************************************************/
-
-
-/*************************************************************************
- *                      SwScriptInfo::HasKana()
- * returns, if there are compressable kanas or specials
- * betwenn nStart and nEnd
- *************************************************************************/
-
-/*N*/ USHORT SwScriptInfo::HasKana( xub_StrLen nStart, const xub_StrLen nLen ) const
-/*N*/ {
-/*N*/     USHORT nCnt = CountCompChg();
-/*N*/     xub_StrLen nEnd = nStart + nLen;
-/*N*/
-/*N*/     for( USHORT nX = 0; nX < nCnt; ++nX )
-/*N*/     {
-/*N*/         xub_StrLen nKanaStart  = GetCompStart( nX );
-/*N*/         xub_StrLen nKanaEnd = nKanaStart + GetCompLen( nX );
-/*N*/
-/*N*/         if ( nKanaStart >= nEnd )
-/*N*/             return USHRT_MAX;
-/*N*/
-/*N*/         if ( nStart < nKanaEnd )
-/*N*/             return nX;
-/*N*/     }
-/*N*/
-/*N*/     return USHRT_MAX;
-/*N*/ }
 
 /*************************************************************************
  *                      class SwParaPortion
