@@ -57,7 +57,7 @@
 #include "txtfrm.hxx"
 #include "pagedesc.hxx"
 #include "sectfrm.hxx"
-#include "dbg_lay.hxx"
+
 namespace binfilter {
 
 
@@ -482,8 +482,6 @@ namespace binfilter {
 
 /*N*/ void SwPageFrm::MakeAll()
 /*N*/ {
-/*N*/   PROTOCOL_ENTER( this, PROT_MAKEALL, 0, 0 )
-/*N*/
 /*N*/   const SwRect aOldRect( Frm() );     //Anpassung der Root-Groesse
 /*N*/   const SwLayNotify aNotify( this );  //uebernimmt im DTor die Benachrichtigung
 /*N*/   SwBorderAttrAccess *pAccess = 0;
@@ -544,8 +542,6 @@ namespace binfilter {
 
 /*N*/ void SwLayoutFrm::MakeAll()
 /*N*/ {
-/*N*/   PROTOCOL_ENTER( this, PROT_MAKEALL, 0, 0 )
-/*N*/
 /*N*/       //uebernimmt im DTor die Benachrichtigung
 /*N*/   const SwLayNotify aNotify( this );
 /*N*/     BOOL bVert = IsVertical();
@@ -739,7 +735,6 @@ BOOL SwCntntFrm::MakePrtArea( const SwBorderAttrs &rAttrs )
 /*N*/
 /*N*/   LockJoin();
 /*N*/     long nFormatCount = 0;
-/*N*/   PROTOCOL_ENTER( this, PROT_MAKEALL, 0, 0 )
 /*N*/
 /*N*/ #ifdef DBG_UTIL
 /*N*/   SwDoc *pDoc = GetAttrSet()->GetDoc();
@@ -911,26 +906,6 @@ BOOL SwCntntFrm::MakePrtArea( const SwBorderAttrs &rAttrs )
 /*N*/           Format();
 /*N*/       }
 /*N*/
-        // #i16930# - removed this code because it did not work
-
-        // react on the situation detected in the text
-        // formatting - see <SwTxtFrm::FormatAdjust(..)>:
-        // text frame has to move forward, because its text formatting stopped,
-        // created a follow and detected, that it contains no content.
-/*        if ( IsTxtFrm() && bValidPos && bValidSize && bValidPrtArea &&
-             (Frm().*fnRect->fnGetHeight)() == 0 &&
-             HasFollow()
-           )
-        {
-            SwFrm* pOldUpper = GetUpper();
-            MoveFwd( TRUE, FALSE );
-            if ( GetUpper() != pOldUpper )
-            {
-                bMovedFwd = TRUE;
-                SWREFRESHFN( this )
-                continue;
-            }
-        } */
 /*N*/
 /*N*/         //Wenn ich der erste einer Kette bin koennte ich mal sehen ob
 /*N*/       //ich zurueckfliessen kann (wenn ich mich ueberhaupt bewegen soll).

@@ -1,7 +1,7 @@
 #*************************************************************************
 #
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
-# 
+#
 # Copyright 2000, 2010 Oracle and/or its affiliates.
 #
 # OpenOffice.org - a multi-platform office productivity suite
@@ -73,7 +73,7 @@ CXXFILES = \
         sw_frmtool.cxx \
         sw_ftnfrm.cxx \
         sw_hffrm.cxx \
-                sw_laycache.cxx \
+        sw_laycache.cxx \
         sw_newfrm.cxx \
         sw_pagechg.cxx \
         sw_pagedesc.cxx \
@@ -100,7 +100,7 @@ SLOFILES =  \
         $(SLO)$/sw_frmtool.obj \
         $(SLO)$/sw_ftnfrm.obj \
         $(SLO)$/sw_hffrm.obj \
-                $(SLO)$/sw_laycache.obj \
+        $(SLO)$/sw_laycache.obj \
         $(SLO)$/sw_newfrm.obj \
         $(SLO)$/sw_pagechg.obj \
         $(SLO)$/sw_pagedesc.obj \
@@ -111,13 +111,6 @@ SLOFILES =  \
         $(SLO)$/sw_trvlfrm.obj \
         $(SLO)$/sw_unusedf.obj \
         $(SLO)$/sw_wsfrm.obj
-
-.IF "$(dbgutil)"!=""
-CXXFILES += \
-        sw_dbg_lay.cxx
-SLOFILES +=  \
-        $(SLO)$/sw_dbg_lay.obj
-.ENDIF
 
 # --- Targets -------------------------------------------------------
 

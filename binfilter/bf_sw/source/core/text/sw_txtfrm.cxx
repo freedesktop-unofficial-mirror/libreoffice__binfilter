@@ -53,7 +53,6 @@
 #include <frmtool.hxx>
 #include <pagedesc.hxx> // SwPageDesc
 #include <tgrditem.hxx>
-#include <dbg_lay.hxx>
 #include <fmtfld.hxx>
 #include <fmtftn.hxx>
 #include <txtfld.hxx>
@@ -1495,8 +1494,6 @@ public:
 
 /*N*/ sal_Bool SwTxtFrm::TestFormat( const SwFrm* pPrv, SwTwips &rMaxHeight, sal_Bool &bSplit )
 /*N*/ {
-/*N*/   PROTOCOL_ENTER( this, PROT_TESTFORMAT, 0, 0 )
-/*N*/
 /*N*/     if( IsLocked() && GetUpper()->Prt().Width() <= 0 )
 /*N*/       return sal_False;
 /*N*/

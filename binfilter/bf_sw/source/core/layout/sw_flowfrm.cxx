@@ -67,8 +67,8 @@
 #include "flyfrms.hxx"
 #include "sectfrm.hxx"
 #include "section.hxx"
-#include "dbg_lay.hxx"
 #include "lineinfo.hxx"
+
 namespace binfilter {
 
 /*N*/ BOOL SwFlowFrm::bMoveBwdJump = FALSE;
@@ -1405,7 +1405,6 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( pNewUpper )
 /*N*/   {
-/*N*/       PROTOCOL_ENTER( &rThis, PROT_MOVE_FWD, 0, 0 );
 /*N*/       SwPageFrm *pOldPage = pOldBoss->FindPageFrm();
 /*N*/       //Wir moven uns und alle direkten Nachfolger vor den ersten
 /*N*/       //CntntFrm unterhalb des neuen Uppers.
@@ -1700,7 +1699,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if ( pNewUpper )
 /*N*/   {
-/*N*/       PROTOCOL_ENTER( &rThis, PROT_MOVE_BWD, 0, 0 );
 /*N*/       if ( pNewUpper->IsFtnContFrm() )
 /*N*/       {
 /*?*/           //Kann sein, dass ich einen Container bekam.

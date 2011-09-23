@@ -44,7 +44,6 @@
 #include "frmfmt.hxx"
 #include "dcontact.hxx"
 #include "hints.hxx"
-#include "dbg_lay.hxx"
 
 #include <ftnidx.hxx>
 
@@ -486,8 +485,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if ( IsJoinLocked() || StackHack::IsLocked() || StackHack::Count() > 50 )
 /*N*/       return;
-/*N*/
-/*N*/   PROTOCOL_ENTER( this, PROT_MAKEALL, 0, 0 )
 /*N*/
 /*N*/     LockJoin(); //Ich lass mich nicht unterwegs vernichten.
 /*N*/   SwLayNotify aNotify( this );    //uebernimmt im DTor die Benachrichtigung

@@ -41,7 +41,6 @@
 
 #include "pordrop.hxx"
 #include "txtfly.hxx"   // SwContourCache
-#include "dbg_lay.hxx"  // Layout Debug Fileausgabe
 namespace binfilter {
 
 /*N*/ SwCache *SwTxtFrm::pTxtCache = 0;
@@ -87,12 +86,10 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/   );
 /*N*/   SwTxtFrm::SetTxtCache( pTxtCache );
-/*N*/   PROTOCOL_INIT
 /*N*/ }
 
 /*N*/ void _TextFinit()
 /*N*/ {
-/*N*/   PROTOCOL_STOP
 /*N*/   delete SwTxtFrm::GetTxtCache();
 /*N*/   delete pSwFontCache;
 /*N*/   delete pFntCache;

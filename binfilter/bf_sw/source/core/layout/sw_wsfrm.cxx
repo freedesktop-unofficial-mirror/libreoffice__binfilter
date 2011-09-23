@@ -66,7 +66,6 @@
 #include <txtfrm.hxx>
 #include <ndtxt.hxx>
 #include <bodyfrm.hxx>
-#include <dbg_lay.hxx>
 #include <bf_svx/frmdiritem.hxx>
 
 namespace binfilter {
@@ -908,8 +907,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   OSL_ENSURE( nDist >= 0, "Negatives Wachstum?" );
 /*N*/
-/*N*/   PROTOCOL_ENTER( this, bTst ? PROT_GROW_TST : PROT_GROW, 0, &nDist )
-/*N*/
 /*N*/   if ( nDist )
 /*N*/   {
 /*N*/         SWRECTFN( this )
@@ -945,8 +942,6 @@ namespace binfilter {
 /*N*/ SwTwips SwFrm::Shrink( SwTwips nDist, BOOL bTst, BOOL bInfo )
 /*N*/ {
 /*N*/   OSL_ENSURE( nDist >= 0, "Negative Verkleinerung?" );
-/*N*/
-/*N*/   PROTOCOL_ENTER( this, bTst ? PROT_SHRINK_TST : PROT_SHRINK, 0, &nDist )
 /*N*/
 /*N*/   if ( nDist )
 /*N*/   {
@@ -1001,8 +996,6 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ SwTwips SwFrm::AdjustNeighbourhood( SwTwips nDiff, BOOL bTst )
 /*N*/ {
-/*N*/   PROTOCOL_ENTER( this, PROT_ADJUSTN, 0, &nDiff );
-/*N*/
 /*N*/   if ( !nDiff || !GetUpper()->IsFtnBossFrm() ) // nur innerhalb von Seiten/Spalten
 /*?*/       return 0L;
 /*N*/

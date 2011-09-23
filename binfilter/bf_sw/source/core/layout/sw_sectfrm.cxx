@@ -51,7 +51,6 @@
 #include "tabfrm.hxx"       // SwTabFrm
 #include "flyfrm.hxx"       // SwFlyFrm
 #include "ftnfrm.hxx"       // SwFtnFrm
-#include "dbg_lay.hxx"
 #include <bf_svx/lrspitem.hxx>
 #include <bf_svx/brshitem.hxx>
 #include <fmtftntx.hxx>
@@ -84,8 +83,6 @@ namespace binfilter {
 /*N*/   bEndnAtEnd = rSect.IsEndnAtEnd();
 /*N*/   bLockJoin = FALSE;
 /*N*/     nType = FRMC_SECTION;
-/*N*/
-/*N*/   PROTOCOL( this, PROT_SECTION, bMaster ? ACT_CREATE_MASTER : ACT_CREATE_FOLLOW, &rSect )
 /*N*/
 /*N*/   if( bMaster )
 /*N*/   {
@@ -147,7 +144,6 @@ namespace binfilter {
 /*?*/           SwSectionFrm *pMaster = FindSectionMaster();
 /*?*/           if( pMaster )
 /*?*/           {
-/*?*/               PROTOCOL( this, PROT_SECTION, ACT_DEL_FOLLOW, pMaster )
 /*?*/               pMaster->SetFollow( GetFollow() );
 /*?*/               // Ein Master greift sich immer den Platz bis zur Unterkante seines
 /*?*/               // Uppers. Wenn er keinen Follow mehr hat, kann er diesen ggf. wieder
@@ -158,7 +154,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/       else if( HasFollow() )
 /*N*/       {
-/*?*/           PROTOCOL( this, PROT_SECTION, ACT_DEL_MASTER, GetFollow() )
 /*?*/           GetFollow()->bIsFollow = FALSE;
 /*N*/       }
 /*N*/   }
@@ -238,8 +233,6 @@ namespace binfilter {
 /*N*/ void SwSectionFrm::_Cut( BOOL bRemove )
 /*N*/ {
 /*N*/   OSL_ENSURE( GetUpper(), "Cut ohne Upper()." );
-/*N*/
-/*N*/   PROTOCOL( this, PROT_CUT, 0, GetUpper() )
 /*N*/
 /*N*/   SwPageFrm *pPage = FindPageFrm();
 /*N*/   InvalidatePage( pPage );
@@ -345,8 +338,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( !pNxt->IsJoinLocked() && GetSection() == pNxt->GetSection() )
 /*N*/   {
-/*N*/       PROTOCOL( this, PROT_SECTION, ACT_MERGE, pNxt )
-/*N*/
 /*N*/       SwFrm* pTmp = ::binfilter::SaveCntnt( pNxt );
 /*N*/       if( pTmp )
 /*N*/       {
@@ -764,7 +755,6 @@ namespace binfilter {
 /*N*/     SWRECTFN( this )
 /*N*/   if ( !bValidPrtArea )
 /*N*/   {
-/*N*/       PROTOCOL( this, PROT_PRTAREA, 0, 0 )
 /*N*/       bValidPrtArea = TRUE;
 /*N*/       SwTwips nUpper = CalcUpperSpace();
 /*N*/
@@ -784,7 +774,6 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( !bValidSize )
 /*N*/   {
-/*N*/       PROTOCOL_ENTER( this, PROT_SIZE, 0, 0 )
 /*N*/         const long nOldHeight = (Frm().*fnRect->fnGetHeight)();
 /*N*/       BOOL bOldLock = IsColLocked();
 /*N*/       ColLock();
@@ -959,8 +948,6 @@ namespace binfilter {
 /*N*/ SwLayoutFrm *SwFrm::GetNextSctLeaf( MakePageType eMakePage )
 /*N*/ {
 /*N*/   //Achtung: Geschachtelte Bereiche werden zur Zeit nicht unterstuetzt.
-/*N*/
-/*N*/   PROTOCOL_ENTER( this, PROT_LEAF, ACT_NEXT_SECT, GetUpper()->FindSctFrm() )
 /*N*/
 /*N*/   // Abkuerzungen fuer spaltige Bereiche, wenn wir noch nicht in der letzten Spalte sind.
 /*N*/   // Koennen wir in die naechste Spalte des Bereichs rutschen?
@@ -1190,8 +1177,6 @@ namespace binfilter {
 
 /*N*/ SwLayoutFrm *SwFrm::GetPrevSctLeaf( MakePageType /*eMakeFtn*/ )
 /*N*/ {
-/*N*/   PROTOCOL_ENTER( this, PROT_LEAF, ACT_PREV_SECT, GetUpper()->FindSctFrm() )
-/*N*/
 /*N*/   SwLayoutFrm* pCol;
 /*N*/   // ColumnFrm beinhalten jetzt stets einen BodyFrm
 /*N*/   if( IsColBodyFrm() )
