@@ -128,12 +128,6 @@ namespace binfilter {
 /*?*/           case STATE_LOAD_ERROR:  nEvent = SVX_EVENT_IMAGE_ERROR; break;
 /*?*/           case STATE_LOAD_ABORT:  nEvent = SVX_EVENT_IMAGE_ABORT; break;
 /*?*/           }
-/*?*/
-/*?*/           SwFrmFmt* pFmt;
-/*?*/           if( nEvent && 0 != ( pFmt = pCntntNode->GetFlyFmt() ))
-/*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
 /*?*/       }
 /*?*/       return;         // das wars!
 /*N*/   }
@@ -335,12 +329,6 @@ namespace binfilter {
 /*?*/                   0 != (pTblNd = pANd->FindTableNode()) )
 /*?*/               {
 /*?*/                   pTblNd->GetTable().DecGrfsThatResize();
-/*?*/                   SwHTMLTableLayout *pLayout =
-/*?*/                       pTblNd->GetTable().GetHTMLTableLayout();
-/*?*/                   if( pLayout )
-/*?*/                   {
-/*?*/                       DBG_BF_ASSERT(0, "STRIP");
-/*?*/                   }
 /*?*/               }
 /*?*/           }
 /*N*/       }
@@ -377,10 +365,6 @@ namespace binfilter {
 /*N*/   if( GetObj() )
 /*N*/   {
 /*N*/       String aMimeType( SotExchange::GetFormatMimeType( GetContentType() ));
-/*N*/
-/*N*/ //!! ??? what have we here to do ????
-/*N*/ //!!      if( bNativFormat )
-/*N*/ //!!          aData.SetAspect( aData.GetAspect() | ASPECT_ICON );
 /*N*/
 /*N*/       ::com::sun::star::uno::Any aValue;
 /*N*/       GetObj()->GetData( aValue, aMimeType, !IsSynchron() && bWaitForData );

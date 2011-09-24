@@ -47,16 +47,6 @@ namespace binfilter {
     // Constructor movet alle Lines/Boxen aus der SwTable zu sich.
     // Die SwTable ist danach Leer und muss geloescht werden.
 
-
-
-
-/*N*/ SwDDEFieldType* SwDDETable::GetDDEFldType()
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*N*/ }
-
-
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -392,17 +392,16 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/       for( USHORT i = 0; i < nCols; ++i )
 /*N*/       {
 /*N*/           SwTableBoxFmt *pBoxF(0);
-/*N*/           if( pTAFmt )
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
-/*N*/           else if( bDfltBorders )
-/*N*/           {
-/*N*/               BYTE nBoxId = (i < nCols - 1 ? 0 : 1) + (n ? 2 : 0 );
-/*N*/               pBoxF = ::binfilter::lcl_CreateDfltBoxFmt( *this, aBoxFmtArr, nCols, nBoxId);
-/*N*/           }
-/*N*/           else
-/*?*/               pBoxF = pBoxFmt;
+/*N*/           if( !pTAFmt )
+                {
+                    if( bDfltBorders )
+                    {
+                        BYTE nBoxId = (i < nCols - 1 ? 0 : 1) + (n ? 2 : 0 );
+                        pBoxF = ::binfilter::lcl_CreateDfltBoxFmt( *this, aBoxFmtArr, nCols, nBoxId);
+                    }
+                    else
+                        pBoxF = pBoxFmt;
+                }
 /*N*/
 /*N*/           // fuer AutoFormat bei der Eingabe: beim Einfuegen der Tabelle
 /*N*/           // werden gleich die Spalten gesetzt. Im Array stehen die
@@ -430,11 +429,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   // und Frms einfuegen.
 /*N*/   GetNodes().GoNext( &aNdIdx );      // zum naechsten ContentNode
 /*N*/   pTblNd->MakeFrms( &aNdIdx );
-/*N*/
-/*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   SetModified();
 /*N*/   return pNdTbl;
@@ -495,49 +489,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/ }
 
 
-//---------------- Text -> Tabelle -----------------------
-
-
-
-//---------------- Tabelle -> Text -----------------------
-
-
-
-// -- benutze die ForEach Methode vom PtrArray um aus einer Tabelle wieder
-//      Text zuerzeugen. (Die Boxen koennen auch noch Lines enthalten !!)
-
-// forward deklarieren damit sich die Lines und Boxen rekursiv aufrufen
-// koennen.
-
-
-
-
-
-
-
-// ----- einfuegen von Spalten/Zeilen ------------------------
-
-
-
-
-
-// ----- loeschen von Spalten/Zeilen ------------------------
-
-
-
-
-
-// ---------- teilen / zusammenfassen von Boxen in der Tabelle --------
-
-/*N*/ BOOL SwDoc::SplitTbl( const SwSelBoxes& /*rBoxes*/, sal_Bool /*bVert*/, USHORT /*nCnt*/,
-/*N*/                       sal_Bool /*bSameHeight*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
-
-
-
-
-
 // -------------------------------------------------------
 
 //---------
@@ -593,8 +544,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/           SwTabFrm *pFrm = (SwTabFrm*)pLast;
 /*N*/           if ( !pFrm->IsFollow() )
 /*N*/           {
-/*N*/               while ( pFrm->HasFollow() )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
+/*N*/               while ( pFrm->HasFollow() ) { DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/               pFrm->Cut();
 /*N*/               delete pFrm;
 /*N*/               bAgain = TRUE;
@@ -603,15 +553,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/       pLast = bAgain ? aIter.GoStart() : aIter++;
 /*N*/   }
 /*N*/ }
-
-
-/*N*/ void SwTableNode::SetNewTable( SwTable* /*pNewTable*/, BOOL /*bNewFrames*/ )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-    // setze das TabelleAttribut Undo auf:
-
 
 
 /* --------------------------------------------------

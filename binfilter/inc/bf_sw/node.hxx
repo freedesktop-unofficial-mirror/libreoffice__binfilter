@@ -426,7 +426,6 @@ public:
     void DelFrms();
 
     SwTableNode* MakeCopy( SwDoc*, const SwNodeIndex& ) const;
-     void SetNewTable( SwTable* , BOOL bNewFrames=TRUE );
 
 private:
     // privater Constructor, weil nie kopiert werden darf !!

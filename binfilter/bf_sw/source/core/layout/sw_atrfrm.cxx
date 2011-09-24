@@ -194,18 +194,6 @@ void DelHFFormat( SwClient *pToRemove, SwFrmFmt *pFmt )
                 sal_uInt32 nEnd = pNode->EndOfSectionIndex();
                 while ( aIdx < nEnd )
                 {
-                    if ( pNode->IsCntntNode() &&
-                         ((SwCntntNode*)pNode)->GetDepends() )
-                    {
-                        SwClientIter aIter( *(SwCntntNode*)pNode );
-                        do
-                        {
-                            if( aIter()->ISA( SwCrsrShell ) )
-                            {
-                                DBG_BF_ASSERT(0, "STRIP");
-                            }
-                        } while ( aIter++ );
-                    }
                     aIdx++;
                     pNode = pDoc->GetNodes()[ aIdx ];
                 }

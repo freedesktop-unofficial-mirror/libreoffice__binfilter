@@ -72,13 +72,11 @@ class SwGetRefFieldType : public SwFieldType
     SwDoc* pDoc;
 public:
     SwGetRefFieldType(SwDoc* pDoc );
-     virtual SwFieldType*    Copy() const;
+     virtual SwFieldType* Copy() const { DBG_BF_ASSERT(0, "STRIP"); return NULL; }
 
     SwDoc*                  GetDoc() const { return pDoc; }
     // ueberlagert, um alle Ref-Felder zu updaten
     virtual void Modify( SfxPoolItem *, SfxPoolItem * );
-
-    void MergeWithOtherDoc( SwDoc& rDestDoc );
 
     static SwTxtNode* FindAnchor( SwDoc* pDoc, const String& rRefMark,
                                         USHORT nSubType, USHORT nSeqNo,

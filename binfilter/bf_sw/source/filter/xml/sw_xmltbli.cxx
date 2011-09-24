@@ -1058,98 +1058,6 @@ void SwXMLDDETableContext_Impl::StartElement(
     }
 }
 
-// generate a new name for DDE field type (called by lcl_GetDDEFieldType below)
-String lcl_GenerateFldTypeName(OUString sPrefix, SwTableNode* pTableNode)
-{
-    String sPrefixStr(sPrefix);
-
-    if (sPrefixStr.Len() == 0)
-    {
-        sPrefixStr = String('_');
-    }
-
-    // increase count until we find a name that is not yet taken
-    String sName;
-    sal_Int32 nCount = 0;
-    do
-    {
-        // this is crazy, but just in case all names are taken: exit gracefully
-        if (nCount < 0)
-            return sName;
-
-        nCount++;
-        sName = sPrefixStr;
-        sName += String::CreateFromInt32(nCount);
-
-    }
-    while (NULL != pTableNode->GetDoc()->GetFldType(RES_DDEFLD, sName));
-
-    return sName;
-}
-
-// set table properties
-SwDDEFieldType* lcl_GetDDEFieldType(SwXMLDDETableContext_Impl* pContext,
-                                    SwTableNode* pTableNode)
-{
-    // make command string
-    String sCommand(pContext->GetDDEApplication());
-    sCommand += ::binfilter::cTokenSeperator;
-    sCommand += String(pContext->GetDDEItem());
-    sCommand += ::binfilter::cTokenSeperator;
-    sCommand += String(pContext->GetDDETopic());
-
-    sal_uInt16 nType = pContext->GetIsAutomaticUpdate() ? ::binfilter::LINKUPDATE_ALWAYS
-                                                        : ::binfilter::LINKUPDATE_ONCALL;
-
-    String sName(pContext->GetConnectionName());
-
-    // field type to be returned
-    SwDDEFieldType* pType = NULL;
-
-    // valid name?
-    if (sName.Len() == 0)
-    {
-        sName = lcl_GenerateFldTypeName(pContext->GetDDEApplication(),
-                                        pTableNode);
-    }
-    else
-    {
-        // check for existing DDE field type with the same name
-        SwDDEFieldType* pOldType = (SwDDEFieldType*)pTableNode->GetDoc()->
-                                                GetFldType(RES_DDEFLD, sName);
-        if (NULL != pOldType)
-        {
-            // same values -> return old type
-            if ( (pOldType->GetCmd() == sCommand) &&
-                 (pOldType->GetType() == nType) )
-            {
-                // same name, same values -> return old type!
-                pType = pOldType;
-            }
-            else
-            {
-                // same name, different values -> think of new name
-                sName = lcl_GenerateFldTypeName(pContext->GetDDEApplication(),
-                                                pTableNode);
-            }
-        }
-        // no old type -> create new one
-    }
-
-    // create new field type (unless we already have one)
-    if (NULL == pType)
-    {
-        // create new field type and return
-        SwDDEFieldType aDDEFieldType(sName, sCommand, nType);
-        pType = (SwDDEFieldType*)pTableNode->
-            GetDoc()->InsertFldType(aDDEFieldType);
-    }
-
-    DBG_ASSERT(NULL != pType, "We really want a SwDDEFieldType here!");
-    return pType;
-}
-
-
 class TableBoxIndex
 {
 public:
@@ -2620,20 +2528,7 @@ void SwXMLTableContext::MakeTable()
     // now that table is complete, change into DDE table (if appropriate)
     if (NULL != pDDESource)
     {
-        // change existing table into DDE table:
-        // 1) Get DDE field type (get data from dde-source context),
-        SwDDEFieldType* pFldType = lcl_GetDDEFieldType( pDDESource,
-                                                        pTableNode );
-
-        // 2) release the DDE source context,
         pDDESource->ReleaseRef();
-
-        // 3) create new DDE table, and
-        SwDDETable* pDDETable = new SwDDETable( pTableNode->GetTable(),
-                                                pFldType, FALSE );
-
-        // 4) set new (DDE)table at node.
-        pTableNode->SetNewTable(pDDETable, FALSE);
     }
 }
 

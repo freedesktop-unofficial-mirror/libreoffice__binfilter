@@ -218,19 +218,11 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else if( pGraphic && !rGrfName.Len() )
 /*N*/   {
-/*N*/       // Old stream must be deleted before the new one is set.
-/*N*/       if( HasStreamName() )
-                {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/
 /*N*/       aGrfObj.SetGraphic( *pGraphic );
 /*N*/       bReadGrf = TRUE;
 /*N*/   }
 /*N*/   else if( pGrfObj && !rGrfName.Len() )
 /*N*/   {
-/*N*/       // Old stream must be deleted before the new one is set.
-/*?*/       if( HasStreamName() )
-                {DBG_BF_ASSERT(0, "STRIP");}
-/*?*/
 /*?*/       aGrfObj = *pGrfObj;
 /*?*/       if( pGrfObj->HasUserData() && pGrfObj->IsSwappedOut() )
 /*?*/           aGrfObj.SetSwapState();
@@ -243,9 +235,6 @@ namespace binfilter {
 /*N*/
 /*N*/   else
 /*N*/   {
-/*N*/       if( HasStreamName() )
-                {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/
 /*N*/       // einen neuen Grafik-Link anlegen
 /*N*/       InsertLink( rGrfName, rFltName );
 /*N*/
@@ -302,11 +291,6 @@ namespace binfilter {
 /*N*/       OSL_ENSURE( !bInSwapIn, "DTOR: stehe noch im SwapIn" );
 /*N*/       pDoc->GetLinkManager().Remove( refLink );
 /*N*/       refLink->Disconnect();
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       if( !pDoc->IsInDtor() && HasStreamName() )
-                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/   //#39289# Die Frames muessen hier bereits geloescht weil der DTor der
 /*N*/   //Frms die Grafik noch fuer StopAnimation braucht.
@@ -508,17 +492,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/ void SwGrfNode::SetTwipSize( const Size& rSz )
 /*N*/ {
 /*N*/   nGrfSize = rSz;
-/*N*/   if( IsScaleImageMap() && nGrfSize.Width() && nGrfSize.Height() )
-/*N*/   {
-/*N*/       // Image-Map an Grafik-Groesse anpassen
-            DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/ }
-
-        // Prioritaet beim Laden der Grafik setzen. Geht nur, wenn der Link
-        // ein FileObject gesetzt hat
-
-
 
 
 
@@ -600,8 +574,6 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       if( aGrfObj.IsSwappedOut() )
-                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       aTmpGrf = aGrfObj.GetGraphic();
 /*N*/   }
 /*N*/
@@ -634,10 +606,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*M*/   // a DataChanged call lead to a paint of the graphic.
 /*M*/   if( pGrfObj->IsInSwapOut() && (IsSelected() || bInSwapIn) )
 /*M*/       pRet = GRFMGR_AUTOSWAPSTREAM_NONE;
-/*M*/   else if( refLink.Is() )
-/*M*/   {DBG_BF_ASSERT(0, "STRIP");
-/*M*/   }
-/*M*/   else
+/*M*/   else if( !refLink.Is() )
 /*M*/   {
 /*M*/       pRet = GRFMGR_AUTOSWAPSTREAM_TEMP;
 /*M*/

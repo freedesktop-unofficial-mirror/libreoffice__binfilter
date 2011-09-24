@@ -519,11 +519,8 @@ using namespace ::com::sun::star::i18n;
 /*N*/           sOldNumRule = ((SwFmtChg*)pOldValue)->pChangedFmt->GetNumRule().GetValue();
 /*N*/       }
 /*N*/       break;
-/*N*/ //FEATURE::CONDCOLL
 /*N*/   case RES_CONDCOLL_CONDCHG:
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/       return ;    // nicht an die Basisklasse / Frames weitergeben
-/*N*/ //FEATURE::CONDCOLL
 /*N*/
 /*N*/   case RES_ATTRSET_CHG:
 /*N*/       if( GetNodes().IsDocNodes() && IsTxtNode() )
@@ -647,7 +644,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/       {
 /*N*/           SwFmtChg aTmp1( pOldColl );
 /*N*/           SwFmtChg aTmp2( pNewColl );
-/*N*/ //            SwModify::Modify( &aTmp1, &aTmp2 );
 /*N*/           // damit alles was im Modify passiert hier nicht noch impl.
 /*N*/           // werden muss
 /*N*/           SwCntntNode::Modify( &aTmp1, &aTmp2 );
@@ -861,11 +857,9 @@ using namespace ::com::sun::star::i18n;
 /*?*/       return TRUE;
 /*?*/
 /*?*/   case RES_GETLOWERNUMLEVEL:
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/       break;
 /*?*/
 /*?*/   case RES_FINDNEARESTNODE:
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/       return TRUE;
 /*?*/
 /*?*/   case RES_CONTENT_VISIBLE:

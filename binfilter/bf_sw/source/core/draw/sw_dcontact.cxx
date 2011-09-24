@@ -247,16 +247,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*  SwFlyDrawContact::Modify()
-|*
-|*************************************************************************/
-
-/*N*/ void SwFlyDrawContact::Modify( SfxPoolItem* /*pOld*/, SfxPoolItem* /*pNew*/ )
-/*N*/ {
-/*N*/ }
-
-/*************************************************************************
-|*
 |*  SwDrawContact, Ctor+Dtor
 |*
 |*************************************************************************/
@@ -907,11 +897,6 @@ const Point SwDrawVirtObj::GetOffset() const
     return maOffset;
 }
 
-void SwDrawVirtObj::operator=( const SdrObject& /*rObj*/ )
-{
-DBG_BF_ASSERT(0, "STRIP");
-}
-
 SdrObject* SwDrawVirtObj::Clone() const
 {
     SwDrawVirtObj* pObj = new SwDrawVirtObj( rRefObj, mrDrawContact );
@@ -919,9 +904,6 @@ SdrObject* SwDrawVirtObj::Clone() const
     if ( pObj )
     {
         pObj->operator=(static_cast<const SdrObject&>(*this));
-    //*pObj = *this;
-
-        // members <mpAnchorFrm> and <mpPageFrm> not cloned.
     }
 
     return pObj;
@@ -1085,14 +1067,6 @@ void SwDrawVirtObj::TakeContour(XPolyPolygon& rPoly) const
     rPoly.Move(maOffset.X(), maOffset.Y());
 }
 
-SdrHdl* SwDrawVirtObj::GetHdl(USHORT /*nHdlNum*/) const
-{DBG_BF_ASSERT(0, "STRIP");return NULL;
-}
-
-SdrHdl* SwDrawVirtObj::GetPlusHdl(const SdrHdl& /*rHdl*/, USHORT /*nPlNum*/) const
-{DBG_BF_ASSERT(0, "STRIP");return NULL;
-}
-
 void SwDrawVirtObj::NbcMove(const Size& rSiz)
 {
     rRefObj.NbcMove( rSiz );
@@ -1151,10 +1125,6 @@ void SwDrawVirtObj::Rotate(const Point& rRef, long nWink, double sn, double cs)
         SetRectsDirty();
         SendUserCall(SDRUSERCALL_RESIZE, aBoundRect0);
     }
-}
-
-void SwDrawVirtObj::Mirror(const Point& /*rRef1*/, const Point& /*rRef2*/)
-{DBG_BF_ASSERT(0, "STRIP");
 }
 
 void SwDrawVirtObj::Shear(const Point& rRef, long nWink, double tn, bool bVShear)
@@ -1224,10 +1194,6 @@ void SwDrawVirtObj::NbcSetLogicRect(const Rectangle& rRect)
     aR -= maOffset;
     rRefObj.NbcSetLogicRect(aR);
     SetRectsDirty();
-}
-
-Point SwDrawVirtObj::GetSnapPoint(USHORT /*i*/) const
-{DBG_BF_ASSERT(0, "STRIP");Point ap; return ap;
 }
 
 const Point& SwDrawVirtObj::GetPoint(USHORT i) const

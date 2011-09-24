@@ -1096,12 +1096,10 @@ void SwXMLExport::ExportTable( const SwTableNode& rTblNd )
         if ( rTbl.ISA(SwDDETable) )
         {
             // get DDE Field Type (contains the DDE connection)
-            const SwDDEFieldType* pDDEFldType =
-                ((SwDDETable&)rTbl).GetDDEFldType();
+            const SwDDEFieldType* pDDEFldType = ((SwDDETable&)rTbl).GetDDEFldType();
 
             // connection name
-            AddAttribute( XML_NAMESPACE_OFFICE, XML_NAME,
-                          pDDEFldType->GetName() );
+            AddAttribute( XML_NAMESPACE_OFFICE, XML_NAME, pDDEFldType->GetName() );
 
             // DDE command
             const String sCmd = pDDEFldType->GetCmd();

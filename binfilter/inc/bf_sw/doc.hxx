@@ -916,7 +916,7 @@ public:
         // Tabellen-Formate
     const SwFrmFmts* GetTblFrmFmts() const  { return pTblFrmFmtTbl; }
           SwFrmFmts* GetTblFrmFmts()        { return pTblFrmFmtTbl; }
-    sal_uInt16 GetTblFrmFmtCount( sal_Bool bUsed ) const;
+
     SwFrmFmt& GetTblFrmFmt(sal_uInt16 nFmt, sal_Bool bUsed ) const;
     SwTableFmt* MakeTblFrmFmt(const String &rFmtName, SwFrmFmt *pDerivedFrom);
     void        DelTblFrmFmt( SwTableFmt* pFmt );
@@ -1197,8 +1197,6 @@ public:
     inline const SwTableNode* IsIdxInTbl( const SwNodeIndex& rIdx ) const;
 
         // teilen / zusammenfassen von Boxen in der Tabelle
-    sal_Bool SplitTbl( const SwSelBoxes& rBoxes, sal_Bool bVert = sal_True,
-                       sal_uInt16 nCnt = 1, sal_Bool bSameHeight = sal_False );
     String GetUniqueTblName() const;
 
         // Erfrage wie attributiert ist

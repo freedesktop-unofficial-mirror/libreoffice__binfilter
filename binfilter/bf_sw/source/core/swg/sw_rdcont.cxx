@@ -611,13 +611,6 @@ void SwSwgReader::InTable( SwNodeIndex& rPos )
     }
 
     rPos = pNd->EndOfSectionIndex()+1;
-    if( pDDE )
-    {
-        // tauschen am Node den Tabellen-Pointer aus
-        SwDDETable* pNewTable = new SwDDETable( pNd->GetTable(),
-                                                (SwDDEFieldType*) pDDE );
-        pNd->SetNewTable( pNewTable, FALSE );
-    }
 
     // Layout-Frames wieder erzeugen, falls eingefuegt
     // und falls (MA #$.!) die Tbl nicht im FlyFrm ist

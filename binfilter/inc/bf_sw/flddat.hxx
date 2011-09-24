@@ -105,7 +105,7 @@ class SwDateTimeFieldType : public SwValueFieldType
 public:
         SwDateTimeFieldType(SwDoc* pDoc);
 
-        virtual SwFieldType*    Copy() const;
+        virtual SwFieldType*    Copy() const { DBG_BF_ASSERT(0, "STRIP"); return NULL; }
 };
 
 /*--------------------------------------------------------------------
@@ -122,7 +122,7 @@ public:
                     ULONG nFmt = 0, USHORT nLng = 0);
 
         virtual USHORT          GetSubType() const;
-/*N*/       virtual void            SetSubType(USHORT nSub); //SW40.SDW
+        virtual void            SetSubType(USHORT nSub); //SW40.SDW
 
         virtual double          GetValue() const;
 

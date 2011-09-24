@@ -812,18 +812,6 @@ BOOL SwCntntFrm::MakePrtArea( const SwBorderAttrs &rAttrs )
 /*N*/       MoveFwd( bMakePage, FALSE );
 /*N*/   }
 /*N*/
-/*N*/     // check footnote content for forward move.
-/*N*/     // If a content of a footnote is on a prior page/column as its invalid
-/*N*/     // reference, it can be moved forward.
-/*N*/     if ( bFtn && !bValidPos )
-/*N*/     {
-/*N*/         SwFtnFrm* pFtn = FindFtnFrm();
-/*N*/         SwCntntFrm* pRefCnt = pFtn ? pFtn->GetRef() : 0;
-/*N*/         if ( pRefCnt && !pRefCnt->IsValid() )
-/*N*/         {DBG_BF_ASSERT(0, "STRIP");
-/*N*/         }
-/*N*/     }
-/*N*/
 /*N*/     SWRECTFN( this )
 /*N*/
 /*N*/   while ( !bValidPos || !bValidSize || !bValidPrtArea )
@@ -1267,11 +1255,6 @@ BOOL SwCntntFrm::MakePrtArea( const SwBorderAttrs &rAttrs )
 /*N*/   //sie in jedem Fall gemoved werden, wenn zwischen dem
 /*N*/   //neuen Upper und ihrer aktuellen Seite/Spalte mindestens eine
 /*N*/   //Seite/Spalte liegt.
-/*N*/   SwFtnFrm* pFtnFrm = 0;
-/*N*/   if ( IsInFtn() )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   BOOL bRet;
 /*N*/   BOOL bSplit = !pNewUpper->Lower();
 /*N*/   SwCntntFrm *pFrm = this;
@@ -1282,9 +1265,12 @@ BOOL SwCntntFrm::MakePrtArea( const SwBorderAttrs &rAttrs )
 /*N*/       pPrev1 = pPrev1->GetNext();
 /*N*/   do
 /*N*/   {
-/*N*/       if ( bTstMove || IsInFly() || ( IsInSct() &&
-/*N*/            ( pFrm->GetUpper()->IsColBodyFrm() || ( pFtnFrm &&
-/*N*/              pFtnFrm->GetUpper()->GetUpper()->IsColumnFrm() ) ) ) )
+/*N*/       if (  bTstMove
+               || IsInFly()
+               || (  IsInSct()
+                  && pFrm->GetUpper()->IsColBodyFrm()
+                  )
+               )
 /*N*/       {
 /*N*/           //Jetzt wirds ein bischen hinterlistig; empfindliche Gemueter sollten
 /*N*/           //lieber wegsehen. Wenn ein Flys Spalten enthaelt so sind die Cntnts
@@ -1377,9 +1363,9 @@ BOOL SwCntntFrm::MakePrtArea( const SwBorderAttrs &rAttrs )
 /*?*/                 }
 /*N*/             }
 /*N*/           SwFrm *pNxt;
-/*N*/           if( 0 != (pNxt = pFrm->FindNext()) && pNxt->IsCntntFrm() &&
-/*N*/               ( !pFtnFrm || ( pNxt->IsInFtn() &&
-/*N*/                 pNxt->FindFtnFrm()->GetAttr() == pFtnFrm->GetAttr() ) ) )
+/*N*/           if(  0 != (pNxt = pFrm->FindNext())
+                  && pNxt->IsCntntFrm()
+                  )
 /*N*/           {
 /*N*/               // ProbeFormatierung vertraegt keine absatz- oder gar zeichengebundene Objekte
 /*N*/               if( bTstMove && pNxt->GetDrawObjs() )

@@ -109,12 +109,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/                               RES_BOXATR_FORMULA, FALSE, &pItem ) )
 /*N*/       {
 /*?*/           rCalcPara.rCalc.SetCalcError( CALC_NOERR ); // wieder zuruecksetzen
-/*?*/           if( !((SwTblBoxFormula*)pItem)->IsValid() )
-/*?*/           {
-/*?*/               // dann berechnen
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
-/*?*/           else
+/*?*/           if( ((SwTblBoxFormula*)pItem)->IsValid() )
 /*?*/               nRet = GetFrmFmt()->GetTblBoxValue().GetValue();
 /*?*/           break;
 /*N*/       }
@@ -179,8 +174,6 @@ const USHORT cMAXSTACKSIZE = 50;
 /*?*/               break;
 /*?*/
 /*?*/           case RES_JUMPEDITFLD:
-/*?*/               //JP 14.09.98: Bug 56112 - der Platzhalter kann nie einen
-/*?*/               //              gueltigen Inhalt haben!
 /*?*/               nRet = 0;
 /*?*/               break;
 /*?*/
@@ -379,10 +372,6 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/           fnFormel = &SwTableFormula::PtrToBoxNms;
 /*N*/       break;
 /*N*/   case REL_NAME:
-/*?*/       if( pTbl )
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
 /*?*/       break;
 /*N*/   case EXTRNL_NAME:
 /*N*/       return;
@@ -403,10 +392,6 @@ const USHORT cMAXSTACKSIZE = 50;
 /*?*/           fnFormel = &SwTableFormula::BoxNmsToPtr;
 /*?*/       break;
 /*?*/   case REL_NAME:
-/*?*/       if( pTbl )
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
 /*?*/       break;
 /*?*/   case INTRNL_NAME:
 /*?*/       return;
@@ -471,11 +456,6 @@ const USHORT cMAXSTACKSIZE = 50;
 /*?*/                   nStt = nTrenner;
 /*?*/
 /*?*/                   sTblNm.Erase( 0, 1 );   // Trenner loeschen
-/*?*/                   if( sTblNm != rTbl.GetFrmFmt()->GetName() )
-/*?*/                   {
-/*?*/                       // dann suchen wir uns mal unsere Tabelle:
-/*?*/                       DBG_BF_ASSERT(0, "STRIP");
-/*?*/                   }
 /*?*/               }
 /*N*/           }
 /*N*/

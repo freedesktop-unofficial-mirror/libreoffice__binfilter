@@ -35,7 +35,6 @@
 
 #include <osl/diagnose.h>
 
-
 #include <horiornt.hxx>
 
 #include <doc.hxx>
@@ -492,10 +491,6 @@ namespace binfilter {
 |*
 *******************************************************************/
 
-/*N*/ void SwNodes::GoStartOfSection(SwNodeIndex* /*pIdx*/) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ void SwNodes::GoEndOfSection(SwNodeIndex *pIdx) const
 /*N*/ {
 /*N*/   // falls er vor einem Endnode steht --> nichts tun
@@ -810,12 +805,6 @@ namespace binfilter {
 /*N*/           break;
 /*N*/
 /*N*/       case ND_SECTIONNODE:            // SectionNode
-/*?*/           // der gesamte Bereich oder nur ein Teil ??
-/*?*/           if( pAktNode->EndOfSectionIndex() < aRg.aEnd.GetIndex() )
-/*?*/           {
-/*?*/               // also der gesamte, lege einen neuen SectionNode an
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
 /*?*/           break;
 /*?*/
 /*N*/       case ND_STARTNODE:              // StartNode gefunden
@@ -1056,7 +1045,6 @@ namespace binfilter {
 /*N*/       ULONG nCnt = nSize2;
 /*N*/       SwNode *pDel = (*this)[ nDelPos+nCnt-1 ], *pPrev = (*this)[ nDelPos+nCnt-2 ];
 /*N*/
-/*N*/ #if 1
 /*N*/ // temp. Object setzen
 /*N*/       //JP 24.08.98: muessten eigentlich einzeln removed werden, weil
 /*N*/       //      das Remove auch rekursiv gerufen werden kann, z.B. bei
@@ -1078,23 +1066,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/       nDelPos = pDel->GetIndex() + 1;
 /*N*/   }
-/*N*/ #else
-/*N*/ // nach jedem Del ein Remove rufen - teuer!
-/*N*/       //JP 24.08.98: muessen leider einzeln removed werden, weil das
-/*N*/       //              auch rekursiv gerufen wird - zeichengeb. Flys!
-/*N*/       // siehe Bug 55406
-/*N*/       while( nCnt-- )
-/*N*/       {
-/*N*/           delete pDel;
-/*N*/           pDel = pPrev;
-/*N*/           ULONG nPrevNdIdx = pPrev->GetIndex();
-/*N*/           BigPtrArray::Remove( nPrevNdIdx+1, 1 );
-/*N*/           if( nCnt )
-/*N*/               pPrev = (*this)[ nPrevNdIdx  - 1 ];
-/*N*/       }
-/*N*/   }
-/*N*/   else
-/*N*/ #endif
 /*N*/
 /*N*/   BigPtrArray::Remove( nDelPos, nSize2 );
 /*N*/ }

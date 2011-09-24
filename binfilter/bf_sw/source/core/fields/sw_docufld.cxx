@@ -255,8 +255,6 @@ void SwPageNumberField::SetPar2(const String& rStr)
 /*?*/       // TODO: woher kommen die defines?
 /*?*/       if(nSet <= SVX_NUM_PAGEDESC )
 /*?*/           SetFormat(nSet);
-/*?*/       else
-/*?*/       {}  //exception(wrong_value)
 /*?*/       break;
 /*?*/   case FIELD_PROP_USHORT1:
 /*?*/       rAny >>= nSet;
@@ -991,10 +989,6 @@ BOOL SwDocStatField::PutValue( const uno::Any& rAny, BYTE nMId )
 
 /*N*/ String SwDocInfoField::GetCntnt(sal_Bool bName) const
 /*N*/ {
-/*N*/   if ( bName )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/   return Expand();
 /*N*/ }
 
@@ -1237,10 +1231,6 @@ SwHiddenTxtField::SwHiddenTxtField(
 /*N*/           aContent = sTmpName.Copy(1, sTmpName.Len() - 2);
 /*N*/           bValid = sal_True;
 /*N*/       }
-/*N*/       else if(sTmpName.Search('\"') == STRING_NOTFOUND &&
-/*N*/           sTmpName.GetTokenCount('.') > 2)
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/   }
 /*N*/ }
 
@@ -1382,12 +1372,6 @@ BOOL SwHiddenTxtField::PutValue( const uno::Any& rAny, BYTE nMId )
     }
     return sal_True;
 }
-
-//------------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------------
-
 
 /*--------------------------------------------------------------------
     Beschreibung: Der Feldtyp fuer Zeilenhoehe 0
@@ -1828,14 +1812,6 @@ SwRefPageGetFieldType::SwRefPageGetFieldType( SwDoc* pDc )
 
 /*N*/ void SwRefPageGetFieldType::Modify( SfxPoolItem* pOld, SfxPoolItem* pNew )
 /*N*/ {
-/*N*/   // Update auf alle GetReferenz-Felder
-/*N*/   if( !pNew && !pOld && GetDepends() )
-/*N*/   {
-/*?*/       // sammel erstmal alle SetPageRefFelder ein.
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
-/*N*/   // weiter an die Text-Felder, diese "Expandieren" den Text
 /*N*/   SwModify::Modify( pOld, pNew );
 /*N*/ }
 
@@ -1993,7 +1969,7 @@ void SwJumpEditField::SetPar2(const String& rStr)
 /*N*/           case JE_FMT_FRAME:  nRet = text::PlaceholderType::TEXTFRAME; break;
 /*N*/           case JE_FMT_GRAPHIC:nRet = text::PlaceholderType::GRAPHIC; break;
 /*N*/           case JE_FMT_OLE:    nRet = text::PlaceholderType::OBJECT; break;
-/*N*/ //            case JE_FMT_TEXT:
+/*N*/ //        case JE_FMT_TEXT:
 /*N*/           default:
 /*N*/               nRet = text::PlaceholderType::TEXT; break;
 /*N*/           }

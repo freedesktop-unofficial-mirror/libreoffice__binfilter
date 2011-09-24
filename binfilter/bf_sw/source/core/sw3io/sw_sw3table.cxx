@@ -249,14 +249,6 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/           OSL_ENSURE( nCntntBox == nBoxes ,
 /*N*/               "Anzahl der Boxen stimmt nicht mit den gelesenen ueberein" );
 /*N*/
-/*N*/           if( pDDEFldType && !pNd->GetTable().IsTblComplex() )
-/*N*/           {
-/*N*/               //DDETabelle, dann tausche am Node den Tabellen-Pointer aus
-                    SwDDETable* pNewTable = new SwDDETable( pNd->GetTable(),
-/*N*/                                                       pDDEFldType );
-/*?*/               pNd->SetNewTable( pNewTable, FALSE );
-/*N*/           }
-/*N*/
 /*N*/           // Layout-Frames wieder erzeugen, falls eingefuegt
 /*N*/           // und falls (MA #$.!) die Tbl nicht im FlyFrm ist
 /*N*/           if( bInsert && !nFlyLevel )

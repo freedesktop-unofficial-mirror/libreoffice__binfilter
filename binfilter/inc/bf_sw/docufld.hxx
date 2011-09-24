@@ -447,7 +447,7 @@ class SwMacroFieldType : public SwFieldType
 public:
     SwMacroFieldType(SwDoc*);
 
-    virtual SwFieldType*    Copy() const;
+    virtual SwFieldType*    Copy() const { DBG_BF_ASSERT(0, "STRIP"); return NULL; }
 };
 
 /*--------------------------------------------------------------------

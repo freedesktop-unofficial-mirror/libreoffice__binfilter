@@ -62,13 +62,6 @@ using namespace ::com::sun::star::frame;
 /*N*/ }
 
 
-// #i3694#
-// This GetOffset() method is not needed anymore, it even leads to errors.
-//Point  SwDPage::GetOffset() const
-//{
-//  return Point( DOCUMENTBORDER, DOCUMENTBORDER );
-//}
-
 /*************************************************************************
 |*
 |*  SwDPage::ReplaceObject()
@@ -77,36 +70,8 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ SdrObject*  SwDPage::ReplaceObject( SdrObject* pNewObj, ULONG nObjNum )
 /*N*/ {
-/*N*/   SdrObject *pOld = GetObj( nObjNum );
-/*N*/   OSL_ENSURE( pOld, "Oups, Object not replaced" );
-/*N*/   SdrObjUserCall* pContact;
-/*N*/   if ( 0 != ( pContact = GetUserCall(pOld) ) &&
-/*N*/        RES_DRAWFRMFMT == ((SwContact*)pContact)->GetFmt()->Which())
-            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   return FmFormPage::ReplaceObject( pNewObj, nObjNum );
 /*N*/ }
-
-/*************************************************************************
-|*
-|*  SwDPage::GetGridFrameList()
-|*
-*************************************************************************/
-
-
-
-
-/*************************************************************************
-|*
-|*  String SwDPage::GetLinkData( const String& )
-|*  void SwDPage::SetLinkData( const String&, const String& )
-|*  void SwDPage::UpdateLinkData( const String&, const String& )
-|*
-*************************************************************************/
-
-
-
-
-
 
 
 /*

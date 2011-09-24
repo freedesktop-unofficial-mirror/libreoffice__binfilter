@@ -93,10 +93,6 @@ class SwNodes: private BigPtrArray
 
     void Insert( const SwNodePtr pNode, const SwNodeIndex& rPos );
     void Insert( const SwNodePtr pNode, ULONG nPos);
-//  void Remove( const SwNodeIndex& rPos, USHORT nLen = 1 );
-//  void Remove( ULONG nPos, USHORT nLen = 1 );
-//  BOOL Move( const SwIndex & rOldPos, const SwIndex & rNewPos );
-
 
     SwDoc* pMyDoc;                      // in diesem Doc ist das Nodes-Array
 
@@ -180,7 +176,7 @@ public:
 
     BOOL CheckNodesRange( const SwNodeIndex& rStt, const SwNodeIndex& rEnd ) const;
 
-    void GoStartOfSection(SwNodeIndex *) const;
+    void GoStartOfSection(SwNodeIndex *) const {}   // DBG_BF_ASSERT
     void GoEndOfSection(SwNodeIndex *) const;
 
     SwCntntNode* GoNext(SwNodeIndex *) const;

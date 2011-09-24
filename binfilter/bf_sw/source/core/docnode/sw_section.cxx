@@ -289,7 +289,7 @@ void SwSection::_SetHiddenFlag( int bInHidden, int bCondition )
 
 /*N*/ void SwSection::Modify( SfxPoolItem* pOld, SfxPoolItem* pNew )
 /*N*/ {
-/*N*/   BOOL bRemake = FALSE, bUpdateFtn = FALSE;
+/*N*/   BOOL bUpdateFtn = FALSE;
 /*N*/   switch( pOld ? pOld->Which() : pNew ? pNew->Which() : 0 )
 /*N*/   {
 /*N*/   case RES_ATTRSET_CHG:
@@ -361,11 +361,6 @@ void SwSection::_SetHiddenFlag( int bInHidden, int bCondition )
 /*?*/       if( pNew && pOld )
 /*?*/           bUpdateFtn = TRUE;
 /*?*/       break;
-/*N*/   }
-/*N*/
-/*N*/   if( bRemake )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if( bUpdateFtn )
@@ -461,13 +456,6 @@ void SwSection::SetCondHidden( int bFlag )
 /*N*/ {
 /*N*/   if( !GetDoc()->IsInDtor() )
 /*N*/   {
-/*N*/       SwSectionNode* pSectNd;
-/*N*/       const SwNodeIndex* pIdx = GetCntnt( FALSE ).GetCntntIdx();
-/*N*/       if( pIdx && &GetDoc()->GetNodes() == &pIdx->GetNodes() &&
-/*N*/           0 != (pSectNd = pIdx->GetNode().GetSectionNode() ))
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/       LockModify();
 /*N*/       ResetAttr( RES_CNTNT );
 /*N*/       UnlockModify();
@@ -637,23 +625,9 @@ void SwSectionFmt::MakeFrms()
 /*?*/       return;     // das wars
 /*?*/
 /*?*/   case RES_OBJECTDYING:
-/*?*/       if( !GetDoc()->IsInDtor() &&
-/*?*/           ((SwPtrMsgPoolItem *)pOld)->pObject == (void*)GetRegisteredIn() )
-/*?*/       {
-/*?*/           // mein Parent wird vernichtet, dann an den Parent vom Parent
-/*?*/           // umhaengen und wieder aktualisieren
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
 /*?*/       break;
 /*N*/
 /*N*/   case RES_FMT_CHG:
-/*N*/       if( !GetDoc()->IsInDtor() &&
-/*N*/           ((SwFmtChg*)pNew)->pChangedFmt == (void*)GetRegisteredIn() &&
-/*N*/           ((SwFmtChg*)pNew)->pChangedFmt->IsA( TYPE( SwSectionFmt )) )
-/*N*/       {
-/*?*/           // mein Parent wird veraendert, muss mich aktualisieren
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/       break;
 /*N*/   }
 /*N*/   SwFrmFmt::Modify( pOld, pNew );
@@ -682,10 +656,6 @@ void SwSectionFmt::MakeFrms()
 /*N*/                   Dummy,
 /*N*/                   rArr.Count() );
 /*N*/           }
-/*N*/
-/*N*/       // noch eine Sortierung erwuenscht ?
-/*N*/       if( 1 < rArr.Count() )
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/   return rArr.Count();
 /*N*/ }
@@ -723,7 +693,7 @@ void SwSectionFmt::MakeFrms()
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ void lcl_UpdateLinksInSect( SwBaseLink& rUpdLnk, SwSectionNode& rSectNd )
+/*N*/ void lcl_UpdateLinksInSect( SwBaseLink& /* rUpdLnk */, SwSectionNode& rSectNd )
 /*N*/ {
 /*N*/   SwDoc* pDoc = rSectNd.GetDoc();
 /*N*/   SwDocShell* pDShell = pDoc->GetDocShell();
@@ -731,26 +701,9 @@ void SwSectionFmt::MakeFrms()
 /*?*/       return ;
 /*N*/
 /*N*/   String sName( pDShell->GetMedium()->GetName() );
-/*N*/   SwBaseLink* pBLink;
 /*N*/   String sMimeType( SotExchange::GetFormatMimeType( FORMAT_FILE ));
 /*N*/   ::com::sun::star::uno::Any aValue;
 /*N*/   aValue <<= ::rtl::OUString( sName );                        // beliebiger Name
-/*N*/
-/*N*/   const ::binfilter::SvBaseLinks& rLnks = pDoc->GetLinkManager().GetLinks();
-/*N*/   for( USHORT n = rLnks.Count(); n; )
-/*N*/   {
-/*N*/       ::binfilter::SvBaseLink* pLnk = &(*rLnks[ --n ]);
-/*N*/       if( pLnk && pLnk != &rUpdLnk &&
-/*N*/           OBJECT_CLIENT_FILE == pLnk->GetObjType() &&
-/*N*/           pLnk->ISA( SwBaseLink ) &&
-/*N*/           ( pBLink = (SwBaseLink*)pLnk )->IsInRange( rSectNd.GetIndex(),
-/*N*/                                               rSectNd.EndOfSectionIndex() ) )
-/*N*/       {
-/*?*/           // liegt in dem Bereich: also updaten. Aber nur wenns nicht
-/*?*/           // im gleichen File liegt
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/   }
 /*N*/ }
 
 
@@ -1046,9 +999,9 @@ void SwSectionFmt::MakeFrms()
 /*N*/
 /*N*/   // !!!! DDE nur updaten wenn Shell vorhanden ist??
 /*N*/   ::com::sun::star::uno::Sequence< sal_Int8 > aSeq;
-/*N*/   if( pRead && rValue.hasValue() && ( rValue >>= aSeq ) )
+/*N*/   if( pRead && rValue.hasValue() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
+            rValue >>= aSeq;
 /*N*/   }
 /*N*/
 /*N*/

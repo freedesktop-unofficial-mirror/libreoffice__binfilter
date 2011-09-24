@@ -85,11 +85,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // Suche den naechsten Cntnt/TblNode, der einen Frame besitzt,
 /*N*/       // damit wir uns vor/hinter ihn haengen koennen
-/*N*/       if( !bSearch && rNode.GetIndex() < nIndex )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       else
+/*N*/       if( !( !bSearch && rNode.GetIndex() < nIndex ) )
 /*N*/       {
 /*N*/           SwNodeIndex aTmp( rNode, -1 );
 /*N*/           pNd = rNode.GetNodes().GoNextWithFrm( &aTmp );

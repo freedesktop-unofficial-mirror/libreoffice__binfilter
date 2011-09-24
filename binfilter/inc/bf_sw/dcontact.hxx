@@ -121,7 +121,7 @@ public:
     SwVirtFlyDrawObj *CreateNewRef( SwFlyFrm *pFly );
 
     // virtuelle Methoden von SwClient
-    virtual void Modify( SfxPoolItem *pOld, SfxPoolItem *pNew );
+    virtual void Modify( SfxPoolItem *, SfxPoolItem * ) {} //DBG_BF_ASSERT
 
 };
 
@@ -158,7 +158,7 @@ class SwDrawVirtObj : public SdrVirtObj
 
         using SdrObject::Clone;
         virtual SdrObject* Clone() const;
-        virtual void operator=( const SdrObject& rObj );
+        virtual void operator=( const SdrObject& rObj ) {} //DBG_BF_ASSERT
 
         // connection to writer layout
         void SetAnchorFrm( SwFrm* _pNewAnchorFrm );
@@ -194,8 +194,8 @@ class SwDrawVirtObj : public SdrVirtObj
         virtual void TakeXorPoly(XPolyPolygon& rPoly, bool bDetail) const;
         virtual void TakeContour(XPolyPolygon& rPoly) const;
         using SdrObject::TakeContour;
-        virtual SdrHdl* GetHdl(USHORT nHdlNum) const;
-        virtual SdrHdl* GetPlusHdl(const SdrHdl& rHdl, USHORT nPlNum) const;
+        virtual SdrHdl* GetHdl(USHORT) const { return NULL; } //DBG_BF_ASSERT
+        virtual SdrHdl* GetPlusHdl(const SdrHdl&, USHORT) const { return NULL; } //DBG_BF_ASSERT
         virtual void NbcMove(const Size& rSiz);
         virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
         virtual void NbcRotate(const Point& rRef, long nWink, double sn, double cs);
@@ -204,7 +204,7 @@ class SwDrawVirtObj : public SdrVirtObj
         virtual void Move(const Size& rSiz);
         virtual void Resize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
         virtual void Rotate(const Point& rRef, long nWink, double sn, double cs);
-        virtual void Mirror(const Point& rRef1, const Point& rRef2);
+        virtual void Mirror(const Point&, const Point&) {} //DBG_BF_ASSERT
         virtual void Shear(const Point& rRef, long nWink, double tn, bool bVShear);
         virtual void RecalcSnapRect();
         virtual const Rectangle& GetSnapRect() const;
@@ -213,7 +213,7 @@ class SwDrawVirtObj : public SdrVirtObj
         virtual const Rectangle& GetLogicRect() const;
         virtual void SetLogicRect(const Rectangle& rRect);
         virtual void NbcSetLogicRect(const Rectangle& rRect);
-        virtual Point GetSnapPoint(USHORT i) const;
+        virtual Point GetSnapPoint(USHORT) const { Point ap; return ap; } //DBG_BF_ASSERT
         virtual const Point& GetPoint(USHORT i) const;
         virtual void NbcSetPoint(const Point& rPnt, USHORT i);
 

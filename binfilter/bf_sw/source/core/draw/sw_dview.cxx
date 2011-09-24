@@ -109,62 +109,7 @@ public:
 /*?*/
 /*?*/   if(FLY_IN_CNTNT == rAnchor.GetAnchorId())
 /*?*/       return;
-/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*M*/ }
-
-/*************************************************************************
-|*
-|*  SwDrawView::GetMaxToTopObj(), _GetMaxToTopObj()
-|*
-*************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|*  SwDrawView::GetMaxToBtmObj()
-|*
-*************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|*  SwDrawView::ObjOrderChanged()
-|*
-*************************************************************************/
-
-
-
-
-
-
-/*************************************************************************
-|*
-|*  SwDrawView::TakeDragLimit()
-|*
-*************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|*  SwDrawView::CalcAnchor()
-|*
-*************************************************************************/
-
-
-
-
-
-/*************************************************************************
-|*
-|*  SwDrawView::ShowDragXor(), HideDragXor()
-|*
-*************************************************************************/
-
-
-
 
 
 /*************************************************************************
@@ -172,7 +117,6 @@ public:
 |*  SwDrawView::MarkListHasChanged()
 |*
 *************************************************************************/
-
 
 /*N*/ void SwDrawView::MarkListHasChanged()
 /*N*/ {
@@ -189,20 +133,10 @@ public:
     // this method rescues the current background color if a OutlinerView
     // exists and re-establishes it then. To be more safe, the OutlinerView
     // will be fetched again (maybe textedit has ended).
-/*N*/   OutlinerView* pView = GetTextEditOutlinerView();
-/*N*/   Color aBackColor;
-/*N*/   sal_Bool bColorWasSaved(sal_False);
-/*N*/
-/*N*/   if(pView)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   // call parent
 /*N*/   FmFormView::ModelHasChanged();
 /*N*/
-/*N*/   if(bColorWasSaved)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/ }
 
 }

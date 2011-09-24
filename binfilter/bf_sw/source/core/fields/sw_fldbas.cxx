@@ -155,18 +155,6 @@ using namespace ::com::sun::star;
 /*N*/ }
 /*N*/ #endif
 
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-
 
 /*--------------------------------------------------------------------
     Beschreibung: liefert den Namen oder den Inhalt
@@ -175,11 +163,7 @@ using namespace ::com::sun::star;
 /*N*/ String SwField::GetCntnt( BOOL bName ) const
 /*N*/ {
 /*N*/   String sRet;
-/*N*/   if( bName )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/   else
+/*N*/   if( !bName )
 /*N*/       sRet = Expand();
 /*N*/   return sRet;
 /*N*/ }
@@ -202,23 +186,6 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   return GetPar2();
 /*N*/ }
-
-void SwField::SetPar1(const String& /*rStr*/)
-{}
-
-void SwField::SetPar2(const String& /*rStr*/)
- {}
-
-/*N*/ USHORT SwField::GetSubType() const
-/*N*/ {
-/*N*/ //    OSL_FAIL("Sorry Not implemented");
-/*N*/   return 0;
-/*N*/ }
-
-void SwField::SetSubType(USHORT /*nType*/)
-{
-//  OSL_FAIL("Sorry Not implemented");
-}
 
 /*N*/ BOOL  SwField::QueryValue( uno::Any& rVal, BYTE nMId ) const
 /*N*/ {
@@ -313,24 +280,6 @@ SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
 /*N*/   return bRet;
 /*N*/ }
 
-/*--------------------------------------------------------------------
-    Beschreibung: Sortierte Feldliste aller Felder usw.
- --------------------------------------------------------------------*/
-
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung: Felder aus der Liste in sortierter Reihenfolge
- --------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:   von der CursorPos das naechste und das Letzte Feld
-                    in der Liste anfahren
- --------------------------------------------------------------------*/
-
-
 
 /*--------------------------------------------------------------------
     Beschreibung: Numerierung expandieren
@@ -414,10 +363,6 @@ SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
 /*N*/
 /*N*/   return sExpand;
 /*N*/ }
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
 
 
 /*--------------------------------------------------------------------

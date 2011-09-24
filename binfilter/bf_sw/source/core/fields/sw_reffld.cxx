@@ -587,9 +587,6 @@ String SwGetRefField::GetPar2() const
 /*N*/       }
 /*N*/       break;
 /*N*/   case FIELD_PROP_PAR1:
-/*?*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP");
-/*?*/     }
 /*?*/     break;
 /*?*/   case FIELD_PROP_PAR3:
 /*?*/       SetExpand( ::binfilter::GetString( rAny, sTmp ));
@@ -634,8 +631,6 @@ String SwGetRefField::GetPar2() const
 /*?*/                     nResId = STR_POOLCOLL_LABEL_DRAWING;
 /*?*/                 break;
 /*N*/             }
-/*N*/             if( nResId != USHRT_MAX )
-/*?*/             {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/         }
 /*N*/     }
 /*N*/ }
@@ -647,12 +642,6 @@ String SwGetRefField::GetPar2() const
 /*N*/ SwGetRefFieldType::SwGetRefFieldType( SwDoc* pDc )
 /*N*/   : SwFieldType( RES_GETREFFLD ), pDoc( pDc )
 /*N*/ {}
-
-
-/*N*/ SwFieldType* SwGetRefFieldType::Copy() const
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");return NULL;
-/*N*/ }
 
 
 /*N*/ void SwGetRefFieldType::Modify( SfxPoolItem* pOld, SfxPoolItem* pNew )
@@ -787,22 +776,6 @@ DBG_BF_ASSERT(0, "STRIP");return NULL;
 /*N*/   return pTxtNd;
 /*N*/ }
 
-
-
-
-
-
-/*N*/ void SwGetRefFieldType::MergeWithOtherDoc( SwDoc& rDestDoc )
-/*N*/ {
-/*N*/   if( &rDestDoc != pDoc &&
-/*N*/       rDestDoc.GetSysFldType( RES_GETREFFLD )->GetDepends() )
-/*N*/   {
-/*?*/       // dann gibt es im DestDoc RefFelder, also muessen im SourceDoc
-/*?*/       // alle RefFelder auf einduetige Ids in beiden Docs umgestellt
-/*?*/       // werden.
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ }
 
 }
 

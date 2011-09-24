@@ -895,12 +895,6 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*N*/ }
 
 
-/*N*/ USHORT SwDoc::GetTblFrmFmtCount(BOOL /*bUsed*/) const
-/*N*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*N*/ }
-
-
 /*N*/ SwFrmFmt& SwDoc::GetTblFrmFmt(USHORT nFmt, BOOL bUsed ) const
 /*N*/ {
 /*?*/   USHORT nRemoved = 0;
@@ -1110,12 +1104,7 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*?*/
 
 //FEATURE::CONDCOLL
-/*?*/   if( RES_CONDTXTFMTCOLL == rColl.Which() )
-/*?*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*?*/   }
-/*?*/   else
-/*?*/ //FEATURE::CONDCOLL
+/*?*/   if( RES_CONDTXTFMTCOLL != rColl.Which() )
 /*?*/       pNewColl = MakeTxtFmtColl( rColl.GetName(), pParent );
 /*?*/
 /*?*/   // kopiere jetzt noch die Auto-Formate oder kopiere die Attribute
@@ -1170,9 +1159,6 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*?*/   SwGrfFmtColl* pParent = pDfltGrfFmtColl;
 /*?*/   if( pParent != rColl.DerivedFrom() )
 /*?*/       pParent = CopyGrfColl( *(SwGrfFmtColl*)rColl.DerivedFrom() );
-/*?*/
-/*?*/   // falls nicht, so kopiere sie
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*?*/
 /*?*/   // noch die Attribute kopieren
 /*?*/   pNewColl->CopyAttrs( rColl );
@@ -1246,10 +1232,6 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*N*/   SvNumberFormatter* pN;
 /*N*/   if( &rSrc != &rDest && 0 != ( pN = ((SwDoc&)rSrc).GetNumberFormatter( FALSE ) ))
 /*N*/       ( pNFmt = rDest.GetNumberFormatter( TRUE ))->MergeFormatter( *pN );
-/*N*/
-/*N*/   if( &rSrc != &rDest )
-/*N*/       ((SwGetRefFieldType*)rSrc.GetSysFldType( RES_GETREFFLD ))->
-/*N*/           MergeWithOtherDoc( rDest );
 /*N*/ }
 
 /*N*/ SwTblNumFmtMerge::~SwTblNumFmtMerge()

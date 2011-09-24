@@ -347,8 +347,8 @@ public:
 #endif
 
     // TYP_ID
-    virtual USHORT      GetSubType() const;
-    virtual void        SetSubType(USHORT);
+    virtual USHORT      GetSubType() const  { DBG_BF_ASSERT(0, "STRIP"); return 0; }
+    virtual void        SetSubType(USHORT)  { DBG_BF_ASSERT(0, "STRIP"); }
 
     // Sprache an der Feldposition
     inline USHORT       GetLanguage() const;
@@ -356,14 +356,14 @@ public:
 
     // Parameter fuer Dialog und BASIC erfragen
     inline sal_uInt32 GetFormat() const;
-    virtual const String& GetPar1() const;
-    virtual String      GetPar2()   const;
+    virtual const String&   GetPar1() const;
+    virtual String          GetPar2() const;
 
     virtual String      GetFormula() const;
 
     virtual void        ChangeFormat(sal_uInt32 n);
-    virtual void        SetPar1(const String& rStr);
-    virtual void        SetPar2(const String& rStr);
+    virtual void        SetPar1(const String& rStr) { DBG_BF_ASSERT(0, "STRIP"); }
+    virtual void        SetPar2(const String& rStr) { DBG_BF_ASSERT(0, "STRIP"); }
 
     virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
     virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );

@@ -526,7 +526,7 @@ public:
     BOOL IsFtnAllowed() const;
 
     virtual void  Modify( SfxPoolItem*, SfxPoolItem* );
-    virtual void  Format( const SwBorderAttrs* pAttrs = 0 ){DBG_BF_ASSERT(0, "STRIP"); (void)pAttrs;}
+    virtual void  Format( const SwBorderAttrs* = 0 ) { DBG_BF_ASSERT(0, "STRIP"); }
 
     virtual void  CheckDirection( BOOL bVert );
 
@@ -649,10 +649,8 @@ public:
     void ImplInvalidateNextPos( BOOL bNoFtn = FALSE );
     void InvalidatePage( const SwPageFrm *pPage = 0 ) const;
 
-    virtual BOOL    GetCrsrOfst( SwPosition *, Point&,
-                                 const SwCrsrMoveState* = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
-    virtual BOOL    GetCharRect( SwRect &, const SwPosition&,
-                                 SwCrsrMoveState* = 0 ) const;
+    virtual BOOL GetCrsrOfst( SwPosition *, Point&, const SwCrsrMoveState* = 0 ) const {DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+    virtual BOOL GetCharRect( SwRect &, const SwPosition&, SwCrsrMoveState* = 0 ) const;
 
     // der "kurze Dienstweg" zwischen den Frames und der Formatierung.
     // Wer den void* falsch Casted ist selbst schuld!

@@ -1448,7 +1448,7 @@ sal_Bool SwXTextTableCursor::splitRange(sal_Int16 Count, sal_Bool Horizontal) th
         pTblCrsr->MakeBoxSels();
         {
             UnoActionContext aContext(pUnoCrsr->GetDoc());
-            bRet = pTblCrsr->GetDoc()->SplitTbl( pTblCrsr->GetBoxes(), !Horizontal, Count );
+            bRet = sal_False;
         }
         pTblCrsr->MakeBoxSels();
     }
