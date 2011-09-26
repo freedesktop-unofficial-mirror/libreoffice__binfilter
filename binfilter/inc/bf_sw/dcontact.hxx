@@ -158,7 +158,7 @@ class SwDrawVirtObj : public SdrVirtObj
 
         using SdrObject::Clone;
         virtual SdrObject* Clone() const;
-        virtual void operator=( const SdrObject& rObj ) {} //DBG_BF_ASSERT
+        virtual void operator=( const SdrObject& ) {} //DBG_BF_ASSERT
 
         // connection to writer layout
         void SetAnchorFrm( SwFrm* _pNewAnchorFrm );

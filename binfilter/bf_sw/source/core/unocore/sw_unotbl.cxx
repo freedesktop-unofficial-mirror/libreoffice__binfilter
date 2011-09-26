@@ -434,7 +434,7 @@ void lcl_CrsrSelect(SwPaM* pCrsr, sal_Bool bExpand)
 
 }
 
-void lcl_GetTblSeparators(uno::Any& rRet, SwTable* pTable, SwTableBox* pBox, sal_Bool bRow)
+void lcl_GetTblSeparators(uno::Any& rRet, sal_Bool bRow)
 {
     SwTabCols aCols;
     aCols.SetLeftMin ( 0 );
@@ -461,7 +461,7 @@ void lcl_GetTblSeparators(uno::Any& rRet, SwTable* pTable, SwTableBox* pBox, sal
 
 }
 
-void lcl_SetTblSeparators(const uno::Any& rVal, SwTable* pTable, SwTableBox* pBox, sal_Bool bRow)
+void lcl_SetTblSeparators(const uno::Any& rVal, sal_Bool bRow)
 {
     SwTabCols aOldCols;
 
@@ -1114,8 +1114,7 @@ void SwXTextTableRow::setPropertyValue(const OUString& rPropertyName,
                 break;
                 case FN_UNO_TABLE_COLUMN_SEPARATORS:
                 {
-                    SwTable* pLclTable = SwTable::FindTable( pFmt );
-                    lcl_SetTblSeparators(aValue, pLclTable, pLine->GetTabBoxes()[0], sal_True);
+                    lcl_SetTblSeparators(aValue, sal_True);
                 }
                 break;
                 default:
@@ -1163,7 +1162,7 @@ uno::Any SwXTextTableRow::getPropertyValue(const OUString& rPropertyName) throw(
                 break;
                 case FN_UNO_TABLE_COLUMN_SEPARATORS:
                 {
-                    lcl_GetTblSeparators(aRet, pTable, pLine->GetTabBoxes()[0], sal_True);
+                    lcl_GetTblSeparators(aRet, sal_True);
                 }
                 break;
                 default:
@@ -1428,7 +1427,7 @@ sal_Bool SwXTextTableCursor::mergeRange(void) throw( uno::RuntimeException )
     return bRet;
 }
 
-sal_Bool SwXTextTableCursor::splitRange(sal_Int16 Count, sal_Bool Horizontal) throw( uno::RuntimeException )
+sal_Bool SwXTextTableCursor::splitRange(sal_Int16 Count, sal_Bool) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
     if (Count <= 0)
@@ -2852,8 +2851,7 @@ void SwXTextTable::setPropertyValue(const OUString& rPropertyName,
                 case FN_UNO_TABLE_COLUMN_SEPARATORS:
                 {
                     UnoActionContext(pFmt->GetDoc());
-                    SwTable* pTable = SwTable::FindTable( pFmt );
-                    lcl_SetTblSeparators(aValue, pTable, pTable->GetTabLines()[0]->GetTabBoxes()[0], sal_False);
+                    lcl_SetTblSeparators(aValue, sal_False);
                 }
                 break;
                 case FN_UNO_TABLE_COLUMN_RELATIVE_SUM:/*_readonly_*/ break;
@@ -2976,8 +2974,7 @@ uno::Any SwXTextTable::getPropertyValue(const OUString& rPropertyName) throw( be
                 break;
                 case FN_UNO_TABLE_COLUMN_SEPARATORS:
                 {
-                    SwTable* pTable = SwTable::FindTable( pFmt );
-                    lcl_GetTblSeparators(aRet, pTable, pTable->GetTabLines()[0]->GetTabBoxes()[0], sal_False);
+                    lcl_GetTblSeparators(aRet, sal_False);
                 }
                 break;
                 case FN_UNO_TABLE_COLUMN_RELATIVE_SUM:

@@ -362,8 +362,8 @@ public:
     virtual String      GetFormula() const;
 
     virtual void        ChangeFormat(sal_uInt32 n);
-    virtual void        SetPar1(const String& rStr) { DBG_BF_ASSERT(0, "STRIP"); }
-    virtual void        SetPar2(const String& rStr) { DBG_BF_ASSERT(0, "STRIP"); }
+    virtual void        SetPar1(const String&) { DBG_BF_ASSERT(0, "STRIP"); }
+    virtual void        SetPar2(const String&) { DBG_BF_ASSERT(0, "STRIP"); }
 
     virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
     virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );

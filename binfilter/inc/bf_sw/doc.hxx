@@ -667,9 +667,8 @@ public:
                             sal_Bool bSetTxtFlyAtt = sal_True, sal_Bool bMakeFrms = sal_True );
     void CopyWithFlyInFly( const SwNodeRange& rRg,
                             const SwNodeIndex& rInsPos,
-                            sal_Bool bMakeNewFrms = sal_True,
-                            sal_Bool bDelRedlines = sal_True,
-                            sal_Bool bCopyFlyAtFly = sal_False ) const;
+                            sal_Bool bMakeNewFrms,
+                            sal_Bool bCopyFlyAtFly ) const;
     sal_Bool IsInHeaderFooter( const SwNodeIndex& rIdx ) const;
 
     sal_Bool SetFlyFrmAttr( SwFrmFmt& rFlyFmt, SfxItemSet& rSet );
@@ -730,7 +729,7 @@ public:
         // eine erzeugte Liste aller Felder mit uebergegeben werden.
         // (ist die Adresse != 0, und der Pointer == 0 wird eine neue
         // Liste returnt.)
-    void FldsToCalc( SwCalc& rCalc, const _SetGetExpFld& rToThisFld );
+    void FldsToCalc( const _SetGetExpFld& rToThisFld );
     sal_Bool IsNewFldLst() const { return bNewFldLst; }
     void SetNewFldLst( sal_Bool bFlag = sal_True ) { bNewFldLst = bFlag; }
     void InsDelFldInFldLst( sal_Bool bIns, const SwTxtFld& rFld );

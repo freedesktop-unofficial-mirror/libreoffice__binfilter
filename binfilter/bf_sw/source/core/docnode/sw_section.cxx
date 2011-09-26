@@ -957,7 +957,8 @@ void SwSectionFmt::MakeFrms()
 /*N*/
 /*N*/                   SwTblNumFmtMerge aTNFM( *pSrcDoc, *pDoc );
 /*N*/
-/*N*/                   pSrcDoc->CopyWithFlyInFly( *pCpyRg, rInsPos, bCreateFrm );
+/*N*/                   pSrcDoc->CopyWithFlyInFly(
+                            *pCpyRg, rInsPos, bCreateFrm, false );
 /*N*/                   aSave++;
 /*N*/
 /*N*/                   if( !bCreateFrm )

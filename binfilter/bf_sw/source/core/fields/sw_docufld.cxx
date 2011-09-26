@@ -987,7 +987,7 @@ BOOL SwDocStatField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   return aContent;
 /*N*/ }
 
-/*N*/ String SwDocInfoField::GetCntnt(sal_Bool bName) const
+/*N*/ String SwDocInfoField::GetCntnt(sal_Bool) const
 /*N*/ {
 /*N*/   return Expand();
 /*N*/ }

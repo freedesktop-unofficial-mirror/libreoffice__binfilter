@@ -377,7 +377,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/
 /*N*/       // sorge dafuer das auch Fly's in Fly's kopiert werden
 /*N*/       aIdx = *pSttNd->EndOfSectionNode();
-/*N*/       pSrcDoc->CopyWithFlyInFly( aRg, aIdx, sal_False, sal_True, sal_True );
+/*N*/       pSrcDoc->CopyWithFlyInFly( aRg, aIdx, sal_False, sal_True );
 /*N*/   }
 /*N*/   else
 /*N*/   {

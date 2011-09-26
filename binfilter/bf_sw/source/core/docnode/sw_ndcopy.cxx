@@ -332,7 +332,7 @@ struct _CopyTable
 
 /*N*/ void SwDoc::CopyWithFlyInFly( const SwNodeRange& rRg,
 /*N*/                           const SwNodeIndex& rInsPos, BOOL bMakeNewFrms,
-/*N*/                           BOOL bDelRedlines, BOOL bCopyFlyAtFly ) const
+/*N*/                           BOOL bCopyFlyAtFly ) const
 /*N*/ {
 /*N*/   SwDoc* pDest = rInsPos.GetNode().GetDoc();
 /*N*/

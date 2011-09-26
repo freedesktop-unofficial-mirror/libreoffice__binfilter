@@ -43,7 +43,7 @@ class SwTabFrm: public SwLayoutFrm, public SwFlowFrm
 {
     // #i11760# - adjustment, because of method signature change
     //darf mit den Flags spielen.
-    friend void CalcCntnt( SwLayoutFrm *pLay, bool bNoColl, bool bNoCalcFollow );
+    friend void CalcCntnt( SwLayoutFrm *pLay, bool bNoCalcFollow );
 
     //Fuert Spezialbehandlung fuer _Get[Next|Prev]Leaf() durch.
     SwLayoutFrm *GetLeaf( MakePageType eMakePage, BOOL bFwd );

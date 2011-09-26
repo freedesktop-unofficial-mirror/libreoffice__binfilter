@@ -577,7 +577,6 @@ String SwGetRefField::GetPar2() const
 /*N*/                 if(REF_SEQUENCEFLD == nSubType)
 /*?*/                     break;
 /*N*/                 nSubType = REF_SEQUENCEFLD;
-/*N*/                 ConvertProgrammaticToUIName();
 /*N*/             }
 /*N*/             break;
 /*?*/           case ReferenceFieldSource::BOOKMARK       : nSubType = REF_BOOKMARK   ; break;
@@ -604,40 +603,6 @@ String SwGetRefField::GetPar2() const
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-
-/*N*/ void SwGetRefField::ConvertProgrammaticToUIName()
-/*N*/ {
-/*N*/     if(GetTyp() && REF_SEQUENCEFLD == nSubType)
-/*N*/     {
-/*N*/         SwDoc* pDoc = ((SwGetRefFieldType*)GetTyp())->GetDoc();
-/*N*/         const String& rPar1 = GetPar1();
-/*N*/         //don't convert when the name points to an existing field type
-/*N*/         if(!pDoc->GetFldType(RES_SETEXPFLD, rPar1))
-/*N*/         {
-/*N*/             sal_uInt16 nPoolId = SwStyleNameMapper::GetPoolIdFromProgName( rPar1, GET_POOLID_TXTCOLL );
-/*N*/             USHORT nResId = USHRT_MAX;
-/*N*/             switch( nPoolId )
-/*N*/             {
-/*?*/                 case RES_POOLCOLL_LABEL_ABB:
-/*?*/                     nResId = STR_POOLCOLL_LABEL_ABB;
-/*?*/                 break;
-/*?*/                 case RES_POOLCOLL_LABEL_TABLE:
-/*?*/                     nResId = STR_POOLCOLL_LABEL_TABLE;
-/*?*/                 break;
-/*?*/                 case RES_POOLCOLL_LABEL_FRAME:
-/*?*/                     nResId = STR_POOLCOLL_LABEL_FRAME;
-/*?*/                 break;
-/*?*/                 case RES_POOLCOLL_LABEL_DRAWING:
-/*?*/                     nResId = STR_POOLCOLL_LABEL_DRAWING;
-/*?*/                 break;
-/*N*/             }
-/*N*/         }
-/*N*/     }
-/*N*/ }
-/*-----------------JP: 18.06.93 -------------------
- Get-Referenz-Type
- --------------------------------------------------*/
-
 
 /*N*/ SwGetRefFieldType::SwGetRefFieldType( SwDoc* pDc )
 /*N*/   : SwFieldType( RES_GETREFFLD ), pDoc( pDc )

@@ -220,9 +220,8 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/           }
 /*N*/           pFmt->Add( pTbl );
 /*N*/           // Ist es eine DDE-Tabelle?
-/*N*/           SwDDEFieldType* pDDEFldType = 0;
 /*N*/           if( Peek() == SWG_FIELDTYPE )
-/*?*/               pDDEFldType = (SwDDEFieldType*) InFieldType();
+/*?*/               InFieldType();
 /*N*/
 /*N*/           // Vordefinierte Layout-Frames loeschen
 /*N*/           // beim Einfuegen stoeren diese zur Zeit

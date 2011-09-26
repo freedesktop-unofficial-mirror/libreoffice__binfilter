@@ -1251,7 +1251,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/       const SwCollCondition* pCColl;
 /*N*/
 /*N*/       if( IsAnyCondition( aTmp ) && 0 != ( pCColl =
-/*N*/               ((SwConditionTxtFmtColl*)GetFmtColl())->HasCondition( aTmp )))
+/*N*/               ((SwConditionTxtFmtColl*)GetFmtColl())->HasCondition()))
 /*?*/           SetCondFmtColl( pCColl->GetTxtFmtColl() );
 /*N*/       else
 /*N*/       {
@@ -1263,7 +1263,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/               aTmp.SetCondition( PARA_IN_LIST,
 /*N*/                               ((SwTxtNode*)this)->GetNum()->GetLevel() );
 /*N*/               pCColl = ((SwConditionTxtFmtColl*)GetFmtColl())->
-/*N*/                               HasCondition( aTmp );
+/*N*/                               HasCondition();
 /*N*/           }
 /*N*/           else
 /*N*/               pCColl = 0;

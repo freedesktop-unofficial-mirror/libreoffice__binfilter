@@ -135,7 +135,6 @@ SwFrm* GetFrmOfModify( SwModify&, USHORT nFrmType, const Point* = 0,
 
 // #i11760# - method declaration <CalcCntnt(..)>
 void CalcCntnt( SwLayoutFrm *pLay,
-                bool bNoColl = false,
                 bool bNoCalcFollow = false );
 
 

@@ -573,10 +573,9 @@ void SwSwgReader::InTable( SwNodeIndex& rPos )
     pFmt->Add( pTbl );
 
     // Ist es eine DDE-Tabelle?
-    SwDDEFieldType* pDDE = 0;
     if( r.cur() == SWG_FIELDTYPES )
     {
-        pDDE = (SwDDEFieldType*) InFieldType();
+        InFieldType();
         r.next();
     }
     // Vordefinierte Layout-Frames loeschen

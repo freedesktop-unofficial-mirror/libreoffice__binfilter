@@ -517,7 +517,7 @@ sal_Int32 SwXTextTables::getCount(void) throw( uno::RuntimeException )
     return nRet;
 }
 
-uno::Any SAL_CALL SwXTextTables::getByIndex(sal_Int32 nIndex)
+uno::Any SAL_CALL SwXTextTables::getByIndex(sal_Int32)
         throw( IndexOutOfBoundsException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_BF_ASSERT(0, "STRIP");  // TODO: function always throws error
@@ -532,7 +532,7 @@ uno::Any SAL_CALL SwXTextTables::getByIndex(sal_Int32 nIndex)
     return aRet;
 }
 
-uno::Any SwXTextTables::getByName(const OUString& rItemName)
+uno::Any SwXTextTables::getByName(const OUString&)
     throw( NoSuchElementException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_BF_ASSERT(0, "STRIP");  // TODO: function always throws error
@@ -559,7 +559,7 @@ uno::Sequence< OUString > SwXTextTables::getElementNames(void)
     return aSeq;
 }
 
-sal_Bool SwXTextTables::hasByName(const OUString& rName)
+sal_Bool SwXTextTables::hasByName(const OUString&)
     throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;

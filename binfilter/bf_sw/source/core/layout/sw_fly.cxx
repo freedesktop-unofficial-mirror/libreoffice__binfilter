@@ -723,8 +723,6 @@ namespace binfilter {
 /*N*/   ColUnlock();
 /*N*/ }
 
-// #i11760# - change parameter <bNoColl>: type <bool>;
-//                          default value = false.
 // #i11760# - add new parameter <bNoCalcFollow> with
 //                          default value = false.
 //          - new parameter <bNoCalcFollow> was used by method
@@ -735,7 +733,6 @@ namespace binfilter {
 //                          Thus, <bNoCalcFollow> no longer used by <FormatWidthCols(..)>.
 
 /*N*/ void CalcCntnt( SwLayoutFrm *pLay,
-/*N*/                 bool bNoColl,
 /*N*/                 bool bNoCalcFollow )
 /*N*/ {
 /*N*/   SwSectionFrm* pSect;

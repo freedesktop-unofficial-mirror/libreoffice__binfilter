@@ -138,25 +138,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/
 /*N*/     nStartIndex = nEndIndex = nPos = nChgCnt = 0;
 /*N*/   nPropFont = 0;
-/*N*/   SwDoc* pDoc = rTxtNode.GetDoc();
-/*N*/
-/*N*/   const SwExtTextInput* pExtInp = pDoc->GetExtTextInput( rTxtNode );
-/*N*/   sal_Bool bShow = ::binfilter::IsShowChanges( pDoc->GetRedlineMode() );
-/*N*/     if( pExtInp || bShow )
-/*N*/   {
-/*N*/       MSHORT nRedlPos = pDoc->GetRedlinePos( rTxtNode );
-/*N*/       if( pExtInp || MSHRT_MAX != nRedlPos )
-/*N*/       {
-/*N*/           const SvUShorts* pArr = 0;
-/*N*/           xub_StrLen nInputStt = 0;
-/*N*/           if( pExtInp )
-/*N*/           {
-/*N*/               pArr = &pExtInp->GetAttrs();
-/*N*/               nInputStt = pExtInp->Start()->nContent.GetIndex();
-/*N*/                 Seek( 0 );
-/*N*/           }
-/*N*/       }
-/*N*/   }
 /*N*/ }
 
 }

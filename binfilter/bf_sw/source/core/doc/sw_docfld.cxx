@@ -342,13 +342,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       pFldType = 0;
 /*N*/   }
 
-    // und dann noch alle Tabellen Box Formeln abklappern
-/*N*/   const SfxPoolItem* pItem;
-/*N*/   USHORT nMaxItems = GetAttrPool().GetItemCount( RES_BOXATR_FORMULA );
-/*N*/   for( i = 0; i < nMaxItems; ++i )
-/*N*/       pItem = GetAttrPool().GetItem( RES_BOXATR_FORMULA, i );
-/*?*/
-/*?*/
 /*?*/   // alle Felder/Boxen sind jetzt invalide, also kann das Rechnen anfangen
 /*?*/   if( pHt && ( RES_TABLEFML_UPDATE != pHt->Which() ||
 /*?*/               TBL_CALC != ((SwTableFmlUpdate*)pHt)->eFlags ))
@@ -400,7 +393,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/                   {
 /*N*/                       // einen Index fuers bestimmen vom TextNode anlegen
 /*N*/                       SwNodeIndex aIdx( rTxtNd );
-/*N*/                       FldsToCalc( *pCalc,
+/*N*/                       FldsToCalc(
 /*N*/                           _SetGetExpFld( aIdx, pFmtFld->GetTxtFld() ));
 /*N*/                   }
 /*N*/
@@ -411,10 +404,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/               pFmtFld->Modify( 0, pHt );
 /*N*/           } while( 0 != ( pLast = aIter-- ));
 /*N*/   }
-/*N*/
-/*N*/   // dann berechene noch die Formeln an den Boxen
-/*N*/   for( i = 0; i < nMaxItems; ++i )
-/*N*/       pItem = GetAttrPool().GetItem( RES_BOXATR_FORMULA, i );
 /*?*/
 /*N*/   if( pCalc )
 /*N*/       delete pCalc;
@@ -646,15 +635,14 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
     Beschreibung:
  --------------------------------------------------------------------*/
 
-/*N*/ void lcl_CalcFld( SwDoc& /*rDoc*/, SwCalc& /*rCalc*/, const _SetGetExpFld& rSGEFld,
-/*N*/                       SwNewDBMgr* pMgr )
+/*N*/ void lcl_CalcFld( const _SetGetExpFld& rSGEFld )
 /*N*/ {
 /*N*/   const SwTxtFld* pTxtFld = rSGEFld.GetFld();
 /*N*/   if( !pTxtFld )
 /*N*/       return ;
 /*N*/ }
 
-/*N*/ void SwDoc::FldsToCalc( SwCalc& rCalc, const _SetGetExpFld& rToThisFld )
+/*N*/ void SwDoc::FldsToCalc( const _SetGetExpFld& rToThisFld )
 /*N*/ {
 /*N*/   // erzeuge die Sortierteliste aller SetFelder
 /*N*/   pUpdtFlds->MakeFldList( *this, bNewFldLst, GETFLD_CALC );
@@ -672,7 +660,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/
 /*N*/       const _SetGetExpFldPtr* ppSortLst = pUpdtFlds->GetSortLst()->GetData();
 /*N*/       for( USHORT n = 0; n < nLast; ++n, ++ppSortLst )
-/*N*/           lcl_CalcFld( *this, rCalc, **ppSortLst, pMgr );
+/*N*/           lcl_CalcFld( **ppSortLst );
 /*N*/   }
 /*N*/
 /*N*/   pMgr->CloseAll(FALSE);

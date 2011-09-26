@@ -44,6 +44,7 @@
 #include "frmfmt.hxx"
 #include "dcontact.hxx"
 #include "hints.hxx"
+#include "node.hxx"
 
 #include <ftnidx.hxx>
 

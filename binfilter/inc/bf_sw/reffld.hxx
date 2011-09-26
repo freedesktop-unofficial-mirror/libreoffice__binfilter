@@ -121,8 +121,6 @@ public:
     virtual String      GetPar2() const;
     virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
     virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
-
-    void                ConvertProgrammaticToUIName();
 };
 
 

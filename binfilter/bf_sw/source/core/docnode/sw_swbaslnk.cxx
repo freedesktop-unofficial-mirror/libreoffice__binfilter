@@ -117,18 +117,6 @@ namespace binfilter {
 /*N*/   if( pCntntNode->IsNoTxtNode() &&
 /*N*/       nFmt == SvxLinkManager::RegisterStatusInfoId() )
 /*N*/   {
-/*?*/       // nur eine Statusaenderung - Events bedienen ?
-/*?*/       ::rtl::OUString sState;
-/*?*/       if( rValue.hasValue() && ( rValue >>= sState ))
-/*?*/       {
-/*?*/           USHORT nEvent = 0;
-/*?*/           switch( sState.toInt32() )
-/*?*/           {
-/*?*/           case STATE_LOAD_OK:     nEvent = SVX_EVENT_IMAGE_LOAD;  break;
-/*?*/           case STATE_LOAD_ERROR:  nEvent = SVX_EVENT_IMAGE_ERROR; break;
-/*?*/           case STATE_LOAD_ABORT:  nEvent = SVX_EVENT_IMAGE_ABORT; break;
-/*?*/           }
-/*?*/       }
 /*?*/       return;         // das wars!
 /*N*/   }
 /*N*/
