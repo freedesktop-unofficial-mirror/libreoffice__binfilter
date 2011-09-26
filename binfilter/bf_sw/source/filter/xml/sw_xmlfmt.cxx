@@ -438,7 +438,6 @@ void SwXMLTextStyleContext_Impl::Finish( sal_Bool bOverwrite )
 
     sal_uInt16 nCount = pConditions->Count();
     String aString;
-    OUString sName;
     for( sal_uInt16 i = 0; i < nCount; i++ )
     {
         const SwXMLConditionContext_Impl *pCond = (*pConditions)[i];
@@ -446,16 +445,6 @@ void SwXMLTextStyleContext_Impl::Finish( sal_Bool bOverwrite )
                                       aString,
                                       GET_POOLID_TXTCOLL,
                                       sal_True);
-        sName = aString;
-        SwTxtFmtColl* pCondColl = pDoc->FindTxtFmtCollByName( sName );
-        OSL_ENSURE( pCondColl,
-            "SwXMLItemSetStyleContext_Impl::ConnectConditions: cond coll missing" );
-        if( pCondColl )
-        {
-            SwCollCondition aCond( pCondColl, pCond->GetCondition(),
-                                              pCond->GetSubCondition() );
-            ((SwConditionTxtFmtColl*)pColl)->InsertCondition( aCond );
-        }
     }
 }
 

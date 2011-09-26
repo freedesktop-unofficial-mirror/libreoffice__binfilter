@@ -157,9 +157,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/       break;
 /*N*/
 /*N*/   case RND_DRAW_OBJECT:
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
 /*?*/       break;
 /*?*/
 /*?*/ #ifdef DBG_UTIL
@@ -195,14 +192,8 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   //Bevor die Frames vernichtet werden, damit die Inhalte der Rahmen
 /*N*/   //ggf. entsprechend gerichtet werden.
 /*N*/   const SwFmtChain &rChain = pFmt->GetChain();
-/*N*/   if ( rChain.GetPrev() )
-/*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/   if ( rChain.GetNext() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
+/*N*/   rChain.GetPrev();
+/*N*/   rChain.GetNext();
 
 /*N*/   const SwNodeIndex* pCntIdx = pFmt->GetCntnt().GetCntntIdx();
 /*N*/   if( pCntIdx )

@@ -45,7 +45,6 @@ class SwTableLine;
 class SwTableLines;
 class SwTable;
 class SwFrmFmt;
-class SwHTMLTableLayout;
 class SvxBrushItem;
 class SvxBoxItem;
 class SvxBorderLine;

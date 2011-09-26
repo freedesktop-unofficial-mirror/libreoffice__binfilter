@@ -649,7 +649,7 @@ public:
     void ImplInvalidateNextPos( BOOL bNoFtn = FALSE );
     void InvalidatePage( const SwPageFrm *pPage = 0 ) const;
 
-    virtual BOOL GetCrsrOfst( SwPosition *, Point&, const SwCrsrMoveState* = 0 ) const {DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+    virtual BOOL GetCrsrOfst( SwPosition *, Point&, const SwCrsrMoveState* = 0 ) const { return FALSE; } // DBG_BF_ASSERT
     virtual BOOL GetCharRect( SwRect &, const SwPosition&, SwCrsrMoveState* = 0 ) const;
 
     // der "kurze Dienstweg" zwischen den Frames und der Formatierung.

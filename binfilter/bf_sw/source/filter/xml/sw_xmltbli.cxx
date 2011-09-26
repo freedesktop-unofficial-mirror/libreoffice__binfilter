@@ -614,7 +614,6 @@ void SwXMLTableCellContext_Impl::EndElement()
                         (OTextCursorHelper*)xSrcCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
                 OSL_ENSURE( pSrcTxtCrsr, "SwXTextCursor missing" );
-                SwDoc *pDoc = pSrcTxtCrsr->GetDoc();
                 const SwPaM *pSrcPaM = pSrcTxtCrsr->GetPaM();
 
                 while( nColRepeat > 1 && GetTable()->IsInsertCellPossible() )
@@ -632,7 +631,6 @@ void SwXMLTableCellContext_Impl::EndElement()
                     SwPaM aSrcPaM( *pSrcPaM->GetPoint(),
                                    *pSrcPaM->GetMark() );
                     SwPosition aDstPos( *pDstTxtCrsr->GetPaM()->GetPoint() );
-                    pDoc->Copy( aSrcPaM, aDstPos );
 
                     nColRepeat--;
                 }

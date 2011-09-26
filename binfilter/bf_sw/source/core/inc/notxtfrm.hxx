@@ -54,7 +54,6 @@ class SwNoTxtFrm: public SwCntntFrm
 
     void Format ( const SwBorderAttrs *pAttrs = 0 );
     void PaintCntnt  ( OutputDevice*, const SwRect&, const SwRect& ) const;
-    /// delete unused 3rd parameter
     void PaintPicture( OutputDevice*, const SwRect& ) const;
 protected:
     virtual void MakeAll();
@@ -63,11 +62,9 @@ public:
     ~SwNoTxtFrm();
 
     virtual void Modify( SfxPoolItem*, SfxPoolItem* );
-    virtual void Paint(const SwRect& ) const;
-    virtual BOOL GetCharRect( SwRect &, const SwPosition&,
-                              SwCrsrMoveState* = 0) const;
-    BOOL GetCrsrOfst(SwPosition* pPos, Point& aPoint,
-                            const SwCrsrMoveState* = 0) const;
+    virtual void Paint(const SwRect& ) const {} // DBG_BF_ASSERT
+    virtual BOOL GetCharRect( SwRect &, const SwPosition&, SwCrsrMoveState* = 0) const { return TRUE; } // DBG_BF_ASSERT
+    BOOL GetCrsrOfst(SwPosition*, Point&, const SwCrsrMoveState* = 0) const { return TRUE; } // DBG_BF_ASSERT
 
     const Size &GetGrfSize() const  { return GetSize(); }
     void GetGrfArea( SwRect &rRect, SwRect * = 0, BOOL bMirror = TRUE ) const;

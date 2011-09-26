@@ -109,16 +109,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 
 /*************************************************************************
 |*
-|*    void SwNoTxtFrm::Paint()
-|*
-*************************************************************************/
-
-/*N*/ void SwNoTxtFrm::Paint( const SwRect& /*rRect*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*************************************************************************
-|*
 |*    Size SwNoTxtFrm::GetSize()
 |*
 |*    Beschreibung      Gebe die Groesse des umgebenen FLys und
@@ -196,25 +186,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*M*/ #endif
 /*M*/ }
 
-/*************************************************************************
-|*
-|*    SwNoTxtFrm::GetCharRect()
-|*
-|*************************************************************************/
-
-
-/*N*/ BOOL SwNoTxtFrm::GetCharRect( SwRect& /*rRect*/, const SwPosition& /*rPos*/,
-/*N*/                             SwCrsrMoveState* /*pCMS*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return TRUE;
-/*N*/ }
-
-
-/*N*/ BOOL SwNoTxtFrm::GetCrsrOfst(SwPosition* /*pPos*/, Point& /*aPoint*/,
-/*N*/                           const SwCrsrMoveState* ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return TRUE;
-/*N*/ }
 
 /*N*/ #define CLEARCACHE( pNd ) {\
 /*N*/   (pNd)->GetGrfObj().ReleaseFromCache();\
@@ -243,10 +214,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*N*/       break;
 /*N*/
 /*?*/   case RES_GRF_REREAD_AND_INCACHE:
-/*?*/       if( ND_GRFNODE == GetNode()->GetNodeType() )
-/*?*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
 /*?*/       break;
 /*?*/
 /*N*/   case RES_UPDATE_ATTR:

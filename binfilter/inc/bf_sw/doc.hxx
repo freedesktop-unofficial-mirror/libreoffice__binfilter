@@ -693,7 +693,6 @@ public:
     SwFieldType *GetSysFldType( const sal_uInt16 eWhich ) const;
     SwFieldType* GetFldType(sal_uInt16 nResId, const String& rName) const;
     void RemoveFldType(sal_uInt16 nFld);
-    void UpdateFlds( SfxPoolItem* pNewHt = 0, sal_Bool bCloseDB = sal_False );
 
         // rufe das Update der Expression Felder auf; alle Ausdruecke werden
         // neu berechnet.
@@ -745,11 +744,6 @@ public:
     SwDBData GetDBData();
     const SwDBData& GetDBDesc();
     const SwDBData& _GetDBDesc() const { return aDBData; }
-
-
-        // Kopieren eines Bereiches im oder in ein anderes Dokument !
-        // Die Position kann auch im Bereich liegen !!
-    sal_Bool Copy( SwPaM&, SwPosition& ) const; // in ndcopy.cxx
 
         // Loesche die Section, in der der Node steht.
     void DeleteSection( SwNode *pNode );
@@ -1141,7 +1135,6 @@ public:
                      sal_Bool bSetAbsLSpace = sal_True,
                      sal_Bool bCalledFromShell = sal_False );
         // ab hier neu starten lassen oder den Start wieder aufheben
-    void SetNumRuleStart( const SwPosition& rPos, sal_Bool bFlag = sal_True );
     void SetNodeNumStart( const SwPosition& rPos, sal_uInt16 nStt = USHRT_MAX );
 
     SwNumRule* GetCurrNumRule( const SwPosition& rPos ) const;
@@ -1157,11 +1150,7 @@ public:
     void UpdateNumRule();   // alle invaliden Updaten
     void ChgNumRuleFmts( const SwNumRule& rRule );
 
-        // zum naechsten/vorhergehenden Punkt auf gleicher Ebene
 
-        // Absaetze ohne Numerierung, aber mit Einzuegen
-        // Loeschen, Splitten der Aufzaehlungsliste
-    sal_Bool DelNumRules( const SwPaM& );
         // Hoch-/Runterstufen
     sal_Bool NumUpDown( const SwPaM&, sal_Bool bDown = sal_True );
         // Bewegt selektierte Absaetze (nicht nur Numerierungen)

@@ -356,9 +356,6 @@ namespace binfilter {
 /*N*/         }
 /*N*/
 /*N*/     }
-/*N*/   else if( rRule.IsAutoRule() && !(*pNew == rRule) )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   if( bSetItem )
 /*N*/   {
@@ -367,11 +364,6 @@ namespace binfilter {
 /*N*/   UpdateNumRule( pNew->GetName(), nPamPos );
 /*N*/
 /*N*/   SetModified();
-/*N*/ }
-
-/*N*/ void SwDoc::SetNumRuleStart( const SwPosition& /*rPos*/, BOOL /*bFlag*/ )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SwDoc::SetNodeNumStart( const SwPosition& rPos, USHORT nStt )
@@ -436,12 +428,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
-
-
-/*N*/ BOOL SwDoc::DelNumRules( const SwPaM& /*rPam*/ )
-/*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
 
 
     // zum naechsten/vorhergehenden Punkt auf gleicher Ebene
@@ -789,8 +775,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           {
 /*N*/               // beim Format mit Bitmap die Graphicen schon mal anfordern
 /*N*/               const SwNumFmt* pNumFmt = pRule->GetNumFmt( GetRealLevel( nLevel ));
-/*N*/               if( pNumFmt && SVX_NUM_BITMAP == pNumFmt->GetNumberingType() )
-/*?*/                   pNumFmt->GetGraphic();
 /*N*/
 /*N*/               if( pRule->IsContinusNum() )
 /*N*/               {

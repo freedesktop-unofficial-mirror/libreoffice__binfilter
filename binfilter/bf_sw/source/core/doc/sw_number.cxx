@@ -126,10 +126,6 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/   delete pVertOrient;
 /*N*/ }
 
-/*N*/ void SwNumFmt::NotifyGraphicArrived()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ SwNumFmt& SwNumFmt::operator=( const SwNumFmt& rNumFmt)
 /*N*/ {
 /*N*/   SvxNumberFormat::operator=(rNumFmt);
@@ -147,10 +143,6 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/     return bRet;
 /*N*/ }
 
-
-/*N*/ const Graphic* SwNumFmt::GetGraphic() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*N*/ }
 
 /*N*/ void SwNumFmt::SetCharFmt( SwCharFmt* pChFmt)
 /*N*/ {
@@ -185,7 +177,7 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/ }
 
 /*N*/ const String& SwNumFmt::GetCharFmtName() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
+/*N*/ {
 /*N*/       return aEmptyStr;
 /*N*/ }
 
@@ -195,10 +187,6 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/     if(pOrient)
 /*N*/         pVertOrient->SetVertOrient( (SwVertOrient)*pOrient );
 /*N*/   SvxNumberFormat::SetGraphicBrush( pBrushItem, pSize, pOrient);
-/*N*/ }
-
-/*N*/ void  SwNumFmt::SetVertOrient(SvxFrameVertOrient /*eSet*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ SvxFrameVertOrient    SwNumFmt::GetVertOrient() const
@@ -230,12 +218,9 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/                               GetDefinedIn()) &&
 /*N*/                       ((SwNumRuleItem*)pItem)->GetValue() == rRuleNm )
 /*N*/                   {
-/*N*/                       if( pMod->IsA( TYPE( SwFmt )) )
-/*N*/                       {
-/*?*/                           DBG_BF_ASSERT(0, "STRIP");
-/*?*/                       }
-/*N*/                       else if( ((SwTxtNode*)pMod)->GetNodes().IsDocNodes() )
-/*N*/                           lcl_SetRuleChgd( *(SwTxtNode*)pMod, i );
+/*N*/                       if( !pMod->IsA( TYPE( SwFmt )) )
+/*N*/                           if( ((SwTxtNode*)pMod)->GetNodes().IsDocNodes() )
+/*N*/                               lcl_SetRuleChgd( *(SwTxtNode*)pMod, i );
 /*N*/                   }
 /*N*/               bFnd = TRUE;
 /*N*/               break;
@@ -274,10 +259,6 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/
 /*N*/   if( bFnd && !bDocIsModified )
 /*?*/       pDoc->ResetModified();
-/*N*/ }
-
-/*N*/ const SwFmtVertOrient*      SwNumFmt::GetGraphicOrientation() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 /*N*/ BOOL SwNodeNum::operator==( const SwNodeNum& rNum ) const
@@ -326,7 +307,6 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/ //JP 10.03.96: und nun mal wieder nicht
 /*N*/           pFmt->SetNumberingType(SVX_NUM_NUMBER_NONE);
 /*N*/           pFmt->SetIncludeUpperLevels( MAXLEVEL );
-/*N*/ //            pFmt->eType = ARABIC;
 /*N*/           pFmt->SetStart( 1 );
 /*N*/           SwNumRule::aBaseFmts[ OUTLINE_RULE ][ n ] = pFmt;
 /*N*/       }
@@ -505,9 +485,6 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/               const SwNumFmt& rNFmt = Get( i );
 /*N*/               if( SVX_NUM_NUMBER_NONE == rNFmt.GetNumberingType() )
 /*N*/               {
-/*N*/   // Soll aus 1.1.1 --> 2. NoNum --> 1..1 oder 1.1 ??
-/*N*/   //                 if( i != rNum.nMyLevel )
-/*N*/   //                    aStr += aDotStr;
 /*N*/                   continue;
 /*N*/               }
 /*N*/
@@ -554,12 +531,8 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/       aFmts[n] = pSvxFmt ? new SwNumFmt(*pSvxFmt, pDoc) : 0;
 /*N*/   }
 
-//  eRuleType = rNumRule.eRuleType;
-//  sName = rNumRule.sName;
-//  bAutoRuleFlag = rNumRule.bAutoRuleFlag;
 /*N*/   bInvalidRuleFlag = TRUE;
 /*N*/   bContinusNum = rNumRule.IsContinuousNumbering();
-//!!!   bAbsSpaces = rNumRule.IsAbsSpaces();
 /*N*/ }
 
 /*N*/ SvxNumRule SwNumRule::MakeSvxNumRule() const
@@ -572,7 +545,6 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/                               SVX_RULETYPE_NUMBERING :
 /*N*/                                   SVX_RULETYPE_OUTLINE_NUMBERING );
 /*N*/   aRule.SetContinuousNumbering(bContinusNum);
-/*N*/ //!!! aRule.SetAbsSpaces( bAbsSpaces );
 /*N*/   for( USHORT n = 0; n < MAXLEVEL; ++n )
 /*N*/   {
 /*N*/         SwNumFmt aNumFmt = Get(n);

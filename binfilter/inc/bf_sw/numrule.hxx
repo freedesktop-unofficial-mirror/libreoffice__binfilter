@@ -65,7 +65,7 @@ class SwNumFmt : public SvxNumberFormat, public SwClient
     SwFmtVertOrient* pVertOrient;
 
     void UpdateNumNodes( SwDoc* pDoc );
-    virtual void NotifyGraphicArrived();
+    virtual void NotifyGraphicArrived() { DBG_BF_ASSERT(0, "STRIP"); }
 public:
     SwNumFmt();
     SwNumFmt( const SwNumFmt& );
@@ -77,8 +77,6 @@ public:
     BOOL operator==( const SwNumFmt& ) const;
     BOOL operator!=( const SwNumFmt& r ) const { return !(*this == r); }
 
-    const Graphic* GetGraphic() const;
-
     SwCharFmt* GetCharFmt() const { return (SwCharFmt*)pRegisteredIn; }
     void SetCharFmt( SwCharFmt* );
     virtual void Modify( SfxPoolItem* pOld, SfxPoolItem* pNew );
@@ -88,9 +86,8 @@ public:
 
     virtual void    SetGraphicBrush( const SvxBrushItem* pBrushItem, const Size* pSize = 0, const SvxFrameVertOrient* pOrient = 0);
 
-    virtual void                SetVertOrient(SvxFrameVertOrient eSet);
+    virtual void                SetVertOrient(SvxFrameVertOrient)  { DBG_BF_ASSERT(0, "STRIP"); }
     virtual SvxFrameVertOrient  GetVertOrient() const;
-    const SwFmtVertOrient*      GetGraphicOrientation() const;
 };
 
 enum SwNumRuleType { OUTLINE_RULE = 0, NUM_RULE = 1, RULE_END = 2 };

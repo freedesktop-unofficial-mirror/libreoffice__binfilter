@@ -938,10 +938,6 @@ void SwSectionFmt::MakeFrms()
 /*N*/                       pSrcDoc->SelectServerObj( sRange, pCpyPam, pCpyRg )
 /*N*/                       && pCpyPam )
 /*N*/                   {
-/*?*/                       if( pSrcDoc != pDoc ||
-/*?*/                           pCpyPam->Start()->nNode > rInsPos ||
-/*?*/                           rInsPos >= pCpyPam->End()->nNode )
-/*?*/                           pSrcDoc->Copy( *pCpyPam, *pPam->GetPoint() );
 /*?*/                       delete pCpyPam;
 /*N*/                   }
 /*N*/                   if( pCpyRg && pSrcDoc == pDoc &&

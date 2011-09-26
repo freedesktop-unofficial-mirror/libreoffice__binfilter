@@ -64,7 +64,6 @@
 #include "cellfrm.hxx"
 #include "flyfrms.hxx"
 #include "txtfrm.hxx"       //HasFtn()
-#include "htmltbl.hxx"
 #include "sectfrm.hxx"  //SwSectionFrm
 namespace binfilter {
 

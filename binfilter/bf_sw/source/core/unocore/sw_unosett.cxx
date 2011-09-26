@@ -1469,19 +1469,11 @@ uno::Sequence<beans::PropertyValue> SwXNumberingRules::getNumberingRuleByIndex(
                                 ::getCppuType((const uno::Reference<awt::XBitmap>*)0));
                 aPropertyValues.Insert(pData, aPropertyValues.Count());
             }
-             Size aSize = rFmt.GetGraphicSize();
+            Size aSize = rFmt.GetGraphicSize();
             aSize.Width() = TWIP_TO_MM100( aSize.Width() );
             aSize.Height() = TWIP_TO_MM100( aSize.Height() );
             pData = new PropValData((void*)&aSize, SW_PROP_NAME_STR(UNO_NAME_GRAPHIC_SIZE), ::getCppuType((const awt::Size*)0));
             aPropertyValues.Insert(pData, aPropertyValues.Count());
-
-            const SwFmtVertOrient* pOrient = rFmt.GetGraphicOrientation();
-            if(pOrient)
-            {
-                pData = new PropValData((void*)0, SW_PROP_NAME_STR(UNO_NAME_VERT_ORIENT), ::getCppuType((const sal_Int16*)0));
-                ((const SfxPoolItem*)pOrient)->QueryValue(pData->aVal, MID_VERTORIENT_ORIENT);
-                aPropertyValues.Insert(pData, aPropertyValues.Count());
-            }
         }
 
     }
@@ -1852,10 +1844,7 @@ void SwXNumberingRules::setNumberingRuleByIndex(
                 {
                     if(!pSetVOrient)
                     {
-                        if(aFmt.GetGraphicOrientation())
-                            pSetVOrient = (SwFmtVertOrient*)aFmt.GetGraphicOrientation()->Clone();
-                        else
-                            pSetVOrient = new SwFmtVertOrient;
+                        pSetVOrient = new SwFmtVertOrient;
                     }
                     ((SfxPoolItem*)pSetVOrient)->PutValue(pData->aVal, MID_VERTORIENT_ORIENT);
                 }
@@ -1892,9 +1881,6 @@ void SwXNumberingRules::setNumberingRuleByIndex(
 
             if(pSetBrush)
             {
-                if(!pSetVOrient && aFmt.GetGraphicOrientation())
-                    pSetVOrient = new SwFmtVertOrient(*aFmt.GetGraphicOrientation());
-
                 if(!pSetSize)
                 {
                     pSetSize = new Size(aFmt.GetGraphicSize());

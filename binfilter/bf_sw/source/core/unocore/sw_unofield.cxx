@@ -2432,7 +2432,6 @@ void SwXTextFieldTypes::refresh(void)  throw( uno::RuntimeException )
     UnoActionContext aContext(GetDoc());
     SwDocStat aDocStat;
     GetDoc()->UpdateDocStat(aDocStat);
-    GetDoc()->UpdateFlds(0, sal_False);
 
     // call refresh listeners
     aRefreshCont.Refreshed();

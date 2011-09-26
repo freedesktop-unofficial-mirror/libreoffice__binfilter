@@ -210,11 +210,6 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/   if( bItalic && !pDoc->IsHTMLMode() )
 /*N*/       SetAllScriptItem( rSet, SvxPostureItem( ITALIC_NORMAL ) );
 /*N*/
-/*N*/   if( pDoc->IsHTMLMode() )
-/*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   if( pColl )
 /*N*/   {
 /*N*/       if( !( nOutLvlBits & ( 1 << nLevel )) )

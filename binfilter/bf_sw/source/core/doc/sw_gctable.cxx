@@ -431,14 +431,6 @@ struct _GCLinePara
 /*N*/           rLns.Remove( nInsPos, 1 );      // die Line dem aus Array loeschen
 /*N*/           rLns.Insert( &pBox->GetTabLines(), nInsPos );
 /*N*/
-/*N*/           // JP 31.03.99: Bug 60000 - die Attribute der zu loeschenden
-/*N*/           // Line an die "eingefuegten" uebertragen
-/*N*/           const SfxPoolItem* pItem;
-/*N*/           if( SFX_ITEM_SET == pLn->GetFrmFmt()->GetItemState(
-/*N*/                                   RES_BACKGROUND, TRUE, &pItem ))
-/*N*/           {DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
-/*N*/
 /*N*/           pBox->GetTabLines().Remove( 0, nLen );  // Lines aus Array loeschen
 /*N*/
 /*N*/           delete pLn;

@@ -301,12 +301,6 @@ struct _CopyTable
 /*N*/   rTbl.SetHeadlineRepeat( GetTable().IsHeadlineRepeat() );
 /*N*/   rTbl.SetTblChgMode( GetTable().GetTblChgMode() );
 /*N*/
-/*N*/   if( IS_TYPE( SwDDETable, &GetTable() ))
-/*N*/   {
-/*?*/       // es wird eine DDE-Tabelle kopiert
-/*?*/       // ist im neuen Dokument ueberhaupt der FeldTyp vorhanden ?
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/   // dann kopiere erstmal den Inhalt der Tabelle, die Zuordnung der
 /*N*/   // Boxen/Lines und das anlegen der Frames erfolgt spaeter
 /*N*/   SwNodeRange aRg( *this, +1, *EndOfSectionNode() );  // (wo stehe in denn nun ??)
@@ -331,42 +325,6 @@ struct _CopyTable
 /*N*/
 /*N*/   return pTblNd;
 /*N*/ }
-
-
-
-//  ----- Copy-Methode vom SwDoc ------
-
-// verhinder das Kopieren in Fly's, die im Bereich verankert sind.
-
-// Kopieren eines Bereiches im oder in ein anderes Dokument !
-
-/*N*/ BOOL SwDoc::Copy( SwPaM& rPam, SwPosition& rPos ) const
-/*N*/ {
-/*N*/   const SwPosition *pStt = rPam.Start(), *pEnd = rPam.End();
-/*N*/   // kein Copy abfangen.
-/*N*/   if( !rPam.HasMark() || *pStt >= *pEnd )
-/*N*/       return FALSE;
-/*N*/
-/*N*/   SwDoc* pDoc = rPos.nNode.GetNode().GetDoc();
-/*N*/
-/*N*/   SwRedlineMode eOld = pDoc->GetRedlineMode();
-/*N*/
-/*N*/   BOOL bRet = FALSE;
-/*N*/
-/*N*/   // Copy in sich selbst (ueber mehrere Nodes wird hier gesondert
-/*N*/   // behandelt; in einem TextNode wird normal behandelt)
-/*N*/   if( ! ( *pStt <= rPos && rPos < *pEnd &&
-/*N*/           ( pStt->nNode != pEnd->nNode ||
-/*N*/             !pStt->nNode.GetNode().IsTxtNode() )) )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/
-/*N*/   pDoc->SetRedlineMode_intern( eOld );
-/*N*/
-/*N*/   return bRet;
-/*N*/ }
-
-// Kopieren eines Bereiches im oder in ein anderes Dokument !
-// Die Position darf nicht im Bereich liegen !!
 
 
 
@@ -411,15 +369,6 @@ struct _CopyTable
 /*N*/   _CopyFlyInFly( rRg, aSavePos, bCopyFlyAtFly );
 /*N*/
 /*N*/   SwNodeRange aCpyRange( aSavePos, rInsPos );
-/*N*/
-/*N*/   // dann kopiere noch alle Bookmarks
-/*N*/   if( GetBookmarks().Count() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
-/*N*/   if( bDelRedlines && ( REDLINE_DELETE_REDLINES & pDest->GetRedlineMode() ))
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   pDest->GetNodes()._DelDummyNodes( aCpyRange );
 /*N*/ }

@@ -1372,21 +1372,10 @@ namespace binfilter {
 /*N*/   if ( !bTst )
 /*N*/   {
 /*N*/       //Cntnts werden immer auf den gewuenschten Wert gebracht.
-/*N*/         long nOld = (Frm().*fnRect->fnGetHeight)();
-/*N*/         (Frm().*fnRect->fnSetHeight)( nOld + nDist );
-/*N*/         if( IsVertical() && !IsReverse() )
-/*?*/             Frm().Pos().X() -= nDist;
-/*N*/       if ( nOld && IsInTab() )
-/*N*/       {
-/*N*/           SwTabFrm *pTab = FindTabFrm();
-/*N*/           if ( pTab->GetTable()->GetHTMLTableLayout() &&
-/*N*/                !pTab->IsJoinLocked() &&
-/*N*/                !pTab->GetFmt()->GetDoc()->GetDocShell()->IsReadOnly() )
-/*N*/           {
-/*?*/               pTab->InvalidatePos();
-/*?*/               pTab->SetResizeHTMLTable();
-/*N*/           }
-/*N*/       }
+/*N*/       long nOld = (Frm().*fnRect->fnGetHeight)();
+/*N*/       (Frm().*fnRect->fnSetHeight)( nOld + nDist );
+/*N*/       if( IsVertical() && !IsReverse() )
+/*?*/           Frm().Pos().X() -= nDist;
 /*N*/   }
 /*N*/
 /*N*/   //Upper nur growen wenn notwendig.
@@ -1443,17 +1432,6 @@ namespace binfilter {
 /*N*/         if( IsVertical() )
 /*N*/             Frm().Pos().X() += nDist;
 /*N*/       nDist = nRstHeight;
-/*N*/       if ( IsInTab() )
-/*N*/       {
-/*N*/           SwTabFrm *pTab = FindTabFrm();
-/*N*/           if ( pTab->GetTable()->GetHTMLTableLayout() &&
-/*N*/                !pTab->IsJoinLocked() &&
-/*N*/                !pTab->GetFmt()->GetDoc()->GetDocShell()->IsReadOnly() )
-/*N*/           {
-/*N*/               pTab->InvalidatePos();
-/*N*/               pTab->SetResizeHTMLTable();
-/*N*/           }
-/*N*/       }
 /*N*/   }
 /*N*/
 /*N*/     SwTwips nReal;

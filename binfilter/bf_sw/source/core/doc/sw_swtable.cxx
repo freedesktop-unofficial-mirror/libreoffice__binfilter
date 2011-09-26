@@ -53,7 +53,6 @@
 #include <mdiexp.hxx>
 #include <cellatr.hxx>
 #include <txatbase.hxx>
-#include <htmltbl.hxx>
 #include <swtblfmt.hxx>
 #include <tblrwcl.hxx>
 #include <redline.hxx>
@@ -108,7 +107,6 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ SwTable::SwTable( SwTableFmt* pFmt )
 /*N*/   : SwClient( pFmt ),
-/*N*/   pHTMLLayout( 0 ),
 /*N*/   nGrfsThatResize( 0 )
 /*N*/ {
 /*N*/   bModifyLocked = FALSE;
@@ -120,7 +118,6 @@ namespace binfilter {
 
 /*N*/ SwTable::SwTable( const SwTable& rTable )
 /*N*/   : SwClient( rTable.GetFrmFmt() ),
-/*N*/   pHTMLLayout( 0 ),
 /*N*/   nGrfsThatResize( 0 )
 /*N*/ {
 /*N*/   bHeadlineRepeat = rTable.IsHeadlineRepeat();
@@ -160,7 +157,6 @@ namespace binfilter {
 /*N*/   //  der Section geloescht werden
 /*N*/   DelBoxNode( aSortCntBoxes );
 /*N*/   aSortCntBoxes.Remove( (USHORT)0, aSortCntBoxes.Count() );
-/*N*/   delete pHTMLLayout;
 /*N*/ }
 
 /*************************************************************************
@@ -247,46 +243,6 @@ namespace binfilter {
 /*N*/   else
 /*N*/       SwClient::Modify( pOld, pNew );         // fuers ObjectDying
 /*N*/ }
-
-/*************************************************************************
-|*
-|*  SwTable::GetTabCols()
-|*
-|*************************************************************************/
-
-
-
-
-// MS: Sonst Absturz auf der DEC-Kiste
-//
-#if defined(ALPHA) && defined(_MSC_VER)
-#pragma optimize("", off)
-#endif
-
-
-/*N*/ void SwTable::GetTabCols( SwTabCols& /*rToFill*/, const SwTableBox* /*pStart*/,
-/*N*/                         bool /*bRefreshHidden*/, BOOL /*bCurRowOnly*/ ) const
-/*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-#if defined(ALPHA) && defined(_MSC_VER)
-#pragma optimize("", on)
-#endif
-
-/*************************************************************************
-|*
-|*  SwTable::SetTabCols()
-|*
-|*************************************************************************/
-//Struktur zur Parameteruebergabe
-
-
-
-
-
-
-
 
 
 /*************************************************************************
@@ -794,7 +750,6 @@ namespace binfilter {
 /*N*/       break;
 /*N*/
 /*N*/   case RES_FINDNEARESTNODE:
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*?*/       break;
 /*?*/
 /*?*/   case RES_CONTENT_VISIBLE:
@@ -818,12 +773,6 @@ namespace binfilter {
 /*N*/       ? (SwTableNode*)GetTabSortBoxes()[ 0 ]->GetSttNd()->FindTableNode()
 /*N*/       : 0;
 /*N*/ }
-
- void SwTable::SetHTMLTableLayout( SwHTMLTableLayout *p )
- {
-    delete pHTMLLayout;
-    pHTMLLayout = p;
- }
 
 // zum Erkennen von Veraenderungen (haupts. TableBoxAttribute)
 /*N*/ void SwTableBoxFmt::Modify( SfxPoolItem* pOld, SfxPoolItem* pNew )
@@ -915,38 +864,6 @@ namespace binfilter {
 /*?*/                       else if( NUMBERFORMAT_TEXT == nNewFmt )
 /*?*/                           nOldFmt = 0;
 /*?*/                   }
-/*?*/
-/*?*/                   // Logik:
-/*?*/                   // ValueAenderung:  -> "simuliere" eine FormatAenderung!
-/*?*/                   // FormatAenderung:
-/*?*/                   // Text -> !Text oder FormatAenderung:
-/*?*/                   //          - Ausrichtung auf RECHTS, wenn LINKS oder Blocksatz
-/*?*/                   //          - vertikale Ausrichtung auf UNTEN wenn OBEN oder nicht
-/*?*/                   //              gesetzt ist.
-/*?*/                   //          - Text ersetzen (Farbe?? neg. Zahlen ROT??)
-/*?*/                   // !Text -> Text:
-/*?*/                   //          - Ausrichtung auf LINKS, wenn RECHTS
-/*?*/                   //          - vertikale Ausrichtung auf OEBN, wenn UNTEN gesetzt ist
-/*?*/
-/*?*/                   SvNumberFormatter* pNumFmtr = GetDoc()->GetNumberFormatter();
-/*?*/                   BOOL bNewIsTxtFmt = pNumFmtr->IsTextFormat( nNewFmt ) ||
-/*?*/                                       NUMBERFORMAT_TEXT == nNewFmt;
-/*?*/
-/*?*/                   if( (!bNewIsTxtFmt && nOldFmt != nNewFmt) || pNewFml )
-/*?*/                   {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/                   }
-/*?*/                   else if( bNewIsTxtFmt && nOldFmt != nNewFmt )
-/*?*/                   {
-/*?*/                       // auf jedenfall muessen jetzt die Formeln/Values
-/*?*/                       // geloescht werden!
-/*?*/   //                  LockModify();
-/*?*/   //                  ResetAttr( RES_BOXATR_FORMULA, RES_BOXATR_VALUE );
-/*?*/   //                  UnlockModify();
-/*?*/
-/*?*/
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*?*/                   }
 /*?*/               }
 /*N*/           }
 /*N*/       }
@@ -971,7 +888,6 @@ namespace binfilter {
 /*N*/           {
 /*N*/               const SwpHints* pHts = ((SwTxtNode*)pCNd)->GetpSwpHints();
 /*N*/               const String& rTxt = ((SwTxtNode*)pCNd)->GetTxt();
-/*N*/ //                if( rTxt.Len() )
 /*N*/               {
 /*N*/                   nPos = aIdx.GetIndex();
 /*N*/
@@ -1024,10 +940,6 @@ namespace binfilter {
 /*N*/           Color* pCol = 0;
 /*N*/           String sNewTxt;
 /*N*/           pNumFmtr->GetOutputString( fVal, nFmtId, sNewTxt, &pCol );
-/*N*/
-/*N*/           const String& rTxt = pSttNd->GetNodes()[ nNdPos ]->GetTxtNode()->GetTxt();
-/*N*/           if( rTxt != sNewTxt )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/   }
 /*N*/ }

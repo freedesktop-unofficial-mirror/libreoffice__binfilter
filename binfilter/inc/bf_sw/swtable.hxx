@@ -51,7 +51,6 @@ class SwFrmFmt;
 class SwTableFmt;
 class SwTableLineFmt;
 class SwTableBoxFmt;
-class SwHTMLTableLayout;
 class SwTableLine;
 class SwTableBox;
 class SwTableNode;
@@ -86,8 +85,6 @@ protected:
     SwTableSortBoxes aSortCntBoxes;
      SwServerObjectRef refObj;  // falls DataServer -> Pointer gesetzt
 
-    SwHTMLTableLayout *pHTMLLayout;
-
 //SOLL das fuer jede Tabelle einstellbar sein?
     TblChgMode   eTblChgMode;
 
@@ -106,10 +103,6 @@ public:
     SwTable( const SwTable& rTable );       // kein Copy der Lines !!
     ~SwTable();
 
-    SwHTMLTableLayout *GetHTMLTableLayout() { return pHTMLLayout; }
-    const SwHTMLTableLayout *GetHTMLTableLayout() const { return pHTMLLayout; }
-    void SetHTMLTableLayout( SwHTMLTableLayout *p );    //Eigentumsuebergang!
-
     USHORT IncGrfsThatResize() { return ++nGrfsThatResize; }
     USHORT DecGrfsThatResize() { return nGrfsThatResize ? --nGrfsThatResize : 0; }
 
@@ -126,9 +119,6 @@ public:
     SwFrmFmt* GetFrmFmt() const { return (SwFrmFmt*)pRegisteredIn; }
 
     virtual void Modify( SfxPoolItem* pOld, SfxPoolItem* pNew );
-
-    void GetTabCols( SwTabCols &rToFill, const SwTableBox *pStart,
-                     bool bHidden = FALSE, BOOL bCurRowOnly = FALSE ) const;
 
     BOOL DeleteSel( SwDoc*, const SwSelBoxes& rBoxes,
                             const BOOL bDelMakeFrms = TRUE,

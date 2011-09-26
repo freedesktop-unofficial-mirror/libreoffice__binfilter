@@ -439,8 +439,6 @@ void lcl_LastBoxSetWidth( SwTableBoxes &rBoxes, const long nOffset,
         == pTblNd->EndOfSectionIndex() )
         return FALSE;
 
-    SetHTMLTableLayout( 0 );    // MIB 9.7.97: HTML-Layout loeschen
-
     //Lines fuer das Layout-Update herausuchen.
     _FndBox aFndBox( 0, 0 );
     if ( bDelMakeFrms )
@@ -831,8 +829,6 @@ BOOL lcl_Merge_MoveLine( const _FndLine*& rpFndLine, void* pPara )
     }
     if( !aFndBox.GetLines().Count() )
         return FALSE;
-
-    SetHTMLTableLayout( 0 );    // MIB 9.7.97: HTML-Layout loeschen
 
     //Lines fuer das Layout-Update herausuchen.
     aFndBox.SetTableLines( *this );

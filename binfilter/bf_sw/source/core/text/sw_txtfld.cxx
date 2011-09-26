@@ -303,8 +303,7 @@ namespace binfilter {
 /*N*/       if( SVX_NUM_BITMAP == rNumFmt.GetNumberingType() )
 /*N*/       {
 /*?*/           pRet = new SwGrfNumPortion( (SwFrm*)GetTxtFrm(),rNumFmt.GetBrush(),
-/*?*/               rNumFmt.GetGraphicOrientation(), rNumFmt.GetGraphicSize(),
-/*?*/               bLeft, bCenter, nMinDist );
+/*?*/               NULL, rNumFmt.GetGraphicSize(), bLeft, bCenter, nMinDist );
 /*N*/       }
 /*N*/       else
 /*N*/       {

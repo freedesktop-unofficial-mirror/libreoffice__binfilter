@@ -512,10 +512,6 @@ sal_Bool lcl_setCrsrPropertyValue(const SfxItemPropertyMap* pMap,
             }
             break;
             case FN_NUMBER_NEWSTART :
-            {
-                sal_Bool bVal = *(sal_Bool*)aValue.getValue();
-                rPam.GetDoc()->SetNumRuleStart(*rPam.GetPoint(), bVal);
-            }
             break;
             case FN_UNO_NUM_RULES:
                 SwUnoCursorHelper::setNumberingProperty(aValue, rPam);

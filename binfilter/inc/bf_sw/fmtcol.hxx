@@ -167,10 +167,6 @@ public:
 
     virtual ~SwCollCondition();
 
-    int operator==( const SwCollCondition& rCmp ) const;
-    int operator!=( const SwCollCondition& rCmp ) const
-                            { return ! (*this == rCmp); }
-
     ULONG GetCondition() const      { return nCondition; }
     ULONG GetSubCondition() const   { return aSubCondition.nSubCondition; }
     const String* GetFldExpression() const
@@ -202,11 +198,10 @@ protected:
 public:
     TYPEINFO();     //Bereits in Basisklasse Client drin.
 
-    virtual ~SwConditionTxtFmtColl();
+    virtual ~SwConditionTxtFmtColl() {}
 
     const SwCollCondition* HasCondition( const SwCollCondition& rCond ) const;
     const SwFmtCollConditions& GetCondColls() const     { return aCondColls; }
-    void InsertCondition( const SwCollCondition& rCond );
 
 };
 

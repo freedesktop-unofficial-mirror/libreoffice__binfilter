@@ -95,13 +95,6 @@ namespace binfilter {
 /*?*/       return 0;
 /*N*/   }
 /*N*/
-/*N*/   // Teste ob das gesamte Dokument versteckt werden soll,
-/*N*/   // koennen wir zur Zeit nicht !!!!
-/*N*/   if( rNew.IsHidden() && rRange.HasMark() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   SwSectionFmt* pFmt = MakeSectionFmt( 0 );
 /*N*/   if( pAttr )
 /*N*/       pFmt->SetAttr( *pAttr );
@@ -197,18 +190,6 @@ namespace binfilter {
 /*N*/ //FEATURE::CONDCOLL
 /*N*/
 /*N*/   SetRedlineMode_intern( eOld );
-/*N*/
-/*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
-/*N*/   // ist eine Condition gesetzt
-/*N*/   if( rNew.IsHidden() && rNew.GetCondition().Len() )
-/*N*/   {
-/*?*/       // dann berechne bis zu dieser Position
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   BOOL bUpdateFtn = FALSE;
 /*N*/   if( GetFtnIdxs().Count() && pAttr )
@@ -464,19 +445,6 @@ namespace binfilter {
 /*N*/       return;
 /*N*/   }
 /*N*/
-/*N*/   // Teste ob eine gesamte Content-Section (Dokument/TabellenBox/Fly)
-/*N*/   // versteckt werden soll, koennen wir zur Zeit nicht !!!!
-/*N*/   const SwNodeIndex* pIdx = 0;
-/*N*/   {
-/*N*/       const SwSectionNode* pSectNd;
-/*N*/       if( rSect.IsHidden() && 0 != (pIdx = pFmt->GetCntnt().GetCntntIdx() )
-/*N*/           && 0 != (pSectNd = pIdx->GetNode().GetSectionNode() ) )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/
 /*N*/   // #56167# Der LinkFileName koennte auch nur aus Separatoren bestehen
 /*N*/     String sCompareString = ::binfilter::cTokenSeperator;
 /*N*/     sCompareString += ::binfilter::cTokenSeperator;
@@ -505,13 +473,6 @@ namespace binfilter {
 /*N*/
 /*N*/   if( sSectName.Len() )
 /*?*/       pSection->SetName( sSectName );
-/*N*/
-/*N*/   // ist eine Condition gesetzt
-/*N*/   if( pSection->IsHidden() && pSection->GetCondition().Len() )
-/*N*/   {
-/*?*/       // dann berechne bis zu dieser Position
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   if( bUpdate )
 /*N*/       pSection->CreateLink( bPreventLinkUpdate ? CREATE_CONNECT : CREATE_UPDATE );

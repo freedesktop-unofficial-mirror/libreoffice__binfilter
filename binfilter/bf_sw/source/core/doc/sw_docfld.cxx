@@ -187,8 +187,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       {
 /*N*/       case RES_SETEXPFLD:
 /*N*/       case RES_USERFLD:
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }
-/*?*/           // kein break;
 /*N*/       case RES_DDEFLD:
 /*?*/           if( pTmp->GetDepends() && !IsUsed( *pTmp ) )
 /*?*/           {
@@ -256,19 +254,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/   return pRet;
 /*N*/ }
 
-
-/*************************************************************************
-|*                SwDoc::UpdateFlds()
-|*    Beschreibung      Felder updaten
-*************************************************************************/
-/*
- *    Alle sollen neu evaluiert werden.
- */
-
-/*N*/ void SwDoc::UpdateFlds( SfxPoolItem* /*pNewHt*/, BOOL /*bCloseDB*/ )
-/*N*/ {
-/*?*/     DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
 
 /******************************************************************************
  *                      void SwDoc::UpdateUsrFlds()
@@ -342,10 +327,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*?*/                           pFld->BoxNmToPtr( pUpdtFld->pTbl );
 /*?*/                           break;
 /*?*/                       case TBL_RELBOXNAME:
-/*?*/                           // ist es die gesuchte Tabelle ??
-/*?*/                           if( &pTblNd->GetTable() == pUpdtFld->pTbl )
-/*?*/                               // zur relativen Darstellung
-/*?*/                               {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/                           break;
                             default:
                                 break;
@@ -365,11 +346,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/   const SfxPoolItem* pItem;
 /*N*/   USHORT nMaxItems = GetAttrPool().GetItemCount( RES_BOXATR_FORMULA );
 /*N*/   for( i = 0; i < nMaxItems; ++i )
-/*N*/       if( 0 != (pItem = GetAttrPool().GetItem( RES_BOXATR_FORMULA, i ) ) &&
-/*N*/           ((SwTblBoxFormula*)pItem)->GetDefinedIn() )
-/*?*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
+/*N*/       pItem = GetAttrPool().GetItem( RES_BOXATR_FORMULA, i );
 /*?*/
 /*?*/
 /*?*/   // alle Felder/Boxen sind jetzt invalide, also kann das Rechnen anfangen
@@ -419,10 +396,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/                   // bestimme die Werte aller SetExpresion Felder, die
 /*N*/                   // bis zur Tabelle gueltig sind
 /*N*/                   SwFrm* pFrm = 0;
-/*N*/                   if( pTblNd->GetIndex() < GetNodes().GetEndOfExtras().GetIndex() )
-/*N*/                   {
-/*N*/                       DBG_BF_ASSERT(0, "STRIP");
-/*N*/                   }
 /*N*/                   if( !pFrm )
 /*N*/                   {
 /*N*/                       // einen Index fuers bestimmen vom TextNode anlegen
@@ -433,10 +406,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/
 /*N*/                   SwTblCalcPara aPara( *pCalc, pTblNd->GetTable() );
 /*N*/                   pFld->CalcField( aPara );
-/*N*/                   if( aPara.IsStackOverFlow() )
-/*N*/                   {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*N*/                   }
 /*N*/                   pCalc->SetCalcError( CALC_NOERR );
 /*N*/               }
 /*N*/               pFmtFld->Modify( 0, pHt );
@@ -445,11 +414,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/
 /*N*/   // dann berechene noch die Formeln an den Boxen
 /*N*/   for( i = 0; i < nMaxItems; ++i )
-/*N*/       if( 0 != (pItem = GetAttrPool().GetItem( RES_BOXATR_FORMULA, i ) ) &&
-/*N*/           ((SwTblBoxFormula*)pItem)->GetDefinedIn() &&
-/*N*/           !((SwTblBoxFormula*)pItem)->IsValid() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
+/*N*/       pItem = GetAttrPool().GetItem( RES_BOXATR_FORMULA, i );
 /*?*/
 /*N*/   if( pCalc )
 /*N*/       delete pCalc;
@@ -687,17 +652,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/   const SwTxtFld* pTxtFld = rSGEFld.GetFld();
 /*N*/   if( !pTxtFld )
 /*N*/       return ;
-/*N*/
-/*N*/   const SwField* pFld = pTxtFld->GetFld().GetFld();
-/*N*/   const USHORT nFldWhich = pFld->GetTyp()->Which();
-/*N*/
-/*N*/   if( RES_SETEXPFLD == nFldWhich )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*?*/   }
-/*?*/   else if( pMgr )
-/*?*/   {
-/*N*/   }
 /*N*/ }
 
 /*N*/ void SwDoc::FldsToCalc( SwCalc& rCalc, const _SetGetExpFld& rToThisFld )

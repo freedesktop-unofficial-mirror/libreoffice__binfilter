@@ -572,10 +572,6 @@ void setNumberingProperty(const Any& rValue, SwPaM& rPam)
             }
         }
     }
-    else if(rValue.getValueType() == ::getVoidCppuType())
-    {
-        rPam.GetDoc()->DelNumRules(rPam);
-    }
 }
 
 

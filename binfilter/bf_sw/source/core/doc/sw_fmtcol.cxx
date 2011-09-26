@@ -252,8 +252,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//FEATURE::CONDCOLL
-
 /*N*/ SwCollCondition::SwCollCondition( SwTxtFmtColl* pColl, ULONG nMasterCond,
 /*N*/                               ULONG nSubCond )
 /*N*/   : SwClient( pColl ), nCondition( nMasterCond )
@@ -262,20 +260,10 @@ namespace binfilter {
 /*N*/ }
 
 
-
-
-
-
 /*N*/ SwCollCondition::~SwCollCondition()
 /*N*/ {
 /*N*/   if( USRFLD_EXPRESSION & nCondition )
 /*?*/       delete aSubCondition.pFldExpression;
-/*N*/ }
-
-
-/*N*/  int SwCollCondition::operator==( const SwCollCondition& /*rCmp*/ ) const
-/*N*/  {
-DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 
@@ -288,39 +276,12 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 
-/*N*/ SwConditionTxtFmtColl::~SwConditionTxtFmtColl()
-/*N*/ {
-/*N*/ }
-
-#ifdef USED
-    // zum "abfischen" von Aenderungen
-#endif
-
-
 /*N*/ const SwCollCondition* SwConditionTxtFmtColl::HasCondition(
 /*N*/                       const SwCollCondition& rCond ) const
 /*N*/ {
-/*N*/   const SwCollCondition* pFnd = 0;
-        USHORT n=0;
-/*N*/   for( n = 0; n < aCondColls.Count(); ++n )
-/*?*/       if( *( pFnd = aCondColls[ n ]) == rCond )
-/*?*/           break;
-/*N*/
-/*N*/   return n < aCondColls.Count() ? pFnd : 0;
+        DBG_BF_ASSERT(0, "STRIP");
+/*N*/   return NULL;
 /*N*/ }
-
-
-/*N*/ void SwConditionTxtFmtColl::InsertCondition( const SwCollCondition& /*rCond*/ )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-
-
-
-//FEATURE::CONDCOLL
-
-
 
 
 }

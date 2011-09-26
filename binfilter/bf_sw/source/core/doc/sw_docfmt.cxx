@@ -262,9 +262,6 @@ struct ParaRstFmt
 /*M*/           nMkPos = *pURLAttr->GetStart();
 /*M*/           nPtPos = *pURLAttr->GetEnd();
 /*M*/       }
-/*M*/       else
-/*M*/       {DBG_BF_ASSERT(0, "STRIP");
-/*M*/       }
 /*M*/
 /*M*/       rSt = nMkPos;
 /*M*/       pPam->SetMark();
@@ -301,9 +298,6 @@ struct ParaRstFmt
 /*M*/   BOOL bAdd = TRUE;
 /*M*/   SwNodeIndex aTmpStt( pStt->nNode );
 /*M*/   SwNodeIndex aTmpEnd( pEnd->nNode );
-/*M*/   if( pStt->nContent.GetIndex() )     // nur ein Teil
-/*M*/   {DBG_BF_ASSERT(0, "STRIP");
-/*M*/   }
 /*M*/   if( pEnd->nContent.GetIndex() == pEnd->nNode.GetNode().GetCntntNode()->Len() )
 /*M*/       // dann spaeter aufsetzen und alle CharFmtAttr -> TxtFmtAttr
 /*M*/       aTmpEnd++, bAdd = FALSE;
@@ -396,12 +390,6 @@ struct ParaRstFmt
 /*N*/           {
                     ((SwTxtNode*)pNode)->SetAttr( aTxtSet, rSt.GetIndex(), rSt.GetIndex(), nFlags );
 /*N*/               bRet = TRUE;
-/*N*/
-/*N*/               if( pDoc->IsRedlineOn() || (!pDoc->IsIgnoreRedline() &&
-/*N*/                   pDoc->GetRedlineTbl().Count() ))
-/*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
 /*N*/           }
 /*N*/       }
 /*N*/
@@ -423,12 +411,6 @@ struct ParaRstFmt
 /*N*/                               : pNode->Len();
                     ((SwTxtNode*)pNode)->SetAttr( aTxtSet, nInsCnt, nEnd, nFlags );
 /*N*/               bRet = TRUE;
-/*N*/
-/*N*/               if( pDoc->IsRedlineOn() || (!pDoc->IsIgnoreRedline() &&
-/*N*/                    pDoc->GetRedlineTbl().Count() ) )
-/*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -507,10 +489,6 @@ struct ParaRstFmt
 /*N*/       if( !pNode )
 /*N*/           return bRet;
 /*N*/
-/*N*/       if( pNode->IsTxtNode() && aCharSet.Count() )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/       if( aOtherSet.Count() )
 /*N*/       {
 /*?*/           pNode->SetAttr( aOtherSet );
@@ -519,11 +497,6 @@ struct ParaRstFmt
 /*N*/       return bRet;
 /*N*/   }
 /*N*/
-/*N*/   if( pDoc->IsRedlineOn() && aCharSet.Count() )
-/*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-
     /* jetzt wenn Bereich */
 /*N*/   ULONG nNodes = 0;
 /*N*/
