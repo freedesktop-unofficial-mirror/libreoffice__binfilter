@@ -200,7 +200,6 @@ public:
 
     virtual ~SwConditionTxtFmtColl() {}
 
-    const SwCollCondition* HasCondition() const;
     const SwFmtCollConditions& GetCondColls() const     { return aCondColls; }
 
 };

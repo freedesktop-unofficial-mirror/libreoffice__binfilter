@@ -354,10 +354,6 @@ namespace binfilter {
 /*N*/               bChg = TRUE;
 /*N*/
 /*N*/               pTxtFtn->SetNumber( nNumber, &rNumStr );
-/*N*/               if( rFtn.IsEndNote() != bIsEndNote )
-/*N*/               {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
 /*N*/           }
 /*N*/       }
 /*N*/
@@ -377,10 +373,6 @@ namespace binfilter {
 /*?*/               bChg = TRUE;
 /*?*/
 /*?*/               pTxtFtn->SetNumber( nNumber, &rNumStr );
-/*?*/               if( rFtn.IsEndNote() != bIsEndNote )
-/*?*/               {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
 /*?*/           }
 /*N*/       }
 /*N*/

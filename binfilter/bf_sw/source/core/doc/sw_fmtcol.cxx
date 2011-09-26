@@ -276,11 +276,6 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ const SwCollCondition* SwConditionTxtFmtColl::HasCondition() const
-/*N*/ {
-        DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return NULL;
-/*N*/ }
 
 
 }

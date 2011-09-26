@@ -77,11 +77,6 @@ public:
     SwTOXBaseSection( const SwTOXBase& rBase );
     virtual ~SwTOXBaseSection();
 
-    // add parameter <_bNewTOX> in order to distinguish
-    // between the creation of a new table-of-content or an update of
-    // a table-of-content. Default value: false
-    void Update( const SfxItemSet* pAttr = 0,
-                 const bool        _bNewTOX = false ); // Formatieren
     void UpdatePageNum();               // Seitennummern einfuegen
     TYPEINFO();                         // fuers rtti
 

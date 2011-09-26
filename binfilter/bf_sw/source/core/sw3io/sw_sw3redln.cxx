@@ -300,7 +300,6 @@ namespace binfilter {
 /*N*/           aStart = *pSttNd->EndOfSectionNode();
 /*N*/           InContents( aStart, 0, FALSE );
 /*N*/           aStart = pSttNd->GetIndex();
-/*N*/           pRedline->SetContentIdx( &aStart );
 /*N*/           if( pSttNd->EndOfSectionIndex() - aStart.GetIndex() == 1 )
 /*N*/               bInvalid = sal_True;
 /*N*/           OSL_ENSURE( !bInvalid, "empty redline section imported" );

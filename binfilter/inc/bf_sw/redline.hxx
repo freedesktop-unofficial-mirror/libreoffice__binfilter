@@ -135,8 +135,6 @@ public:
     virtual ~SwRedline();
 
     SwNodeIndex* GetContentIdx() const { return pCntntSect; }
-    // fuers Undo
-     void SetContentIdx( const SwNodeIndex* );
 
     BOOL IsVisible() const { return bIsVisible; }
     BOOL IsDelLastPara() const { return bDelLastPara; }
@@ -179,15 +177,7 @@ public:
     USHORT GetSeqNo() const             { return pRedlineData->GetSeqNo(); }
     void SetSeqNo( USHORT nNo )         { pRedlineData->SetSeqNo( nNo ); }
 
-    // Beim Hide/ShowOriginal wird 2 mal ueber die Liste gelaufen, damit
-    //  die Del-Redlines per Copy und Delete versteckt werden. Beim Move
-    //  wird sonst die Attributierung falsch behandelt.
-    // Alle anderen Aufrufer muessen immer 0 angeben.
-    void Show( USHORT nLoop = 0 );
-    void Hide( USHORT nLoop = 0 );
-
     // calculates the intersection with text node number nNdIdx
-
 
     BOOL IsOwnRedline( const SwRedline& rRedl ) const
         { return GetAuthor() == rRedl.GetAuthor(); }

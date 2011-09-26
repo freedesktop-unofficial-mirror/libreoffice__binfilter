@@ -1054,10 +1054,6 @@ public:
     sal_uInt16 MakePageDesc( const String &rName, const SwPageDesc* pCpy = 0,
                              BOOL bRegardLanguage = TRUE);
 
-        // Methoden fuer die Verzeichnisse:
-        // - Verzeichnismarke einfuegen loeschen travel
-     void Delete( SwTOXMark* pTOXMark );
-
         // - Verzeichnis einfuegen, und bei Bedarf erneuern
     const SwTOXBaseSection* InsertTableOf( const SwPosition& rPos,
                                             const SwTOXBase& rTOX,
@@ -1069,7 +1065,6 @@ public:
     const SwTOXBase* GetCurTOX( const SwPosition& rPos ) const;
     const SwAttrSet& GetTOXBaseAttrSet(const SwTOXBase& rTOX) const;
 
-    sal_Bool DeleteTOX( const SwTOXBase& rTOXBase, sal_Bool bDelNodes = sal_False );
     String GetUniqueTOXBaseName( const SwTOXType& rType,
                                 const String* pChkStr = 0 ) const;
 
@@ -1093,10 +1088,6 @@ public:
 
 
     // - Schluessel fuer die Indexverwaltung
-
-    // Sortieren Tabellen Text
-    sal_Bool SortTbl(const SwSelBoxes& rBoxes, const SwSortOptions&);
-    sal_Bool SortText(const SwPaM&, const SwSortOptions&);
 
         // korrigiere die im Dokument angemeldeten SwPosition-Objecte,
         // wie z.B. die ::com::sun::star::text::Bookmarks oder die Verzeichnisse.

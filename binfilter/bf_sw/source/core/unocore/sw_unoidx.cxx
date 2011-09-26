@@ -348,7 +348,6 @@ void SwXDocumentIndex::update(void) throw( RuntimeException )
     SwTOXBase* pTOXBase = (SwTOXBaseSection*)GetFmt()->GetSection();
     if(!pTOXBase)
         throw RuntimeException();
-    ((SwTOXBaseSection*)pTOXBase)->Update();
     // Seitennummern eintragen
     ((SwTOXBaseSection*)pTOXBase)->UpdatePageNum();
 }
@@ -1113,12 +1112,7 @@ void lcl_RemoveChildSections(SwSectionFmt& rParentFmt)
 void SwXDocumentIndex::dispose(void) throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
-    if(GetRegisteredIn())
-    {
-        SwSectionFmt*  pSectFmt = GetFmt();
-        pSectFmt->GetDoc()->DeleteTOX( *(SwTOXBaseSection*)pSectFmt->GetSection(), sal_True);
-    }
-    else
+    if( !GetRegisteredIn() )
         throw RuntimeException();
 }
 
@@ -1331,7 +1325,6 @@ void SwXDocumentIndexMark::setMarkEntry(const OUString& rIndexEntry) throw( Runt
             aPam.GetPoint()->nContent++;
 
         //die alte Marke loeschen
-        m_pDoc->Delete(pCurMark);
         m_pTOXMark = pCurMark = 0;
 
         SwTxtAttr* pTxtAttr = 0;
@@ -1522,12 +1515,7 @@ void SwXDocumentIndexMark::dispose(void) throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
     SwTOXType* pType = ((SwXDocumentIndexMark*)this)->GetTOXType();
-    if(pType)
-    {
-        SwTOXMark* pTMark = lcl_GetMark(pType, GetTOXMark());
-        m_pDoc->Delete(pTMark);
-    }
-    else
+    if(!pType)
         throw RuntimeException();
 }
 
@@ -1630,7 +1618,6 @@ void SwXDocumentIndexMark::setPropertyValue(const OUString& rPropertyName,
                 aPam.GetPoint()->nContent++;
 
             //die alte Marke loeschen
-            pLocalDoc->Delete(pCurMark);
             m_pTOXMark = pCurMark = 0;
 
             sal_Bool bInsAtPos = aMark.IsAlternativeText();

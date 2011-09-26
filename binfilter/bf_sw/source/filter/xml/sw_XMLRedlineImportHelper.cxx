@@ -665,12 +665,6 @@ void XMLRedlineImportHelper::InsertIntoDocument(RedlineInfo* pRedlineInfo)
             *(pRedline->GetMark()) = *aPaM.GetMark();
         }
 
-        // set content node (if necessary)
-        if (NULL != pRedlineInfo->pContentIndex)
-        {
-            pRedline->SetContentIdx(pRedlineInfo->pContentIndex);
-        }
-
         // set redline mode (without doing the associated book-keeping)
         pDoc->SetRedlineMode_intern(REDLINE_ON);
         pDoc->SetRedlineMode_intern(REDLINE_NONE);

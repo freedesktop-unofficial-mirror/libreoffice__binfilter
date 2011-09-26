@@ -79,19 +79,8 @@ typedef LinkStruct* LinkStructPtr;
 
 
 /*--------------------------------------------------------------------
-     Beschreibung: Marke loeschen
- --------------------------------------------------------------------*/
-
-/*N*/ void SwDoc::Delete( SwTOXMark* /*pTOXMark*/ )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*--------------------------------------------------------------------
      Beschreibung: Traveln zwischen TOXMarks
  --------------------------------------------------------------------*/
-
-
 
 
 /*N*/ const SwTOXBaseSection* SwDoc::InsertTableOf( const SwPosition& rPos,
@@ -114,10 +103,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       pSect->GetFmt()->Add( pCl );
 /*N*/       pSectNd->SetNewSection( pNew );
 /*N*/
-/*N*/       if( bExpand )
-/*N*/         {DBG_BF_ASSERT(0, "STRIP");
-/*N*/         }
-/*N*/       else if( 1 == rTOX.GetTitle().Len() && IsInReading() )
+/*N*/       if( !bExpand && (1 == rTOX.GetTitle().Len() && IsInReading()) )
 /*N*/       // insert title of TOX
 /*N*/       {
 /*?*/           // then insert the headline section
@@ -227,17 +213,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
-
-/*--------------------------------------------------------------------
-     Beschreibung: Verzeichnis loeschen
- --------------------------------------------------------------------*/
-
-
-/*N*/ BOOL SwDoc::DeleteTOX( const SwTOXBase& /*rTOXBase*/, BOOL /*bDelNodes*/ )
-/*N*/ {
-/*N*/  DBG_BF_ASSERT(0, "STRIP"); return TRUE;
-/*N*/ }
-
 /*--------------------------------------------------------------------
      Beschreibung:  Verzeichnistypen verwalten
  --------------------------------------------------------------------*/
@@ -262,11 +237,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
-#ifdef USED
-
-
-
-#endif
 
 
 /*N*/ const SwTOXType* SwDoc::InsertTOXType( const SwTOXType& rTyp )
@@ -367,97 +337,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
-
-/*--------------------------------------------------------------------
-     Beschreibung: Verzeichnisinhalt zusammensammeln
- --------------------------------------------------------------------*/
-
-/*N*/ void SwTOXBaseSection::Update(const SfxItemSet* /*pAttr*/,
-/*N*/                               const bool /*_bNewTOX*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*--------------------------------------------------------------------
-     Beschreibung: AlphaDelimitter einfuegen
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
-     Beschreibung: Template  auswerten
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
-     Beschreibung: Aus Markierungen erzeugen
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
-     Beschreibung:  Verzeichnisinhalt aus Gliederungsebene generieren
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
-     Beschreibung: Verzeichnisinhalt aus Vorlagenbereichen generieren
- --------------------------------------------------------------------*/
-
-
-/* --------------------------------------------------
-    Description: generate content from sequence fields
- --------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------
-     Beschreibung:  Verzeichnisinhalt aus Inhaltsformen generieren
-                    OLE, Grafik, Frame
-                    Achtung: Spezielle Section !
- --------------------------------------------------------------------*/
-/*
-            nPos = pNd->GetIndex();
-            if( nPos < pNd->GetNodes().GetEndOfExtras().GetIndex() )
-            {
-                // dann die "Anker" (Body) Position holen.
-                Point aPt;
-                const SwCntntFrm* pFrm = pNd->GetFrm( &aPt, 0, FALSE );
-                if( pFrm )
-                {
-                    SwPosition aPos( *pNd );
-                    SwDoc* pDoc = (SwDoc*)pNd->GetDoc();
-#ifdef DBG_UTIL
-                    OSL_ENSURE( GetBodyTxtNode( pDoc, aPos, pFrm ),
-                            "wo steht der Absatz" );
-#else
-                    GetBodyTxtNode( pDoc, aPos, pFrm );
-#endif
-                    nPos = aPos.nNode.GetIndex();
-                    nCntPos = aPos.nContent.GetIndex();
-                }
-            }
-
-
-
- */
-
-
-
-/*--------------------------------------------------------------------
-     Beschreibung:  Tabelleneintraege zusammensuchen
- --------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------
-     Beschreibung:  String generieren anhand der Form
-                    SonderZeichen 0-31 und 255 entfernen
- --------------------------------------------------------------------*/
-
-
-// add parameter <_TOXSectNdIdx> and <_pDefaultPageDesc> in order to control,
-// which page description is used, no appropriate one is found.
-
 /*--------------------------------------------------------------------
      Beschreibung: Seitennummer errechnen und nach dem Formatieren
                    eintragen
@@ -471,14 +350,6 @@ DBG_BF_ASSERT(0, "STRIP");
     // die aktuellen Seitennummern ins Verzeichnis eintragen
 /*?*/   (SwDoc*)GetFmt()->GetDoc();
 /*?*/
-/*?*/     SwTOXInternational aIntl( GetLanguage(),
-/*?*/                               TOX_INDEX == GetTOXType()->GetType() ?
-/*?*/                               GetOptions() : 0,
-/*?*/                               GetSortAlgorithm() );
-/*?*/
-/*?*/   for( USHORT nCnt = 0; nCnt < aSortArr.Count(); ++nCnt )
-/*?*/   {
-/*?*/   }
 /*?*/   // nach dem Setzen der richtigen Seitennummer, das Mapping-Array
 /*?*/   // wieder loeschen !!
 /*?*/   aSortArr.DeleteAndDestroy( 0, aSortArr.Count() );

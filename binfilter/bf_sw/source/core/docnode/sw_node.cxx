@@ -1248,31 +1248,16 @@ using namespace ::com::sun::star::i18n;
 /*N*/   if( RES_CONDTXTFMTCOLL == GetFmtColl()->Which() )
 /*N*/   {
 /*N*/       SwCollCondition aTmp( 0, 0, 0 );
-/*N*/       const SwCollCondition* pCColl;
 /*N*/
-/*N*/       if( IsAnyCondition( aTmp ) && 0 != ( pCColl =
-/*N*/               ((SwConditionTxtFmtColl*)GetFmtColl())->HasCondition()))
-/*?*/           SetCondFmtColl( pCColl->GetTxtFmtColl() );
-/*N*/       else
+/*N*/       if( IsTxtNode() && ((SwTxtNode*)this)->GetNumRule() && ((SwTxtNode*)this)->GetNum() )
 /*N*/       {
-/*N*/           if( IsTxtNode() && ((SwTxtNode*)this)->GetNumRule() &&
-/*N*/                   ((SwTxtNode*)this)->GetNum() )
-/*N*/           {
-/*N*/               // steht in einer Numerierung
-/*N*/               // welcher Level?
-/*N*/               aTmp.SetCondition( PARA_IN_LIST,
-/*N*/                               ((SwTxtNode*)this)->GetNum()->GetLevel() );
-/*N*/               pCColl = ((SwConditionTxtFmtColl*)GetFmtColl())->
-/*N*/                               HasCondition();
-/*N*/           }
-/*N*/           else
-/*N*/               pCColl = 0;
-/*N*/
-/*N*/           if( pCColl )
-/*?*/               SetCondFmtColl( pCColl->GetTxtFmtColl() );
-/*N*/           else if( pCondColl )
-/*?*/               SetCondFmtColl( 0 );
+/*N*/           // steht in einer Numerierung
+/*N*/           // welcher Level?
+/*N*/           aTmp.SetCondition( PARA_IN_LIST, ((SwTxtNode*)this)->GetNum()->GetLevel() );
 /*N*/       }
+/*N*/
+/*N*/       if( pCondColl )
+/*?*/           SetCondFmtColl( 0 );
 /*N*/   }
 /*N*/ }
 

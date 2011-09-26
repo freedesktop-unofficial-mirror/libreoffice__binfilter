@@ -552,8 +552,6 @@ void SwXTextCursor::sort(const uno::Sequence< beans::PropertyValue >& rDescripto
             ULONG nOffset = pEnd->nNode.GetIndex() - pStart->nNode.GetIndex();
             xub_StrLen nCntStt  = pStart->nContent.GetIndex();
 
-            pUnoCrsr->GetDoc()->SortText(*pUnoCrsr, aSortOpt);
-
             // Selektion wieder setzen
             pUnoCrsr->DeleteMark();
             pUnoCrsr->GetPoint()->nNode.Assign( aPrevIdx.GetNode(), +1 );

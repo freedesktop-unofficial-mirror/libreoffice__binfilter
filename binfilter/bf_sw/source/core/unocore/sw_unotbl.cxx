@@ -2696,7 +2696,6 @@ void SwXTextTable::sort(const uno::Sequence< beans::PropertyValue >& rDescriptor
             aBoxes.Insert( pBox );
         }
         UnoActionContext aContext( pFmt->GetDoc() );
-        pFmt->GetDoc()->SortTbl(aBoxes, aSortOpt);
     }
 }
 
@@ -3967,7 +3966,6 @@ void SAL_CALL SwXCellRange::sort(const uno::Sequence< beans::PropertyValue >& rD
         SwUnoTableCrsr* pTableCrsr = *pTblCrsr;
         pTableCrsr->MakeBoxSels();
         UnoActionContext aContext( pFmt->GetDoc() );
-        pFmt->GetDoc()->SortTbl(pTableCrsr->GetBoxes(), aSortOpt);
     }
 }
 

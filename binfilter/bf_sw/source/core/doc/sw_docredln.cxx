@@ -47,51 +47,6 @@
 #include <rootfrm.hxx>
 namespace binfilter {
 
-#ifndef DBG_UTIL
-
-    #define _CHECK_REDLINE( pDoc )
-
-#else
-
-    // helper function for lcl_CheckRedline
-    // make sure that pPos->nContent points into pPos->nNode
-    // (or into the 'special' no-content-node-IndexReg)
-
-
-    // check validity of the redline table. Checks redline bounds, and make
-    // sure the redlines are sorted and non-overlapping.
-/*N*/   void lcl_CheckRedline( const SwDoc* pDoc )
-/*N*/   {
-/*N*/       const SwRedlineTbl& rTbl = pDoc->GetRedlineTbl();
-/*N*/
-/*N*/         for( USHORT j = 0; j < rTbl.Count(); ++j )
-/*N*/         {
-/*N*/             // check for empty redlines
-/*N*/             OSL_ENSURE( ( *(rTbl[j]->GetPoint()) != *(rTbl[j]->GetMark()) ) ||
-/*N*/                     ( rTbl[j]->GetContentIdx() != NULL ),
-/*N*/                     "redline table corrupted: empty redline" );
-/*N*/       }
-/*N*/
-/*N*/         // verify proper redline sorting
-/*N*/       for( USHORT n = 1; n < rTbl.Count(); ++n )
-/*N*/       {
-/*?*/           const SwRedline* pPrev = rTbl[ n-1 ];
-/*?*/             const SwRedline* pCurrent = rTbl[ n ];
-/*?*/
-/*?*/             // check redline sorting
-/*?*/             OSL_ENSURE( *pPrev->Start() <= *pCurrent->Start(),
-/*?*/                     "redline table corrupted: not sorted correctly" );
-/*?*/
-/*?*/             // check for overlapping redlines
-/*?*/             OSL_ENSURE( *pPrev->End() <= *pCurrent->Start(),
-/*?*/                     "redline table corrupted: overlapping redlines" );
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   #define _CHECK_REDLINE( pDoc ) lcl_CheckRedline( pDoc );
-/*N*/
-/*N*/ #endif
-
 /*N*/ SV_IMPL_OP_PTRARR_SORT( _SwRedlineTbl, SwRedlinePtr )
 
 /*N*/ void SwDoc::SetRedlineMode( USHORT eMode )
@@ -101,33 +56,17 @@ namespace binfilter {
 /*N*/       if( (REDLINE_SHOW_MASK & eRedlineMode) != (REDLINE_SHOW_MASK & eMode)
 /*N*/           || 0 == (REDLINE_SHOW_MASK & eMode) )
 /*N*/       {
-/*N*/           // und dann alles verstecken, anzeigen
-/*N*/           void (SwRedline::*pFnc)( USHORT ) = 0;
-/*N*/
 /*N*/           switch( REDLINE_SHOW_MASK & eMode )
 /*N*/           {
-/*N*/           case REDLINE_SHOW_INSERT | REDLINE_SHOW_DELETE:
-/*N*/               pFnc = &SwRedline::Show;
-/*N*/               break;
 /*N*/           case REDLINE_SHOW_INSERT:
-/*N*/               pFnc = &SwRedline::Hide;
-/*N*/               break;
 /*N*/           case REDLINE_SHOW_DELETE:
 /*?*/               break;
 /*N*/
 /*N*/           default:
-/*N*/               pFnc = &SwRedline::Hide;
 /*N*/               eMode |= REDLINE_SHOW_INSERT;
 /*N*/               break;
 /*N*/           }
 /*N*/
-/*N*/           _CHECK_REDLINE( this )
-/*N*/
-/*N*/           if( pFnc )
-/*N*/               for( USHORT nLoop = 1; nLoop <= 2; ++nLoop )
-/*N*/                   for( USHORT i = 0; i < pRedlineTbl->Count(); ++i )
-/*N*/                       ((*pRedlineTbl)[ i ]->*pFnc)( nLoop );
-/*N*/           _CHECK_REDLINE( this )
 /*N*/       }
 /*N*/       eRedlineMode = (SwRedlineMode)eMode;
 /*N*/   }
@@ -405,29 +344,6 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*N*/   return FALSE;
 /*N*/ }
 
-
-/*N*/ void SwRedline::Show( USHORT /*nLoop*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void SwRedline::Hide( USHORT /*nLoop*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-
-
-
-/*************************************************************************
- *                      SwRedline::CalcStartEnd()
- * Calculates the start and end position of the intersection rTmp and
- * text node nNdIdx
- *************************************************************************/
-
-// fuers Undo
-/*N*/ void SwRedline::SetContentIdx( const SwNodeIndex* /*pIdx*/ )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
 
 /*?*/const String& SwRedline::GetAuthorString( USHORT nPos ) const
 /*?*/{

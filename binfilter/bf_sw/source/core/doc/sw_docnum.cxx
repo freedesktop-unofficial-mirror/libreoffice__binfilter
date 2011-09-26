@@ -418,25 +418,12 @@ namespace binfilter {
 /*N*/               nFirst < nLast; ++nFirst )
 /*N*/       {
 /*N*/           SwTxtNode* pTNd = aUpd.GetList().GetObject( nFirst );
-/*N*/
-/*N*/           SwClientIter aIter( *pTNd );
-/*N*/           for( SwFrm* pFrm = (SwFrm*)aIter.First( TYPE(SwFrm) );
-/*N*/                   pFrm; pFrm = (SwFrm*)aIter.Next() )
-/*N*/               if( ((SwTxtFrm*)pFrm)->HasAnimation() )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/       }
 /*N*/   }
 /*N*/ }
 
 
-
     // zum naechsten/vorhergehenden Punkt auf gleicher Ebene
-
-
-
-
-
-
 
 
 /*N*/ BOOL SwDoc::NumUpDown( const SwPaM& rPam, BOOL bDown )
