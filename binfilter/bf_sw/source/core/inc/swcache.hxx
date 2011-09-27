@@ -123,8 +123,6 @@ public:
     SwCache( const USHORT nInitSize, const USHORT nGrowSize );
 #endif
 
-    void Flush( const BYTE nPercent = 100 );
-
     //bToTop == FALSE -> Keine LRU-Umsortierung!
     SwCacheObj *Get( const void *pOwner, const BOOL bToTop = TRUE );
     SwCacheObj *Get( const void *pOwner, const USHORT nIndex,

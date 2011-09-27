@@ -140,56 +140,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*  SwCache::Flush()
-|*
-|*************************************************************************/
-
-
-/*N*/ void SwCache::Flush( const BYTE nPercent )
-/*N*/ {
-/*N*/   OSL_ENSURE( nPercent == 100, "SwCache::Flush() arbeitet nur 100%'ig" );
-/*N*/
-/*N*/   INCREMENT( nFlushCnt );
-/*N*/   SwCacheObj *pObj = pRealFirst;
-/*N*/   pRealFirst = pFirst = pLast = 0;
-/*N*/   SwCacheObj *pTmp;
-/*N*/   while ( pObj )
-/*N*/   {
-/*N*/ #ifdef DBG_UTIL
-/*N*/       if ( pObj->IsLocked() )
-/*N*/       {
-/*?*/           OSL_ENSURE( TRUE, "Flushing locked objects." );
-/*?*/           if ( !pRealFirst )
-/*?*/           {
-/*?*/               pRealFirst = pFirst = pLast = pObj;
-/*?*/               pTmp = pObj->GetNext();
-/*?*/               pObj->SetNext( 0 ); pObj->SetPrev( 0 );
-/*?*/               pObj = pTmp;
-/*?*/           }
-/*?*/           else
-/*?*/           {   pLast->SetNext( pObj );
-/*?*/               pObj->SetPrev( pLast );
-/*?*/               pLast = pObj;
-/*?*/               pTmp = pObj->GetNext();
-/*?*/               pObj->SetNext( 0 );
-/*?*/               pObj = pTmp;
-/*?*/           }
-/*N*/       }
-/*N*/       else
-/*N*/ #endif
-/*N*/       {
-/*N*/           pTmp = (SwCacheObj*)pObj;
-/*N*/           pObj = pTmp->GetNext();
-/*N*/           aFreePositions.Insert( pTmp->GetCachePos(), aFreePositions.Count() );
-/*N*/           *(pData + pTmp->GetCachePos()) = (void*)0;
-/*N*/           delete pTmp;
-/*N*/           INCREMENT( nFlushedObjects );
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-/*************************************************************************
-|*
 |*  SwCache::ToTop()
 |*
 |*************************************************************************/
