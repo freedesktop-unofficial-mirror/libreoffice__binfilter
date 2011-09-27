@@ -79,20 +79,21 @@ namespace binfilter {
 /*N*/                               BOOKMARK_TYPE eMark )
 /*N*/ {
 /*N*/   SwBookmark *pBM;
-/*N*/   if( MARK == eMark )
-/*?*/    {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/   else if( BOOKMARK == eMark )
-/*N*/   {
-/*N*/       pBM = new SwBookmark(*rPaM.GetPoint(), rCode, rName, rShortName);
-/*N*/       if( rPaM.HasMark() )
-/*?*/           pBM->pPos2 = new SwPosition( *rPaM.GetMark() );
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       pBM = new SwUNOMark(*rPaM.GetPoint(), rCode, rName, rShortName);
-/*N*/       if( rPaM.HasMark() )
-/*N*/           pBM->pPos2 = new SwPosition( *rPaM.GetMark() );
-/*N*/   }
+/*N*/   if( MARK != eMark )
+        {
+            if( BOOKMARK == eMark )
+            {
+                pBM = new SwBookmark(*rPaM.GetPoint(), rCode, rName, rShortName);
+                if( rPaM.HasMark() )
+                    pBM->pPos2 = new SwPosition( *rPaM.GetMark() );
+            }
+            else
+            {
+                pBM = new SwUNOMark(*rPaM.GetPoint(), rCode, rName, rShortName);
+                if( rPaM.HasMark() )
+                    pBM->pPos2 = new SwPosition( *rPaM.GetMark() );
+            }
+        }
 /*N*/
 /*N*/   if( !pBookmarkTbl->Insert( pBM ) )
 /*?*/       delete pBM, pBM = 0;
@@ -114,10 +115,6 @@ namespace binfilter {
 /*N*/       SetModified();
 /*N*/
 /*N*/   pBookmarkTbl->Remove(nPos);
-/*N*/
-/*N*/   SwServerObject* pServObj = pBM->GetObject();
-/*N*/   if( pServObj )          // dann aus der Liste entfernen
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   delete pBM;
 /*N*/ }
@@ -174,23 +171,19 @@ namespace binfilter {
 /*N*/}
 
 
-    // erzeugt einen eindeutigen Namen. Der Name selbst muss vorgegeben
-    // werden, es wird dann bei gleichen Namen nur durchnumeriert.
-/*N*/ void SwDoc::MakeUniqueBookmarkName( String& /*rNm*/ )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-
-/*N*/ SaveBookmark::SaveBookmark( int eType, const SwBookmark& rBkmk,
-/*N*/                           const SwNodeIndex& /*rMvPos*/,
-/*N*/                           const SwIndex* /*pIdx*/ )
-/*N*/   : aName( rBkmk.GetName() ), aShortName( rBkmk.GetShortName() ),
-/*N*/   aCode( rBkmk.GetKeyCode() ), eBkmkType( (SaveBookmarkType)eType ),
-/*N*/   eOrigBkmType(rBkmk.GetType())
-/*N*/ {
-    DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+SaveBookmark::SaveBookmark(
+    int eType,
+    const SwBookmark& rBkmk,
+    const SwNodeIndex& /*rMvPos*/,
+    const SwIndex* /*pIdx*/
+)
+:   aName( rBkmk.GetName() ),
+    aShortName( rBkmk.GetShortName() ),
+    aCode( rBkmk.GetKeyCode() ),
+    eBkmkType( (SaveBookmarkType)eType ),
+    eOrigBkmType(rBkmk.GetType())
+{
+}
 
 
 

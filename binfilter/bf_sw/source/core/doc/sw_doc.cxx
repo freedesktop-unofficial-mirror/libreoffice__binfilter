@@ -185,12 +185,10 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // verschiebe noch alle Bookmarks/TOXMarks/FlyAtCnt
 /*N*/       if( aBkmkArr.Count() )
-/*?*/   {   _RestoreCntntIdx( this, aBkmkArr, rPos.nNode.GetIndex()-1, 0, TRUE );}
+/*?*/       {
+                _RestoreCntntIdx( this, aBkmkArr, rPos.nNode.GetIndex()-1, 0, TRUE );
+            }
 /*N*/
-/*N*/       if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/   }
 /*N*/
 /*N*/   SetModified();
@@ -216,11 +214,6 @@ namespace binfilter {
 /*N*/   rPos.nNode++;
 /*N*/   rPos.nContent.Assign( pCurNode, 0 );
 /*N*/
-/*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   SetModified();
 /*N*/   return TRUE;
 /*N*/ }
@@ -238,11 +231,6 @@ namespace binfilter {
 /*N*/   SwDataChanged aTmp( rRg, 0 );
 /*N*/
 /*N*/       pNode->Insert( rStr, pPos->nContent, nInsMode );
-/*N*/
-/*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   SetModified();
 /*N*/   return TRUE;
@@ -464,16 +452,6 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
 /*N*/   return 0;
 /*N*/ }
 
-    // returne die RefMark per Index - fuer Uno
-
-    // returne die Namen aller im Doc gesetzten Referenzen
-    //JP 24.06.96: Ist der ArrayPointer 0 dann returne nur, ob im Doc. eine
-    //              RefMark gesetzt ist
-    // OS 25.06.96: ab jetzt wird immer die Anzahl der Referenzen returnt
-/*N*/ USHORT SwDoc::GetRefMarks( SvStringsDtor* /*pNames*/ ) const
-/*N*/ {
-/*N*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*N*/ }
 
 /*N*/ void SwDoc::SetModified()
 /*N*/ {
@@ -506,13 +484,6 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
 /*N*/   }
 /*N*/ }
 
-
-/*N*/ void SwDoc::ReRead( SwPaM& /*rPam*/, const String& /*rGrfName*/,
-/*N*/                   const String& /*rFltName*/, const Graphic* /*pGraphic*/,
-/*N*/                   const BfGraphicObject* /*pGrafObj*/ )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
 
 /*--------------------------------------------------------------------
     Beschreibung:

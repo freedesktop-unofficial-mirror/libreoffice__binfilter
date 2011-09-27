@@ -746,16 +746,6 @@ namespace binfilter {
 /*?*/   return bUnmark;
 /*?*/ }
 
-/*N*/ int SwDoc::Chain( SwFrmFmt& /*rSource*/, const SwFrmFmt& /*rDest*/ )
-/*N*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*N*/ }
-
-/*N*/ void SwDoc::Unchain( SwFrmFmt& /*rFmt*/ )
-/*N*/ {
-        DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

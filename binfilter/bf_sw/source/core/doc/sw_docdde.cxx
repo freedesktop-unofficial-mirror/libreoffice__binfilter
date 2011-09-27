@@ -70,8 +70,8 @@ struct _FindItem
 
 /*N*/ BOOL lcl_FindBookmark( const SwBookmarkPtr& /*rpBkmk*/, void* /*pArgs*/ )
 /*N*/ {
-/*N*/   BOOL bRet = TRUE; DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return bRet;
+/*N*/   DBG_BF_ASSERT(0, "STRIP");  // what does .foreach() do?
+/*N*/   return TRUE;
 /*N*/ }
 
 
@@ -93,8 +93,6 @@ struct _FindItem
 /*N*/               ((_FindItem*)pArgs)->pSectNd = pIdx->GetNode().GetSectionNode();
 /*N*/               return FALSE;
 /*N*/           }
-/*N*/ //nein!!          // sollte der Namen schon passen, der Rest aber nicht, dann haben wir
-/*N*/           // sie nicht. Die Namen sind immer eindeutig.
 /*N*/       }
 /*N*/   }
 /*N*/   return TRUE;        // dann weiter
@@ -127,12 +125,6 @@ struct _FindItem
 
 
 
-
-
-
-
-
-
 /*N*/ ::binfilter::SvLinkSource* SwDoc::CreateLinkSource( const String& rItem )
 /*N*/ {
 /*N*/   // haben wir ueberhaupt das Item vorraetig?
@@ -144,11 +136,6 @@ struct _FindItem
 /*N*/   do {    // middle check Loop
 /*N*/       ((SwBookmarks&)*pBookmarkTbl).ForEach( 0, pBookmarkTbl->Count(),
 /*N*/                                               lcl_FindBookmark, &aPara );
-/*N*/       if( aPara.pBkmk && aPara.pBkmk->GetOtherPos() )
-/*N*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*?*/           // sollten wir schon einer sein?
-/*N*/       }
 /*N*/
 /*N*/       ((SwSectionFmts&)*pSectionFmtTbl).ForEach( 0, pSectionFmtTbl->Count(),
 /*N*/                                                   lcl_FindSection, &aPara );
@@ -168,11 +155,6 @@ struct _FindItem
 /*N*/
 /*N*/       ((SwFrmFmts*)pTblFrmFmtTbl)->ForEach( 0, pTblFrmFmtTbl->Count(),
 /*N*/                                               lcl_FindTable, &aPara );
-/*N*/       if( aPara.pTblNd )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/           // sollten wir schon einer sein?
-/*?*/       }
 /*?*/       // bis hierhin, also nicht vorhanden
 /*?*/       return 0;
 /*N*/   } while( FALSE );
@@ -195,16 +177,7 @@ struct _FindItem
 /*N*/                                       INetURLObject::DECODE_WITH_CHARSET,
 /*N*/                                       RTL_TEXTENCODING_UTF8 ));
 /*N*/
-/*N*/   xub_StrLen nPos = sItem.Search( cMarkSeperator );
-/*N*/
 /*N*/   const CharClass& rCC = GetAppCharClass();
-/*N*/
-/*N*/   // Erweiterung fuer die Bereiche, nicht nur Bookmarks/Bereiche linken,
-/*N*/   // sondern auch Rahmen(Text!), Tabellen, Gliederungen:
-/*N*/   if( STRING_NOTFOUND != nPos )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   // alte "Mechanik"
 /*N*/   rCC.toLower( sItem );

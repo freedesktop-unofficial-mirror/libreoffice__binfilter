@@ -54,7 +54,6 @@ public:
     SwPageDesc *GetPageDesc( SwDoc &rDoc ) const;
     SwClient   *GetPageDescDep() const { return (SwClient*)&aPageDescDep; }
 
-    void SetFtnTxtColl(SwTxtFmtColl& rColl);
     SwTxtFmtColl* GetFtnTxtColl() const { return  (SwTxtFmtColl*) GetRegisteredIn(); } // kann 0 sein
 
     SwCharFmt* GetCharFmt(SwDoc &rDoc) const;

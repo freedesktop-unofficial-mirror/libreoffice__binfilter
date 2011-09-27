@@ -195,10 +195,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/ {
 /*N*/   const SwPosition & rPos = *rRg.GetPoint();
 /*N*/
-/*N*/   if( pACEWord )                  // Aufnahme in die Autokorrektur
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/   SwTxtNode *pNode = rPos.nNode.GetNode().GetTxtNode();
 /*N*/   if(!pNode)
 /*?*/       return sal_False;
@@ -206,12 +202,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/   SwDataChanged aTmp( rRg, 0 );
 /*N*/
 /*N*/   pNode->Insert( c, rPos.nContent );
-/*N*/
-/*N*/
-/*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   SetModified();
 /*N*/   return sal_True;
@@ -308,10 +298,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/               SwPosition aAlphaPos( aIdx, aAlphaIdx );
 /*N*/               pDoc->CorrRel( rPam.GetPoint()->nNode, aAlphaPos, 0, sal_True );
 /*N*/
-/*N*/               // verschiebe noch alle Bookmarks/TOXMarks
-/*N*/               if( aBkmkArr.Count() )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/
 /*N*/               // falls der uebergebene PaM nicht im Crsr-Ring steht,
 /*N*/               // gesondert behandeln (z.B. Aufruf aus dem Auto-Format)
 /*N*/               if( pOldTxtNd == rPam.GetBound( sal_True ).nContent.GetIdxReg() )
@@ -322,19 +308,11 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/           // jetzt nur noch den Node loeschen
 /*N*/           pDoc->GetNodes().Delete( aOldIdx, 1 );
 /*N*/       }
-/*N*/       else
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/   }
 /*N*/ }
 
 /*N*/ sal_Bool SwDoc::DeleteAndJoin( SwPaM & rPam )
 /*N*/ {
-/*N*/   if( IsRedlineOn() )
-/*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   sal_Bool bJoinTxt, bJoinPrev;
 /*N*/   lcl_GetJoinFlags( rPam, bJoinTxt, bJoinPrev );
 /*N*/
@@ -363,11 +341,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/
 /*N*/   if( !rPam.HasMark() || *pStt >= *pEnd )
 /*N*/       return sal_False;
-/*N*/
-/*N*/   if( pACEWord )
-/*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   {
 /*N*/       // loesche alle leeren TextHints an der Mark-Position
@@ -483,8 +456,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*?*/
 /*?*/   } while( sal_False );
 /*?*/
-/*?*/   if( !IsIgnoreRedline() && GetRedlineTbl().Count() )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/   SetModified();
 /*?*/
 /*?*/   return sal_True;
@@ -575,8 +546,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/
 /*N*/   return sal_True;
 /*N*/ }
-
-#define MAX_REDLINE_COUNT   250
 
 }
 

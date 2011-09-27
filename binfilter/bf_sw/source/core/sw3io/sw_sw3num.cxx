@@ -756,12 +756,6 @@ void lcl_sw3io__copyNumRule( const SwNumRule& rSrc, SwNumRule& rDst )
 /*N*/       InString( *pStrm, sSuffix );
 /*N*/   }
 /*N*/
-/*N*/   if( nCollIdx != IDX_NO_VALUE )
-/*N*/   {
-/*?*/       SwTxtFmtColl* pColl = FindTxtColl( nCollIdx );
-/*?*/       if( pColl )
-/*?*/           rENInf.SetFtnTxtColl( *pColl );
-/*N*/   }
 /*N*/   // PageDesc suchen
 /*N*/   if( nPageIdx < IDX_SPEC_VALUE )
 /*N*/   {
@@ -840,12 +834,6 @@ void lcl_sw3io__copyNumRule( const SwNumRule& rSrc, SwNumRule& rDst )
 /*N*/   if( nVersion>SWG_DELETEOLE )
 /*N*/       *pStrm >> nFtnOffset;
 /*N*/   CloseFlagRec();
-/*N*/   if( nCollIdx != IDX_NO_VALUE )
-/*N*/   {
-/*?*/       SwTxtFmtColl* pColl = FindTxtColl( nCollIdx );
-/*?*/       if( pColl )
-/*?*/           aFtn.SetFtnTxtColl( *pColl );
-/*N*/   }
 /*N*/   // PageDesc suchen
 /*N*/   if( nPageIdx < IDX_SPEC_VALUE )
 /*N*/   {

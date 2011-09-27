@@ -151,11 +151,6 @@ namespace binfilter {
 /*N*/   pDesc->Add( &((SwClient&)aPageDescDep) );
 /*N*/ }
 
-/*N*/ void SwEndNoteInfo::SetFtnTxtColl(SwTxtFmtColl& /*rFmt*/)
-/*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ SwCharFmt* SwEndNoteInfo::GetCharFmt(SwDoc &rDoc) const
 /*N*/ {
 /*N*/   if ( !aCharFmtDep.GetRegisteredIn() )

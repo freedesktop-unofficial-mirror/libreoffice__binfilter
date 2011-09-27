@@ -938,7 +938,6 @@ void SwXFrame::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
 
     if(pFmt)
     {
-        sal_Bool bNextFrame = sal_False;
         if ( pCur->nFlags & PropertyAttribute::READONLY)
             throw PropertyVetoException( OUString ( RTL_CONSTASCII_USTRINGPARAM ( "Property is read-only: " ) ) + rPropertyName, static_cast < cppu::OWeakObject * > ( this ) );
 
@@ -1082,41 +1081,16 @@ void SwXFrame::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
                 sFltName = sTmp;
             }
 
-            const SwNodeIndex* pIdx = pFmt->GetCntnt().GetCntntIdx();
-            if(pIdx)
-            {
-                SwNodeIndex aIdx(*pIdx, 1);
-                SwGrfNode* pGrfNode = aIdx.GetNode().GetGrfNode();
-                if(!pGrfNode)
-                {
-                    delete pGrfObj;
-                    throw RuntimeException();
-                }
-                SwPaM aGrfPaM(*pGrfNode);
-                pFmt->GetDoc()->ReRead( aGrfPaM, sGrfName, sFltName, 0,
-                                        pGrfObj );
-            }
             delete pGrfObj;
         }
-        else if(0 != (bNextFrame = (rPropertyName.equalsAsciiL( SW_PROP_NAME(UNO_NAME_CHAIN_NEXT_NAME))))
-            || rPropertyName.equalsAsciiL( SW_PROP_NAME(UNO_NAME_CHAIN_PREV_NAME)))
+        else if(  rPropertyName.equalsAsciiL( SW_PROP_NAME(UNO_NAME_CHAIN_NEXT_NAME))
+               || rPropertyName.equalsAsciiL( SW_PROP_NAME(UNO_NAME_CHAIN_PREV_NAME))
+               )
         {
             OUString uTemp;
             aValue >>= uTemp;
             String sChainName(uTemp);
-            if(!sChainName.Len())
-            {
-                if(bNextFrame)
-                    pDoc->Unchain(*pFmt);
-                else
-                {
-                    SwFmtChain aChain( pFmt->GetChain() );
-                    SwFrmFmt *pPrev = aChain.GetPrev();
-                    if(pPrev)
-                        pDoc->Unchain(*pPrev);
-                }
-            }
-            else
+            if(sChainName.Len())
             {
                 sal_uInt16 nCount = pDoc->GetFlyCount(FLYCNTTYPE_FRM);
 
@@ -1129,12 +1103,6 @@ void SwXFrame::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
                         pChain = pLclFmt;
                         break;
                     }
-                }
-                if(pChain)
-                {
-                    SwFrmFmt* pSource = bNextFrame ? pFmt : pChain;
-                    SwFrmFmt* pDest = bNextFrame ? pChain: pFmt;
-                    pDoc->Chain(*pSource, *pDest);
                 }
             }
         }
@@ -1581,7 +1549,6 @@ void SwXFrame::setPropertyToDefault( const OUString& rPropertyName )
         if ( pCur->nFlags & PropertyAttribute::READONLY)
             throw PropertyVetoException( OUString ( RTL_CONSTASCII_USTRINGPARAM ( "Property is read-only: " ) ) + rPropertyName, static_cast < cppu::OWeakObject * > ( this ) );
 
-        BOOL bNextFrame;
         if( pCur->nWID &&
             pCur->nWID != FN_UNO_ANCHOR_TYPES &&
             pCur->nWID != FN_PARAM_LINK_DISPLAY_NAME)
@@ -1615,20 +1582,6 @@ void SwXFrame::setPropertyToDefault( const OUString& rPropertyName )
                 aSet.ClearItem(pCur->nWID);
                 if(!rPropertyName.equalsAsciiL( SW_PROP_NAME(UNO_NAME_ANCHOR_TYPE)))
                     pFmt->SetAttr(aSet);
-            }
-        }
-        else if(0 != (bNextFrame = (rPropertyName.equalsAsciiL( SW_PROP_NAME(UNO_NAME_CHAIN_NEXT_NAME))))
-                || rPropertyName.equalsAsciiL( SW_PROP_NAME(UNO_NAME_CHAIN_PREV_NAME)))
-        {
-            SwDoc* pDoc = pFmt->GetDoc();
-            if(bNextFrame)
-                pDoc->Unchain(*pFmt);
-            else
-            {
-                SwFmtChain aChain( pFmt->GetChain() );
-                SwFrmFmt *pPrev = aChain.GetPrev();
-                if(pPrev)
-                    pDoc->Unchain(*pPrev);
             }
         }
     }

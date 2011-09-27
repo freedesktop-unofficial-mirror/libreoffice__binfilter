@@ -44,8 +44,6 @@
 #include <unocrsr.hxx>
 
 
-
-
 #include <hints.hxx>
 namespace binfilter {
 
@@ -122,22 +120,6 @@ namespace binfilter {
 /*N*/                    BOOL bMoveCrsr )
 /*N*/ {
 /*N*/   SwPosition aNewPos( rNewPos );
-/*N*/
-/*N*/   { // erstmal die Bookmark korrigieren
-/*N*/       register SwBookmarks& rBkmks = *pBookmarkTbl;
-/*N*/       for( USHORT n = 0; n < rBkmks.Count(); ++n )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/   }
-/*N*/   { // dann die Redlines korrigieren
-/*N*/       register SwRedlineTbl& rTbl = *pRedlineTbl;
-/*N*/       for( USHORT n = 0; n < rTbl.Count(); ++n )
-/*N*/       {
-/*?*/           // liegt auf der Position ??
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/   }
 /*N*/
 /*N*/   if( bMoveCrsr )
 /*N*/       ::binfilter::PaMCorrAbs( rOldNode, rNewPos, nOffset );
@@ -265,12 +247,6 @@ namespace binfilter {
 /*N*/           FOREACHPAM_START( rTbl[ n ] )
 /*N*/               _PaMCorrAbs3( PCURCRSR )
 /*N*/           FOREACHPAM_END()
-/*N*/
-/*N*/           SwUnoTableCrsr* pUnoTblCrsr = (SwUnoTableCrsr*)*rTbl[ n ];
-/*N*/           if( pUnoTblCrsr )
-/*N*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -309,12 +285,6 @@ namespace binfilter {
 /*N*/           FOREACHPAM_START( rTbl[ n ] )
 /*N*/               _PaMCorrRel1( PCURCRSR )
 /*N*/           FOREACHPAM_END()
-/*N*/
-/*N*/           SwUnoTableCrsr* pUnoTblCrsr = (SwUnoTableCrsr*)*rTbl[ n ];
-/*N*/           if( pUnoTblCrsr )
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -359,14 +329,6 @@ namespace binfilter {
 /*N*/           {
 /*N*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
-/*N*/       }
-/*N*/   }
-/*N*/   { // dann die Redlines korrigieren
-/*N*/       register SwRedlineTbl& rTbl = *pRedlineTbl;
-/*N*/       for( USHORT n = 0; n < rTbl.Count(); ++n )
-/*N*/       {
-/*N*/           // liegt auf der Position ??
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/

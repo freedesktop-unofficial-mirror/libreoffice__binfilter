@@ -877,17 +877,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/                   SwSetExpFieldType* pSFldTyp = (SwSetExpFieldType*)pFld->GetTyp();
 /*N*/                   aNew = pSFldTyp->GetName();
 /*N*/
-/*N*/                   SwNode* pSeqNd = 0;
-/*N*/
-/*N*/                   if( pSFld->IsSequenceFld() )
-/*N*/                   {
-/*N*/                       BYTE nLvl = pSFldTyp->GetOutlineLvl();
-/*N*/                       if( MAXLEVEL > nLvl )
-/*N*/                       {
-/*N*/                           DBG_BF_ASSERT(0, "STRIP");
-/*?*/                       }
-/*N*/                   }
-/*N*/
 /*N*/                   aNew += '=';
 /*N*/                   aNew += pSFld->GetFormula();
 /*N*/
@@ -896,9 +885,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/                   if( !pUpdtFld || pUpdtFld == pTxtFld )
 /*N*/                   {
 /*N*/                       pSFld->SetValue( nErg );
-/*N*/
-/*N*/                       if( pSeqNd )
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/                   }
 /*N*/               }
 /*N*/           }

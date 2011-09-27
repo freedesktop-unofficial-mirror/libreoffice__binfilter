@@ -1422,7 +1422,7 @@ sal_Int32 SwXReferenceMarks::getCount(void) throw( uno::RuntimeException )
     SolarMutexGuard aGuard;
     if(!IsValid())
         throw uno::RuntimeException();
-    return GetDoc()->GetRefMarks();
+    return 0;
 }
 
 uno::Any SwXReferenceMarks::getByIndex(sal_Int32 nIndex)
@@ -1472,16 +1472,7 @@ uno::Sequence< OUString > SwXReferenceMarks::getElementNames(void) throw( uno::R
 {
     SolarMutexGuard aGuard;
     uno::Sequence<OUString> aRet;
-    if(IsValid())
-    {
-        SvStringsDtor aStrings;
-        sal_uInt16 nCount = GetDoc()->GetRefMarks( &aStrings );
-        aRet.realloc(nCount);
-        OUString* pNames = aRet.getArray();
-        for(sal_uInt16 i = 0; i < nCount; i++)
-            pNames[i] = *aStrings.GetObject(i);
-    }
-    else
+    if( !IsValid() )
         throw uno::RuntimeException();
     return aRet;
 }
@@ -1504,7 +1495,7 @@ sal_Bool SwXReferenceMarks::hasElements(void) throw( uno::RuntimeException )
     SolarMutexGuard aGuard;
     if(!IsValid())
         throw uno::RuntimeException();
-    return 0 != GetDoc()->GetRefMarks();
+    return sal_False;
 }
 
 SwXReferenceMark* SwXReferenceMarks::GetObject( SwDoc* pDoc, const SwFmtRefMark* pMark )

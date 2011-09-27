@@ -231,22 +231,6 @@ SwCharFmt* lcl_getCharFmt(SwDoc* pDoc, const uno::Any& aValue)
     return pRet;
 }
 
-SwTxtFmtColl* lcl_GetParaStyle(SwDoc* pDoc, const uno::Any& aValue)
-{
-    OUString uTmp;
-    aValue >>= uTmp;
-    String sParaStyle;
-    SwStyleNameMapper::FillUIName(uTmp, sParaStyle, GET_POOLID_TXTCOLL, sal_True );
-    SwTxtFmtColl* pRet = pDoc->FindTxtFmtCollByName( sParaStyle );
-    if( !pRet  )
-    {
-        sal_uInt16 nId = SwStyleNameMapper::GetPoolIdFromUIName( sParaStyle, GET_POOLID_TXTCOLL );
-        if( USHRT_MAX != nId  )
-            pRet = pDoc->GetTxtCollFromPool( nId );
-    }
-    return pRet;
-}
-
 SwPageDesc* lcl_GetPageDesc(SwDoc* pDoc, const uno::Any& aValue)
 {
     SwPageDesc* pRet = 0;
@@ -399,11 +383,6 @@ void SwXFootnoteProperties::setPropertyValue(const OUString& rPropertyName, cons
                 }
                 break;
                 case  WID_PARAGRAPH_STYLE    :
-                {
-                    SwTxtFmtColl* pColl = lcl_GetParaStyle(pDoc, aValue);
-                    if(pColl)
-                        aFtnInfo.SetFtnTxtColl(*pColl);
-                }
                 break;
                 case  WID_PAGE_STYLE :
                 {
@@ -687,11 +666,6 @@ void SwXEndnoteProperties::setPropertyValue(const OUString& rPropertyName, const
                 }
                 break;
                 case  WID_PARAGRAPH_STYLE    :
-                {
-                    SwTxtFmtColl* pColl = lcl_GetParaStyle(pDoc, aValue);
-                    if(pColl)
-                        aEndInfo.SetFtnTxtColl(*pColl);
-                }
                 break;
                 case  WID_PAGE_STYLE :
                 {

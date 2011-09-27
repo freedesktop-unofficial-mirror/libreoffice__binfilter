@@ -611,10 +611,6 @@ void Sw3IoImp::InPasswd()
 /*N*/       CloseFlagRec();
 /*N*/       SwBookmarkPtr pMark = NULL;
 /*N*/
-/*N*/       // Gibt es die Marke bereits (tw. fix 23304) ?
-/*N*/       if( bInsert && pDoc->FindBookmark( aName ) != USHRT_MAX )
-/*?*/           pDoc->MakeUniqueBookmarkName( aName );
-/*N*/
 /*N*/       pMark = pDoc->MakeBookmark( aPaM, KeyCode( nKey, nMod ),
 /*N*/                                   aName, aShortName );
 /*N*/       if( pMark )

@@ -618,9 +618,7 @@ public:
     void DelBookmark( sal_uInt16 nPos );
     void DelBookmark( const String& rName );
     sal_uInt16 FindBookmark( const String& rName );
-        // erzeugt einen eindeutigen Namen. Der Name selbst muss vorgegeben
-        // werden, es wird dann bei gleichen Namen nur durchnumeriert.
-    void MakeUniqueBookmarkName( String& rNm );
+
     // Anzahl der ::com::sun::star::text::Bookmarks, gfs. nur "echte"
     sal_uInt16 GetBookmarkCnt(sal_Bool bBkmrk = sal_False) const;
     SwBookmark& GetBookmark( sal_uInt16, sal_Bool bBkmrk = sal_False);
@@ -777,9 +775,6 @@ public:
                         const SfxItemSet* pFlyAttrSet = 0,
                         const SfxItemSet* pGrfAttrSet = 0,
                         SwFrmFmt* = 0 );
-        // austauschen einer Grafik (mit Undo)
-    void ReRead( SwPaM&, const String& rGrfName, const String& rFltName,
-                const Graphic* pGraphic, const BfGraphicObject* pGrfObj );
 
         //Einfuegen eines DrawObjectes. Das Object muss bereits im DrawModel
         // angemeldet sein.
@@ -1203,11 +1198,6 @@ public:
 
     // returne zum Namen die im Doc gesetzte Referenz
     const SwFmtRefMark* GetRefMark( const String& rName ) const;
-    // returne die RefMark per Index - fuer Uno
-    // returne die Namen aller im Doc gesetzten Referenzen.
-    //  Ist der ArrayPointer 0 dann returne nur, ob im Doc. eine RefMark
-    //  gesetzt ist
-    sal_uInt16 GetRefMarks( SvStringsDtor* = 0 ) const;
 
     //Einfuegen einer Beschriftung - falls ein FlyFormat erzeugt wird, so
     // returne dieses.
@@ -1362,9 +1352,6 @@ public:
                         sal_Bool bSameOnly, sal_Bool bPosCorr );
 
     void GetTabBorders( const SwCursor& rCursor, SfxItemSet& rSet ) const;
-
-    int Chain( SwFrmFmt &rSource, const SwFrmFmt &rDest );
-    void Unchain( SwFrmFmt &rFmt );
 
     // fuers Copy/Move aus der FrmShell
     SdrObject* CloneSdrObj( const SdrObject&, sal_Bool bMoveWithinDoc = sal_False,

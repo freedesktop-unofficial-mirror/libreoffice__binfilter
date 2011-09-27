@@ -417,7 +417,7 @@ namespace binfilter {
 /*N*/       for( ULONG nFirst = 0, nLast = aUpd.GetList().Count();
 /*N*/               nFirst < nLast; ++nFirst )
 /*N*/       {
-/*N*/           SwTxtNode* pTNd = aUpd.GetList().GetObject( nFirst );
+/*N*/           aUpd.GetList().GetObject( nFirst );
 /*N*/       }
 /*N*/   }
 /*N*/ }

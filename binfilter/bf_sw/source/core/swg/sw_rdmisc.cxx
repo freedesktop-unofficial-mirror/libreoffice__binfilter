@@ -279,13 +279,6 @@ namespace binfilter {
     {
         r >> nCollIdx;
         r.skip();
-        if( nCollIdx != IDX_NO_VALUE )
-        {
-            nCollIdx |= IDX_COLLECTION;
-            SwTxtFmtColl* pColl = (SwTxtFmtColl*) FindFmt( nCollIdx, 0 );
-            if( pColl )
-                aFtn.SetFtnTxtColl( *pColl );
-        }
     }
     if( nLay )
         nLay = pLayIdx[ nDesc ].nActualIdx;
@@ -315,7 +308,6 @@ namespace binfilter {
             {
                 SwFtnInfo aFtn;
                 aFtn = pDoc->GetFtnInfo();
-                aFtn.SetFtnTxtColl( *pColl );
                 pDoc->SetFtnInfo( aFtn );
             }
         } break;

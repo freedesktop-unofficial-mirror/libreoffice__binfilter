@@ -120,8 +120,6 @@ void SwXBookmark::attachToRange(const uno::Reference< text::XTextRange > & xText
         {
             if(!m_aName.Len())
                  m_aName =  C2S("Bookmark");
-            if( USHRT_MAX != pDoc->FindBookmark(m_aName) )
-                pDoc->MakeUniqueBookmarkName( m_aName );
             KeyCode aCode;
             pBkm = pDoc->MakeBookmark( aPam, aCode,
                                                 m_aName, aEmptyStr, BOOKMARK);
