@@ -67,7 +67,6 @@ SLOFILES =	\
         $(SLO)$/sw_docsort.obj \
         $(SLO)$/sw_docstat.obj \
         $(SLO)$/sw_doctxm.obj \
-        $(SLO)$/sw_extinput.obj \
         $(SLO)$/sw_fmtcol.obj \
         $(SLO)$/sw_ftnidx.obj \
         $(SLO)$/sw_gctable.obj \

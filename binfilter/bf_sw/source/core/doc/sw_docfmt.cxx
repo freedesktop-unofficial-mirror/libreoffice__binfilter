@@ -867,24 +867,6 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*N*/   return pFmt;
 /*N*/ }
 
-
-/*N*/ SwFrmFmt& SwDoc::GetTblFrmFmt(USHORT nFmt, BOOL bUsed ) const
-/*N*/ {
-/*?*/   USHORT nRemoved = 0;
-/*?*/   if(bUsed)
-/*?*/   {
-/*?*/       SwAutoFmtGetDocNode aGetHt( &aNodes );
-/*?*/       for ( USHORT i = 0; i <= nFmt; i++ )
-/*?*/       {
-/*?*/           while ( (*pTblFrmFmtTbl)[ i + nRemoved]->GetInfo( aGetHt ))
-/*?*/           {
-/*?*/               nRemoved++;
-/*?*/           }
-/*?*/       }
-/*?*/   }
-/*?*/   return *((*pTblFrmFmtTbl)[nRemoved + nFmt]);
-/*N*/}
-
 /*N*/ SwTableFmt* SwDoc::MakeTblFrmFmt( const String &rFmtName,
 /*N*/                                   SwFrmFmt *pDerivedFrom )
 /*N*/ {

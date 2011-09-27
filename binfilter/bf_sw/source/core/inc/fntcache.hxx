@@ -66,7 +66,6 @@ public:
     inline SwFntObj *First( ) { return (SwFntObj *)SwCache::First(); }
     inline SwFntObj *Next( SwFntObj *pFntObj)
         { return (SwFntObj *)SwCache::Next( (SwCacheObj *)pFntObj ); }
-    void Flush();
 };
 
 // Font-Cache, globale Variable, in txtinit.Cxx angelegt/zerstoert

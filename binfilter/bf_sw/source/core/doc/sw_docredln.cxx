@@ -184,13 +184,6 @@ Verhalten von Delete-Redline:
 /*N*/   return DeleteRedline( aTemp, bSaveInUndo, nDelType );
 /*N*/ }
 
-
-/*N*/ USHORT SwDoc::GetRedlinePos( const SwNode& rNd, USHORT /*nType*/ ) const
-/*N*/ {
-/*N*/   rNd.GetIndex();
-/*N*/   return USHRT_MAX;
-/*N*/ }
-
 /*N*/ const SwRedline* SwDoc::GetRedline( const SwPosition& /*rPos*/,
 /*N*/                                   USHORT* pFndPos ) const
 /*N*/ {

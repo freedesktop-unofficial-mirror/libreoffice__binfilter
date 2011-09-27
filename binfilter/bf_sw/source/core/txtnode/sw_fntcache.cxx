@@ -68,23 +68,6 @@ OutputDevice* SwFntObj::pPixOut = NULL;
 
 extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 
-
-/*************************************************************************
-|*
-|*  SwFntCache::Flush()
-|*
-|*************************************************************************/
-
-/*N*/ void SwFntCache::Flush( )
-/*N*/ {
-/*N*/   if ( pLastFont )
-/*N*/   {
-/*N*/       pLastFont->Unlock();
-/*N*/       pLastFont = NULL;
-/*N*/   }
-/*N*/   SwCache::Flush( );
-/*N*/ }
-
 /*************************************************************************
 |*
 |*  SwFntObj::SwFntObj(), ~SwFntObj()

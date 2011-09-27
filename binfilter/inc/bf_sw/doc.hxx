@@ -910,7 +910,6 @@ public:
     const SwFrmFmts* GetTblFrmFmts() const  { return pTblFrmFmtTbl; }
           SwFrmFmts* GetTblFrmFmts()        { return pTblFrmFmtTbl; }
 
-    SwFrmFmt& GetTblFrmFmt(sal_uInt16 nFmt, sal_Bool bUsed ) const;
     SwTableFmt* MakeTblFrmFmt(const String &rFmtName, SwFrmFmt *pDerivedFrom);
     void        DelTblFrmFmt( SwTableFmt* pFmt );
     SwTableFmt* FindTblFmtByName( const String& rName, sal_Bool bAll = sal_False ) const;
@@ -1323,7 +1322,6 @@ public:
                         sal_uInt16 nDelType = USHRT_MAX );
     sal_Bool DeleteRedline( const SwStartNode& rSection, sal_Bool bSaveInUndo = sal_True,
                         sal_uInt16 nDelType = USHRT_MAX );
-    sal_uInt16 GetRedlinePos( const SwNode& rNd, sal_uInt16 nType = USHRT_MAX ) const;
     const SwRedline* GetRedline( const SwPosition& rPos,
                                 sal_uInt16* pFndPos = 0 ) const;
 
@@ -1383,12 +1381,6 @@ public:
 
     //
     // -------------------- FeShell - Schnittstellen Ende ------------------
-
-
-    // Schnittstelle fuer die TextInputDaten - ( fuer die Texteingabe
-    // von japanischen/chinesischen Zeichen)
-    SwExtTextInput* GetExtTextInput( const SwNode& rNd,
-                                xub_StrLen nCntntPos = STRING_NOTFOUND) const;
 
     sal_Bool ContainsMSVBasic() const           { return bContains_MSVBasic; }
     void SetContainsMSVBasic( sal_Bool bFlag )  { bContains_MSVBasic = bFlag; }
