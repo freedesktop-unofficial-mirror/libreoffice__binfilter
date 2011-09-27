@@ -766,7 +766,7 @@ void SfxXMLMetaContext::EndElement()
     if ( sKeywords.getLength() && xInfoProp.is() )
     {
         uno::Any aAny;
-        aAny <<= ::rtl::OUString(sKeywords);
+        aAny <<= ::rtl::OUString(sKeywords.toString());
         xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_KEYWORDS)), aAny );
     }
 }

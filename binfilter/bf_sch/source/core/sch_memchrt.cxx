@@ -686,41 +686,39 @@ using namespace ::com::sun::star;
 
 // ========================================
 
-/*N*/ ::rtl::OUStringBuffer SchMemChart::getXMLStringForCellAddress( const SchCellAddress& rCell )
+/*N*/ void SchMemChart::getXMLStringForCellAddress( const SchCellAddress& rCell, rtl::OUStringBuffer * output )
 /*N*/ {
-/*N*/     ::rtl::OUStringBuffer aBuffer;
+/*N*/     OSL_ASSERT(output != 0);
 /*N*/     ::std::vector< SchSingleCell >::const_iterator aIter;
 /*N*/     const ::std::vector< SchSingleCell >::const_iterator aEndIter = rCell.maCells.end();
 /*N*/
 /*N*/     for( aIter = rCell.maCells.begin(); aIter != aEndIter; aIter++ )
 /*N*/     {
 /*N*/         sal_Int32 nCol = aIter->mnColumn;
-/*N*/         aBuffer.append( (sal_Unicode)'.' );
+/*N*/         output->append( (sal_Unicode)'.' );
 /*N*/         if( ! aIter->mbRelativeColumn )
-/*N*/             aBuffer.append( (sal_Unicode)'$' );
+/*N*/             output->append( (sal_Unicode)'$' );
 /*N*/
 /*N*/         // get A, B, C, ..., AA, AB, ... representation of column number
 /*N*/         if( nCol < 26 )
-/*N*/             aBuffer.append( (sal_Unicode)('A' + nCol) );
+/*N*/             output->append( (sal_Unicode)('A' + nCol) );
 /*N*/         else if( nCol < 702 )
 /*N*/         {
-/*?*/             aBuffer.append( (sal_Unicode)('A' + nCol / 26 - 1 ));
-/*?*/             aBuffer.append( (sal_Unicode)('A' + nCol % 26) );
+/*?*/             output->append( (sal_Unicode)('A' + nCol / 26 - 1 ));
+/*?*/             output->append( (sal_Unicode)('A' + nCol % 26) );
 /*N*/         }
 /*N*/         else    // works for nCol <= 18,278
 /*N*/         {
-/*?*/             aBuffer.append( (sal_Unicode)('A' + nCol / 702 - 1 ));
-/*?*/             aBuffer.append( (sal_Unicode)('A' + (nCol % 702) / 26 ));
-/*?*/             aBuffer.append( (sal_Unicode)('A' + nCol % 26) );
+/*?*/             output->append( (sal_Unicode)('A' + nCol / 702 - 1 ));
+/*?*/             output->append( (sal_Unicode)('A' + (nCol % 702) / 26 ));
+/*?*/             output->append( (sal_Unicode)('A' + nCol % 26) );
 /*N*/         }
 /*N*/
 /*N*/         // write row number as number
 /*N*/         if( ! aIter->mbRelativeRow )
-/*N*/             aBuffer.append( (sal_Unicode)'$' );
-/*N*/         aBuffer.append( aIter->mnRow + (sal_Int32)1 );
+/*N*/             output->append( (sal_Unicode)'$' );
+/*N*/         output->append( aIter->mnRow + (sal_Int32)1 );
 /*N*/     }
-/*N*/
-/*N*/     return aBuffer;
 /*N*/ }
 
 /*N*/  void SchMemChart::getSingleCellAddressFromXMLString(
@@ -922,13 +920,13 @@ using namespace ::com::sun::star;
 /*?*/             else
 /*?*/                 aBuffer.append( aIter->msTableName );
 /*?*/         }
-/*?*/         aBuffer.append( getXMLStringForCellAddress( aIter->maUpperLeft ));
+/*?*/         getXMLStringForCellAddress( aIter->maUpperLeft, &aBuffer );
 /*?*/
 /*?*/         if( aIter->maLowerRight.maCells.size())
 /*?*/         {
 /*?*/             // we have a range (not a single cell)
 /*?*/             aBuffer.append( sal_Unicode( ':' ));
-/*?*/             aBuffer.append( getXMLStringForCellAddress( aIter->maLowerRight ));
+/*?*/             getXMLStringForCellAddress( aIter->maLowerRight, &aBuffer );
 /*?*/         }
 /*?*/
 /*?*/         aIter++;

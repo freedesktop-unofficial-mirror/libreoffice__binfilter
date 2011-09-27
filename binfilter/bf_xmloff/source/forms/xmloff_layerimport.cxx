@@ -345,9 +345,9 @@ namespace xmloff
         const SvXMLStyleContext* pControlStyle =
             m_pAutoStyles ? m_pAutoStyles->FindStyleChildContext( XML_STYLE_FAMILY_CONTROL_ID, _rStyleName ) : NULL;
         OSL_ENSURE( pControlStyle || !m_pAutoStyles,
-                    ::rtl::OString( "OFormLayerXMLImport_Impl::getStyleElement: did not find the style named \"" )
-                +=  ::rtl::OString( _rStyleName.getStr(), _rStyleName.getLength(), RTL_TEXTENCODING_ASCII_US )
-                +=  ::rtl::OString( "\"!" ) );
+                    (::rtl::OString( "OFormLayerXMLImport_Impl::getStyleElement: did not find the style named \"" )
+                     +=  ::rtl::OString( _rStyleName.getStr(), _rStyleName.getLength(), RTL_TEXTENCODING_ASCII_US )
+                     +=  ::rtl::OString( "\"!" )).getStr() );
         return pControlStyle;
     }
 

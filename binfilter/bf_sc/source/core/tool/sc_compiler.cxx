@@ -2992,7 +2992,7 @@ namespace binfilter {
 /*N*/  {
 /*N*/      ::rtl::OUStringBuffer aBuffer;
 /*N*/      ScToken* p = CreateStringFromToken( aBuffer, pInToken, bAllowArrAdvance );
-/*N*/      rFormula += aBuffer;
+/*N*/      rFormula += aBuffer.makeStringAndClear();
 /*N*/      return p;
 /*N*/  }
 
@@ -3140,7 +3140,7 @@ namespace binfilter {
 /*?*/               break;
 /*?*/           }
 /*N*/           if ( aBuffer.getLength() )
-/*N*/               rBuffer.append(aBuffer);
+/*N*/               rBuffer.append(aBuffer.makeStringAndClear());
 /*N*/           else
 /*?*/               rBuffer.append(ScGlobal::GetRscString(STR_NO_NAME_REF));
 /*N*/           break;
@@ -3177,7 +3177,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/     ::rtl::OUStringBuffer aBuffer( pArr->GetLen() * 2 );
 /*N*/     CreateStringFromTokenArray( aBuffer );
-/*N*/     rFormula = aBuffer;
+/*N*/     rFormula = aBuffer.makeStringAndClear();
 /*N*/ }
 
 /*N*/ void ScCompiler::CreateStringFromTokenArray( ::rtl::OUStringBuffer& rBuffer )

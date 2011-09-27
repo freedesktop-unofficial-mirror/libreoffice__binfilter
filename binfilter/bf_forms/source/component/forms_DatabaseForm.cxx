@@ -1245,8 +1245,8 @@ bool ODatabaseForm::fillParameters(::osl::ResettableMutexGuard& _rClearForNotifi
                             }
                             catch( const Exception& )
                             {
-                                OSL_FAIL( ::rtl::OString( "ODatabaseForm::fillParameters: master-detail parameter number " )
-                                        +=  ::rtl::OString::valueOf( sal_Int32(aFind->second + 1) ));
+                                OSL_FAIL( (::rtl::OString( "ODatabaseForm::fillParameters: master-detail parameter number " )
+                                           +=  ::rtl::OString::valueOf( sal_Int32(aFind->second + 1) )).getStr() );
                             }
                             ++aFind;
                         }

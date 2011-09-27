@@ -183,7 +183,7 @@ protected :
     /// contains all information necessary to write the source data ranges
     SchChartRange maChartRange;
 
-    ::rtl::OUStringBuffer getXMLStringForCellAddress( const SchCellAddress& rCell );
+    void getXMLStringForCellAddress( const SchCellAddress& rCell, rtl::OUStringBuffer * output );
      void getSingleCellAddressFromXMLString( const ::rtl::OUString& rXMLString,
                                              sal_Int32 nStartPos, sal_Int32 nEndPos,
                                              SchSingleCell& rSingleCell );

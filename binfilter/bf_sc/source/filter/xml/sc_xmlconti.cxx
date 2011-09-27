@@ -100,7 +100,7 @@ void ScXMLContentContext::Characters( const ::rtl::OUString& rChars )
 
 void ScXMLContentContext::EndElement()
 {
-    sValue.append(sOUText);
+    sValue.append(sOUText.toString());
 }
 }
 

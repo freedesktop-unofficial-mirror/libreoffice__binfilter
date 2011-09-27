@@ -169,9 +169,9 @@ namespace xmloff
                 )
             {
                 OSL_ENSURE(xPropInfo->hasPropertyByName(aCheck->Name),
-                        ::rtl::OString("OElementImport::EndElement: read a property (")
-                    +=  ::rtl::OString(aCheck->Name.getStr(), aCheck->Name.getLength(), RTL_TEXTENCODING_ASCII_US)
-                    +=  ::rtl::OString(") which does not exist on the element!"));
+                           (::rtl::OString("OElementImport::EndElement: read a property (")
+                            +=  ::rtl::OString(aCheck->Name.getStr(), aCheck->Name.getLength(), RTL_TEXTENCODING_ASCII_US)
+                            +=  ::rtl::OString(") which does not exist on the element!")).getStr());
             }
         }
 #endif
@@ -230,9 +230,9 @@ namespace xmloff
                 }
                 catch(Exception&)
                 {
-                    OSL_FAIL(::rtl::OString("OElementImport::EndElement: could not set the property \"")
-                        +=  ::rtl::OString(aPropValues->Name.getStr(), aPropValues->Name.getLength(), RTL_TEXTENCODING_ASCII_US)
-                        +=  ::rtl::OString("\"!"));
+                    OSL_FAIL((::rtl::OString("OElementImport::EndElement: could not set the property \"")
+                              +=  ::rtl::OString(aPropValues->Name.getStr(), aPropValues->Name.getLength(), RTL_TEXTENCODING_ASCII_US)
+                              +=  ::rtl::OString("\"!")).getStr());
                 }
             }
         }
@@ -330,9 +330,9 @@ namespace xmloff
         {
             Reference< XInterface > xPure = m_rFormImport.getServiceFactory()->createInstance(m_sServiceName);
             OSL_ENSURE(xPure.is(),
-                        ::rtl::OString("OElementImport::createElement: service factory gave me no object (service name: ")
-                    +=  ::rtl::OString(m_sServiceName.getStr(), m_sServiceName.getLength(), RTL_TEXTENCODING_ASCII_US)
-                    +=  ::rtl::OString(")!"));
+                       (::rtl::OString("OElementImport::createElement: service factory gave me no object (service name: ")
+                        +=  ::rtl::OString(m_sServiceName.getStr(), m_sServiceName.getLength(), RTL_TEXTENCODING_ASCII_US)
+                        +=  ::rtl::OString(")!")).getStr());
             xReturn = Reference< XPropertySet >(xPure, UNO_QUERY);
         }
         else

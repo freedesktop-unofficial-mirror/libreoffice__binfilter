@@ -74,9 +74,9 @@ namespace xmloff
         }
         else
         {
-            OSL_FAIL(::rtl::OString("OPropertyImport::CreateChildContext: unknown sub element (only \"properties\" is recognized, but it is ")
-                +=  ::rtl::OString(_rLocalName.getStr(), _rLocalName.getLength(), RTL_TEXTENCODING_ASCII_US)
-                +=  ::rtl::OString(")!"));
+            OSL_FAIL((::rtl::OString("OPropertyImport::CreateChildContext: unknown sub element (only \"properties\" is recognized, but it is ")
+                      +=  ::rtl::OString(_rLocalName.getStr(), _rLocalName.getLength(), RTL_TEXTENCODING_ASCII_US)
+                      +=  ::rtl::OString(")!")).getStr());
             return SvXMLImportContext::CreateChildContext(_nPrefix, _rLocalName, _rxAttrList);
         }
     }
@@ -153,9 +153,9 @@ namespace xmloff
             #endif
                 _rImporter.GetMM100UnitConverter().convertBool(bValue, _rReadCharacters);
                 OSL_ENSURE(bSuccess,
-                        ::rtl::OString("OPropertyImport::convertString: could not convert \"")
-                    +=  ::rtl::OString(_rReadCharacters.getStr(), _rReadCharacters.getLength(), RTL_TEXTENCODING_ASCII_US)
-                    +=  ::rtl::OString("\" into a boolean!"));
+                           (::rtl::OString("OPropertyImport::convertString: could not convert \"")
+                            +=  ::rtl::OString(_rReadCharacters.getStr(), _rReadCharacters.getLength(), RTL_TEXTENCODING_ASCII_US)
+                            +=  ::rtl::OString("\" into a boolean!")).getStr());
                 aReturn = ::cppu::bool2any(_bInvertBoolean ? !bValue : bValue);
             }
             break;
@@ -169,9 +169,9 @@ namespace xmloff
             #endif
                     _rImporter.GetMM100UnitConverter().convertNumber(nValue, _rReadCharacters);
                     OSL_ENSURE(bSuccess,
-                            ::rtl::OString("OPropertyImport::convertString: could not convert \"")
-                        +=  ::rtl::OString(_rReadCharacters.getStr(), _rReadCharacters.getLength(), RTL_TEXTENCODING_ASCII_US)
-                        +=  ::rtl::OString("\" into an integer!"));
+                               (::rtl::OString("OPropertyImport::convertString: could not convert \"")
+                                +=  ::rtl::OString(_rReadCharacters.getStr(), _rReadCharacters.getLength(), RTL_TEXTENCODING_ASCII_US)
+                                +=  ::rtl::OString("\" into an integer!")).getStr());
                     if (TypeClass_SHORT == _rExpectedType.getTypeClass())
                         aReturn <<= (sal_Int16)nValue;
                     else
@@ -210,9 +210,9 @@ namespace xmloff
             #endif
                 _rImporter.GetMM100UnitConverter().convertDouble(nValue, _rReadCharacters);
                 OSL_ENSURE(bSuccess,
-                        ::rtl::OString("OPropertyImport::convertString: could not convert \"")
-                    +=  ::rtl::OString(_rReadCharacters.getStr(), _rReadCharacters.getLength(), RTL_TEXTENCODING_ASCII_US)
-                    +=  ::rtl::OString("\" into a double!"));
+                           (::rtl::OString("OPropertyImport::convertString: could not convert \"")
+                            +=  ::rtl::OString(_rReadCharacters.getStr(), _rReadCharacters.getLength(), RTL_TEXTENCODING_ASCII_US)
+                            +=  ::rtl::OString("\" into a double!")).getStr());
                 aReturn <<= (double)nValue;
             }
             break;
@@ -238,9 +238,9 @@ namespace xmloff
                 #endif
                     _rImporter.GetMM100UnitConverter().convertDouble(nValue, _rReadCharacters);
                     OSL_ENSURE(bSuccess,
-                            ::rtl::OString("OPropertyImport::convertString: could not convert \"")
-                        +=  ::rtl::OString(_rReadCharacters.getStr(), _rReadCharacters.getLength(), RTL_TEXTENCODING_ASCII_US)
-                        +=  ::rtl::OString("\" into a double!"));
+                               (::rtl::OString("OPropertyImport::convertString: could not convert \"")
+                                +=  ::rtl::OString(_rReadCharacters.getStr(), _rReadCharacters.getLength(), RTL_TEXTENCODING_ASCII_US)
+                                +=  ::rtl::OString("\" into a double!")).getStr());
 
                     // then convert it into the target type
                     switch (nType)
@@ -337,9 +337,9 @@ namespace xmloff
         }
         else
         {
-            OSL_FAIL(::rtl::OString("OPropertyElementsContext::CreateChildContext: unknown child element (\"")
-                +=  ::rtl::OString(_rLocalName.getStr(), _rLocalName.getLength(), RTL_TEXTENCODING_ASCII_US)
-                +=  ::rtl::OString("\")!"));
+            OSL_FAIL((::rtl::OString("OPropertyElementsContext::CreateChildContext: unknown child element (\"")
+                      +=  ::rtl::OString(_rLocalName.getStr(), _rLocalName.getLength(), RTL_TEXTENCODING_ASCII_US)
+                      +=  ::rtl::OString("\")!")).getStr());
             return new SvXMLImportContext(GetImport(), _nPrefix, _rLocalName);
         }
     }
@@ -385,9 +385,9 @@ namespace xmloff
         }
         else
         {
-            OSL_FAIL(::rtl::OString("OSinglePropertyContext::CreateChildContext: unknown child element (\"")
-                +=  ::rtl::OString(_rLocalName.getStr(), _rLocalName.getLength(), RTL_TEXTENCODING_ASCII_US)
-                +=  ::rtl::OString("\")!"));
+            OSL_FAIL((::rtl::OString("OSinglePropertyContext::CreateChildContext: unknown child element (\"")
+                      +=  ::rtl::OString(_rLocalName.getStr(), _rLocalName.getLength(), RTL_TEXTENCODING_ASCII_US)
+                      +=  ::rtl::OString("\")!")).getStr());
             return new SvXMLImportContext(GetImport(), _nPrefix, _rLocalName);
         }
     }
