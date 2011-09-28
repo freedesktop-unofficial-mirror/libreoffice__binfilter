@@ -36,6 +36,7 @@
 #include <stdlib.h>
 #endif
 
+#include <rtl/strbuf.hxx>
 #include <vcl/svapp.hxx>
 #include <math.h>
 #include <string.h>
@@ -109,14 +110,15 @@ SbxError ImpScan( const XubString& rWSrc, double& nVal, SbxDataType& rType,
         short comma = 0;    // >0: Nachkomma
         short ndig = 0;     // Anzahl Ziffern
         short ncdig = 0;    // Anzahl Ziffern nach Komma
-        ByteString aSearchStr( "0123456789DEde" );
+        rtl::OStringBuffer aSearchStr(RTL_CONSTASCII_STRINGPARAM(
+            "0123456789DEde"));
         // Kommas ergaenzen
-        aSearchStr += cNonIntntlComma;
+        aSearchStr.append(cNonIntntlComma);
         if( cIntntlComma != cNonIntntlComma )
-            aSearchStr += cIntntlComma;
+            aSearchStr.append(cIntntlComma);
         if( bOnlyIntntl )
-            aSearchStr += cIntntl1000;
-        const char* pSearchStr = aSearchStr.GetBuffer();
+            aSearchStr.append(cIntntl1000);
+        const char* pSearchStr = aSearchStr.getStr();
         while( strchr( pSearchStr, *p ) && *p )
         {
             // 1000er-Trenner ueberlesen
