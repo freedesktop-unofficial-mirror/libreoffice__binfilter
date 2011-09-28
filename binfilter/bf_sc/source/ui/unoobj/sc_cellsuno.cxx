@@ -55,6 +55,7 @@
 #include <bf_sch/memchrt.hxx>
 #include <bf_svtools/zformat.hxx>
 #include <rtl/uuid.h>
+#include <rtl/strbuf.hxx>
 #include <float.h>              // DBL_MIN
 
 #include <com/sun/star/awt/XBitmap.hpp>
@@ -108,9 +109,7 @@
 #include "rangeseq.hxx"
 #include "unowids.hxx"
 
-#ifndef __SGI_STL_LIST
 #include <list>
-#endif
 
 namespace binfilter {
 
@@ -783,11 +782,9 @@ void lcl_TestMap( const SfxItemPropertyMap* pMap )
             int nDiff = strcmp( pMap->pName, pNext->pName );
             if ( nDiff >= 0 )
             {
-                ByteString aErr("Reihenfolge: ");
-                aErr += pMap->pName;
-                aErr += '/';
-                aErr += pNext->pName;
-                OSL_FAIL( aErr.GetBuffer() );
+                rtl::OStringBuffer aErr("Reihenfolge: ");
+                aErr.append(pMap->pName).append('/').append(pNext->pName);
+                OSL_FAIL(aErr.getStr());
             }
         }
         pMap = pNext;

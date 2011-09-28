@@ -278,6 +278,7 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
 /*N*/                           const SvxFontItem& rFontItem,
 /*N*/                           SwInsHardBlankSoftHyph* pHBSH, BOOL bTo8 )
 /*N*/ {
+/*N*/   rtl::OStringBuffer aText8(rText8);
 /*N*/   sal_Bool bRet = sal_False;
 /*N*/   const SwpHints *pHints = rNd.GetpSwpHints();
 /*N*/   if( bTo8 )
@@ -308,9 +309,9 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
 /*N*/                   break;
 /*N*/               }
 /*N*/               if( bToBats )
-/*N*/                   rText8 += ConvStarSymbolCharToStarBats( c );
+/*N*/                   aText8.append(ConvStarSymbolCharToStarBats(c));
 /*N*/               else
-/*N*/                   rText8 += (sal_Char)c;
+/*N*/                   aText8.append(static_cast<sal_Char>(c));
 /*N*/           }
 /*N*/       }
 /*N*/       else
@@ -340,14 +341,15 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
 /*N*/               if( bToFF )
 /*N*/               {
 /*N*/                   if( nCopy < nPos )
-/*N*/                       rText8 += ByteString( rText.Copy(nCopy,nPos-nCopy),
-/*N*/                                           eEnc );
-/*N*/                   rText8 += '\xff';
+/*N*/                       aText8.append(rtl::OUStringToOString(
+                                rText.Copy(nCopy,nPos-nCopy), eEnc));
+/*N*/                   aText8.append('\xff');
 /*N*/                   nCopy = nPos + 1;
 /*N*/               }
 /*N*/           }
 /*N*/           if( nCopy < nEnd )
-/*N*/               rText8 += ByteString( rText.Copy(nCopy,nEnd-nCopy), eEnc );
+/*N*/               aText8.append(rtl::OUStringToOString(
+                        rText.Copy(nCopy,nEnd-nCopy), eEnc));
 /*N*/       }
 /*N*/   }
 /*N*/   else
@@ -362,7 +364,7 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
 /*N*/           bRet = bBatsToSymbol || bMathToSymbol;
 /*N*/           for( xub_StrLen nPos = nStart; nPos < nEnd; nPos++ )
 /*N*/           {
-/*N*/               sal_Char c = rText8.GetChar( nPos );
+/*N*/               sal_Char c = aText8[nPos];
 /*N*/               if( '\xff' == c && 0 != (pTAttr =
 /*N*/                       lcl_sw3io_hasTxtAttr( pHints, nPos+nOffset )) )
 /*N*/                   rText += GetCharOfTxtAttr( *pTAttr );
@@ -380,7 +382,7 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
 /*N*/           xub_StrLen nCopy = nStart;
 /*N*/           for( xub_StrLen nPos = nStart; nPos < nEnd; nPos++ )
 /*N*/           {
-/*N*/               sal_Char c = rText8.GetChar( nPos );
+/*N*/               sal_Char c = aText8[nPos];
 /*N*/               sal_Unicode cNew(0);
 /*N*/               if( '\xff' == c )
 /*N*/               {
@@ -391,7 +393,7 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
 /*N*/                       CHAR_HARDHYPHEN == cNew || CHAR_SOFTHYPHEN == cNew )
 /*N*/                   {
 /*N*/                       if( nCopy < nPos )
-/*N*/                           rText += String( rText8.Copy(nCopy,nPos-nCopy), eEnc );
+/*N*/                           rText += String(aText8.getStr()+nCopy,nPos-nCopy, eEnc);
 /*N*/                       if( pTAttr )
 /*N*/                           rText += GetCharOfTxtAttr( *pTAttr );
 /*N*/                       else
@@ -415,16 +417,17 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
 /*N*/                       CHAR_SOFTHYPHEN == ByteString_ConvertToUnicode( c, eEnc ) )
 /*N*/                   {
 /*N*/                       if( nCopy < nPos )
-/*N*/                           rText += String( rText8.Copy(nCopy,nPos-nCopy), eEnc );
+/*N*/                           rText += String(aText8.getStr()+nCopy,nPos-nCopy, eEnc);
 /*N*/                       rText += '-';
 /*N*/                       nCopy = nPos + 1;
 /*N*/                   }
 /*N*/               }
 /*N*/           }
 /*N*/           if( nCopy < nEnd )
-/*N*/               rText += String( rText8.Copy( nCopy, nEnd-nCopy ), eEnc );
+/*N*/               rText += String(aText8.getStr()+nCopy, nEnd-nCopy, eEnc);
 /*N*/       }
 /*N*/   }
+/*N*/   rText8 = aText8.makeStringAndClear();
 /*N*/   return bRet;
 /*N*/ }
 
