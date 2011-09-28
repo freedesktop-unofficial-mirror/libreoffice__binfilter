@@ -1086,26 +1086,7 @@ void SwXFrame::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
         else if(  rPropertyName.equalsAsciiL( SW_PROP_NAME(UNO_NAME_CHAIN_NEXT_NAME))
                || rPropertyName.equalsAsciiL( SW_PROP_NAME(UNO_NAME_CHAIN_PREV_NAME))
                )
-        {
-            OUString uTemp;
-            aValue >>= uTemp;
-            String sChainName(uTemp);
-            if(sChainName.Len())
-            {
-                sal_uInt16 nCount = pDoc->GetFlyCount(FLYCNTTYPE_FRM);
-
-                SwFrmFmt* pChain = 0;
-                for( sal_uInt16 i = 0; i < nCount; i++)
-                {
-                    SwFrmFmt* pLclFmt = pDoc->GetFlyNum(i, FLYCNTTYPE_FRM);
-                    if(sChainName == pLclFmt->GetName() )
-                    {
-                        pChain = pLclFmt;
-                        break;
-                    }
-                }
-            }
-        }
+        {}
         else if(FN_UNO_Z_ORDER == pCur->nWID)
         {
             sal_Int32 nZOrder = - 1;

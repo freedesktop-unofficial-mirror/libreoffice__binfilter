@@ -375,7 +375,6 @@ public:
     SwUnoCrsr*                  CreateCursorForSearch(::com::sun::star::uno::Reference< ::com::sun::star::text::XTextCursor > & xCrsr);
     SwUnoCrsr*                  FindAny(const ::com::sun::star::uno::Reference< ::com::sun::star::util::XSearchDescriptor > & xDesc,
                                             ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextCursor > & xCrsr, sal_Bool bAll,
-                                            sal_Int32& nResult,
                                             ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >  xLastResult);
 
     SwDocShell*                 GetDocShell() {return pDocShell;}

@@ -133,18 +133,6 @@ using ::osl::FileBase;
 #define SW_CREATE_DRAW_DEFAULTS         0x07
 
 
-SwTxtFmtColl *lcl_GetParaStyle(const String& rCollName, SwDoc* pDoc)
-{
-    SwTxtFmtColl* pColl = pDoc->FindTxtFmtCollByName( rCollName );
-    if( !pColl )
-    {
-        sal_uInt16 nId = SwStyleNameMapper::GetPoolIdFromUIName( rCollName, GET_POOLID_TXTCOLL );
-        if( USHRT_MAX != nId )
-            pColl = pDoc->GetTxtCollFromPool( nId );
-    }
-    return pColl;
-}
-
 const Sequence< sal_Int8 > & SwXTextDocument::getUnoTunnelId()
 {
     static Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
@@ -566,17 +554,11 @@ sal_Int32 SwXTextDocument::replaceAll(const Reference< util::XSearchDescriptor >
     const SwXTextSearch* pSearch = (const SwXTextSearch*)
             xDescTunnel->getSomething(SwXTextSearch::getUnoTunnelId());
 
-    int eRanges(FND_IN_BODY|FND_IN_SELALL);
-
     SearchOptions aSearchOpt;
     pSearch->FillSearchOptions( aSearchOpt );
 
-    SwDocPositions eStart = pSearch->bBack ? DOCPOS_END : DOCPOS_START;
-    SwDocPositions eEnd = pSearch->bBack ? DOCPOS_START : DOCPOS_END;
-
     // Suche soll ueberall stattfinden
     pUnoCrsr->SetRemainInSection(sal_False);
-    sal_uInt32 nResult;
     UnoActionContext aContext(pDocShell->GetDoc());
     //try attribute search first
     if(pSearch->HasSearchAttributes()||pSearch->HasReplaceAttributes())
@@ -593,21 +575,8 @@ sal_Int32 SwXTextDocument::replaceAll(const Reference< util::XSearchDescriptor >
                             0);
         pSearch->FillSearchItemSet(aSearch);
         pSearch->FillReplaceItemSet(aReplace);
-        nResult = 0;
     }
-    else if(pSearch->bStyles)
-    {
-        SwTxtFmtColl *pSearchColl = lcl_GetParaStyle(pSearch->sSearchText, pUnoCrsr->GetDoc());
-        SwTxtFmtColl *pReplaceColl = lcl_GetParaStyle(pSearch->sReplaceText, pUnoCrsr->GetDoc());;
-
-        nResult = 0;
-
-    }
-    else
-    {
-        nResult = 0;
-    }
-    return (sal_Int32)nResult;
+    return 0;
 
 }
 
@@ -624,7 +593,6 @@ Reference< util::XSearchDescriptor >  SwXTextDocument::createSearchDescriptor(vo
  * --------------------------------------------------*/
 SwUnoCrsr*  SwXTextDocument::FindAny(const Reference< util::XSearchDescriptor > & xDesc,
                                         Reference< XTextCursor > & xCrsr, sal_Bool bAll,
-                                                sal_Int32& nResult,
                                                 Reference< XInterface >  xLastResult)
 {
     Reference< XUnoTunnel > xDescTunnel(xDesc, UNO_QUERY);
@@ -692,10 +660,7 @@ SwUnoCrsr*  SwXTextDocument::FindAny(const Reference< util::XSearchDescriptor > 
         eRanges = FND_IN_OTHER;
     if(bAll) //immer - ueberall?
         eRanges = FND_IN_SELALL;
-    SwDocPositions eStart = !bAll ? DOCPOS_CURR : pSearch->bBack ? DOCPOS_END : DOCPOS_START;
-    SwDocPositions eEnd = pSearch->bBack ? DOCPOS_START : DOCPOS_END;
 
-    nResult = 0;
     sal_uInt16 nSearchProc = 0;
     while(nSearchProc < 2)
     {
@@ -709,19 +674,9 @@ SwUnoCrsr*  SwXTextDocument::FindAny(const Reference< util::XSearchDescriptor > 
                                 RES_TXTATR_INETFMT, RES_TXTATR_INETFMT,
                                 0);
             pSearch->FillSearchItemSet(aSearch);
-            nResult = 0;
-        }
-        else if(pSearch->bStyles)
-        {
-            SwTxtFmtColl *pSearchColl = lcl_GetParaStyle(pSearch->sSearchText, pUnoCrsr->GetDoc());
-            nResult = 0;
-        }
-        else
-        {
-            nResult = 0;
         }
         nSearchProc++;
-        if(nResult || (eRanges&(FND_IN_SELALL|FND_IN_OTHER)))
+        if(eRanges&(FND_IN_SELALL|FND_IN_OTHER))
             break;
         //second step - find in other
         eRanges = FND_IN_OTHER;
@@ -735,18 +690,12 @@ Reference< XIndexAccess >
 {
     SolarMutexGuard aGuard;
     Reference< XInterface >  xTmp;
-    sal_Int32 nResult = 0;
     Reference< XTextCursor >  xCrsr;
-    SwUnoCrsr* pResultCrsr = FindAny(xDesc, xCrsr, sal_True, nResult, xTmp);
+    SwUnoCrsr* pResultCrsr = FindAny(xDesc, xCrsr, sal_True, xTmp);
     if(!pResultCrsr)
         throw RuntimeException();
-    Reference< XIndexAccess >  xRet;
-    if(nResult)
-        xRet = new SwXTextRanges(pResultCrsr);
-    else
-        xRet = new SwXTextRanges();
     delete pResultCrsr;
-    return xRet;
+    return new SwXTextRanges();
 }
 
 Reference< XInterface >  SwXTextDocument::findFirst(const Reference< util::XSearchDescriptor > & xDesc)
@@ -754,22 +703,12 @@ Reference< XInterface >  SwXTextDocument::findFirst(const Reference< util::XSear
 {
     SolarMutexGuard aGuard;
     Reference< XInterface >  xTmp;
-    sal_Int32 nResult = 0;
     Reference< XTextCursor >  xCrsr;
-    SwUnoCrsr* pResultCrsr = FindAny(xDesc, xCrsr, sal_False, nResult, xTmp);
+    SwUnoCrsr* pResultCrsr = FindAny(xDesc, xCrsr, sal_False, xTmp);
     if(!pResultCrsr)
         throw RuntimeException();
-    Reference< XInterface >  xRet;
-    if(nResult)
-    {
-        Reference< XTextRange >  xTempRange = SwXTextRange::CreateTextRangeFromPosition(
-                        pDocShell->GetDoc(),
-                        *pResultCrsr->GetPoint(),
-                        pResultCrsr->GetMark());
-        xRet = *new SwXTextCursor(xTempRange->getText(), pResultCrsr);
-        delete pResultCrsr;
-    }
-    return xRet;
+    delete pResultCrsr;
+    return Reference< XInterface >();
 }
 
 Reference< XInterface >  SwXTextDocument::findNext(const Reference< XInterface > & xStartAt,
@@ -778,25 +717,14 @@ Reference< XInterface >  SwXTextDocument::findNext(const Reference< XInterface >
 {
     SolarMutexGuard aGuard;
     Reference< XInterface >  xTmp;
-    sal_Int32 nResult = 0;
     Reference< XTextCursor >  xCrsr;
     if(!xStartAt.is())
         throw RuntimeException();
-    SwUnoCrsr* pResultCrsr = FindAny(xDesc, xCrsr, sal_False, nResult, xStartAt);
+    SwUnoCrsr* pResultCrsr = FindAny(xDesc, xCrsr, sal_False, xStartAt);
     if(!pResultCrsr)
         throw RuntimeException();
-    Reference< XInterface >  xRet;
-    if(nResult)
-    {
-        Reference< XTextRange >  xTempRange = SwXTextRange::CreateTextRangeFromPosition(
-                        pDocShell->GetDoc(),
-                        *pResultCrsr->GetPoint(),
-                        pResultCrsr->GetMark());
-
-        xRet = *new SwXTextCursor(xTempRange->getText(), pResultCrsr);
-        delete pResultCrsr;
-    }
-    return xRet;
+    delete pResultCrsr;
+    return Reference< XInterface >();
 }
 
 Sequence< beans::PropertyValue > SwXTextDocument::getPagePrintSettings(void)

@@ -1343,7 +1343,7 @@ sal_Bool SwXTextTableCursor::goRight(sal_Int16 Count, sal_Bool Expand) throw( un
     return bRet;
 }
 
-sal_Bool SwXTextTableCursor::goUp(sal_Int16 Count, sal_Bool Expand) throw( uno::RuntimeException )
+sal_Bool SwXTextTableCursor::goUp(sal_Int16, sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
@@ -1357,7 +1357,7 @@ sal_Bool SwXTextTableCursor::goUp(sal_Int16 Count, sal_Bool Expand) throw( uno::
     return bRet;
 }
 
-sal_Bool SwXTextTableCursor::goDown(sal_Int16 Count, sal_Bool Expand) throw( uno::RuntimeException )
+sal_Bool SwXTextTableCursor::goDown(sal_Int16, sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;

@@ -1569,7 +1569,6 @@ void SwXNumberingRules::setNumberingRuleByIndex(
         SvxBrushItem* pSetBrush = 0;
         Size* pSetSize = 0;
         SwFmtVertOrient* pSetVOrient = 0;
-        BOOL bCharStyleNameSet = FALSE;
 
         for(sal_uInt16 i = 0; i < nPropNameCount && !bExcept && !bWrongArg; i++)
         {
@@ -1616,7 +1615,6 @@ void SwXNumberingRules::setNumberingRuleByIndex(
                 break;
                 case 4: //"CharStyleName",
                 {
-                    bCharStyleNameSet = TRUE;
                     OUString uTmp;
                     pData->aVal >>= uTmp;
                     String sCharFmtName;
