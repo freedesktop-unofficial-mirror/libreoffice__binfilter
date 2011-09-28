@@ -99,7 +99,6 @@ void _InitFilter()
     _SetFltPtr( nCnt, ReadSwg, FILTER_SWGV );
     _SetFltPtr( nCnt, new Sw6Reader, sSwDos );
     _SetFltPtr( nCnt, (ReadAscii = new AsciiReader), FILTER_BAS );
-    _SetFltPtr( nCnt, new W4WReader, FILTER_W4W );
     _SetFltPtr( nCnt, ( pRd = new ExcelReader ), sCExcel );
     _SetFltPtr( nCnt, pRd, sExcel );
     _SetFltPtr( nCnt, new LotusReader, sLotusD );

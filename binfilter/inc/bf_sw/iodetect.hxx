@@ -58,8 +58,7 @@ struct SwIoDetect
    inline Reader* GetReader() const { return pReader; }
 #endif
 
-    const sal_Char* IsReader(const sal_Char* pHeader, ULONG nInLen,
-        const String &rFileName) const;
+    const sal_Char* IsReader(const sal_Char* pHeader, ULONG nInLen) const;
 };
 
 
@@ -72,29 +71,10 @@ struct SwIoDetect
 #ifdef DEBUG_SH
 
 #define DEB_SH_SwIoEntry(sNm, cCharLen, pWrt, bDel) , SwIoEntry(sNm, cCharLen, pWrt, bDel)
-#define W4W_CHECK_FOR_INTERNAL_FILTER                          \
-    if( nW4WId == 3 )                                          \
-        for( nCnt = 0; nCnt < nFltrCount; nCnt++ )             \
-            if( 0 == ( pFilter = pFCntnr->GetFilter( nCnt ))-> \
-                GetUserData().Search( sW4W_Int ))              \
-                return pFilter;
-
-#define W4W_INFOBOX InfoBox(0, String("Textformat wurde nicht erkannt.")).Execute();
-
-#define W4W_FILTER_NOT_FOUND                                    \
-        aW4WName = String::CreateFromAscii("W4W-Filter Nr. ");  \
-        aW4WName += String::CreateFromInt32(nW4WId);            \
-        aW4WName += '.';                                        \
-        aW4WName += String::CreateFromInt32(nVersion);           \
-        aW4WName.AppendAscii(" detected, ist aber nicht installiert");\
-        InfoBox( 0, aW4WName ).Execute();
 
 #else
 
 #define DEB_SH_SwIoEntry(sNm, cCharLen, pWrt, bDel)
-#define W4W_CHECK_FOR_INTERNAL_FILTER
-#define W4W_INFOBOX
-#define W4W_FILTER_NOT_FOUND
 
 #endif
 
@@ -105,7 +85,7 @@ struct SwIoDetect
 #endif
 
 
-const USHORT MAXFILTER = 13;
+const USHORT MAXFILTER = 12;
 
 #define FORAMTNAME_SW4      "StarWriter 4.0"
 #define FORAMTNAME_SW3      "StarWriter 3.0"
@@ -119,7 +99,6 @@ sal_Char FILTER_SW4[]   = "CSW4";                            \
 sal_Char FILTER_SW5[]   = "CSW5";                            \
 sal_Char FILTER_BAS[]   = "BAS";                             \
 sal_Char FILTER_RTF[]   = "RTF";                             \
-sal_Char FILTER_W4W[]   = "W4W";                             \
 sal_Char FILTER_SWGV[]  = "SWGV";                            \
 sal_Char FILTER_SW3V[]  = "CSW3V";                           \
 sal_Char FILTER_SW4V[]  = "CSW4V";                           \
@@ -139,7 +118,6 @@ sal_Char sWW6[]         = "CWW6";                            \
 sal_Char FILTER_WW8[]   = "CWW8";                            \
 sal_Char FILTER_TEXT_DLG[] = "TEXT_DLG";                     \
 sal_Char FILTER_TEXT[]  = "TEXT";                            \
-sal_Char sW4W_Int[]         = "W4_INT";                      \
 sal_Char sDebug[]       = "DEBUG";                           \
 sal_Char sUndo[]        = "UNDO";                            \
 sal_Char FILTER_XML[]   = "CXML";                            \
@@ -156,12 +134,11 @@ SwIoDetect aReaderWriter[ MAXFILTER ] = {                      \
     {/* 4*/ SwIoEntry(FILTER_SWGV,    4,            FALSE)},   \
     {/* 5*/ SwIoEntry(sSwDos,         STRING_LEN,   TRUE)},    \
     {/* 6*/ SwIoEntry(FILTER_BAS,     STRING_LEN,   FALSE)},   \
-    {/* 7*/ SwIoEntry(FILTER_W4W,     3,            TRUE)},    \
-    {/* 8*/ SwIoEntry(sCExcel,        5,            TRUE)},    \
-    {/* 9*/ SwIoEntry(sExcel,         4,            FALSE)},   \
-    {/*10*/ SwIoEntry(sLotusD,        5,            TRUE)},    \
-    {/*11*/ SwIoEntry(sSwg1,          4,            FALSE)},   \
-    {/*12*/ SwIoEntry(FILTER_TEXT,    4,            TRUE)}     \
+    {/* 7*/ SwIoEntry(sCExcel,        5,            TRUE)},    \
+    {/* 8*/ SwIoEntry(sExcel,         4,            FALSE)},   \
+    {/* 9*/ SwIoEntry(sLotusD,        5,            TRUE)},    \
+    {/*10*/ SwIoEntry(sSwg1,          4,            FALSE)},   \
+    {/*11*/ SwIoEntry(FILTER_TEXT,    4,            TRUE)}     \
 };
 
 // Filter erkennung
@@ -194,8 +171,8 @@ struct W1_FIB
 #endif
 
 #define IO_DETECT_IMPL2 \
-const sal_Char* SwIoDetect::IsReader(const sal_Char* pHeader, ULONG nInLen, \
-    const String &rFileName) const              \
+const sal_Char* SwIoDetect::IsReader(const sal_Char* pHeader, ULONG nInLen )\
+    const              \
 {                                                                           \
     int bRet = FALSE;                                                       \
     if( FILTER_SWG == pName )                                          \
@@ -240,8 +217,6 @@ const sal_Char* SwIoDetect::IsReader(const sal_Char* pHeader, ULONG nInLen, \
     }                                                                       \
     else if (FILTER_TEXT == pName) \
         bRet = SwIoSystem::IsDetectableText(pHeader, nInLen); \
-    else if (FILTER_W4W == pName) \
-    bRet = SwIoSystem::IsDetectableW4W(rFileName); \
     return bRet ? pName : 0;                                       \
 }                                                                           \
 
@@ -379,7 +354,7 @@ bool SwIoSystem::IsFileFilter( SfxMedium& rMedium, const String& rFmtName,      
                     for( USHORT i = 0; i < MAXFILTER; ++i )                           \
                         if( aReaderWriter[i].IsFilter( rFmtName ) )                   \
                         {                                                             \
-                            bRet = 0 != aReaderWriter[i].IsReader( aBuffer, nBytesRead, rMedium.GetPhysicalName() );         \
+                            bRet = 0 != aReaderWriter[i].IsReader( aBuffer, nBytesRead );         \
                             break;                                                    \
                         }                                                             \
                 }                                                                     \
@@ -492,7 +467,7 @@ const SfxFilter* SwIoSystem::GetFileFilter( const String& rFileName,         \
         const SfxFilter* pLclFilter;                                         \
         const sal_Char* pNm;                                                 \
         for( USHORT n = 0; n < MAXFILTER; ++n )                              \
-            if( 0 != ( pNm = aReaderWriter[n].IsReader(aBuffer, nBytesRead, rFileName)) &&        \
+            if( 0 != ( pNm = aReaderWriter[n].IsReader(aBuffer, nBytesRead)) &&        \
                 0 != ( pLclFilter =  SwIoSystem::GetFilterOfFormat(          \
                                 String::CreateFromAscii(pNm), pFCntnr )))    \
                 return pLclFilter;                                           \
@@ -504,26 +479,6 @@ const SfxFilter* SwIoSystem::GetFileFilter( const String& rFileName,         \
     {                                                                        \
         if( pMedium )                                                        \
             pMedium->CloseInStream();                                        \
-        USHORT nVersion, nW4WId = AutoDetec( rFileName, nVersion );          \
-                                                                             \
-        if( 1 < nW4WId )                                                     \
-        {                                                                    \
-            String aW4WName( String::CreateFromAscii(FILTER_W4W ));          \
-            if( nW4WId < 10 )                                                \
-                aW4WName += '0';                                             \
-            aW4WName += String::CreateFromInt32(nW4WId);                     \
-            aW4WName += '_';                                                 \
-            aW4WName += String::CreateFromInt32(nVersion);                   \
-                                                                             \
-            for( USHORT nCnt = 0; nCnt < nFltrCount; ++nCnt )                \
-                if( 0 == ( pFilter = pFCntnr->GetFilter( nCnt ))->           \
-                    GetUserData().Search( aW4WName ))                        \
-                    return pFilter;                                          \
-                                                                             \
-            W4W_CHECK_FOR_INTERNAL_FILTER                                    \
-            W4W_FILTER_NOT_FOUND                                             \
-            return 0;                                                        \
-        }                                                                    \
     }                                                                        \
     return SwIoSystem::GetTextFilter( aBuffer, nBytesRead);                  \
 }                                                                            \
@@ -673,19 +628,6 @@ const SfxFilter* SwIoSystem::GetTextFilter( const sal_Char* pBuf, ULONG nInLen)\
     bool bAuto = IsDetectableText(pBuf, nInLen); \
     const sal_Char* pNm = bAuto ? FILTER_TEXT : FILTER_TEXT_DLG; \
     return SwIoSystem::GetFilterOfFormat( String::CreateFromAscii(pNm), 0 ); \
-} \
-\
-\
-bool SwIoSystem::IsDetectableW4W(const String& rFileName) \
-{ \
-    bool bRet(false); \
-    if (rFileName.Len()) \
-    { \
-        USHORT nVersion, nW4WId = AutoDetec( rFileName, nVersion );\
-        if (nW4WId > 1)\
-            bRet = true;\
-    }\
-    return bRet;\
 } \
 
 } //namespace binfilter

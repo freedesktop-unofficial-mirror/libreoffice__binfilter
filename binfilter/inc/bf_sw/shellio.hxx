@@ -380,7 +380,6 @@ extern sal_Char FILTER_SWG[];   // SWG-Filter
 extern sal_Char FILTER_RTF[];   // RTF-Filter
 extern sal_Char FILTER_TEXT[];  // Text-Filter mit Default-CodeSet
 extern sal_Char FILTER_BAS[];   // StarBasic (identisch mit ANSI)
-extern sal_Char FILTER_W4W[];   // W4W-Filter
 extern sal_Char FILTER_WW8[];   // WinWord 97-Filter
 extern sal_Char FILTER_SW3[];   // SW3-Storage Filter
 extern sal_Char FILTER_SW4[];   // SW4-Storage Filter

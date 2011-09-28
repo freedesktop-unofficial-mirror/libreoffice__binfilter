@@ -135,21 +135,10 @@ ULONG   SwDLL::DetectFilter( SfxMedium& rMedium, const SfxFilter** ppFilter,
             nRet = ERRCODE_ABORT;
 
 
-        else if( *ppFilter && (*ppFilter)->GetUserData().EqualsAscii( "W4W", 0, 3 )
-                    && pTmp->GetUserData().EqualsAscii( FILTER_TEXT, 0, 4 ) )
-        {
-            // Bug 95262 - if the user (or short  detect) select a
-            //              Word 4 Word filter, but the autodect of mastersoft
-            //              can't detect it, we normally return the ascii filter
-            //              But the user may have a change to use the W4W filter,
-            //              so the SFX must show now a dialog with the 2 filters
-            nRet = ERRCODE_SFX_CONSULTUSER;
-            *ppFilter = pTmp;
-        }
         // sollte der voreingestellte Filter ASCII sein und wir haben
         // ASCII erkannt, dann ist das ein gultiger Filter, ansonsten ist das
         // ein Fehler und wir wollen die Filterbox sehen
-        else if( pTmp->GetUserData().EqualsAscii( FILTER_TEXT ))
+        if( pTmp->GetUserData().EqualsAscii( FILTER_TEXT ))
         {
             // Bug 28974: "Text" erkannt, aber "Text Dos" "Text ..." eingestellt
             //  -> keine FilterBox, sondern den eingestellten Filter benutzen
