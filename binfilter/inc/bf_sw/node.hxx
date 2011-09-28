@@ -385,7 +385,6 @@ public:
     void SetCondFmtColl( SwFmtColl* );
     inline SwFmtColl* GetCondFmtColl() const;
 
-    BOOL IsAnyCondition( SwCollCondition& rTmp ) const;
     void ChkCondColl();
 //FEATURE::CONDCOLL
 

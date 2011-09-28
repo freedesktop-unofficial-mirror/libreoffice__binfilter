@@ -70,7 +70,6 @@ public:
     SdrView*            GetDrawView() {return pView;}
     SdrPageView*        GetPageView();
     void                RemovePageView();
-    ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >       GetInterface( SdrObject* pObj );
 
     // Die folgende Methode wird gerufen, wenn ein SvxShape-Objekt angelegt
     // werden soll. abgeleitete Klassen koennen hier eine Ableitung oder

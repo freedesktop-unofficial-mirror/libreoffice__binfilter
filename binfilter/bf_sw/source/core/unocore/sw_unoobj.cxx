@@ -738,23 +738,6 @@ SwXTextCursor::SwXTextCursor(uno::Reference< XText >  xParent, const SwPosition&
     pUnoCrsr->Add(this);
 }
 
-SwXTextCursor::SwXTextCursor(uno::Reference< XText >  xParent,
-    SwUnoCrsr* pSourceCrsr, CursorType eSet) :
-    aLstnrCntnr( (util::XSortable*)this),
-    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_CURSOR)),
-    xParentText(xParent),
-    pLastSortOptions(0),
-    eType(eSet)
-{
-    SwUnoCrsr* pUnoCrsr = pSourceCrsr->GetDoc()->CreateUnoCrsr(*pSourceCrsr->GetPoint(), sal_False);
-    if(pSourceCrsr->HasMark())
-    {
-        pUnoCrsr->SetMark();
-        *pUnoCrsr->GetMark() = *pSourceCrsr->GetMark();
-    }
-    pUnoCrsr->Add(this);
-}
-
 SwXTextCursor::~SwXTextCursor()
 {
     SwUnoCrsr* pUnoCrsr = GetCrsr();

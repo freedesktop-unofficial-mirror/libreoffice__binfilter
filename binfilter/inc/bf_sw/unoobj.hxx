@@ -317,7 +317,6 @@ protected:
 public:
     SwXTextCursor(::com::sun::star::uno::Reference< ::com::sun::star::text::XText >  xParent, const SwPosition& rPos,
                     CursorType eSet, SwDoc* pDoc, const SwPosition* pMark = 0);
-    SwXTextCursor(::com::sun::star::uno::Reference< ::com::sun::star::text::XText >  xParent, SwUnoCrsr* pSourceCrsr, CursorType eSet = CURSOR_ALL);
 
     static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId();
 
@@ -690,8 +689,6 @@ protected:
     virtual ~SwXTextRanges();
 public:
     SwXTextRanges();
-    SwXTextRanges(SwPaM* pCrsr);
-
 
     static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId();
 

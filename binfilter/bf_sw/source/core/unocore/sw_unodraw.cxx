@@ -218,24 +218,6 @@ void    SwFmDrawPage::RemovePageView()
     pPageView = 0;
 }
 
-uno::Reference< uno::XInterface >   SwFmDrawPage::GetInterface( SdrObject* pObj )
-{
-    uno::Reference< XInterface >  xShape;
-    if( pObj )
-    {
-        SwFrmFmt* pFmt = ::binfilter::FindFrmFmt( pObj );
-        SwXShape* pxShape = (SwXShape*)SwClientIter( *pFmt ).
-                                                First( TYPE( SwXShape ));
-        if(pxShape)
-        {
-            xShape =  *(cppu::OWeakObject*)pxShape;
-        }
-        else
-            xShape = pObj->getUnoShape();
-    }
-    return xShape;
-}
-
 SdrObject* SwFmDrawPage::_CreateSdrObject( const uno::Reference< drawing::XShape > & xShape ) throw ()
 {
     //TODO: stimmt das so - kann die Methode weg?

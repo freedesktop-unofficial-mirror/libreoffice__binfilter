@@ -1766,33 +1766,6 @@ SwXTextRanges::SwXTextRanges() :
 
 }
 
-SwXTextRanges::SwXTextRanges(SwPaM* pCrsr) :
-    pRangeArr(0)
-{
-    SwUnoCrsr* pUnoCrsr = pCrsr->GetDoc()->CreateUnoCrsr(*pCrsr->GetPoint());
-    if(pCrsr->HasMark())
-    {
-        pUnoCrsr->SetMark();
-        *pUnoCrsr->GetMark() = *pCrsr->GetMark();
-    }
-    if(pCrsr->GetNext() != pCrsr)
-    {
-        SwPaM *_pStartCrsr = (SwPaM *)pCrsr->GetNext();
-        do
-        {
-            //neuen PaM erzeugen
-            SwPaM* pPaM = _pStartCrsr->HasMark() ?
-                        new SwPaM(*_pStartCrsr->GetMark(), *_pStartCrsr->GetPoint()) :
-                            new SwPaM(*_pStartCrsr->GetPoint());
-            //und in den Ring einfuegen
-            pPaM->MoveTo(pUnoCrsr);
-
-        } while( (_pStartCrsr=(SwPaM *)_pStartCrsr->GetNext()) != pCrsr );
-    }
-
-    pUnoCrsr->Add(this);
-}
-
 SwXTextRanges::~SwXTextRanges()
 {
     SwUnoCrsr* pCrsr = GetCrsr();
