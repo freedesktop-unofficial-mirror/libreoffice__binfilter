@@ -60,21 +60,21 @@ namespace binfilter {
 /*N*/ };
 
 /*N*/ SwGoInDoc fnGoDoc         = &GoInDoc;
-/*N*/ SwGoInDoc fnGoSection = &GoInSection;
+/*N*/ SwGoInDoc fnGoSection     = &GoInSection;
 /*N*/ SwGoInDoc fnGoNode        = &GoInNode;
 /*N*/ SwGoInDoc fnGoCntnt       = &GoInCntnt;
-/*N*/ SwGoInDoc fnGoCntntCells= &GoInCntntCells;
+/*N*/ SwGoInDoc fnGoCntntCells  = &GoInCntntCells;
 
 /*N*/ SwWhichPara fnParaPrev    = &GoPrevPara;
 /*N*/ SwWhichPara fnParaCurr    = &GoCurrPara;
 /*N*/ SwWhichPara fnParaNext    = &GoNextPara;
-/*N*/ SwPosPara fnParaStart = &aFwrd;
+/*N*/ SwPosPara fnParaStart     = &aFwrd;
 /*N*/ SwPosPara fnParaEnd       = &aBwrd;
 
 /*N*/ SwWhichSection fnSectionPrev  = &GoPrevSection;
 /*N*/ SwWhichSection fnSectionCurr  = &GoCurrSection;
 /*N*/ SwWhichSection fnSectionNext  = &GoNextSection;
-/*N*/ SwPosSection fnSectionStart       = &aFwrd;
+/*N*/ SwPosSection fnSectionStart   = &aFwrd;
 /*N*/ SwPosSection fnSectionEnd     = &aBwrd;
 
 // Travelling in Tabellen
@@ -82,11 +82,11 @@ namespace binfilter {
 /*N*/ bool GotoCurrTable( SwPaM&, SwPosTable, bool bInReadOnly );
 /*N*/ bool GotoNextTable( SwPaM&, SwPosTable, bool bInReadOnly );
 
-/*N*/ SwWhichTable fnTablePrev = &GotoPrevTable;
-/*N*/ SwWhichTable fnTableCurr = &GotoCurrTable;
-/*N*/ SwWhichTable fnTableNext = &GotoNextTable;
-/*N*/ SwPosTable fnTableStart = &aFwrd;
-/*N*/ SwPosTable fnTableEnd = &aBwrd;
+/*N*/ SwWhichTable fnTablePrev  = &GotoPrevTable;
+/*N*/ SwWhichTable fnTableCurr  = &GotoCurrTable;
+/*N*/ SwWhichTable fnTableNext  = &GotoNextTable;
+/*N*/ SwPosTable fnTableStart   = &aFwrd;
+/*N*/ SwPosTable fnTableEnd     = &aBwrd;
 
 // Travelling in Bereichen
 /*N*/ bool GotoPrevRegion( SwPaM&, SwPosRegion, bool bInReadOnly );
@@ -94,12 +94,12 @@ namespace binfilter {
 /*N*/ bool GotoCurrRegionAndSkip( SwPaM&, SwPosRegion, bool bInReadOnly );
 /*N*/ bool GotoNextRegion( SwPaM&, SwPosRegion, bool bInReadOnly );
 
-/*N*/ SwWhichRegion fnRegionPrev = &GotoPrevRegion;
-/*N*/ SwWhichRegion fnRegionCurr = &GotoCurrRegion;
+/*N*/ SwWhichRegion fnRegionPrev    = &GotoPrevRegion;
+/*N*/ SwWhichRegion fnRegionCurr    = &GotoCurrRegion;
 /*N*/ SwWhichRegion fnRegionCurrAndSkip = &GotoCurrRegionAndSkip;
-/*N*/ SwWhichRegion fnRegionNext = &GotoNextRegion;
-/*N*/ SwPosRegion fnRegionStart = &aFwrd;
-/*N*/ SwPosRegion fnRegionEnd = &aBwrd;
+/*N*/ SwWhichRegion fnRegionNext    = &GotoNextRegion;
+/*N*/ SwPosRegion fnRegionStart     = &aFwrd;
+/*N*/ SwPosRegion fnRegionEnd       = &aBwrd;
 /*N*/
 /*N*/ SwMoveFn fnMoveBackward   = &aBwrd;
 /*N*/ SwMoveFn fnMoveForward    = &aFwrd;

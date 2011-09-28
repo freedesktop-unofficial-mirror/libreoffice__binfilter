@@ -31,40 +31,15 @@
 #pragma hdrstop
 #endif
 
-#include <float.h>
-
-
-#include <bf_sch/schdll.hxx>
-#include <bf_sch/memchrt.hxx>
-#include <vcl/window.hxx>
-
-#include <horiornt.hxx>
-
 #include <doc.hxx>
-#include <docary.hxx>
 
-#include <osl/diagnose.h>
-
-#include <ndindex.hxx>
-#include <ndtxt.hxx>
-#include <calc.hxx>
-#include <viewsh.hxx>
-#include <ndole.hxx>
-#include <cntfrm.hxx>
-#include <swtblfmt.hxx>
-#include <tblsel.hxx>
-#include <cellatr.hxx>
 namespace binfilter {
 
-/*N*/ IMPL_LINK( SwDoc, DoUpdateAllCharts, Timer *, EMPTYARG )
-/*N*/ {
-/*N*/   return 0;
-/*N*/ }
+IMPL_LINK( SwDoc, DoUpdateAllCharts, Timer *, EMPTYARG )
+{
 
-/*N*/ void SwDoc::SetTableName( SwFrmFmt& /*rTblFmt*/, const String& /*rNewName*/ )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+    return 0;   // DBG_BF_ASSERT <-- IMPL_LINK()
+}
 
 
 }

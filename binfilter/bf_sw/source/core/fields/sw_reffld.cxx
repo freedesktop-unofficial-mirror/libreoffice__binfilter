@@ -512,19 +512,6 @@ String SwGetRefField::GetPar2() const
 /*N*/   case FIELD_PROP_PAR1:
 /*N*/     {
 /*N*/         String  sTmp(GetPar1());
-/*N*/         if(REF_SEQUENCEFLD == nSubType)
-/*N*/         {
-/*N*/             sal_uInt16 nPoolId = SwStyleNameMapper::GetPoolIdFromUIName( sTmp, GET_POOLID_TXTCOLL );
-/*N*/             switch( nPoolId )
-/*N*/             {
-/*N*/                 case RES_POOLCOLL_LABEL_ABB:
-/*N*/                 case RES_POOLCOLL_LABEL_TABLE:
-/*N*/                 case RES_POOLCOLL_LABEL_FRAME:
-/*N*/                 case RES_POOLCOLL_LABEL_DRAWING:
-/*?*/                     SwStyleNameMapper::FillProgName(nPoolId, sTmp) ;
-/*N*/                 break;
-/*N*/             }
-/*N*/         }
 /*N*/         rAny <<= ::rtl::OUString(sTmp);
 /*N*/     }
 /*N*/     break;

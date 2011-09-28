@@ -1193,8 +1193,6 @@ public:
     // Charts der angegebenen Tabelle zum Update bewegen
     // update all charts, for that exists any table
     void UpdateAllCharts()          { DoUpdateAllCharts( 0 ); }
-    // Tabelle wird umbenannt und aktualisiert die Charts
-    void SetTableName( SwFrmFmt& rTblFmt, const String &rNewName );
 
     // returne zum Namen die im Doc gesetzte Referenz
     const SwFmtRefMark* GetRefMark( const String& rName ) const;
@@ -1255,9 +1253,6 @@ public:
     // fuer Drag&Move: ( z.B. RefMarks "verschieben" erlauben )
     sal_Bool IsCopyIsMove() const               { return bCopyIsMove; }
     void SetCopyIsMove( sal_Bool bFlag )        { bCopyIsMove = bFlag; }
-
-     SwDrawContact* GroupSelection( SdrView& );
-    void UnGroupSelection( SdrView& );
 
     SdrModel* _MakeDrawModel();
     inline SdrModel* MakeDrawModel()

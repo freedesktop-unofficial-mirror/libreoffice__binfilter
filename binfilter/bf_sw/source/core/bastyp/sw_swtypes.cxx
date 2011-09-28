@@ -126,12 +126,6 @@ IMPL_FIXEDMEMPOOL_NEWDEL( _SwCursor_SavePos, 20, 20 )
 /*N*/ }
 
 
-/*N*/ Locale CreateLocale( LanguageType /*eLanguage*/ )
-/*N*/ {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); Locale temp; return temp;
-/*N*/ }
-
-
 /*N*/ Reference< XHyphenator >  GetHyphenator()
 /*N*/ {
 /*N*/   return LinguMgr::GetHyphenator();

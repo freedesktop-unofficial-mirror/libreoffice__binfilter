@@ -569,16 +569,10 @@ uno::Reference< drawing::XShapeGroup >  SwXDrawPage::group(const uno::Reference<
                 {
                     UnoActionContext aContext(pDoc);
 
-                    SwDrawContact* pContact = pDoc->GroupSelection( *pPage->GetDrawView() );
                     pDoc->ChgAnchor( pPage->GetDrawView()->GetMarkList(), FLY_AT_CNTNT/*int eAnchorId*/,
                         sal_True, sal_False );
 
                     pPage->GetDrawView()->UnmarkAll();
-                    if(pContact)
-                    {
-                        uno::Reference< uno::XInterface >  xInt = pPage->GetInterface( pContact->GetMaster() );
-                        xRet = uno::Reference< drawing::XShapeGroup >(xInt, UNO_QUERY);
-                    }
                 }
             }
             pPage->RemovePageView();
@@ -600,7 +594,6 @@ void SwXDrawPage::ungroup(const uno::Reference< drawing::XShapeGroup > & xShapeG
             pPage->PreUnGroup(xShapeGroup);
             UnoActionContext aContext(pDoc);
 
-            pDoc->UnGroupSelection( *pPage->GetDrawView() );
             pDoc->ChgAnchor( pPage->GetDrawView()->GetMarkList(), FLY_AT_CNTNT/*int eAnchorId*/,
                         sal_True, sal_False );
         }

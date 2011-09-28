@@ -77,38 +77,6 @@ using namespace ::com::sun::star::linguistic2;
 
 /*N*/ SV_IMPL_VARARR_SORT( _ZSortFlys, _ZSortFly )
 
-/*************************************************************************
-|*
-|*  SwDoc::GroupSelection / SwDoc::UnGroupSelection
-|*
-|*************************************************************************/
-
-/*N*/ SwDrawContact* SwDoc::GroupSelection( SdrView& /*rDrawView*/ )
-/*N*/ {
-    // replace marked 'virtual' drawing objects by
-    // the corresponding 'master' drawing objects.
-DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*N*/ }
-
-
-/*N*/ void SwDoc::UnGroupSelection( SdrView& /*rDrawView*/ )
-/*N*/ {
-/*N*/ DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*************************************************************************
-|*
-|*  SwDoc::DeleteSelection()
-|*
-|*************************************************************************/
-
-
-/*************************************************************************
-|*
-|*  SwDoc::DeleteSelection()
-|*
-|*************************************************************************/
-
 /*N*/ _ZSortFly::_ZSortFly( const SwFrmFmt* pFrmFmt, const SwFmtAnchor* pFlyAn,
 /*N*/                     UINT32 nArrOrdNum )
 /*N*/   : pFmt( pFrmFmt ), pAnchor( pFlyAn ), nOrdNum( nArrOrdNum )
@@ -136,6 +104,7 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;
         }
 /*N*/ }
 } //namespace binfilter
+
 /*************************************************************************/
 // Wird auch vom Sw3-Reader gerufen, wenn ein Fehler beim Einlesen
 // des Drawing Layers auftrat. In diesem Fall wird der Layer komplett
@@ -385,10 +354,12 @@ SdrLayerID SwDoc::GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLa
 |*
 \************************************************************************/
 
-/*N*/ IMPL_LINK(SwDoc, CalcFieldValueHdl, EditFieldInfo*, /*pInfo*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/  return(0);
-/*N*/ }
+IMPL_LINK(SwDoc, CalcFieldValueHdl, EditFieldInfo*, /*pInfo*/)
+{
+    DBG_BF_ASSERT(0, "STRIP");  // IMPL_LINK()
+    return(0);
+}
+
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

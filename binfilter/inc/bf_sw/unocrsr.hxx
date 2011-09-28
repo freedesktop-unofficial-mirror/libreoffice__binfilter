@@ -47,8 +47,6 @@ public:
 
     virtual operator SwUnoCrsr* ();
 
-//  virtual SwCursor* Create( SwPaM* pRing = 0 ) const;
-
     // gibt es eine Selection vom Content in die Tabelle
     // Return Wert gibt an, ob der Crsr auf der alten Position verbleibt
     virtual bool IsSelOvr( int eFlags =
@@ -82,23 +80,18 @@ class SwUnoTableCrsr : public virtual SwUnoCrsr, public virtual SwTableCursor
 
 public:
     SwUnoTableCrsr( const SwPosition& rPos );
-    virtual ~SwUnoTableCrsr();
+    virtual ~SwUnoTableCrsr() {}
 
-//  virtual SwCursor* Create( SwPaM* pRing = 0 ) const;
-
-    virtual operator SwUnoCrsr* ();
-    virtual operator SwUnoTableCrsr* ();
-    virtual operator SwTableCursor* ();
+    virtual operator SwUnoCrsr* ()          { return this; }
+    virtual operator SwUnoTableCrsr* ()     { return this; }
+    virtual operator SwTableCursor* ()      { return this; }
 
     // gibt es eine Selection vom Content in die Tabelle
     // Return Wert gibt an, ob der Crsr auf der alten Position verbleibt
-    virtual bool IsSelOvr( int eFlags =
-                                ( SELOVER_CHECKNODESSECTION |
-                                  SELOVER_TOGGLE | SELOVER_CHANGEPOS ));
+    virtual bool IsSelOvr( int )    { return false; }
 
-    void MakeBoxSels();
-           SwCursor& GetSelRing()           { return aTblSel; }
-    const SwCursor& GetSelRing() const      { return aTblSel; }
+    SwCursor& GetSelRing()              { return aTblSel; }
+    const SwCursor& GetSelRing() const  { return aTblSel; }
 };
 
 

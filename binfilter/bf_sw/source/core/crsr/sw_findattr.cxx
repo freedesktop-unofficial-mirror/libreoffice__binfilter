@@ -32,17 +32,13 @@
 #endif
 
 
-
 #include <hintids.hxx>
-
-
 #include <txatbase.hxx>
-
 #include <horiornt.hxx>
-
 #include <doc.hxx>
 #include <swcrsr.hxx>
 #include <pamtyp.hxx>
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -67,119 +63,6 @@ using namespace ::com::sun::star::util;
         DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;                   // kein gueltiges TextAttribut
 /*N*/ }
-
-
-
-//------------------ Suche nach einem Text Attribut -----------------------
-
-// diese Funktion sucht in einem TextNode nach dem vorgegebenen Attribut.
-// Wird es gefunden, dann hat der SwPaM den Bereich der das Attribut
-// umspannt, unter Beachtung des Suchbereiches
-
-
-
-
-//------------------ Suche nach mehren Text Attributen -------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//------------------ Methoden vom SwCursor ---------------------------
-
-// Parameter fuer das Suchen vom Attributen
-struct SwFindParaAttr : public SwFindParas
-{
-    BOOL bValue;
-    const SfxItemSet *pSet, *pReplSet;
-    const SearchOptions *pSearchOpt;
-    SwCursor& rCursor;
-    ::utl::TextSearch* pSTxt;
-
-    SwFindParaAttr( const SfxItemSet& rSet, BOOL bNoCollection,
-                    const SearchOptions* pOpt, const SfxItemSet* pRSet,
-                    SwCursor& rCrsr )
-        : bValue( bNoCollection )
-        , pSet( &rSet )
-        , pReplSet( pRSet )
-        , pSearchOpt( pOpt )
-        , rCursor( rCrsr )
-        , pSTxt( 0 )
-        {}
-    ~SwFindParaAttr()   { delete pSTxt; }
-
-    virtual int Find( SwPaM* , SwMoveFn , const SwPaM*, bool bInReadOnly );
-     virtual int IsReplaceMode() const;
-};
-
-
-/*N*/int SwFindParaAttr::Find( SwPaM*, SwMoveFn, const SwPaM*, bool)
-/*N*/{
-DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*N*/ }
-
-
-/*N*/int SwFindParaAttr::IsReplaceMode() const
-/*N*/{
-DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*N*/ }
-
-// Suchen nach Attributen
-
-
-/*M*/ ULONG SwCursor::Find( const SfxItemSet& rSet, bool bNoCollections,
-/*M*/                   SwDocPositions nStart, SwDocPositions nEnde, BOOL& bCancel,
-/*M*/                   FindRanges eFndRngs,
-/*M*/                   const SearchOptions* pSearchOpt, const SfxItemSet* pReplSet )
-/*M*/ {
-/*M*/   // OLE-Benachrichtigung abschalten !!
-/*M*/   SwDoc* pDoc = GetDoc();
-/*M*/   Link aLnk( pDoc->GetOle2Link() );
-/*M*/   pDoc->SetOle2Link( Link() );
-/*M*/
-/*M*/   BOOL bReplace = ( pSearchOpt && ( pSearchOpt->replaceString.getLength() ||
-/*M*/                                   !rSet.Count() ) ) ||
-/*M*/                   (pReplSet && pReplSet->Count());
-/*M*/
-/*M*/   SwFindParaAttr aSwFindParaAttr( rSet, bNoCollections, pSearchOpt,
-/*M*/                                   pReplSet, *this );
-/*M*/
-/*M*/     ULONG nRet = FindAll(aSwFindParaAttr, nStart, nEnde, eFndRngs, bCancel );
-/*M*/   pDoc->SetOle2Link( aLnk );
-/*M*/   if( nRet && bReplace )
-/*M*/       pDoc->SetModified();
-/*M*/
-/*M*/   return nRet;
-/*M*/ }
-
 
 
 }

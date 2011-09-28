@@ -77,8 +77,6 @@ class SwCursor : public SwPaM
     _SwCursor_SavePos* pSavePos;
     BYTE nCursorBidiLevel;              // bidi level of the cursor
 
-    ULONG FindAll( SwFindParas& , SwDocPositions, SwDocPositions, FindRanges, BOOL& bCancel );
-
 protected:
     virtual _SwCursor_SavePos* CreateNewSavePos() const;
     void SaveState();
@@ -91,11 +89,11 @@ public:
     virtual ~SwCursor();
 
 
-    virtual operator SwShellCrsr* ();
-    virtual operator SwShellTableCrsr* ();
-    virtual operator SwTableCursor* ();
-    virtual operator SwUnoCrsr* ();
-    virtual operator SwUnoTableCrsr* ();
+    virtual operator SwShellCrsr* ()        { return NULL; }   // DBG_BF_ASSERT
+    virtual operator SwShellTableCrsr* ()   { return NULL; }   // DBG_BF_ASSERT
+    virtual operator SwTableCursor* ()      { return NULL; }   // DBG_BF_ASSERT
+    virtual operator SwUnoCrsr* ()          { return NULL; }   // DBG_BF_ASSERT
+    virtual operator SwUnoTableCrsr* ()     { return NULL; }   // DBG_BF_ASSERT
 
     inline operator const SwShellCrsr* () const;
     inline operator const SwShellTableCrsr* () const;
@@ -103,60 +101,15 @@ public:
     inline operator const SwUnoCrsr* () const;
     inline operator const SwUnoTableCrsr* () const;
 
-    virtual void SaveTblBoxCntnt( const SwPosition* pPos = 0 );
-
-
-    ULONG Find( const ::com::sun::star::util::SearchOptions& rSearchOpt,
-                SwDocPositions nStart, SwDocPositions nEnde,
-                BOOL& bCancel,
-                FindRanges = FND_IN_BODY,
-                int bReplace = FALSE );
-
-    ULONG Find( const SwTxtFmtColl& rFmtColl,
-                SwDocPositions nStart, SwDocPositions nEnde,
-                BOOL& bCancel,
-                FindRanges = FND_IN_BODY,
-                const SwTxtFmtColl* pReplFmt = 0 );
-
-    ULONG Find( const SfxItemSet& rSet, bool bNoCollections,
-                SwDocPositions nStart, SwDocPositions nEnde,
-                BOOL& bCancel,
-                FindRanges = FND_IN_BODY,
-                const ::com::sun::star::util::SearchOptions* pSearchOpt = 0,
-                const SfxItemSet* rReplSet = 0 );
-
-    bool IsStartWord()const;
-    bool IsEndWord() const;
-    bool GoStartWord();
-    bool GoEndWord();
-    bool GoNextWord();
-    bool GoPrevWord();
-
-    enum SentenceMoveType
-    {
-        NEXT_SENT,
-        PREV_SENT,
-        START_SENT,
-        END_SENT
-    };
-     bool GoSentence(SentenceMoveType eMoveType);
+    virtual void SaveTblBoxCntnt( const SwPosition* = NULL ) {} // DBG_BF_ASSERT
 
     bool LeftRight( BOOL bLeft, USHORT nCnt, USHORT nMode, BOOL bAllowVisual,
                         BOOL bInsertCrsr );
-    bool UpDown( BOOL bUp, USHORT nCnt = 1,
-                    Point* pPt = 0, long nUpDownX = 0 );
 
     bool Left( USHORT nCnt, USHORT nMode, BOOL bAllowVisual = FALSE )
                                     { return LeftRight( TRUE, nCnt, nMode, bAllowVisual, FALSE ); }
     bool Right( USHORT nCnt, USHORT nMode, BOOL bAllowVisual = FALSE )
                                     { return LeftRight( FALSE, nCnt, nMode, bAllowVisual, FALSE ); }
-    bool Up( USHORT nCnt = 1 )      { return UpDown( TRUE, nCnt ); }
-    bool Down( USHORT nCnt = 1 )    { return UpDown( FALSE, nCnt ); }
-    bool LeftMargin()               { DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
-    bool RightMargin()              { DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
-    bool SttDoc()                   { DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
-    bool EndDoc()                   { DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
-    bool GotoTblBox( const String& rName );
 
     bool MovePara( SwWhichPara, SwPosPara );
     bool MoveSection( SwWhichSection, SwPosSection );
@@ -173,7 +126,7 @@ public:
 
 
     // TRUE: an die Position kann der Cursor gesetzt werden
-    virtual bool IsAtValidPos( BOOL bPoint = TRUE ) const;
+    virtual bool IsAtValidPos( BOOL = TRUE ) const { return false; } // DBG_BF_ASSERT
 
     // darf der Cursor in ReadOnlyBereiche?
     bool IsReadOnlyAvailable() const;

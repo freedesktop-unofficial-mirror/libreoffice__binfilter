@@ -1112,7 +1112,7 @@ sal_Bool SwXTextCursor::isStartOfWord(void) throw( uno::RuntimeException )
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
     {
-        bRet = pUnoCrsr->IsStartWord();
+        bRet = sal_False;
     }
     else
     {
@@ -1128,7 +1128,7 @@ sal_Bool SwXTextCursor::isEndOfWord(void) throw( uno::RuntimeException )
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
     {
-        bRet = pUnoCrsr->IsEndWord();
+        bRet = sal_False;
     }
     else
     {
@@ -1152,10 +1152,7 @@ sal_Bool SwXTextCursor::gotoNextWord(sal_Bool Expand) throw( uno::RuntimeExcepti
                 bRet = pUnoCrsr->Right(1, CRSR_SKIP_CHARS);
         else
         {
-            bRet = pUnoCrsr->GoNextWord();
-            //if there is no next word within the current paragraph try to go to the start of the next paragraph
-            if(!bRet)
-                bRet = pUnoCrsr->MovePara(fnParaNext, fnParaStart);
+            bRet = pUnoCrsr->MovePara(fnParaNext, fnParaStart);
         }
     }
     else
@@ -1179,8 +1176,8 @@ sal_Bool SwXTextCursor::gotoPreviousWord(sal_Bool Expand) throw( uno::RuntimeExc
             bRet = pUnoCrsr->Left(1, CRSR_SKIP_CHARS);
         else
         {
-            bRet = pUnoCrsr->GoPrevWord();
-            if(pUnoCrsr->GetPoint()->nContent == 0)
+            bRet = sal_False;
+            if( pUnoCrsr->GetPoint()->nContent == 0 )
                 pUnoCrsr->Left(1, CRSR_SKIP_CHARS);
         }
     }
@@ -1199,10 +1196,7 @@ sal_Bool SwXTextCursor::gotoEndOfWord(sal_Bool Expand) throw( uno::RuntimeExcept
     if(pUnoCrsr)
     {
         SwXTextCursor::SelectPam(*pUnoCrsr, Expand);
-        if(!pUnoCrsr->IsEndWord())
-        {
-            bRet = pUnoCrsr->GoEndWord();
-        }
+        bRet = sal_False;
     }
     else
     {
@@ -1219,10 +1213,7 @@ sal_Bool SwXTextCursor::gotoStartOfWord(sal_Bool Expand) throw( uno::RuntimeExce
     if(pUnoCrsr)
     {
         SwXTextCursor::SelectPam(*pUnoCrsr, Expand);
-        if(!pUnoCrsr->IsStartWord())
-        {
-            bRet = pUnoCrsr->GoStartWord();
-        }
+        bRet = sal_False;
     }
     else
     {
@@ -1245,9 +1236,6 @@ sal_Bool SwXTextCursor::isStartOfSentence(void) throw( uno::RuntimeException )
         {
             SwCursor aCrsr(*pUnoCrsr->GetPoint());
             aCrsr.Right(1, CRSR_SKIP_CHARS);
-            if(aCrsr.GoSentence(SwCursor::START_SENT) &&
-                aCrsr.GetPoint()->nContent == pUnoCrsr->GetPoint()->nContent)
-                bRet = sal_True;
         }
     }
     else
@@ -1270,8 +1258,6 @@ sal_Bool SwXTextCursor::isEndOfSentence(void) throw( uno::RuntimeException )
         {
             SwCursor aCrsr(*pUnoCrsr->GetPoint());
             aCrsr.Left( 1, CRSR_SKIP_CHARS);
-            if(aCrsr.GoSentence(SwCursor::END_SENT) && aCrsr.GetPoint()->nContent == pUnoCrsr->GetPoint()->nContent)
-                bRet = sal_True;
         }
     }
     else
@@ -1288,19 +1274,10 @@ sal_Bool SwXTextCursor::gotoNextSentence(sal_Bool Expand) throw( uno::RuntimeExc
     {
         BOOL bWasEOS = isEndOfSentence();
         SwXTextCursor::SelectPam(*pUnoCrsr, Expand);
-        bRet = pUnoCrsr->GoSentence(SwCursor::NEXT_SENT);
-        if(!bRet)
-            bRet = pUnoCrsr->MovePara(fnParaNext, fnParaStart);
+        bRet = pUnoCrsr->MovePara(fnParaNext, fnParaStart);
 
-        // if at the end of the sentence (i.e. at the space after the '.')
-        // advance to next word in order for GoSentence to work properly
-        // next time and have isStartOfSentence return true after this call
-        if (!pUnoCrsr->IsStartWord())
-        {
-            BOOL bNextWord = pUnoCrsr->GoNextWord();
-            if (bWasEOS && !bNextWord)
-                bRet = sal_False;
-        }
+        if ( bWasEOS )
+            bRet = sal_False;
     }
     else
         throw uno::RuntimeException();
@@ -1315,16 +1292,9 @@ sal_Bool SwXTextCursor::gotoPreviousSentence(sal_Bool Expand) throw( uno::Runtim
     if(pUnoCrsr)
     {
         SwXTextCursor::SelectPam(*pUnoCrsr, Expand);
-        bRet = pUnoCrsr->GoSentence(SwCursor::PREV_SENT);
-        if(!bRet)
+        if(0 != (bRet = pUnoCrsr->MovePara(fnParaPrev, fnParaStart)))
         {
-            if(0 != (bRet = pUnoCrsr->MovePara(fnParaPrev, fnParaStart)))
-            {
-                pUnoCrsr->MovePara(fnParaCurr, fnParaEnd);
-                //at the end of a paragraph move to the sentence end again
-                //
-                pUnoCrsr->GoSentence(SwCursor::PREV_SENT);
-            }
+            pUnoCrsr->MovePara(fnParaCurr, fnParaEnd);
         }
     }
     else
@@ -1340,12 +1310,7 @@ sal_Bool SwXTextCursor::gotoStartOfSentence(sal_Bool Expand) throw( uno::Runtime
     if(pUnoCrsr)
     {
         SwXTextCursor::SelectPam(*pUnoCrsr, Expand);
-        // if we're at the para start then we wont move
-        // but bRet is also true if GoSentence failed but
-        // the start of the sentence is reached
-        bRet = SwUnoCursorHelper::IsStartOfPara(*pUnoCrsr)
-            || pUnoCrsr->GoSentence(SwCursor::START_SENT) ||
-            SwUnoCursorHelper::IsStartOfPara(*pUnoCrsr);
+        bRet = SwUnoCursorHelper::IsStartOfPara(*pUnoCrsr);
     }
     else
         throw uno::RuntimeException();
@@ -1360,13 +1325,10 @@ sal_Bool SwXTextCursor::gotoEndOfSentence(sal_Bool Expand) throw( uno::RuntimeEx
     if(pUnoCrsr)
     {
         SwXTextCursor::SelectPam(*pUnoCrsr, Expand);
-        // bRet is true if GoSentence() succeeded or if the
-        // MovePara() succeeded while the end of the para is
+        // bRet is true if the MovePara() succeeded while the end of the para is
         // not reached already
         sal_Bool bAlreadyParaEnd = SwUnoCursorHelper::IsEndOfPara(*pUnoCrsr);
-        bRet = !bAlreadyParaEnd &&
-                    (pUnoCrsr->GoSentence(SwCursor::END_SENT) ||
-                        pUnoCrsr->MovePara(fnParaCurr, fnParaEnd));
+        bRet = !bAlreadyParaEnd && (pUnoCrsr->MovePara(fnParaCurr, fnParaEnd));
 
     }
     else

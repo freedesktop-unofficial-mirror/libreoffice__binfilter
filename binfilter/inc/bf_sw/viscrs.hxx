@@ -68,9 +68,6 @@ public:
     bool IsVisible() const { return bIsVisible; }
     bool IsDragCrsr() const { return bIsDragCrsr; }
     void SetDragCrsr( BOOL bFlag = TRUE ) { bIsDragCrsr = bFlag; }
-
-#ifdef SW_CRSR_TIMER
-#endif
 };
 
 
@@ -105,7 +102,7 @@ class SwShellCrsr : public virtual SwCursor, public SwSelPaintRects
     Point aMkPt, aPtPt;
     const SwPosition* pPt;      // fuer Zuordung vom GetPoint() zum aPtPt
 
-    virtual void FillRects();   // fuer Table- und normalen Crsr
+    virtual void FillRects() {} // fuer Table- und normalen Crsr
 
 public:
     SwShellCrsr( const SwCrsrShell& rCrsrSh, const SwPosition &rPos );
@@ -128,11 +125,6 @@ public:
     bool UpDown( BOOL bUp, USHORT nCnt = 1 );
 
     // TRUE: an die Position kann der Cursor gesetzt werden
-
-#ifdef DBG_UTIL
-// JP 05.03.98: zum Testen des UNO-Crsr Verhaltens hier die Implementierung
-//              am sichtbaren Cursor
-#endif
 
     DECL_FIXEDMEMPOOL_NEWDEL( SwShellCrsr )
 };
@@ -159,10 +151,6 @@ public:
     virtual operator SwShellCrsr* ();
     virtual operator SwTableCursor* ();
 
-    // TRUE: an die Position kann der Cursor gesetzt werden
-
-// JP 05.03.98: zum Testen des UNO-Crsr Verhaltens hier die Implementierung
-//              am sichtbaren Cursor
 };
 
 

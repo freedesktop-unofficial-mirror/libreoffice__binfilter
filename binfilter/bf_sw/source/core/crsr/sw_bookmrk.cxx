@@ -64,13 +64,6 @@ namespace binfilter {
 
 /*N*/ SwBookmark::~SwBookmark()
 /*N*/ {
-/*N*/   // falls wir noch der DDE-Bookmark sind, dann muss der aus dem
-/*N*/   // Clipboard ausgetragen werden. Wird automatisch ueber DataChanged
-/*N*/   // ausgeloest.
-/*N*/   if( refObj.Is() )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   delete pPos1;
 /*N*/   if( pPos2 )
 /*N*/       delete pPos2;

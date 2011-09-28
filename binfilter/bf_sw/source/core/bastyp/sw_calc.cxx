@@ -931,9 +931,7 @@ static int
 /*M*/       case '0':   case '1':   case '2':   case '3':   case '4':
 /*M*/       case '5':   case '6':   case '7':   case '8':   case '9':
 /*M*/       case ',':
-/*M*/       case '.':   {DBG_BF_ASSERT(0, "STRIP");
-/*M*/                   }
-/*M*/                   break;
+/*M*/       case '.':   break;
 /*M*/
 /*M*/       case '[':   {
 /*M*/                       String aStr;

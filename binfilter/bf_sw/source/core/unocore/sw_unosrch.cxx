@@ -698,7 +698,6 @@ void SwXTextSearch::FillSearchOptions( SearchOptions& rSearchOpt ) const
     else
         rSearchOpt.algorithmType = SearchAlgorithms_ABSOLUTE;
 
-    rSearchOpt.Locale = CreateLocale( GetAppLanguage() );
     rSearchOpt.searchString = sSearchText;
     rSearchOpt.replaceString = sReplaceText;
 
@@ -706,11 +705,6 @@ void SwXTextSearch::FillSearchOptions( SearchOptions& rSearchOpt ) const
         rSearchOpt.transliterateFlags |= TransliterationModules_IGNORE_CASE;
     if( bWord )
         rSearchOpt.searchFlag |= SearchFlags::NORM_WORD_ONLY;
-
-//  bInSel: 1;  // wie geht das?
-//  TODO: pSearch->bStyles!
-//      inSelection??
-//      aSrchParam.SetSrchInSelection(TypeConversion::toBOOL(aVal));
 }
 
 

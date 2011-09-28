@@ -168,32 +168,10 @@ namespace binfilter {
 
 
 
-/*N*/ SwUnoTableCrsr::~SwUnoTableCrsr()
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ SwUnoTableCrsr::operator SwUnoCrsr* ()        { return this; }
-/*N*/ SwUnoTableCrsr::operator SwTableCursor* ()    { return this; }
-/*N*/ SwUnoTableCrsr::operator SwUnoTableCrsr* ()   { return this; }
-
-
-/*N*/ bool SwUnoTableCrsr::IsSelOvr( int /*eFlags*/ )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
-
-/*N*/ void SwUnoTableCrsr::MakeBoxSels()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-
 /*N*/ SwUnoCrsr* SwDoc::CreateUnoCrsr( const SwPosition& rPos, BOOL bTblCrsr )
 /*N*/ {
 /*N*/   SwUnoCrsr* pNew = NULL;
-/*N*/   if( bTblCrsr )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/   else
+/*N*/   if( !bTblCrsr )
 /*N*/       pNew = new SwUnoCrsr( rPos );
 /*N*/
 /*N*/   pUnoCrsrTbl->Insert( pNew, pUnoCrsrTbl->Count() );

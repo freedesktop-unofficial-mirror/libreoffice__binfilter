@@ -1870,12 +1870,6 @@ void SwXNumberingRules::setNumberingRuleByIndex(
                 aFmt.SetGraphicBrush( pSetBrush, pSetSize, SVX_VERT_NONE == eOrient ? 0 : &eOrient );
             }
         }
-        if((!bCharStyleNameSet || !sNewCharStyleNames[(sal_uInt16)nIndex].Len()) &&
-                aFmt.GetNumberingType() == NumberingType::BITMAP && !aFmt.GetCharFmt()
-                    && SwXNumberingRules::GetInvalidStyle() != sNewCharStyleNames[(sal_uInt16)nIndex])
-        {
-            SwStyleNameMapper::FillProgName ( RES_POOLCHR_BUL_LEVEL, sNewCharStyleNames[(sal_uInt16)nIndex] );
-        }
         delete pSetBrush;
         delete pSetSize;
         delete pSetVOrient;

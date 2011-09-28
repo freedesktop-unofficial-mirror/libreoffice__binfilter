@@ -63,30 +63,13 @@ long SwSelPaintRects::nPixPtY = 0;
 MapMode* SwSelPaintRects::pMapMode = 0;
 
 
-
-//#define SHOW_BOOKMARKS
-//#define SHOW_REDLINES
-
 #ifdef SHOW_BOOKMARKS
-
-
-
-
-
-
 #define SHOWBOOKMARKS1( nAct )          ShowBookmarks( GetShell(),nAct );
-
 #else
-
 #define SHOWBOOKMARKS1( nAct )
 #endif
+
 #ifdef SHOW_REDLINES
-
-
-
-
-
-
 #define SHOWREDLINES1( nAct )           ShowRedlines( GetShell(),nAct );
 #else
 #define SHOWREDLINES1( nAct )
@@ -114,29 +97,12 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 
 /*N*/ void SwSelPaintRects::Hide()
 /*N*/ {
-/*N*/   for( USHORT n = 0; n < Count(); ++n )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   SwRects::Remove( 0, Count() );
 /*N*/ }
 
 /*N*/ SwShellCrsr::~SwShellCrsr() {}
 
 /*N*/ SwShellCrsr::operator SwShellCrsr* () { return this; }
-
-
-/*N*/ void SwShellCrsr::FillRects()
-/*N*/ {
-/*N*/   // die neuen Rechtecke berechnen
-/*N*/   if( HasMark() &&
-/*N*/       GetPoint()->nNode.GetNode().IsCntntNode() &&
-/*N*/       GetPoint()->nNode.GetNode().GetCntntNode()->GetFrm() &&
-/*N*/       (GetMark()->nNode == GetPoint()->nNode ||
-/*N*/       (GetMark()->nNode.GetNode().IsCntntNode() &&
-/*N*/        GetMark()->nNode.GetNode().GetCntntNode()->GetFrm() )  ))
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/ }
-
-// TRUE: an die Position kann der Cursor gesetzt werden
 
 /*N*/ SwShellTableCrsr::~SwShellTableCrsr() {}
 

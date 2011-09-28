@@ -593,31 +593,19 @@ sal_Int32 SwXTextDocument::replaceAll(const Reference< util::XSearchDescriptor >
                             0);
         pSearch->FillSearchItemSet(aSearch);
         pSearch->FillReplaceItemSet(aReplace);
-        BOOL bCancel;
-        nResult = (sal_Int32)pUnoCrsr->Find( aSearch, !pSearch->bStyles,
-                    eStart, eEnd, bCancel,
-                    (FindRanges)eRanges,
-                    pSearch->sSearchText.Len() ? &aSearchOpt : 0,
-                    &aReplace );
+        nResult = 0;
     }
     else if(pSearch->bStyles)
     {
         SwTxtFmtColl *pSearchColl = lcl_GetParaStyle(pSearch->sSearchText, pUnoCrsr->GetDoc());
         SwTxtFmtColl *pReplaceColl = lcl_GetParaStyle(pSearch->sReplaceText, pUnoCrsr->GetDoc());;
 
-        BOOL bCancel;
-        nResult = pUnoCrsr->Find( *pSearchColl,
-                    eStart, eEnd, bCancel,
-                    (FindRanges)eRanges, pReplaceColl );
+        nResult = 0;
 
     }
     else
     {
-        BOOL bCancel;
-        nResult = pUnoCrsr->Find( aSearchOpt,
-            eStart, eEnd, bCancel,
-            (FindRanges)eRanges,
-            sal_True );
+        nResult = 0;
     }
     return (sal_Int32)nResult;
 
@@ -721,29 +709,16 @@ SwUnoCrsr*  SwXTextDocument::FindAny(const Reference< util::XSearchDescriptor > 
                                 RES_TXTATR_INETFMT, RES_TXTATR_INETFMT,
                                 0);
             pSearch->FillSearchItemSet(aSearch);
-            BOOL bCancel;
-            nResult = (sal_Int32)pUnoCrsr->Find( aSearch, !pSearch->bStyles,
-                        eStart, eEnd, bCancel,
-                        (FindRanges)eRanges,
-                        pSearch->sSearchText.Len() ? &aSearchOpt : 0,
-                        0 );
+            nResult = 0;
         }
         else if(pSearch->bStyles)
         {
             SwTxtFmtColl *pSearchColl = lcl_GetParaStyle(pSearch->sSearchText, pUnoCrsr->GetDoc());
-            SwTxtFmtColl *pReplaceColl = 0;
-            BOOL bCancel;
-            nResult = (sal_Int32)pUnoCrsr->Find( *pSearchColl,
-                        eStart, eEnd, bCancel,
-                        (FindRanges)eRanges, pReplaceColl );
+            nResult = 0;
         }
         else
         {
-            BOOL bCancel;
-            nResult = (sal_Int32)pUnoCrsr->Find( aSearchOpt,
-                    eStart, eEnd, bCancel,
-                    (FindRanges)eRanges,
-                    /*int bReplace =*/sal_False );
+            nResult = 0;
         }
         nSearchProc++;
         if(nResult || (eRanges&(FND_IN_SELALL|FND_IN_OTHER)))

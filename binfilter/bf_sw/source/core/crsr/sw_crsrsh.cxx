@@ -67,10 +67,6 @@ using namespace ::com::sun::star::util;
 
 /*N*/ SwPaM* SwCrsrShell::GetCrsr( bool /*bMakeTblCrsr*/ ) const
 /*N*/ {
-/*N*/   if( pTblCrsr )
-/*N*/   {
-        DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/   return pCurCrsr;
 /*N*/ }
 
