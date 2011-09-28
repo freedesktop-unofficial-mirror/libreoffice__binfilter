@@ -567,14 +567,11 @@ SfxModule* ScModuleDummy::Load()
 /*N*/
 /*N*/       rStr.Seek( 0 );
 /*N*/       const int nTrySize = 80;
-/*N*/       ByteString aHeader;
 /*N*/       for ( int j = 0; j < nTrySize && !rStr.IsEof(); j++ )
 /*N*/       {
 /*N*/           sal_Char c;
 /*N*/           rStr >> c;
-/*N*/           aHeader += c;
 /*N*/       }
-/*N*/       aHeader += '\0';
 
         // test for HTML
 
