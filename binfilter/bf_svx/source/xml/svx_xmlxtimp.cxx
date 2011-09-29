@@ -154,7 +154,7 @@ private:
 /*N*/               }
 /*N*/           }
 /*N*/       }
-/*N*/       catch( uno::Exception& e )
+/*N*/       catch (const uno::Exception&)
 /*N*/       {
 /*N*/       }
 /*N*/   }
@@ -313,7 +313,7 @@ private:
 /*N*/       if( pGraphicHelper )
 /*N*/           SvXMLGraphicHelper::Destroy( pGraphicHelper );
 /*N*/   }
-/*N*/   catch( uno::Exception& e )
+/*N*/   catch (const uno::Exception&)
 /*N*/   {
 /*N*/       bRet = sal_False;
 /*N*/   }

@@ -109,11 +109,7 @@ void B3dTransformationSet::PostSetObjectTrans()
 |*
 \************************************************************************/
 
-#if ! defined ICC && ! defined __GNUC__
-void B3dTransformationSet::SetOrientation( Vector3D& aVRP, Vector3D& aVPN, Vector3D& aVUP)
-#else
 void B3dTransformationSet::SetOrientation( Vector3D aVRP, Vector3D aVPN, Vector3D aVUP)
-#endif
 {
     aOrientation.Identity();
     aOrientation.Orientation(Point4D(aVRP), aVPN, aVUP);

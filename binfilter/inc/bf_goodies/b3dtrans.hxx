@@ -153,15 +153,9 @@ public:
     const Matrix4D& GetInvObjectTrans() { return aInvObjectTrans; }
 
     // Orientation
-#if ! defined ICC && ! defined __GNUC__
-    void SetOrientation(Vector3D& aVRP = Vector3D(0.0,0.0,1.0),
-        Vector3D& aVPN = Vector3D(0.0,0.0,1.0),
-        Vector3D& aVUP = Vector3D(0.0,1.0,0.0));
-#else
     void SetOrientation(Vector3D aVRP = Vector3D(0.0,0.0,1.0),
         Vector3D aVPN = Vector3D(0.0,0.0,1.0),
         Vector3D aVUP = Vector3D(0.0,1.0,0.0));
-#endif
     const Matrix4D& GetOrientation() { return aOrientation; }
     const Matrix4D& GetInvOrientation() { return aInvOrientation; }
 
