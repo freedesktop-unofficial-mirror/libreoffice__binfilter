@@ -85,7 +85,6 @@
 #include "docpool.hxx"
 #include "docfunc.hxx"
 #include "dbdocfun.hxx"
-#include "olinefun.hxx"
 #include "hints.hxx"
 #include "cell.hxx"
 #include "undotab.hxx"
@@ -6915,100 +6914,43 @@ void SAL_CALL ScTableSheetObj::group( const table::CellRangeAddress& rRange,
                                         table::TableOrientation nOrientation )
                                     throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
-    ScDocShell* pDocSh = GetDocShell();
-    if ( pDocSh )
-    {
-        BOOL bColumns = ( nOrientation == table::TableOrientation_COLUMNS );
-        ScRange aGroupRange;
-        ScUnoConversion::FillScRange( aGroupRange, rRange );
-        ScOutlineDocFunc aFunc(*pDocSh);
-        aFunc.MakeOutline( aGroupRange, bColumns, TRUE, TRUE );
-    }
+    DBG_BF_ASSERT(0, "STRIP");
 }
 
 void SAL_CALL ScTableSheetObj::ungroup( const table::CellRangeAddress& rRange,
                                         table::TableOrientation nOrientation )
                                     throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
-    ScDocShell* pDocSh = GetDocShell();
-    if ( pDocSh )
-    {
-        BOOL bColumns = ( nOrientation == table::TableOrientation_COLUMNS );
-        ScRange aGroupRange;
-        ScUnoConversion::FillScRange( aGroupRange, rRange );
-        ScOutlineDocFunc aFunc(*pDocSh);
-        aFunc.RemoveOutline( aGroupRange, bColumns, TRUE, TRUE );
-    }
+    DBG_BF_ASSERT(0, "STRIP");
 }
 
 void SAL_CALL ScTableSheetObj::autoOutline( const table::CellRangeAddress& rRange )
                                     throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
-    ScDocShell* pDocSh = GetDocShell();
-    if ( pDocSh )
-    {
-        ScRange aFormulaRange;
-        ScUnoConversion::FillScRange( aFormulaRange, rRange );
-        ScOutlineDocFunc aFunc(*pDocSh);
-        aFunc.AutoOutline( aFormulaRange, TRUE, TRUE );
-    }
+    DBG_BF_ASSERT(0, "STRIP");
 }
 
 void SAL_CALL ScTableSheetObj::clearOutline() throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
-    ScDocShell* pDocSh = GetDocShell();
-    if ( pDocSh )
-    {
-        USHORT nTab = GetTab_Impl();
-        ScOutlineDocFunc aFunc(*pDocSh);
-        aFunc.RemoveAllOutlines( nTab, TRUE, TRUE );
-    }
+    DBG_BF_ASSERT(0, "STRIP");
 }
 
 void SAL_CALL ScTableSheetObj::hideDetail( const table::CellRangeAddress& rRange )
                                             throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
-    ScDocShell* pDocSh = GetDocShell();
-    if ( pDocSh )
-    {
-        ScRange aMarkRange;
-        ScUnoConversion::FillScRange( aMarkRange, rRange );
-        ScOutlineDocFunc aFunc(*pDocSh);
-        aFunc.HideMarkedOutlines( aMarkRange, TRUE, TRUE );
-    }
+    DBG_BF_ASSERT(0, "STRIP");
 }
 
 void SAL_CALL ScTableSheetObj::showDetail( const table::CellRangeAddress& rRange )
                                             throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
-    ScDocShell* pDocSh = GetDocShell();
-    if ( pDocSh )
-    {
-        ScRange aMarkRange;
-        ScUnoConversion::FillScRange( aMarkRange, rRange );
-        ScOutlineDocFunc aFunc(*pDocSh);
-        aFunc.ShowMarkedOutlines( aMarkRange, TRUE, TRUE );
-    }
+    DBG_BF_ASSERT(0, "STRIP");
 }
 
 void SAL_CALL ScTableSheetObj::showLevel( sal_Int16 nLevel, table::TableOrientation nOrientation )
                                             throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
-    ScDocShell* pDocSh = GetDocShell();
-    if ( pDocSh )
-    {
-        BOOL bColumns = ( nOrientation == table::TableOrientation_COLUMNS );
-        USHORT nTab = GetTab_Impl();
-        ScOutlineDocFunc aFunc(*pDocSh);
-        aFunc.SelectLevel( nTab, bColumns, nLevel, TRUE, TRUE, TRUE );
-    }
+    DBG_BF_ASSERT(0, "STRIP");
 }
 
 // XProtectable

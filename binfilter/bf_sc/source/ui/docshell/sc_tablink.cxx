@@ -373,12 +373,6 @@ namespace binfilter {
 /*M*/   pDocShell = new ScDocShell( SFX_CREATE_MODE_INTERNAL );
 /*M*/   aRef = pDocShell;
 /*M*/
-/*M*/   ScDocument* pDoc = pDocShell->GetDocument();
-/*M*/   if( pDoc )
-/*M*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*M*/   }
-/*M*/
 /*M*/   pDocShell->DoLoad( pMedium );
 /*M*/
 /*M*/   String aNew = GetOptions(*pMedium);         // Optionen werden beim Laden per Dialog gesetzt

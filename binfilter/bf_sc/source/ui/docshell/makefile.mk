@@ -1,7 +1,7 @@
 #*************************************************************************
 #
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
-# 
+#
 # Copyright 2000, 2010 Oracle and/or its affiliates.
 #
 # OpenOffice.org - a multi-platform office productivity suite
@@ -53,7 +53,6 @@ SLOFILES =  \
         $(SLO)$/sc_dbdocimp.obj 	\
         $(SLO)$/sc_impex.obj	\
         $(SLO)$/sc_docfunc.obj	\
-        $(SLO)$/sc_olinefun.obj	\
         $(SLO)$/sc_pntlock.obj \
         $(SLO)$/sc_sizedev.obj \
         $(SLO)$/sc_editable.obj
