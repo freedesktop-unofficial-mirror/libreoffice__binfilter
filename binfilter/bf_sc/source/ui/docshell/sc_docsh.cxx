@@ -537,23 +537,6 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*?*/           else
 /*?*/               OSL_FAIL("Calc3/4: kein Storage");
 /*N*/       }
-/*N*/       else if (aFltName.EqualsAscii(pFilterXML))
-/*?*/       {   DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/       else if (aFltName.EqualsAscii(pFilterSc10))
-/*N*/       {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       else if (aFltName.EqualsAscii(pFilterLotus))
-/*N*/       {
-DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       else if ( aFltName.EqualsAscii(pFilterExcel4) || aFltName.EqualsAscii(pFilterExcel5) ||
-/*N*/                  aFltName.EqualsAscii(pFilterExcel95) || aFltName.EqualsAscii(pFilterExcel97) ||
-/*N*/                  aFltName.EqualsAscii(pFilterEx4Temp) || aFltName.EqualsAscii(pFilterEx5Temp) ||
-/*N*/                  aFltName.EqualsAscii(pFilterEx95Temp) || aFltName.EqualsAscii(pFilterEx97Temp) )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterAscii))
 /*N*/       {
 /*N*/           SfxItemSet*  pSet = rMedium.GetItemSet();
@@ -614,17 +597,8 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           bSetColWidths = TRUE;
 /*N*/           bSetSimpleTextColWidths = TRUE;
 /*N*/       }
-/*N*/       else if (aFltName.EqualsAscii(pFilterDBase))
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterDif))
 /*N*/       {
-/*?*/           SvStream* pStream = rMedium.GetInStream();
-/*?*/           if (pStream)
-/*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
 /*?*/           bSetColWidths = TRUE;
 /*?*/           bSetSimpleTextColWidths = TRUE;
 /*N*/       }
@@ -653,14 +627,26 @@ DBG_BF_ASSERT(0, "STRIP");
 /*?*/           bSetColWidths = TRUE;
 /*?*/           bSetSimpleTextColWidths = TRUE;
 /*N*/       }
-/*N*/       else if (aFltName.EqualsAscii(pFilterRtf))
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       else if (aFltName.EqualsAscii(pFilterHtml) || aFltName.EqualsAscii(pFilterHtmlWebQ))
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
+            else if (
+                       aFltName.EqualsAscii(pFilterExcel4)
+                    || aFltName.EqualsAscii(pFilterExcel5)
+                    || aFltName.EqualsAscii(pFilterExcel95)
+                    || aFltName.EqualsAscii(pFilterExcel97)
+                    || aFltName.EqualsAscii(pFilterEx4Temp)
+                    || aFltName.EqualsAscii(pFilterEx5Temp)
+                    || aFltName.EqualsAscii(pFilterEx95Temp)
+                    || aFltName.EqualsAscii(pFilterEx97Temp)
+                    || aFltName.EqualsAscii(pFilterXML)
+                    || aFltName.EqualsAscii(pFilterSc10)
+                    || aFltName.EqualsAscii(pFilterLotus)
+                    || aFltName.EqualsAscii(pFilterDBase)
+                    || aFltName.EqualsAscii(pFilterRtf)
+                    || aFltName.EqualsAscii(pFilterHtml)
+                    || aFltName.EqualsAscii(pFilterHtmlWebQ)
+                    )
+            {
+                // Ignore these filters; Don't let the else generate an error
+            }
 /*N*/       else
 /*N*/       {
 /*N*/           if (!GetError())
