@@ -291,15 +291,6 @@ void ScViewData::SetTabNo( USHORT nNewTab )
 /*N*/   if (pDocShell)
 /*N*/       nPPTX = nPPTX / pDocShell->GetOutputFactor();   // Faktor ist Drucker zu Bildschirm
 /*N*/   nPPTY = ScGlobal::nScreenPPTY * (double) GetZoomY();
-/*N*/
-/*N*/   //  #83616# if detective objects are present,
-/*N*/   //  try to adjust horizontal scale so the most common column width has minimal rounding errors,
-/*N*/   //  to avoid differences between cell and drawing layer output
-/*N*/
-/*N*/   if ( pDoc && pDoc->HasDetectiveObjects(nTabNo) )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/ }
 
 //------------------------------------------------------------------

@@ -150,7 +150,6 @@ sal_Int16 SAL_CALL ScFilterOptionsObj::execute() throw(uno::RuntimeException)
         if ( xInputStream.is() )
             pInStream = ::utl::UcbStreamHelper::CreateStream( xInputStream );
 
-        DBG_BF_ASSERT(0, "STRIP");
         delete pInStream;
     }
     else
@@ -214,7 +213,6 @@ sal_Int16 SAL_CALL ScFilterOptionsObj::execute() throw(uno::RuntimeException)
         }
 
         ScImportOptions aOptions( cAsciiDel, cStrDel, eEncoding);
-        DBG_BF_ASSERT(0, "STRIP");
     }
 
     xInputStream.clear();   // don't hold the stream longer than necessary

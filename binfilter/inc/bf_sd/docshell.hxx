@@ -56,7 +56,6 @@ class SdStyleSheetPool;
 class FrameView;
 class SdDrawDocument;
 class SdView;
-class FuPoor;
 class SdPage;
 class SfxPrinter;
 struct SdrDocumentStreamInfo;

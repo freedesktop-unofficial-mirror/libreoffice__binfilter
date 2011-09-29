@@ -263,10 +263,6 @@ namespace binfilter {
 /*N*/       bChangeRow = ( nStartRow == 0 && nEndRow == MAXROW );
 /*N*/       if ( bChangeCol && bChangeRow )
 /*?*/           bFound = pDoc->GetPrintArea( nPrintTab, nEndCol, nEndRow, bNotes );
-/*N*/       else if ( bChangeCol )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/       else if ( bChangeRow )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/       if (!bFound)
 /*N*/           return FALSE;   // leer
@@ -618,25 +614,6 @@ namespace binfilter {
 /*N*/   aFieldData.aTime = rTime;
 /*N*/ }
 
-
-//  Rahmen wird nach innen gezeichnet
-
-
-
-
-
-
-
-
-/*!!!!!!!!!!!       Notizen in Tabelle markieren ??????????????????????????
-
-    if (aTableParam.bNotes)
-    {
-        pDev->SetMapMode(aOffsetMode);
-        aOutputData.PrintNoteMarks(aNotePosList);
-        pDev->SetMapMode(aLogicMode);
-    }
-*/
 
 
 /*N*/ void ScPrintFunc::MakeEditEngine()

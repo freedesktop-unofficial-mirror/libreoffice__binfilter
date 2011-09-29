@@ -127,8 +127,6 @@ private:
     ScViewDataTable*    pThisTab;                   // Daten der angezeigten Tabelle
     ScDocShell*         pDocShell;
     ScDocument*         pDoc;
-//  ScDBFunc*           pView;
-//  ScTabViewShell*     pViewShell;
     EditView*           pEditView[4];               // gehoert dem Fenster
     ScViewOptions*      pOptions;
     EditView*           pSpellingView;
@@ -234,9 +232,6 @@ public:
 
     double          GetPPTX() const { return nPPTX; }
     double          GetPPTY() const { return nPPTY; }
-
-    void            GetMultiArea( ScRangeListRef& /*rRange*/ ){DBG_BF_ASSERT(0, "STRIP");}
-
 
     BOOL            IsAnyFillMode()             { return nFillMode != SC_FILL_NONE; }
     BOOL            IsFillMode()                { return nFillMode == SC_FILL_FILL; }

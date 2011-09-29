@@ -37,7 +37,6 @@ namespace binfilter {
 class ScDocument;
 class ScDocShell;
 class SdrUndoAction;
-class ScRefUndoData;
 
 //----------------------------------------------------------------------------
 
