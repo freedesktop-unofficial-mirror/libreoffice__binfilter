@@ -154,7 +154,7 @@ namespace binfilter {
 /*N*/ void SfxPtrArr::Insert( USHORT nPos, void* rElem )
 /*N*/ {
 /*N*/   DBG_MEMTEST();
-/*N*/   DBG_ASSERT( (nUsed+1) < ( USHRT_MAX / sizeof(void*) ), "array too large" );
+/*N*/   DBG_ASSERT( sal_Int32(nUsed+1) < sal_Int32( USHRT_MAX / sizeof(void*) ), "array too large" );
 /*N*/   // musz das Array umkopiert werden?
 /*N*/   if ( nUnused == 0 )
 /*N*/   {
