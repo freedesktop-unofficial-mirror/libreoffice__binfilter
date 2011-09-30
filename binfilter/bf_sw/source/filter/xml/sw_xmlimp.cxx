@@ -61,7 +61,6 @@
 #include <poolfmt.hxx>
 #include <ndtxt.hxx>
 #include <pam.hxx>
-#include <editsh.hxx>
 
 #include "xmlimp.hxx"
 

@@ -51,7 +51,6 @@
 
 #include <doc.hxx>
 #include <pam.hxx>
-#include <editsh.hxx>
 #include <hints.hxx>
 #include <docsh.hxx>
 #include <ndtxt.hxx>

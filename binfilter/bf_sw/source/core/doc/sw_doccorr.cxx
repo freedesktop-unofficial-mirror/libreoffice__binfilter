@@ -37,7 +37,6 @@
 #include <doc.hxx>
 #include <rootfrm.hxx>
 #include <viscrs.hxx>
-#include <editsh.hxx>
 #include <bookmrk.hxx>
 #include <mvsave.hxx>
 #include <docary.hxx>

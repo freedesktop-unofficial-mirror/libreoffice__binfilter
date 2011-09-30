@@ -44,7 +44,6 @@
 #include <redline.hxx>
 #include <docary.hxx>
 #include <viscrs.hxx>
-#include <editsh.hxx>
 #include <unocrsr.hxx>
 namespace binfilter {
 

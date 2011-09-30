@@ -36,7 +36,7 @@
 
 #include <doc.hxx>
 #include <cntfrm.hxx>
-#include <editsh.hxx>
+#include <crsrsh.hxx>
 #include <frmfmt.hxx>
 #include <viscrs.hxx>
 #include <ndtxt.hxx>

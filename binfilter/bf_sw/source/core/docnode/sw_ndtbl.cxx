@@ -57,19 +57,12 @@
 #include <docary.hxx>
 #include <redline.hxx>
 #include <tblrwcl.hxx>
-#include <editsh.hxx>
 
 #include <node2lay.hxx>
 
 #include <comcore.hrc>
 
 #include "docsh.hxx"
-
-#ifdef _MSAVE_HXX
-#endif
-
-#ifdef LINUX
-#endif
 
 #include <ndtxt.hxx>
 namespace binfilter {

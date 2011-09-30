@@ -47,7 +47,6 @@
 #include <fldupde.hxx>
 #include <linkenum.hxx>
 #include <bf_sfx2/printer.hxx>
-#include <editsh.hxx>
 #include <bf_sfx2/docinf.hxx>
 #include <drawdoc.hxx>
 #include <bf_svtools/zforlist.hxx>

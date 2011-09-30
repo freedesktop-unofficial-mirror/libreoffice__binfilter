@@ -54,7 +54,7 @@
 #include <osl/diagnose.h>
 
 #include <pam.hxx>
-#include <editsh.hxx>
+#include <swtable.hxx>
 #include <swbaslnk.hxx>
 #include <swserv.hxx>
 #include <ndgrf.hxx>

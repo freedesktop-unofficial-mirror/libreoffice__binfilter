@@ -51,7 +51,6 @@
 #include <horiornt.hxx>
 
 #include <doc.hxx>
-#include <editsh.hxx>
 #include <pagedesc.hxx>
 #include <poolfmt.hxx>
 #include <fltini.hxx>

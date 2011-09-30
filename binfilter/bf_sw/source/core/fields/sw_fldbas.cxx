@@ -44,7 +44,7 @@
 
 #include <osl/diagnose.h>
 #include <viscrs.hxx>
-#include <editsh.hxx>
+#include <crsrsh.hxx>
 #include <docfld.hxx>
 #include <docufld.hxx>
 #include <shellres.hxx>

@@ -67,7 +67,6 @@
 #include <swbaslnk.hxx>
 #include <pagefrm.hxx>
 #include <viscrs.hxx>
-#include <editsh.hxx>
 #include <pam.hxx>
 namespace binfilter {
 

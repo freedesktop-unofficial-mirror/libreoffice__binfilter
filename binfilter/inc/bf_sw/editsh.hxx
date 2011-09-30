@@ -38,6 +38,7 @@
 #include <itabenum.hxx>
 #include <swdbdata.hxx>
 #include <com/sun/star/linguistic2/XSpellAlternatives.hpp>
+
 namespace com { namespace sun { namespace star { namespace uno {
     template < class > class Sequence;
 }}}}
@@ -231,7 +232,7 @@ public:
     const SvNumberFormatter* GetNumberFormatter() const
     {   return ((SwEditShell*)this)->GetNumberFormatter();  }
 
-    virtual ~SwEditShell();
+    virtual ~SwEditShell() {}
 
 private:
     // fuer METWARE:

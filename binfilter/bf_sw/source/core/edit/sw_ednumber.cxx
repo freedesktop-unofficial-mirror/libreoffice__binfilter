@@ -34,7 +34,6 @@
 
 #include <horiornt.hxx>
 
-#include <editsh.hxx>
 #include <edimp.hxx>
 #include <doc.hxx>
 #include <ndtxt.hxx>

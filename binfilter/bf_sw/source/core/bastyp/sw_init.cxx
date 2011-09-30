@@ -110,7 +110,6 @@
 #include <fmtruby.hxx>
 #include <tgrditem.hxx>
 #include <hfspacingitem.hxx>
-#include <editsh.hxx>
 #include <init.hxx>
 #include <paratr.hxx>
 #include <grfatr.hxx>

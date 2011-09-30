@@ -59,7 +59,6 @@
 #include <doc.hxx>
 #include <hints.hxx>
 #include <txtfrm.hxx>
-#include <editsh.hxx>
 #include <docary.hxx>
 
 #include <bf_svx/xoutx.hxx>

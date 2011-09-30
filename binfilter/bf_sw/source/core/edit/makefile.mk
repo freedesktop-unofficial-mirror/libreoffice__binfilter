@@ -1,7 +1,7 @@
 #*************************************************************************
 #
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
-# 
+#
 # Copyright 2000, 2010 Oracle and/or its affiliates.
 #
 # OpenOffice.org - a multi-platform office productivity suite
@@ -42,11 +42,7 @@ INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
 SLOFILES =	\
-        $(SLO)$/sw_edfld.obj \
-        $(SLO)$/sw_ednumber.obj \
-        $(SLO)$/sw_edredln.obj \
-        $(SLO)$/sw_edtab.obj \
-        $(SLO)$/sw_edws.obj
+        $(SLO)$/sw_ednumber.obj
 
 # --- Targets -------------------------------------------------------
 

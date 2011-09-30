@@ -50,7 +50,7 @@
 #include <section.hxx>
 #include "comcore.hrc"
 #include <viscrs.hxx>
-#include "editsh.hxx"
+
 namespace binfilter {
 
 using namespace ::com::sun::star;

@@ -44,7 +44,6 @@
 #include <hints.hxx>
 #include <ndtxt.hxx>
 #include <viscrs.hxx>
-#include <editsh.hxx>
 #include <docsh.hxx>
 namespace binfilter {
 
