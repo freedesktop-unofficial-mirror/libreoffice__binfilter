@@ -572,7 +572,7 @@ USHORT lcl_ScRawTokenOffset()
 
 /*N*/  ScToken* ScFAPToken::GetFAPOrigToken() const            { return pOrigToken; }
 
-BOOL ScFAPToken::operator==( const ScToken& r ) const
+BOOL ScFAPToken::operator==( const ScToken& ) const
 {
     DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
     return FALSE;

@@ -6910,21 +6910,21 @@ void SAL_CALL ScTableSheetObj::clearArrows() throw(uno::RuntimeException)
 
 // XSheetOutline
 
-void SAL_CALL ScTableSheetObj::group( const table::CellRangeAddress& rRange,
-                                        table::TableOrientation nOrientation )
+void SAL_CALL ScTableSheetObj::group( const table::CellRangeAddress&,
+                                        table::TableOrientation )
                                     throw(uno::RuntimeException)
 {
     DBG_BF_ASSERT(0, "STRIP");
 }
 
-void SAL_CALL ScTableSheetObj::ungroup( const table::CellRangeAddress& rRange,
-                                        table::TableOrientation nOrientation )
+void SAL_CALL ScTableSheetObj::ungroup( const table::CellRangeAddress&,
+                                        table::TableOrientation )
                                     throw(uno::RuntimeException)
 {
     DBG_BF_ASSERT(0, "STRIP");
 }
 
-void SAL_CALL ScTableSheetObj::autoOutline( const table::CellRangeAddress& rRange )
+void SAL_CALL ScTableSheetObj::autoOutline( const table::CellRangeAddress& )
                                     throw(uno::RuntimeException)
 {
     DBG_BF_ASSERT(0, "STRIP");
@@ -6935,19 +6935,19 @@ void SAL_CALL ScTableSheetObj::clearOutline() throw(uno::RuntimeException)
     DBG_BF_ASSERT(0, "STRIP");
 }
 
-void SAL_CALL ScTableSheetObj::hideDetail( const table::CellRangeAddress& rRange )
+void SAL_CALL ScTableSheetObj::hideDetail( const table::CellRangeAddress& )
                                             throw(uno::RuntimeException)
 {
     DBG_BF_ASSERT(0, "STRIP");
 }
 
-void SAL_CALL ScTableSheetObj::showDetail( const table::CellRangeAddress& rRange )
+void SAL_CALL ScTableSheetObj::showDetail( const table::CellRangeAddress& )
                                             throw(uno::RuntimeException)
 {
     DBG_BF_ASSERT(0, "STRIP");
 }
 
-void SAL_CALL ScTableSheetObj::showLevel( sal_Int16 nLevel, table::TableOrientation nOrientation )
+void SAL_CALL ScTableSheetObj::showLevel( sal_Int16, table::TableOrientation )
                                             throw(uno::RuntimeException)
 {
     DBG_BF_ASSERT(0, "STRIP");
