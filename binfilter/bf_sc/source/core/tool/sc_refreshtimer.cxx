@@ -55,10 +55,10 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void ScRefreshTimer::SetRefreshDelay( ULONG /*nSeconds*/ )
-/*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+void ScRefreshTimer::SetRefreshDelay( ULONG /*nSeconds*/ )
+{
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
+}
 
 
 

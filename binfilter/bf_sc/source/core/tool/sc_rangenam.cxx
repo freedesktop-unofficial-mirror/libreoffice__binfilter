@@ -289,27 +289,6 @@ namespace binfilter {
 /*N*/   return BOOL( pCode->GetNextReference() != NULL );
 /*N*/ }
 
-// bei TransferTab von einem in ein anderes Dokument anpassen,
-// um Referenzen auf die eigene Tabelle mitzubekommen
-
-
-
-/*N*/ void ScRangeData::ReplaceRangeNamesInUse( const ScIndexMap& /*rMap*/ )
-/*N*/ {
-/*N*/   BOOL bCompile = FALSE;
-/*N*/   for ( ScToken* p = pCode->First(); p; p = pCode->Next() )
-/*N*/   {
-/*N*/       if ( p->GetOpCode() == ocName )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/   }
-/*N*/   if ( bCompile )
-/*N*/   {
-/*N*/       ScCompiler aComp( pDoc, aPos, *pCode );
-/*N*/       aComp.CompileTokenArray();
-/*N*/   }
-/*N*/ }
 
 
 /*N*/ void ScRangeData::ValidateTabRefs()
@@ -500,15 +479,6 @@ namespace binfilter {
 /*N*/   else
 /*N*/       return NULL;
 /*N*/ }
-
-
-
-/*N*/ void ScRangeName::UpdateTabRef(USHORT /*nOldTable*/, USHORT /*nFlag*/, USHORT /*nNewTable*/)
-/*N*/ {
-/*N*/   for (USHORT i=0; i<nCount; i++)
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 
 
 

@@ -133,10 +133,6 @@ namespace binfilter {
 /*N*/               nRowEnd    = aEndPos.GetRow();
 /*N*/               bResult    = TRUE;
 /*N*/           }
-/*N*/           else
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
 /*N*/       }
 /*N*/   }
 /*N*/   else if( eScope==RUTL_DBASE )
@@ -185,9 +181,6 @@ namespace binfilter {
 /*N*/       nColEnd  ( r.nColEnd ),     nRowEnd  ( r.nRowEnd )
 /*N*/ {
 /*N*/ }
-
-//------------------------------------------------------------------------
-
 
 //------------------------------------------------------------------------
 

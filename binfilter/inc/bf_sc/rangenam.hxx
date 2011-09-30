@@ -141,8 +141,6 @@ public:
 
     void            ValidateTabRefs();
 
-    void            ReplaceRangeNamesInUse( const ScIndexMap& rMap );
-
     static void     MakeValidName( String& rName );
 #ifdef WNT
     static int __cdecl  QsortNameCompare( const void*, const void* );
@@ -190,7 +188,6 @@ public:
 /*N*/   void                    UpdateReference(UpdateRefMode eUpdateRefMode,
 /*N*/                               const ScRange& rRange,
 /*N*/                               short nDx, short nDy, short nDz );
-    void                    UpdateTabRef(USHORT nTable, USHORT nFlag, USHORT nNewTable = 0);
 /*N*/   void                    UpdateTranspose( const ScRange& rSource, const ScAddress& rDest );
 /*N*/   void                    UpdateGrow( const ScRange& rArea, USHORT nGrowX, USHORT nGrowY );
     virtual BOOL            Insert(DataObject* pDataObject);

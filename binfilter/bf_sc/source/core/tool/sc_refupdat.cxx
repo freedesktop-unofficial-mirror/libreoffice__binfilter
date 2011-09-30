@@ -299,15 +299,6 @@ namespace binfilter {
 /*N*/           }
 /*N*/       }
 /*N*/   }
-/*N*/   else if (eUpdateRefMode == URM_MOVE)
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/   else if (eUpdateRefMode == URM_REORDER)
-/*N*/   {
-/*?*/       //  bisher nur fuer nDz (MoveTab)
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   if ( eRet == UR_NOTHING )
 /*N*/   {

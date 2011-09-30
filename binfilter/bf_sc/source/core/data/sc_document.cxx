@@ -257,7 +257,6 @@ namespace binfilter {
 /*N*/               ScRange aRange( 0,0,nPos, MAXCOL,MAXROW,MAXTAB );
 /*N*/               xColNameRanges->UpdateReference( URM_INSDEL, this, aRange, 0,0,1 );
 /*N*/               xRowNameRanges->UpdateReference( URM_INSDEL, this, aRange, 0,0,1 );
-/*N*/               pRangeName->UpdateTabRef( nPos, 1 );
 /*N*/               pDBCollection->UpdateReference(
 /*N*/                                   URM_INSDEL, 0,0,nPos, MAXCOL,MAXROW,MAXTAB, 0,0,1 );
 /*N*/               if (pPivotCollection)
@@ -319,7 +318,6 @@ namespace binfilter {
 /*N*/               aRange.aEnd.SetTab( MAXTAB );
 /*N*/               xColNameRanges->UpdateReference( URM_INSDEL, this, aRange, 0,0,-1 );
 /*N*/               xRowNameRanges->UpdateReference( URM_INSDEL, this, aRange, 0,0,-1 );
-/*N*/               pRangeName->UpdateTabRef( nTab, 2 );
 /*N*/               pDBCollection->UpdateReference(
 /*N*/                                   URM_INSDEL, 0,0,nTab, MAXCOL,MAXROW,MAXTAB, 0,0,-1 );
 /*N*/               if (pPivotCollection)
@@ -1073,13 +1071,6 @@ void ScDocument::GetDataArea( USHORT, USHORT&, USHORT&, USHORT&, USHORT&, BOOL )
 /*N*/           pFormatExchangeList = NULL;
 /*N*/           if ( bRangeNameReplace )
 /*N*/           {
-/*N*/               // first update all inserted named formulas if they contain other
-/*N*/               // range names and used indices changed
-/*N*/               for (i = 0; i < nClipRangeNames; i++)       //! DB-Bereiche Pivot-Bereiche auch
-/*N*/               {
-/*N*/                   if ( pClipRangeNames[i] )
-/*N*/                       pClipRangeNames[i]->ReplaceRangeNamesInUse( aClipRangeMap );
-/*N*/               }
 /*N*/               // then update the formulas, they might need the just updated range names
 /*N*/               USHORT nC1_b = nCol1;
 /*N*/               USHORT nR1_b = nRow1;
