@@ -59,7 +59,6 @@
 #include <docsh.hxx>
 #include <section.hxx>
 #include <shellio.hxx>
-#include <edimp.hxx>
 #include <cntfrm.hxx>
 #include <pagefrm.hxx>
 #include <bf_svtools/eitem.hxx>
@@ -549,14 +548,7 @@ void setNumberingProperty(const Any& rValue, SwPaM& rPam)
                 }
                 UnoActionContext aAction(pDoc);
 
-                if( rPam.GetNext() != &rPam )           // Mehrfachselektion ?
-                {
-                    SwPamRanges aRangeArr( rPam );
-                    SwPaM aPam( *rPam.GetPoint() );
-                    for( sal_uInt16 n = 0; n < aRangeArr.Count(); ++n )
-                        pDoc->SetNumRule( aRangeArr.SetPam( n, aPam ), aRule );
-                }
-                else
+                if( rPam.GetNext() == &rPam )           // Mehrfachselektion ?
                     pDoc->SetNumRule( rPam, aRule );
 
 
@@ -605,7 +597,6 @@ void resetCrsrPropertyValue(const SfxItemPropertyMap* pMap, SwPaM& rPam)
     switch(pMap->nWID)
     {
         case FN_UNO_PARA_STYLE :
-//          lcl_SetTxtFmtColl(aValue, pUnoCrsr);
         break;
         case FN_UNO_PAGE_STYLE :
         break;
@@ -613,14 +604,7 @@ void resetCrsrPropertyValue(const SfxItemPropertyMap* pMap, SwPaM& rPam)
         {
             UnoActionContext aAction(pDoc);
 
-            if( rPam.GetNext() != &rPam )           // Mehrfachselektion ?
-            {
-                SwPamRanges aRangeArr( rPam );
-                SwPaM aPam( *rPam.GetPoint() );
-                for( sal_uInt16 n = 0; n < aRangeArr.Count(); ++n )
-                    pDoc->SetNodeNumStart( *aRangeArr.SetPam( n, aPam ).GetPoint(), 1 );
-            }
-            else
+            if( rPam.GetNext() == &rPam )           // Mehrfachselektion ?
                 pDoc->SetNodeNumStart( *rPam.GetPoint(), 0 );
         }
 
@@ -628,7 +612,6 @@ void resetCrsrPropertyValue(const SfxItemPropertyMap* pMap, SwPaM& rPam)
         case FN_UNO_NUM_LEVEL  :
         break;
         case FN_UNO_NUM_RULES:
-//          lcl_setNumberingProperty(aValue, pUnoCrsr);
         break;
         case FN_UNO_CHARFMT_SEQUENCE:
         {

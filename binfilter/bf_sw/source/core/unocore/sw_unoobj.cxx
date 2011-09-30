@@ -75,7 +75,6 @@
 #include <poolfmt.hrc>
 #include <poolfmt.hxx>
 #include <viscrs.hxx>
-#include <edimp.hxx>
 #include <fchrfmt.hxx>
 #include <cntfrm.hxx>
 #include <pagefrm.hxx>
@@ -389,14 +388,7 @@ void lcl_SetNodeNumStart( SwPaM& rCrsr, uno::Any aValue )
     SwDoc* pDoc = rCrsr.GetDoc();
     UnoActionContext aAction(pDoc);
 
-    if( rCrsr.GetNext() != &rCrsr )         // Mehrfachselektion ?
-    {
-        SwPamRanges aRangeArr( rCrsr );
-        SwPaM aPam( *rCrsr.GetPoint() );
-        for( sal_uInt16 n = 0; n < aRangeArr.Count(); ++n )
-            pDoc->SetNodeNumStart( *aRangeArr.SetPam( n, aPam ).GetPoint(), nStt );
-    }
-    else
+    if( rCrsr.GetNext() == &rCrsr )         // Mehrfachselektion ?
         pDoc->SetNodeNumStart( *rCrsr.GetPoint(), nStt );
 }
 

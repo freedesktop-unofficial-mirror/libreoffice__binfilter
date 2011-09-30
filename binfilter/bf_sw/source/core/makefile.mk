@@ -1,7 +1,7 @@
 #*************************************************************************
 #
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
-# 
+#
 # Copyright 2000, 2010 Oracle and/or its affiliates.
 #
 # OpenOffice.org - a multi-platform office productivity suite
@@ -50,7 +50,6 @@ SUBLIBS1= \
         $(SLB)$/sw_graphic.lib \
         $(SLB)$/sw_para.lib \
         $(SLB)$/sw_attr.lib \
-        $(SLB)$/sw_edit.lib \
         $(SLB)$/sw_crsr.lib \
         $(SLB)$/sw_view.lib \
         $(SLB)$/sw_frmedt.lib \

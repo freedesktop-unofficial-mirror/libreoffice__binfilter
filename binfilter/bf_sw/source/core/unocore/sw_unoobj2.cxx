@@ -72,7 +72,6 @@
 #include <poolfmt.hrc>
 #include <poolfmt.hxx>
 #include <viscrs.hxx>
-#include <edimp.hxx>
 #include <fchrfmt.hxx>
 #include <cntfrm.hxx>
 #include <pagefrm.hxx>
@@ -147,9 +146,6 @@ using namespace ::com::sun::star::drawing;
 
 
 using rtl::OUString;
-
-//collectn.cxx
-//BOOL lcl_IsNumeric(const String&);
 
 void CollectFrameAtNode( SwClient& rClnt, const SwNodeIndex& rIdx,
                             SwDependArr& rFrameArr, BOOL bSort )
