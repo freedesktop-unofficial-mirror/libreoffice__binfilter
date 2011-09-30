@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -76,3 +77,5 @@ typedef sal_uInt32          UINT32; /* typedef unsigned int    UINT32; previousl
 #endif
 
 #endif  /* _BF_SOLAR_H */
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

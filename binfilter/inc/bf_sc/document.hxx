@@ -803,8 +803,6 @@ public:
     void            ClearDetectiveOperations();
     ScDetOpList*    GetDetOpList() const                { return pDetOpList; }
 
-    BOOL            HasDetectiveObjects(USHORT nTab) const;
-
     void            GetSelectionFrame( const ScMarkData& rMark,
                                        SvxBoxItem&      rLineOuter,
                                        SvxBoxInfoItem&  rLineInner );

@@ -341,35 +341,6 @@ namespace binfilter {
 /*N*/       pDrawLayer->Clear();
 /*N*/ }
 
-/*N*/ BOOL ScDocument::HasDetectiveObjects(USHORT nTab) const
-/*N*/ {
-/*N*/   //  looks for detective objects, annotations don't count
-/*N*/   //  (used to adjust scale so detective objects hit their cells better)
-/*N*/
-/*N*/   BOOL bFound = FALSE;
-/*N*/
-/*N*/   if (pDrawLayer)
-/*N*/   {
-/*N*/       SdrPage* pPage = pDrawLayer->GetPage(nTab);
-/*N*/       DBG_ASSERT(pPage,"Page ?");
-/*N*/       if (pPage)
-/*N*/       {
-/*N*/           SdrObjListIter aIter( *pPage, IM_DEEPNOGROUPS );
-/*N*/           SdrObject* pObject = aIter.Next();
-/*N*/           while (pObject && !bFound)
-/*N*/           {
-/*N*/               // anything on the internal layer except captions (annotations)
-/*N*/               if ( pObject->GetLayer() == SC_LAYER_INTERN && !pObject->ISA( SdrCaptionObj ) )
-/*N*/                   bFound = TRUE;
-/*N*/
-/*N*/               pObject = aIter.Next();
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return bFound;
-/*N*/ }
-
 /*N*/ void ScDocument::UpdateFontCharSet()
 /*N*/ {
 /*N*/   //  In alten Versionen (bis incl. 4.0 ohne SP) wurden beim Austausch zwischen
