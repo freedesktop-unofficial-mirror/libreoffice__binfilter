@@ -257,8 +257,6 @@ namespace binfilter {
 /*N*/               ScRange aRange( 0,0,nPos, MAXCOL,MAXROW,MAXTAB );
 /*N*/               xColNameRanges->UpdateReference( URM_INSDEL, this, aRange, 0,0,1 );
 /*N*/               xRowNameRanges->UpdateReference( URM_INSDEL, this, aRange, 0,0,1 );
-/*N*/               pDBCollection->UpdateReference(
-/*N*/                                   URM_INSDEL, 0,0,nPos, MAXCOL,MAXROW,MAXTAB, 0,0,1 );
 /*N*/               if (pPivotCollection)
 /*N*/                   pPivotCollection->UpdateReference(
 /*N*/                                   URM_INSDEL, 0,0,nPos, MAXCOL,MAXROW,MAXTAB, 0,0,1 );
@@ -318,8 +316,6 @@ namespace binfilter {
 /*N*/               aRange.aEnd.SetTab( MAXTAB );
 /*N*/               xColNameRanges->UpdateReference( URM_INSDEL, this, aRange, 0,0,-1 );
 /*N*/               xRowNameRanges->UpdateReference( URM_INSDEL, this, aRange, 0,0,-1 );
-/*N*/               pDBCollection->UpdateReference(
-/*N*/                                   URM_INSDEL, 0,0,nTab, MAXCOL,MAXROW,MAXTAB, 0,0,-1 );
 /*N*/               if (pPivotCollection)
 /*N*/                   pPivotCollection->UpdateReference(
 /*N*/                                   URM_INSDEL, 0,0,nTab, MAXCOL,MAXROW,MAXTAB, 0,0,-1 );

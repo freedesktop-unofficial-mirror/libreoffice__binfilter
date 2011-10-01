@@ -61,33 +61,35 @@ BOOL            ScProgress::bIdleWasDisabled = FALSE;
 /*N*/                       ULONG nRange, BOOL bAllDocs, BOOL bWait )
 /*N*/ {
 /*N*/
-/*N*/   if ( pGlobalProgress || SfxProgress::GetActiveProgress( NULL ) )
+/*N*/   if ( !(pGlobalProgress || SfxProgress::GetActiveProgress( NULL ) ) )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/   else if ( SFX_APP()->IsDowning() )
-/*N*/   {
-/*N*/       //  kommt vor z.B. beim Speichern des Clipboard-Inhalts als OLE beim Beenden
-/*N*/       //  Dann wuerde ein SfxProgress wild im Speicher rummuellen
-/*N*/       //! Soll das so sein ???
+/*N*/       if ( SFX_APP()->IsDowning() )
+/*N*/       {
+/*N*/           //  kommt vor z.B. beim Speichern des Clipboard-Inhalts als OLE beim Beenden
+/*N*/           //  Dann wuerde ein SfxProgress wild im Speicher rummuellen
+/*N*/           //! Soll das so sein ???
 /*N*/
-/*N*/       pProgress = NULL;
-/*N*/   }
-/*N*/   else if ( pObjSh && ( pObjSh->GetCreateMode() == SFX_CREATE_MODE_EMBEDDED ||
-/*N*/                         pObjSh->GetProgress() ) )
-/*N*/   {
-/*N*/       //  #62808# no own progress for embedded objects,
-/*N*/       //  #73633# no second progress if the document already has one
+/*N*/           pProgress = NULL;
+/*N*/       }
+/*N*/       else if (  pObjSh
+                    && (  pObjSh->GetCreateMode() == SFX_CREATE_MODE_EMBEDDED
+                       || pObjSh->GetProgress()
+                       )
+                    )
+/*N*/       {
+/*N*/           //  #62808# no own progress for embedded objects,
+/*N*/           //  #73633# no second progress if the document already has one
 /*N*/
-/*N*/       pProgress = NULL;
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       pProgress = new SfxProgress( pObjSh, rText, nRange, bAllDocs, bWait );
-/*N*/       pGlobalProgress = pProgress;
-/*N*/       nGlobalRange = nRange;
-/*N*/       nGlobalPercent = 0;
-/*N*/       bGlobalNoUserBreak = TRUE;
+/*N*/           pProgress = NULL;
+/*N*/       }
+/*N*/       else
+/*N*/       {
+/*N*/           pProgress = new SfxProgress( pObjSh, rText, nRange, bAllDocs, bWait );
+/*N*/           pGlobalProgress = pProgress;
+/*N*/           nGlobalRange = nRange;
+/*N*/           nGlobalPercent = 0;
+/*N*/           bGlobalNoUserBreak = TRUE;
+            }
 /*N*/   }
 /*N*/ }
 
@@ -109,19 +111,6 @@ BOOL            ScProgress::bIdleWasDisabled = FALSE;
 /*N*/       bGlobalNoUserBreak = TRUE;
 /*N*/   }
 /*N*/ }
-
-
-// static
-
-
-
-// static
-
-
-
-// static
-
-
 
 
 }

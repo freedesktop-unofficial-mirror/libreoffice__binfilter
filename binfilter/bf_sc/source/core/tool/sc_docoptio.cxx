@@ -359,13 +359,13 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 
 /*N*/ IMPL_LINK( ScDocCfg, CalcCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP");
+    DBG_BF_ASSERT(0, "STRIP");  // IMPL_LINK()
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScDocCfg, LayoutCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP");
+    DBG_BF_ASSERT(0, "STRIP");  // IMPL_LINK()
 /*N*/   return 0;
 /*N*/ }
 

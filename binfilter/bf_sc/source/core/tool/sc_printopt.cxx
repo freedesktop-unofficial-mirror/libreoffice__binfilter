@@ -40,9 +40,6 @@ using ::rtl::OUString;
 
 // -----------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------
-
 /*N*/ ScPrintOptions::ScPrintOptions()
 /*N*/ {
 /*N*/   SetDefaults();
@@ -65,17 +62,6 @@ using ::rtl::OUString;
 /*N*/ }
 
 
-
-
-// -----------------------------------------------------------------------
-
-
-
-
-
-
-
-
 // -----------------------------------------------------------------------
 
 #define CFGPATH_PRINT           "Office.Calc/Print"
@@ -85,11 +71,11 @@ using ::rtl::OUString;
 #define SCPRINTOPT_COUNT            2
 
 
-/*N*/ ScPrintCfg::ScPrintCfg() :
-/*N*/   ConfigItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_PRINT )) )
-/*N*/ {
-    DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+ScPrintCfg::ScPrintCfg() :
+    ConfigItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_PRINT )) )
+{
+    DBG_BF_ASSERT(0, "STRIP");  // CONSTRUCTOR
+}
 
 
 void ScPrintCfg::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*aPropertyNames*/ )

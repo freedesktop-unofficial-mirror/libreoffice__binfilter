@@ -217,17 +217,11 @@ public:
             ScDBData*   operator[]( const USHORT nIndex) const {return (ScDBData*)At(nIndex);}
     virtual short       Compare(DataObject* pKey1, DataObject* pKey2) const;
             ScDBData*   GetDBAtCursor(USHORT nCol, USHORT nRow, USHORT nTab, BOOL bStartOnly) const;
-            ScDBData*   GetDBAtArea(USHORT nTab, USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2) const;
 
     BOOL    Load( SvStream& rStream );
     BOOL    Store( SvStream& ) const {return FALSE;}
 
     BOOL    SearchName( const String& rName, USHORT& rIndex ) const;
-
-    void    UpdateReference(UpdateRefMode eUpdateRefMode,
-                                USHORT nCol1, USHORT nRow1, USHORT nTab1,
-                                USHORT nCol2, USHORT nRow2, USHORT nTab2,
-                                short nDx, short nDy, short nDz );
 
     ScDBData* FindIndex(USHORT nIndex);
     USHORT  GetEntryIndex()                 { return nEntryIndex; }

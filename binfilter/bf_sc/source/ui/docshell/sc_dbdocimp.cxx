@@ -98,13 +98,8 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/   ScDBData* pDBData = 0;
 /*M*/   if ( !bAddrInsert )
 /*M*/   {
-/*M*/       pDBData = pDoc->GetDBAtArea( nTab, rParam.nCol1, rParam.nRow1,
-/*M*/                                           rParam.nCol2, rParam.nRow2 );
-/*M*/       if (!pDBData)
-/*M*/       {
-/*M*/           OSL_FAIL( "DoImport: no DBData" );
-/*M*/           return FALSE;
-/*M*/       }
+/*M*/       OSL_FAIL( "DoImport: no DBData" );
+/*M*/       return FALSE;
 /*M*/   }
 /*M*/
 /*M*/   Window* pWaitWin = rDocShell.GetDialogParent();

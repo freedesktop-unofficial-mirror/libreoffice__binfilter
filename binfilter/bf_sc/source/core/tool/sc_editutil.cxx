@@ -334,11 +334,6 @@ const sal_Char ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 
 
 //------------------------------------------------------------------------
-
-
-
-
-//------------------------------------------------------------------------
 //      Feldbefehle fuer Kopf- und Fusszeilen
 //------------------------------------------------------------------------
 
@@ -357,22 +352,16 @@ const sal_Char ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/       {
 /*?*/       case SVX_CHARS_UPPER_LETTER:
 /*?*/       case SVX_CHARS_LOWER_LETTER:
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           break;
 /*?*/
 /*?*/       case SVX_ROMAN_UPPER:
 /*?*/       case SVX_ROMAN_LOWER:
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           break;
 /*?*/
 /*?*/       case SVX_NUMBER_NONE:
 /*?*/           aTmpStr.Erase();
 /*?*/           break;
 /*?*/
-/*?*/ //        CHAR_SPECIAL:
-/*?*/ //            ????
-/*?*/
-/*?*/ //        case ARABIC:    ist jetzt default
 /*N*/       default:
 /*N*/           aTmpStr = String::CreateFromInt32( nNo );
 /*N*/           break;

@@ -400,9 +400,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/   SdrPage* pPage = pModel->GetPage(nTab);
 /*N*/
 /*N*/   BOOL bArea = ( nRefStartCol != nRefEndCol || nRefStartRow != nRefEndRow );
-/*N*/   if (bArea && !bFromOtherTab)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   Point aStartPos = GetDrawPos( nRefStartCol, nRefStartRow, TRUE );
 /*N*/   Point aEndPos   = GetDrawPos( nCol, nRow, TRUE );
@@ -1346,24 +1343,25 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/   return ( bDeleted || nInsCount != 0 );
 /*N*/ }
 
-/*N*/ SdrObject* ScDetectiveFunc::ShowCommentUser( USHORT nCol, USHORT nRow, const String& rUserText,
-/*N*/                                           const Rectangle& /*rVisible*/, BOOL /*bLeft*/, BOOL bForce,
-/*N*/                                           SdrPage* pDestPage )
-/*N*/ {
-/*N*/   ScDrawLayer* pModel = pDoc->GetDrawLayer();
-/*N*/   if (!pModel && !pDestPage)
-/*N*/       return NULL;
-/*N*/
-/*N*/   SdrObject* pObject = NULL;
-/*N*/   ScPostIt aNote;
-/*N*/   BOOL bFound = pDoc->GetNote( nCol, nRow, nTab, aNote );
-/*N*/   if ( bFound || bForce || rUserText.Len() )
-/*N*/   {
-        DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
-/*N*/   return pObject;
-/*N*/ }
+SdrObject* ScDetectiveFunc::ShowCommentUser(
+    USHORT nCol,
+    USHORT nRow,
+    const String& /* rUserText */,
+    const Rectangle& /* rVisible */,
+    BOOL /* bLeft */,
+    BOOL /* bForce */,
+    SdrPage* pDestPage
+)
+{
+    ScDrawLayer* pModel = pDoc->GetDrawLayer();
+    if (!pModel && !pDestPage)
+        return NULL;
+
+    ScPostIt aNote;
+    pDoc->GetNote( nCol, nRow, nTab, aNote );
+
+    return NULL;
+}
 
 /*N*/ SdrObject* ScDetectiveFunc::ShowComment( USHORT nCol, USHORT nRow, BOOL bForce, SdrPage* pDestPage )
 /*N*/ {
@@ -1608,13 +1606,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/   }
 /*N*/
 /*N*/   return eType;
-/*N*/ }
-
-/*N*/ void ScDetectiveFunc::InsertObject( ScDetectiveObjType /*eType*/,
-/*N*/                           const ScAddress& /*rPosition*/, const ScRange& /*rSource*/,
-/*N*/                           BOOL /*bRedLine*/ )
-/*N*/ {
-        DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 // static

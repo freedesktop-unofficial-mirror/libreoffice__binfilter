@@ -497,12 +497,8 @@ public:
     ScDBCollection* GetDBCollection() const;
     ScDBData*       GetDBAtCursor(USHORT nCol, USHORT nRow, USHORT nTab,
                                         BOOL bStartOnly = FALSE) const;
-    ScDBData*       GetDBAtArea(USHORT nTab, USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2) const;
-
 
     ScDPCollection*     GetDPCollection();
-
-
 
 
     void            UpdateChartArea( const String& rChartName,

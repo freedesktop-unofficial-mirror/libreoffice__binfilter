@@ -142,8 +142,6 @@ public:
 
     ScDetectiveObjType GetDetectiveObjectType( SdrObject* pObject,
                                 ScAddress& rPosition, ScRange& rSource, BOOL& rRedLine );
-    void        InsertObject( ScDetectiveObjType eType, const ScAddress& rPosition,
-                                const ScRange& rSource, BOOL bRedLine );
 
     static ColorData GetArrowColor();
     static ColorData GetErrorColor();

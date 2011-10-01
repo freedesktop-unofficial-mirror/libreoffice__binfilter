@@ -161,77 +161,20 @@ namespace binfilter {
 /*N*/   //  fuer "unbenannt" (GetDataArea) kann neben dem Cursor legen, also muss auch ein
 /*N*/   //  benannter DB-Bereich dort gesucht werden.
 /*N*/
-/*N*/   ScDBData* pData = aDocument.GetDBAtArea( nTab, nStartCol, nStartRow, nEndCol, nEndRow );
+/*N*/   ScDBData* pData = NULL;
 /*N*/
 /*N*/   BOOL bSelected = ( bForceMark || rMarked.aStart != rMarked.aEnd );
 /*N*/
-/*N*/   BOOL bUseThis = FALSE;
-/*N*/   if (pData)
-/*N*/   {
-/*N*/       //      Bereich nehmen, wenn nichts anderes markiert
-/*N*/
-/*N*/       USHORT nDummy;
-/*N*/       USHORT nOldCol1;
-/*N*/       USHORT nOldRow1;
-/*N*/       USHORT nOldCol2;
-/*N*/       USHORT nOldRow2;
-/*N*/       pData->GetArea( nDummy, nOldCol1,nOldRow1, nOldCol2,nOldRow2 );
-/*N*/       BOOL bIsNoName = ( pData->GetName() == ScGlobal::GetRscString( STR_DB_NONAME ) );
-/*N*/
-/*N*/       if (!bSelected)
-/*N*/       {
-/*N*/           bUseThis = TRUE;
-/*N*/           if ( bIsNoName && eMode == SC_DB_MAKE )
-/*N*/           {
-/*N*/               //  wenn nichts markiert, "unbenannt" auf zusammenhaengenden Bereich anpassen
-/*N*/               nStartCol = nCol;
-/*N*/               nStartRow = nRow;
-/*N*/               nEndCol = nStartCol;
-/*N*/               nEndRow = nStartRow;
-/*N*/               aDocument.GetDataArea( nTab, nStartCol, nStartRow, nEndCol, nEndRow, FALSE );
-/*N*/               if ( nOldCol1 != nStartCol || nOldCol2 != nEndCol || nOldRow1 != nStartRow )
-/*N*/                   bUseThis = FALSE;               // passt gar nicht
-/*N*/               else if ( nOldRow2 != nEndRow )
-/*N*/               {
-/*N*/                   //  Bereich auf neue End-Zeile erweitern
-/*N*/                   pData->SetArea( nTab, nOldCol1,nOldRow1, nOldCol2,nEndRow );
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           if ( nOldCol1 == nStartCol && nOldRow1 == nStartRow &&
-/*N*/                nOldCol2 == nEndCol && nOldRow2 == nEndRow )               // genau markiert?
-/*N*/               bUseThis = TRUE;
-/*N*/           else
-/*N*/               bUseThis = FALSE;           // immer Markierung nehmen (Bug 11964)
-/*N*/       }
-/*N*/
-/*N*/       //      fuer Import nie "unbenannt" nehmen
-/*N*/
-/*N*/       if ( bUseThis && eMode == SC_DB_IMPORT && bIsNoName )
-/*N*/           bUseThis = FALSE;
-/*N*/   }
-/*N*/
-/*N*/   if ( bUseThis )
-/*N*/   {
-/*N*/       pData->GetArea( nStartTab, nStartCol,nStartRow, nEndCol,nEndRow );
-/*N*/       nEndTab = nStartTab;
-/*N*/   }
-/*N*/   else if ( eMode == SC_DB_OLD )
+/*N*/   if ( eMode == SC_DB_OLD )
 /*N*/   {
 /*N*/       pData = NULL;                           // nichts gefunden
 /*N*/       nStartCol = nEndCol = nCol;
 /*N*/       nStartRow = nEndRow = nRow;
 /*N*/       nStartTab = nEndTab = nTab;
-/*N*/ //        bMark = FALSE;                          // nichts zu markieren
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       if ( bSelected )
-/*N*/       {
-/*N*/       }
-/*N*/       else
+/*N*/       if ( !bSelected )
 /*N*/       {                                       // zusammenhaengender Bereich
 /*N*/           nStartCol = nCol;
 /*N*/           nStartRow = nRow;
@@ -336,19 +279,7 @@ namespace binfilter {
 /*N*/ String lcl_GetAreaName( ScDocument* pDoc, ScArea* pArea )
 /*N*/ {
 /*N*/   String aName;
-/*N*/   BOOL bOk = FALSE;
-/*N*/   ScDBData* pData = pDoc->GetDBAtArea( pArea->nTab, pArea->nColStart, pArea->nRowStart,
-/*N*/                                                       pArea->nColEnd, pArea->nRowEnd );
-/*N*/   if (pData)
-/*N*/   {
-/*N*/       pData->GetName( aName );
-/*N*/       if ( aName != ScGlobal::GetRscString( STR_DB_NONAME ) )
-/*N*/           bOk = TRUE;
-/*N*/   }
-/*N*/
-/*N*/   if (!bOk)
-/*N*/       pDoc->GetName( pArea->nTab, aName );
-/*N*/
+/*N*/   pDoc->GetName( pArea->nTab, aName );
 /*N*/   return aName;
 /*N*/ }
 

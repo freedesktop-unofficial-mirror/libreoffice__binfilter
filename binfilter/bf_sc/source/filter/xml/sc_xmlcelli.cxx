@@ -705,7 +705,6 @@ void ScXMLTableRowCellContext::SetDetectiveObj( const table::CellAddress& rPosit
         {
             ScAddress aScAddress;
             ScUnoConversion::FillScAddress( aScAddress, rPosition );
-            aDetFunc.InsertObject( aItr->eObjType, aScAddress, aItr->aSourceRange, aItr->bHasError );
             uno::Reference<container::XIndexAccess> xShapesIndex (xShapes, uno::UNO_QUERY);
             if (xShapesIndex.is())
             {

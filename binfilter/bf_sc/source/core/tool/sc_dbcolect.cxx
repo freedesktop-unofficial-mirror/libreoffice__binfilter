@@ -734,19 +734,6 @@ namespace binfilter {
 /*N*/   if (pItems)
 /*N*/   {
 /*N*/       ScGlobal::GetRscString( STR_DB_NONAME );
-/*N*/
-/*N*/       for (USHORT i = 0; i < nCount; i++)
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/   return pNoNameData;             // "unbenannt" nur zurueck, wenn sonst nichts gefunden
-/*N*/ }
-
-/*N*/ ScDBData* ScDBCollection::GetDBAtArea(USHORT /*nTab*/, USHORT /*nCol1*/, USHORT /*nRow1*/, USHORT /*nCol2*/, USHORT /*nRow2*/) const
-/*N*/ {
-/*N*/   ScDBData* pNoNameData = NULL;
-/*N*/   if (pItems)
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   return pNoNameData;             // "unbenannt" nur zurueck, wenn sonst nichts gefunden
 /*N*/ }
@@ -777,19 +764,6 @@ namespace binfilter {
 /*N*/       rStream >> nEntryIndex;
 /*N*/   return bSuccess;
 /*N*/ }
-
-/*N*/ void ScDBCollection::UpdateReference(UpdateRefMode /*eUpdateRefMode*/,
-/*N*/                               USHORT /*nCol1*/, USHORT /*nRow1*/, USHORT /*nTab1*/,
-/*N*/                               USHORT /*nCol2*/, USHORT /*nRow2*/, USHORT /*nTab2*/,
-/*N*/                               short /*nDx*/, short /*nDy*/, short /*nDz*/ )
-/*N*/ {
-/*N*/   for (USHORT i=0; i<nCount; i++)
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ }
-
-
 
 
 /*N*/ ScDBData* ScDBCollection::FindIndex(USHORT nIndex)

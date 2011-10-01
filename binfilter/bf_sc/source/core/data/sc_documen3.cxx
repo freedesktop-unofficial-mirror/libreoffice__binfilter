@@ -133,14 +133,6 @@ using namespace ::com::sun::star;
 /*N*/       return NULL;
 /*N*/ }
 
-/*N*/ ScDBData* ScDocument::GetDBAtArea(USHORT nTab, USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2) const
-/*N*/ {
-/*N*/   if (pDBCollection)
-/*N*/       return pDBCollection->GetDBAtArea(nTab, nCol1, nRow1, nCol2, nRow2);
-/*N*/   else
-/*N*/       return NULL;
-/*N*/ }
-
 /*N*/ ScDPCollection* ScDocument::GetDPCollection()
 /*N*/ {
 /*N*/   if (!pDPCollection)
@@ -434,7 +426,6 @@ using namespace ::com::sun::star;
 /*N*/           ScRange aRange( nCol1, nRow1, nTab1, nCol2, nRow2, nTab2 );
 /*N*/           xColNameRanges->UpdateReference( eUpdateRefMode, this, aRange, nDx, nDy, nDz );
 /*N*/           xRowNameRanges->UpdateReference( eUpdateRefMode, this, aRange, nDx, nDy, nDz );
-/*N*/           pDBCollection->UpdateReference( eUpdateRefMode, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2, nDx, nDy, nDz );
 /*N*/           pRangeName->UpdateReference( eUpdateRefMode, aRange, nDx, nDy, nDz );
 /*N*/           if (pPivotCollection)
 /*N*/               pPivotCollection->UpdateReference( eUpdateRefMode, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2, nDx, nDy, nDz );

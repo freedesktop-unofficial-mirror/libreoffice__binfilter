@@ -103,7 +103,7 @@ namespace binfilter {
 /*N*/ void ScDdeLink::DataChanged( const String& /*rMimeType*/,
 /*N*/                               const ::com::sun::star::uno::Any & /*rValue*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
+/*?*/   DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
 /*N*/ }
 
 
