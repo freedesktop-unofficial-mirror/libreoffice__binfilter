@@ -152,10 +152,8 @@ namespace binfilter {
 /*N*/
 /*N*/   USHORT nStartCol = nCol;
 /*N*/   USHORT nStartRow = nRow;
-/*N*/   USHORT nStartTab = nTab;
 /*N*/   USHORT nEndCol = rMarked.aEnd.Col();
 /*N*/   USHORT nEndRow = rMarked.aEnd.Row();
-/*N*/   USHORT nEndTab = rMarked.aEnd.Tab();
 /*N*/
 /*N*/   //  Wegen #49655# nicht einfach GetDBAtCursor: Der zusammenhaengende Datenbereich
 /*N*/   //  fuer "unbenannt" (GetDataArea) kann neben dem Cursor legen, also muss auch ein
@@ -170,7 +168,6 @@ namespace binfilter {
 /*N*/       pData = NULL;                           // nichts gefunden
 /*N*/       nStartCol = nEndCol = nCol;
 /*N*/       nStartRow = nEndRow = nRow;
-/*N*/       nStartTab = nEndTab = nTab;
 /*N*/   }
 /*N*/   else
 /*N*/   {
