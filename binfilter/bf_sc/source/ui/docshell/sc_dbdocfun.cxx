@@ -51,7 +51,7 @@
 namespace binfilter {
 
 
-/*N*/ BOOL ScDBDocFunc::AddDBRange( const String& rName, const ScRange& rRange, BOOL /*bApi*/ )
+/*N*/ BOOL ScDBDocFunc::AddDBRange( const String& rName, const ScRange& rRange )
 /*N*/ {
 /*N*/
 /*N*/   ScDocShellModificator aModificator( rDocShell );
@@ -78,7 +78,7 @@ namespace binfilter {
 /*N*/   return TRUE;
 /*N*/ }
 /*N*/
-/*N*/ BOOL ScDBDocFunc::DeleteDBRange( const String& rName, BOOL /*bApi*/ )
+/*N*/ BOOL ScDBDocFunc::DeleteDBRange( const String& rName )
 /*N*/ {
 /*N*/   BOOL bDone = FALSE;
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
@@ -101,7 +101,7 @@ namespace binfilter {
 /*N*/   return bDone;
 /*N*/ }
 
-/*N*/ BOOL ScDBDocFunc::RenameDBRange( const String& rOld, const String& rNew, BOOL /*bApi*/ )
+/*N*/ BOOL ScDBDocFunc::RenameDBRange( const String& rOld, const String& rNew )
 /*N*/ {
 /*N*/   BOOL bDone = FALSE;
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
@@ -138,7 +138,7 @@ namespace binfilter {
 /*N*/   return bDone;
 /*N*/ }
 
-/*N*/ BOOL ScDBDocFunc::ModifyDBData( const ScDBData& rNewData, BOOL /*bApi*/)
+/*N*/ BOOL ScDBDocFunc::ModifyDBData( const ScDBData& rNewData )
 /*N*/ {
 /*N*/   BOOL bDone = FALSE;
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
@@ -165,7 +165,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ BOOL ScDBDocFunc::RepeatDB( const String& rDBName, BOOL bRecord, BOOL bApi )
+/*N*/ BOOL ScDBDocFunc::RepeatDB( const String& rDBName, BOOL bRecord )
 /*N*/ {
 /*N*/   //! auch fuer ScDBFunc::RepeatDB benutzen!
 /*N*/

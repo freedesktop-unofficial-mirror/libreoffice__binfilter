@@ -77,12 +77,12 @@ public:
                         const SbaSelectionList* pSelection, BOOL bRecord,
                         BOOL bAddrInsert = FALSE );
 
-    BOOL            AddDBRange( const String& rName, const ScRange& rRange, BOOL bApi );
-    BOOL            DeleteDBRange( const String& rName, BOOL bApi );
-    BOOL            RenameDBRange( const String& rOld, const String& rNew, BOOL bApi );
-    BOOL            ModifyDBData( const ScDBData& rNewData, BOOL bApi );    // Name unveraendert
+    BOOL            AddDBRange( const String& rName, const ScRange& rRange );
+    BOOL            DeleteDBRange( const String& rName );
+    BOOL            RenameDBRange( const String& rOld, const String& rNew );
+    BOOL            ModifyDBData( const ScDBData& rNewData );    // Name unveraendert
 
-    BOOL            RepeatDB( const String& rDBName, BOOL bRecord, BOOL bApi );
+    BOOL            RepeatDB( const String& rDBName, BOOL bRecord );
 
     BOOL            DataPilotUpdate( ScDPObject* pOldObj, const ScDPObject* pNewObj,
                                         BOOL bRecord, BOOL bApi );

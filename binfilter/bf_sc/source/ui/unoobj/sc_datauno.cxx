@@ -1439,7 +1439,7 @@ void SAL_CALL ScDatabaseRangeObj::setName( const ::rtl::OUString& aNewName )
     {
         ScDBDocFunc aFunc(*pDocShell);
         String aNewStr = aNewName;
-        BOOL bOk = aFunc.RenameDBRange( aName, aNewStr, TRUE );
+        BOOL bOk = aFunc.RenameDBRange( aName, aNewStr );
         if (bOk)
             aName = aNewStr;
     }
@@ -1477,7 +1477,7 @@ void SAL_CALL ScDatabaseRangeObj::setDataArea( const table::CellRangeAddress& aD
         aNewData.SetArea( aDataArea.Sheet, (USHORT)aDataArea.StartColumn, (USHORT)aDataArea.StartRow,
                                            (USHORT)aDataArea.EndColumn, (USHORT)aDataArea.EndRow );
         ScDBDocFunc aFunc(*pDocShell);
-        aFunc.ModifyDBData(aNewData, TRUE);
+        aFunc.ModifyDBData(aNewData);
     }
 }
 
@@ -1549,7 +1549,7 @@ void ScDatabaseRangeObj::SetQueryParam(const ScQueryParam& rQueryParam)
         aNewData.SetQueryParam(aParam);
         aNewData.SetHeader(aParam.bHasHeader);      // not in ScDBData::SetQueryParam
         ScDBDocFunc aFunc(*pDocShell);
-        aFunc.ModifyDBData(aNewData, TRUE);
+        aFunc.ModifyDBData(aNewData);
     }
 }
 
@@ -1608,7 +1608,7 @@ void ScDatabaseRangeObj::SetSubTotalParam(const ScSubTotalParam& rSubTotalParam)
         ScDBData aNewData( *pData );
         aNewData.SetSubTotalParam(aParam);
         ScDBDocFunc aFunc(*pDocShell);
-        aFunc.ModifyDBData(aNewData, TRUE);
+        aFunc.ModifyDBData(aNewData);
     }
 }
 
@@ -1655,7 +1655,7 @@ void SAL_CALL ScDatabaseRangeObj::refresh() throw(uno::RuntimeException)
 
         // interne Operationen (sort, query, subtotal) nur, wenn kein Fehler
         if (bContinue)
-            aFunc.RepeatDB( pData->GetName(), TRUE, TRUE );
+            aFunc.RepeatDB( pData->GetName(), TRUE );
     }
 }
 
@@ -1755,7 +1755,7 @@ void SAL_CALL ScDatabaseRangeObj::setPropertyValue(
         if (bDo)
         {
             ScDBDocFunc aFunc(*pDocShell);
-            aFunc.ModifyDBData(aNewData, TRUE);
+            aFunc.ModifyDBData(aNewData);
         }
     }
 }
@@ -1901,7 +1901,7 @@ void SAL_CALL ScDatabaseRangesObj::addNewByName( const ::rtl::OUString& aName,
         String aString = aName;
         ScRange aNameRange( (USHORT)aRange.StartColumn, (USHORT)aRange.StartRow, aRange.Sheet,
                             (USHORT)aRange.EndColumn,   (USHORT)aRange.EndRow,   aRange.Sheet );
-        bDone = aFunc.AddDBRange( aString, aNameRange, TRUE );
+        bDone = aFunc.AddDBRange( aString, aNameRange );
     }
     if (!bDone)
         throw uno::RuntimeException();      // no other exceptions specified
@@ -1916,7 +1916,7 @@ void SAL_CALL ScDatabaseRangesObj::removeByName( const ::rtl::OUString& aName )
     {
         ScDBDocFunc aFunc(*pDocShell);
         String aString = aName;
-        bDone = aFunc.DeleteDBRange( aString, TRUE );
+        bDone = aFunc.DeleteDBRange( aString );
     }
     if (!bDone)
         throw uno::RuntimeException();      // no other exceptions specified
