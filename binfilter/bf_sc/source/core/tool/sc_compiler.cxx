@@ -767,9 +767,9 @@ namespace binfilter {
 /*N*/       bFound = ScGlobal::GetFuncCollection()->SearchFunc(cSymbol, nIndex);
 /*N*/       if( bFound )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); /*N*/  ScRawToken aToken;
-/*N*/  /*?*/            aToken.SetExternal( cSymbol );
-/*N*/  /*?*/            pRawToken = aToken.Clone();
+/*?*/           ScRawToken aToken;
+/*N*/           aToken.SetExternal( cSymbol );
+/*N*/           pRawToken = aToken.Clone();
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -988,7 +988,7 @@ namespace binfilter {
 /*N*/       pSfxApp->LeaveBasicCall();
 /*N*/       return FALSE;
 /*N*/   }
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); /*N*/  ScRawToken aToken;
+/*?*/  /*N*/    ScRawToken aToken;
 /*N*/  /*?*/    aToken.SetExternal( rName.GetBuffer() );
 /*N*/  /*?*/    aToken.eOp = ocMacro;
 /*N*/  /*?*/    pRawToken = aToken.Clone();
@@ -1565,7 +1565,7 @@ namespace binfilter {
 /*N*/       ScByteToken aToken( ocClose );
 /*N*/       while( nBrackets-- )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); /*N*/  if( !pArr->AddToken( aToken ) )
+/*?*/  /*N*/    if( !pArr->AddToken( aToken ) )
 /*N*/  /*?*/            {
 /*N*/  /*?*/                SetError(errCodeOverflow); break;
 /*N*/  /*?*/            }
@@ -1940,7 +1940,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else if( pToken->GetOpCode() == ocDBArea )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); /*N*/  ScDBData* pDBData = pDoc->GetDBCollection()->FindIndex( pToken->GetIndex() );
+/*?*/  /*N*/  ScDBData* pDBData = pDoc->GetDBCollection()->FindIndex( pToken->GetIndex() );
 /*N*/  /*?*/        if ( !pDBData )
 /*N*/  /*?*/            SetError(errNoName);
 /*N*/  /*?*/        else if ( !bCompileForFAP )
@@ -2669,7 +2669,7 @@ namespace binfilter {
 /*N*/           (!rRef.Ref2.IsColRel() && !rRef.Ref2.IsRowRel() &&
 /*N*/               (!rRef.Ref2.IsFlag3D() || !rRef.Ref2.IsTabRel()))))
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); /*N*/  if (ScRefUpdate::Update( pDoc, eUpdateRefMode, aPos,
+/*?*/  /*N*/  if (ScRefUpdate::Update( pDoc, eUpdateRefMode, aPos,
 /*N*/  /*?*/                                     r, nDx, nDy, nDz, rRef ) != UR_NOTHING )
 /*N*/  /*?*/                rChanged = TRUE;
 /*N*/       }
@@ -3131,7 +3131,7 @@ namespace binfilter {
 /*N*/               break;
 /*?*/               case ocDBArea:
 /*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); /*N*/  ScDBData* pDBData = pDoc->GetDBCollection()->FindIndex(t->GetIndex());
+/*?*/            /*N*/  ScDBData* pDBData = pDoc->GetDBCollection()->FindIndex(t->GetIndex());
 /*N*/  /*?*/                    if (pDBData)
 /*N*/  /*?*/                        aBuffer.append(pDBData->GetName());
 /*?*/               }
@@ -3149,8 +3149,6 @@ namespace binfilter {
 /*N*/       {
 /*N*/           //  show translated name of StarOne AddIns
 /*N*/           String aAddIn( t->GetExternal() );
-/*N*/           if ( pSymbolTable != pSymbolTableEnglish )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           rBuffer.append(aAddIn);
 /*N*/       }
 /*N*/           break;

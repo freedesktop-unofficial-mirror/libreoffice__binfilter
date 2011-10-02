@@ -52,7 +52,6 @@ namespace binfilter {
 /*N*/   long            nColCount;
 /*N*/   BOOL            bIgnoreEmptyRows;
 /*N*/   BOOL            bRepeatIfEmpty;
-/*N*/   TypedStrCollection**    ppStrings;
 /*N*/   BOOL*           pDateDim;
 /*N*/   USHORT          nNextRow;       // for iterator, within range
 /*N*/
@@ -72,10 +71,7 @@ namespace binfilter {
 /*M*/   pImpl->bIgnoreEmptyRows = FALSE;
 /*M*/   pImpl->bRepeatIfEmpty = FALSE;
 /*M*/   pImpl->nColCount = nCount;
-/*M*/   pImpl->ppStrings = new TypedStrCollection*[nCount];
 /*M*/   pImpl->pDateDim = NULL;
-/*M*/   for (long i=0; i<nCount; i++)
-/*M*/       pImpl->ppStrings[i] = NULL;
 /*M*/
 /*M*/   pImpl->nNextRow = pImpl->aRange.aStart.Row() + 1;
 /*M*/
@@ -106,9 +102,6 @@ namespace binfilter {
 
 /*N*/ ScSheetDPData::~ScSheetDPData()
 /*N*/ {
-/*N*/   for (long i=0; i<pImpl->nColCount; i++)
-/*N*/       delete pImpl->ppStrings[i];
-/*N*/   delete[] pImpl->ppStrings;
 /*N*/   delete[] pImpl->pDateDim;
 /*N*/   delete pImpl;
 /*M*/     delete[] pSpecial;

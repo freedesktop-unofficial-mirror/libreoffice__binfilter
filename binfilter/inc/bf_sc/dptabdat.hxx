@@ -34,8 +34,6 @@
 #include <tools/string.hxx>
 namespace binfilter {
 
-class TypedStrCollection;
-
 // -----------------------------------------------------------------------
 
 #define SC_DAPI_DATE_HIERARCHIES    3

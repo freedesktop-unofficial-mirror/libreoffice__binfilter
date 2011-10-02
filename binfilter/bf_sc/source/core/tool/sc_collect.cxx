@@ -193,13 +193,6 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------------
-
-/*N*/ DataObject*   Collection::Clone() const
-/*N*/ {
-        DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*N*/ }
-
-//------------------------------------------------------------------------
 // SortedCollection
 //------------------------------------------------------------------------
 
@@ -261,17 +254,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-//  IsEqual - komplette Inhalte vergleichen
-
-
-//------------------------------------------------------------------------
-
 /*N*/ DataObject*   StrData::Clone() const
 /*N*/ {
             return new StrData(*this);      // #i49161# this is needed
@@ -288,13 +270,6 @@ namespace binfilter {
 /*N*/       return -1;
 /*N*/   else
 /*N*/       return 1;
-/*N*/ }
-
-//------------------------------------------------------------------------
-
-/*N*/ DataObject*   StrCollection::Clone() const
-/*N*/ {
-            DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -317,8 +292,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//------------------------------------------------------------------------
-// TypedStrCollection
 //------------------------------------------------------------------------
 
 /*N*/ TypedStrData::TypedStrData( ScDocument* pDoc, USHORT nCol, USHORT nRow, USHORT nTab,
@@ -343,19 +316,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   return new TypedStrData(*this);
 /*N*/ }
-
-
-/*N*/ short TypedStrCollection::Compare( DataObject* /*pKey1*/, DataObject* /*pKey2*/ ) const
-/*N*/ {
-/*N*/   short nResult = 0;
-        DBG_BF_ASSERT(0, "STRIP");
-/*N*/ return nResult;
-/*N*/ }
-
-
-        // Gross-/Kleinschreibung anpassen
-
-
 
 
 }

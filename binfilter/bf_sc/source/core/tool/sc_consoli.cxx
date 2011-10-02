@@ -120,8 +120,6 @@ namespace binfilter {
 /*N*/   delete[] ppRefs;
 /*N*/   ppRefs = NULL;
 /*N*/
-/*N*/ //    DELETEARR( ppData1, nColCount );
-/*N*/ //    DELETEARR( ppData2, nColCount );
 /*N*/   DELETEARR( ppCount, nColCount );
 /*N*/   DELETEARR( ppSum,   nColCount );
 /*N*/   DELETEARR( ppSumSqr,nColCount );
@@ -461,19 +459,6 @@ namespace binfilter {
 /*N*/   nCol1 = nStartCol;
 /*N*/   nRow1 = nStartRow;
 /*N*/
-/*N*/   //      Daten
-/*N*/
-/*N*/   ( eFunction == SUBTOTAL_FUNC_CNT2 );
-/*N*/   for (nCol=nCol1; nCol<=nCol2; nCol++)
-/*N*/   {
-/*N*/       USHORT nArrX = nCol-nCol1;
-/*N*/       if (bColByName) nArrX = pDestCols[nArrX];
-/*N*/       if (nArrX != SC_CONS_NOTFOUND)
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/   }
-/*N*/
 /*N*/   delete[] pDestCols;
 /*N*/   delete[] pDestRows;
 /*N*/ }
@@ -540,24 +525,8 @@ namespace binfilter {
 /*N*/       aCRef.InitFlags();
 /*N*/       aCRef.Ref1.SetColRel(TRUE); aCRef.Ref1.SetRowRel(TRUE); aCRef.Ref1.SetTabRel(TRUE);
 /*N*/       aCRef.Ref2.SetColRel(TRUE); aCRef.Ref2.SetRowRel(TRUE); aCRef.Ref2.SetTabRel(TRUE);
-/*N*/
-/*N*/       for (nArrY=0; nArrY<nRowCount; nArrY++)
-/*N*/       {
-/*N*/           USHORT nNeeded = 0;
-/*N*/           for (nArrX=0; nArrX<nColCount; nArrX++)
-/*N*/               if (ppUsed[nArrX][nArrY])
-/*N*/                   nNeeded = Max( nNeeded, ppRefs[nArrX][nArrY].GetCount() );
-/*N*/
-/*N*/           if (nNeeded)
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
-/*N*/       }
 /*N*/   }
 /*N*/ }
-
-
-
 
 
 }

@@ -61,7 +61,6 @@ class ScMultipleWriteHeader;
 class ScPatternAttr;
 class ScStyleSheet;
 class ScBroadcasterList;
-class TypedStrCollection;
 class ScProgress;
 struct ScFunctionData;
 struct ScLineFlags;

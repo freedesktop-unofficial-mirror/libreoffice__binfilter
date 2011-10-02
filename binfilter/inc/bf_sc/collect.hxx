@@ -66,7 +66,7 @@ public:
                         Collection(const Collection& rCollection);
     virtual             ~Collection();
 
-    virtual DataObject* Clone() const;
+    virtual DataObject* Clone() const   { return NULL; }    // DBG_BF_ASSERT
 
             void        AtFree(USHORT nIndex);
             void        Free(DataObject* pDataObject);
@@ -132,7 +132,7 @@ public:
     StrCollection(const StrCollection& rStrCollection) :
                         SortedCollection    ( rStrCollection ) {}
 
-    virtual DataObject* Clone() const;
+    virtual DataObject* Clone() const { return NULL; }  // DBG_BF_ASSERT
             StrData*    operator[]( const USHORT nIndex) const {return (StrData*)At(nIndex);}
     virtual short       Compare(DataObject* pKey1, DataObject* pKey2) const;
 
@@ -167,30 +167,11 @@ public:
     const String&       GetString() const { return aStrValue; }
 
 private:
-    friend class TypedStrCollection;
     friend class PivotStrCollection;
 
     String  aStrValue;
     double  nValue;
     USHORT  nStrType;           // 0 = Value
-};
-
-class TypedStrCollection : public SortedCollection
-{
-private:
-    BOOL    bCaseSensitive;
-
-public:
-            TypedStrCollection( USHORT nLim = 4, USHORT nDel = 4, BOOL bDup = FALSE )
-                : SortedCollection( nLim, nDel, bDup ) { bCaseSensitive = FALSE; }
-
-            TypedStrCollection( const TypedStrCollection& rCpy )
-                : SortedCollection( rCpy ) { bCaseSensitive = rCpy.bCaseSensitive; }
-
-    virtual short           Compare( DataObject* pKey1, DataObject* pKey2 ) const;
-
-
-
 };
 
 } //namespace binfilter

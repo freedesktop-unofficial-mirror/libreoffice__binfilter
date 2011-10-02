@@ -114,7 +114,6 @@ class ScValidationData;
 class ScValidationDataList;
 class ScViewOptions;
 class StrCollection;
-class TypedStrCollection;
 class ScChangeTrack;
 class ScFieldEditEngine;
 struct ScConsolidateParam;
