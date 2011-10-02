@@ -112,16 +112,10 @@ using namespace ::com::sun::star;
 /*N*/   delete pUnoData;
 /*N*/ }
 
-/*N*/ DataObject* ScChartListener::Clone() const
-/*N*/ {
-        DBG_BF_ASSERT(0, "STRIP");return NULL;
-/*N*/ }
-
 /*N*/ void ScChartListener::SetUno(
 /*N*/       const uno::Reference< chart::XChartDataChangeEventListener >& rListener,
 /*N*/       const uno::Reference< chart::XChartData >& rSource )
 /*N*/ {
-/*N*/ //    DBG_ASSERT( rListener.is() && rSource.is(), "Nullpointer bei SetUno" );
 /*N*/   delete pUnoData;
 /*N*/   pUnoData = new ScChartUnoData( rListener, rSource );
 /*N*/ }
@@ -237,18 +231,6 @@ using namespace ::com::sun::star;
 /*N*/       FreeAll();
 /*N*/ }
 
-/*N*/ DataObject*   ScChartListenerCollection::Clone() const
-/*N*/ {
-        DBG_BF_ASSERT(0, "STRIP");return NULL;
-/*N*/ }
-
-
-/*N*/ void ScChartListenerCollection::ChangeListening( const String& /*rName*/,
-/*N*/       const ScRangeListRef& /*rRangeListRef*/, BOOL /*bDirty*/ )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ void ScChartListenerCollection::FreeUnused()
 /*N*/ {
 /*N*/   // rueckwaerts wg. Pointer-Aufrueckerei im Array
@@ -323,33 +305,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   StartTimer();
 /*N*/ }
-
-
-
-
-
-
-/*N*/ void ScChartListenerCollection::UpdateScheduledSeriesRanges()
-/*N*/ {
-/*N*/   for ( USHORT nIndex = 0; nIndex < nCount; nIndex++ )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ }
-
-
-/*N*/ void ScChartListenerCollection::UpdateSeriesRangesContainingTab( USHORT nTab )
-/*N*/ {
-/*N*/   ScRange aRange( 0, 0, nTab, MAXCOL, MAXROW, nTab );
-/*N*/   for ( USHORT nIndex = 0; nIndex < nCount; nIndex++ )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ }
-
-
-
-
 
 
 }

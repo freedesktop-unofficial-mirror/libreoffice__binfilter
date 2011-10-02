@@ -163,8 +163,6 @@ void ScDocument::UpdateChartArea( const String& rChartName,
                             aArray.SetRangeList( rNewList );
                             aArray.SetHeaders( bColHeaders, bRowHeaders );
                         }
-                        pChartListenerCollection->ChangeListening(
-                            rChartName, aArray.GetRangeList() );
 
                         SchMemChart* pMemChart = aArray.CreateMemChart();
                         ScChartArray::CopySettings( *pMemChart, *pChartData );

@@ -64,7 +64,7 @@ public:
                                     const ScRangeListRef& rRangeListRef );
                     ScChartListener( const ScChartListener& );
     virtual         ~ScChartListener();
-    virtual DataObject* Clone() const;
+    virtual DataObject* Clone() const { return NULL; } // DBG_BF_ASSERT
 
     void            SetUno( const ::com::sun::star::uno::Reference< ::com::sun::star::chart::XChartDataChangeEventListener >& rListener,
                             const ::com::sun::star::uno::Reference< ::com::sun::star::chart::XChartData >& rSource );
@@ -104,15 +104,10 @@ private:
 public:
                     ScChartListenerCollection( ScDocument* pDoc );
                     ScChartListenerCollection( const ScChartListenerCollection& );
-    virtual DataObject* Clone() const;
+    virtual DataObject* Clone() const { return NULL; } // DBG_BF_ASSERT
 
     virtual         ~ScChartListenerCollection();
 
-                    // nur nach copy-ctor noetig, wenn neu ins Dok gehaengt
-
-    void            ChangeListening( const String& rName,
-                                    const ScRangeListRef& rRangeListRef,
-                                    BOOL bDirty = FALSE );
     // FreeUnused nur wie in ScDocument::UpdateChartListenerCollection verwenden!
     void            FreeUnused();
     void            FreeUno( const ::com::sun::star::uno::Reference< ::com::sun::star::chart::XChartDataChangeEventListener >& rListener,
@@ -120,11 +115,6 @@ public:
     void            StartTimer();
     void            UpdateDirtyCharts();
     void            SetDirty();
-
-
-    void            UpdateScheduledSeriesRanges();
-    void            UpdateSeriesRangesContainingTab( USHORT nTab );
-
 };
 
 

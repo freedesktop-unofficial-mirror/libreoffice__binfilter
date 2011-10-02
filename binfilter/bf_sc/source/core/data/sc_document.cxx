@@ -283,9 +283,6 @@ namespace binfilter {
 /*N*/               //  update conditional formats after table is inserted
 /*N*/               if ( pCondFormList )
 /*N*/                   pCondFormList->UpdateReference( URM_INSDEL, aRange, 0,0,1 );
-/*N*/               // #81844# sheet names of references are not valid until sheet is inserted
-/*N*/               if ( pChartListenerCollection )
-/*N*/                   pChartListenerCollection->UpdateScheduledSeriesRanges();
 /*N*/
 /*N*/               SetDirty();
 /*N*/               bValid = TRUE;
@@ -351,7 +348,6 @@ namespace binfilter {
 /*N*/                   SetDirty();
 /*N*/               }
 /*N*/               // #81844# sheet names of references are not valid until sheet is deleted
-/*N*/               pChartListenerCollection->UpdateScheduledSeriesRanges();
 /*N*/               SetAutoCalc( bOldAutoCalc );
 /*N*/               bValid = TRUE;
 /*N*/           }
@@ -383,8 +379,6 @@ namespace binfilter {
 /*N*/           if (bValid)
 /*N*/           {
 /*N*/               pTab[nTab]->SetName(rName);
-/*N*/               if ( pChartListenerCollection )
-/*N*/                   pChartListenerCollection->UpdateSeriesRangesContainingTab( nTab );
 /*N*/           }
 /*N*/       }
 /*N*/   return bValid;
