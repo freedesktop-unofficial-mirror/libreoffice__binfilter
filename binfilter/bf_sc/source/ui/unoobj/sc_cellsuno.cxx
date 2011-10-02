@@ -4840,16 +4840,12 @@ void SAL_CALL ScCellRangeObj::sort( const uno::Sequence<beans::PropertyValue>& a
         for (i=0; i<MAXSORT; i++)
             aParam.nField[i] += nFieldStart;
 
-        USHORT nTab = aRange.aStart.Tab();
         aParam.nCol1 = aRange.aStart.Col();
         aParam.nRow1 = aRange.aStart.Row();
         aParam.nCol2 = aRange.aEnd.Col();
         aParam.nRow2 = aRange.aEnd.Row();
 
         pDocSh->GetDBData( aRange, SC_DB_MAKE, TRUE );      // ggf. Bereich anlegen
-
-        ScDBDocFunc aFunc(*pDocSh);                         // Bereich muss angelegt sein
-        aFunc.Sort( nTab, aParam, TRUE, TRUE, TRUE );
     }
 }
 
@@ -4928,19 +4924,12 @@ void SAL_CALL ScCellRangeObj::filter( const uno::Reference<sheet::XSheetFilterDe
             }
         }
 
-        USHORT nTab = aRange.aStart.Tab();
         aParam.nCol1 = aRange.aStart.Col();
         aParam.nRow1 = aRange.aStart.Row();
         aParam.nCol2 = aRange.aEnd.Col();
         aParam.nRow2 = aRange.aEnd.Row();
 
         pDocSh->GetDBData( aRange, SC_DB_MAKE, TRUE );  // ggf. Bereich anlegen
-
-        //! keep source range in filter descriptor
-        //! if created by createFilterDescriptorByObject ???
-
-        ScDBDocFunc aFunc(*pDocSh);
-        aFunc.Query( nTab, aParam, NULL, TRUE, TRUE );  // Bereich muss angelegt sein
     }
 }
 
@@ -5051,17 +5040,12 @@ void SAL_CALL ScCellRangeObj::applySubTotals(
         }
 
         aParam.bReplace = bReplace;
-
-        USHORT nTab = aRange.aStart.Tab();
         aParam.nCol1 = aRange.aStart.Col();
         aParam.nRow1 = aRange.aStart.Row();
         aParam.nCol2 = aRange.aEnd.Col();
         aParam.nRow2 = aRange.aEnd.Row();
 
         pDocSh->GetDBData( aRange, SC_DB_MAKE, TRUE );  // ggf. Bereich anlegen
-
-        ScDBDocFunc aFunc(*pDocSh);
-        aFunc.DoSubTotals( nTab, aParam, NULL, TRUE, TRUE );    // Bereich muss angelegt sein
     }
 }
 
@@ -5078,17 +5062,12 @@ void SAL_CALL ScCellRangeObj::removeSubTotals() throw(uno::RuntimeException)
             pData->GetSubTotalParam(aParam);    // auch bei Remove die Feld-Eintraege behalten
 
         aParam.bRemoveOnly = TRUE;
-
-        USHORT nTab = aRange.aStart.Tab();
         aParam.nCol1 = aRange.aStart.Col();
         aParam.nRow1 = aRange.aStart.Row();
         aParam.nCol2 = aRange.aEnd.Col();
         aParam.nRow2 = aRange.aEnd.Row();
 
         pDocSh->GetDBData( aRange, SC_DB_MAKE, TRUE );  // ggf. Bereich anlegen
-
-        ScDBDocFunc aFunc(*pDocSh);
-        aFunc.DoSubTotals( nTab, aParam, NULL, TRUE, TRUE );    // Bereich muss angelegt sein
     }
 }
 

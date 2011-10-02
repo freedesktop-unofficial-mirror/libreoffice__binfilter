@@ -227,39 +227,6 @@ namespace binfilter {
 /*N*/               pDoc->CopyToDocument( 0,0,0, MAXCOL,MAXROW,nTabCount-1, IDF_FORMULA, FALSE, pUndoDoc );
 /*N*/           }
 /*N*/
-/*N*/           if (bSort && bSubTotal)
-/*N*/           {
-/*N*/               //  Sortieren ohne SubTotals
-/*N*/
-/*N*/               aSubTotalParam.bRemoveOnly = TRUE;      // wird unten wieder zurueckgesetzt
-/*N*/               DoSubTotals( nTab, aSubTotalParam, NULL, FALSE, bApi );
-/*N*/           }
-/*N*/
-/*N*/           if (bSort)
-/*N*/           {
-/*N*/               pDBData->GetSortParam( aSortParam );            // Bereich kann sich geaendert haben
-/*N*/               Sort( nTab, aSortParam, FALSE, FALSE, bApi );
-/*N*/           }
-/*N*/           if (bQuery)
-/*N*/           {
-/*N*/               pDBData->GetQueryParam( aQueryParam );          // Bereich kann sich geaendert haben
-/*N*/               ScRange aAdvSource;
-/*N*/               if (pDBData->GetAdvancedQuerySource(aAdvSource))
-/*N*/                   Query( nTab, aQueryParam, &aAdvSource, FALSE, bApi );
-/*N*/               else
-/*N*/                   Query( nTab, aQueryParam, NULL, FALSE, bApi );
-/*N*/
-/*N*/               //  bei nicht-inplace kann die Tabelle umgestellt worden sein
-/*N*/ //                if ( !aQueryParam.bInplace && aQueryParam.nDestTab != nTab )
-/*N*/ //                    SetTabNo( nTab );
-/*N*/           }
-/*N*/           if (bSubTotal)
-/*N*/           {
-/*N*/               pDBData->GetSubTotalParam( aSubTotalParam );    // Bereich kann sich geaendert haben
-/*N*/               aSubTotalParam.bRemoveOnly = FALSE;
-/*N*/               DoSubTotals( nTab, aSubTotalParam, NULL, FALSE, bApi );
-/*N*/           }
-/*N*/
 /*N*/           rDocShell.PostPaint( 0,0,nTab, MAXCOL,MAXROW,nTab,
 /*N*/                                   PAINT_GRID | PAINT_LEFT | PAINT_TOP | PAINT_SIZE );
 /*N*/           bDone = TRUE;
@@ -269,32 +236,6 @@ namespace binfilter {
 /*N*/   return bDone;
 /*N*/ }
 
-
-/*N*/ BOOL ScDBDocFunc::Sort( USHORT /* nTab */, const ScSortParam& /* rSortParam */,
-/*N*/                           BOOL /* bRecord */, BOOL /* bPaint */, BOOL )
-/*N*/ {
-        DBG_BF_ASSERT(0, "STRIP");
-/*N*/   OSL_FAIL( "Sort: keine DBData" );
-/*N*/   return FALSE;
-/*N*/ }
-
-
-/*N*/ BOOL ScDBDocFunc::Query( USHORT /* nTab */, const ScQueryParam& /* rQueryParam */,
-/*N*/                       const ScRange* /* pAdvSource */, BOOL /* bRecord */, BOOL /* bApi */ )
-/*N*/ {
-        DBG_BF_ASSERT(0, "STRIP");
-/*N*/   OSL_FAIL( "Query: keine DBData" );
-/*N*/   return FALSE;
-/*N*/ }
-
-
-/*N*/ BOOL ScDBDocFunc::DoSubTotals( USHORT /* nTab */, const ScSubTotalParam& /* rParam */,
-/*N*/                               const ScSortParam* /*pForceNewSort*/, BOOL /* bRecord */, BOOL )
-/*N*/ {
-        DBG_BF_ASSERT(0, "STRIP");
-/*N*/   OSL_FAIL( "SubTotals: keine DBData" );
-/*N*/   return FALSE;
-/*N*/ }
 
 /*N*/ BOOL ScDBDocFunc::DataPilotUpdate( ScDPObject* pOldObj, const ScDPObject* pNewObj,
 /*N*/                                       BOOL bRecord, BOOL )

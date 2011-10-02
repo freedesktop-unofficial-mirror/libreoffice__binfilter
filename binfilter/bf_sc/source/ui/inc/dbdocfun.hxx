@@ -77,16 +77,6 @@ public:
                         const SbaSelectionList* pSelection, BOOL bRecord,
                         BOOL bAddrInsert = FALSE );
 
-    BOOL            Sort( USHORT nTab, const ScSortParam& rSortParam,
-                            BOOL bRecord, BOOL bPaint, BOOL bApi );
-
-    BOOL            Query( USHORT nTab, const ScQueryParam& rQueryParam,
-                            const ScRange* pAdvSource, BOOL bRecord, BOOL bApi );
-
-    BOOL            DoSubTotals( USHORT nTab, const ScSubTotalParam& rParam,
-                                    const ScSortParam* pForceNewSort,
-                                    BOOL bRecord, BOOL bApi );
-
     BOOL            AddDBRange( const String& rName, const ScRange& rRange, BOOL bApi );
     BOOL            DeleteDBRange( const String& rName, BOOL bApi );
     BOOL            RenameDBRange( const String& rOld, const String& rNew, BOOL bApi );
