@@ -1293,7 +1293,7 @@ using namespace ::com::sun::star;
 /*N*/       return DIR_LEFT;
 /*N*/ }
 
-/*N*/ BOOL ScDocFunc::MergeCells( const ScRange& rRange, BOOL bContents, BOOL /*bRecord*/, BOOL )
+/*N*/ BOOL ScDocFunc::MergeCells( const ScRange& rRange, BOOL /*bContents*/, BOOL /*bRecord*/, BOOL )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
@@ -1327,8 +1327,6 @@ using namespace ::com::sun::star;
 /*N*/   if ( !AdjustRowHeight( ScRange( 0,nStartRow,nTab, MAXCOL,nEndRow,nTab ) ) )
 /*N*/       rDocShell.PostPaint( nStartCol, nStartRow, nTab,
 /*N*/                                           nEndCol, nEndRow, nTab, PAINT_GRID );
-/*N*/   if ( bContents )
-/*?*/       pDoc->SetDirty( rRange );
 /*N*/   aModificator.SetDocumentModified();
 /*N*/
 /*N*/   return TRUE;

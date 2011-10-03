@@ -2385,12 +2385,6 @@ void ScInterpreter::ScColRowNameAuto()
         nStartCol = aRefData.Ref2.nCol = aRefData.Ref1.nCol;
         nStartRow = aRefData.Ref2.nRow = aRefData.Ref1.nRow;
         aRefData.Ref2.nTab = aRefData.Ref1.nTab;
-        pDok->GetDataArea(  (USHORT) aRefData.Ref1.nTab,
-                            (USHORT&) aRefData.Ref1.nCol,
-                            (USHORT&) aRefData.Ref1.nRow,
-                            (USHORT&) aRefData.Ref2.nCol,
-                            (USHORT&) aRefData.Ref2.nRow,
-                            TRUE );
         // DataArea im Ursprung begrenzen
         aRefData.Ref1.nCol = nStartCol;
         aRefData.Ref1.nRow = nStartRow;

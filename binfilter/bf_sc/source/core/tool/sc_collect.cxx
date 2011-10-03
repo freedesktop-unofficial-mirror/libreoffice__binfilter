@@ -299,7 +299,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if ( pDoc->HasValueData( nCol, nRow, nTab ) )
 /*N*/   {
-/*?*/       pDoc->GetValue( nCol, nRow, nTab, nValue );
+            nValue = 0.0;
 /*?*/       if (bAllStrings)
 /*?*/           pDoc->GetString( nCol, nRow, nTab, aStrValue );
 /*?*/       nStrType = 0;

@@ -436,17 +436,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//  zusammenhaengender Bereich
-
-void ScDocument::GetDataArea( USHORT, USHORT&, USHORT&, USHORT&, USHORT&, BOOL )
-{
-    DBG_BF_ASSERT(0, "STRIP");
-}
-
-
-
-
-
 
 /*N*/ BOOL ScDocument::CanInsertRow( const ScRange& rRange ) const
 /*N*/ {
@@ -1171,13 +1160,6 @@ void ScDocument::GetDataArea( USHORT, USHORT&, USHORT&, USHORT&, USHORT&, BOOL )
 /*N*/ }
 
 
-void ScDocument::GetValue( USHORT, USHORT, USHORT, double& rValue )
-{
-    DBG_BF_ASSERT(0, "STRIP");
-    rValue = 0.0;
-}
-
-
 /*N*/ double ScDocument::GetValue( const ScAddress& rPos )
 /*N*/ {
 /*N*/   USHORT nTab = rPos.Tab();
@@ -1322,12 +1304,6 @@ void ScDocument::GetValue( USHORT, USHORT, USHORT, double& rValue )
 /*N*/
 /*N*/   SetAutoCalc( bOldAutoCalc );
 /*N*/ }
-
-
-void ScDocument::SetDirty( const ScRange& )
-{
-    DBG_BF_ASSERT(0, "STRIP");
-}
 
 
 /*N*/  void ScDocument::SetTableOpDirty( const ScRange& rRange )

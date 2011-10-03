@@ -226,10 +226,6 @@ public:
 
     void        ResetChanged( USHORT nStartRow, USHORT nEndRow );
 
-    void        UpdateReference( UpdateRefMode eUpdateRefMode, USHORT nCol1, USHORT nRow1, USHORT nTab1,
-                                     USHORT nCol2, USHORT nRow2, USHORT nTab2,
-                                     short nDx, short nDy, short nDz,
-                                     ScDocument* pUndoDoc = NULL );
     void        UpdateInsertTab( USHORT nTable);
     void        UpdateInsertTabOnlyCells( USHORT nTable);
      void       UpdateDeleteTab( USHORT nTable, BOOL bIsMove, ScColumn* pRefUndo = NULL );

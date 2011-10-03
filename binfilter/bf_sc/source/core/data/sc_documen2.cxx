@@ -352,11 +352,11 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/  IMPL_LINK( ScDocument, TrackTimeHdl, Timer*, EMPTYARG )
-/*N*/  {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return 0;
-/*N*/ }
+IMPL_LINK( ScDocument, TrackTimeHdl, Timer*, EMPTYARG )
+{
+    DBG_BF_ASSERT(0, "STRIP");  // IMPL_LINK()
+    return 0;
+}
 
 
 /*N*/ ScDocument::~ScDocument()
@@ -508,13 +508,6 @@ namespace binfilter {
 /*N*/   Clear();
 /*N*/   USHORT nOldBufSize = rStream.GetBufferSize();
 /*N*/   rStream.SetBufferSize( 32768 );
-/*N*/
-/*N*/       //  Progress-Bar
-/*N*/
-/*N*/ //    ULONG nCurPos = rStream.Tell();
-/*N*/ //    ULONG nEndPos = rStream.Seek( STREAM_SEEK_TO_END );
-/*N*/ //    rStream.Seek( nCurPos );
-/*N*/ //    ScProgress aProgress( NULL, ScGlobal::GetRscString(STR_LOAD_DOC), nEndPos - nCurPos );
 /*N*/
 /*N*/   BOOL bError = FALSE;
 /*N*/   USHORT nVersion = 0;
@@ -822,19 +815,6 @@ namespace binfilter {
 /*N*/       SetAutoFilterFlags();
 /*N*/       if (pDrawLayer)
 /*N*/           UpdateAllCharts();
-/*N*/ #ifdef DBG_UTIL
-/*N*/ //2do: wg. #62107
-/*N*/ // ChartListenerCollection speichern/laden, damit nach dem Laden das Update
-/*N*/ // hier einmal eingespart werden kann und somit nicht mehr alle Charts
-/*N*/ // angefasst werden muessen. Die ChartListenerCollection muss dann zum Master
-/*N*/ // der Referenzen werden.
-/*N*/ //        static BOOL bShown = 0;
-/*N*/ //        if ( !bShown && SOFFICE_FILEFORMAT_NOW > SOFFICE_FILEFORMAT_50 )
-/*N*/ //        {
-/*N*/ //            bShown = 1;
-/*N*/ //            DBG_ERRORFILE( "bei inkompatiblem FileFormat ChartListenerCollection speichern!" );
-/*N*/ //        }
-/*N*/ #endif
 /*N*/       UpdateChartListenerCollection();
 /*N*/       if (pDrawLayer)
 /*N*/           RefreshNoteFlags();

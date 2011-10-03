@@ -538,113 +538,119 @@ extern const ScFormulaCell* pLastFormulaTreeTop;    // in cellform.cxx
     //  Formelzellen werden jetzt schon hier kopiert,
     //  Notizen muessen aber evtl. noch geloescht werden
 
-/*N*/ ScBaseCell* ScColumn::CloneCell(USHORT nIndex, USHORT nFlags,
-/*N*/                                   ScDocument* pDestDoc, const ScAddress& /*rDestPos*/)
-/*N*/ {
-/*N*/   ScBaseCell* pNew = 0;
-/*N*/   ScBaseCell* pSource = pItems[nIndex].pCell;
-/*N*/   switch (pSource->GetCellType())
-/*N*/   {
-/*?*/       case CELLTYPE_NOTE:
-/*?*/           if (nFlags & IDF_NOTE)
-/*?*/               pNew = new ScNoteCell(*(ScNoteCell*)pSource);
-/*?*/           break;
-/*?*/       case CELLTYPE_EDIT:
-/*?*/           if (nFlags & IDF_STRING)
-/*?*/               pNew = new ScEditCell( *(ScEditCell*)pSource, pDestDoc );
-/*?*/           break;
-/*N*/       case CELLTYPE_STRING:
-/*N*/           if (nFlags & IDF_STRING)
-/*N*/               pNew = new ScStringCell(*(ScStringCell*)pSource);
-/*N*/           break;
-/*N*/       case CELLTYPE_VALUE:
-/*N*/           {
-/*N*/               BOOL bDoIns = FALSE;
-/*N*/               USHORT nMask = nFlags & ( IDF_DATETIME | IDF_VALUE );
-/*N*/               if ( nMask == (IDF_DATETIME | IDF_VALUE) )
-/*N*/                   bDoIns = TRUE;
-/*N*/               else if ( nMask )
-/*N*/               {
-/*?*/                   ULONG nNumIndex = (ULONG)((SfxUInt32Item*) GetAttr(
-/*?*/                           pItems[nIndex].nRow, ATTR_VALUE_FORMAT ))->GetValue();
-/*?*/                   short nTyp = pDocument->GetFormatTable()->GetType(nNumIndex);
-/*?*/                   if (nTyp == NUMBERFORMAT_DATE || nTyp == NUMBERFORMAT_TIME || nTyp == NUMBERFORMAT_DATETIME)
-/*?*/                       bDoIns = (nFlags & IDF_DATETIME)!=0;
-/*?*/                   else
-/*?*/                       bDoIns = (nFlags & IDF_VALUE)!=0;
-/*N*/               }
-/*N*/               if (bDoIns)
-/*N*/                   pNew = new ScValueCell(*(ScValueCell*)pSource);
-/*N*/           }
-/*N*/           break;
-/*?*/       case CELLTYPE_FORMULA:
-/*?*/           {
-/*?*/               ScFormulaCell* pForm = (ScFormulaCell*)pSource;
-/*?*/               if (nFlags & IDF_FORMULA)
-/*?*/               {
-DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
-/*?*/               else if ( (nFlags & (IDF_VALUE | IDF_DATETIME | IDF_STRING)) &&
-/*?*/                           !pDestDoc->IsUndo() )
-/*?*/               {
-/*?*/                   //  #48491# ins Undo-Dokument immer nur die Original-Zelle kopieren,
-/*?*/                   //  aus Formeln keine Value/String-Zellen erzeugen
-/*?*/
-/*?*/                   USHORT nErr = pForm->GetErrCode();
-/*?*/                   if ( nErr )
-/*?*/                   {
-/*?*/                       //  Fehler werden immer mit "Zahlen" kopiert
-/*?*/                       //  (Das ist hiermit willkuerlich so festgelegt)
-/*?*/
-/*?*/                   }
-/*?*/                   else if ( pForm->IsValue() )
-/*?*/                   {
-/*?*/                       BOOL bDoIns = FALSE;
-/*?*/                       USHORT nMask = nFlags & ( IDF_DATETIME | IDF_VALUE );
-/*?*/                       if ( nMask == (IDF_DATETIME | IDF_VALUE) )
-/*?*/                           bDoIns = TRUE;
-/*?*/                       else if ( nMask )
-/*?*/                       {
-/*?*/                           ULONG nNumIndex = (ULONG)((SfxUInt32Item*) GetAttr(
-/*?*/                                   pItems[nIndex].nRow, ATTR_VALUE_FORMAT ))->GetValue();
-/*?*/                           short nTyp = pDocument->GetFormatTable()->GetType(nNumIndex);
-/*?*/                           if (nTyp == NUMBERFORMAT_DATE || nTyp == NUMBERFORMAT_TIME || nTyp == NUMBERFORMAT_DATETIME)
-/*?*/                               bDoIns = (nFlags & IDF_DATETIME)!=0;
-/*?*/                           else
-/*?*/                               bDoIns = (nFlags & IDF_VALUE)!=0;
-/*?*/                       }
-/*?*/
-/*?*/                       if (bDoIns)
-/*?*/                       {
-/*?*/                           double nVal = pForm->GetValue();
-/*?*/                           pNew = new ScValueCell(nVal);
-/*?*/                       }
-/*?*/                   }
-/*?*/                   else
-/*?*/                   {
-/*?*/                       if (nFlags & IDF_STRING)
-/*?*/                       {
-/*?*/                           String aString;
-/*?*/                           pForm->GetString(aString);
-/*?*/                           if ( aString.Len() )
-/*?*/                               pNew = new ScStringCell(aString);
-/*?*/                               // #33224# LeerStrings nicht kopieren
-/*?*/                       }
-/*?*/                   }
-/*?*/                   if ( pNew && pSource->GetNotePtr() && ( nFlags & IDF_NOTE ) )
-/*?*/                       pNew->SetNote(*pSource->GetNotePtr());
-/*?*/               }
-/*?*/           }
-/*?*/           break;
-/*?*/       default:
-/*?*/           break;
-/*N*/   }
-/*N*/
-/*N*/   if ( !pNew && pSource->GetNotePtr() && ( nFlags & IDF_NOTE ) )
-/*?*/       pNew = new ScNoteCell(*pSource->GetNotePtr());
-/*N*/
-/*N*/   return pNew;
-/*N*/ }
+ScBaseCell* ScColumn::CloneCell(
+    USHORT nIndex,
+    USHORT nFlags,
+    ScDocument* pDestDoc,
+    const ScAddress& /*rDestPos*/
+)
+{
+    ScBaseCell* pNew = 0;
+    ScBaseCell* pSource = pItems[nIndex].pCell;
+    switch (pSource->GetCellType())
+    {
+    case CELLTYPE_NOTE:
+        if (nFlags & IDF_NOTE)
+            pNew = new ScNoteCell(*(ScNoteCell*)pSource);
+        break;
+    case CELLTYPE_EDIT:
+        if (nFlags & IDF_STRING)
+            pNew = new ScEditCell( *(ScEditCell*)pSource, pDestDoc );
+        break;
+    case CELLTYPE_STRING:
+        if (nFlags & IDF_STRING)
+            pNew = new ScStringCell(*(ScStringCell*)pSource);
+        break;
+    case CELLTYPE_VALUE:
+    {
+        BOOL bDoIns = FALSE;
+        USHORT nMask = nFlags & ( IDF_DATETIME | IDF_VALUE );
+        if ( nMask == (IDF_DATETIME | IDF_VALUE) )
+            bDoIns = TRUE;
+        else if ( nMask )
+        {
+            ULONG nNumIndex = (ULONG)((SfxUInt32Item*) GetAttr(
+                    pItems[nIndex].nRow, ATTR_VALUE_FORMAT ))->GetValue();
+            short nTyp = pDocument->GetFormatTable()->GetType(nNumIndex);
+            if (  nTyp == NUMBERFORMAT_DATE
+               || nTyp == NUMBERFORMAT_TIME
+               || nTyp == NUMBERFORMAT_DATETIME
+               )
+                bDoIns = (nFlags & IDF_DATETIME)!=0;
+            else
+                bDoIns = (nFlags & IDF_VALUE)!=0;
+        }
+        if (bDoIns)
+            pNew = new ScValueCell(*(ScValueCell*)pSource);
+    }
+    break;
+    case CELLTYPE_FORMULA:
+    {
+        ScFormulaCell* pForm = (ScFormulaCell*)pSource;
+        if ( !( nFlags & IDF_FORMULA ) )
+        {
+            if (  (nFlags & (IDF_VALUE | IDF_DATETIME | IDF_STRING))
+               && !pDestDoc->IsUndo()
+               )
+            {
+                //  #48491# ins Undo-Dokument immer nur die Original-Zelle kopieren,
+                //  aus Formeln keine Value/String-Zellen erzeugen
+
+                USHORT nErr = pForm->GetErrCode();
+                if ( !nErr )
+                {
+                    if ( pForm->IsValue() )
+                    {
+                        BOOL bDoIns = FALSE;
+                        USHORT nMask = nFlags & ( IDF_DATETIME | IDF_VALUE );
+                        if ( nMask == (IDF_DATETIME | IDF_VALUE) )
+                            bDoIns = TRUE;
+                        else if ( nMask )
+                        {
+                            ULONG nNumIndex = (ULONG)((SfxUInt32Item*) GetAttr(
+                                    pItems[nIndex].nRow, ATTR_VALUE_FORMAT ))->GetValue();
+                            short nTyp = pDocument->GetFormatTable()->GetType(nNumIndex);
+                            if (  nTyp == NUMBERFORMAT_DATE
+                               || nTyp == NUMBERFORMAT_TIME
+                               || nTyp == NUMBERFORMAT_DATETIME
+                               )
+                                bDoIns = (nFlags & IDF_DATETIME)!=0;
+                            else
+                                bDoIns = (nFlags & IDF_VALUE)!=0;
+                        }
+
+                        if (bDoIns)
+                        {
+                            double nVal = pForm->GetValue();
+                            pNew = new ScValueCell(nVal);
+                        }
+                    }
+                    else
+                    {
+                        if (nFlags & IDF_STRING)
+                        {
+                            String aString;
+                            pForm->GetString(aString);
+                            if ( aString.Len() )
+                                pNew = new ScStringCell(aString);
+                        }
+                    }
+                }
+                if ( pNew && pSource->GetNotePtr() && ( nFlags & IDF_NOTE ) )
+                    pNew->SetNote(*pSource->GetNotePtr());
+            }
+        }
+    }
+    break;
+    default:
+        break;
+    }
+
+    if ( !pNew && pSource->GetNotePtr() && ( nFlags & IDF_NOTE ) )
+        pNew = new ScNoteCell(*pSource->GetNotePtr());
+
+    return pNew;
+}
 
 
 

@@ -76,20 +76,10 @@ using ::rtl::OUString;
 /*N*/ void ScUnitConverterData::BuildIndexString( String& rStr,
 /*N*/           const String& rFromUnit, const String& rToUnit )
 /*N*/ {
-/*N*/ #if 1
 /*N*/ // case sensitive
 /*N*/   rStr = rFromUnit;
 /*N*/   rStr += cDelim;
 /*N*/   rStr += rToUnit;
-/*N*/ #else
-/*N*/ // not case sensitive
-/*N*/   rStr = rFromUnit;
-/*N*/   String aTo( rToUnit );
-/*N*/   ScGlobal::pCharClass->toUpper( rStr );
-/*N*/   ScGlobal::pCharClass->toUpper( aTo );
-/*N*/   rStr += cDelim;
-/*N*/   rStr += aTo;
-/*N*/ #endif
 /*N*/ }
 
 

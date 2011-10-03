@@ -968,56 +968,6 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void ScColumn::UpdateReference( UpdateRefMode eUpdateRefMode, USHORT nCol1, USHORT nRow1, USHORT nTab1,
-/*N*/            USHORT nCol2, USHORT nRow2, USHORT nTab2, short /*nDx*/, short /*nDy*/, short /*nDz*/,
-/*N*/            ScDocument* /*pUndoDoc*/ )
-/*N*/ {
-/*N*/   if (pItems)
-/*N*/   {
-/*N*/       ScRange aRange( ScAddress( nCol1, nRow1, nTab1 ),
-/*N*/                       ScAddress( nCol2, nRow2, nTab2 ) );
-/*N*/       if ( !(eUpdateRefMode == URM_COPY && nRow1 == nRow2) )
-/*N*/       {
-/*?*/             // #90279# For performance reasons two loop bodies instead of
-/*?*/             // testing for update mode in each iteration.
-/*?*/             // Anyways, this is still a bottleneck on large arrays with few
-/*?*/             // formulas cells.
-/*?*/             if ( eUpdateRefMode == URM_COPY )
-/*?*/             {
-/*?*/                 USHORT i;
-/*?*/                 Search( nRow1, i );
-/*?*/                 for ( ; i < nCount; i++ )
-/*?*/                 {
-/*?*/                     USHORT nRow = pItems[i].nRow;
-/*?*/                     if ( nRow > nRow2 )
-/*?*/                         break;
-/*?*/                     ScBaseCell* pCell = pItems[i].pCell;
-/*?*/                     if( pCell->GetCellType() == CELLTYPE_FORMULA)
-/*?*/                     {
-/*?*/                         DBG_BF_ASSERT(0, "STRIP");
-/*?*/                     }
-/*?*/                 }
-/*?*/             }
-/*?*/             else
-/*?*/             {
-/*?*/                 USHORT i = 0;
-/*?*/                 for ( ; i < nCount; i++ )
-/*?*/                 {
-/*?*/                     ScBaseCell* pCell = pItems[i].pCell;
-/*?*/                     if( pCell->GetCellType() == CELLTYPE_FORMULA)
-/*?*/                     {
-/*?*/                         DBG_BF_ASSERT(0, "STRIP");
-/*?*/                     }
-/*?*/                 }
-/*?*/             }
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-
-
-
-
 
 /*N*/ void ScColumn::UpdateInsertTab( USHORT nTable)
 /*N*/ {

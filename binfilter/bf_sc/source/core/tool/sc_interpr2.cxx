@@ -1447,7 +1447,6 @@ void ScInterpreter::ScBackSolver()
                 {
                     i++;
                     pValue->SetValue(xn);
-                    pDok->SetDirty( aVRange );
                     pFormula->Interpret();
                     bError = ( pFormula->GetErrCode() != 0 );
                     fn = pFormula->GetValue();
@@ -1494,7 +1493,6 @@ void ScInterpreter::ScBackSolver()
                 if ( bRet )
                 {
                     pValue->SetValue( nX );
-                    pDok->SetDirty( aVRange );
                     pFormula->Interpret();
                     if ( fabs( pFormula->GetValue() - nVal ) > fabs( fn ) )
                         nX = nBestX;
@@ -1513,7 +1511,6 @@ void ScInterpreter::ScBackSolver()
                 }
                 else
                     pValue->SetValue(nSaveVal);
-                pDok->SetDirty( aVRange );
                 pFormula->Interpret();
                 if (!bRet)
                     SetError(NOVALUE);

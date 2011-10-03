@@ -626,7 +626,6 @@ public:
     void            GetString( USHORT nCol, USHORT nRow, USHORT nTab, String& rString );
     void            GetInputString( USHORT nCol, USHORT nRow, USHORT nTab, String& rString );
     double          GetValue( const ScAddress& );
-    void            GetValue( USHORT nCol, USHORT nRow, USHORT nTab, double& rValue );
     void            GetNumberFormat( USHORT nCol, USHORT nRow, USHORT nTab,
                                      sal_uInt32& rFormat );
     ULONG           GetNumberFormat( const ScAddress& ) const;
@@ -669,8 +668,7 @@ public:
     void            ResetChanged( const ScRange& rRange );
 
     void            SetDirty();
-     void           SetDirty( const ScRange& );
-     void           SetTableOpDirty( const ScRange& );  // for Interpreter TableOp
+    void            SetTableOpDirty( const ScRange& );  // for Interpreter TableOp
     void            CalcAll();
     void            CalcAfterLoad();
     void            CompileXML();
@@ -689,8 +687,6 @@ public:
 
      USHORT         GetErrCode( const ScAddress& ) const;
 
-    void            GetDataArea( USHORT nTab, USHORT& rStartCol, USHORT& rStartRow,
-                                    USHORT& rEndCol, USHORT& rEndRow, BOOL bIncludeOld );
     BOOL            GetCellArea( USHORT nTab, USHORT& rEndCol, USHORT& rEndRow ) const;
     BOOL            GetTableArea( USHORT nTab, USHORT& rEndCol, USHORT& rEndRow ) const;
     BOOL            GetPrintArea( USHORT nTab, USHORT& rEndCol, USHORT& rEndRow,

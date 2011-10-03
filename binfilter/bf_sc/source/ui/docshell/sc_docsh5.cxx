@@ -177,7 +177,6 @@ namespace binfilter {
 /*N*/           nStartRow = nRow;
 /*N*/           nEndCol = nStartCol;
 /*N*/           nEndRow = nStartRow;
-/*N*/           aDocument.GetDataArea( nTab, nStartCol, nStartRow, nEndCol, nEndRow, FALSE );
 /*N*/       }
 /*N*/
 /*N*/       BOOL bHasHeader = FALSE;

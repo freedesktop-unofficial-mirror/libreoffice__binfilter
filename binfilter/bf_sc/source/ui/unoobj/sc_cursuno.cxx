@@ -127,9 +127,6 @@ void SAL_CALL ScCellCursorObj::collapseToCurrentRegion() throw(uno::RuntimeExcep
         USHORT nEndRow = aLclRange.aEnd.Row();
         USHORT nTab = aLclRange.aStart.Tab();
 
-        pDocSh->GetDocument()->GetDataArea(
-                        nTab, nStartCol, nStartRow, nEndCol, nEndRow, TRUE );
-
         ScRange aNew( nStartCol, nStartRow, nTab, nEndCol, nEndRow, nTab );
         SetNewRange( aNew );
     }
@@ -315,12 +312,7 @@ void SAL_CALL ScCellCursorObj::gotoStart() throw(uno::RuntimeException)
     {
         USHORT nStartCol = aLclRange.aStart.Col();
         USHORT nStartRow = aLclRange.aStart.Row();
-        USHORT nEndCol = aLclRange.aEnd.Col();
-        USHORT nEndRow = aLclRange.aEnd.Row();
         USHORT nTab = aLclRange.aStart.Tab();
-
-        pDocSh->GetDocument()->GetDataArea(
-                        nTab, nStartCol, nStartRow, nEndCol, nEndRow, FALSE );
 
         ScRange aNew( nStartCol, nStartRow, nTab );
         SetNewRange( aNew );
@@ -341,14 +333,9 @@ void SAL_CALL ScCellCursorObj::gotoEnd() throw(uno::RuntimeException)
     ScDocShell* pDocSh = GetDocShell();
     if ( pDocSh )
     {
-        USHORT nStartCol = aLclRange.aStart.Col();
-        USHORT nStartRow = aLclRange.aStart.Row();
         USHORT nEndCol = aLclRange.aEnd.Col();
         USHORT nEndRow = aLclRange.aEnd.Row();
         USHORT nTab = aLclRange.aStart.Tab();
-
-        pDocSh->GetDocument()->GetDataArea(
-                        nTab, nStartCol, nStartRow, nEndCol, nEndRow, FALSE );
 
         ScRange aNew( nEndCol, nEndRow, nTab );
         SetNewRange( aNew );

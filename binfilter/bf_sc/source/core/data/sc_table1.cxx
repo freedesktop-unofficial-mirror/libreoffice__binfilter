@@ -504,29 +504,13 @@ extern BOOL bIsOlk, bOderSo;
 /*N*/                    USHORT nCol2, USHORT nRow2, USHORT nTab2, short nDx, short nDy, short nDz,
 /*N*/                    ScDocument* pUndoDoc, BOOL /*bIncludeDraw*/ )
 /*N*/ {
-/*N*/   USHORT i;
-/*N*/   USHORT iMax;
-/*N*/   if ( eUpdateRefMode == URM_COPY )
-/*N*/   {
-/*N*/       i = nCol1;
-/*N*/       iMax = nCol2;
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       i = 0;
-/*N*/       iMax = MAXCOL;
-/*N*/   }
-/*N*/   for ( ; i<=iMax; i++)
-/*N*/       aCol[i].UpdateReference( eUpdateRefMode, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2,
-/*N*/                                   nDx, nDy, nDz, pUndoDoc );
-/*N*/
 /*N*/   if ( nTab >= nTab1 && nTab <= nTab2 && nDz == 0 )       // print ranges: only within the table
 /*N*/   {
 /*?*/       USHORT nSTab,nETab,nSCol,nSRow,nECol,nERow;
 /*?*/       BOOL bRecalcPages = FALSE;
 /*?*/
 /*?*/       if ( pPrintRanges && nPrintRangeCount )
-/*?*/           for ( i=0; i<nPrintRangeCount; i++ )
+/*?*/           for ( USHORT i=0; i<nPrintRangeCount; i++ )
 /*?*/           {
 /*?*/               nSTab = nETab = pPrintRanges[i].aStart.Tab();
 /*?*/               nSCol = pPrintRanges[i].aStart.Col();
