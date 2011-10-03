@@ -632,37 +632,37 @@ using ::rtl::OUString;
 
 /*N*/ IMPL_LINK( ScAppCfg, LayoutCommitHdl, void *, EMPTYARG )
 /*N*/ {
-            DBG_BF_ASSERT(0, "STRIP");
+        DBG_BF_ASSERT(0, "STRIP"); // IMPL_LINK
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScAppCfg, InputCommitHdl, void *, EMPTYARG )
 /*N*/ {
-         DBG_BF_ASSERT(0, "STRIP");
+         DBG_BF_ASSERT(0, "STRIP"); // IMPL_LINK
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScAppCfg, RevisionCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP");
+    DBG_BF_ASSERT(0, "STRIP"); // IMPL_LINK
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScAppCfg, ContentCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP");
+    DBG_BF_ASSERT(0, "STRIP"); // IMPL_LINK
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScAppCfg, SortListCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP");
+    DBG_BF_ASSERT(0, "STRIP"); // IMPL_LINK
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScAppCfg, MiscCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP");
+    DBG_BF_ASSERT(0, "STRIP"); // IMPL_LINK
 /*N*/   return 0;
 /*N*/ }
 

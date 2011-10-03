@@ -116,11 +116,6 @@ typedef void (CALLTYPE* FARPROC) ( void );
 /*N*/ }
 
 
-/*N*/ short FuncCollection::Compare(DataObject*, DataObject*) const
-/*N*/ {
-            DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*N*/ }
-
 /*N*/ BOOL FuncCollection::SearchFunc( const String& rName, USHORT& rIndex ) const
 /*N*/ {
 /*N*/   FuncData aDataObj(rName);
@@ -151,7 +146,7 @@ public:
 /*N*/
 /*N*/   virtual DataObject*     Clone() const { return new ModuleCollection(*this); }
 /*N*/           ModuleData*     operator[]( const USHORT nIndex) const {return (ModuleData*)At(nIndex);}
-    virtual short Compare(DataObject*, DataObject*) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}
+    virtual short Compare(DataObject*, DataObject*) const { return 0; } // DBG_BF_ASSERT
 /*N*/ };
 
 /*N*/ #ifdef _MSC_VER
@@ -174,7 +169,6 @@ public:
 /*?*/       pData->FreeInstance();
 /*N*/   }
 /*N*/ }
-
 
 /*N*/ BOOL FuncData::Call(void** ppParam)
 /*N*/ {

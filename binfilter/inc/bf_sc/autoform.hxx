@@ -177,7 +177,6 @@ public:
      void    SetMargin( const SvxMarginItem& rMargin )               { aMargin = rMargin; }
      void    SetBox( const SvxBoxItem& rBox )                        { aBox = rBox; }
      void    SetBackground( const SvxBrushItem& rBackground )        { aBackground = rBackground; }
-     void    SetAdjust( const SvxAdjustItem& rAdjust );
      void    SetRotateAngle( const SfxInt32Item& rRotateAngle )      { aRotateAngle.SetValue( rRotateAngle.GetValue() ); }
      void    SetRotateMode( const SvxRotateModeItem& rRotateMode )   { aRotateMode.SetValue( rRotateMode.GetValue() ); }
 
@@ -255,7 +254,7 @@ public:
     virtual                     ~ScAutoFormat();
     virtual                     DataObject*         Clone() const { return new ScAutoFormat( *this ); }
                                 ScAutoFormatData*   operator[]( const USHORT nIndex ) const {return (ScAutoFormatData*)At( nIndex );}
-    virtual short               Compare( DataObject* /*pKey1*/, DataObject* /*pKey2*/ ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}
+    virtual short               Compare( DataObject* /*pKey1*/, DataObject* /*pKey2*/ ) const { return 0; } // DBG_BF_ASSERT
     BOOL                        Load();
     BOOL                        Save() {return false;}
     void                        SetSaveLater( BOOL bSet );

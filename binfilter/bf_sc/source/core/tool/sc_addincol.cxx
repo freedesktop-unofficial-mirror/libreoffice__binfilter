@@ -695,20 +695,21 @@ public:
 /*N*/         const ScAddInArgDesc* pArgs = pFuncData->GetArguments();
 /*N*/
 /*N*/         //  is aVarArg sequence needed?
-/*N*/         if ( nParamCount >= nDescCount && nDescCount > 0 &&
-/*N*/              pArgs[nDescCount-1].eType == SC_ADDINARG_VARARGS )
-/*N*/         {
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/         }
-/*N*/         else if ( nParamCount <= nDescCount )
-/*N*/         {
+/*N*/         if ( !(  nParamCount >= nDescCount
+                    && nDescCount > 0
+                    && pArgs[nDescCount-1].eType == SC_ADDINARG_VARARGS
+                    )
+                 )
+              {
+/*N*/           if ( nParamCount <= nDescCount )
+/*N*/           {
 /*N*/             //  all args behind nParamCount must be optional
 /*N*/             bValidCount = TRUE;
 /*N*/             for (long i=nParamCount; i<nDescCount; i++)
 /*?*/                 if ( !pArgs[i].bOptional )
 /*?*/                     bValidCount = FALSE;
-/*N*/         }
-/*N*/         // else invalid (too many arguments)
+/*N*/           }
+              }
 /*N*/
 /*N*/         if ( bValidCount )
 /*N*/             aArgs.realloc( nDescCount );    // sequence must always match function signature

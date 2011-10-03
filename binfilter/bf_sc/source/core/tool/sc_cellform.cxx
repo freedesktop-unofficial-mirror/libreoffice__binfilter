@@ -123,10 +123,6 @@ const ScFormulaCell* pLastFormulaTreeTop = 0;
 /*N*/                   else
 /*N*/                   {
 /*N*/                       USHORT nErrCode = pFCell->GetErrCode();
-/*N*/                       if ( nErrCode == errInterpOverflow )
-/*N*/                       {   // maxrecursion ausbuegeln, Err527 Workaround
-/*?*/                           DBG_BF_ASSERT(0, "STRIP");
-/*N*/                       }
 /*N*/
 /*N*/                       // erst nach dem Interpretieren (GetErrCode) das Zahlformat holen:
 /*N*/                       if ( (nFormat % SV_COUNTRY_LANGUAGE_OFFSET) == 0 )

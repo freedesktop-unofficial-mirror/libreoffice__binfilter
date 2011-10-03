@@ -85,7 +85,6 @@ namespace binfilter {
 /*N*/       bDummyUpperLeft( FALSE ),
 /*N*/       bValid( TRUE )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 /*N*/
 /*N*/ ScChartArray::ScChartArray( const ScChartArray& rArr ) : DataObject(rArr),

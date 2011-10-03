@@ -219,11 +219,6 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/  {
 /*N*/  }
 
-/*N*/ void ScAutoFormatDataField::SetAdjust( const SvxAdjustItem& /*rAdjust*/ )
-/*N*/ {
-/*?*/     DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ #define READ( aItem, ItemType, nVers )      \
 /*N*/     pNew = aItem.Create( rStream, nVers );  \
 /*N*/     aItem = *(ItemType*)pNew;               \
@@ -258,7 +253,6 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/      READ( aBackground,  SvxBrushItem,       rVersions.nBrushVersion)
 /*N*/
 /*N*/      pNew = aAdjust.Create( rStream, rVersions.nAdjustVersion );
-/*N*/      SetAdjust( *(SvxAdjustItem*)pNew );
 /*N*/      delete pNew;
 /*N*/
 /*N*/      READ( aHorJustify,   SvxHorJustifyItem,  rVersions.nHorJustifyVersion)

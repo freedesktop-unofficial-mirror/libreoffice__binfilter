@@ -88,12 +88,6 @@ static ScAddInAsync aSeekObj;
 
 /*N*/ ScAddInAsync::~ScAddInAsync()
 /*N*/ {
-/*N*/   // aSeekObj hat das alles nicht, Handle 0 gibt es sonst nicht
-/*N*/   if ( nHandle )
-/*N*/   {
-/*?*/       // im dTor wg. theAddInAsyncTbl.DeleteAndDestroy in ScGlobal::Clear
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/ }
 
 

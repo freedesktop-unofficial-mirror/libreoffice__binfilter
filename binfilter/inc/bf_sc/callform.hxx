@@ -106,7 +106,7 @@ public:
     FuncCollection(const FuncCollection& rFuncCollection) : SortedCollection ( rFuncCollection ) {}
 
     virtual DataObject* Clone() const { return new FuncCollection(*this); }
-    virtual short       Compare(DataObject* pKey1, DataObject* pKey2) const;
+    virtual short       Compare(DataObject*, DataObject* ) const { return 0; } // DBG_BF_ASSERT
             BOOL        SearchFunc( const String& rName, USHORT& rIndex ) const;
 };
 
