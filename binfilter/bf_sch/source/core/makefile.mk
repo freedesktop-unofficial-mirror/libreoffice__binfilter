@@ -1,7 +1,7 @@
 #*************************************************************************
 #
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
-# 
+#
 # Copyright 2000, 2010 Oracle and/or its affiliates.
 #
 # OpenOffice.org - a multi-platform office productivity suite
@@ -75,7 +75,6 @@ SLOFILES =  \
     $(SLO)$/sch_datapoin.obj	\
     $(SLO)$/sch_schiocmp.obj	\
     $(SLO)$/sch_itempool.obj	\
-    $(SLO)$/sch_datalog.obj		\
     $(SLO)$/sch_memchrt.obj 	\
     $(SLO)$/sch_chdescr.obj 	\
     $(SLO)$/sch_chaxis.obj		\

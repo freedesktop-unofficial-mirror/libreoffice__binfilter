@@ -102,7 +102,6 @@ class SbxArray;
 #include "schresid.hxx"
 #include "glob.hrc"
 
-#include "datalog.hxx"
 #include "chaxis.hxx"
 
 #include "chtscene.hxx"
@@ -159,7 +158,6 @@ using namespace ::com::sun::star;
 /*N*/   nBarPercentWidth(100),   //#50116#
 /*N*/   nNumLinesInColChart(0),   //#50212#
 /*N*/   m_nDefaultColorSet(0),  //#50037#
-/*N*/   pLogBook(NULL),
 /*N*/   aChartRect (Rectangle ()),
 /*N*/   aInitialSize (Size ()),
 /*N*/   pChItemPool (new SchItemPool),
@@ -646,7 +644,6 @@ void ChartModel::ClearItemSetLists()
 /*N*/   }
 /*N*/
 /*N*/   if (pTestTextObj != NULL) delete pTestTextObj;
-/*N*/   if (pLogBook) delete pLogBook;
 /*N*/
 /*N*/
 /*N*/
@@ -658,14 +655,6 @@ void ChartModel::ClearItemSetLists()
 /*N*/
 /*N*/   if(m_pUndoActionFromDraw) delete m_pUndoActionFromDraw;
 /*N*/ }
-/*************************************************************************
-|*
-|* Das Logbuch dient zur ReAttributierung, nachdem die DataBrowseBox
-|* aufgerufen und Daten hinzugefuegt wurden. Die BrowseBox setzt
-|* eine
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*

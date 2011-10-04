@@ -50,11 +50,6 @@
 #include <bf_svx/xlnwtit.hxx>
 #include "schattr.hxx"
 
-#ifndef _SVX_CHRTITEM_HXX //autogen
-
-
-#endif
-
 #define ITEMID_FONT        EE_CHAR_FONTINFO
 #define ITEMID_COLOR       EE_CHAR_COLOR
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
@@ -472,8 +467,6 @@ namespace binfilter {
 /*N*/
 /*N*/   if(mpModel->ChartStyle() == CHSTYLE_2D_LINE_STACKEDCOLUMN)
 /*N*/       nRowCnt-=nLines;
-/*N*/   else
-/*N*/       nLines=0;
 /*N*/
 /*N*/   switch (meStackMode)
 /*N*/   {
@@ -567,7 +560,6 @@ namespace binfilter {
 /*N*/                           }
 /*N*/                           else
 /*N*/                           {
-/*N*/                               //if ((fMin > fData) && !mbLogarithm || (fData > 0.0) && mbLogarithm)
 /*N*/                               if( (fMin > fData)
 /*N*/                               && (!mbLogarithm || fData > 0.0) )
 /*N*/                                   fMin = fData;
@@ -591,7 +583,6 @@ namespace binfilter {
 /*N*/
 /*N*/                   for (nRow = 1; nRow < nRowCnt; nRow++)
 /*N*/                   {
-/*N*/                       //if(IsDataOnAxis(nRow)) //#63904#: 2,77%
 /*N*/                       const SfxItemSet& rDataRowAttr = mpModel->GetDataRowAttr(nRow);
 /*N*/                       if(mnUId == ((const SfxInt32Item &)rDataRowAttr.Get(SCHATTR_AXIS)).GetValue())
 /*N*/                       {
@@ -614,10 +605,6 @@ namespace binfilter {
 /*N*/                                       double fDataMin = fData;
 /*N*/                                       double fDataMax = fData;
 /*N*/
-/*N*/                                       //#63904#neu:   (18.8 ms ->  7.28 ms )
-/*N*/ //                                        SfxItemSet aDataPointAttr(rDataRowAttr);
-/*N*/ //                                        mpModel->MergeDataPointAttr(aDataPointAttr,nCol, nRow);
-/*N*/ //                                    SfxItemSet aDataPointAttr(mpModel->GetFullDataPointAttr(nCol, nRow));//#63904#71% 69,66%
 /*N*/                                       const SfxItemSet * pDataPointItemSet = mpModel->GetRawDataPointAttr (nCol,nRow);
 /*N*/                                       BOOL bDataPointItemSetValid = (pDataPointItemSet!=NULL);
 /*N*/
@@ -687,7 +674,6 @@ namespace binfilter {
 /*N*/                                             }
 /*N*/                                         }
 /*N*/
-/*N*/                                       //if ((nCol == 0) && (nRow == 1)) //und wenn hier mal DBL_MIN steht????
 /*N*/                                       if(bInitialise)
 /*N*/                                       {
 /*N*/                                           bInitialise=FALSE;
@@ -714,7 +700,6 @@ namespace binfilter {
 /*N*/           {
 /*N*/               for (nRow = 0; nRow < nRowCnt; nRow++)
 /*N*/               {
-/*N*/                   //if(IsDataOnAxis(nRow)) //#63904#neu:
 /*N*/                   const SfxItemSet& rDataRowAttr = mpModel->GetDataRowAttr(nRow);
 /*N*/                   if(mnUId == ((const SfxInt32Item &)rDataRowAttr.Get(SCHATTR_AXIS)).GetValue())
 /*N*/                   {
@@ -734,10 +719,6 @@ namespace binfilter {
 /*N*/                               double fDataMin = fData;
 /*N*/                               double fDataMax = fData;
 /*N*/
-/*N*/                               //#63904#
-/*N*/ //                                SfxItemSet aDataPointAttr(rDataRowAttr);
-/*N*/ //                                mpModel->MergeDataPointAttr(aDataPointAttr,nCol, nRow);
-/*N*/                               //SfxItemSet aDataPointAttr(mpModel->GetFullDataPointAttr(nCol, nRow));
 /*N*/                               const SfxItemSet * pDataPointItemSet = mpModel->GetRawDataPointAttr (nCol,nRow);
 /*N*/                               BOOL bDataPointItemSetValid = (pDataPointItemSet!=NULL);
 /*N*/
@@ -807,7 +788,6 @@ namespace binfilter {
 /*N*/                                     }
 /*N*/                                 }
 /*N*/
-/*N*/                               //if ((nCol == 0) && (nRow == 0))//und wenn hier mal DBL_MIN steht????
 /*N*/                               if(bInitialise)
 /*N*/                               {
 /*N*/                                   bInitialise=FALSE;
@@ -831,17 +811,6 @@ namespace binfilter {
 /*N*/       break;
 /*N*/   }//switch meStackMode
 /*N*/
-/*N*/
-/*N*/   // bei CHSTYLE_2D_LINE_STACKEDCOLUMN muessen die Linien nochmal extra berechnet
-/*N*/   // werden Letzte Linie = nRowCnt, da oben nRowCnt-=n   #50212#
-/*N*/   long nIndex=nRowCnt;//ab hier liegen evtl. linien vor
-/*N*/   while(nLines)       //nLines ist 0 wenn kein CHSTYLE_2D_LINE_STACKEDCOLUMN
-/*N*/   {
-/*?*/       if( IsDataOnAxis( nIndex ))
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
-/*?*/       nLines--;
-/*?*/       nIndex++;
-/*N*/   }
 /*N*/   if (mbPercent)
 /*N*/   {
 /*N*/       fMin = 0.0;
@@ -1112,9 +1081,7 @@ namespace binfilter {
 /*N*/   meTextOrient = ((const SvxChartTextOrientItem&)
 /*N*/       mpAxisAttr->Get(SCHATTR_TEXT_ORIENT)).GetValue();
 /*N*/     //    Determine the size of the texts bounding box.
-/*N*/   if (meTextOrient == CHTXTORIENT_STACKED)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/   else
+/*N*/   if ( meTextOrient != CHTXTORIENT_STACKED)
 /*N*/       pOutliner->SetText(aString, pOutliner->GetParagraph (0));
 /*N*/   pOutliner->SetUpdateMode (TRUE);
 /*N*/   Size aSize = pOutliner->CalcTextSize();
@@ -1330,21 +1297,6 @@ namespace binfilter {
 /*N*/       VerifySteps();
 /*N*/   }
 /*N*/
-/*  //NetCharts, nur absolutwerte (was passiert bei gemischt ?)
-    //Sollte sowas nicht vor die Berechnung der Steps?
-    if (mbRadial)
-    {
-        mfMin = std::max (mfMin, 0);
-        mfMax = std::max (mfMax, 0);
-        if (mfMin > mfMax)
-        {
-            double fTemp = mfMin;
-
-            mfMin = mfMax;
-            mfMax = fTemp;
-        }
-    }
-*/
 /*N*/ }
 
 
@@ -1857,19 +1809,8 @@ namespace binfilter {
 /*N*/
 /*N*/       SvxChartTextOrder eDescrOrder;
 /*N*/
-/*N*/       // FG: Einfachere Abfrage ob die Ausrichtung vom Programm vorgegeben wird oder vom Benutzer
-/*N*/       // #65364# (BM) text order is now independent from text orientation
-/*        if (meTextOrient != CHTXTORIENT_AUTOMATIC)
-        {
-*/
-/*N*/           eDescrOrder = ((const SvxChartTextOrderItem&)
-/*N*/               mpAxisAttr->Get(SCHATTR_TEXT_ORDER)).GetValue();
-/*        }
-        else
-        {
-            eDescrOrder = CHTXTORDER_SIDEBYSIDE;
-        }
-*/
+/*N*/       eDescrOrder = ((const SvxChartTextOrderItem&) mpAxisAttr->Get(SCHATTR_TEXT_ORDER)).GetValue();
+
         // FG: Hier wird nur abgefragt, ob die Beschriftung der X-Achse (der Datenachse)
         //     so erfolgen soll, dass Text abwechselnd hoch-tief gesetzt werden, oder nicht.
 /*N*/       long nMaxWidth = IsVertical() ? maMaxTextSize.Height() : maMaxTextSize.Width();
@@ -2042,13 +1983,7 @@ namespace binfilter {
 /*N*/   if (bAutoValue)
 /*N*/       rValueOrient = CHTXTORIENT_STANDARD;
 
-    // #65364# (BM) text order is now independent from text orientation
-/*N*/   SvxChartTextOrder eValueOrder = /*( bAutoValue
-                                    ||( mbFlippedXY && (rValueOrient != CHTXTORIENT_STANDARD))
-                                    ||(!mbFlippedXY && (rValueOrient == CHTXTORIENT_STANDARD)))
-                                         ? CHTXTORDER_SIDEBYSIDE
-                                         :*/
-/*N*/                                   ((const SvxChartTextOrderItem&)mpAxisAttr->Get(SCHATTR_TEXT_ORDER)).GetValue();
+/*N*/   SvxChartTextOrder eValueOrder = ((const SvxChartTextOrderItem&)mpAxisAttr->Get(SCHATTR_TEXT_ORDER)).GetValue();
 /*N*/
 /*N*/   mbStepValue = (eValueOrder != CHTXTORDER_SIDEBYSIDE);
 /*N*/   mbValueDown = (eValueOrder == CHTXTORDER_DOWNUP);
@@ -2065,18 +2000,8 @@ namespace binfilter {
 /*N*/   SvxChartTextOrder eValueOrder;
 
     // FG: Einfachere Abfrage ob die Ausrichtung vom Programm vorgegeben wird oder vom Benutzer
-    // #65364# (BM) text order is now independent from text orientation
-/*    if (meTextOrient != CHTXTORIENT_AUTOMATIC)
-    {
-*/
-/*N*/       eValueOrder = ((const SvxChartTextOrderItem&)
-/*N*/           mpAxisAttr->Get(SCHATTR_TEXT_ORDER)).GetValue();
-/*    }
-    else
-    {
-        eValueOrder = CHTXTORDER_SIDEBYSIDE;
-    }
-*/
+/*N*/   eValueOrder = ((const SvxChartTextOrderItem&)mpAxisAttr->Get(SCHATTR_TEXT_ORDER)).GetValue();
+
     // FG: Hier wird nur abgefragt, ob die Beschriftung der X-Achse (der Datenachse)
     //     so erfolgen soll, dass Text abwechselnd hoch-tief gesetzt werden, oder nicht.
 /*N*/   long nMaxWidth = IsVertical() ? maMaxTextSize.Height() : maMaxTextSize.Width();
@@ -2089,7 +2014,6 @@ namespace binfilter {
 /*N*/
 /*N*/
 /*N*/   mbValueDown = (eValueOrder == CHTXTORDER_DOWNUP);
-//  meTextOrient = rValueOrient;
 
 /*N*/   CreateTextAttr();
 /*N*/ }
@@ -2161,43 +2085,6 @@ namespace binfilter {
 /*N*/           mpAxisList->NbcInsertObject(SetObjectAttr (new SdrPathObj(OBJ_PLIN, aLine),
 /*N*/           CHOBJID_LINE, TRUE, TRUE,mpAxisAttr));
 /*N*/   }
-/* alter Original-Source, siehe ###hier###
-    if (bSwitchColRow)
-    {
-        VERTICAL_LINE;
-        if ((nPos != rRect.Left()) && (bShowYDescr ))
-        {
-            aLine[0].X() = aLine[1].X() = rRect.Left ();
-
-            rObjList.InsertObject(SetObjectAttr(new SdrPathObj(OBJ_PLIN, aLine),
-                CHOBJID_DIAGRAM_X_AXIS,TRUE, TRUE, pXGridMainAttr));
-        }
-        aLine[0].X() = aLine[1].X() = nPos;
-    }
-    else //!bSwitchColRow
-    {
-        HORIZONTAL_LINE;
-        if ((nPos != rRect.Bottom()) && (bShowXDescr))
-        {
-            if(pChartYAxis->GetMin() < 0.0)
-            {
-                //###hier### ist jetzt anders!
-
-                aLine[0].Y()=aLine[1].Y()= (pChartYAxis->GetMax()>0.0)
-                            ? rRect.Bottom ()
-                            : rRect.Top ();
-
-            }
-            else
-                aLine[0].Y()=aLine[1].Y()= rRect.Bottom ();
-
-            HORIZONTAL_LINE;
-            rObjList.InsertObject(SetObjectAttr (new SdrPathObj(OBJ_PLIN, aLine),
-                CHOBJID_DIAGRAM_X_AXIS,TRUE, TRUE, pXGridMainAttr));
-        }
-        aLine[0].Y() = aLine[1].Y() = nPos;
-    }
-*/
 /*N*/ }
 
 /*N*/ long ChartAxis::CreateAxis()
@@ -2371,8 +2258,6 @@ namespace binfilter {
 /*N*/
 /*N*/   // #69810# prevent infinite loop if step wouldn't change the value of fAct
 /*N*/   BOOL bStepIsOK = mbLogarithm? (fabs(mfStep) > 1.0): (mfStep != 0.0);
-/*N*/
-/*N*/ //    DBG_ASSERT( bStepIsOK, "Axis increment is ineffective and would cause loop" );
 /*N*/
 /*N*/   if( mfMax!=mfMin && ( bStepIsOK ) )
 /*N*/   {
@@ -2575,28 +2460,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   return ((const SfxUInt32Item&)mpAxisAttr->Get(bPercent
 /*N*/       ? SCHATTR_AXIS_NUMFMTPERCENT : SCHATTR_AXIS_NUMFMT)).GetValue();
-/*N*/ }
-
-
-
-/*N*/ BOOL ChartAxis::TranslateMergedNumFormat( SvNumberFormatterIndexTable* /*pTransTable*/ )
-/*N*/ {
-/*N*/   ULONG nFmt, nMrgFmt;
-/*N*/   BOOL bRet =FALSE;
-/*N*/
-/*N*/   nFmt = GetNumFormat( mbPercent );
-/*N*/   nMrgFmt = mpNumFormatter->GetMergeFmtIndex( nFmt );
-/*N*/   if( nFmt != nMrgFmt )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
-/*N*/   nFmt = GetNumFormat( ! mbPercent );
-/*N*/   nMrgFmt = mpNumFormatter->GetMergeFmtIndex( nFmt );
-/*N*/   if( nFmt != nMrgFmt )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/
-/*N*/   return bRet;
 /*N*/ }
 
 /*N*/ void ChartAxis::SetAxisList( SdrObjList *pList )

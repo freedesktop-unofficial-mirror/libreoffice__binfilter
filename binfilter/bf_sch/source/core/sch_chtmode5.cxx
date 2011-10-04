@@ -194,15 +194,8 @@ namespace binfilter {
 /*N*/               // merge old one to new one and set new one as member
 /*N*/               if( pNewFormatter && pNumFormatter )
 /*N*/               {
-/*N*/                   SvNumberFormatterIndexTable* pTransTable =
-/*N*/                       pNewFormatter->MergeFormatter( *pNumFormatter );
-/*N*/
+/*N*/                   pNewFormatter->MergeFormatter( *pNumFormatter );
 /*N*/                   SetNumberFormatter( pNewFormatter );
-/*N*/
-/*N*/                   if( pTransTable && pTransTable->Count() )
-/*N*/                   {
-/*N*/                       TranslateAllNumFormatIds( pTransTable );
-/*N*/                   }
 /*N*/               }
 /*N*/               else if( pNewFormatter )
 /*N*/               {

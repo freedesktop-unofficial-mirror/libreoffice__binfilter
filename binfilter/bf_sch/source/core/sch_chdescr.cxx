@@ -101,18 +101,6 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ DataDescription* ChartDataDescription::Insert( long /*nCol*/, long /*nRow*/, const SfxItemSet& rAttr, Point /*aPos*/,
-/*N*/                                              BOOL /*bPercent*/, ChartAdjust /*eAdjust*/, ChartAxis* /*pAxis*/ )
-/*N*/ {
-/*N*/   SvxChartDataDescr eDescr = ((const SvxChartDataDescrItem&)rAttr.Get(SCHATTR_DATADESCR_DESCR)).GetValue();
-/*N*/
-/*N*/   if(mbEnable && eDescr != CHDESCR_NONE)
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/   return NULL;
-/*N*/ }
-
 /*N*/ void ChartDataDescription::Dirty2D( BOOL /*bRowDescr*/ )
 /*N*/ {
 /*N*/

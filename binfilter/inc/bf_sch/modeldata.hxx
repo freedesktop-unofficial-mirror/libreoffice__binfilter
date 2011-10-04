@@ -56,25 +56,7 @@ private:
     DescrList           aYDescrList;
     DescrList           aZDescrList;
 
-//     BOOL                bClearDepth;
-//     BOOL                bNewOrLoadCompleted;
-//     SfxObjectShell*     pDocShell;
-//     BOOL                bAttrAutoStorage;
-
-//     SchMemChart*        pChartDataBuffered;     // save data in buffer while editing chart #61907#
-
-//     OutputDevice*       pChartRefOutDev;
     long                nChartStatus;
-
-//     Window*             pAutoPilot;             // #46895#
-
-//     SdrObjList*         pSdrObjList;
-//     Matrix4D            aSceneMatrix;
-//     BOOL                bResizePie;
-//     long                nPieRadius;
-
-//     SvNumberFormatter*  pOwnNumFormatter;
-//     SvNumberFormatter*  pNumFormatter;      // points either to pOwnNumFormatter or calc's number formatter
 
     ::com::sun::star::uno::Reference< ::com::sun::star::util::XRefreshable > mxChartAddIn;
 
@@ -82,14 +64,8 @@ private:
     long                nNumLinesInColChart;
     long                m_nDefaultColorSet;     // #50037#
 
-//     SchDataLogBook*     pLogBook;
     Rectangle           aChartRect;
     Size                aInitialSize;
-
-//     SchItemPool*        pChItemPool;
-//     ChartScene*         pScene;
-
-//     Vector3D*           aLightVec;
 
     ::std::auto_ptr< SchMemChart > m_apChartData;
 
@@ -101,9 +77,6 @@ private:
     Color               aSpotColor;
     SvxChartStyle       eChartStyle;
     SvxChartStyle       eOldChartStyle;
-//     int                 eChartLinePoints[ LINE_POINT_COUNT ];
-
-//     List*               pDefaultColors;
 
     BOOL                bTextScalable;
     BOOL                bIsCopied;
@@ -167,12 +140,6 @@ private:
     ::std::auto_ptr< SfxItemSet > m_apZAxisTitleAttr;
     ::std::auto_ptr< SfxItemSet > m_apAxisAttr;
 
-//     ChartAxis*          pChartXAxis;
-//     ChartAxis*          pChartYAxis;
-//     ChartAxis*          pChartZAxis;
-//     ChartAxis*          pChartAAxis;    // secondary x axis
-//     ChartAxis*          pChartBAxis;    // secondary y axis
-
     ::std::auto_ptr< SfxItemSet > m_apGridAttr;
     ::std::auto_ptr< SfxItemSet > m_apXGridMainAttr;
     ::std::auto_ptr< SfxItemSet > m_apYGridMainAttr;
@@ -190,10 +157,6 @@ private:
     ::std::auto_ptr< SfxItemSet > m_apStockLossAttr;
     ::std::auto_ptr< SfxItemSet > m_apStockPlusAttr;
 
-//     SfxItemSet*         pTmpXItems;
-//     SfxItemSet*         pTmpYItems;
-//     SfxItemSet*         pTmpZItems;
-
     ::std::auto_ptr< SfxItemSet > m_apChartAttr;
 
     ItemSetList         aDataRowAttrList;
@@ -203,12 +166,6 @@ private:
     ItemSetList         aAverageAttrList;
     ItemSetList         aErrorAttrList;
 
-    // this is for 'old 3d storage' (whatever that is ;-)
-//     ItemSetList         aTmpDataRowAttrList;
-//     ItemSetList         aTmpDataPointAttrList;
-//     ItemSetList         aTmpSwitchDataPointAttrList;
-
-
     SvxChartDataDescr   eDataDescr;
     BOOL                bShowSym;
     BOOL                bSwitchData;
@@ -217,8 +174,6 @@ private:
     BOOL                bShouldBuildChart;      // This is set when BuildChart was called and bNoBuildChart was TRUE
     BOOL                bReadError;
     BOOL                mbIsInitialized;
-
-//     SdrOutliner*        pOutliner;
 
     /// short: textbreak enabled
     BOOL                bFormatXAxisTextInMultipleLinesIfNecessary;
@@ -277,10 +232,6 @@ private:
 
     Size                aInitialSizefor3d;
 
-    /** test object for calculating the height of two rows
-        @see GetHeightOfnRows */
-//     SdrRectObj*         pTestTextObj;
-
     INT32               nXLastNumFmt;
     INT32               nYLastNumFmt;
     INT32               nBLastNumFmt;
@@ -291,11 +242,6 @@ private:
     LanguageType        eLanguageCTL;
 
     ProjectionType      eProjection;
-
-    /// for late loading of graphics
-//     mutable SotStorage*          mpDocStor;
-//     mutable SotStorageRef        mxPictureStorage;
-//     mutable SotStorageStreamRef  mxDocStream;
 };
 
 // _SCH_MODELDATA_HXX

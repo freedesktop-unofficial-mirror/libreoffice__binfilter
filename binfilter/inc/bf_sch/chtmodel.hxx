@@ -85,7 +85,6 @@ class E3dCompoundObject;
 class E3dObject;
 class SfxPrinter;
 class E3dLabelObj;
-class SchDataLogBook;
 class E3dLabelObj;
 struct DataDescription;
 class SchRectObj;
@@ -161,7 +160,7 @@ public:
 
     // SdrModel
     virtual void        SetChanged( bool bFlag = TRUE );
-    virtual SdrModel *  AllocModel() const;
+    virtual SdrModel *  AllocModel() const { return NULL; } // DBG_BF_ASSERT
     virtual SdrPage  *  AllocPage( bool bMasterPage );
 
     void                NewOrLoadCompleted( USHORT eMode );
@@ -339,10 +338,6 @@ public:
     double              GetSigmaY( long nRow );
     double              GetBigErrorY( long nRow, double fError );
 
-
-    /// returns TRUE, if change requires BuildChart - currently always TRUE !
-    BOOL                IsAttrChangeNeedsBuildChart( const SfxItemSet& rAttr );
-
     BOOL                SetBaseType( long nBaseType );
 
     // chart features (see chtmode7.cxx)
@@ -406,7 +401,7 @@ public:
                                            BOOL                bMerge = TRUE );
 
     const SfxItemSet &  GetDataPointAttr( long nCol,long nRow ) const;
-    void                ClearDataPointAttr( long nCol, long nRow, const SfxItemSet & rAttr );
+
     SfxItemSet          GetFullDataPointAttr( long nCol, long nRow ) const;
     SfxItemSet &        MergeDataPointAttr( SfxItemSet & rAttr, long nCol, long nRow) const;
 
@@ -609,7 +604,6 @@ public:
 
     void                SetNumberFormatter( SvNumberFormatter* );
     void                DataRangeChanged( long _nOldRowCnt = 0, long _nOldColCnt = 0 );
-    void                TranslateAllNumFormatIds( SvNumberFormatterIndexTable* );
 
     /** set new doc shell if there was no one before
         returns true if new shell was set */
@@ -713,7 +707,6 @@ private:
     long                nNumLinesInColChart;
     long                m_nDefaultColorSet;     // #50037#
 
-    SchDataLogBook*     pLogBook;
     Rectangle           aChartRect;
     Size                aInitialSize;
 
@@ -1074,7 +1067,6 @@ private:
                                       const long        nYOfs,
                                       USHORT &          rIndex );
 
-    void                LogBookAttrData();
     void                SetDefAttrRow( SfxItemSet* pDataRowAttr, const long i );
 
     SdrRectObj *        CreateRect( Rectangle &  rRect,

@@ -2566,7 +2566,6 @@ SvNumberFormatterIndexTable* SvNumberFormatter::MergeFormatter(SvNumberFormatter
             nNewKey = nCLOffset + nOffset;
             if (!aFTable.Get(nNewKey))                  // noch nicht da
             {
-//              pNewEntry = new SvNumberformat(*pFormat);   // Copy reicht nicht !!!
                 pNewEntry = new SvNumberformat( *pFormat, *pFormatScanner );
                 if (!aFTable.Insert(nNewKey, pNewEntry))
                     delete pNewEntry;
@@ -2580,7 +2579,6 @@ SvNumberFormatterIndexTable* SvNumberFormatter::MergeFormatter(SvNumberFormatter
         }
         else                                            // benutzerdef.
         {
-//          pNewEntry = new SvNumberformat(*pFormat);   // Copy reicht nicht !!!
             pNewEntry = new SvNumberformat( *pFormat, *pFormatScanner );
             nNewKey = ImpIsEntry(pNewEntry->GetFormatstring(),
                               nCLOffset,

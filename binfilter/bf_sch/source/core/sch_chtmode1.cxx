@@ -69,7 +69,7 @@
 #include <bf_svx/xlnwtit.hxx>
 
 #include "pairs.hxx"
-#include "datalog.hxx"
+#include "memchrt.hxx"
 #include "chaxis.hxx"
 #include "chmod3d.hxx"
 #include "schmod.hxx"
@@ -276,21 +276,18 @@ namespace binfilter {
 /*N*/
 /*N*/       SetTextAttributes (aTextAttr);
 /*N*/
-/*N*/       if(IsAttrChangeNeedsBuildChart(rAttr))
-/*N*/       {
-/*N*/           // in this case a text resize/reorg might be necessary
+/*N*/       // in this case a text resize/reorg might be necessary
 /*N*/
-/*N*/           Size aSize = pOutliner->CalcTextSize();
-/*N*/           aSize.Height() += TEXTHEIGHT_OFS;
-/*N*/           aSize.Width () = (aSize.Width () * 6) / 5;
+/*N*/       Size aSize = pOutliner->CalcTextSize();
+/*N*/       aSize.Height() += TEXTHEIGHT_OFS;
+/*N*/       aSize.Width () = (aSize.Width () * 6) / 5;
 /*N*/
-/*N*/           OutlinerParaObject* pPara = pOutliner->CreateParaObject();
+/*N*/       OutlinerParaObject* pPara = pOutliner->CreateParaObject();
 /*N*/
-/*N*/           pOutliner->Clear();
+/*N*/       pOutliner->Clear();
 /*N*/
-/*N*/           rTextObj.SetOutlinerParaObject(pPara);
-/*N*/           AdjustTextSize(rTextObj, aSize);
-/*N*/       }
+/*N*/       rTextObj.SetOutlinerParaObject(pPara);
+/*N*/       AdjustTextSize(rTextObj, aSize);
 /*N*/   }
 /*N*/ }
 /*************************************************************************
@@ -673,9 +670,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       if (nRowListCnt > nCnt)
 /*N*/       {
-/*N*/           //bevor attribute geloescht werden, wird reorganisiert
-/*N*/           LogBookAttrData();
-/*N*/
 /*N*/           //Jetzt darf erst der Ueberhang geloescht werden:
                 for ( i = nCnt; i < nRowListCnt; ++i )
                 {
@@ -709,24 +703,9 @@ namespace binfilter {
 /*N*/                 SetupLineColors( SETLINES_FILLCOLOR, nRowListCnt );
 /*N*/       }
 /*N*/   }
-/*N*/     LogBookAttrData();
 /*N*/ }
 
 
-/*************************************************************************
-|*
-|* ggf. Attribute neu Organisieren erzeugen
-|*
-\************************************************************************/
-/*N*/ void ChartModel::LogBookAttrData()
-/*N*/ {
-/*N*/   CHART_TRACE( "ChartModel::LogBookAttrData" );
-/*N*/
-/*N*/   if(pLogBook)
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ }
 /*************************************************************************
 |*
 |* RowAttr neu setzen:
@@ -979,11 +958,6 @@ void ChartModel::DestroyDefaultColors ()
 /*N*/             )
 /*N*/          )
 /*N*/       {
-/*?*/           if ( nLines > MAXLEGENDLINES )
-/*?*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
-/*?*/
 /*?*/           ULONG nLclParaCnt = pInOutliner->GetParagraphCount();
 /*?*/
 /*?*/           for (ULONG i = 0; i < nLclParaCnt; i++)
@@ -993,19 +967,6 @@ void ChartModel::DestroyDefaultColors ()
 /*?*/               aAttr.Put( SfxBoolItem(EE_PARA_HYPHENATE, TRUE) );
 /*?*/               pInOutliner->SetParaAttribs(i, aAttr);
 /*?*/           }
-/*?*/
-/*?*/           //#50395# durch Bindestriche vergrößert worden->
-/*?*/           //statt 2 werden jetzt 3 Zeilen benötigt
-/*?*/           ULONG nActLines = 0;
-/*?*/           for( USHORT n = 0; n < pInOutliner->GetParagraphCount(); n++ )
-/*?*/           {
-/*?*/               nActLines += pInOutliner->GetLineCount( n );
-/*?*/           }
-/*?*/           if(nActLines>nLines)
-/*?*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
-/*N*/
 /*N*/       }
 /*N*/   }
 /*N*/

@@ -104,9 +104,6 @@ using namespace ::com::sun::star;
 
 /*N*/ uno::Reference< util::XRefreshable > SchAddInCollection::GetAddInByName( const ::rtl::OUString& rName )
 /*N*/ {
-/*N*/     if( ! mbInitialized )
-/*?*/         {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/
 /*N*/     const sal_Int32 nSize = maServiceNames.getLength();
 /*N*/     for( sal_Int32 i = 0; i < nSize; i++ )
 /*N*/     {

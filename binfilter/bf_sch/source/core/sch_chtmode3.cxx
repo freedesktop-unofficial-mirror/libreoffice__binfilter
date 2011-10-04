@@ -45,9 +45,8 @@
 #ifndef _SVX_CHRTITEM_HXX
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
-
-
 #endif
+
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
 #include <globfunc.hxx>
 #include <bf_svx/svxids.hrc>
@@ -80,17 +79,6 @@
 #include "chaxis.hxx"
 
 namespace binfilter {
-
-/*************************************************************************
-|*
-|* Entscheidung, ob BuildChart notwendig
-|*
-\************************************************************************/
-/*N*/ BOOL ChartModel::IsAttrChangeNeedsBuildChart(const SfxItemSet&)
-/*N*/ {
-/*N*/   // BM #60999# rebuild for all EE_CHAR attributes because of possibly red color for negative numbers. sorry :-(
-/*N*/   return TRUE;
-/*N*/ }
 
 /*************************************************************************
 |*
@@ -246,15 +234,13 @@ namespace binfilter {
 /*N*/             else
 /*N*/                 OSL_FAIL( "ChartAxis not found for Object" );
 /*N*/
-/*N*/           if(IsAttrChangeNeedsBuildChart(aSet))
-/*N*/              BuildChart(FALSE,nId); //z.B. auch Texte skalieren!
+/*N*/           BuildChart(FALSE,nId); //z.B. auch Texte skalieren!
 /*N*/           return TRUE;
 /*N*/       }
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-        return FALSE;
+            return FALSE;
 /*N*/   }
 /*N*/ }
 
@@ -274,7 +260,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/
 /*N*/   CHART_TRACE1( "ChartModel::PutDataRowAttr %smerge", bMerge? "": "NO " );
-/*N*/ //    DBG_ITEMS((SfxItemSet&)rAttr,this);
 /*N*/
 /*N*/     if( aDataRowAttrList.size() <= (unsigned long)nRow )
 /*N*/     {
@@ -286,16 +271,8 @@ namespace binfilter {
 /*?*/       aDataRowAttrList[ nRow ]->ClearItem();
 /*N*/
 /*N*/   PutItemSetWithNameCreation( *aDataRowAttrList[ nRow ], rAttr );
-/*N*/
-/*N*/   if(bClearPoints && (nRow < GetRowCount()))
-/*N*/   {
-/*N*/       long nCol,nColCnt=GetColCount();
-/*N*/       for(nCol=0;nCol<nColCnt;nCol++)
-/*N*/       {
-/*N*/           ClearDataPointAttr(nCol,nRow,rAttr);
-/*N*/       }
-/*N*/   }
 /*N*/ }
+
 /*************************************************************************
 |*
 |* Datenreihen-Attribute ermitteln
@@ -696,25 +673,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Datenpunkt-Attribute loeschen, die im Itemset (Argument) vorhanden sind
-|*
-\************************************************************************/
-
-/*N*/ void ChartModel::ClearDataPointAttr( long nCol, long nRow, const SfxItemSet& /*rAttr*/ )
-/*N*/ {
-/*N*/
-/*N*/   CHART_TRACE( "ChartModel::ClearDataPointAttr" );
-/*N*/
-/*N*/   ItemSetList* pAttrList = IsDataSwitched()   //abhaengig vom Charttyp - statt bSwitchData
-/*N*/                                ? &aSwitchDataPointAttrList
-/*N*/                                : &aDataPointAttrList;
-/*N*/
-/*N*/   SfxItemSet* pItemSet = (*pAttrList)[ nCol * GetRowCount() + nRow ];
-/*N*/   if (pItemSet != NULL)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/ }
-/*************************************************************************
-|*
 |* Datenpunkt-Attribute setzen
 |*
 \************************************************************************/
@@ -971,15 +929,6 @@ namespace binfilter {
 /*N*/                   break;
 /*N*/           }
 /*N*/
-/*N*/           // if stacked is set the string contains linefeeds which have to be removed
-/*N*/           const SfxPoolItem* pPoolItem = NULL;
-/*N*/           if( pItemSet &&
-/*N*/               pItemSet->GetItemState( SCHATTR_TEXT_ORIENT, FALSE, &pPoolItem ) == SFX_ITEM_SET &&
-/*N*/               SAL_STATIC_CAST( const SvxChartTextOrientItem*, pPoolItem )->GetValue() == CHTXTORIENT_STACKED )
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
-/*N*/
 /*N*/           if( pStrToChange )
 /*N*/               *(pStrToChange) = aTitle;
 /*N*/       }
@@ -1010,20 +959,15 @@ namespace binfilter {
 /*N*/   case CHOBJID_DIAGRAM_SPECIAL_GROUP:
 /*N*/   case CHOBJID_DIAGRAM_ROWGROUP:
 /*N*/   case CHOBJID_LEGEND_SYMBOL_ROW:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*?*/       break;
 /*?*/
 /*?*/   case CHOBJID_DIAGRAM_DATA:
 /*?*/   case CHOBJID_LEGEND_SYMBOL_COL:
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*?*/       break;
 /*?*/
 /*?*/   case CHOBJID_DIAGRAM_STATISTICS_GROUP :
 /*?*/   case CHOBJID_DIAGRAM_AVERAGEVALUE :
 /*?*/   case CHOBJID_DIAGRAM_REGRESSION :
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/       break;
 /*?*/
 /*N*/   case CHOBJID_DIAGRAM_WALL:
@@ -1392,7 +1336,6 @@ namespace binfilter {
 /*N*/           }
 /*N*/           break;
 /*N*/         case CHOBJID_AREA:
-/*?*/             DBG_BF_ASSERT(0, "STRIP");
 /*?*/             break;
 /*N*/       default:
 /*N*/           GetAttr(nId,nIndex1).Put(rAttr,TRUE);
@@ -1404,7 +1347,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if(bForceBuild || nIndex1!=-1)
 /*N*/       BuildChart(FALSE);
-/*N*/   else if(bNeedChanges && IsAttrChangeNeedsBuildChart(rAttr))
+/*N*/   else if(bNeedChanges)
 /*?*/       BuildChart(FALSE);
 /*N*/
 /*N*/   return bResult;

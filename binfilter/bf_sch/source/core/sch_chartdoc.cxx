@@ -90,20 +90,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Diese Methode erzeugt ein neues Dokument (ChartModel) und gibt einen
-|* Zeiger darauf zurueck. Die Drawing Engine benutzt diese Methode um das
-|* Dokument oder Teile davon ins Clipboard/DragServer stellen zu koennen.
-|*
-|* this method works like a copy constructor. So make sure to copy all
-|* members inside this method !!!
-|*
-\************************************************************************/
-/*N*/ SdrModel* ChartModel::AllocModel() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*N*/ }
-
-/*************************************************************************
-|*
 |* Diese Methode erzeugt eine neue Seite (SchPage) und gibt einen Zeiger
 |* darauf zurueck. Die Drawing Engine benutzt diese Methode beim Laden
 |* zur Erzeugung von Seiten (deren Typ sie ja nicht kennt, da es ABLEITUNGEN
@@ -115,6 +101,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   return new SdrPage(*this, bMasterPage);
 /*N*/ }
+
 /*************************************************************************
 |*
 |* Inserter fuer SvStream zum Speichern
@@ -247,7 +234,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   // statt Basisklassenaufruf [    rIn >> (ChartModel&)rDoc;] direkt:
 /*N*/   rIn >> (SdrModel&)rDoc;
 /*N*/
 /*N*/   if (rIn.GetError() != SVSTREAM_FILEFORMAT_ERROR)
@@ -261,14 +247,6 @@ namespace binfilter {
 /*N*/   rDoc.GetItemPool().LoadCompleted();
 /*N*/
 /*N*/   rDoc.ReadError () = FALSE;
-/*N*/
-/*N*/   // alle 3D-Objekte werden bei einem Paint erstmailg sortiert, damit wird auch
-/*N*/   // das Dokument als geaendert gekennzeichnet. Diese Variable wird in der
-/*N*/   // CHVIEWSH-Paint-Methode abgefragt und bei Bedarf wird der Modified-Status
-/*N*/   // des Dokuments zurueckgesetzt.
-/*N*/
-/*N*/   // no longer needed
-/*N*/ //-   rDoc.FreshLoaded () = TRUE;
 /*N*/
 /*N*/   return rIn;
 /*N*/ }
@@ -435,19 +413,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ #endif
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Setze den Modified-Status zurueck, wenn ein Dokument mit
-|* 3D-Objekten geladen und ausgegeben wurde
-|*
-\************************************************************************/
-
-//  void ChartModel::ResetFreshLoaded ()
-//  {
-//      bFreshLoaded = FALSE;
-//      SetChanged (FALSE);
-//  }
 
 
 }

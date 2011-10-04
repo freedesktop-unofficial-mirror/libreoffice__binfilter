@@ -47,8 +47,6 @@
 #include <bf_svx/fwdtitem.hxx>
 #include <bf_svx/fhgtitem.hxx>
 #include <bf_svx/svxids.hrc>
-#ifndef _CHTMODEL_HXX
-#endif
 
 #include "strings.hrc"
 #include "glob.hrc"
@@ -112,18 +110,7 @@ namespace binfilter {
 /*N*/
 /*N*/   for( nCol = 0; nCol < nColCnt; nCol++ )
 /*N*/   {
-/*N*/       SfxItemSet aDataPointAttr( GetFullDataPointAttr( nCol, nRow ));
-/*N*/       /*double fData =*/ GetData( nCol, nRow );
-/*N*/
 /*N*/       nSegOfsMax = Max( PieSegOfs( nCol ), nSegOfsMax );
-/*N*/
-/*N*/       SvxChartDataDescr eDescr = ((const SvxChartDataDescrItem&)aDataPointAttr.
-/*N*/                                   Get(SCHATTR_DATADESCR_DESCR)).GetValue();
-/*N*/
-/*N*/       if( (eDescr != CHDESCR_NONE) && bShowDataDescr )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
 /*N*/   }
 /*N*/
 /*N*/   // shrink rectangle if labels are printed beside the pies
@@ -336,23 +323,6 @@ namespace binfilter {
 /*N*/       pList->NbcInsertObject(pRowGroup);
 /*N*/       pRowLists[nRow]   = pRowGroup->GetSubList();
 /*N*/       pDescrLists[nRow] = 0;
-/*N*/
-/*N*/       // ******************** Data Descriptions erstellen ******************************
-/*N*/       for (nCol = 0; nCol < nColCnt; nCol++)
-/*N*/       {
-/*N*/           SfxItemSet aDataPointAttr(GetFullDataPointAttr(nCol, nRow));
-/*N*/           /*double fData =*/ GetData (nCol, nRow);
-/*N*/
-/*N*/           SvxChartDataDescr eDescr = ((const SvxChartDataDescrItem&)aDataPointAttr.
-/*N*/                                            Get(SCHATTR_DATADESCR_DESCR)).GetValue();
-/*N*/
-/*N*/           if( (eDescr != CHDESCR_NONE) && bShowDataDescr)
-/*N*/           {DBG_BF_ASSERT(0, "STRIP");
-                /**************************************************************
-                * DataDescription erforderlich
-                **************************************************************/
-/*N*/           }
-/*N*/       } //*************************** END DESCRIPTIONS ***********************************
 /*N*/   }//End for nRow
 
     // Das Rechteck wird dann etwas kleiner, da Text ausgegeben wird
@@ -558,10 +528,6 @@ namespace binfilter {
 /*N*/
 /*N*/   BOOL    bRepaint   = FALSE;
 
-/*N*/   if( IsXYChart() && ! ISFLAGSET( nChartStatus, CHS_USER_NOQUERY ) )  // in this case ask for sorting
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   SchObjGroup *pGroup;
 /*N*/   SdrObjList  *pList;
 /*N*/   SdrObject   *pObj;
@@ -632,9 +598,6 @@ namespace binfilter {
 /*N*/       long nPoints = 0;
 /*N*/         pLineObject  = NULL;
 /*N*/
-        if( ((const SfxBoolItem &) rDataRowAttr.Get( SCHATTR_STAT_AVERAGE )).GetValue() )
-           {DBG_BF_ASSERT(0, "STRIP"); }
-
 /*N*/         aSplinePoints.clear();
 /*N*/
 /*N*/         for (nCol = 0; nCol < nColCnt; nCol++)
@@ -688,15 +651,10 @@ namespace binfilter {
 /*N*/                       }
 /*N*/                   }
 /*N*/
-/*N*/                   if ((SvxChartKindError)
-/*?*/                       ((const SfxInt32Item &) aDataPointAttr.Get (SCHATTR_STAT_KIND_ERROR)).GetValue () != CHERROR_NONE)
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/
 /*N*/                   if(aDescr.Enabled())
 /*N*/                   {
 /*N*/                       Point aPos(aPolygon[(USHORT)nPoints-1]);
 /*N*/                       aPos.Y () -= 150;
-/*N*/                       aDescr.Insert(nCol,nRow,aDataPointAttr,aPos,FALSE,CHADJUST_BOTTOM_CENTER,pAxis);
 /*N*/                   }
 /*N*/               }
 /*N*/
@@ -717,16 +675,16 @@ namespace binfilter {
 /*N*/
 /*N*/               if( bIsSplineChart )
 /*N*/               {
-/*?*/                   if ((eChartStyle == CHSTYLE_2D_CUBIC_SPLINE_XY) || (eChartStyle == CHSTYLE_2D_CUBIC_SPLINE_SYMBOL_XY))
-/*?*/                     {DBG_BF_ASSERT(0, "STRIP");
-/*?*/                     }
-/*?*/                     else
-/*?*/                     {
+/*?*/                   if (!(  (eChartStyle == CHSTYLE_2D_CUBIC_SPLINE_XY)
+                             || (eChartStyle == CHSTYLE_2D_CUBIC_SPLINE_SYMBOL_XY)
+                             )
+                           )
+/*?*/                   {
 /*?*/                         XPolygon aMeshPoly;
 /*?*/                         approxMesh( nGranularity, aMeshPoly, aPolygon, nPoints - 1, nSplineDepth );
 /*?*/                         SchCalculationHelper::IntersectPolygonWithRectangle(
 /*?*/                             aMeshPoly, aClipRect, aSeriesPoly );
-/*?*/                     }
+/*?*/                   }
 /*?*/
 /*?*/                     if( pLineObject )
 /*?*/                         pLineObject->NbcSetPathPoly( aSeriesPoly );
@@ -755,13 +713,6 @@ namespace binfilter {
 /*N*/               pLineObject->SetItemSet( aLineAttr);
 /*N*/
 /*N*/           }
-/*N*/       }
-
-        // insert regression curve if necessary
-        // ------------------------------------
-/*N*/       if (((const SfxInt32Item &) rDataRowAttr.Get (SCHATTR_STAT_REGRESSTYPE)).GetValue () != CHREGRESS_NONE)
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 
@@ -1070,15 +1021,6 @@ namespace binfilter {
 /*N*/
 /*N*/           if( (eDescr != CHDESCR_NONE) && bShowDataDescr)
 /*N*/           {
-                /**************************************************************
-                * DataDescription erforderlich
-                **************************************************************/
-/*?*/               if (!pDescription)
-/*?*/               {
-/*?*/                   // DataDescription noch nicht vorhanden -> erzeugen
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
-/*?*/
 /*?*/               pDescription [nIndex].eDescr = eDescr;
 /*?*/               pDescription [nIndex].bSymbol = ((const SfxBoolItem&)aDataPointAttr.
 /*?*/                                               Get(SCHATTR_DATADESCR_SHOW_SYM)).GetValue();
@@ -1124,11 +1066,6 @@ namespace binfilter {
 /*N*/               }
 /*N*/
 /*N*/               fOldData [nCol] = fData;
-/*N*/
-/*N*/               if (pDescription)
-/*N*/               {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
 /*N*/           }
 /*N*/           else
 /*N*/           {
@@ -1244,20 +1181,10 @@ namespace binfilter {
 /*?*/                   }
 /*?*/               }
 /*?*/
-/*?*/           BOOL bIsDirty = FALSE;
-/*?*/
 /*?*/           for (nRows = nStart;nRows < nRowCnt;nRows ++)
 /*?*/               if (pDescrLists[nRows])
 /*?*/               {
 /*?*/                   long nIndex = nCols + nRows * nColCnt;//                    long nIndex = nRows + nCols * nRowCnt;
-/*?*/
-/*?*/                   if (!bIsDirty)
-/*?*/                       if ((pDescription [nIndex].eDescr == CHDESCR_PERCENT) ||
-/*?*/                           (pDescription [nIndex].eDescr == CHDESCR_TEXTANDPERCENT))
-/*?*/                           if (fTotal > 100.0000001)
-/*?*/                           {
-/*?*/                               DBG_BF_ASSERT(0, "STRIP");
-/*?*/                           }
 /*?*/
 /*?*/                   if (pDescription [nIndex].fValue != DBL_MIN)
 /*?*/                       if( pDescription[nIndex].pLabelObj )
@@ -1294,19 +1221,9 @@ namespace binfilter {
 /*?*/               }
 /*?*/           }
 /*?*/
-/*?*/           BOOL bIsDirty = FALSE;
-/*?*/
 /*?*/           for (nCols = 0;nCols < nColCnt;nCols ++)
 /*?*/           {
 /*?*/               long nIndex = nCols + nRows * nColCnt;
-/*?*/
-/*?*/               if (!bIsDirty)
-/*?*/                   if ((pDescription [nIndex].eDescr == CHDESCR_PERCENT) ||
-/*?*/                       (pDescription [nIndex].eDescr == CHDESCR_TEXTANDPERCENT))
-/*?*/                       if (fTotal > 100.0000001)
-/*?*/                       {
-/*?*/                           DBG_BF_ASSERT(0, "STRIP");
-/*?*/                       }
 /*?*/
 /*?*/               if (pDescription[ nIndex ].fValue != DBL_MIN)
 /*?*/                   if( pDescription[ nIndex ].pLabelObj )

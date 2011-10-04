@@ -436,10 +436,6 @@ enum ChartStyleV0
 /*N*/
 /*N*/                   delete pSymbolAttr;
 /*N*/               }
-/*N*/               else //i >= nCnt
-/*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
 /*N*/
 /*N*/               // FG: Jetzt wird aTextPos fuer den naechsten Legendeneintrag gesetzt
 /*N*/              if (bWide)

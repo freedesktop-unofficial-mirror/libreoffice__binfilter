@@ -101,8 +101,6 @@ public:
     void Build( BOOL bRowDescr=TRUE );  // insert data description in list (i.e. page)
 
     void Build3D( ChartScene* pScene, Matrix4D* pMatrix=NULL );
-    DataDescription* Insert( long nCol, long nRow, const SfxItemSet& rAttr, Point aPos,
-                             BOOL bPercent, ChartAdjust eAdjust, ChartAxis* pAxis);
 
     ChartDataDescription( long nCols, long nRows, SdrObjList *pList, ChartModel* mpModel, BOOL bEnable=TRUE );
     ~ChartDataDescription();

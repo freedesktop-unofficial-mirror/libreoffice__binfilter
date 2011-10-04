@@ -27,13 +27,12 @@
  ************************************************************************/
 #ifdef _MSC_VER
 #pragma optimize("",off)
-
 #pragma hdrstop
 #endif
+
 #include <bf_svx/svdorect.hxx>
 
 #include <bf_svx/svdopath.hxx>
-
 
 #include <bf_svx/xlnclit.hxx>
 
@@ -42,7 +41,6 @@
 #define _ZFORLIST_DECLARE_TABLE
 #endif
 #endif
-
 
 #include <list>
 
@@ -55,8 +53,6 @@
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 #define ITEMID_CHARTTEXTORDER   SCHATTR_TEXT_ORDER
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
-
-
 #endif
 
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
@@ -615,9 +611,6 @@ namespace binfilter {
 /*N*/                   BOOL bShow = (aObjRect.Bottom() >= aObjRect.Top());
 /*N*/                   aObjRect.Justify();
 /*N*/
-/*N*/                   if (!nCol && ((const SfxBoolItem &) rDataRowAttr.Get (SCHATTR_STAT_AVERAGE)).GetValue ())
-                        {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/
 /*N*/                   if (bShow && ((!bLogarithm && (fData != DBL_MIN)) ||
 /*N*/                                 (bLogarithm && (fData != DBL_MIN) && (fData > 0.0))))
 /*N*/                   {
@@ -680,16 +673,6 @@ namespace binfilter {
 /*N*/                           pRowLists[nRow]->NbcInsertObject(CreateRect (aObjRect, nCol, nRow, aDataPointAttr));
 /*N*/                       }
 /*N*/
-/*N*/                       if ((SvxChartKindError)
-/*N*/                           ((const SfxInt32Item &) aDataPointAttr.Get (SCHATTR_STAT_KIND_ERROR)).GetValue () !=
-/*N*/                            CHERROR_NONE)
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/
-/*N*/                       if(aDescr.Enabled())
-/*N*/                       {
-/*N*/                           Point aPos(bIsLine ? pLine[nRow-nLineStart][1] : aObjRect.TopCenter() );
-/*N*/                           aDescr.Insert(nCol,nRow,aDataPointAttr,aPos,FALSE,CHADJUST_BOTTOM_CENTER,pAxis);
-/*N*/                       }
 /*N*/                   }
 /*N*/                   else if (bIsLine)
 /*N*/                   {
@@ -816,13 +799,6 @@ namespace binfilter {
 /*?*/                               pTracePoint[nRow]=bIsDownward ? aBarRect.BottomRight() :aBarRect.TopRight();//#51471#
 /*N*/                           }
 /*N*/                       }
-/*N*/                       if(aDescr.Enabled())
-/*N*/                       {
-/*N*/                           if(bIsLine)
-/*?*/                               aDescr.Insert(nCol,nRow,aDataPointAttr,pLine[nRow-nLineStart][1],FALSE,CHADJUST_BOTTOM_CENTER,pAxis);
-/*N*/                           else
-/*N*/                               aDescr.Insert(nCol,nRow,aDataPointAttr,aObjRect.Center(),FALSE,CHADJUST_CENTER_CENTER,pAxis);
-/*N*/                       }
 /*N*/                   }
 /*N*/                   break;
 /*N*/               }
@@ -836,25 +812,16 @@ namespace binfilter {
 /*N*/                   BOOL bShow = (aObjRect.Right() >= aObjRect.Left());
 /*N*/                   aObjRect.Justify();
 /*N*/
-/*N*/                   if (!nCol && ((const SfxBoolItem &) rDataRowAttr.Get (SCHATTR_STAT_AVERAGE)).GetValue ())
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/
 /*N*/                   if ((bShow) && ((!bLogarithm && (fData != DBL_MIN)) ||
 /*N*/                                   (bLogarithm && (fData != DBL_MIN) && (fData > 0.0))))
 /*N*/                   {
 /*N*/                       pRowLists[nRow]->NbcInsertObject(CreateRect (aObjRect, nCol, nRow, aDataPointAttr));
-/*N*/
-/*N*/                       if ((SvxChartKindError)
-/*N*/                           ((const SfxInt32Item &) aDataPointAttr.Get (SCHATTR_STAT_KIND_ERROR)).GetValue () !=
-/*N*/                            CHERROR_NONE)
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/                       if(aDescr.Enabled())
 /*N*/                       {
 /*N*/                           Point aPos(aObjRect.TopRight());
 /*N*/                           aPos.Y()+=aObjRect.GetHeight() / 2;
 /*N*/                           aPos.X()+=500;
-/*N*/                           aDescr.Insert(nCol,nRow,aDataPointAttr,aPos,FALSE,CHADJUST_CENTER_LEFT,pAxis);
 /*N*/                       }
 /*N*/                   }
 /*N*/                   pBar->NextBar();
@@ -882,9 +849,6 @@ namespace binfilter {
 /*N*/                       pObj = SetObjectAttr( pObj, CHOBJID_DIAGRAM_DATA, TRUE, TRUE, &aDataPointAttr );
 /*N*/                       pObj->InsertUserData(new SchDataPoint(nCol, nRow));
 /*N*/                       pRowLists[nRow]->NbcInsertObject(pObj);
-/*N*/
-/*N*/                       if(aDescr.Enabled())
-/*N*/                           aDescr.Insert(nCol,nRow,aDataPointAttr,aObjRect.Center(),FALSE,CHADJUST_CENTER_CENTER,pAxis);
 /*N*/                   }
 /*N*/                   break;
 /*N*/               }
@@ -1136,12 +1100,6 @@ namespace binfilter {
 /*N*/       pList->NbcInsertObject(pBarGroup);
 /*N*/       pBarList = pBarGroup->GetSubList();
 /*N*/
-/*N*/       //Statistik:
-/*N*/       if ( ((const SfxBoolItem &) rDataRowAttr.Get (SCHATTR_STAT_AVERAGE)).GetValue ())
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/
 /*N*/       for (nCol = 0; nCol < nColCnt; nCol++)
 /*N*/       {
 /*N*/           SfxItemSet aDataPointAttr(GetFullDataPointAttr(nCol,nRow));
@@ -1154,26 +1112,7 @@ namespace binfilter {
 /*N*/           if(fData != DBL_MIN)
 /*N*/           {
 /*N*/               Rectangle aObjRect(Point(pBar->BarLeft(),nLow),Size(pBar->BarWidth(),nHi-nLow));
-/*N*/
 /*N*/               pBarList->NbcInsertObject(CreateRect(aObjRect,nCol,nRow,aDataPointAttr));
-/*N*/
-/*N*/               if ((SvxChartKindError)
-/*N*/                   ((const SfxInt32Item &) aDataPointAttr.Get (SCHATTR_STAT_KIND_ERROR)).GetValue () !=
-/*N*/                    CHERROR_NONE)
-/*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
-/*N*/
-/*N*/
-/*N*/               // ***************************** Description *****************************
-/*N*/               SvxChartDataDescr eDescr  = ((const SvxChartDataDescrItem&)aDataPointAttr.
-/*N*/                                               Get(SCHATTR_DATADESCR_DESCR)).GetValue();
-/*N*/
-/*N*/               if((eDescr!=CHDESCR_NONE)&&bShowDataDescr)
-/*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
-/*N*/               // ************************* end description *******************************
 /*N*/           }
 /*N*/           pBar->NextCol();
 /*N*/       }
@@ -1280,12 +1219,6 @@ namespace binfilter {
 /*N*/       pList->NbcInsertObject(pStatGroup);
 /*N*/       pStatLists [nRow] = pStatGroup->GetSubList();
 /*N*/
-/*N*/       if( ! bStacked )
-/*N*/       {
-/*N*/           if (((const SfxBoolItem &) rDataRowAttr.Get (SCHATTR_STAT_AVERAGE)).GetValue ())
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/       }
-/*N*/
 /*N*/       for (nCol = 0; nCol < nColCnt; nCol++)
 /*N*/       {
 /*N*/           SfxItemSet aDataPointAttr(rDataRowAttr);//#63904#
@@ -1333,23 +1266,13 @@ namespace binfilter {
 /*N*/                   }
 /*N*/               }
 /*N*/
-/*N*/               if (!bStacked)
-/*N*/               {
-/*N*/                   if ((SvxChartKindError)
-/*N*/                       ((const SfxInt32Item &)aDataPointAttr.Get(SCHATTR_STAT_KIND_ERROR)).GetValue () != CHERROR_NONE)
-/*?*/                        {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/               }
-/*N*/
 /*N*/               if(aDescr.Enabled())
 /*N*/               {
 /*N*/                   Point aPos(aPolygon[nPoints-1]);
 /*N*/                   if(aPos.X() == aRect.Left())
 /*N*/                   {
 /*N*/                       aPos.X()+=50;
-/*N*/                       aDescr.Insert(nCol,nRow,aDataPointAttr,aPos,FALSE,CHADJUST_BOTTOM_LEFT,pAxis);
 /*N*/                   }
-/*N*/                   else
-/*N*/                       aDescr.Insert(nCol,nRow,aDataPointAttr,aPos,FALSE,CHADJUST_BOTTOM_CENTER,pAxis);
 /*N*/               }
 /*N*/               // ************************* end description *******************************
 /*N*/           }
@@ -1744,24 +1667,6 @@ namespace binfilter {
 /*N*/             pUnoDoc->ClearNumberFormatter();
 /*N*/         }
 /*N*/   }
-/*N*/ }
-
-/*N*/ void ChartModel::TranslateAllNumFormatIds( SvNumberFormatterIndexTable* pTransTable )
-/*N*/ {
-/*N*/   if( pChartXAxis->TranslateMergedNumFormat( pTransTable ) &&
-/*N*/         nXLastNumFmt >= 0 )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/
-/*N*/     if( pChartYAxis->TranslateMergedNumFormat( pTransTable ) &&
-/*N*/         nYLastNumFmt >= 0 )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/
-/*N*/   pChartZAxis->TranslateMergedNumFormat( pTransTable );
-/*N*/   pChartAAxis->TranslateMergedNumFormat( pTransTable );
-/*N*/
-/*N*/   if( pChartBAxis->TranslateMergedNumFormat( pTransTable ) &&
-/*N*/         nBLastNumFmt >= 0 )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ }
 
 /*N*/ void ChartModel::SetNumLinesColChart(const long nSet, BOOL bForceStyleChange)

@@ -1136,11 +1136,6 @@ namespace binfilter {
 /*N*/           if (eChartStyle == CHSTYLE_3D_BAR) a3DPos.Y() += nPartWidth;
 /*N*/           else a3DPos.X() += nPartWidth;
 /*N*/
-/*N*/           if( pScene && bShowDataDescrLocal )
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
-/*N*/
 /*N*/       }// end for nCol
 /*N*/
 /*N*/         // #109628# insert row groups into main scene only if they contain data
@@ -1311,15 +1306,6 @@ namespace binfilter {
 /*N*/
 /*N*/                   if( (eDescr != CHDESCR_NONE) && bShowDataDescr)
 /*N*/                   {
-                        /******************************************************
-                        * DataDescription erforderlich
-                        ******************************************************/
-/*?*/                       if (!pDescription)
-/*?*/                       {
-/*?*/                           // DataDescription noch nicht vorhanden -> erzeugen
-/*?*/                           DBG_BF_ASSERT(0, "STRIP");
-/*?*/                       }
-/*?*/
 /*?*/                       pDescription [nCol].eDescr = eDescr;
 /*?*/                       pDescription [nCol].bSymbol = ((const SfxBoolItem&)aDataPointAttr.
 /*?*/                                                      Get(SCHATTR_DATADESCR_SHOW_SYM)).GetValue();
@@ -1372,11 +1358,6 @@ namespace binfilter {
 /*?*/                       }
 /*?*/
 /*?*/                       pDescription [nCol].eAdjust = CHADJUST_CENTER_CENTER;
-/*?*/
-/*?*/                       if( eDescr != CHDESCR_NONE && bValidData )
-/*?*/                       {
-/*?*/                           DBG_BF_ASSERT(0, "STRIP");
-/*?*/                       }
 /*N*/                   }
 /*N*/
 /*N*/                   a3DPos.X() += nPartWidth;
@@ -1496,15 +1477,6 @@ namespace binfilter {
 /*N*/
 /*N*/                   if( (eDescr != CHDESCR_NONE) && bShowDataDescr)
 /*N*/                   {
-                        /******************************************************
-                        * DataDescription erforderlich
-                        ******************************************************/
-/*?*/                       if (!pDescription)
-/*?*/                       {
-/*?*/                           // DataDescription noch nicht vorhanden -> erzeugen
-/*?*/                       DBG_BF_ASSERT(0, "STRIP");
-/*?*/                       }
-/*?*/
 /*?*/                       pDescription [nRow].eDescr = eDescr;
 /*?*/                       pDescription [nRow].bSymbol = ((const SfxBoolItem&)aDataPointAttr.
 /*N*/                                                      Get(SCHATTR_DATADESCR_SHOW_SYM)).GetValue();
@@ -1749,18 +1721,6 @@ namespace binfilter {
 /*N*/                   }
 /*N*/               }
 /*N*/
-/*N*/               // BM: moved here from Dirty3D.
-/*N*/               if( pDescription )
-/*N*/               {
-/*?*/                   for (nRow = 0; nRow < nRowCnt; nRow ++)
-/*?*/                   {
-/*?*/                       if (pScene && pDescription[nRow].fValue != DBL_MIN)
-/*?*/                       {
-/*?*/                       DBG_BF_ASSERT(0, "STRIP");
-/*?*/                       }
-/*N*/                   }
-/*N*/               }
-/*N*/
 /*N*/               if (bSwitchColRow)
 /*N*/               {
 /*N*/                   a3DPos.Y() += nBarWidthX ? nGapY * 2 : nPartWidth;
@@ -1933,8 +1893,7 @@ namespace binfilter {
 /*N*/               GetPage( 0 )->RemoveObject( 0 );
 /*N*/           }
 /*N*/
-/*N*/           SchE3dExtrudeObj* pObj=new SchE3dExtrudeObj(aDefltAttr3D,
-/*N*/               aPolyPolygon,nZExtrude);
+/*N*/           SchE3dExtrudeObj* pObj = new SchE3dExtrudeObj(aDefltAttr3D, aPolyPolygon,nZExtrude);
 /*N*/
 /*N*/           DBG_ASSERT( pObj, "couldn't create extrude object" );
 /*N*/
@@ -1944,6 +1903,7 @@ namespace binfilter {
 /*N*/           pObj->SetItem( Svx3DDoubleSidedItem( TRUE ));
 /*N*/
 /*N*/           pScene->Insert3DObj(pObj);
+/*N*/
 /*N*/           pObj->InsertUserData(new SchDataPoint(nCol, nRow));
 /*N*/           pObj->InsertUserData (new SchObjectId (CHOBJID_DIAGRAM_DATA));
 /*N*/           pObj->SetMoveProtect(TRUE);
@@ -1956,14 +1916,6 @@ namespace binfilter {
 /*N*/           Matrix4D aMatrix;
 /*N*/           aMatrix.TranslateZ(-nZExtrude/2);
 /*N*/           pObj->NbcSetTransform(aMatrix);
-/*N*/
-/*N*/
-/*N*/           if(aDescr.Enabled())
-/*N*/           {
-/*N*/               DataDescription* pDescr=aDescr.Insert(nCol,nRow,aDataPointAttr,Point(0,0),FALSE,CHADJUST_BOTTOM_CENTER,pChartYAxis);
-/*N*/               if(pDescr)
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/           }
 /*N*/       }
 /*N*/   }
 /*N*/   aDescr.Build3D(pScene);

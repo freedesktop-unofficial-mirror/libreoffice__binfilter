@@ -258,20 +258,7 @@ public:
     void SetMax(double f)           { mfMax = f; }
     void SetMin(double f)           { mfMin = f; }
     BOOL IsLogarithm() const        { return mbLogarithm; }
-    /* Freischalten, wenn ben�tigt:
 
-    BOOL IsAutoMin()   const {return mbAutoMin;}
-    BOOL IsAutoMax()   const {return mbAutoMax;}
-    BOOL IsAutoOrigin()const {return mbAutoOrigin;}
-
-    void SetOrigin(double f);   {mfOrigin=f;}
-    void SetStep(double f);     {mfStep=f;}
-    void SetHelpStep(double f); {mfStepHelp=f;}
-    void SetLogarithmic(BOOL b) {mbLogarithm=b;}
-    void SetAutoMin(BOOL b)     {mbAutoMin=b;}
-    void SetAutoMax(BOOL b)     {mbAutoMax=b;}
-    void SetAutoOrigin(BOOL b)  {mbAutoOrigin=b;}
-    */
     void Initialise(const Rectangle &rRect,BOOL bFlippedXY=FALSE,long eStackmode=CHSTACK_NONE,BOOL bPercent=FALSE,BOOL bRadial=FALSE,BOOL bPercentCol=TRUE);
 
     void VerifySteps();
@@ -360,7 +347,6 @@ public:
     //nDir ist Flag, kann sein CHAXIS_MARK_INNER und CHAXIS_MARK_OUTER (oder beides)
     SdrObject *CreateMarks(long nPosition,long nLen,long nWhichTicks);
 
-    BOOL TranslateMergedNumFormat( SvNumberFormatterIndexTable* pTransTable );
     long GetUniqueId() const    { return mnUId; }
 
     /** Converts a CHOBJID into an axis UId.
