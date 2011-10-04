@@ -33,7 +33,7 @@
 
 #include <hintids.hxx>
 
-#if !(defined _SVSTDARR_STRINGS_DECL && defined _SVSTDARR_BYTESTRINGS_DECL && \
+#if !(defined _SVSTDARR_STRINGS_DECL && \
       defined _SVSTDARR_USHORTS_DECL && defined _SVSTDARR_XUB_STRLEN_DECL && \
       defined _SVSTDARR_BOOLS_DECL)
 #define _SVSTDARR_STRINGS
