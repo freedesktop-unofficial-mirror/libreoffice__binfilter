@@ -31,10 +31,6 @@
 #pragma hdrstop
 #endif
 
-#ifdef BIDI
-#endif
-
-
 #include "txtcfg.hxx"
 #include "pormulti.hxx"
 #include "inftxt.hxx"
@@ -222,14 +218,6 @@ namespace binfilter {
 /*N*/                  "I'm only a stupid SwLinePortion" );
 /*N*/   return SwPosSize();
 /*N*/ }
-
-#ifdef DBG_UTIL
-
-/*************************************************************************
- *                virtual SwLinePortion::Check()
- *************************************************************************/
-
-#endif
 
 /*************************************************************************
  *                 virtual SwLinePortion::Format()

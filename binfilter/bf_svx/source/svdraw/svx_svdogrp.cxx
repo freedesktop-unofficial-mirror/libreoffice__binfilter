@@ -26,13 +26,7 @@
  *
  ************************************************************************/
 
-
-
 #include "svdogrp.hxx"
-
-#ifndef SVX_LIGHT
-#endif
-
 
 #include <bf_svtools/urihelper.hxx>
 
@@ -45,44 +39,12 @@
 #include "svdoedge.hxx"  // #32383# Die Verbinder nach Move nochmal anbroadcasten
 #include "svdstr.hrc"    // Objektname
 
-
 #include "svxids.hrc"
 
 #include <bf_svtools/whiter.hxx>
 #include "xoutx.hxx"
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
-
-#ifndef SVX_LIGHT
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//  @@@@  @@@@@  @@@@@@   @@@@@ @@@@@   @@@@  @@  @@ @@@@@   @@    @@ @@  @@ @@  @@
-// @@  @@ @@  @@     @@  @@     @@  @@ @@  @@ @@  @@ @@  @@  @@    @@ @@@ @@ @@ @@
-// @@  @@ @@@@@      @@  @@ @@@ @@@@@  @@  @@ @@  @@ @@@@@   @@    @@ @@@@@@ @@@@
-// @@  @@ @@  @@ @@  @@  @@  @@ @@  @@ @@  @@ @@  @@ @@      @@    @@ @@ @@@ @@ @@
-//  @@@@  @@@@@   @@@@    @@@@@ @@  @@  @@@@   @@@@  @@      @@@@@ @@ @@  @@ @@  @@
-//
-// ImpSdrObjGroupLink zur Verbindung von SdrObjGroup und LinkManager
-//
-// Einem solchen Link merke ich mir als SdrObjUserData am Objekt. Im Gegensatz
-// zum Grafik-Link werden die ObjektDaten jedoch kopiert (fuer Paint, etc.).
-// Die Information ob das Objekt ein Link ist besteht genau darin, dass dem
-// Objekt ein entsprechender UserData-Record angehaengt ist oder nicht.
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-// Closed() wird gerufen, wenn die Verkn?fung geloesst wird.
-
-
-
-
-#endif // SVX_LIGHT
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -425,16 +387,6 @@ namespace binfilter {
 
 
 
-/*SdrObject* SdrObjGroup::Clone() const
-{
-    SdrObjGroup* pObj=new SdrObjGroup();
-    if (pObj!=NULL) {
-        *pObj=*this;
-    }
-    return pObj;
-}*/
-
-
 /*N*/ void SdrObjGroup::operator=(const SdrObject& rObj)
 /*N*/ {
 /*N*/   if (rObj.IsGroupObject()) {
@@ -456,6 +408,7 @@ namespace binfilter {
 /*N*/ void SdrObjGroup::RecalcSnapRect()
 /*N*/ {
 /*N*/   // nicht erforderlich, da die Rects von der SubList verwendet werden.
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 

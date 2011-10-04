@@ -156,11 +156,6 @@ friend void     PageNumNotify(  ViewShell* pVwSh,
 
 protected:
 
-
-
-
-
-
                                 // Drag & Drop Interface
 
     void    ShowAutoTextCorrectQuickHelp( const String& rWord, OfaAutoCorrCfg* pACfg, SvxAutoCorrect* pACorr );
@@ -204,9 +199,6 @@ public:
 
     const SwView &GetView() const { return rView; }
           SwView &GetView()       { return rView; }
-
-#ifdef ACCESSIBLE_LAYOUT
-#endif
 
     // Tipfenster loeschen
 

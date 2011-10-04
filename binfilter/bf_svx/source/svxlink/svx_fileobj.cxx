@@ -30,10 +30,6 @@
 #pragma hdrstop
 #endif
 
-#ifdef OS2
-#endif
-
-
 #include <sot/formats.hxx>
 #include <bf_so3/lnkbase.hxx>
 #include <bf_sfx2/app.hxx>
@@ -109,36 +105,6 @@ using namespace ::com::sun::star::uno;
 /*N*/           // LinkManager und damit von dessen Storage erledigt.
 /*N*/           rData <<= ::rtl::OUString( sFileNm );
 /*N*/
-/*
-===========================================================================
-noch eine Baustelle:
-                Idee: hier das Medium und die DocShell anlegen, Doc laden
-                      und ueber OLE-SS (GetObj(...)) den Bereich als
-                      PseudoObject erfragen. Dieses mit den Daten oder
-                      dessen Daten verschicken.
-
-===========================================================================
-
-            SfxMedium aMed( aFileNm.GetFull(), STREAM_READ, TRUE );
-            aMed.DownLoad();        // nur mal das Medium anfassen (DownLoaden)
-
-            if( aMed.IsStorage() )
-                pSvData->SetData( SvStorageRef( aMed.GetStorage() ),
-                                    TRANSFER_COPY );
-            else
-            {
-                SvStream* pStream = aMed.GetInStream();
-                if( !pStream )
-                    return FALSE;
-
-                UINT32 nLen = pStream->Seek( STREAM_SEEK_TO_END );
-                pStream->Seek( STREAM_SEEK_TO_BEGIN );
-
-                void* pData = SvMemAlloc( nLen );
-                pStream->Read( pData, nLen );
-                pSvData->SetData( pData, nLen, TRANSFER_MOVE );
-            }
-*/
 /*N*/       }
 /*N*/       break;
 /*N*/
@@ -157,7 +123,6 @@ noch eine Baustelle:
 /*?*/ // wird einzig und allein im sw/ndgrf.cxx benutzt, wenn der Link vom
 /*?*/ // GraphicNode entfernt wird.
 /*?*/               BOOL bOldNativFormat = bNativFormat;
-/*?*/ //!!??                bNativFormat = 0 != (ASPECT_ICON & pSvData->GetAspect());
 /*?*/
 /*?*/               // falls gedruckt werden soll, warten wir bis die
 /*?*/               // Daten vorhanden sind
@@ -391,7 +356,6 @@ noch eine Baustelle:
 /*?*/           if( !pDownLoadData->aGrf.GetContext() )
 /*?*/           {
 /*?*/               xMed->SetDataAvailableLink( Link() );
-/*?*/ //                xMed->SetDoneLink( Link() );
 /*?*/               delete pDownLoadData, pDownLoadData = 0;
 /*?*/               bDataReady = TRUE;
 /*?*/               bWaitForData = FALSE;

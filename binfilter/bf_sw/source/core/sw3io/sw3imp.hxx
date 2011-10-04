@@ -32,10 +32,12 @@
 
 #include <tools/string.hxx>
 #include <bf_svtools/svarray.hxx>
+
 #ifndef _SVSTDARR_BYTES_DECL
 #define _SVSTDARR_BYTES
 #include <bf_svtools/svstdarr.hxx>
 #endif
+
 #include <bf_so3/svstor.hxx>
 #include <bf_so3/persist.hxx>
 #include <tools/poly.hxx>
@@ -45,9 +47,11 @@
 #include <sw3ids.hxx>
 #include <docstat.hxx>
 #include <list>
+
 class SvStream;
 class SvXub_StrLens;
 class SvxMacroTableDtor;
+
 namespace binfilter {
 
 class ImageMap;
@@ -678,9 +682,6 @@ public:
 
     void GetMacroTable( SvxMacroTableDtor& rMacroTbl );
     void ScanMacroTbl( SvxMacroTableDtor& rMacroTbl );
-
-#ifdef TEST_HUGE_DOCS
-#endif
 };
 
 inline BOOL Sw3IoImp::IsVersion( USHORT nMinVers ) const

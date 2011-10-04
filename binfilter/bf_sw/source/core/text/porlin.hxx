@@ -174,9 +174,6 @@ public:
     // Ausgabe
     virtual void Paint( const SwTxtPaintInfo &rInf ) const = 0;
 
-#ifdef DBG_UTIL
-#endif
-
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
     // wird fuer die letzte Portion der Zeile extra gerufen
     virtual void FormatEOL( SwTxtFormatInfo &rInf );

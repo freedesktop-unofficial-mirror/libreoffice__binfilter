@@ -73,9 +73,6 @@ BOOL lcl_BoxSetHeadCondColl( const SwTableBox*& rpBox, void* pPara );
 BOOL lcl_LineSetHeadCondColl( const SwTableLine*& rpLine, void* pPara );
 
 
-#ifdef DBG_UTIL
-#endif
-
 void _InsTblBox( SwDoc* pDoc, SwTableNode* pTblNd,
                 SwTableLine* pLine, SwTableBoxFmt* pBoxFrmFmt,
                 SwTableBox* pBox, USHORT nInsPos, USHORT nCnt = 1 );

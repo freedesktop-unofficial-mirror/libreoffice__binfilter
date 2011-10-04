@@ -33,8 +33,6 @@
 #include "xmlexprt.hxx"
 #include "xmlimprt.hxx"
 
-/*#ifndef _PROPIMP0_HXX
-#endif*/
 #include "XMLConverter.hxx"
 
 #include <bf_xmloff/xmlnmspe.hxx>

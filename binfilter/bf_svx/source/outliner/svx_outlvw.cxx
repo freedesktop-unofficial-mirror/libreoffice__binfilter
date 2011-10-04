@@ -35,19 +35,9 @@
 #define _OUTLINER_CXX
 #include <outleeng.hxx>
 
-
-
-
-
-
-
-
-
-
 #include "editview.hxx"
 
 namespace binfilter {
-
 
 // Breite der Randzonen innerhalb derer beim D&D gescrollt wird
 #define OL_SCROLL_LRBORDERWIDTHPIX  10
@@ -72,35 +62,6 @@ namespace binfilter {
 /*N*/   return pEditView->GetVisArea();
 /*N*/ }
 
-
-
-// MT 05/00: Wofuer dies ImpXXXScroll, sollte das nicht die EditEngine machen???
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*N*/ void OutlinerView::Cut()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
@@ -110,14 +71,9 @@ namespace binfilter {
 /*N*/ }
 
 
-
-
 // =====================================================================
 // ======================   Einfache Durchreicher =======================
 // ======================================================================
-
-
-
 
 
 /*N*/ void OutlinerView::SetSelection( const ESelection& rSel )
@@ -126,15 +82,11 @@ namespace binfilter {
 /*N*/   pEditView->SetSelection( rSel );
 /*N*/ }
 
-
 /*N*/ Window* OutlinerView::GetWindow() const
 /*N*/ {
 /*N*/   DBG_CHKTHIS(OutlinerView,0);
 /*N*/   return pEditView->GetWindow();
 /*N*/ }
-
-
-
 
 /*N*/ Rectangle OutlinerView::GetOutputArea() const
 /*N*/ {
@@ -148,53 +100,9 @@ namespace binfilter {
 /*N*/   return pEditView->GetSelection();
 /*N*/ }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*N*/ void OutlinerView::Copy()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#ifndef SVX_LIGHT
-#endif
-
-
-
-
 
 }
 

@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PRECOMPILED
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif

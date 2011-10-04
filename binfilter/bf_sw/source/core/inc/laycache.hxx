@@ -63,9 +63,6 @@ public:
             ++nLockCount;
           return pImpl; }
     void UnlockImpl() { --nLockCount; }
-
-#ifdef DBG_UTIL
-#endif
 };
 
 } //namespace binfilter

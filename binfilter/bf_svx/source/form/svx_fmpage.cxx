@@ -34,18 +34,11 @@
 
 #include "fmpage.hxx"
 
-
-
 #include "fmmodel.hxx"
-
-#ifndef SVX_LIGHT
-#endif
 
 #ifndef SVX_LIGHT
 #include "fmresids.hrc"
 #endif
-
-
 
 #ifndef SVX_LIGHT
 #include "fmpgeimp.hxx"
@@ -54,20 +47,11 @@
 #include "svdio.hxx"
 
 #ifndef SVX_LIGHT
-#endif
-
-
-
-
-
-
-#ifndef SVX_LIGHT
 #include "fmprop.hrc"
 using namespace ::binfilter::svxform;
 #endif
 
 namespace binfilter {
-
 
 /*N*/ TYPEINIT1(FmFormPage, SdrPage);
 

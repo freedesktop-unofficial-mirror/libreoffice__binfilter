@@ -31,8 +31,6 @@
 #pragma hdrstop
 #endif
 
-#ifdef DBG_UTIL
-#endif
 #include <stdlib.h>
 #include "swrect.hxx"
 
@@ -270,7 +268,6 @@ namespace binfilter {
 
 /*N*/ SvStream &operator<<( SvStream &rStream, const SwRect & )
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return rStream;
 /*N*/ }
 #endif

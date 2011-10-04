@@ -35,20 +35,13 @@
 #define _SDR_NOITEMS
 #define _SDR_NOTOUCH
 #define _SDR_NOTRANSFORM
-//#define _SDR_NOOBJECTS
-//#define _SDR_NOVIEWS ***
 
-//#define SI_NOITEMS
-//#define SI_NODRW
 #define _SI_NOSBXCONTROLS
 #define _SI_NOOTHERFORMS
 #define _SI_NOCONTROL
 #define _SI_NOSBXCONTROLS
 
 #include <bf_svx/xdef.hxx>
-
-#ifndef _SV_MENU_HXX //autogen
-#endif
 
 #include "schattr.hxx"
 
@@ -71,17 +64,10 @@
 
 #include <bf_svx/dialogs.hrc>
 
-#ifndef _CHTMODEL_HXX
-#endif
-
 #include "docshell.hxx"
 
-
-
-
-
-
 #include <bf_sfx2/printer.hxx>
+
 namespace binfilter {
 
 /*************************************************************************

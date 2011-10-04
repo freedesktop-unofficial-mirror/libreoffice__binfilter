@@ -41,12 +41,8 @@
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTTEXTORDER   SCHATTR_TEXT_ORDER
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
-
-
 #endif
 
-#ifndef _CHTMODEL_HXX
-#endif
 #include <bf_svx/svxids.hrc>
 #include <math.h>
 #include <float.h>
@@ -61,6 +57,7 @@
 #endif
 #include <bf_svtools/zforlist.hxx>
 #endif
+
 namespace binfilter {
 
 

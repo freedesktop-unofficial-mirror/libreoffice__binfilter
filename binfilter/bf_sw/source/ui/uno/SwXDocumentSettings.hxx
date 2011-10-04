@@ -29,8 +29,6 @@
 #ifndef _SW_XDOCUMENT_SETTINGS_HXX
 #define _SW_XDOCUMENT_SETTINGS_HXX
 
-#ifdef PRECOMPILED
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif

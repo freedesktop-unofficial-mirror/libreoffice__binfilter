@@ -1290,10 +1290,8 @@ void SAL_CALL   ChXDiagram::setPropertyValues (
             uno::RuntimeException)
 {
     RTL_LOGFILE_CONTEXT (context2, "sch (af119097) ::ChXDiagram::setPropertyValues");
-#if 1
     for (sal_Int32 i=0; i<aPropertyNames.getLength(); i++)
         setPropertyValue (aPropertyNames[i], aValues[i]);
-#endif
 }
 
 

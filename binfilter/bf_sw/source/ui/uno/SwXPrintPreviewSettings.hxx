@@ -29,8 +29,6 @@
 #ifndef _SW_XPRINTPREVIEWSETTINGS_HXX_
 #define _SW_XPRINTPREVIEWSETTINGS_HXX_
 
-#ifdef PRECOMPILED
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif

@@ -110,8 +110,6 @@ public:
     static const SwRect CalcBoundRect( const SdrObject* pObj,
         const SwRect &rLine, const long nXPos, const sal_Bool bRight );
 #endif
-#ifdef DBG_UTIL
-#endif
 };
 
 /*************************************************************************
@@ -202,9 +200,6 @@ public:
 
     void SetIgnoreCurrentFrame( sal_Bool bNew ) { mbIgnoreCurrentFrame = bNew; }
     void SetIgnoreContour( sal_Bool bNew ) { mbIgnoreContour = bNew; }
-
-#ifdef DBG_UTIL
-#endif
 };
 
 // Wenn in das rRect (meist die aktuelle Zeile) kein freifliegender

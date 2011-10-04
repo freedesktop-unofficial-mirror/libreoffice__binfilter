@@ -92,7 +92,6 @@ HDDEDATA CALLBACK _export DdeInternal::SvrCallback(
         {
             int nTopics = 0;
 
-#if 1
             TCHAR chTopicBuf[250];
             if( hText1 )
                 DdeQueryString( pInst->hDdeInstSvr, hText1, chTopicBuf,
@@ -121,20 +120,6 @@ HDDEDATA CALLBACK _export DdeInternal::SvrCallback(
                 }
             }
 
-#else
-            for( pService = rAll.First();pService;pService = rAll.Next() )
-            {
-                if ( !hText2 || ( *pService->pName == hText2 ) )
-                {
-                    for( pTopic = pService->aTopics.First(); pTopic;
-                         pTopic = pService->aTopics.Next() )
-                    {
-                        if ( !hText1 || (*pTopic->pName == hText1) )
-                            nTopics++;
-                    }
-                }
-            }
-#endif
             if( !nTopics )
                 return (HDDEDATA)NULL;
 

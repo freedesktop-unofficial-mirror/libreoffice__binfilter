@@ -521,7 +521,6 @@ ReadState JPEGReader::Read( Graphic& rGraphic )
     BOOL        bRet = FALSE;
     BYTE        cDummy;
 
-#if 1 // TODO: is it possible to get rid of this seek to the end?
     // check if the stream's end is already available
     rIStm.Seek( STREAM_SEEK_TO_END );
     rIStm >> cDummy;
@@ -540,7 +539,6 @@ ReadState JPEGReader::Read( Graphic& rGraphic )
 
     // seek back to the original position
     rIStm.Seek( nLastPos );
-#endif
 
     Size aPreviewSize = GetPreviewSize();
     SetJpegPreviewSizeHint( aPreviewSize.Width(), aPreviewSize.Height() );

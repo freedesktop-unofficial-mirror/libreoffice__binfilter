@@ -36,16 +36,11 @@
 
 #include <lspcitem.hxx>
 
-
-
 #include "itemdata.hxx"
 
 #include <tools/date.hxx>
 
 #include <tools/time.hxx>
-
-
-
 
 #include <vcl/window.hxx>
 
@@ -64,23 +59,14 @@
 #include <scripttypeitem.hxx>
 #include <frmdiritem.hxx>
 
-
-
-
 #include <vcl/cmdevt.h>
-
-#ifndef SVX_LIGHT
-#endif
-
-
 
 #include <com/sun/star/i18n/ScriptType.hpp>
 
 #include <com/sun/star/text/CharacterCompressionType.hpp>
 
-
-
 #include <unicode/ubidi.h>
+
 namespace binfilter {
 
 using namespace ::com::sun::star;

@@ -1114,9 +1114,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*M*/   // einen kleineren Font eingestellt als der vom QuoVadis-Text ...
 /*M*/   CalcAdjustLine( pCurr );
 /*M*/
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*M*/ #endif
-/*M*/
 /*M*/   // Uff...
 /*M*/   return nRet;
 /*M*/ }
