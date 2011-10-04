@@ -170,11 +170,6 @@ using namespace ::com::sun::star;
 /*N*/   delete pServDesc;
 /*N*/ }
 
-/*N*/ DataObject* ScDPObject::Clone() const
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*N*/ }
-
 /*N*/ void ScDPObject::SetAlive(BOOL bSet)
 /*N*/ {
 /*N*/   bAlive = bSet;
@@ -763,11 +758,6 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 
 /*N*/ ScDPCollection::~ScDPCollection()
 /*N*/ {
-/*N*/ }
-
-/*N*/ DataObject* ScDPCollection::Clone() const
-/*N*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*N*/ BOOL ScDPCollection::LoadNew( SvStream& rStream )

@@ -434,8 +434,6 @@ namespace binfilter {
 /*?*/               for ( USHORT i=nEntryStart; i<=nEntryEnd && bAllHidden; i++ )
 /*?*/                   if ( ( pHiddenFlags[i] & CR_HIDDEN ) == 0 )
 /*?*/                       bAllHidden = FALSE;
-/*?*/
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*N*/       }
 /*N*/   }

@@ -107,10 +107,6 @@ namespace binfilter {
 /*M*/     delete[] pSpecial;
 /*N*/ }
 
-/*N*/ void ScSheetDPData::DisposeData()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ long ScSheetDPData::GetColumnCount()
 /*N*/ {
 /*N*/   return pImpl->nColCount;
@@ -181,10 +177,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ UINT32 ScSheetDPData::GetNumberFormat(long)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*N*/ }
-
 /*N*/ BOOL ScSheetDPData::getIsDataLayoutDimension(long nColumn)
 /*N*/ {
 /*N*/   return ( nColumn == pImpl->nColCount );
@@ -200,17 +192,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   pImpl->nNextRow = pImpl->aRange.aStart.Row() + 1;
 /*N*/ }
-
-
-/*N*/ BOOL ScSheetDPData::GetNextRow( const ScDPTableIteratorParam& )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-
-
-
 
 
 

@@ -104,7 +104,7 @@ public:
                 ScDPObject(const ScDPObject& r);
     virtual     ~ScDPObject();
 
-    virtual DataObject* Clone() const;
+    virtual DataObject* Clone() const { return NULL; } // DBG_BF_ASSERT
 
     void                SetAlive(BOOL bSet);
 
@@ -159,7 +159,7 @@ public:
                 ScDPCollection(const ScDPCollection& r);
     virtual     ~ScDPCollection();
 
-    virtual DataObject* Clone() const;
+    virtual DataObject* Clone() const { return NULL; }  // DBG_BF_ASSERT
 
     ScDPObject* operator[](USHORT nIndex) const {return (ScDPObject*)At(nIndex);}
 

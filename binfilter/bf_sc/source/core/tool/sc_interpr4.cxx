@@ -2962,7 +2962,7 @@ void ScInterpreter::ScTTT()
                 case ocLogInv           : ScLogNormInv();               break;
                 case ocBetaDist         : ScBetaDist();                 break;
                 case ocBetaInv          : ScBetaInv();                  break;
-/*N*/                 case ocExternal         : ScExternal();                 break;
+                case ocExternal         : ScExternal();                 break;
                 case ocTableOp          : ScTableOp();                  break;
 //              case ocErrCell          : ScErrCell();                  break;
                 case ocStop :                                           break;
@@ -2971,16 +2971,16 @@ void ScInterpreter::ScTTT()
                 case ocStyle            : ScStyle();                    break;
                 case ocDde              : ScDde();                      break;
                 case ocBase             : ScBase();                     break;
-/*N*/                 case ocDecimal          : ScDecimal();                  break;
-/*N*/                 case ocConvert          : ScConvert();                  break;
+                case ocDecimal          : ScDecimal();                  break;
+                case ocConvert          : ScConvert();                  break;
                 case ocRoman            : ScRoman();                    break;
                 case ocArabic           : ScArabic();                   break;
                 case ocAnswer           : ScAnswer();                   break;
                 case ocTeam             : ScCalcTeam();                 break;
                 case ocTTT              : ScTTT();                      break;
                 case ocSpew             : ScSpewFunc();                 break;
-                case ocGame             : ScGame();                     break;
-/*N*/                 default : SetError(errUnknownOpCode); PushInt(0);       break;
+                case ocGame             :                               break;
+                default : SetError(errUnknownOpCode); PushInt(0);       break;
 /*N*/             }
 /*N*/
 /*N*/           // aeussere Funktion bestimmt das Format eines Ausdrucks

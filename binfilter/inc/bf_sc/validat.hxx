@@ -110,8 +110,6 @@ public:
     ScValidationMode GetDataMode() const    { return eDataMode; }
 
 
-    BOOL            IsDataValid( ScBaseCell* pCell, const ScAddress& rPos ) const;
-
                     // TRUE -> Abbruch
 
     BOOL            IsEmpty() const;

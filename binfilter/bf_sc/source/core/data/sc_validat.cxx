@@ -190,11 +190,6 @@ namespace binfilter {
 /*N*/   return bShowError;
 /*N*/ }
 
-/*N*/ BOOL ScValidationData::IsDataValid( ScBaseCell* /*pCell*/, const ScAddress& /*rPos*/ ) const
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
-
 //------------------------------------------------------------------------
 
 /*N*/ ScValidationDataList::ScValidationDataList(const ScValidationDataList& rList)

@@ -60,16 +60,16 @@ public:
                     ScSheetDPData( ScDocument* pD, const ScSheetSourceDesc& rDesc );
     virtual         ~ScSheetDPData();
 
-    virtual long                    GetColumnCount();
-    virtual String                  getDimensionName(long nColumn);
-    virtual BOOL                    getIsDataLayoutDimension(long nColumn);
-    virtual BOOL                    IsDateDimension(long nDim);
-    virtual UINT32                  GetNumberFormat(long nDim);
-    virtual void                    DisposeData();
-    virtual void                    SetEmptyFlags( BOOL bIgnoreEmptyRows, BOOL bRepeatIfEmpty );
+    virtual long    GetColumnCount();
+    virtual String  getDimensionName(long nColumn);
+    virtual BOOL    getIsDataLayoutDimension(long nColumn);
+    virtual BOOL    IsDateDimension(long nDim);
+    virtual UINT32  GetNumberFormat(long /*nDim*/) { return 0; } // DBG_BF_ASSERT
+    virtual void    DisposeData() {} // DBG_BF_ASSERT
+    virtual void    SetEmptyFlags( BOOL bIgnoreEmptyRows, BOOL bRepeatIfEmpty );
 
-    virtual void                    ResetIterator();
-    virtual BOOL                    GetNextRow( const ScDPTableIteratorParam& rParam );
+    virtual void    ResetIterator();
+    virtual BOOL    GetNextRow( const ScDPTableIteratorParam& /*rParam*/ ) { return FALSE; } // DBG_BF_ASSERT
 };
 
 

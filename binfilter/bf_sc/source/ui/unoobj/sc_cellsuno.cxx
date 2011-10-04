@@ -6893,43 +6893,43 @@ void SAL_CALL ScTableSheetObj::group( const table::CellRangeAddress&,
                                         table::TableOrientation )
                                     throw(uno::RuntimeException)
 {
-    DBG_BF_ASSERT(0, "STRIP");
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
 }
 
 void SAL_CALL ScTableSheetObj::ungroup( const table::CellRangeAddress&,
                                         table::TableOrientation )
                                     throw(uno::RuntimeException)
 {
-    DBG_BF_ASSERT(0, "STRIP");
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
 }
 
 void SAL_CALL ScTableSheetObj::autoOutline( const table::CellRangeAddress& )
                                     throw(uno::RuntimeException)
 {
-    DBG_BF_ASSERT(0, "STRIP");
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
 }
 
 void SAL_CALL ScTableSheetObj::clearOutline() throw(uno::RuntimeException)
 {
-    DBG_BF_ASSERT(0, "STRIP");
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
 }
 
 void SAL_CALL ScTableSheetObj::hideDetail( const table::CellRangeAddress& )
                                             throw(uno::RuntimeException)
 {
-    DBG_BF_ASSERT(0, "STRIP");
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
 }
 
 void SAL_CALL ScTableSheetObj::showDetail( const table::CellRangeAddress& )
                                             throw(uno::RuntimeException)
 {
-    DBG_BF_ASSERT(0, "STRIP");
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
 }
 
 void SAL_CALL ScTableSheetObj::showLevel( sal_Int16, table::TableOrientation )
                                             throw(uno::RuntimeException)
 {
-    DBG_BF_ASSERT(0, "STRIP");
+    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
 }
 
 // XProtectable

@@ -106,7 +106,6 @@ namespace binfilter {
 /*N*/                               do
 /*?*/                               {
 /*?*/                                   ::rtl::OUString aId( xContentAccess->queryContentIdentifierString() );
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/                               }
 /*?*/                               while ( xResultSet->next() );
 /*?*/                           }

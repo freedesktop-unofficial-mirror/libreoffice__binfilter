@@ -68,7 +68,7 @@ protected:
     virtual SfxStyleSheetBase* Create( const String&    rName,
                                        SfxStyleFamily   eFamily,
                                        USHORT           nMask);
-    virtual SfxStyleSheetBase* Create( const SfxStyleSheetBase& rStyle );
+    virtual SfxStyleSheetBase* Create( const SfxStyleSheetBase& rStyle ) { return NULL; } // DBG_BF_ASSERT
 
 private:
     SfxStyleSheetBase*  pActualStyleSheet;

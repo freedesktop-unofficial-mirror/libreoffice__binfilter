@@ -291,10 +291,6 @@ uno::Sequence< uno::Sequence<sheet::DataResult> > SAL_CALL ScDPSource::getResult
     return uno::Sequence< uno::Sequence<sheet::DataResult> >(0);
 }
 
-/*?*/ void SAL_CALL ScDPSource::refresh() throw(uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
-
 /*?*/ void SAL_CALL ScDPSource::addRefreshListener( const uno::Reference<util::XRefreshListener >& )
 /*?*/                                               throw(uno::RuntimeException)
 /*?*/ {
@@ -358,11 +354,6 @@ uno::Sequence< uno::Sequence<sheet::DataResult> > SAL_CALL ScDPSource::getResult
 
 
 // XPropertySet
-
-/*?*/ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScDPSource::getPropertySetInfo()
-/*?*/                                                       throw(uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference<beans::XPropertySetInfo>(0);
-/*?*/ }
 
 /*N*/ void SAL_CALL ScDPSource::setPropertyValue( const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
 /*N*/               throw(beans::UnknownPropertyException, beans::PropertyVetoException,
@@ -604,17 +595,7 @@ uno::Sequence< uno::Sequence<sheet::DataResult> > SAL_CALL ScDPSource::getResult
 
 
 
-/*?*/ uno::Reference<util::XCloneable> SAL_CALL ScDPDimension::createClone() throw(uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference<util::XCloneable>(0);
-/*?*/ }
-
-
 // XPropertySet
-
-/*?*/ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScDPDimension::getPropertySetInfo()
-/*?*/                                                       throw(uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference<beans::XPropertySetInfo>(0);
-/*?*/ }
 
 /*N*/ void SAL_CALL ScDPDimension::setPropertyValue( const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
 /*N*/               throw(beans::UnknownPropertyException, beans::PropertyVetoException,
@@ -622,11 +603,7 @@ uno::Sequence< uno::Sequence<sheet::DataResult> > SAL_CALL ScDPSource::getResult
 /*N*/                       uno::RuntimeException)
 /*N*/ {
 /*N*/   String aNameStr = aPropertyName;
-/*N*/   if ( aNameStr.EqualsAscii( SC_UNO_POSITION ) )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_USEDHIER ) )
+/*N*/   if ( aNameStr.EqualsAscii( SC_UNO_USEDHIER ) )
 /*N*/   {
 /*?*/       INT32 nInt;
 /*?*/       aValue >>= nInt;
@@ -643,7 +620,7 @@ uno::Sequence< uno::Sequence<sheet::DataResult> > SAL_CALL ScDPSource::getResult
 /*N*/       if (aValue >>= eEnum)
 /*N*/           setFunction( eEnum );
 /*N*/   }
-/*N*/   else
+/*N*/   if ( !aNameStr.EqualsAscii( SC_UNO_POSITION ) )
 /*N*/   {
 /*N*/       OSL_FAIL("unknown property");
 /*N*/       //! THROW( UnknownPropertyException() );
@@ -672,8 +649,6 @@ uno::Sequence< uno::Sequence<sheet::DataResult> > SAL_CALL ScDPSource::getResult
 /*N*/   }
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_ISDATALA ) )                 // read-only properties
 /*N*/       lcl_SetBoolInAny( aRet, getIsDataLayoutDimension() );
-/*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_NUMBERFO ) )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_ORIGINAL ) )
 /*N*/   {
 /*N*/       uno::Reference<container::XNamed> xOriginal;
@@ -681,7 +656,7 @@ uno::Sequence< uno::Sequence<sheet::DataResult> > SAL_CALL ScDPSource::getResult
 /*?*/           xOriginal = pSource->GetDimensionsObject()->getByIndex(nSourceDim);
 /*N*/       aRet <<= xOriginal;
 /*N*/   }
-/*N*/   else
+/*N*/   else if ( !aNameStr.EqualsAscii( SC_UNO_NUMBERFO ) )
 /*N*/   {
 /*N*/       OSL_FAIL("unknown property");
 /*N*/       //! THROW( UnknownPropertyException() );
@@ -1123,14 +1098,12 @@ uno::Sequence<sheet::MemberResult> SAL_CALL ScDPLevel::getResults() throw(uno::R
 /*N*/ {
 /*N*/   uno::Any aRet;
 /*N*/   String aNameStr = aPropertyName;
-/*N*/   if ( aNameStr.EqualsAscii( SC_UNO_SHOWEMPT ) )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_SUBTOTAL ) )
+/*N*/   if ( aNameStr.EqualsAscii( SC_UNO_SUBTOTAL ) )
 /*N*/   {
 /*N*/       uno::Sequence<sheet::GeneralFunction> aSeq = getSubTotals();        //! avoid extra copy?
 /*N*/       aRet <<= aSeq;
 /*N*/   }
-/*N*/   else
+/*N*/   if ( !aNameStr.EqualsAscii( SC_UNO_SHOWEMPT ) )
 /*N*/   {
 /*N*/       OSL_FAIL("unknown property");
 /*N*/       //! THROW( UnknownPropertyException() );

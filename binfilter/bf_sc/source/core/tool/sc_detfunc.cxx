@@ -1317,11 +1317,8 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/                           DrawCircle( nCol, nRow, aData );
 /*N*/                           ++nInsCount;
 /*N*/                       }
-/*N*/                   if ( !pData->IsDataValid( pCell, ScAddress( nCol, nCellRow, nTab ) ) )
-/*N*/                   {
-/*N*/                       DrawCircle( nCol, nCellRow, aData );
-/*N*/                       ++nInsCount;
-/*N*/                   }
+/*N*/                   DrawCircle( nCol, nCellRow, aData );
+/*N*/                   ++nInsCount;
 /*N*/                   nNextRow = nCellRow + 1;
 /*N*/                   pCell = aCellIter.GetNext();
 /*N*/               }

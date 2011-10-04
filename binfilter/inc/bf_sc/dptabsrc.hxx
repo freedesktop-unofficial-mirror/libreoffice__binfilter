@@ -155,7 +155,7 @@ public:
                                 throw(::com::sun::star::uno::RuntimeException);
 
                             // XRefreshable
-    virtual void SAL_CALL   refresh() throw(::com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL   refresh() throw(::com::sun::star::uno::RuntimeException) {} // DBG_BF_ASSERT
     virtual void SAL_CALL   addRefreshListener( const ::com::sun::star::uno::Reference<
                                     ::com::sun::star::util::XRefreshListener >& l )
                                 throw(::com::sun::star::uno::RuntimeException);
@@ -164,9 +164,9 @@ public:
                                 throw(::com::sun::star::uno::RuntimeException);
 
                             // XPropertySet
-    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo >
-                            SAL_CALL getPropertySetInfo(  )
-                                throw(::com::sun::star::uno::RuntimeException);
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo > SAL_CALL getPropertySetInfo() // DBG_BF_ASSERT
+                                throw(::com::sun::star::uno::RuntimeException)
+                                { return ::com::sun::star::uno::Reference<com::sun::star::beans::XPropertySetInfo>(0); }
     virtual void SAL_CALL   setPropertyValue( const ::rtl::OUString& aPropertyName,
                                     const ::com::sun::star::uno::Any& aValue )
                                 throw(::com::sun::star::beans::UnknownPropertyException,
@@ -300,13 +300,14 @@ public:
                             getHierarchies() throw(::com::sun::star::uno::RuntimeException);
 
                             // XCloneable
-    virtual ::com::sun::star::uno::Reference< ::com::sun::star::util::XCloneable > SAL_CALL
-                            createClone() throw(::com::sun::star::uno::RuntimeException);
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::util::XCloneable > SAL_CALL createClone() // DBG_BF_ASSERT
+                            throw(::com::sun::star::uno::RuntimeException)
+                            { return ::com::sun::star::uno::Reference<com::sun::star::util::XCloneable>(0); }
 
                             // XPropertySet
-    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo >
-                            SAL_CALL getPropertySetInfo(  )
-                                throw(::com::sun::star::uno::RuntimeException);
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo > SAL_CALL getPropertySetInfo() // DBG_BF_ASSERT
+                                throw(::com::sun::star::uno::RuntimeException)
+                                { return com::sun::star::uno::Reference<com::sun::star::beans::XPropertySetInfo>(0); }
     virtual void SAL_CALL   setPropertyValue( const ::rtl::OUString& aPropertyName,
                                     const ::com::sun::star::uno::Any& aValue )
                                 throw(::com::sun::star::beans::UnknownPropertyException,
