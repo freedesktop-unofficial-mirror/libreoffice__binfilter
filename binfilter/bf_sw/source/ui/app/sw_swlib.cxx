@@ -58,8 +58,6 @@ inline BOOL IsDocShellRegistered()
     return SvtModuleOptions().IsWriter();
 }
 
-USHORT AutoDetec( const String& FileName, USHORT & rVersion );
-
 IO_DETECT_IMPL1
 IO_DETECT_IMPL2
 IO_DETECT_IMPL3

@@ -32,12 +32,6 @@
 class String;
 namespace binfilter {
 
-
-
-// suche fuer das File den enstsprechenden Filter Typ
-// und die Version
-USHORT AutoDetec( const String& rFileName, USHORT & rVersion );
-
 // W4W speichert beim Laden vom File pFileName die Ausgabe in pTmpFile.
 // (das Tempfile wird hier anleget!)
 // der Filter wird ueber nFilter bestimmt.

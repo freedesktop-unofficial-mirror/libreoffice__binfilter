@@ -97,10 +97,6 @@ namespace binfilter {
 
 #define ERR_DLL 9999
 
-/*N*/ USHORT AutoDetec( const String& /*rFileName*/, USHORT & /*rVersion*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*N*/ }
-
 // Handler fuer die Prozentanzeige
 
 #if defined( WIN ) || defined( WNT ) || defined( PM2 )
@@ -119,10 +115,7 @@ int FNDisp W4WWriteDisplayHandler( int nPercent )
     return 0;       // -1 fuehrt zu Abbruch
 }
 
-
 #endif
-
-
 
 // W4W speichert beim Laden vom File rFileName die Ausgabe in aTmpFile.
 // der Filter wird ueber nFilter bestimmt.

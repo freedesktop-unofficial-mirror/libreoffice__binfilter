@@ -50,7 +50,6 @@
 #include <fltini.hxx>
 #include <swgpar.hxx>           // fuer den SW/G Parser
 #include <sw3io.hxx>
-#include <w4wflt.hxx>           // AutoDetect
 // enable implementation and members
 #define IS_SW_DLL 1
 #include <iodetect.hxx>

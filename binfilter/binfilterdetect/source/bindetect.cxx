@@ -49,18 +49,6 @@
 #include <osl/module.hxx>
 #include <osl/file.hxx>
 
-#if defined( WNT )
-
-// Typen fuer die Funktion der W4W-DLL
-#include <bf_svtools/bf_prewin.h>
-#include <bf_svtools/bf_postwin.h>
-
-#endif
-
-#ifdef UNX
-#include <stdlib.h>
-#endif
-
 using namespace ::com::sun::star::registry;
 using namespace ::com::sun::star::uno;
 
@@ -74,9 +62,7 @@ struct TypesInfo
 
 // the binfilter module is responsible for
 // - see /filter/source/config/fragments/filters/
-static const sal_uInt8 nStreamFileTypeCount = 114;
-static const sal_uInt8 nFileTypeCount = 29 + nStreamFileTypeCount;
-static const sal_uInt8 nW4WStartOffset = 5;
+static const sal_uInt8 nFileTypeCount = 34;
 static const TypesInfo aFileTypeList[ nFileTypeCount ] =
 {
     {RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_10")},
@@ -84,115 +70,6 @@ static const TypesInfo aFileTypeList[ nFileTypeCount ] =
     {RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_DOS")},
     {RTL_CONSTASCII_STRINGPARAM("writer_Lotus_1_2_3_10_DOS_StarWriter")},
     {RTL_CONSTASCII_STRINGPARAM("writer_Lotus_1_2_3_10_WIN_StarWriter")},
-    {RTL_CONSTASCII_STRINGPARAM("writer_Ami_Pro_1x_31_W4W")},                 // 5 , 33
-    {RTL_CONSTASCII_STRINGPARAM("writer_CTOS_DEF_W4W")},                      // 6 , 36
-    {RTL_CONSTASCII_STRINGPARAM("writer_Claris_Works_W4W")},                  // 7 , 57
-    {RTL_CONSTASCII_STRINGPARAM("writer_DCA_Revisable_Form_Text_W4W")},       // 8 , 15
-    {RTL_CONSTASCII_STRINGPARAM("writer_DCA_with_Display_Write_5_W4W")},      // 9 , 15
-    {RTL_CONSTASCII_STRINGPARAM("writer_DCAFFT_Final_Form_Text_W4W")},        //10, 32
-    {RTL_CONSTASCII_STRINGPARAM("writer_DEC_DX_W4W")},                        //11, 30
-    {RTL_CONSTASCII_STRINGPARAM("writer_DEC_WPS_PLUS_W4W")},                  //12, 45
-    {RTL_CONSTASCII_STRINGPARAM("writer_DataGeneral_CEO_Write_W4W")},         //13, 104
-    {RTL_CONSTASCII_STRINGPARAM("writer_DisplayWrite_20_4x_W4W")},            //14, 15
-    {RTL_CONSTASCII_STRINGPARAM("writer_DisplayWrite_5x_W4W")},               //15, 15
-    {RTL_CONSTASCII_STRINGPARAM("writer_EBCDIC_W4W")},                        //16, 02
-    {RTL_CONSTASCII_STRINGPARAM("writer_Enable_W4W")},                        //17, 28
-    {RTL_CONSTASCII_STRINGPARAM("writer_Frame_Maker_MIF_30_W4W")},            //18, 42
-    {RTL_CONSTASCII_STRINGPARAM("writer_Frame_Maker_MIF_40_W4W")},            //19, 42
-    {RTL_CONSTASCII_STRINGPARAM("writer_Frame_Maker_MIF_50_W4W")},            //20, 42
-    {RTL_CONSTASCII_STRINGPARAM("writer_Frame_Work_III_W4W")},                //21, 29
-    {RTL_CONSTASCII_STRINGPARAM("writer_Frame_Work_IV_W4W")},                 //22, 29
-    {RTL_CONSTASCII_STRINGPARAM("writer_HP_AdvanceWrite_Plus_W4W")},          //23, 22
-    {RTL_CONSTASCII_STRINGPARAM("writer_ICL_Office_Power_6_W4W")},            //24, 102
-    {RTL_CONSTASCII_STRINGPARAM("writer_ICL_Office_Power_7_W4W")},            //25, 102
-    {RTL_CONSTASCII_STRINGPARAM("writer_Interleaf_W4W")},                     //26, 35
-    {RTL_CONSTASCII_STRINGPARAM("writer_Interleaf_5_6_W4W")},                 //27, 46
-    {RTL_CONSTASCII_STRINGPARAM("writer_Legacy_Winstar_onGO_W4W")},           //28, 37
-    {RTL_CONSTASCII_STRINGPARAM("writer_Lotus_Manuscript_W4W")},              //29, 24
-    {RTL_CONSTASCII_STRINGPARAM("writer_MASS_11_Rel_80_83_W4W")},             //30, 31
-    {RTL_CONSTASCII_STRINGPARAM("writer_MASS_11_Rel_85_90_W4W")},             //31, 31
-    {RTL_CONSTASCII_STRINGPARAM("writer_MS_MacWord_30_W4W")},                 //32, 54
-    {RTL_CONSTASCII_STRINGPARAM("writer_MS_MacWord_40_W4W")},                 //33, 54
-    {RTL_CONSTASCII_STRINGPARAM("writer_MS_MacWord_5x_W4W")},                 //34, 54
-    {RTL_CONSTASCII_STRINGPARAM("writer_MS_WinWord_1x_W4W")},                 //35, 44
-    {RTL_CONSTASCII_STRINGPARAM("writer_MS_WinWord_2x_W4W")},                 //36, 44
-    {RTL_CONSTASCII_STRINGPARAM("writer_MS_Word_3x_W4W")},                    //37, 05
-    {RTL_CONSTASCII_STRINGPARAM("writer_MS_Word_4x_W4W")},                    //38, 05
-    {RTL_CONSTASCII_STRINGPARAM("writer_MS_Word_5x_W4W")},                    //39, 05
-    {RTL_CONSTASCII_STRINGPARAM("writer_MS_Word_6x_W4W")},                    //40, 49
-    {RTL_CONSTASCII_STRINGPARAM("writer_MS_Works_20_DOS_W4W")},               //41, 39
-    {RTL_CONSTASCII_STRINGPARAM("writer_MS_Works_30_Win_W4W")},               //42, 39
-    {RTL_CONSTASCII_STRINGPARAM("writer_MS_Works_40_Mac_W4W")},               //43, 58
-    {RTL_CONSTASCII_STRINGPARAM("writer_Mac_Write_4x_50_W4W")},               //44, 51
-    {RTL_CONSTASCII_STRINGPARAM("writer_Mac_Write_II_W4W")},                  //45, 52
-    {RTL_CONSTASCII_STRINGPARAM("writer_Mac_Write_Pro_W4W")},                 //46, 56
-    {RTL_CONSTASCII_STRINGPARAM("writer_MultiMate_33_W4W")},                  //47, 10
-    {RTL_CONSTASCII_STRINGPARAM("writer_MultiMate_4_W4W")},                   //48, 10
-    {RTL_CONSTASCII_STRINGPARAM("writer_MultiMate_Adv_36_W4W")},              //49, 10
-    {RTL_CONSTASCII_STRINGPARAM("writer_MultiMate_Adv_II_37_W4W")},           //50, 10
-    {RTL_CONSTASCII_STRINGPARAM("writer_NAVY_DIF_W4W")},                      //51, 18
-    {RTL_CONSTASCII_STRINGPARAM("writer_OfficeWriter_40_W4W")},               //52, 16
-    {RTL_CONSTASCII_STRINGPARAM("writer_OfficeWriter_50_W4W")},               //53, 16
-    {RTL_CONSTASCII_STRINGPARAM("writer_OfficeWriter_6x_W4W")},               //54, 16
-    {RTL_CONSTASCII_STRINGPARAM("writer_PFS_First_Choice_10_W4W")},           //55, 08
-    {RTL_CONSTASCII_STRINGPARAM("writer_PFS_First_Choice_20_W4W")},           //56, 08
-    {RTL_CONSTASCII_STRINGPARAM("writer_PFS_First_Choice_30_W4W")},           //57, 08
-    {RTL_CONSTASCII_STRINGPARAM("writer_PFS_Write_W4W")},                     //58, 08
-    {RTL_CONSTASCII_STRINGPARAM("writer_Peach_Text_W4W")},                    //59, 27
-    {RTL_CONSTASCII_STRINGPARAM("writer_Professional_Write_10_W4W")},         //60, 33
-    {RTL_CONSTASCII_STRINGPARAM("writer_Professional_Write_2x_W4W")},         //61, 33
-    {RTL_CONSTASCII_STRINGPARAM("writer_Professional_Write_Plus_W4W")},       //62, 33
-    {RTL_CONSTASCII_STRINGPARAM("writer_QA_Write_10_30_W4W")},                //63, 23
-    {RTL_CONSTASCII_STRINGPARAM("writer_QA_Write_40_W4W")},                   //64, 23
-    {RTL_CONSTASCII_STRINGPARAM("writer_Rapid_File_10_W4W")},                 //65, 25
-    {RTL_CONSTASCII_STRINGPARAM("writer_Rapid_File_12_W4W")},                 //66, 25
-    {RTL_CONSTASCII_STRINGPARAM("writer_Samna_Word_IV_IV_Plus_W4W")},         //67, 22
-    {RTL_CONSTASCII_STRINGPARAM("writer_Total_Word_W4W")},                    //68, 14
-    {RTL_CONSTASCII_STRINGPARAM("writer_Uniplex_V7_V8_W4W")},                 //69, 101
-    {RTL_CONSTASCII_STRINGPARAM("writer_Uniplex_onGO_W4W")},                  //70, 101
-    {RTL_CONSTASCII_STRINGPARAM("writer_VolksWriter_3_and_4_W4W")},           //71, 14
-    {RTL_CONSTASCII_STRINGPARAM("writer_VolksWriter_Deluxe_W4W")},            //72, 11
-    {RTL_CONSTASCII_STRINGPARAM("writer_WITA_W4W")},                          //73, 34
-    {RTL_CONSTASCII_STRINGPARAM("writer_Wang_II_SWP_W4W")},                   //74, 88
-    {RTL_CONSTASCII_STRINGPARAM("writer_Wang_PC_W4W")},                       //75, 26
-    {RTL_CONSTASCII_STRINGPARAM("writer_Wang_WP_Plus_W4W")},                  //76, 89
-    {RTL_CONSTASCII_STRINGPARAM("writer_Win_Write_3x_W4W")},                  //77, 43
-    {RTL_CONSTASCII_STRINGPARAM("writer_WiziWord_30_W4W")},                   //78, 47
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Win_51_52_W4W")},         //79, 07
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Win_60_W4W")},            //80, 48
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Win_61_W4W")},            //81, 48
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Win_70_W4W")},            //82, 07
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_41_W4W")},                //83, 06
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_42_W4W")},                //84, 06
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_50_W4W")},                //85, 07
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_51_W4W")},                //86, 07
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_60_W4W")},                //87, 07
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_61_W4W")},                //88, 07
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Mac_1_W4W")},             //89, 59
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Mac_2_W4W")},             //90, 60
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Mac_3_W4W")},             //91, 60
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_Win_1x_20_W4W")},            //92, 04
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_2000_Rel_30_W4W")},          //93, 09
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_2000_Rel_35_W4W")},          //94, 09
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_33x_W4W")},                  //95, 04
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_345_W4W")},                  //96, 04
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_40_W4W")},                   //97, 04
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_50_W4W")},                   //98, 04
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_55_W4W")},                   //99, 04
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_60_W4W")},                   //100, 04
-    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_70_W4W")},                   //101, 04
-    {RTL_CONSTASCII_STRINGPARAM("writer_WriteNow_30_Macintosh_W4W")},         //102, 62
-    {RTL_CONSTASCII_STRINGPARAM("writer_Writing_Assistant_W4W")},             //103, 13
-    {RTL_CONSTASCII_STRINGPARAM("writer_XEROX_XIF_50_Illustrator_W4W")},      //104, 103
-    {RTL_CONSTASCII_STRINGPARAM("writer_XEROX_XIF_50_W4W")},                  //105, 103
-    {RTL_CONSTASCII_STRINGPARAM("writer_XEROX_XIF_60_Color_Bitmap_W4W")},     //106, 103
-    {RTL_CONSTASCII_STRINGPARAM("writer_XEROX_XIF_60_Res_Graphic_W4W")},      //107, 103
-    {RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_Win_10_W4W")},                //108, 17
-    {RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_III_W4W")},                   //109, 17
-    {RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_IIIP_W4W")},                  //110, 17
-    {RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_IV_W4W")},                    //111, 17
-    {RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_Sig_Win_W4W")},               //112, 17
-    {RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_Signature_W4W")},             //113, 17
     {RTL_CONSTASCII_STRINGPARAM("calc_StarCalc_30")},
     {RTL_CONSTASCII_STRINGPARAM("calc_StarCalc_30_VorlageTemplate")},
     {RTL_CONSTASCII_STRINGPARAM("calc_StarCalc_40")},
@@ -223,202 +100,8 @@ static const TypesInfo aFileTypeList[ nFileTypeCount ] =
     {RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_50_VorlageTemplate")},
     {RTL_CONSTASCII_STRINGPARAM("writer_globaldocument_StarWriter_50GlobalDocument")}
 };
-//list of Word4Word filters the identifiers are returned by AutoDetec
-static const sal_uInt8 nW4WFilterCount = 109;
-static const USHORT aW4WIdentifier[nW4WFilterCount] =
-{
-    33  ,//"writer_Ami_Pro_1x_31_W4W"
-    36  ,//"writer_CTOS_DEF_W4W"
-    57  ,//"writer_Claris_Works_W4W"
-    15  ,//"writer_DCA_Revisable_Form_Text_W4W"
-    15  ,//"writer_DCA_with_Display_Write_5_W4W"
-    32  ,//"writer_DCAFFT_Final_Form_Text_W4W"
-    30  ,//"writer_DEC_DX_W4W"
-    45  ,//"writer_DEC_WPS_PLUS_W4W"
-    104 ,//"writer_DataGeneral_CEO_Write_W4W"
-    15  ,//"writer_DisplayWrite_20_4x_W4W"
-    15  ,//"writer_DisplayWrite_5x_W4W"
-    02  ,//"writer_EBCDIC_W4W"
-    28  ,//"writer_Enable_W4W"
-    42  ,//"writer_Frame_Maker_MIF_30_W4W"
-    42  ,//"writer_Frame_Maker_MIF_40_W4W"
-    42  ,//"writer_Frame_Maker_MIF_50_W4W"
-    29  ,//"writer_Frame_Work_III_W4W"
-    29  ,//"writer_Frame_Work_IV_W4W"
-    22  ,//"writer_HP_AdvanceWrite_Plus_W4W"
-    102 ,//"writer_ICL_Office_Power_6_W4W"
-    102 ,//"writer_ICL_Office_Power_7_W4W"
-    35  ,//"writer_Interleaf_W4W"
-    46  ,//"writer_Interleaf_5_6_W4W"
-    37  ,//"writer_Legacy_Winstar_onGO_W4W"
-    24  ,//"writer_Lotus_Manuscript_W4W"
-    31  ,//"writer_MASS_11_Rel_80_83_W4W"
-    31  ,//"writer_MASS_11_Rel_85_90_W4W"
-    54  ,//"writer_MS_MacWord_30_W4W"
-    54  ,//"writer_MS_MacWord_40_W4W"
-    54  ,//"writer_MS_MacWord_5x_W4W"
-    44  ,//"writer_MS_WinWord_1x_W4W"
-    44  ,//"writer_MS_WinWord_2x_W4W"
-    05  ,//"writer_MS_Word_3x_W4W"
-    05  ,//"writer_MS_Word_4x_W4W"
-    05  ,//"writer_MS_Word_5x_W4W"
-    49  ,//"writer_MS_Word_6x_W4W"
-    39  ,//"writer_MS_Works_20_DOS_W4W"
-    39  ,//"writer_MS_Works_30_Win_W4W"
-    58  ,//"writer_MS_Works_40_Mac_W4W"
-    51  ,//"writer_Mac_Write_4x_50_W4W"
-    52  ,//"writer_Mac_Write_II_W4W"
-    56  ,//"writer_Mac_Write_Pro_W4W"
-    10  ,//"writer_MultiMate_33_W4W"
-    10  ,//"writer_MultiMate_4_W4W"
-    10  ,//"writer_MultiMate_Adv_36_W4W"
-    10  ,//"writer_MultiMate_Adv_II_37_W4W"
-    18  ,//"writer_NAVY_DIF_W4W"
-    16  ,//"writer_OfficeWriter_40_W4W"
-    16  ,//"writer_OfficeWriter_50_W4W"
-    16  ,//"writer_OfficeWriter_6x_W4W"
-    8  ,//"writer_PFS_First_Choice_10_W4W"
-    8  ,//"writer_PFS_First_Choice_20_W4W"
-    8  ,//"writer_PFS_First_Choice_30_W4W"
-    8  ,//"writer_PFS_Write_W4W"
-    27  ,//"writer_Peach_Text_W4W"
-    33  ,//"writer_Professional_Write_10_W4W"
-    33  ,//"writer_Professional_Write_2x_W4W"
-    33  ,//"writer_Professional_Write_Plus_W4W"
-    23  ,//"writer_QA_Write_10_30_W4W"
-    23  ,//"writer_QA_Write_40_W4W"
-    25  ,//"writer_Rapid_File_10_W4W"
-    25  ,//"writer_Rapid_File_12_W4W"
-    22  ,//"writer_Samna_Word_IV_IV_Plus_W4W"
-    14  ,//"writer_Total_Word_W4W"
-    101 ,//"writer_Uniplex_V7_V8_W4W"
-    101 ,//"writer_Uniplex_onGO_W4W"
-    14  ,//"writer_VolksWriter_3_and_4_W4W"
-    11  ,//"writer_VolksWriter_Deluxe_W4W"
-    34  ,//"writer_WITA_W4W"
-    88  ,//"writer_Wang_II_SWP_W4W"
-    26  ,//"writer_Wang_PC_W4W"
-    89  ,//"writer_Wang_WP_Plus_W4W"
-    43  ,//"writer_Win_Write_3x_W4W"
-    47  ,//"writer_WiziWord_30_W4W"
-    7  ,//"writer_WordPerfect_Win_51_52_W4W"
-    48  ,//"writer_WordPerfect_Win_60_W4W"
-    48  ,//"writer_WordPerfect_Win_61_W4W"
-    7  ,//"writer_WordPerfect_Win_70_W4W"
-    6  ,//"writer_WordPerfect_41_W4W"
-    6  ,//"writer_WordPerfect_42_W4W"
-    7  ,//"writer_WordPerfect_50_W4W"
-    7  ,//"writer_WordPerfect_51_W4W"
-    7  ,//"writer_WordPerfect_60_W4W"
-    7  ,//"writer_WordPerfect_61_W4W"
-    59  ,//"writer_WordPerfect_Mac_1_W4W"
-    60  ,//"writer_WordPerfect_Mac_2_W4W"
-    60  ,//"writer_WordPerfect_Mac_3_W4W"
-    4  ,//"writer_WordStar_Win_1x_20_W4W"
-    9  ,//"writer_WordStar_2000_Rel_30_W4W"
-    9  ,//"writer_WordStar_2000_Rel_35_W4W"
-    4  ,//"writer_WordStar_33x_W4W"
-    4  ,//"writer_WordStar_345_W4W"
-    4  ,//"writer_WordStar_40_W4W"
-    4  ,//"writer_WordStar_50_W4W"
-    4  ,//"writer_WordStar_55_W4W"
-    4 ,//"writer_WordStar_60_W4W"
-    4 ,//"writer_WordStar_70_W4W"
-     62 ,//"writer_WriteNow_30_Macintosh_W4W"
-     13 ,//"writer_Writing_Assistant_W4W"
-     103,//"writer_XEROX_XIF_50_Illustrator_W4W"
-     103,//"writer_XEROX_XIF_50_W4W"
-     103,//"writer_XEROX_XIF_60_Color_Bitmap_W4W"
-     103,//"writer_XEROX_XIF_60_Res_Graphic_W4W"
-     17 ,//"writer_XyWrite_Win_10_W4W"
-     17 ,//"writer_XyWrite_III_W4W"
-     17 ,//"writer_XyWrite_IIIP_W4W"
-     17 ,//"writer_XyWrite_IV_W4W"
-     17 ,//"writer_XyWrite_Sig_Win_W4W"
-     17 //"writer_XyWrite_Signature_W4W"
-};
 
-
-
-#ifndef WNT
-//Same as osl::Module, except will search for its modules in the filter subdir
-class filterModule : public osl::Module
-{
-public:
-    sal_Bool filterLoad(String &rStr);
-};
-
-extern "C" { static void SAL_CALL thisModule() {} }
-
-sal_Bool filterModule::filterLoad(String &rStr)
-{
-    sal_Bool bRet=sal_False;
-    SvtPathOptions aOpt;
-    if (aOpt.SearchFile(rStr, SvtPathOptions::PATH_FILTER))
-    {
-        rtl::OUString aPathURL;
-        osl::FileBase::getFileURLFromSystemPath(rtl::OUString(rStr),aPathURL);
-        bRet = loadRelative(&thisModule, aPathURL);
-    }
-    return bRet;
-}
-
-#endif
-USHORT AutoDetec( const String& rFileName, USHORT & rVersion )
-{
-    ByteString aFileNm( rFileName, ::gsl_getSystemTextEncoding() );
-    USHORT nFileType = 0;
-
-#if defined( WNT )
-
-    typedef int (FAR PASCAL *FNautorec)( LPSTR, int, LPINT );
-
-    String aAutoRecDLL(RTL_CONSTASCII_USTRINGPARAM("autorec.dll"));
-    SvtPathOptions aOpt;
-    if( !aOpt.SearchFile( aAutoRecDLL, SvtPathOptions::PATH_FILTER ))
-        return 0;
-
-    ByteString sAutoRecDllNm( aAutoRecDLL, ::gsl_getSystemTextEncoding() );
-    HANDLE hDLL = LoadLibrary( (LPSTR)sAutoRecDllNm.GetBuffer() );
-    if( hDLL >= (HANDLE)HINSTANCE_ERROR )
-    {
-        FNautorec fnAutorec = (FNautorec)GetProcAddress( (HINSTANCE)hDLL,
-                                                    (LPSTR)"autorec" );
-
-        long nVersion = 0;
-        if( fnAutorec )
-            nFileType = (*fnAutorec)( (LPSTR)aFileNm.GetBuffer(),
-                                        0,
-                                        (LPINT)&nVersion );
-        rVersion = (USHORT)nVersion;
-        FreeLibrary( (HINSTANCE)hDLL );
-    }
-#else
-    //This is the nice modern code, the other stuff is a bit awful, but for
-    //some reason the different platforms had different argument lists from
-    //eachother, so we can't have super clean code :-(
-    filterModule aAutoRec;
-    String aTmpStr(RTL_CONSTASCII_USTRINGPARAM((SVLIBRARY("autorec"))));
-    if (aAutoRec.filterLoad(aTmpStr))
-    {
-        typedef int (*autorec_t)(const char*, int*);
-        if (autorec_t autorec = (autorec_t)aAutoRec.getSymbol(String::CreateFromAscii("autorec")))
-        {
-            int nVersion;
-            if ((nFileType = (USHORT)autorec(aFileNm.GetBuffer(), &nVersion)))
-                rVersion = (USHORT)nVersion;
-        }
-    }
-#endif
-
-    if( nFileType == 31 )   // Autorec-Bug umpopeln: Eine ASCII-Datei, die nur
-        nFileType = 1;      // aus sehr vielen CRs besteht,
-                            // wird als VAX Mass-11 erkannt
-
-    return nFileType == (USHORT)-1 ? 0 : nFileType;
-}
-
-bool checkFormat( SvStream* pStream, ::rtl::OUString& rTypeName, ::rtl::OUString& rURL, bool bCheckAll )
+bool checkFormat( SvStream* pStream, ::rtl::OUString& rTypeName, bool bCheckAll )
 {
     sal_Char aBuffer[4098];
     if( pStream && !pStream->GetError() )
@@ -493,35 +176,6 @@ bool checkFormat( SvStream* pStream, ::rtl::OUString& rTypeName, ::rtl::OUString
             rTypeName = ::rtl::OUString::createFromAscii( aFileTypeList[4].Type );
         }
     }
-    //check for W4W at the end of the type name
-    if( rURL.getLength() && (bCheckAll || (aName.getLength() > 4 &&
-                String(aName).Copy( xub_StrLen(aName.getLength()) - 4, 4 ).EqualsAscii( "_W4W" ))))
-    {
-        // W4W
-        ::rtl::OUString sFileName = INetURLObject( rURL ).getFSysPath(INetURLObject::FSYS_DETECT);
-        if(sFileName.getLength())
-        {
-            //Ami Pro: 0x021
-            USHORT nVersion, nW4WId = AutoDetec( sFileName, nVersion );
-            if(nW4WId > 1)
-            {
-                //find Id in aW4WIdentifier and compare to the appropriate filter name
-                for(sal_Int8 nIdentifier = 0; nIdentifier < nW4WFilterCount; ++nIdentifier)
-                {
-                    if(aW4WIdentifier[nIdentifier] == nW4WId)
-                    {
-                        ::rtl::OUString sTemp = ::rtl::OUString::createFromAscii( aFileTypeList[nIdentifier + nW4WStartOffset].Type );
-                        if(!aName.getLength() || aName == sTemp)
-                        {
-                            rTypeName = sTemp;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     return (rTypeName.getLength() !=  0);
 }
 
@@ -645,10 +299,10 @@ BinFilterDetect::~BinFilterDetect()
         else
         {
             // check for the stream based formats
-            if ( checkFormat( pStream, aTypeName, aFileName, FALSE ) )
+            if ( checkFormat( pStream, aTypeName, FALSE ) )
                 aFilterName = aPreselectedFilterName;
             else
-                checkFormat( pStream, aTypeName, aFileName, TRUE );
+                checkFormat( pStream, aTypeName, TRUE );
         }
 
         DELETEZ( pStream );
@@ -672,9 +326,7 @@ BinFilterDetect::~BinFilterDetect()
     sal_Bool bSupportedType = sal_False;
     if ( aTypeName.getLength() )
     {
-        sal_Int32 i = 0;
-        sal_Int32 c = nFileTypeCount;
-        for (i=0; i<c; i++)
+        for (sal_Int32 i=0; i < nFileTypeCount; ++i)
         {
             if ( aTypeName.equalsAsciiL( aFileTypeList[i].Type, aFileTypeList[i].Length ) )
             {
