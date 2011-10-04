@@ -256,7 +256,7 @@ namespace binfilter {
 /*N*/       PutDataRowAttr(nCnt,rAttr,bMerge,bClearPoints);
 /*N*/ }
 
-/*N*/ void ChartModel::PutDataRowAttr(long nRow, const SfxItemSet& rAttr,BOOL bMerge,BOOL bClearPoints)
+/*N*/ void ChartModel::PutDataRowAttr(long nRow, const SfxItemSet& rAttr,BOOL bMerge, BOOL /*bClearPoints*/)
 /*N*/ {
 /*N*/
 /*N*/   CHART_TRACE1( "ChartModel::PutDataRowAttr %smerge", bMerge? "": "NO " );
@@ -893,7 +893,6 @@ namespace binfilter {
 /*N*/
 /*N*/   SchObjectId* pObjId = GetObjectId( *pObj );
 /*N*/
-/*N*/   SfxItemSet *pItemSet = NULL;
 /*N*/   String* pStrToChange = NULL;
 /*N*/
 /*N*/   if( pTextObject )
@@ -908,23 +907,18 @@ namespace binfilter {
 /*N*/           switch( nId )
 /*N*/           {
 /*N*/               case CHOBJID_DIAGRAM_TITLE_X_AXIS:
-/*N*/                   pItemSet = pXAxisTitleAttr;
 /*N*/                   pStrToChange = &aXAxisTitle;
 /*N*/                   break;
 /*N*/               case CHOBJID_DIAGRAM_TITLE_Y_AXIS:
-/*N*/                   pItemSet = pYAxisTitleAttr;
 /*N*/                   pStrToChange = &aYAxisTitle;
 /*N*/                   break;
 /*N*/               case CHOBJID_DIAGRAM_TITLE_Z_AXIS:
-/*N*/                   pItemSet = pZAxisTitleAttr;
 /*N*/                   pStrToChange = &aZAxisTitle;
 /*N*/                   break;
 /*N*/               case CHOBJID_TITLE_MAIN:
-/*N*/                   pItemSet = pMainTitleAttr;
 /*N*/                   pStrToChange = &aMainTitle;
 /*N*/                   break;
 /*N*/               case CHOBJID_TITLE_SUB:
-/*N*/                   pItemSet = pSubTitleAttr;
 /*N*/                   pStrToChange = &aSubTitle;
 /*N*/                   break;
 /*N*/           }
