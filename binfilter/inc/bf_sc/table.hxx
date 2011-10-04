@@ -298,8 +298,7 @@ public:
 
     void        UpdateReference( UpdateRefMode eUpdateRefMode, USHORT nCol1, USHORT nRow1, USHORT nTab1,
                                     USHORT nCol2, USHORT nRow2, USHORT nTab2,
-                                    short nDx, short nDy, short nDz,
-                                    ScDocument* pUndoDoc = NULL, BOOL bIncludeDraw = TRUE );
+                                    short nDx, short nDy, short nDz );
 
     void        UpdateInsertTab(USHORT nTable);
     void        UpdateDeleteTab( USHORT nTable, BOOL bIsMove, ScTable* pRefUndo = NULL );

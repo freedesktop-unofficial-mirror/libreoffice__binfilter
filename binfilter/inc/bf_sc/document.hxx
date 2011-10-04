@@ -706,24 +706,20 @@ public:
 
 /*N*/   BOOL            InsertRow( USHORT nStartCol, USHORT nStartTab,
 /*N*/                              USHORT nEndCol,   USHORT nEndTab,
-/*N*/                              USHORT nStartRow, USHORT nSize, ScDocument* pRefUndoDoc = NULL );
-/*N*/   BOOL            InsertRow( const ScRange& rRange, ScDocument* pRefUndoDoc = NULL );
+/*N*/                              USHORT nStartRow, USHORT nSize );
+/*N*/   BOOL            InsertRow( const ScRange& rRange );
 /*N*/   void            DeleteRow( USHORT nStartCol, USHORT nStartTab,
 /*N*/                              USHORT nEndCol,   USHORT nEndTab,
-/*N*/                              USHORT nStartRow, USHORT nSize,
-/*N*/                              ScDocument* pRefUndoDoc = NULL, BOOL* pUndoOutline = NULL );
-/*N*/   void            DeleteRow( const ScRange& rRange,
-/*N*/                              ScDocument* pRefUndoDoc = NULL, BOOL* pUndoOutline = NULL );
+/*N*/                              USHORT nStartRow, USHORT nSize );
+/*N*/   void            DeleteRow( const ScRange& rRange );
 /*N*/   BOOL            InsertCol( USHORT nStartRow, USHORT nStartTab,
 /*N*/                              USHORT nEndRow,   USHORT nEndTab,
-/*N*/                              USHORT nStartCol, USHORT nSize, ScDocument* pRefUndoDoc = NULL );
-/*N*/   BOOL            InsertCol( const ScRange& rRange, ScDocument* pRefUndoDoc = NULL );
+/*N*/                              USHORT nStartCol, USHORT nSize );
+/*N*/   BOOL            InsertCol( const ScRange& rRange );
 /*N*/   void            DeleteCol( USHORT nStartRow, USHORT nStartTab,
 /*N*/                              USHORT nEndRow, USHORT nEndTab,
-/*N*/                              USHORT nStartCol, USHORT nSize,
-/*N*/                              ScDocument* pRefUndoDoc = NULL, BOOL* pUndoOutline = NULL );
-/*N*/   void            DeleteCol( const ScRange& rRange,
-/*N*/                              ScDocument* pRefUndoDoc = NULL, BOOL* pUndoOutline = NULL );
+/*N*/                              USHORT nStartCol, USHORT nSize );
+/*N*/   void            DeleteCol( const ScRange& rRange );
 
 /*N*/   BOOL            CanInsertRow( const ScRange& rRange ) const;
 /*N*/   BOOL            CanInsertCol( const ScRange& rRange ) const;
@@ -769,8 +765,7 @@ public:
 
 /*N*/   void            UpdateReference( UpdateRefMode eUpdateRefMode, USHORT nCol1, USHORT nRow1, USHORT nTab1,
 /*N*/                                    USHORT nCol2, USHORT nRow2, USHORT nTab2,
-/*N*/                                    short nDx, short nDy, short nDz,
-/*N*/                                    ScDocument* pUndoDoc = NULL, BOOL bIncludeDraw = TRUE );
+/*N*/                                    short nDx, short nDy, short nDz );
 
 
 

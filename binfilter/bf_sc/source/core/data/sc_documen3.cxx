@@ -403,8 +403,7 @@ using namespace ::com::sun::star;
 /*N*/ void ScDocument::UpdateReference( UpdateRefMode eUpdateRefMode,
 /*N*/                                   USHORT nCol1, USHORT nRow1, USHORT nTab1,
 /*N*/                                   USHORT nCol2, USHORT nRow2, USHORT nTab2,
-/*N*/                                   short nDx, short nDy, short nDz,
-/*N*/                                   ScDocument* pUndoDoc, BOOL bIncludeDraw )
+/*N*/                                   short nDx, short nDy, short nDz )
 /*N*/ {
 /*N*/   PutInOrder( nCol1, nCol2 );
 /*N*/   PutInOrder( nRow1, nRow2 );
@@ -445,7 +444,7 @@ using namespace ::com::sun::star;
 /*N*/           if (pTab[i])
 /*N*/               pTab[i]->UpdateReference(
 /*N*/                   eUpdateRefMode, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2,
-/*N*/                   nDx, nDy, nDz, pUndoDoc, bIncludeDraw );
+/*N*/                   nDx, nDy, nDz );
 /*N*/
 /*N*/       if ( bIsEmbedded )
 /*N*/       {

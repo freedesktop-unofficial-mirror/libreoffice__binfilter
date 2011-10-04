@@ -461,7 +461,7 @@ namespace binfilter {
 
 /*N*/ BOOL ScDocument::InsertRow( USHORT nStartCol, USHORT nStartTab,
 /*N*/                           USHORT nEndCol,   USHORT nEndTab,
-/*N*/                           USHORT nStartRow, USHORT nSize, ScDocument* pRefUndoDoc )
+/*N*/                           USHORT nStartRow, USHORT nSize )
 /*N*/ {
 /*N*/   PutInOrder( nStartCol, nEndCol );
 /*N*/   PutInOrder( nStartTab, nEndTab );
@@ -484,7 +484,7 @@ namespace binfilter {
 /*N*/           ScAddress( nEndCol, MAXROW, nEndTab )), 0, nSize, 0 );
 /*N*/       UpdateReference( URM_INSDEL, nStartCol, nStartRow, nStartTab,
 /*N*/                        nEndCol, MAXROW, nEndTab,
-/*N*/                        0, nSize, 0, pRefUndoDoc, FALSE );     // without drawing objects
+/*N*/                        0, nSize, 0 );
 /*N*/       for (i=nStartTab; i<=nEndTab; i++)
 /*N*/           if (pTab[i])
 /*N*/               pTab[i]->InsertRow( nStartCol, nEndCol, nStartRow, nSize );
@@ -515,19 +515,17 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ BOOL ScDocument::InsertRow( const ScRange& rRange, ScDocument* pRefUndoDoc )
+/*N*/ BOOL ScDocument::InsertRow( const ScRange& rRange )
 /*N*/ {
 /*N*/   return InsertRow( rRange.aStart.Col(), rRange.aStart.Tab(),
 /*N*/                     rRange.aEnd.Col(),   rRange.aEnd.Tab(),
-/*N*/                     rRange.aStart.Row(), rRange.aEnd.Row()-rRange.aStart.Row()+1,
-/*N*/                     pRefUndoDoc );
+/*N*/                     rRange.aStart.Row(), rRange.aEnd.Row()-rRange.aStart.Row()+1 );
 /*N*/ }
 
 
 /*N*/ void ScDocument::DeleteRow( USHORT nStartCol, USHORT nStartTab,
 /*N*/                           USHORT nEndCol,   USHORT nEndTab,
-/*N*/                           USHORT nStartRow, USHORT nSize,
-/*N*/                           ScDocument* pRefUndoDoc, BOOL* pUndoOutline )
+/*N*/                           USHORT nStartRow, USHORT nSize )
 /*N*/ {
 /*N*/   PutInOrder( nStartCol, nEndCol );
 /*N*/   PutInOrder( nStartTab, nEndTab );
@@ -553,16 +551,13 @@ namespace binfilter {
 /*N*/   {
 /*N*/       UpdateReference( URM_INSDEL, nStartCol, nStartRow+nSize, nStartTab,
 /*N*/                        nEndCol, MAXROW, nEndTab,
-/*N*/                        0, -(short) nSize, 0, pRefUndoDoc );
+/*N*/                        0, -(short) nSize, 0 );
 /*N*/   }
-/*N*/
-/*N*/   if (pUndoOutline)
-/*N*/       *pUndoOutline = FALSE;
 /*N*/
 /*N*/   USHORT i=0;
 /*N*/   for (i=nStartTab; i<=nEndTab; i++)
 /*N*/       if (pTab[i])
-/*N*/           pTab[i]->DeleteRow( nStartCol, nEndCol, nStartRow, nSize, pUndoOutline );
+/*N*/           pTab[i]->DeleteRow( nStartCol, nEndCol, nStartRow, nSize, NULL );
 /*N*/
 /*N*/   if ( nStartRow+nSize <= MAXROW )
 /*N*/     {   // Name listeners have been removed in UpdateReference
@@ -581,12 +576,11 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void ScDocument::DeleteRow( const ScRange& rRange, ScDocument* pRefUndoDoc, BOOL* pUndoOutline )
+/*N*/ void ScDocument::DeleteRow( const ScRange& rRange )
 /*N*/ {
 /*N*/   DeleteRow( rRange.aStart.Col(), rRange.aStart.Tab(),
 /*N*/              rRange.aEnd.Col(),   rRange.aEnd.Tab(),
-/*N*/              rRange.aStart.Row(), rRange.aEnd.Row()-rRange.aStart.Row()+1,
-/*N*/              pRefUndoDoc, pUndoOutline );
+/*N*/              rRange.aStart.Row(), rRange.aEnd.Row()-rRange.aStart.Row()+1 );
 /*N*/ }
 
 
@@ -614,7 +608,7 @@ namespace binfilter {
 
 /*N*/ BOOL ScDocument::InsertCol( USHORT nStartRow, USHORT nStartTab,
 /*N*/                           USHORT nEndRow,   USHORT nEndTab,
-/*N*/                           USHORT nStartCol, USHORT nSize, ScDocument* pRefUndoDoc )
+/*N*/                           USHORT nStartCol, USHORT nSize )
 /*N*/ {
 /*N*/   PutInOrder( nStartRow, nEndRow );
 /*N*/   PutInOrder( nStartTab, nEndTab );
@@ -634,7 +628,7 @@ namespace binfilter {
 /*N*/           ScAddress( MAXCOL, nEndRow, nEndTab )), nSize, 0, 0 );
 /*N*/       UpdateReference( URM_INSDEL, nStartCol, nStartRow, nStartTab,
 /*N*/                        MAXCOL, nEndRow, nEndTab,
-/*N*/                        nSize, 0, 0, pRefUndoDoc );
+/*N*/                        nSize, 0, 0 );
 /*N*/       for (i=nStartTab; i<=nEndTab; i++)
 /*N*/           if (pTab[i])
 /*N*/               pTab[i]->InsertCol( nStartCol, nStartRow, nEndRow, nSize );
@@ -665,18 +659,16 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ BOOL ScDocument::InsertCol( const ScRange& rRange, ScDocument* pRefUndoDoc )
+/*N*/ BOOL ScDocument::InsertCol( const ScRange& rRange )
 /*N*/ {
 /*N*/   return InsertCol( rRange.aStart.Row(), rRange.aStart.Tab(),
 /*N*/                     rRange.aEnd.Row(),   rRange.aEnd.Tab(),
-/*N*/                     rRange.aStart.Col(), rRange.aEnd.Col()-rRange.aStart.Col()+1,
-/*N*/                     pRefUndoDoc );
+/*N*/                     rRange.aStart.Col(), rRange.aEnd.Col()-rRange.aStart.Col()+1 );
 /*N*/ }
 
 
 /*N*/ void ScDocument::DeleteCol(USHORT nStartRow, USHORT nStartTab, USHORT nEndRow, USHORT nEndTab,
-/*N*/                               USHORT nStartCol, USHORT nSize, ScDocument* pRefUndoDoc,
-/*N*/                               BOOL* pUndoOutline )
+/*N*/                               USHORT nStartCol, USHORT nSize )
 /*N*/ {
 /*N*/   PutInOrder( nStartRow, nEndRow );
 /*N*/   PutInOrder( nStartTab, nEndTab );
@@ -702,16 +694,13 @@ namespace binfilter {
 /*N*/   {
 /*N*/       UpdateReference( URM_INSDEL, nStartCol+nSize, nStartRow, nStartTab,
 /*N*/                        MAXCOL, nEndRow, nEndTab,
-/*N*/                        -(short) nSize, 0, 0, pRefUndoDoc );
+/*N*/                        -(short) nSize, 0, 0 );
 /*N*/   }
-/*N*/
-/*N*/   if (pUndoOutline)
-/*N*/       *pUndoOutline = FALSE;
 /*N*/
 /*N*/   USHORT i=0;
 /*N*/   for (i=nStartTab; i<=nEndTab; i++)
 /*N*/       if (pTab[i])
-/*N*/           pTab[i]->DeleteCol( nStartCol, nStartRow, nEndRow, nSize, pUndoOutline );
+/*N*/           pTab[i]->DeleteCol( nStartCol, nStartRow, nEndRow, nSize, NULL );
 /*N*/
 /*N*/   if ( nStartCol+nSize <= MAXCOL )
 /*N*/     {   // Name listeners have been removed in UpdateReference
@@ -730,12 +719,11 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void ScDocument::DeleteCol( const ScRange& rRange, ScDocument* pRefUndoDoc, BOOL* pUndoOutline )
+/*N*/ void ScDocument::DeleteCol( const ScRange& rRange )
 /*N*/ {
 /*N*/   DeleteCol( rRange.aStart.Row(), rRange.aStart.Tab(),
 /*N*/              rRange.aEnd.Row(),   rRange.aEnd.Tab(),
-/*N*/              rRange.aStart.Col(), rRange.aEnd.Col()-rRange.aStart.Col()+1,
-/*N*/              pRefUndoDoc, pUndoOutline );
+/*N*/              rRange.aStart.Col(), rRange.aEnd.Col()-rRange.aStart.Col()+1 );
 /*N*/ }
 
 /*N*/ void ScDocument::DeleteArea(USHORT nCol1, USHORT nRow1,

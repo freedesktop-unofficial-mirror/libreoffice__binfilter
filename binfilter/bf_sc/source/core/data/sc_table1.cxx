@@ -501,8 +501,7 @@ extern BOOL bIsOlk, bOderSo;
 /*N*/ }
 
 /*N*/ void ScTable::UpdateReference( UpdateRefMode eUpdateRefMode, USHORT nCol1, USHORT nRow1, USHORT nTab1,
-/*N*/                    USHORT nCol2, USHORT nRow2, USHORT nTab2, short nDx, short nDy, short nDz,
-/*N*/                    ScDocument* /*pUndoDoc*/, BOOL /*bIncludeDraw*/ )
+/*N*/                    USHORT nCol2, USHORT nRow2, USHORT nTab2, short nDx, short nDy, short nDz )
 /*N*/ {
 /*N*/   if ( nTab >= nTab1 && nTab <= nTab2 && nDz == 0 )       // print ranges: only within the table
 /*N*/   {

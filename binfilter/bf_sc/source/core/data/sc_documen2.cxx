@@ -983,7 +983,7 @@ IMPL_LINK( ScDocument, TrackTimeHdl, Timer*, EMPTYARG )
 /*N*/           short nDz = ((short)nDestPos) - (short)nSrcPos;
 /*N*/           pTab[nDestPos]->UpdateReference(URM_COPY, 0, 0, nDestPos,
 /*N*/                                                    MAXCOL, MAXROW, nDestPos,
-/*N*/                                                    0, 0, nDz, NULL);
+/*N*/                                                    0, 0, nDz);
 /*N*/             // Test for outside absolute references for info box
 /*N*/             BOOL bIsAbsRef = pSrcDoc->pTab[nSrcPos]->TestTabRefAbs(nSrcPos);
 /*N*/             // Readjust self-contained absolute references to this sheet

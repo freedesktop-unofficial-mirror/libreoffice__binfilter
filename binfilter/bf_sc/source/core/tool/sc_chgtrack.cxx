@@ -1301,7 +1301,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/       aFrmRange.aEnd.Col(), aFrmRange.aEnd.Row(), aFrmRange.aEnd.Tab(),
 /*N*/       (short) aFrmRange.aStart.Col() - aToRange.aStart.Col(),
 /*N*/       (short) aFrmRange.aStart.Row() - aToRange.aStart.Row(),
-/*N*/       (short) aFrmRange.aStart.Tab() - aToRange.aStart.Tab(), NULL );
+/*N*/       (short) aFrmRange.aStart.Tab() - aToRange.aStart.Tab() );
 /*N*/
 /*N*/   // LinkDependent freigeben, nachfolgendes UpdateReference-Undo setzt
 /*N*/   // ToRange->FromRange Dependents
