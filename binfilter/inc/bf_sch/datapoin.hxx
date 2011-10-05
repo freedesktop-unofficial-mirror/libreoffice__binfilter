@@ -48,7 +48,7 @@ public:
     SchDataPoint();
     SchDataPoint(short nC, short nR);
 
-        virtual SdrObjUserData* Clone(SdrObject *pObj) const;
+    virtual SdrObjUserData* Clone(SdrObject *pObj) const { return NULL; } // DBG_BF_ASSERT
 
     virtual void WriteData(SvStream& ) {}
     virtual void ReadData(SvStream& rIn);

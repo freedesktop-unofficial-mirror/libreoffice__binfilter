@@ -95,15 +95,9 @@ public:
 -------------------------------------------------------------------------*/
 
 extern_c void __LOADONCALLAPI SchUpdate( SvInPlaceObjectRef aIPObj, SchMemChart* pData, OutputDevice* pOut = NULL );
-extern_c void __LOADONCALLAPI SchUpdateAttr( SvInPlaceObjectRef aIPObj, SchMemChart* pData,
-                                             const SfxItemSet& rAttr, OutputDevice* pOut = NULL );
 extern_c SchMemChart* __LOADONCALLAPI SchGetChartData( SvInPlaceObjectRef aIPObj );
-extern_c SchMemChart* __LOADONCALLAPI SchNewMemChartNone();
 extern_c SchMemChart* __LOADONCALLAPI SchNewMemChartXY( short nCols, short nRows );
-extern_c SchMemChart* __LOADONCALLAPI SchNewMemChartCopy( const SchMemChart &rMemChart );
 extern_c void __LOADONCALLAPI SetTransparentBackground( SvInPlaceObjectRef aIPObj, BOOL bTransp = TRUE );
-extern_c void __LOADONCALLAPI SchGetDefaultForColumnText( const SchMemChart& rMemChart, sal_Int32 nCol, String& aResult );
-extern_c void __LOADONCALLAPI SchGetDefaultForRowText( const SchMemChart& rMemChart, sal_Int32 nRow, String& aResult );
 
 } //namespace binfilter
 #endif          // _SCH_DLL_HXX

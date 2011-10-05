@@ -52,7 +52,7 @@ public:
     SchObjectAdjust();
     SchObjectAdjust(ChartAdjust eAdj, SvxChartTextOrient eOr);
 
-    virtual SdrObjUserData* Clone(SdrObject *pObj) const;
+    virtual SdrObjUserData* Clone(SdrObject *pObj) const { return NULL; } // DBG_BF_ASSERT
 
     virtual void WriteData(SvStream& ) {}
     virtual void ReadData(SvStream& rIn);

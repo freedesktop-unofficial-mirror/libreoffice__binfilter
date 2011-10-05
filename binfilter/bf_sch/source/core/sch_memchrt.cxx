@@ -26,13 +26,6 @@
  *
  ************************************************************************/
 
-#ifndef _STREAM_HXX
-// enable stream operators >>/<< for UniString (8 Bit !)
-//#ifndef ENABLE_STRING_STREAM_OPERATORS
-//#define ENABLE_STRING_STREAM_OPERATORS
-//#endif
-#endif
-
 #ifndef _ZFORLIST_HXX //autogen
 #ifndef _ZFORLIST_DECLARE_TABLE
 #define _ZFORLIST_DECLARE_TABLE
@@ -586,12 +579,6 @@ namespace binfilter {
 /*N*/   return rIn;
 /*N*/ }
 
-/*************************************************************************
-|*
-|* QuickSort ueber Spalten
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -609,12 +596,6 @@ namespace binfilter {
 /*N*/   for(i=0;i<nRowCnt;i++)
 /*N*/       pRowNumFmtId[i]=-1;
 /*N*/ }
-
-/*************************************************************************
-|*
-|* QuickSort ueber Spalten
-|*
-\************************************************************************/
 
 
 /*************************************************************************
@@ -914,10 +895,7 @@ using namespace ::com::sun::star;
 /*?*/             bool bNeedsQuoting = bNeedsEscaping || ( aIter->msTableName.indexOf( aSpace ) > -1 );
 /*?*/
 /*?*/             // quote table name if it contains spaces or quotes
-/*?*/             if( bNeedsQuoting )
-/*?*/             {DBG_BF_ASSERT(0, "STRIP");
-/*?*/             }
-/*?*/             else
+/*?*/             if( !bNeedsQuoting )
 /*?*/                 aBuffer.append( aIter->msTableName );
 /*?*/         }
 /*?*/         getXMLStringForCellAddress( aIter->maUpperLeft, &aBuffer );

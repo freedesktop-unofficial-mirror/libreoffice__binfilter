@@ -38,8 +38,6 @@
 namespace binfilter {
 
 
-
-
 /*************************************************************************
 |*
 |* Objekt-Ausrichting ermitteln
@@ -83,17 +81,6 @@ namespace binfilter {
 /*N*/   eAdjust(eAdj),
 /*N*/   eOrient(eOr)
 /*N*/ {
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Kopie erzeugen
-|*
-\************************************************************************/
-
-/*N*/ SdrObjUserData* SchObjectAdjust::Clone(SdrObject *) const
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*************************************************************************

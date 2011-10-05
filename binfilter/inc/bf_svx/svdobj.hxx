@@ -224,7 +224,7 @@ public:
     {}
     virtual ~SdrObjUserData();
 
-    virtual SdrObjUserData* Clone(SdrObject* pObj1) const = 0; // #i71039# NULL -> 0
+    virtual SdrObjUserData* Clone(SdrObject* pObj1) const = 0;
     UINT32  GetInventor() const { return nInventor; }
     UINT16  GetId() const { return nIdentifier; }
     virtual void WriteData(SvStream& ) {}
