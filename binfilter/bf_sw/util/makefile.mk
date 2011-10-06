@@ -1,7 +1,7 @@
 #*************************************************************************
 #
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
-# 
+#
 # Copyright 2000, 2010 Oracle and/or its affiliates.
 #
 # OpenOffice.org - a multi-platform office productivity suite
@@ -67,7 +67,6 @@ RESLIB1SRSFILES= \
 LIB1TARGET=$(LB)$/bf_swlib.lib
 LIB1ARCHIV=$(LB)$/libbf_swlib.a
 LIB1OBJFILES= \
-        $(SLO)$/sw_w4wflt.obj \
         $(SLO)$/sw_swlib.obj \
         $(SLO)$/sw_swcomlib.obj
 

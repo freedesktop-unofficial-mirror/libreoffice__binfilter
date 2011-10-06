@@ -1,7 +1,7 @@
 #*************************************************************************
 #
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
-# 
+#
 # Copyright 2000, 2010 Oracle and/or its affiliates.
 #
 # OpenOffice.org - a multi-platform office productivity suite
@@ -49,8 +49,7 @@ CDEFS+=-Dmydebug
 SLOFILES =  \
         $(SLO)$/sw_docfact.obj \
         $(SLO)$/sw_fltini.obj \
-        $(SLO)$/sw_shellio.obj \
-        $(SLO)$/sw_w4wflt.obj
+        $(SLO)$/sw_shellio.obj
 
 # --- Tagets -------------------------------------------------------
 
