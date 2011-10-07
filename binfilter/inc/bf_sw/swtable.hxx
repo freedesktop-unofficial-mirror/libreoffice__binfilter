@@ -123,8 +123,6 @@ public:
     BOOL DeleteSel( SwDoc*, const SwSelBoxes& rBoxes,
                             const BOOL bDelMakeFrms = TRUE,
                             const BOOL bCorrBorder = TRUE );
-            BOOL Merge( SwDoc* pDoc, const SwSelBoxes& rBoxes,
-                SwTableBox* pMergeBox );
 
           SwTableSortBoxes& GetTabSortBoxes()       { return aSortCntBoxes; }
     const SwTableSortBoxes& GetTabSortBoxes() const { return aSortCntBoxes; }

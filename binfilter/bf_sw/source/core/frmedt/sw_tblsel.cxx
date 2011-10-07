@@ -294,44 +294,6 @@ BOOL lcl_CheckCol( const _FndBox*& rpFndBox, void* pPara )
     return *(BOOL*)pPara;
 }
 
-USHORT CheckMergeSel( const SwSelBoxes& rBoxes )
-{
-    USHORT eRet = TBLMERGE_NOSELECTION;
-    if( rBoxes.Count() )
-    {
-        eRet = TBLMERGE_OK;
-
-        _FndBox aFndBox( 0, 0 );
-        _FndPara aPara( rBoxes, &aFndBox );
-        const SwTableNode* pTblNd = aPara.rBoxes[0]->GetSttNd()->FindTableNode();
-        ((SwTable&)pTblNd->GetTable()).GetTabLines().ForEach(
-                    &_FndLineCopyCol, &aPara );
-        if( aFndBox.GetLines().Count() )
-        {
-            BOOL bMergeSelOk = TRUE;
-            _FndBox* pFndBox = &aFndBox;
-            _FndLine* pFndLine = 0;
-            while( pFndBox && 1 == pFndBox->GetLines().Count() )
-            {
-                pFndLine = pFndBox->GetLines()[0];
-                if( 1 == pFndLine->GetBoxes().Count() )
-                    pFndBox = pFndLine->GetBoxes()[0];
-                else
-                    pFndBox = 0;
-            }
-            if( pFndBox )
-                pFndBox->GetLines().ForEach( &::binfilter::lcl_CheckRow, &bMergeSelOk );
-            else if( pFndLine )
-                pFndLine->GetBoxes().ForEach( &::binfilter::lcl_CheckCol, &bMergeSelOk );
-            if( !bMergeSelOk )
-                eRet = TBLMERGE_TOOCOMPLEX;
-        }
-        else
-            eRet = TBLMERGE_NOSELECTION;
-    }
-    return eRet;
-}
-
 //Ermittelt die von einer Tabellenselektion betroffenen Tabellen und die
 //Union-Rechteckte der Selektionen - auch fuer aufgespaltene Tabellen.
 /*N*/ SV_IMPL_PTRARR( SwSelUnions, SwSelUnion* );

@@ -68,7 +68,6 @@ public:
 
     void SetNumStr( const String& rStr )    { aNumber = rStr; }
     void SetNumber( USHORT nNo )            { nNumber = nNo; }
-    void SetEndNote( BOOL b );
 
     void SetNumber( const SwFmtFtn& rFtn )
         { nNumber = rFtn.nNumber; aNumber = rFtn.aNumber; }

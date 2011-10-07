@@ -90,29 +90,6 @@ class LotusReader : public Reader
 public:
 };
 
-
-// Umsetzen der LRSpaces im aktuell importierten Doc. Die Fremd-Filter
-// liefern immer absolute Werte fuer die Ebenen einer NumRule. Wir
-// verarbeiten jetzt aber relative Werte bezogen auf das LR-Space-Item.
-// Das hat zur Folge, das bei allen Absaetzen die EInzuege der NumRule vom
-// Absatz-Einzug abgezogen werden muss.
-
-class SwRelNumRuleSpaces
-{
-    SwNumRuleTbl* pNumRuleTbl;  // Liste aller benannten NumRules
-    BOOL bNewDoc;
-
-    void SetNumLSpace( SwTxtNode& rNd, const SwNumRule& rRule );
-
-public:
-    SwRelNumRuleSpaces( SwDoc& rDoc, BOOL bNewDoc );
-    ~SwRelNumRuleSpaces();
-
-    void SetNumRelSpaces( SwDoc& rDoc );
-    void SetOultineRelSpaces( const SwNodeIndex& rStt,
-                                const SwNodeIndex& rEnd );
-};
-
 #define SW_SV_BRUSH_25          0
 #define SW_SV_BRUSH_50          1
 #define SW_SV_BRUSH_75          2

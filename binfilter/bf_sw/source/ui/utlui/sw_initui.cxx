@@ -110,16 +110,6 @@ SvStringsDtor*  pAuthFieldTypeList = 0;
 /*?*/       delete pAutoFmtNameLst, pAutoFmtNameLst = 0;
 /*N*/ }
 
- String ShellResource::GetPageDescName( USHORT nNo, BOOL bIsFirst, BOOL bFollow )
- {
-    String sRet( bIsFirst ? sPageDescFirstName
-                          : bFollow ? sPageDescFollowName
-                                    : sPageDescName );
-    sRet.SearchAndReplaceAscii( "$(ARG1)", String::CreateFromInt32( nNo ));
-    return sRet;
- }
-
-
  const String&  SwAuthorityFieldType::GetAuthTypeName(ToxAuthorityType eType)
  {
     if(!pAuthFieldTypeList)

@@ -49,11 +49,6 @@ namespace SWUnoHelper {
 // exceptions.
 sal_Int32 GetEnumAsInt32( const ::com::sun::star::uno::Any& rVal );
 
-
-// methods for UCB actions:
-    // delete the file under this URL
-BOOL UCB_DeleteFile( const String& rURL );
-
 }
 
 } //namespace binfilter

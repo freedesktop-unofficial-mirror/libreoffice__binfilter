@@ -226,13 +226,6 @@ public:
     virtual void SetFltName( const String& rFltNm );
     static void SetNoOutlineNum( SwDoc& rDoc );
 
-    // den Item-Set eines Frm-Formats an das alte Format anpassen
-    static void ResetFrmFmtAttrs( SfxItemSet &rFrmSet );
-
-    // die Rahmen-/Grafik-/OLE-Vorlagen an das alte Format (ohne
-    // Umrandung etc.) anpassen
-    static void ResetFrmFmts( SwDoc& rDoc );
-
     // Die Filter-Vorlage laden, setzen und wieder freigeben
     SwDoc* GetTemplateDoc();
     BOOL SetTemplate( SwDoc& rDoc );

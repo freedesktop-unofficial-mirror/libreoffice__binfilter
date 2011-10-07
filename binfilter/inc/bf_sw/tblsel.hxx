@@ -93,10 +93,6 @@ BOOL IsFrmInTblSel( const SwRect& rUnion, const SwFrm* pCell );
 void GetMergeSel( const SwPaM& rPam, SwSelBoxes& rBoxes,
                   SwTableBox** ppMergeBox );
 
-// teste ob die selektierten Boxen ein gueltiges Merge erlauben
-USHORT CheckMergeSel( const SwPaM& rPam );
-USHORT CheckMergeSel( const SwSelBoxes& rBoxes );
-
 BOOL IsEmptyBox( const SwTableBox& rBox, SwPaM& rPam );
 
 // teste ob ein Split oder InsertCol dazu fuehrt, das eine Box

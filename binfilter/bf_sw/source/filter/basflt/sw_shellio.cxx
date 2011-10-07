@@ -422,36 +422,6 @@ void Reader::SetNoOutlineNum( SwDoc& /*rDoc*/ )
 {
 }
 
-
-void Reader::ResetFrmFmtAttrs( SfxItemSet &rFrmSet )
-{
-    rFrmSet.Put( SvxLRSpaceItem() );
-    rFrmSet.Put( SvxULSpaceItem() );
-    rFrmSet.Put( SvxBoxItem() );
-}
-
-
-void Reader::ResetFrmFmts( SwDoc& rDoc )
-{
-    for( USHORT i=0; i<3; i++ )
-    {
-        USHORT nPoolId;
-        switch( i )
-        {
-        case 0: nPoolId = RES_POOLFRM_FRAME;    break;
-        case 1: nPoolId = RES_POOLFRM_GRAPHIC;  break;
-        case 2: nPoolId = RES_POOLFRM_OLE;      break;
-        }
-
-        SwFrmFmt *pFrmFmt = rDoc.GetFrmFmtFromPool( nPoolId );
-
-        pFrmFmt->ResetAttr( RES_LR_SPACE );
-        pFrmFmt->ResetAttr( RES_UL_SPACE );
-        pFrmFmt->ResetAttr( RES_BOX );
-    }
-}
-
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

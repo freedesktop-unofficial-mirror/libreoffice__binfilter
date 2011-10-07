@@ -76,28 +76,6 @@ sal_Int32 GetEnumAsInt32( const UNO_NMSPC::Any& rVal )
     return eVal;
 }
 
-
-// methods for UCB actions
-BOOL UCB_DeleteFile( const String& rURL )
-{
-    BOOL bRemoved;
-    try
-    {
-        ucbhelper::Content aTempContent( rURL,
-                                STAR_REFERENCE( ucb::XCommandEnvironment )());
-        aTempContent.executeCommand(
-                        ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "delete" )),
-                        UNO_NMSPC::makeAny( sal_Bool( sal_True ) ) );
-        bRemoved = TRUE;
-    }
-    catch( UNO_NMSPC::Exception& )
-    {
-        bRemoved = FALSE;
-        OSL_ENSURE( FALSE, "Exeception from executeCommand( delete )" );
-    }
-    return bRemoved;
-}
-
 }
 }
 

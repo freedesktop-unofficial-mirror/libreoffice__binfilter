@@ -1045,7 +1045,6 @@ public:
         //fuer Reader
     SwPageDesc& _GetPageDesc( sal_uInt16 i ) const { return *aPageDescs[i]; }
     void ChgPageDesc( sal_uInt16 i, const SwPageDesc& );
-    void DelPageDesc( sal_uInt16 i );
     sal_uInt16 MakePageDesc( const String &rName, const SwPageDesc* pCpy = 0,
                              BOOL bRegardLanguage = TRUE);
 

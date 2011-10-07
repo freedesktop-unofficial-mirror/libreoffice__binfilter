@@ -34,12 +34,8 @@ namespace binfilter {
 class SwFilterOptions : public ::utl::ConfigItem
 {
 public:
-    SwFilterOptions();
     SwFilterOptions( sal_uInt16 nCnt, const sal_Char** ppNames,
                       sal_uInt32* pValues );
-
-    sal_Bool CheckNodeContentExist( const sal_Char* pNode,
-                                 const sal_Char* pCntnt );
 
     void GetValues( sal_uInt16 nCnt, const sal_Char** ppNames,
                      sal_uInt32* pValues );

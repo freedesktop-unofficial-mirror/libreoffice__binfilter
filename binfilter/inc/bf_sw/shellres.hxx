@@ -84,12 +84,6 @@ struct ShellResource : public Resource
     // die AutoFormat-Redline-Kommentare
     inline const SvStringsDtor& GetAutoFmtNameLst() const;
 
-    // returns for the specific filter the new names of pagedescs
-    // This method is for the old code of the specific filters with
-    // now localized names
-    String GetPageDescName( USHORT nNo, BOOL bFirst = FALSE,
-                                        BOOL bFollow = FALSE );
-
     ShellResource();
     ~ShellResource();
 

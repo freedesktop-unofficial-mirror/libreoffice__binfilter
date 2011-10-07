@@ -254,13 +254,6 @@ public:
                         USHORT nLines=0, SwTxtFmtColl* pHeadlineTxtColl=0,
                               const SwAttrSet * pAttrSet = 0);
 
-        // fuege in der Line, vor der InsPos eine neue Box ein. Das Format
-        // wird von der nachfolgenden (vorhergenden;wenn an Ende) genommen
-        // in der Line muss schon eine Box vorhanden sein !
-    BOOL InsBoxen( SwTableNode*, SwTableLine*, SwTableBoxFmt*,
-                // Formate fuer den TextNode der Box
-                        SwTxtFmtColl*, SwAttrSet* pAutoAttr,
-                        USHORT nInsPos, USHORT nCnt = 1 );
         // Splittet eine Tabelle in der Grund-Zeile, in der der Index steht.
         // Alle GrundZeilen dahinter wandern in eine neue Tabelle/-Node.
         // Ist das Flag bCalcNewSize auf TRUE, wird fuer beide neuen Tabellen

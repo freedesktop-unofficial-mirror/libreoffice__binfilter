@@ -76,17 +76,6 @@ namespace binfilter {
 /*N*/   return pNew;
 /*N*/ }
 
-void SwFmtFtn::SetEndNote( BOOL b )
-{
-    if ( b != bEndNote )
-    {
-        if ( GetTxtFtn() )
-            GetTxtFtn()->DelFrms();
-        bEndNote = b;
-    }
-}
-
-
     // returnt den anzuzeigenden String der Fuss-/Endnote
 /*N*/ XubString SwFmtFtn::GetViewNumStr( const SwDoc& rDoc, BOOL bInclStrings ) const
 /*N*/ {

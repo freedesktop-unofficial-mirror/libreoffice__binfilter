@@ -57,8 +57,7 @@
 #include <mdiexp.hxx>
 #include <doc.hxx>
 #include <docary.hxx>
-#include <pagefrm.hxx>  //Fuer DelPageDesc
-#include <rootfrm.hxx>  //Fuer DelPageDesc
+#include <pagefrm.hxx>
 #include <hints.hxx>
 #include <pagedesc.hxx>
 #include <poolfmt.hxx>
@@ -411,62 +410,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   SetModified();
 /*N*/ }
-
-void SwDoc::DelPageDesc( USHORT i )
-{
-    OSL_ENSURE( i < aPageDescs.Count(), "PageDescs ueberindiziert." );
-    OSL_ENSURE( i != 0, "Default Pagedesc loeschen is nicht." );
-    if ( i == 0 )
-        return;
-
-    SwPageDesc *pDel = aPageDescs[i];
-
-    SwFmtPageDesc aDfltDesc( aPageDescs[0] );
-    SwClientIter aIter( *pDel );
-    SwClient* pLast;
-    while( 0 != ( pLast = aIter.GoRoot() ))
-    {
-        if( pLast->ISA( SwFmtPageDesc ) )
-        {
-            const SwModify* pMod = ((SwFmtPageDesc*)pLast)->GetDefinedIn();
-            if ( pMod )
-            {
-                if( pMod->ISA( SwCntntNode ) )
-                    ((SwCntntNode*)pMod)->SetAttr( aDfltDesc );
-                else if( pMod->ISA( SwFmt ))
-                    ((SwFmt*)pMod)->SetAttr( aDfltDesc );
-                else
-                {
-                    OSL_ENSURE( !this, "was ist das fuer ein Mofify-Obj?" );
-                    aPageDescs[0]->Add( pLast );
-                }
-            }
-            else    //Es kann noch eine Undo-Kopie existieren
-                aPageDescs[0]->Add( pLast );
-        }
-
-        BOOL bFtnInf = FALSE;
-        if ( TRUE == (bFtnInf = pLast == pFtnInfo->GetPageDescDep()) ||
-             pLast == pEndNoteInfo->GetPageDescDep() )
-        {
-            aPageDescs[0]->Add( pLast );
-        }
-    }
-
-    for ( USHORT j = 0; j < aPageDescs.Count(); ++j )
-    {
-        if ( aPageDescs[j]->GetFollow() == pDel )
-        {
-            aPageDescs[j]->SetFollow( 0 );
-        }
-    }
-
-    aPageDescs.Remove( i );
-    delete pDel;
-    SetModified();
-}
-
-
 
 /*************************************************************************
 |*
