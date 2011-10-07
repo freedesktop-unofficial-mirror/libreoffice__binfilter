@@ -63,12 +63,12 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
     virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
-    virtual USHORT          GetValueCount() const;
+    virtual USHORT          GetValueCount() const { return 0; } // DBG_BF_ASSERT
 
     virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
-    virtual int             HasBoolValue() const;
+    virtual int             HasBoolValue() const { return sal_True; }  // DBG_BF_ASSERT
     virtual BOOL            GetBoolValue() const;
 
     inline SvxWeightItem& operator=(const SvxWeightItem& rWeight) {

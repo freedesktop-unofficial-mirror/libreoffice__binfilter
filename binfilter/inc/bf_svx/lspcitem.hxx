@@ -109,10 +109,10 @@ public:
     inline SvxInterLineSpace &GetInterLineSpaceRule() { return eInterLineSpace; }
     inline SvxInterLineSpace GetInterLineSpaceRule() const { return eInterLineSpace; }
 
-    virtual USHORT          GetValueCount() const;
+    virtual USHORT          GetValueCount() const { return SVX_LINESPACE_END; }
     virtual String          GetValueTextByPos( USHORT nPos ) const;
-    virtual USHORT          GetEnumValue() const;
-    virtual void            SetEnumValue( USHORT nNewVal );
+    virtual USHORT          GetEnumValue() const { return 0; } // DBG_BF_ASSERT
+    virtual void            SetEnumValue( USHORT /* nNewVal */ ) {} // DBG_BF_ASSERT
 };
 
 }//end of namespace binfilter

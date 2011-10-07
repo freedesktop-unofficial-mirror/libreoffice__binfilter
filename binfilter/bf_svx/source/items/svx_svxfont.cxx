@@ -78,11 +78,6 @@ namespace binfilter {
 /*N*/ }
 
 /*************************************************************************
- *               static SvxFont::DrawArrow
- *************************************************************************/
-
-
-/*************************************************************************
  *                      SvxFont::CalcCaseMap
  *************************************************************************/
 
@@ -143,50 +138,6 @@ namespace binfilter {
 /*N*/   return aTxt;
 /*N*/ }
 
-/*************************************************************************
- * Hier beginnen die Methoden, die im Writer nicht benutzt werden koennen,
- * deshalb kann man diesen Bereich durch setzen von REDUCEDSVXFONT ausklammern.
- *************************************************************************/
-#ifndef REDUCEDSVXFONT
-
-/*************************************************************************
- *                      class SvxDoCapitals
- * die virtuelle Methode Do wird von SvxFont::DoOnCapitals abwechselnd mit
- * den "Gross-" und "Kleinbuchstaben"-Teilen aufgerufen.
- * Die Ableitungen von SvxDoCapitals erfuellen diese Methode mit Leben.
- *************************************************************************/
-
-class SvxDoCapitals
-{
-protected:
-    OutputDevice *pOut;
-    const XubString &rTxt;
-    const xub_StrLen nIdx;
-    const xub_StrLen nLen;
-
-public:
-    SvxDoCapitals( OutputDevice* _pOut, const XubString& _rTxt,
-                   const xub_StrLen _nIdx, const xub_StrLen _nLen )
-        : pOut(_pOut), rTxt(_rTxt), nIdx(_nIdx), nLen(_nLen)
-        { }
-
-
-    inline OutputDevice *GetOut() { return pOut; }
-    inline const XubString &GetTxt() const { return rTxt; }
-    xub_StrLen GetIdx() const { return nIdx; }
-    xub_StrLen GetLen() const { return nLen; }
-};
-
-
-
-
-/*************************************************************************
- *                  SvxFont::DoOnCapitals() const
- * zerlegt den String in Gross- und Kleinbuchstaben und ruft jeweils die
- * Methode SvxDoCapitals::Do( ) auf.
- *************************************************************************/
-
-
 /**************************************************************************
  *                    SvxFont::SetPhysFont()
  *************************************************************************/
@@ -209,10 +160,6 @@ public:
 /*N*/           pOut->SetFont( aNewFont );
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
- *                    SvxFont::ChgPhysFont()
- *************************************************************************/
 
 
 /*************************************************************************
@@ -269,14 +216,8 @@ public:
 /*N*/ }
 
 /*************************************************************************
- *                    SvxFont::GetTxtSize()
- *************************************************************************/
-
-
-/*************************************************************************
  *                    SvxFont::DrawText()
  *************************************************************************/
-
 
 /*N*/ void SvxFont::QuickDrawText( OutputDevice *pOut,
 /*N*/   const Point &rPos, const XubString &rTxt,
@@ -303,17 +244,9 @@ public:
 /*?*/             aPos.X() += nDiff;
 /*?*/     }
 /*?*/
-/*?*/   if( IsCapital() )
+/*?*/   if( !IsCapital() )
 /*?*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*?*/   }
-/*?*/   else
-/*?*/   {
-/*?*/       if ( IsKern() && !pDXArray )
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
-/*?*/       else
+/*?*/       if ( !( IsKern() && !pDXArray ) )
 /*?*/       {
 /*?*/           if ( !IsCaseMap() )
 /*?*/               pOut->DrawTextArray( aPos, rTxt, pDXArray, nIdx, nLen );
@@ -322,9 +255,6 @@ public:
 /*?*/       }
 /*?*/   }
 /*N*/ }
-
-// -----------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 
@@ -344,74 +274,6 @@ public:
 /*N*/   nKern = rFont.nKern;
 /*N*/   return *this;
 /*N*/ }
-
-
-/*************************************************************************
- *                    class SvxDoGetCapitalSize
- * wird von SvxFont::GetCapitalSize() zur Berechnung der TxtSize bei
- * eingestellten Kapitaelchen benutzt.
- *************************************************************************/
-
-class SvxDoGetCapitalSize : public SvxDoCapitals
-{
-protected:
-    SvxFont*    pFont;
-    Size        aTxtSize;
-    short       nKern;
-public:
-      SvxDoGetCapitalSize( SvxFont *pFnt, const OutputDevice* _pOut,
-                           const XubString& _rTxt, const xub_StrLen _nIdx,
-                           const xub_StrLen _nLen, const short nKrn )
-            : SvxDoCapitals( (OutputDevice*)_pOut, _rTxt, _nIdx, _nLen ),
-              pFont( pFnt ),
-              nKern( nKrn )
-            { }
-
-
-    inline const Size &GetSize() const { return aTxtSize; };
-};
-
-
-/*************************************************************************
- *                    SvxFont::GetCapitalSize()
- * berechnet TxtSize, wenn Kapitaelchen eingestellt sind.
- *************************************************************************/
-
-
-/*************************************************************************
- *                     class SvxDoDrawCapital
- * wird von SvxFont::DrawCapital zur Ausgabe von Kapitaelchen benutzt.
- *************************************************************************/
-
-class SvxDoDrawCapital : public SvxDoCapitals
-{
-protected:
-    SvxFont *pFont;
-    Point aPos;
-    Point aSpacePos;
-    short nKern;
-public:
-    SvxDoDrawCapital( SvxFont *pFnt, OutputDevice* _pOut, const XubString& _rTxt,
-                      const xub_StrLen _nIdx, const xub_StrLen _nLen,
-                      const Point &rPos, const short nKrn )
-        : SvxDoCapitals( _pOut, _rTxt, _nIdx, _nLen ),
-          pFont( pFnt ),
-          aPos( rPos ),
-          aSpacePos( rPos ),
-          nKern( nKrn )
-        { }
-};
-
-
-
-
-/*************************************************************************
- * SvxFont::DrawCapital() gibt Kapitaelchen aus.
- *************************************************************************/
-
-
-#endif // !REDUCEDSVXFONT
-
 
 }
 

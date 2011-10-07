@@ -298,10 +298,6 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/       SetShowSymbol(rFormat.IsShowSymbol());
 /*N*/       sCharStyleName      = rFormat.sCharStyleName;
 /*N*/   DELETEZ(pGraphicBrush);
-/*N*/   if(rFormat.pGraphicBrush)
-/*N*/     {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
 /*N*/   DELETEZ(pBulletFont);
 /*N*/   if(rFormat.pBulletFont)
 /*N*/           pBulletFont = new Font(*rFormat.pBulletFont);
@@ -350,10 +346,6 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/       delete pGraphicBrush;
 /*N*/       pGraphicBrush = 0;
 /*N*/   }
-/*N*/   else if(!pGraphicBrush || (pGraphicBrush && !(*pBrushItem == *pGraphicBrush)))
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/    }
 /*N*/
 /*N*/   if(pOrient)
 /*N*/       eVertOrient = *pOrient;
@@ -364,8 +356,6 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/   else
 /*?*/       aGraphicSize.Width() = aGraphicSize.Height() = 0;
 /*N*/ }
-
-
 
 
 
@@ -381,12 +371,6 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/   delete pBulletFont;
 /*N*/   pBulletFont = pFont ? new Font(*pFont): 0;
 /*N*/ }
-
-
-
-
-
-
 
 
 
@@ -635,7 +619,6 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/       delete aFmts[ i ];
 /*N*/       aFmts[ i ] = new SvxNumberFormat( rNumFmt );
 /*N*/       aFmtsSet[i] = bIsValid;
-/*N*/ //        bInvalidRuleFlag = TRUE;
 /*N*/   }
 /*N*/ }
 
@@ -649,20 +632,7 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/   for(USHORT i = 0; i < GetLevelCount(); i++)
 /*N*/   {
 /*N*/       SvxNumberFormat aFmt(GetLevel(i));
-/*N*/       const SvxBrushItem* pBrush = aFmt.GetBrush();
-/*N*/       const String* pLinkStr;
-/*N*/       const Graphic* pGraphic;
-/*N*/       if(SVX_NUM_BITMAP == aFmt.GetNumberingType())
-/*N*/       {
-/*N*/           if(pBrush &&
-/*N*/               0 != (pLinkStr = pBrush->GetGraphicLink()) &&
-/*N*/                   pLinkStr->Len() &&
-/*N*/                   0 !=(pGraphic = pBrush->GetGraphic()))
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
-/*N*/       }
-/*N*/       else if((SVX_NUM_BITMAP|LINK_TOKEN) == aFmt.GetNumberingType())
+/*N*/       if((SVX_NUM_BITMAP|LINK_TOKEN) == aFmt.GetNumberingType())
 /*N*/           aFmt.SetNumberingType(SVX_NUM_BITMAP);
 /*N*/       SetLevel(i, aFmt);
 /*N*/   }

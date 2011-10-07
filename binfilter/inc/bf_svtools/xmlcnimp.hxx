@@ -94,8 +94,6 @@ public:
 
 inline sal_uInt16 SvXMLAttrContainerItem_Impl::GetPrefixPos( sal_uInt16 i ) const
 {
-//  DBG_ASSERT( i >= 0 && i < aPrefixPoss.Count(),
-//              "SvXMLAttrContainerItem_Impl::GetPrefixPos: illegal index" );
     return aPrefixPoss[i];
 }
 

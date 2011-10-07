@@ -116,6 +116,7 @@
 
 // #90477#
 #include <tools/tenccvt.hxx>
+
 namespace binfilter {
 
 #define STORE_UNICODE_MAGIC_MARKER  0xFE331188
@@ -133,8 +134,6 @@ using namespace ::com::sun::star::text;
 BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 // STATIC DATA -----------------------------------------------------------
-
-// -----------------------------------------------------------------------
 
 /*N*/ TYPEINIT1(SvxFontListItem, SfxPoolItem);
 /*N*/ TYPEINIT1_AUTOFACTORY(SvxFontItem, SfxPoolItem);
@@ -164,9 +163,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/ TYPEINIT1_AUTOFACTORY(SvxCharReliefItem, SfxEnumItem);
 
 
-/*N*/ TYPEINIT1(SvxScriptSetItem, SfxSetItem );
-
-
 // class SvxFontListItem -------------------------------------------------
 
 /*N*/ SvxFontListItem::SvxFontListItem( const FontList* pFontLst,
@@ -191,15 +187,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/ {
 /*N*/   return new SvxFontListItem( *this );
 /*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*?*/ int SvxFontListItem::operator==( const SfxPoolItem& /*rAttr*/ ) const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
-
-//------------------------------------------------------------------------
 
 
 // class SvxFontItem -----------------------------------------------------
@@ -374,7 +361,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 //------------------------------------------------------------------------
 
-
 // class SvxPostureItem --------------------------------------------------
 
 /*N*/ SvxPostureItem::SvxPostureItem( const FontItalic ePosture, const USHORT nId ) :
@@ -391,13 +377,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 // -----------------------------------------------------------------------
 
-/*?*/ USHORT SvxPostureItem::GetValueCount() const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxPostureItem::Create(SvStream& rStrm, USHORT) const
 /*N*/ {
 /*N*/   BYTE nPosture;
@@ -406,13 +385,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/ }
 
 //------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-
-
 
 /*N*/ bool SvxPostureItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -458,13 +430,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/ }
 // -----------------------------------------------------------------------
 
-/*N*/ int SvxPostureItem::HasBoolValue() const
-/*N*/ {
-/*N*/   return sal_True;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ sal_Bool SvxPostureItem::GetBoolValue() const
 /*N*/ {
 /*N*/   return ( (FontItalic)GetValue() >= ITALIC_OBLIQUE );
@@ -484,27 +449,10 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 // -----------------------------------------------------------------------
 
-/*N*/ int SvxWeightItem::HasBoolValue() const
-/*N*/ {
-/*N*/   return sal_True;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ sal_Bool SvxWeightItem::GetBoolValue() const
 /*N*/ {
 /*N*/   return  (FontWeight)GetValue() >= WEIGHT_BOLD;
 /*N*/ }
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-/*?*/ USHORT SvxWeightItem::GetValueCount() const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
 
 // -----------------------------------------------------------------------
 
@@ -522,13 +470,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/   return new SvxWeightItem( (FontWeight)nWeight, Which() );
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-
 // -----------------------------------------------------------------------
-
-
-
 
 /*N*/ bool SvxWeightItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -790,9 +732,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 //------------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------
-
 /*N*/ USHORT SvxFontHeightItem::GetVersion(USHORT nFileVersion) const
 /*N*/ {
 /*N*/   return (nFileVersion <= SOFFICE_FILEFORMAT_40)
@@ -801,10 +740,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
 
 /*N*/ void SvxFontHeightItem::SetHeight( sal_uInt32 nNewHeight, const USHORT nNewProp,
 /*N*/                                   SfxMapUnit eUnit )
@@ -834,20 +769,10 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 // -----------------------------------------------------------------------
 
-/*N*/ int SvxUnderlineItem::HasBoolValue() const
-/*N*/ {
-/*N*/   return sal_True;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ sal_Bool SvxUnderlineItem::GetBoolValue() const
 /*N*/ {
 /*N*/   return  (FontUnderline)GetValue() != UNDERLINE_NONE;
 /*N*/ }
-
-// -----------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 
@@ -874,13 +799,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/   return new SvxUnderlineItem(  (FontUnderline)nState, Which() );
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-
 // -----------------------------------------------------------------------
-
-
-
 
 /*N*/ bool SvxUnderlineItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -963,15 +882,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 // -----------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
 /*N*/ USHORT SvxCrossedOutItem::GetValueCount() const
 /*N*/ {
 /*N*/   return STRIKEOUT_DOUBLE + 1;    // auch STRIKEOUT_NONE geh"ort dazu
@@ -993,13 +903,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/   return new SvxCrossedOutItem(  (FontStrikeout)eCross, Which() );
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-
 // -----------------------------------------------------------------------
-
-
-
 
 /*N*/ bool SvxCrossedOutItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -1160,9 +1064,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 // -----------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxPropSizeItem::Create(SvStream& rStrm, USHORT) const
 /*N*/ {
 /*N*/   USHORT nSize;
@@ -1265,9 +1166,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/ {
 /*N*/   return new SvxColorItem( rStrm, Which() );
 /*N*/ }
-
-//------------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 
@@ -1373,13 +1271,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 // -----------------------------------------------------------------------
 
-/*?*/ USHORT SvxCaseMapItem::GetValueCount() const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxCaseMapItem::Clone( SfxItemPool * ) const
 /*N*/ {
 /*N*/   return new SvxCaseMapItem( *this );
@@ -1394,13 +1285,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/   return new SvxCaseMapItem( (const SvxCaseMap)cMap, Which() );
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-
 // -----------------------------------------------------------------------
-
-
-
 
 /*N*/ bool SvxCaseMapItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
@@ -1448,9 +1333,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 // -----------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------
-
 /*N*/ SvxEscapementItem::SvxEscapementItem( const short _nEsc,
 /*N*/                                     const BYTE _nProp,
 /*N*/                                     const USHORT nId ) :
@@ -1488,33 +1370,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-
-/*?*/ USHORT SvxEscapementItem::GetValueCount() const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
-
-//------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-/*?*/ USHORT SvxEscapementItem::GetEnumValue() const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
-/*?*/ void SvxEscapementItem::SetEnumValue( USHORT /*nVal*/ )
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
-
-
 
 /*N*/ bool SvxEscapementItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -1590,13 +1445,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 // -----------------------------------------------------------------------
 
-/*?*/ USHORT SvxLanguageItem::GetValueCount() const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxLanguageItem::Clone( SfxItemPool * ) const
 /*N*/ {
 /*N*/   return new SvxLanguageItem( *this );
@@ -1612,9 +1460,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/ }
 
 //------------------------------------------------------------------------
-
-
-
 
 /*N*/ bool SvxLanguageItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -1671,18 +1516,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/ {
 /*N*/ }
 
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
 //------------------------------------------------------------------------
-
-
 // class SvxNoHyphenItem -------------------------------------------------
 
 /*N*/ SvxNoHyphenItem::SvxNoHyphenItem( const sal_Bool bHyphen, const USHORT nId ) :
@@ -1690,45 +1524,8 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/ {
 /*N*/ }
 
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
 //------------------------------------------------------------------------
-
-
-/*
- * Dummy-Item fuer ToolBox-Controls:
- *
- */
-
-// -----------------------------------------------------------------------
-// class SvxLineColorItem (== SvxColorItem)
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
 // class SvxBlinkItem -------------------------------------------------
-
 
 /*N*/ SvxBlinkItem::SvxBlinkItem( const sal_Bool bBlink, const USHORT nId ) :
 /*N*/   SfxBoolItem( nId, bBlink )
@@ -1752,8 +1549,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-
-
 // class SvxEmphaisMarkItem ---------------------------------------------------
 
 /*N*/ SvxEmphasisMarkItem::SvxEmphasisMarkItem( const FontEmphasisMark nValue,
@@ -1778,10 +1573,9 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/   return new SvxEmphasisMarkItem( (FontEmphasisMark)nValue, Which() );
 /*N*/ }
 
-//------------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
+
 
 /*N*/ bool SvxEmphasisMarkItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -2292,24 +2086,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/       break;
 /*N*/   }
 /*N*/   return bRet;
-/*N*/ }
-
-/*************************************************************************
-|*    class SvxScriptTypeItemItem
-*************************************************************************/
-
-
-/*************************************************************************
-|*    class SvxScriptSetItem
-*************************************************************************/
-
-/*N*/ SfxPoolItem* SvxScriptSetItem::Clone( SfxItemPool* /*pPool*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*N*/ }
-
-/*N*/ SfxPoolItem* SvxScriptSetItem::Create( SvStream &, USHORT ) const
-/*N*/ {
-/*N*/   return 0;
 /*N*/ }
 
 /*N*/ void GetDefaultFonts( SvxFontItem& rLatin, SvxFontItem& rAsian, SvxFontItem& rComplex )

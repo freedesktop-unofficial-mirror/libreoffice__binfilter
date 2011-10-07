@@ -66,6 +66,7 @@ class SvxAdjustItem : public SfxEnumItemInterface
     BOOL    bLastBlock : 1;
 
     friend SvStream& operator<<( SvStream&, SvxAdjustItem& ); //$ ostream
+
 public:
     TYPEINFO();
 
@@ -78,9 +79,9 @@ public:
     virtual bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
-    virtual USHORT           GetValueCount() const;
-    virtual USHORT           GetEnumValue() const;
-    virtual void             SetEnumValue( USHORT nNewVal );
+    virtual USHORT           GetValueCount() const { return 0; } // DBG_BF_ASSERT
+    virtual USHORT           GetEnumValue()  const { return 0; } // DBG_BF_ASSERT
+    virtual void             SetEnumValue( USHORT /* nNewVal */ ) {} // DBG_BF_ASSERT
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*     Create(SvStream &, USHORT) const;
     virtual SvStream& Store(SvStream &rStream, USHORT) const { return rStream; }

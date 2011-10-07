@@ -51,8 +51,8 @@ public:
                      const USHORT nId = ITEMID_PARAGRID );
 
     // "pure virtual Methoden" vom SfxPoolItem
-    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-    virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
+    virtual SfxPoolItem*    Clone( SfxItemPool* = NULL ) const { return NULL; } // DBG_BF_ASSERT
+    virtual SfxPoolItem*    Create(SvStream&, USHORT) const { return NULL; } // DBG_BF_ASSERT
     virtual USHORT          GetVersion( USHORT nFileVersion ) const;
 
     virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,

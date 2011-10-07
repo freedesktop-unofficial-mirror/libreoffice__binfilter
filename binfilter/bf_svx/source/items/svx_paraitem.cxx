@@ -305,31 +305,10 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*?*/ sal_uInt16 SvxLineSpacingItem::GetValueCount() const
-/*?*/ {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); return SVX_LINESPACE_END;
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
 /*?*/ XubString SvxLineSpacingItem::GetValueTextByPos( sal_uInt16 /*nPos*/ ) const
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); XubString aText;
 /*?*/   return aText;
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
-/*?*/ sal_uInt16 SvxLineSpacingItem::GetEnumValue() const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
-/*?*/ void SvxLineSpacingItem::SetEnumValue( sal_uInt16 /*nVal*/ )
-/*?*/ {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 // class SvxAdjustItem ---------------------------------------------------
@@ -358,8 +337,7 @@ using namespace ::com::sun::star;
 
 /*N*/ bool SvxAdjustItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/
-/*N*/     nMemberId &= ~CONVERT_TWIPS;
+/*N*/   nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch( nMemberId )
 /*N*/   {
 /*N*/       case MID_PARA_ADJUST      : rVal <<= (sal_Int16)GetAdjust(); break;
@@ -421,32 +399,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------
-
-/*?*/ sal_uInt16 SvxAdjustItem::GetValueCount() const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-/*?*/ sal_uInt16 SvxAdjustItem::GetEnumValue() const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ void SvxAdjustItem::SetEnumValue( sal_uInt16 /*nVal*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ sal_uInt16 SvxAdjustItem::GetVersion( sal_uInt16 nFileVersion ) const
 /*N*/ {
 /*N*/   return (nFileVersion == SOFFICE_FILEFORMAT_31)
@@ -496,8 +448,6 @@ using namespace ::com::sun::star;
 /*N*/   return new SvxWidowsItem( nLines, Which() );
 /*N*/ }
 
-// -----------------------------------------------------------------------
-
 
 //------------------------------------------------------------------------
 
@@ -525,11 +475,7 @@ using namespace ::com::sun::star;
 /*N*/   return new SvxOrphansItem( nLines, Which() );
 /*N*/ }
 
-// -----------------------------------------------------------------------
-
-
 //------------------------------------------------------------------------
-
 
 // class SvxHyphenZoneItem -----------------------------------------------
 
@@ -708,32 +654,6 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-
-/*
- enum ::com::sun::star::style::TabAlign
-{
-    TABALIGN_LEFT,
-    TABALIGN_CENTER,
-    TABALIGN_RIGHT,
-    TABALIGN_DECIMAL
-};
-
-struct   ::com::sun::star::style::TabStop
-{
-    long            Position;
- ::com::sun::star::style::TabAlign   ::com::sun::star::drawing::Alignment;
-    unsigned short  DecimalChar;
-    unsigned short  FillChar;
-};
-typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
-
- */
-
 
 
 /*N*/ bool SvxTabStopItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
@@ -1064,20 +984,9 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 
 
 
-
-
-
 /*N*/ SvxParaGridItem::SvxParaGridItem( sal_Bool bOn, const sal_uInt16 nId )
 /*N*/   : SfxBoolItem( nId, bOn )
 /*N*/ {
-/*N*/ }
-
-/*N*/ SfxPoolItem* SvxParaGridItem::Clone( SfxItemPool* /*pPool*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*N*/ }
-
-/*N*/ SfxPoolItem* SvxParaGridItem::Create(SvStream & /*rStrm*/, USHORT) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*N*/ USHORT  SvxParaGridItem::GetVersion( USHORT nFFVer ) const

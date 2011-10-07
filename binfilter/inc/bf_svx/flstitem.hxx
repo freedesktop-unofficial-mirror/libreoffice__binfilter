@@ -34,12 +34,12 @@
 #ifndef   ITEMID_FONTLIST
 #define   ITEMID_FONTLIST 0
 #endif
+
 namespace binfilter {
+
 class FontList;
 
 // class SvxFontListItem -------------------------------------------------
-
-
 /*
     [Beschreibung]
 
@@ -59,7 +59,7 @@ public:
                      const USHORT nId = ITEMID_FONTLIST );
     SvxFontListItem( const SvxFontListItem& rItem );
 
-    virtual int             operator==( const SfxPoolItem& ) const;
+    virtual int             operator==( const SfxPoolItem& ) const {return 0; } // DBG_BF_ASSERT
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
 

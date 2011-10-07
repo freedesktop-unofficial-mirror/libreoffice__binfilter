@@ -41,8 +41,6 @@ class OutputDevice;
 class Printer;
 namespace binfilter {
 
-class SvxDoCapitals;
-
 class SvxFont : public Font
 {
     LanguageType eLang;         // Language
@@ -84,9 +82,6 @@ public:
     // Versalien, Gemeine etc. beruecksichtigen
     String CalcCaseMap( const String &rTxt ) const;
 
-// Der folgende Bereich wird nicht von jedem benoetigt, er kann deshalb
-// ausgeklammert werden.
-#ifndef REDUCEDSVXFONT
     // Kapitaelchenbearbeitung
 
     void SetPhysFont( OutputDevice *pOut ) const;
@@ -104,7 +99,6 @@ public:
                          const USHORT nIdx, const USHORT nLen, sal_Int32* pDXArray = NULL ) const;
 
 
-#endif // !REDUCEDSVXFONT
     SvxFont&    operator=( const SvxFont& rFont );
     SvxFont&    operator=( const Font& rFont );
 };

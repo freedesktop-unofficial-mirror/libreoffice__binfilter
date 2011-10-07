@@ -47,18 +47,6 @@ USHORT GetI18NScriptTypeOfLanguage( USHORT nLang );
 USHORT GetItemScriptType( short nI18NType );
 short  GetI18NScriptType( USHORT nItemType );
 
-
-class SvxScriptSetItem : public SfxSetItem
-{
-public:
-    TYPEINFO();
-
-    SvxScriptSetItem( USHORT nSlotId, SfxItemPool& rPool );
-
-    virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const;
-    virtual SfxPoolItem* Create( SvStream &, USHORT nVersion ) const;
-};
-
 }//end of namespace binfilter
 #endif
 

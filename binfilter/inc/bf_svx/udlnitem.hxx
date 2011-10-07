@@ -75,7 +75,7 @@ public:
     // MS VC4.0 kommt durcheinander
     void                    SetValue( USHORT nNewVal )
                                 {SfxEnumItem::SetValue(nNewVal); }
-    virtual int             HasBoolValue() const;
+    virtual int             HasBoolValue() const { return sal_True; } // DBG_BF_ASSERT
     virtual BOOL            GetBoolValue() const;
 
     virtual int              operator==( const SfxPoolItem& ) const;

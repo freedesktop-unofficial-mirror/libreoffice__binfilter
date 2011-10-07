@@ -212,7 +212,6 @@ using rtl::OUString;
 /*N*/   return pImpl->GetAttrValue( i );
 /*N*/ }
 
-
 /*N*/ USHORT SvXMLAttrContainerItem::GetFirstNamespaceIndex() const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
