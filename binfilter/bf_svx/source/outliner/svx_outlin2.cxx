@@ -26,12 +26,9 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
-
-
 
 
 #include <forbiddencharacterstable.hxx>
@@ -99,32 +96,21 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pEditEngine->SetBackgroundColor( rColor );
 /*N*/ }
 
-
-
-
-
 /*N*/ ULONG Outliner::GetTextHeight() const
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
 /*N*/   return pEditEngine->GetTextHeight();
 /*N*/ }
 
-
-
 /*N*/ void Outliner::SetNotifyHdl( const Link& rLink )
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
 /*N*/     pEditEngine->aOutlinerNotifyHdl = rLink;
 /*N*/
-/*N*/     if ( rLink.IsSet() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/     else
+/*N*/     if ( !rLink.IsSet() )
 /*N*/       pEditEngine->SetNotifyHdl( Link() );
 /*N*/
 /*N*/ }
-
-
-
 
 /*N*/ void Outliner::SetDefTab( USHORT nTab )
 /*N*/ {
@@ -132,21 +118,11 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pEditEngine->SetDefTab( nTab );
 /*N*/ }
 
-
-
 /*N*/ BOOL Outliner::UpdateFields()
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
 /*N*/   return pEditEngine->UpdateFields();
 /*N*/ }
-
-
-
-
-
-
-
-
 
 /*N*/ void Outliner::SetPaperSize( const Size& rSize )
 /*N*/ {
@@ -160,15 +136,11 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return pEditEngine->GetPaperSize();
 /*N*/ }
 
-
-
 /*N*/ void Outliner::ClearPolygon()
 /*N*/ {
 /*N*/   DBG_CHKTHIS( Outliner, 0 );
 /*N*/   pEditEngine->ClearPolygon();
 /*N*/ }
-
-
 
 /*N*/ void Outliner::SetMinAutoPaperSize( const Size& rSz )
 /*N*/ {
@@ -262,20 +234,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return pEditEngine->GetLineCount( (USHORT)nParagraph );
 /*N*/ }
 
-/*N*/ USHORT Outliner::GetLineLen( ULONG /* nParagraph */, USHORT /* nLine */ ) const
-/*N*/ {
-/*N*/   DBG_CHKTHIS(Outliner,0);
-        DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return 0;
-/*N*/ }
-
-/*?*/ ULONG Outliner::GetLineHeight( ULONG /* nParagraph */, ULONG /* nLine */ )
-/*?*/ {
-/*?*/   DBG_CHKTHIS(Outliner,0);
-        DBG_BF_ASSERT(0, "STRIP");
-/*?*/   return 0;
-/*?*/ }
-
 /*N*/ void Outliner::QuickRemoveCharAttribs( USHORT nPara, USHORT nWhich )
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
@@ -289,9 +247,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   DBG_CHKTHIS(Outliner,0);
 /*N*/   pEditEngine->SetDefaultLanguage( eLang );
 /*N*/ }
-
-
-
 
 
 /*N*/ void Outliner::SetEditTextObjectPool( SfxItemPool* pPool )
@@ -318,13 +273,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return pEditEngine->GetRefDevice();
 /*N*/ }
 
-
-/*N*/ ULONG Outliner::GetTextHeight( ULONG ) const
-/*N*/ {
-/*N*/   DBG_CHKTHIS(Outliner,0);
-        DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return 0;
-/*N*/ }
 
 /*N*/ Point Outliner::GetDocPos( const Point& rPaperPos ) const
 /*N*/ {
@@ -437,7 +385,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ }
 
 
-
 /*N*/ USHORT Outliner::GetScriptType( const ESelection& rSelection ) const
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
@@ -449,9 +396,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   DBG_CHKTHIS(Outliner,0);
 /*N*/   return pEditEngine->GetLanguage( nPara, nPos );
 /*N*/ }
-
-
-
 
 
 /*N*/ BOOL Outliner::IsForceAutoColor() const

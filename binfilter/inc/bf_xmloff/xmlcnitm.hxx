@@ -84,10 +84,10 @@ public:
     const ::rtl::OUString& GetAttrLName( sal_uInt16 i ) const;
     const ::rtl::OUString& GetAttrValue( sal_uInt16 i ) const;
 
-    sal_uInt16 GetFirstNamespaceIndex() const; // { return 0; } // DBG_BF_ASSERT
-    sal_uInt16 GetNextNamespaceIndex( sal_uInt16 nIdx ) const;  // { return 0; } // DBG_BF_ASSERT
-    const ::rtl::OUString& GetNamespace( sal_uInt16 i ) const;
-    const ::rtl::OUString& GetPrefix( sal_uInt16 i ) const;
+    sal_uInt16 GetFirstNamespaceIndex() const; // { return 0; } DBG_BF_ASSERT
+    sal_uInt16 GetNextNamespaceIndex( sal_uInt16 nIdx ) const;  // { return 0; } DBG_BF_ASSERT
+    const ::rtl::OUString& GetNamespace( sal_uInt16 i ) const;  // DBG_BF_ASSERT
+    const ::rtl::OUString& GetPrefix( sal_uInt16 i ) const;     // DBG_BF_ASSERT
 };
 
 }//end of namespace binfilter

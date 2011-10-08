@@ -213,25 +213,23 @@ using rtl::OUString;
 /*N*/ }
 
 /*N*/ USHORT SvXMLAttrContainerItem::GetFirstNamespaceIndex() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
+/*N*/ { return 0;   // DBG_BF_ASSERT VIRTUAL
 /*N*/ }
 
 /*N*/ USHORT SvXMLAttrContainerItem::GetNextNamespaceIndex( USHORT /*nIdx*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
+/*N*/ { return 0;   // DBG_BF_ASSERT VIRTUAL
 /*N*/ }
 
 /*N*/ const OUString& SvXMLAttrContainerItem::GetNamespace( USHORT /*i*/ ) const
 /*N*/ {
-/*N*/     DBG_BF_ASSERT(0, "STRIP");
-/*N*/     static OUString aStripped;
-/*N*/     return aStripped;
+/*N*/   static OUString aStripped;  // DBG_BF_ASSERT VIRTUAL
+/*N*/   return aStripped;
 /*N*/ }
 
 /*N*/ const OUString& SvXMLAttrContainerItem::GetPrefix( USHORT /*i*/ ) const
 /*N*/ {
-/*N*/     DBG_BF_ASSERT(0, "STRIP");
-/*N*/     static OUString aStripped;
-/*N*/     return aStripped;
+/*N*/   static OUString aStripped;  // DBG_BF_ASSERT VIRTUAL
+/*N*/   return aStripped;
 /*N*/ }
 
 

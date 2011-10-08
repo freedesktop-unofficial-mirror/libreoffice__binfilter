@@ -86,9 +86,7 @@ namespace binfilter {
 
 /*N*/ void OutlinerEditEng::ParagraphHeightChanged( USHORT nPara )
 /*N*/ {
-/*N*/   pOwner->ParagraphHeightChanged( nPara );
-/*N*/
-/*N*/     EditEngine::ParagraphHeightChanged( nPara );
+/*N*/   EditEngine::ParagraphHeightChanged( nPara );
 /*N*/ }
 
 

@@ -307,7 +307,7 @@ using namespace ::com::sun::star;
 
 /*?*/ XubString SvxLineSpacingItem::GetValueTextByPos( sal_uInt16 /*nPos*/ ) const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); XubString aText;
+/*?*/   XubString aText;
 /*?*/   return aText;
 /*?*/ }
 

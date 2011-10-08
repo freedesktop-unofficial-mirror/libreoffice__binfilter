@@ -57,9 +57,9 @@ public:
 
     virtual sal_Bool    GetSelection( ESelection& rSelection ) const;
     virtual sal_Bool    SetSelection( const ESelection& rSelection );
-    virtual sal_Bool    Copy();
-    virtual sal_Bool    Cut();
-    virtual sal_Bool    Paste();
+    virtual sal_Bool    Copy()  { return sal_True; } // DBG_BF_ASSERT
+    virtual sal_Bool    Cut()   { return sal_True; } // DBG_BF_ASSERT
+    virtual sal_Bool    Paste() { return sal_True; } // DBG_BF_ASSERT
 };
 
 }//end of namespace binfilter

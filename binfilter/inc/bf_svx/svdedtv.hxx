@@ -195,11 +195,6 @@ public:
     // verwendet. NotifyNewUndoAction() wird in diesem Fall erst beim letzten
     // EndUndo() gerufen. NotifyNewUndoAction() wird nicht gerufen bei einer
     // leeren Klammerung.
-#ifndef WIN
-    // nur nach dem 1. BegUndo oder vor dem letzten EndUndo:
-#else  // ifndef WIN
-    // nur nach dem 1. BegUndo oder vor dem letzten EndUndo:
-#endif
 
     // Verschieben eines Layer (Layerreihenfolge aendern)
 
@@ -235,22 +230,6 @@ public:
 
     BOOL SetStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr);
 
-    // Alle markierten Objekte zu einer Gruppe zusammenfassen.
-    // Anschliessend wird die neue Gruppe markiert. Bei einer
-    // seitenuebergreifenden Markierung wird eine Gruppe je Seite erzeugt.
-    // Alle erzeugten Gruppen sind anschliessend markiert.
-    // Ueber pUserGrp kann ein eigenes Gruppenobjekt vorgegeben werden. Dieses
-    // wird  jedoch nicht direkt verwendet, sondern via Clone kopiert.
-    // Wird NULL uebergeben, macht sich die Methode SdrObjGroup-Instanzen.
-    void GroupMarked(const SdrObject* pUserGrp=NULL);
-
-    // Alle markierten Objektgruppen werden aufgeloesst (1 Level).
-    // Anschliessend sind statt der Gruppenobjekte alle ehemaligen
-    // Memberobjekte der aufgeloesten Gruppen markiert. Waren zum auch Objekte
-    // markiert, die keine Gruppenobjekte sind, so bleiben diese weiterhin
-    // zusaetzlich markiert.
-    void UnGroupMarked();
-
     BOOL IsGroupPossible() const { ForcePossibilities(); return bGroupPossible; }
     BOOL IsUnGroupPossible() const { ForcePossibilities(); return bUnGroupPossible; }
     BOOL IsGroupEnterPossible() const { ForcePossibilities(); return bGrpEnterPossible; }
@@ -266,17 +245,6 @@ public:
     // Alle markierten Objekte untereinander ausrichten. Normalerweise werden
     // das SnapRect der Obj verwendet. Ist bBoundRects=TRUE, werden stattdessen
     // die BoundRects ausgerichtet.
-
-    // Markierte Objekte etwas nach "oben" holen
-
-    // Markierte Objekte etwas nach "unten" holen
-
-    // Markierte Objekte ganz nach "oben" stellen
-
-    // Markierte Objekte ganz nach "unten" stellen
-
-    // Markierte direkt vor das uebergebene Objekt stellen
-    // NULL -> wie PutMarkedToTop();
 
     // Markierte direkt hinter das uebergebene Objekt stellen
     // NULL -> wie PutMarkedToBtm();

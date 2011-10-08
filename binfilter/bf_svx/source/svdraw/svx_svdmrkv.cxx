@@ -155,9 +155,6 @@ namespace binfilter {
 /*N*/ void SdrMarkView::ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const
 /*N*/ {
 /*N*/   SdrSnapView::ToggleShownXor(pOut,pRegion);
-/*N*/   if ((bMarking || bMarkingPoints || bMarkingGluePoints) && aDragStat.IsShown()) {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -198,29 +195,23 @@ namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ void SdrMarkView::BrkMarkObj()
-/*N*/ {
-/*N*/   if (bMarking) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ void SdrMarkView::BrkMarkPoints()
-/*N*/ {
-/*N*/   if (bMarkingPoints) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ void SdrMarkView::BrkMarkGluePoints()
-/*N*/ {
-/*N*/   if (bMarkingGluePoints) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SdrMarkView::ImpShowMarkHdl(OutputDevice* /*pOut*/, const Region* /*pRegion*/, BOOL /*bNoRefHdl*/)
-/*N*/ {
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SdrMarkView::ShowMarkHdl(OutputDevice* pOut, BOOL bNoRefHdl)
@@ -248,8 +239,6 @@ namespace binfilter {
 /*N*/   ULONG nMarkAnz=aMark.GetMarkCount();
 /*N*/   BOOL bFrmHdl=nMarkAnz>nFrameHandlesLimit || bForceFrameHandles;
 /*N*/   BOOL bStdDrag=eDragMode==SDRDRAG_MOVE;
-/*N*/   if (nMarkAnz==1 && bStdDrag && bFrmHdl) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/   if (!bStdDrag && !bFrmHdl) {
 /*?*/       // Grundsaetzlich erstmal alle anderen Dragmodi nur mit FrameHandles
 /*?*/       bFrmHdl=TRUE;
@@ -262,11 +251,6 @@ namespace binfilter {
 /*?*/           }
 /*?*/       }
 /*N*/   }
-/*N*/   if (!bFrmHdl) {
-/*N*/       // FrameHandles, wenn wenigstens 1 Obj kein SpecialDrag kann
-/*N*/       for (ULONG nMarkNum=0; nMarkNum<nMarkAnz && !bFrmHdl; nMarkNum++) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/   }
 /*N*/   return bFrmHdl;
 /*N*/ }
 
@@ -274,7 +258,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   // #105722# remember old focus handle values to search for it again
 /*N*/   const SdrHdl* pSaveOldFocusHdl = aHdl.GetFocusHdl();
-/*N*/   sal_Bool bSaveOldFocus(sal_False);
 /*N*/
 /*N*/   if(pSaveOldFocusHdl
 /*N*/       && pSaveOldFocusHdl->GetObj()
@@ -304,50 +287,26 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if (bFrmHdl) {
 /*N*/       Rectangle aRect(GetMarkedObjRect());
-/*N*/       if (!aRect.IsEmpty()) { // sonst nix gefunden
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/   } else {
-/*N*/       for (ULONG nMarkNum=0; nMarkNum<nMarkAnz; nMarkNum++) {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       } // for nMarkNum
 /*N*/   } // if bFrmHdl else
-/*N*/   // GluePoint-Handles
-/*N*/   for (ULONG nMarkNum=0; nMarkNum<nMarkAnz; nMarkNum++) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 
     // Drehpunkt/Spiegelachse
 /*N*/   AddDragModeHdl(eDragMode);
 /*N*/
 /*N*/   // add custom handles (used by other apps, e.g. AnchorPos)
 /*N*/   AddCustomHdl();
-/*N*/
-/*N*/   // sort handles
-/*N*/   aHdl.Sort();
-/*N*/
-/*N*/   // #105722# try to restore focus handle index from remembered values
-/*N*/   if(bSaveOldFocus)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/ }
 
 /*N*/ void SdrMarkView::AddCustomHdl()
-/*N*/ {
-/*N*/   // add custom handles (used by other apps, e.g. AnchorPos)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SdrMarkView::AddDragModeHdl(SdrDragMode /*eMode*/)
-/*N*/ {
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
 /*N*/ void SdrMarkView::CheckMarked()
 /*N*/ {
-/*N*/   for (ULONG nm=aMark.GetMarkCount(); nm>0;) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-
-    // #97995# at least reset the remembered BoundRect to prevent handle
-    // generation if bForceFrameHandles is TRUE.
 /*N*/   bMarkedObjRectDirty = TRUE;
 /*N*/ }
 
@@ -553,12 +512,7 @@ namespace binfilter {
 /*N*/
 /*N*/   bMarkedObjRectDirty=TRUE;
 /*N*/   bMarkedPointsRectsDirty=TRUE;
-/*N*/ #ifndef SVX_LIGHT
-/*?*/   if (pItemBrowser!=NULL) DBG_BF_ASSERT(0, "STRIP");
-/*N*/ #endif
 /*N*/   BOOL bOneEdgeMarked=FALSE;
-/*N*/   if (aMark.GetMarkCount()==1) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/   ImpSetGlueVisible4(bOneEdgeMarked);
 /*N*/ }
 /*N*/

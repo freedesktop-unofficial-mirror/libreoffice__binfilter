@@ -129,7 +129,6 @@ public:
     // Wird pForcedMeth uebergeben, so wird pHdl, ... nicht ausgewerten, sondern diese
     // Drag-Methode verwendet. Die Instanz geht dabei ins Eigentum der View ueber und
     // wird zum Ende des Draggings destruiert.
-    void BrkDragObj();
     BOOL IsDragObj() const { return pDragBla!=NULL && !bInsPolyPoint && !bInsGluePoint; }
     SdrHdl* GetDragHdl() const { return pDragHdl; }
     SdrDragMethod* GetDragMethod() const { return pDragBla; }
@@ -151,7 +150,6 @@ public:
     // Interaktives einfuegen eines neuen Punktes. nIdx=0 => vor dem ersten Punkt.
     BOOL BegInsObjPoint(USHORT nIdx, const Point& rPnt, BOOL bNewObj, OutputDevice* pOut=NULL, short nMinMov=-3) { return BegInsObjPoint(TRUE,nIdx,rPnt,bNewObj,pOut,nMinMov); }
     BOOL BegInsObjPoint(const Point& rPnt, BOOL bNewObj, OutputDevice* pOut=NULL, short nMinMov=-3) { return BegInsObjPoint(FALSE,0,rPnt,bNewObj,pOut,nMinMov); }
-    void BrkInsObjPoint() { BrkDragObj(); }
     BOOL IsInsObjPoint() const { return pDragBla!=NULL && bInsPolyPoint; }
 
     // Fuer die App zum Verwalten des Status. GetPreferedPointer() wird
@@ -159,7 +157,6 @@ public:
     void SetInsObjPointMode(BOOL bOn) { bInsObjPointMode = bOn; }
     BOOL IsInsObjPointMode() const { return bInsObjPointMode; }
 
-    void BrkInsGluePoint() { BrkDragObj(); }
     BOOL IsInsGluePoint() const { return pDragBla!=NULL && bInsGluePoint; }
 
     // Fuer die App zum Verwalten des Status. GetPreferedPointer() wird

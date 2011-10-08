@@ -343,8 +343,6 @@ Reference< drawing::XShapeGroup > SAL_CALL SvxDrawPage::group( const Reference< 
 
     _SelectObjectsInView( xShapes, pPageView );
 
-    pView->GroupMarked();
-
     pView->AdjustMarkHdl();
     const SdrMarkList& rMarkList = pView->GetMarkList();
     if( rMarkList.GetMarkCount() == 1 )
@@ -378,7 +376,6 @@ void SAL_CALL SvxDrawPage::ungroup( const Reference< drawing::XShapeGroup >& aGr
 
     Reference< drawing::XShape > xShape( aGroup, UNO_QUERY );
     _SelectObjectInView( xShape, pPageView );
-    pView->UnGroupMarked();
 
     pView->HidePage(pPageView);
 

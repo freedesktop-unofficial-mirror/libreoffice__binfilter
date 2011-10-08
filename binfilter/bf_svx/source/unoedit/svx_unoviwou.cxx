@@ -144,24 +144,6 @@ sal_Bool SvxDrawOutlinerViewForwarder::SetSelection( const ESelection& rSelectio
     return sal_True;
 }
 
-sal_Bool SvxDrawOutlinerViewForwarder::Copy()
-{
-    mrOutlinerView.Copy();
-    return sal_True;
-}
-
-sal_Bool SvxDrawOutlinerViewForwarder::Cut()
-{
-    mrOutlinerView.Cut();
-    return sal_True;
-}
-
-sal_Bool SvxDrawOutlinerViewForwarder::Paste()
-{
-    mrOutlinerView.Paste();
-    return sal_True;
-}
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -328,9 +328,9 @@ Rectangle SvxOutlinerForwarder::GetCharBounds( USHORT nPara, USHORT nIndex ) con
             // #109151# Don't use paragraph height, but line height
             // instead. aLast is already CTL-correct
             if( bIsVertical)
-                aLast.SetSize( Size( rOutliner.GetLineHeight(nPara,0), 1 ) );
+                aLast.SetSize( Size( 0, 1 ) );
             else
-                aLast.SetSize( Size( 1, rOutliner.GetLineHeight(nPara,0) ) );
+                aLast.SetSize( Size( 1, 0 ) );
         }
 
         return aLast;
@@ -349,19 +349,11 @@ Rectangle SvxOutlinerForwarder::GetParaBounds( USHORT nPara ) const
 
     if( rOutliner.IsVertical() )
     {
-        // #101701#
-        // Hargl. Outliner's 'external' methods return the rotated
-        // dimensions, 'internal' methods like GetTextHeight( n )
-        // don't rotate.
-        ULONG nWidth = rOutliner.GetTextHeight( nPara );
-
-        return Rectangle( aSize.Width() - aPnt.Y() - nWidth, 0, aSize.Width() - aPnt.Y(), aSize.Height() );
+        return Rectangle( aSize.Width() - aPnt.Y(), 0, aSize.Width() - aPnt.Y(), aSize.Height() );
     }
     else
     {
-        ULONG nHeight = rOutliner.GetTextHeight( nPara );
-
-        return Rectangle( 0, aPnt.Y(), aSize.Width(), aPnt.Y() + nHeight );
+        return Rectangle( 0, aPnt.Y(), aSize.Width(), aPnt.Y() );
     }
 }
 
@@ -416,11 +408,6 @@ sal_Bool SvxOutlinerForwarder::GetAttributeRun( USHORT& nStartIndex, USHORT& nEn
 USHORT SvxOutlinerForwarder::GetLineCount( USHORT nPara ) const
 {
     return static_cast < USHORT >( rOutliner.GetLineCount(nPara) );
-}
-
-USHORT SvxOutlinerForwarder::GetLineLen( USHORT nPara, USHORT nLine ) const
-{
-    return rOutliner.GetLineLen(nPara, nLine);
 }
 
 sal_Bool SvxOutlinerForwarder::QuickFormatDoc( BOOL )

@@ -101,11 +101,6 @@ namespace binfilter {
 /*N*/       rnDepth = nMaxDepth;
 /*N*/ }
 
-/*N*/ Paragraph* Outliner::Insert(const XubString&, ULONG, USHORT)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*N*/ }
-
-
 /*N*/ void Outliner::ParagraphInserted( USHORT nPara )
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
@@ -113,11 +108,7 @@ namespace binfilter {
 /*N*/   if ( bBlockInsCallback )
 /*N*/       return;
 /*N*/
-/*N*/   if( bPasting || pEditEngine->IsInUndo() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/   else
+/*N*/   if( !( bPasting || pEditEngine->IsInUndo() ) )
 /*N*/   {
 /*N*/       USHORT nDepth = 0;
 /*N*/       if ( nPara )
@@ -395,8 +386,6 @@ namespace binfilter {
 /*N*/   pEditEngine->SetUpdateMode( bUpdate );
 /*N*/ }
 
-// pView == 0 -> Tabulatoren nicht beachten
-
 
 /*N*/ void Outliner::SetText( const OutlinerParaObject& rPObj )
 /*N*/ {
@@ -554,13 +543,6 @@ namespace binfilter {
 /*N*/       ImplCheckNumBulletItem( nPara );
 /*N*/       ImplCalcBulletText( nPara, FALSE, FALSE );
 /*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/       if ( bUndo )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/ #endif
-/*N*/
 /*N*/       pEditEngine->SetUpdateMode( bUpdate );
 /*N*/   }
 /*N*/ }
@@ -617,10 +599,6 @@ namespace binfilter {
 /*N*/         ESelection aSel( nPara, 0, nPara, 0 );
 /*N*/         aStdFont = EditEngine::CreateFontFromItemSet( pEditEngine->GetAttribs( aSel ), GetScriptType( aSel ) );
 /*N*/     }
-/*N*/     else
-/*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
 /*N*/
 /*N*/   Font aBulletFont;
 /*N*/   if ( pFmt->GetNumberingType() == SVX_NUM_CHAR_SPECIAL )
@@ -664,12 +642,7 @@ namespace binfilter {
 /*N*/ void Outliner::PaintBullet( USHORT nPara, const Point& /*rStartPos*/,
 /*N*/   const Point& /*rOrigin*/, short /*nOrientation*/, OutputDevice* /*pOutDev*/ )
 /*N*/ {
-/*N*/   DBG_CHKTHIS(Outliner,0);
-/*N*/
-/*N*/   if ( ImplHasBullet( nPara ) )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
+/*N*/   ImplHasBullet( nPara );     // DBG_BF_ASSERT -- side affects?
 /*N*/ }
 
 /*N*/ #ifndef SVX_LIGHT
@@ -747,12 +720,6 @@ namespace binfilter {
 /*N*/   DBG_CHKTHIS(Outliner,0);
 /*N*/   DBG_ASSERT(pPara,"GetAbsPos:No Para");
 /*N*/   return pParaList->GetAbsPos( pPara );
-/*N*/ }
-
-/*N*/ void Outliner::ParagraphHeightChanged( USHORT )
-/*N*/ {
-/*N*/   DBG_CHKTHIS(Outliner,0);
-/*N*/   // MT: Kann wohl weg...
 /*N*/ }
 
 /*N*/ ULONG Outliner::GetParagraphCount() const
@@ -854,13 +821,6 @@ namespace binfilter {
 /*N*/       {
 /*N*/           SfxItemSet aAttrs( pEditEngine->GetParaAttribs( n ) );
 /*N*/
-/*N*/           // MT 05/00: Default-Item muss erstmal richtig sein => Dann koennen diese ganzen komischen Defaults weg!!!
-/*N*/ //            const SvxNumBulletItem& rNumBullet = (const SvxNumBulletItem&) pEditEngine->GetParaAttrib( n, EE_PARA_NUMBULLET );
-/*N*/ //            const SvxNumberFormat* pFmt = NULL;
-/*N*/ //            if ( ( rNumBullet.GetNumRule()->GetLevelCount() > pPara->GetDepth() ) &&
-/*N*/ //                 ( ( pFtm = rNumBullet.GetNumRule()->Get( pPara->GetDepth() ) != NULL ) )
-/*N*/ //            {
-/*N*/ //            }
 /*N*/           if ( !bHasLRSpace )
 /*N*/           {
 /*N*/               SvxLRSpaceItem aLRSpaceItem = lcl_ImplGetDefLRSpaceItem( pPara->GetDepth(), GetRefMapMode().GetMapUnit() );
@@ -936,10 +896,6 @@ namespace binfilter {
 /*N*/       if ( nBulletWidth < aBulletSize.Width() )   // Bullet macht sich Platz
 /*N*/           nBulletWidth = aBulletSize.Width();
 /*N*/
-/*N*/       if ( bAdjust && !bOutlineMode )
-/*N*/       {{DBG_BF_ASSERT(0, "STRIP");}
-/*N*/       }
-/*N*/
 /*N*/       // Vertikal:
 /*N*/       ParagraphInfos aInfos = pEditEngine->GetParagraphInfos( nPara );
 /*N*/       if ( aInfos.bValid )
@@ -981,10 +937,6 @@ namespace binfilter {
 /*N*/
 /*N*/       aBulletArea = Rectangle( aTopLeft, aBulletSize );
 /*N*/   }
-/*N*/     if ( bReturnPaperPos )
-/*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
 /*N*/   return aBulletArea;
 /*N*/ }
 
@@ -1066,30 +1018,30 @@ namespace binfilter {
 /*N*/   return pEditEngine->GetParaAttribs( (USHORT)nPara );
 /*N*/ }
 
-/*N*/ IMPL_LINK( Outliner, ParaVisibleStateChangedHdl, Paragraph*, EMPTYARG )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return 0;
-/*N*/ }
+IMPL_LINK( Outliner, ParaVisibleStateChangedHdl, Paragraph*, EMPTYARG ) // DBG_BF_ASSERT
+{
+    return 0;
+}
 
-/*N*/ IMPL_LINK( Outliner, BeginMovingParagraphsHdl, MoveParagraphsInfo*, EMPTYARG )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return 0;
-/*N*/ }
+IMPL_LINK( Outliner, BeginMovingParagraphsHdl, MoveParagraphsInfo*, EMPTYARG )  // DBG_BF_ASSERT
+{
+    return 0;
+}
 
-/*N*/ IMPL_LINK( Outliner, BeginPasteOrDropHdl, PasteOrDropInfos*, EMPTYARG )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return 0;
-/*N*/ }
+IMPL_LINK( Outliner, BeginPasteOrDropHdl, PasteOrDropInfos*, EMPTYARG ) // DBG_BF_ASSERT
+{
+    return 0;
+}
 
-/*N*/ IMPL_LINK( Outliner, EndPasteOrDropHdl, PasteOrDropInfos*, EMPTYARG )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return 0;
-/*N*/ }
+IMPL_LINK( Outliner, EndPasteOrDropHdl, PasteOrDropInfos*, EMPTYARG )   // DBG_BF_ASSERT
+{
+    return 0;
+}
 
-/*N*/ IMPL_LINK( Outliner, EndMovingParagraphsHdl, MoveParagraphsInfo*, EMPTYARG )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/     return 0;
-/*N*/ }
+IMPL_LINK( Outliner, EndMovingParagraphsHdl, MoveParagraphsInfo*, EMPTYARG )    // DBG_BF_ASSERT
+{
+    return 0;
+}
 
 /*N*/ void Outliner::ImplCalcBulletText( USHORT nPara, BOOL bRecalcLevel, BOOL bRecalcChilds )
 /*N*/ {

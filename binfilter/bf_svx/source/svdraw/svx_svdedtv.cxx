@@ -153,8 +153,6 @@ namespace binfilter {
 /*N*/       ImpResetPossibilityFlags();
 /*N*/       aMark.ForceSort();
 /*N*/       ULONG nMarkAnz=aMark.GetMarkCount();
-/*N*/       if (nMarkAnz!=0) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/       ImpCheckToTopBtmPossible();
 /*N*/       ((SdrPolyEditView*)this)->ImpCheckPolyPossibilities();
 /*N*/       bPossibilitiesDirty=FALSE;
@@ -180,27 +178,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-#ifdef WIN
-
-
-
-
-    // nur nach dem 1. BegUndo oder vor dem letzten EndUndo:
-
-#endif
 
 }
 

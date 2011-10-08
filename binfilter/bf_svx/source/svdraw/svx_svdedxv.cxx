@@ -71,10 +71,9 @@ namespace binfilter {
 /*N*/ SdrObjEditView::~SdrObjEditView()
 /*N*/ {
 /*N*/   pTextEditWin = NULL;            // Damit es in EndTextEdit kein ShowCursor gibt
-/*N*/   if (IsTextEdit()){DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/     if (pTextEditOutliner!=NULL) {
-/*?*/         delete pTextEditOutliner;
-/*N*/     }
+/*N*/   if (pTextEditOutliner!=NULL) {
+/*?*/       delete pTextEditOutliner;
+/*N*/   }
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,7 +88,6 @@ namespace binfilter {
 
 /*N*/ void SdrObjEditView::BrkAction()
 /*N*/ {
-/*N*/     BrkMacroObj();
 /*N*/     SdrGlueEditView::BrkAction();
 /*N*/ }
 
@@ -107,64 +105,24 @@ namespace binfilter {
 /*?*/         if (eKind==HINT_DEFAULTTABCHG) {
 /*?*/             pTextEditOutliner->SetDefTab(pMod->GetDefaultTabulator());
 /*?*/         }
-/*?*/         if (eKind==HINT_DEFFONTHGTCHG) {
-/*?*/             // ...
-/*?*/         }
-/*?*/         if (eKind==HINT_MODELSAVED) { // #43095#
-/*?*/             DBG_BF_ASSERT(0, "STRIP");
-/*?*/         }
 /*N*/     }
 /*N*/ }
 
 /*N*/ void SdrObjEditView::ModelHasChanged()
 /*N*/ {
 /*N*/     SdrGlueEditView::ModelHasChanged();
-/*N*/     if (IsTextEdit() && !pTextEditObj->IsInserted()) {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/     // TextEditObj geaendert?
-/*N*/     if (IsTextEdit()) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
 /*N*/ }
 
-/*N*/ BOOL SdrObjEditView::BegTextEdit(SdrObject*, SdrPageView*, Window*,
-/*N*/   SdrOutliner*, OutlinerView*,
-/*N*/   BOOL, BOOL)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
-
-/*N*/ SdrEndTextEditKind SdrObjEditView::EndTextEdit(BOOL)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");SdrEndTextEditKind eRet=SDRENDTEXTEDIT_UNCHANGED; return eRet;
-/*N*/ }
+SdrEndTextEditKind SdrObjEditView::EndTextEdit(BOOL)
+{
+    SdrEndTextEditKind eRet=SDRENDTEXTEDIT_UNCHANGED;
+    return eRet;
+}
 
 /*N*/ void SdrObjEditView::DelWin(OutputDevice* pWin1)
 /*N*/ {
 /*N*/     SdrGlueEditView::DelWin(pWin1);
-/*N*/     if (pTextEditObj!=NULL && !bTextEditOnlyOneView && pWin1->GetOutDevType()==OUTDEV_WINDOW) {
-/*?*/         DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
 /*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//  @@   @@  @@@@   @@@@  @@@@@   @@@@   @@   @@  @@@@  @@@@@  @@@@@
-//  @@@ @@@ @@  @@ @@  @@ @@  @@ @@  @@  @@@ @@@ @@  @@ @@  @@ @@
-//  @@@@@@@ @@  @@ @@     @@  @@ @@  @@  @@@@@@@ @@  @@ @@  @@ @@
-//  @@@@@@@ @@@@@@ @@     @@@@@  @@  @@  @@@@@@@ @@  @@ @@  @@ @@@@
-//  @@ @ @@ @@  @@ @@     @@  @@ @@  @@  @@ @ @@ @@  @@ @@  @@ @@
-//  @@   @@ @@  @@ @@  @@ @@  @@ @@  @@  @@   @@ @@  @@ @@  @@ @@
-//  @@   @@ @@  @@  @@@@  @@  @@  @@@@   @@   @@  @@@@  @@@@@  @@@@@
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-/*N*/ void SdrObjEditView::BrkMacroObj()
-/*N*/ {
-/*N*/     if (pMacroObj!=NULL) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
-/*N*/ }
-
 
 }
 

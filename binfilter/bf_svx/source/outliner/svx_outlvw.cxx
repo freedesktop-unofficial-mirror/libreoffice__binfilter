@@ -39,69 +39,34 @@
 
 namespace binfilter {
 
-// Breite der Randzonen innerhalb derer beim D&D gescrollt wird
-#define OL_SCROLL_LRBORDERWIDTHPIX  10
-#define OL_SCROLL_TBBORDERWIDTHPIX  10
-
-// Wert, um den Fensterinhalt beim D&D gescrollt wird
-#define OL_SCROLL_HOROFFSET         20  /* in % von VisibleSize.Width */
-#define OL_SCROLL_VEROFFSET         20  /* in % von VisibleSize.Height */
-
-/*N*/ DBG_NAME(OutlinerView)
-
 /*N*/ OutlinerView::~OutlinerView()
 /*N*/ {
-/*N*/   DBG_DTOR(OutlinerView,0);
 /*N*/   delete pEditView;
 /*N*/ }
 
-
 /*N*/ Rectangle OutlinerView::GetVisArea() const
 /*N*/ {
-/*N*/   DBG_CHKTHIS(OutlinerView,0);
 /*N*/   return pEditView->GetVisArea();
 /*N*/ }
 
-/*N*/ void OutlinerView::Cut()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void OutlinerView::Paste()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-
-// =====================================================================
-// ======================   Einfache Durchreicher =======================
-// ======================================================================
-
-
 /*N*/ void OutlinerView::SetSelection( const ESelection& rSel )
 /*N*/ {
-/*N*/   DBG_CHKTHIS(OutlinerView,0);
 /*N*/   pEditView->SetSelection( rSel );
 /*N*/ }
 
 /*N*/ Window* OutlinerView::GetWindow() const
 /*N*/ {
-/*N*/   DBG_CHKTHIS(OutlinerView,0);
 /*N*/   return pEditView->GetWindow();
 /*N*/ }
 
 /*N*/ Rectangle OutlinerView::GetOutputArea() const
 /*N*/ {
-/*N*/   DBG_CHKTHIS(OutlinerView,0);
 /*N*/   return pEditView->GetOutputArea();
 /*N*/ }
 
 /*N*/ ESelection OutlinerView::GetSelection()
 /*N*/ {
-/*N*/   DBG_CHKTHIS(OutlinerView,0);
 /*N*/   return pEditView->GetSelection();
-/*N*/ }
-
-/*N*/ void OutlinerView::Copy()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 }

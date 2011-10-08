@@ -641,21 +641,6 @@ SvxEditViewForwarder* SvxTextEditSourceImpl::GetEditViewForwarder( sal_Bool bCre
 
             // enter edit mode
             mpView->EndTextEdit();
-            if( mpView->BegTextEdit( mpObject, NULL, NULL, (SdrOutliner*)NULL, NULL, FALSE, FALSE ) )
-            {
-                SdrTextObj* pTextObj = PTR_CAST( SdrTextObj, mpObject );
-                if( pTextObj->IsTextEditActive() )
-                {
-                    // create new view forwarder
-                    mpViewForwarder = CreateViewForwarder();
-                }
-                else
-                {
-                    // failure. Somehow, BegTextEdit did not set
-                    // our SdrTextObj into edit mode
-                    mpView->EndTextEdit();
-                }
-            }
         }
     }
 

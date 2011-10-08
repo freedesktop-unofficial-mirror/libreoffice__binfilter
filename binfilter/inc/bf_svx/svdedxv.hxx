@@ -110,19 +110,6 @@ protected:
 private:
     void ImpClearVars();
 
-protected:
-
-    // Eine neue OutlinerView auf dem Heap anlegen und alle erforderlichen Parameter setzen.
-    // pTextEditObj, pTextEditPV und pTextEditOutliner muessen initiallisiert sein.
-
-    // Hintergrundfarbe fuer die Outlinerviews bestimmen
-
-    // Feststellen, ob der gesamte Text markiert ist. Liefert auch TRUE wenn
-    // kein Text vorhanden ist.
-
-    // Handler fuer AutoGrowing Text bei aktivem Outliner
-
-
 public:
     SdrObjEditView(SdrModel* pModel1, OutputDevice* pOut=NULL);
     virtual ~SdrObjEditView();
@@ -142,29 +129,13 @@ public:
     void SetQuickTextEditMode(BOOL bOn) { bQuickTextEditMode=bOn; }
     BOOL IsQuickTextEditMode() const { return bQuickTextEditMode; }
 
-    // Starten des TextEditMode. Ist pWin==NULL, wird das erste an der View
-    // angemeldete Win verwendet.
-    // Der Cursor des Fensters an dem Editiert wird wird bei
-    // BegTextEdit() gemerkt und bei EndTextEdit() wieder restauriert.
-    // Die App muss sicherstellen, das die zum Zeitpunkt des BegEdit am
-    // Windows angemeldete Cursorinstanz beim EndTextEdit noch gueltig ist.
-    // Ueber den Parameter pEditOutliner kann die Applikation einen eigenen
-    // Outliner vorgeben, der zum Editieren verwendet wird. Dieser gehoert
-    // nach Aufruf von BegTextEdit der SdrObjEditView und wird von dieser
-    // spaeter via delete zerstoert (falls bDontDeleteOutliner=FALSE). Die
-    // SdrObjEditView setzt dann das Modusflag (EditEngine/Outliner) an
-    // dieser Instanz und ausserdem auch den StatusEventHdl.
-    // Ebenso kann eine spezifische OutlinerView vorgegeben werden.
-    BOOL BegTextEdit(SdrObject* pObj, SdrPageView* pPV=NULL, Window* pWin=NULL,
-        SdrOutliner* pGivenOutliner=NULL, OutlinerView* pGivenOutlinerView=NULL,
-        BOOL bDontDeleteOutliner=FALSE, BOOL bOnlyOneView=FALSE);
     // bDontDeleteReally ist ein Spezialparameter fuer den Writer.
     // Ist dieses Flag gesetzt, dann wird ein evtl. leeres Textobjekt
     // nicht geloescht. Stattdessen gibt es dann einen Returncode
     // SDRENDTEXTEDIT_SHOULDBEDELETED (anstelle von SDRENDTEXTEDIT_BEDELETED)
     // der besagt, dass das Objekt geloescht werden sollte.
     SdrEndTextEditKind EndTextEdit(BOOL bDontDeleteReally=FALSE);
-    BOOL IsTextEdit() const { return pTextEditObj!=NULL; }
+    BOOL IsTextEdit() const { return pTextEditObj != NULL; }
 
     // Folgende Methode addiert einen passenden Offset zum MouseEvent
     // um diesen an den Outliner weiterzureichen.
@@ -195,7 +166,6 @@ public:
     // Draw-Objekte mit Macrofunktionalitaet hat (SdrObject::HasMacro()==TRUE).
     void SetMacroMode(BOOL bOn) { bMacroMode=bOn; }
     BOOL IsMacroMode() const { return bMacroMode; }
-    void BrkMacroObj();
     BOOL IsMacroObj() const { return pMacroObj!=NULL; }
     BOOL IsMacroObjDown() const { return bMacroDown; }
 };

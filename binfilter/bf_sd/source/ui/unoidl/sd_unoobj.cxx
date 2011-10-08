@@ -885,7 +885,6 @@ void SdXShape::SetEmptyPresObj( sal_Bool bEmpty ) throw()
                 pOutliner->SetVertical( bVertical );
                 pOutliner->SetStyleSheetPool( (SfxStyleSheetPool*)pDoc->GetStyleSheetPool() );
                 pOutliner->SetStyleSheet( 0, pPage->GetTextStyleSheetForObject( pObj ) );
-                pOutliner->Insert( pPage->GetPresObjText( pPage->GetPresObjKind(pObj) ) );
                 pObj->SetOutlinerParaObject( pOutliner->CreateParaObject() );
                 pOutliner->Clear();
             }

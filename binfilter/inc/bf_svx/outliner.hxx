@@ -139,29 +139,6 @@ private:
     USHORT              GetDepth() const { return nDepth; }
 };
 
-struct ParaRange
-{
-    USHORT  nStartPara;
-    USHORT  nEndPara;
-
-            ParaRange( USHORT nS, USHORT nE ) { nStartPara = nS, nEndPara = nE; }
-
-    void    Adjust();
-    USHORT  Len() const { return 1 + ( ( nEndPara > nStartPara ) ? (nEndPara-nStartPara) : (nStartPara-nEndPara) ); }
-};
-
-inline void ParaRange::Adjust()
-{
-    if ( nStartPara > nEndPara )
-    {
-        USHORT nTmp = nStartPara;
-        nStartPara = nEndPara;
-        nEndPara = nTmp;
-    }
-}
-
-#define OL_ROOTPARENT (Paragraph*)NULL
-
 class OutlinerView
 {
     friend class Outliner;
@@ -170,37 +147,6 @@ private:
 
     Outliner*   pOwner;
     EditView*   pEditView;
-
-    // Drag & Drop
-    BOOL        bBeginDragAtMove_OLDMEMBER;
-    BOOL        bInDragMode;
-    Point       aDDStartPosRef;
-    Point       aDDStartPosPix;
-    ULONG       nDDStartPara;
-    ULONG       nDDStartParaVisChildCount;
-    ULONG       nDDCurPara;
-    USHORT      nDDStartDepth;
-    USHORT      nDDCurDepth;
-    USHORT      nDDMaxDepth;
-    BOOL        bDDChangingDepth;
-    BOOL        bDDCursorVisible;
-    long*       pHorTabArrDoc;
-    long        nDDScrollLRBorderWidthWin;  // Left Right
-    long        nDDScrollTBBorderWidthWin;  // Top Bottom
-    long        nDDScrollLROffs;
-    long        nDDScrollTDOffs;
-
-    void*       pDummy;
-    ULONG       nDummy;
-
-    enum MouseTarget {
-        MouseText = 0,
-        MouseBullet = 1,
-        MouseHypertext = 2,    //            ausserhalb OutputArea
-        MouseOutside = 3,    //            ausserhalb OutputArea
-        MouseDontKnow = 4
-    };
-    MouseTarget OLD_ePrevMouseTarget;
 
 public:
     virtual     ~OutlinerView();
@@ -215,14 +161,7 @@ public:
 
     Rectangle   GetVisArea() const;
 
-    void        Cut();
-    void        Copy();
-    void        Paste();
-
-    // Depricated
-
     ESelection  GetSelection();
-
     void        SetSelection( const ESelection& );
 };
 
@@ -421,8 +360,6 @@ protected:
     void            ParagraphInserted( USHORT nParagraph );
     void            ParagraphDeleted( USHORT nParagraph );
     void            ParaAttribsChanged( USHORT nParagraph );
-    void            ParagraphHeightChanged( USHORT nParagraph );
-
 
     void        PaintBullet( USHORT nPara, const Point& rStartPos,
                     const Point& rOrigin, short nOrientation,
@@ -447,9 +384,6 @@ public:
 
     void            SetKernAsianPunctuation( BOOL bEnabled );
 
-
-    Paragraph*      Insert( const String& rText, ULONG nAbsPos = LIST_APPEND,
-                                USHORT nDepth = 0 );
     void            SetText( const OutlinerParaObject& );
     void            SetText( const String& rText, Paragraph* pParagraph );
     String          GetText( Paragraph* pPara, ULONG nParaCount=1 ) const;
@@ -587,8 +521,6 @@ public:
     void            SetEndMovingHdl( const Link& rLink){aEndMovingHdl=rLink;}
 
     ULONG           GetLineCount( ULONG nParagraph ) const;
-    USHORT          GetLineLen( ULONG nParagraph, USHORT nLine ) const;
-    ULONG           GetLineHeight( ULONG nParagraph, ULONG nLine = 0 );
 
     SfxUndoManager& GetUndoManager();
 
@@ -624,9 +556,7 @@ public:
     void            SetRefDevice( OutputDevice* pRefDev );
     OutputDevice*   GetRefDevice() const;
 
-
     ULONG           GetTextHeight() const;
-    ULONG           GetTextHeight( ULONG nParagraph ) const;
     Point           GetDocPosTopLeft( ULONG nParagraph );
     Point           GetDocPos( const Point& rPaperPos ) const;
     BOOL            IsTextPos( const Point& rPaperPos, USHORT nBorder = 0 );

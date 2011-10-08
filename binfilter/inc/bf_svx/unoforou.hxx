@@ -100,7 +100,7 @@ public:
     virtual sal_Bool        GetWordIndices( USHORT nPara, USHORT nIndex, USHORT& nStart, USHORT& nEnd ) const;
     virtual sal_Bool        GetAttributeRun( USHORT& nStartIndex, USHORT& nEndIndex, USHORT nPara, USHORT nIndex ) const;
     virtual USHORT          GetLineCount( USHORT nPara ) const;
-    virtual USHORT          GetLineLen( USHORT nPara, USHORT nLine ) const;
+    virtual USHORT          GetLineLen( USHORT /* nPara */, USHORT /* nLine */ ) const { return 0; } // DBG_BF_ASSERT
     virtual sal_Bool        Delete( const ESelection& );
     virtual sal_Bool        InsertText( const String&, const ESelection& );
     virtual sal_Bool        QuickFormatDoc( BOOL bFull=FALSE );

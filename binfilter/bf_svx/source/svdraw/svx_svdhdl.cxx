@@ -33,12 +33,9 @@
 // #105678#
 namespace binfilter {
 
-/*N*/ SdrHdl::~SdrHdl()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
+SdrHdl::~SdrHdl() {}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// #97016# II
 
 /*N*/ class ImplHdlListData
 /*N*/ {
@@ -50,19 +47,7 @@ namespace binfilter {
 /*N*/ };
 
 
-// #105678# Help struct for re-sorting handles
-struct ImplHdlAndIndex
-{
-    SdrHdl*                     mpHdl;
-    sal_uInt32                  mnIndex;
-};
-
-// #105678# Help method for sorting handles taking care of OrdNums, keeping order in
-// single objects and re-sorting polygon handles intuitively
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// #97016# II
-
 
 /*N*/ SdrHdl* SdrHdlList::GetFocusHdl() const
 /*N*/ {
@@ -71,8 +56,6 @@ struct ImplHdlAndIndex
 /*N*/   else
 /*?*/       return 0L;
 /*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ SdrHdlList::SdrHdlList(SdrMarkView* pV)
 /*N*/ : pImpl(new ImplHdlListData(pV))
@@ -92,44 +75,12 @@ struct ImplHdlAndIndex
 /*N*/ }
 
 
-/*N*/ void SdrHdlList::SetRotateShear(BOOL bOn)
-/*N*/ {
-/*N*/   bRotateShear = bOn;
-/*N*/ }
-
-/*N*/ void SdrHdlList::SetDistortShear(BOOL bOn)
-/*N*/ {
-/*N*/   bDistortShear = bOn;
-/*N*/ }
-
-/*N*/ void SdrHdlList::SetFineHdl(BOOL bOn)
-/*N*/ {
-/*N*/   if(bFineHandles != bOn)
-/*N*/   {
-/*N*/       // remember new state
-/*N*/       bFineHandles = bOn;
-/*N*/
-/*N*/       // propagate change to IAOs
-/*N*/       for(UINT32 i=0; i<GetHdlCount(); i++)
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-
 /*N*/ void SdrHdlList::Clear()
 /*N*/ {
-/*N*/   for (ULONG i=0; i<GetHdlCount(); i++)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/   aList.Clear();
 /*N*/
 /*N*/   bRotateShear=FALSE;
 /*N*/   bDistortShear=FALSE;
-/*N*/ }
-
-/*N*/ void SdrHdlList::Sort()
-/*N*/ {
 /*N*/ }
 
 }

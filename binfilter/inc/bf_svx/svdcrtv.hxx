@@ -46,7 +46,6 @@ class XLineAttrSetItem;
 class XFillAttrSetItem;
 class SdrEdgeObj;
 class SdrObjConnection;
-class ImpSdrConnectMarker;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -65,7 +64,6 @@ protected:
     SdrPageView*                pCreatePV;    // Hier wurde die Erzeugung gestartet
     SdrObject*                  pCurrentLibObj;
     SdrDragMethod*              pLibObjDragMeth;
-    ImpSdrConnectMarker*        pConnectMarker;
 
     Pointer                     aAktCreatePointer;
 
@@ -84,7 +82,6 @@ protected:
 
 private:
     void ImpClearVars();
-    void ImpMakeCreateAttr();
 
 protected:
 
@@ -132,7 +129,6 @@ public:
     const SdrObject* GetCurrentLibObj() const { return pCurrentLibObj; }
 
     // Starten des normalen Create
-    void BrkCreateObj();
     BOOL IsCreateObj() const { return pAktCreate!=NULL; }
     SdrObject* GetCreateObj() const { return pAktCreate; }
 

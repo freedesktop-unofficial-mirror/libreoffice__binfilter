@@ -100,23 +100,11 @@ namespace binfilter {
 /*N*/ void SdrDragView::BrkAction()
 /*N*/ {
 /*N*/   SdrExchangeView::BrkAction();
-/*N*/   BrkDragObj();
 /*N*/ }
 
 /*N*/ void SdrDragView::ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const
 /*N*/ {
 /*N*/   SdrExchangeView::ToggleShownXor(pOut,pRegion);
-    if (pDragBla!=NULL && aDragStat.IsShown() &&
-    1 )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ void SdrDragView::BrkDragObj()
-/*N*/ {
-/*N*/   if (pDragBla!=NULL) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -124,22 +112,14 @@ namespace binfilter {
 /*N*/ void SdrDragView::SetNoDragXorPolys(BOOL bOn)
 /*N*/ {
 /*N*/   if (IsNoDragXorPolys()!=bOn) {
-/*N*/       BOOL bDragging=pDragBla!=NULL;
-/*N*/       BOOL bShown=bDragging && aDragStat.IsShown();
-/*N*/       if (bShown) {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       bNoDragXorPolys=bOn;
-/*N*/       if (bDragging) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       if (bShown) {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   }
 /*N*/ }
 
 /*N*/ void SdrDragView::SetDragStripes(BOOL bOn)
 /*N*/ {
-/*N*/   if (pDragBla!=NULL && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   } else {
+/*N*/   if ( !(pDragBla!=NULL && aDragStat.IsShown() ) )
 /*N*/       bDragStripes=bOn;
-/*N*/   }
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -46,7 +46,6 @@ class Window;
 
 namespace binfilter {
 
-class SdrHdlList;
 class SdrObject;
 class SdrPageView;
 class SdrHdlBitmapSet;
@@ -139,8 +138,8 @@ class SdrHdl
 public:
     virtual ~SdrHdl();
 
-    SdrHdlKind GetKind() const { DBG_BF_ASSERT(0, "STRIP"); return HDL_MOVE; }
-    SdrObject* GetObj() const {DBG_BF_ASSERT(0, "STRIP"); return NULL;  }
+    SdrHdlKind GetKind() const { return HDL_MOVE; }
+    SdrObject* GetObj() const { return NULL;  }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -152,35 +151,12 @@ public:
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Spiegelachse
-
-// Ein SdrHdlBezWgt hat Kenntnis von seinem "BasisHandle". Seine Draw-Methode
-// zeichnet zusaetzlich eine Linie von seiner Position zur Position dieses
-// BasisHandles.
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// #97016# II
 class ImplHdlListData;
 
 class SdrHdlList
 {
 protected:
-    // #97016# II: use ImplHdlListData here to hold two data items
-    //SdrMarkView*              pView;
     ImplHdlListData*            pImpl;
 
     Container                   aList;
@@ -202,27 +178,28 @@ public:
     ~SdrHdlList();
     void Clear();
 
-    // #97016# II
     SdrHdl* GetFocusHdl() const;
 
     // Access to View
-    // #97016# II: moved implementation to cxx
     SdrMarkView* GetView() const;
 
     // Sortierung: 1.Level Erst Refpunkt-Handles, dann normale Handles, dann Glue, dann User, dann Plushandles
     //             2.Level PageView (Pointer)
     //             3.Level Position (x+y)
-    void     Sort();
-    ULONG    GetHdlCount() const                       { return aList.Count(); }
-    SdrHdl*  GetHdl(ULONG nNum) const                  { return (SdrHdl*)(aList.GetObject(nNum)); }
-    USHORT   GetHdlSize() const                        { return nHdlSize; }
-    BOOL IsMoveOutside() const                     { return bMoveOutside; }
-    void     SetRotateShear(BOOL bOn);
-    BOOL IsRotateShear() const                     { return bRotateShear; }
-    void     SetDistortShear(BOOL bOn);
-    BOOL IsDistortShear() const                    { return bDistortShear; }
-    void     SetFineHdl(BOOL bOn);
-    BOOL IsFineHdl() const                        { return bFineHandles; }
+    ULONG   GetHdlCount() const                 { return aList.Count(); }
+    SdrHdl* GetHdl(ULONG nNum) const            { return (SdrHdl*)(aList.GetObject(nNum)); }
+    USHORT  GetHdlSize() const                  { return nHdlSize; }
+
+    BOOL    IsMoveOutside() const               { return bMoveOutside; }
+
+    void    SetRotateShear(BOOL bOn)            { bRotateShear = bOn; }
+    BOOL    IsRotateShear() const               { return bRotateShear; }
+
+    void    SetDistortShear(BOOL bOn)           { bDistortShear = bOn; }
+    BOOL    IsDistortShear() const              { return bDistortShear; }
+
+    void    SetFineHdl(BOOL bOn)                { bFineHandles = bOn; }
+    BOOL    IsFineHdl() const                   { return bFineHandles; }
 };
 
 }//end of namespace binfilter

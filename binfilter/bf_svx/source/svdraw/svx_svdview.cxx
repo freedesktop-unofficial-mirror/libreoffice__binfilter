@@ -122,25 +122,15 @@ namespace binfilter {
 /*?*/       eSel.nStartPara=eSel.nEndPara;
 /*?*/       eSel.nStartPos=eSel.nEndPos;
 /*?*/       GetTextEditOutlinerView()->SetSelection(eSel);
-/*?*/ #ifndef SVX_LIGHT
-/*?*/       if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP");}
-/*?*/ #endif
 /*N*/   } else if (HasMarkedGluePoints()) UnmarkAllGluePoints();
-/*N*/   else if (HasMarkedPoints()) {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/   else UnmarkAllObj();
+/*N*/   else if ( !HasMarkedPoints() )
+/*N*/       UnmarkAllObj();
 /*N*/ }
-
-
-
-
-
-
 
 
 /*N*/ void SdrView::DeleteMarked()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-
 
 
 /*N*/ void SdrView::WriteRecords(SvStream& rOut) const

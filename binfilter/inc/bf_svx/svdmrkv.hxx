@@ -158,7 +158,6 @@ protected:
     unsigned                    bForceFrameHandles : 1; // Persistent - FrameDrag auch bei Einzelobjekten
     unsigned                    bPlusHdlAlways : 1;   // Persistent
     unsigned                    bMarkHdlWhenTextEdit : 1; // Persistent, default=FALSE
-//    unsigned                  bSolidHdlBackgroundInvalid : 1; // Hintergrund der Handles ungueltig?
     unsigned                    bInsPolyPoint : 1;     // z.Zt InsPolyPointDragging
     unsigned                    bEdgesOfMarkedNodesDirty : 1;
     unsigned                    bMarkedObjRectDirty : 1;
@@ -177,7 +176,6 @@ protected:
 
 
     virtual void SetMarkHandles();                                           // aHdl (Liste der Handles) fuellen
-//    virtual void DrawMarkHdl(OutputDevice* pOut, BOOL bNoRefHdl) const;  // Togglen der Handles
     virtual void SetMarkRects();                                             // Rects an den PageViews
     virtual void CheckMarked();                                              // MarkList nach Del und Lock Layer durchsuchen...
 

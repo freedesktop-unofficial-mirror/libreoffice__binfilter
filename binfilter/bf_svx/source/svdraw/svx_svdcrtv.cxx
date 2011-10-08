@@ -33,29 +33,6 @@
 
 namespace binfilter {
 
-#define XOR_CREATE_PEN          PEN_SOLID
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ class ImpSdrConnectMarker: public SdrViewUserMarker
-/*N*/ {
-/*N*/   const SdrObject*            pAktObj;
-/*N*/   const SdrPageView*          pAktPV;
-/*N*/
-
-/*N*/ public:
-/*N*/   ImpSdrConnectMarker(SdrCreateView* pInView): SdrViewUserMarker(pInView),pAktObj(NULL),pAktPV(NULL) {}
-/*N*/   ~ImpSdrConnectMarker() {}
-/*N*/   void SetTargetObject(const SdrObject* pObj);
-/*N*/ }; // svdvmark
-
-
-/*N*/ void ImpSdrConnectMarker::SetTargetObject(const SdrObject* pObj)
-/*N*/ {
-/*N*/   if (pAktObj!=pObj) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ }
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -88,29 +65,16 @@ namespace binfilter {
 /*N*/   bAutoClosePolys=TRUE;
 /*N*/   nAutoCloseDistPix=5;
 /*N*/   nFreeHandMinDistPix=10;
-/*N*/
-/*N*/   pConnectMarker=new ImpSdrConnectMarker(this);
-/*N*/   pConnectMarker->SetLineWidth(2);
-/*N*/   pConnectMarker->SetAnimateDelay(500);
-/*N*/   pConnectMarker->SetAnimateCount(3);
-/*N*/   pConnectMarker->SetAnimateSpeed(100);
-/*N*/   pConnectMarker->SetAnimateToggle(TRUE);
-/*N*/ }
-
-/*N*/ void SdrCreateView::ImpMakeCreateAttr()
-/*N*/ {
 /*N*/ }
 
 /*N*/ SdrCreateView::SdrCreateView(SdrModel* pModel1, OutputDevice* pOut):
 /*N*/   SdrDragView(pModel1,pOut)
 /*N*/ {
 /*N*/   ImpClearVars();
-/*N*/   ImpMakeCreateAttr();
 /*N*/ }
 
 /*N*/ SdrCreateView::~SdrCreateView()
 /*N*/ {
-/*N*/   delete pConnectMarker;
 /*N*/   delete pCurrentLibObj;
 /*N*/   delete pAktCreate;
 /*N*/ }
@@ -122,20 +86,15 @@ namespace binfilter {
 /*N*/ }
 
 
-
-
 /*N*/ void SdrCreateView::BrkAction()
 /*N*/ {
 /*N*/   SdrDragView::BrkAction();
-/*N*/   BrkCreateObj();
 /*N*/ }
 
 
 /*N*/ void SdrCreateView::ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const
 /*N*/ {
 /*N*/   SdrDragView::ToggleShownXor(pOut,pRegion);
-/*N*/   if (pAktCreate!=NULL && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/ }
 
 /*N*/ BOOL SdrCreateView::CheckEdgeMode()
@@ -145,8 +104,6 @@ namespace binfilter {
 /*?*/       if (nAktInvent==SdrInventor && nAktIdent==OBJ_EDGE) return FALSE;
 /*N*/   }
 /*N*/   if (!IsCreateMode() || nAktInvent!=SdrInventor || nAktIdent!=OBJ_EDGE || pCurrentLibObj!=NULL) {
-/*?*/       if (pConnectMarker->IsVisible()) {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/       pConnectMarker->SetTargetObject(NULL);
 /*N*/       return FALSE;
 /*N*/   } else {
 /*N*/       // TRUE heisst: MouseMove soll Connect checken
@@ -155,16 +112,24 @@ namespace binfilter {
 /*N*/ }
 
 
-
-
 /*N*/ BOOL SdrCreateView::IsTextTool() const
 /*N*/ {
-/*N*/   return eEditMode==SDREDITMODE_CREATE && pCurrentLibObj==NULL && nAktInvent==SdrInventor && (nAktIdent==OBJ_TEXT || nAktIdent==OBJ_TEXTEXT || nAktIdent==OBJ_TITLETEXT || nAktIdent==OBJ_OUTLINETEXT);
+/*N*/   return eEditMode==SDREDITMODE_CREATE
+            && pCurrentLibObj==NULL
+            && nAktInvent==SdrInventor
+            && (  nAktIdent==OBJ_TEXT
+               || nAktIdent==OBJ_TEXTEXT
+               || nAktIdent==OBJ_TITLETEXT
+               || nAktIdent==OBJ_OUTLINETEXT
+               );
 /*N*/ }
 
 /*N*/ BOOL SdrCreateView::IsEdgeTool() const
 /*N*/ {
-/*N*/   return eEditMode==SDREDITMODE_CREATE && pCurrentLibObj==NULL && nAktInvent==SdrInventor && (nAktIdent==OBJ_EDGE);
+/*N*/   return eEditMode==SDREDITMODE_CREATE
+            && pCurrentLibObj==NULL
+            && nAktInvent==SdrInventor
+            && (nAktIdent==OBJ_EDGE);
 /*N*/ }
 
 
@@ -205,19 +170,6 @@ namespace binfilter {
 /*N*/   ImpSetGlueVisible3(IsEdgeTool());
 /*N*/ }
 
-
-
-
-
-
-
-
-
-/*N*/ void SdrCreateView::BrkCreateObj()
-/*N*/ {
-/*N*/   if (pAktCreate!=NULL) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 

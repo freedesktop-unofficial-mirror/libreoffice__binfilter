@@ -110,8 +110,8 @@ public:
     inline SvxInterLineSpace GetInterLineSpaceRule() const { return eInterLineSpace; }
 
     virtual USHORT          GetValueCount() const { return SVX_LINESPACE_END; }
-    virtual String          GetValueTextByPos( USHORT nPos ) const;
-    virtual USHORT          GetEnumValue() const { return 0; } // DBG_BF_ASSERT
+    virtual String          GetValueTextByPos( USHORT nPos ) const; // DBG_BF_ASSERT
+    virtual USHORT          GetEnumValue() const { return 0; }      // DBG_BF_ASSERT
     virtual void            SetEnumValue( USHORT /* nNewVal */ ) {} // DBG_BF_ASSERT
 };
 
