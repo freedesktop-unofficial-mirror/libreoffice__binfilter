@@ -159,18 +159,8 @@ public:
     const _FndLine*     GetUpper() const    { return pUpper; }
         _FndLine*       GetUpper()          { return pUpper; }
 
-    void SetTableLines( const SwSelBoxes &rBoxes, const SwTable &rTable );
-    void SetTableLines( const SwTable &rTable );
-    void DelFrms ( SwTable &rTable );
-    void MakeFrms( SwTable &rTable );
     void MakeNewFrms( SwTable &rTable, const USHORT nNumber,
                                        const BOOL bBehind );
-    BOOL AreLinesToRestore( const SwTable &rTable ) const;
-
-    //Auch die Charts zu der Tabelle muessen etwas von den Veraenderungen
-    //mitbekommen.
-    void SaveChartData( const SwTable &rTable );
-    void RestoreChartData( const SwTable &rTable );
 };
 
 

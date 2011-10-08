@@ -120,10 +120,6 @@ public:
 
     virtual void Modify( SfxPoolItem* pOld, SfxPoolItem* pNew );
 
-    BOOL DeleteSel( SwDoc*, const SwSelBoxes& rBoxes,
-                            const BOOL bDelMakeFrms = TRUE,
-                            const BOOL bCorrBorder = TRUE );
-
           SwTableSortBoxes& GetTabSortBoxes()       { return aSortCntBoxes; }
     const SwTableSortBoxes& GetTabSortBoxes() const { return aSortCntBoxes; }
 

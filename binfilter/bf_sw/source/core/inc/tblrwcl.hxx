@@ -77,10 +77,6 @@ void _InsTblBox( SwDoc* pDoc, SwTableNode* pTblNd,
                 SwTableLine* pLine, SwTableBoxFmt* pBoxFrmFmt,
                 SwTableBox* pBox, USHORT nInsPos, USHORT nCnt = 1 );
 
-void _DeleteBox( SwTable& rTbl, SwTableBox* pBox,
-                BOOL bCalcNewSize = TRUE, const BOOL bCorrBorder = TRUE,
-                SwShareBoxFmts* pShareFmts = 0 );
-
 // Klasse fuers SplitTable
 // sammelt von einer Line die Boxen aller obersten oder untersten Lines
 // in einem Array. Zusaetzlich werden die Positionen vermerkt.
@@ -192,7 +188,6 @@ public:
 
     const SwFrmFmt& GetOldFormat() const { return *pOldFmt; }
 
-    SwFrmFmt* GetFormat( long nWidth ) const;
     SwFrmFmt* GetFormat( const SfxPoolItem& rItem ) const;
     void AddFormat( const SwFrmFmt& rFmt );
     bool RemoveFormat( const SwFrmFmt& rFmt );
@@ -211,10 +206,8 @@ public:
     SwShareBoxFmts() {}
     ~SwShareBoxFmts();
 
-    SwFrmFmt* GetFormat( const SwFrmFmt& rFmt, long nWidth ) const;
     SwFrmFmt* GetFormat( const SwFrmFmt& rFmt, const SfxPoolItem& ) const;
     void AddFormat( const SwFrmFmt& rOld, const SwFrmFmt& rNew );
-    void SetSize( SwTableBox& rBox, const SwFmtFrmSize& rSz );
     void SetAttr( SwTableBox& rBox, const SfxPoolItem& rItem );
     void RemoveFormat( const SwFrmFmt& rFmt );
 };
