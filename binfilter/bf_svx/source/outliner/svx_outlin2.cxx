@@ -303,7 +303,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/       USHORT nPara = pEditEngine->FindParagraph( aDocPos.Y() );
 /*N*/       if ( ( nPara != EE_PARA_NOT_FOUND ) && ImplHasBullet( nPara ) )
 /*N*/       {
-/*?*/           Rectangle aBulArea = ImpCalcBulletArea( nPara, TRUE, TRUE );
+/*?*/           Rectangle aBulArea = ImpCalcBulletArea( nPara );
 /*?*/           if ( aBulArea.IsInside( rPaperPos ) )
 /*?*/           {
 /*?*/               bTextPos = TRUE;

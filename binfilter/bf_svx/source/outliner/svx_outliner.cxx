@@ -875,7 +875,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ Rectangle Outliner::ImpCalcBulletArea( USHORT nPara, BOOL bAdjust, BOOL bReturnPaperPos )
+/*N*/ Rectangle Outliner::ImpCalcBulletArea( USHORT nPara )
 /*N*/ {
 /*N*/   // Bullet-Bereich innerhalb des Absatzes...
 /*N*/   Rectangle aBulletArea;
@@ -969,7 +969,7 @@ namespace binfilter {
 /*N*/
 /*N*/     if ( aInfo.bVisible )
 /*N*/     {
-/*N*/         aInfo.aBounds = ImpCalcBulletArea( nPara, TRUE, TRUE );
+/*N*/         aInfo.aBounds = ImpCalcBulletArea( nPara );
 /*N*/     }
 /*N*/
 /*N*/     return aInfo;

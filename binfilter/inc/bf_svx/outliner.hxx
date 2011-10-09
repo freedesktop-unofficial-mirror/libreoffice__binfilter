@@ -349,7 +349,7 @@ class Outliner
 
     long        ImpCalcMaxBulletWidth( USHORT nPara, const SvxBulletItem& rBullet );
     Font        ImpCalcBulletFont( USHORT nPara ) const;
-    Rectangle   ImpCalcBulletArea( USHORT nPara, BOOL bAdjust, BOOL bReturnPaperPos );
+    Rectangle   ImpCalcBulletArea( USHORT nPara );
     long        ImpGetTextIndent( ULONG nPara );
 
     USHORT      ImplGetOutlinerMode() const { return nOutlinerMode & OUTLINERMODE_USERMASK; }

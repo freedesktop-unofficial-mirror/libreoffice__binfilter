@@ -59,7 +59,7 @@ namespace binfilter {
 /*N*/   if ( nPara < pOwner->pParaList->GetParagraphCount() )
 /*N*/   {
 /*N*/       if ( pOwner->ImplHasBullet( nPara ) )
-/*N*/           aBulletArea = pOwner->ImpCalcBulletArea( nPara, FALSE, FALSE );
+/*N*/           aBulletArea = pOwner->ImpCalcBulletArea( nPara );
 /*N*/   }
 /*N*/   return aBulletArea;
 /*N*/ }
