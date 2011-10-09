@@ -129,7 +129,7 @@ public:
     // Wird pForcedMeth uebergeben, so wird pHdl, ... nicht ausgewerten, sondern diese
     // Drag-Methode verwendet. Die Instanz geht dabei ins Eigentum der View ueber und
     // wird zum Ende des Draggings destruiert.
-    BOOL IsDragObj() const { return pDragBla!=NULL && !bInsPolyPoint && !bInsGluePoint; }
+    BOOL IsDragObj() const { return pDragBla!=NULL && !bInsGluePoint; }
     SdrHdl* GetDragHdl() const { return pDragHdl; }
     SdrDragMethod* GetDragMethod() const { return pDragBla; }
     BOOL IsDraggingPoints() const { return eDragHdl==HDL_POLY; }
@@ -150,7 +150,7 @@ public:
     // Interaktives einfuegen eines neuen Punktes. nIdx=0 => vor dem ersten Punkt.
     BOOL BegInsObjPoint(USHORT nIdx, const Point& rPnt, BOOL bNewObj, OutputDevice* pOut=NULL, short nMinMov=-3) { return BegInsObjPoint(TRUE,nIdx,rPnt,bNewObj,pOut,nMinMov); }
     BOOL BegInsObjPoint(const Point& rPnt, BOOL bNewObj, OutputDevice* pOut=NULL, short nMinMov=-3) { return BegInsObjPoint(FALSE,0,rPnt,bNewObj,pOut,nMinMov); }
-    BOOL IsInsObjPoint() const { return pDragBla!=NULL && bInsPolyPoint; }
+    BOOL IsInsObjPoint() const { return FALSE; }    // DBG_BF_ASSERT
 
     // Fuer die App zum Verwalten des Status. GetPreferedPointer() wird
     // spaeter vielleicht einen passenden Pointer dafuer liefern

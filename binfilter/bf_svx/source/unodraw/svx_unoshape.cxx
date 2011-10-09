@@ -467,7 +467,6 @@ uno::Any SvxShape::GetBitmap( sal_Bool bMetaFile /* = sal_False */ ) const throw
     SdrModel* pLclModel = pObj->GetModel();
     SdrPage* pPage = pObj->GetPage();
     E3dView* pView = new E3dView( pLclModel, &aVDev );
-    pView->SetMarkHdlHidden( sal_True );
     SdrPageView* pPageView = pView->ShowPage(pPage, Point());
 
     SdrObject *pTempObj = pObj;

@@ -122,9 +122,12 @@ namespace binfilter {
 /*?*/       eSel.nStartPara=eSel.nEndPara;
 /*?*/       eSel.nStartPos=eSel.nEndPos;
 /*?*/       GetTextEditOutlinerView()->SetSelection(eSel);
-/*N*/   } else if (HasMarkedGluePoints()) UnmarkAllGluePoints();
-/*N*/   else if ( !HasMarkedPoints() )
-/*N*/       UnmarkAllObj();
+/*N*/   }
+        else if ( !HasMarkedGluePoints() )
+        {
+/*N*/       if ( !HasMarkedPoints() )
+/*N*/           UnmarkAllObj();
+        }
 /*N*/ }
 
 

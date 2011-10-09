@@ -31,7 +31,6 @@ namespace binfilter {
 
 /*N*/ BOOL SdrMarkView::HasMarkedPoints() const
 /*N*/ {
-/*N*/   ForceUndirtyMrkPnt();
 /*N*/   BOOL bRet=FALSE;
 /*N*/   if (!ImpIsFrameHandles()) {
 /*N*/       ULONG nMarkAnz=aMark.GetMarkCount();
@@ -48,34 +47,11 @@ namespace binfilter {
 
 /*N*/ void SdrMarkView::SetPlusHandlesAlwaysVisible(BOOL bOn)
 /*N*/ { // HandlePaint optimieren !!!!!!!
-/*N*/   ForceUndirtyMrkPnt();
 /*N*/   if (bOn!=bPlusHdlAlways) {
-/*?*/       BOOL bVis=IsMarkHdlShown();
-/*?*/       if (bVis) HideMarkHdl(NULL);
 /*?*/       bPlusHdlAlways=bOn;
 /*?*/       SetMarkHandles();
-/*?*/       if (bVis) ShowMarkHdl(NULL);
 /*?*/       MarkListHasChanged();
 /*N*/   }
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// ImpSetPointsRects() ist fuer PolyPoints und GluePoints!
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// UndirtyMrkPnt() ist fuer PolyPoints und GluePoints!
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ void SdrMarkView::UndirtyMrkPnt() const
-/*N*/ {
-/*N*/   BOOL bChg=FALSE;
-/*N*/   ULONG nMarkAnz=aMark.GetMarkCount();
-/*N*/   for (ULONG nMarkNum=0; nMarkNum<nMarkAnz; nMarkNum++) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/   if (bChg) ((SdrMarkView*)this)->bMarkedPointsRectsDirty=TRUE;
-/*N*/   ((SdrMarkView*)this)->bMrkPntDirty=FALSE;
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -86,7 +62,6 @@ namespace binfilter {
 
 /*N*/ BOOL SdrMarkView::HasMarkedGluePoints() const
 /*N*/ {
-/*N*/   ForceUndirtyMrkPnt();
 /*N*/   BOOL bRet=FALSE;
 /*N*/   ULONG nMarkAnz=aMark.GetMarkCount();
 /*N*/   for (ULONG nMarkNum=0; nMarkNum<nMarkAnz && !bRet; nMarkNum++) {
@@ -95,11 +70,6 @@ namespace binfilter {
 /*?*/       bRet=pPts!=NULL && pPts->GetCount()!=0;
 /*N*/   }
 /*N*/   return bRet;
-/*N*/ }
-
-
-/*N*/ BOOL SdrMarkView::MarkGluePoints(const Rectangle* /*pRect*/, BOOL /*bUnmark*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 }

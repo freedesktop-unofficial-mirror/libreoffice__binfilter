@@ -48,31 +48,17 @@ namespace binfilter {
 /*N*/ void SdrMarkView::ImpClearVars()
 /*N*/ {
 /*N*/   eDragMode=SDRDRAG_MOVE;
-/*N*/   bHdlShown=FALSE;
-/*N*/   bRefHdlShownOnly=FALSE;
 /*N*/   eEditMode=SDREDITMODE_EDIT;
-/*N*/   eEditMode0=SDREDITMODE_EDIT;
 /*N*/   bDesignMode=FALSE;
-/*N*/   bMarking=FALSE;
-/*N*/   bMarkingPoints=FALSE;
-/*N*/   bMarkingGluePoints=FALSE;
-/*N*/   bUnmarking=FALSE;
 /*N*/   pMarkedObj=NULL;
 /*N*/   pMarkedPV=NULL;
 /*N*/   bForceFrameHandles=FALSE;
 /*N*/   bPlusHdlAlways=FALSE;
 /*N*/   nFrameHandlesLimit=50;
-/*N*/   nSpecialCnt=0;
-/*N*/   bInsPolyPoint=FALSE;
-/*N*/   nInsPointNum=0;
 /*N*/   bEdgesOfMarkedNodesDirty=FALSE;
 /*N*/   bMarkedObjRectDirty=FALSE;
 /*N*/   bMarkedPointsRectsDirty=FALSE;
-/*N*/   bHdlHidden=FALSE;
-/*N*/   bMrkPntDirty=FALSE;
 /*N*/   bMarkHdlWhenTextEdit=FALSE;
-/*N*/   bMarkableObjCountDirty=FALSE; // noch nicht implementiert
-/*N*/   nMarkableObjCount=0;          // noch nicht implementiert
 /*N*/ }
 
 /*N*/ SdrMarkView::SdrMarkView(SdrModel* pModel1, OutputDevice* pOut):
@@ -102,14 +88,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/       if (eKind==HINT_OBJCHG || eKind==HINT_OBJINSERTED || eKind==HINT_OBJREMOVED)
 /*N*/       {
-/*N*/           if(bHdlShown
-/*N*/               // #75438# do not hide handles if no repaint will be triggered
-/*N*/               // since the repaint will show handles again later
-/*N*/               && pSdrHint->IsNeedRepaint())
-/*N*/           {
-/*N*/               HideMarkHdl(NULL);
-/*N*/           }
-/*N*/
 /*N*/           bMarkedObjRectDirty=TRUE;
 /*N*/           bMarkedPointsRectsDirty=TRUE;
 /*N*/       }
@@ -128,8 +106,6 @@ namespace binfilter {
 /*N*/   // (z.B. MovToTop()). Dann ist Neusortieren der MarkList erforderlich.
 /*N*/   aMark.SetUnsorted();
 /*N*/   aMark.ForceSort();
-/*N*/   bMrkPntDirty=TRUE;
-/*N*/   UndirtyMrkPnt();
 /*N*/   SdrView* pV=(SdrView*)this;
 /*N*/   if (pV!=NULL && !pV->IsDragObj() && !pV->IsInsObjPoint()) { // an dieser Stelle habe ich ein ziemliches Problem !!!
 /*N*/       AdjustMarkHdl();
@@ -140,15 +116,12 @@ namespace binfilter {
 
 /*N*/ BOOL SdrMarkView::IsAction() const
 /*N*/ {
-/*N*/   return SdrSnapView::IsAction() || bMarking || bMarkingPoints || bMarkingGluePoints;
+/*N*/   return SdrSnapView::IsAction();
 /*N*/ }
 
 /*N*/ void SdrMarkView::BrkAction()
 /*N*/ {
 /*N*/   SdrSnapView::BrkAction();
-/*N*/   BrkMarkObj();
-/*N*/   BrkMarkPoints();
-/*N*/   BrkMarkGluePoints();
 /*N*/ }
 
 
@@ -172,11 +145,6 @@ namespace binfilter {
 /*N*/       // break all creation actions when hiding page (#75081#)
 /*N*/       BrkAction();
 /*N*/
-/*N*/       BOOL bVis(IsMarkHdlShown());
-/*N*/
-/*N*/       if(bVis)
-/*?*/           HideMarkHdl(NULL);
-/*N*/
 /*N*/       // Alle Markierungen dieser Seite verwerfen
 /*N*/       BOOL bMrkChg(aMark.DeletePageView(*pPV));
 /*N*/       SdrSnapView::HidePage(pPV);
@@ -186,52 +154,20 @@ namespace binfilter {
 /*?*/           MarkListHasChanged();
 /*?*/           AdjustMarkHdl();
 /*N*/       }
-/*N*/
-/*N*/       if(bVis)
-/*N*/           ShowMarkHdl(NULL);
 /*N*/   }
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void SdrMarkView::BrkMarkObj()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ void SdrMarkView::BrkMarkPoints()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ void SdrMarkView::BrkMarkGluePoints()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void SdrMarkView::ImpShowMarkHdl(OutputDevice* /*pOut*/, const Region* /*pRegion*/, BOOL /*bNoRefHdl*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ void SdrMarkView::ShowMarkHdl(OutputDevice* pOut, BOOL bNoRefHdl)
 /*N*/ {
 /*N*/       bNoRefHdl=FALSE; // geht leider erstmal nicht anders
-/*N*/   ImpShowMarkHdl(pOut,NULL,bNoRefHdl);
 /*N*/ }
 
 
 /*N*/ void SdrMarkView::HideMarkHdl(OutputDevice* /*pOut*/, BOOL bNoRefHdl)
 /*N*/ {
 /*N*/       bNoRefHdl=FALSE; // geht leider erstmal nicht anders
-/*N*/   if (bHdlShown) {
-/*N*/       bRefHdlShownOnly=bNoRefHdl;
-/*N*/       bHdlShown=FALSE;
-/*N*/   }
-/*N*/ }
-
-/*N*/ void SdrMarkView::SetMarkHdlHidden(BOOL /*bOn*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ BOOL SdrMarkView::ImpIsFrameHandles() const
@@ -256,16 +192,6 @@ namespace binfilter {
 
 /*N*/ void SdrMarkView::SetMarkHandles()
 /*N*/ {
-/*N*/   // #105722# remember old focus handle values to search for it again
-/*N*/   const SdrHdl* pSaveOldFocusHdl = aHdl.GetFocusHdl();
-/*N*/
-/*N*/   if(pSaveOldFocusHdl
-/*N*/       && pSaveOldFocusHdl->GetObj()
-/*N*/       && pSaveOldFocusHdl->GetObj()->ISA(SdrPathObj)
-/*N*/       && (pSaveOldFocusHdl->GetKind() == HDL_POLY || pSaveOldFocusHdl->GetKind() == HDL_BWGT))
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   aHdl.Clear();
 /*N*/   aHdl.SetRotateShear(eDragMode==SDRDRAG_ROTATE);
 /*N*/   aHdl.SetDistortShear(eDragMode==SDRDRAG_SHEAR);
@@ -287,7 +213,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if (bFrmHdl) {
 /*N*/       Rectangle aRect(GetMarkedObjRect());
-/*N*/   } // if bFrmHdl else
+/*N*/   }
 
     // Drehpunkt/Spiegelachse
 /*N*/   AddDragModeHdl(eDragMode);
@@ -373,10 +299,7 @@ namespace binfilter {
 /*N*/ void SdrMarkView::SetSolidMarkHdl(BOOL bOn)
 /*N*/ {
 /*N*/   if (bOn!=aHdl.IsFineHdl()) {
-/*N*/       BOOL bMerk=IsMarkHdlShown();
-/*N*/       if (bMerk) HideMarkHdl(NULL);
 /*N*/       aHdl.SetFineHdl(bOn);
-/*N*/       if (bMerk) ShowMarkHdl(NULL);
 /*N*/   }
 /*N*/ }
 
@@ -449,8 +372,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if (aMark.GetMarkCount()!=0) {
 /*?*/       BrkAction();
-/*?*/       BOOL bVis=bHdlShown;
-/*?*/       if (bVis) HideMarkHdl(NULL);
 /*?*/       if (pPV!=NULL) {
 /*?*/           aMark.DeletePageView(*pPV);
 /*?*/       } else {
@@ -460,22 +381,15 @@ namespace binfilter {
 /*?*/       pMarkedPV=NULL;
 /*?*/       MarkListHasChanged();
 /*?*/       AdjustMarkHdl(TRUE);
-/*?*/       if (bVis) ShowMarkHdl(NULL); // ggf. fuer die RefPoints
 /*?*/   }
 /*N*/ }
 
 
 /*N*/ void SdrMarkView::AdjustMarkHdl(BOOL bRestraintPaint)
 /*N*/ {
-/*N*/   BOOL bVis=bHdlShown;
-/*N*/   if (bVis) HideMarkHdl(NULL);
 /*N*/   CheckMarked();
 /*N*/   SetMarkRects();
 /*N*/   SetMarkHandles();
-/*N*/   if(bRestraintPaint && bVis)
-/*N*/   {
-/*?*/       ShowMarkHdl(NULL);
-/*N*/   }
 /*N*/ }
 
 
@@ -503,13 +417,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   aMark.SetNameDirty();
 /*N*/   bEdgesOfMarkedNodesDirty=TRUE;
-/*N*/   aEdgesOfMarkedNodes.Clear();
-/*N*/   aMarkedEdgesOfMarkedNodes.Clear();
-/*N*/
-/*N*/   // #i13033#
-/*N*/   // Forget transitive hull of complete selection
-/*N*/   maAllMarkedObjects.Clear();
-/*N*/
 /*N*/   bMarkedObjRectDirty=TRUE;
 /*N*/   bMarkedPointsRectsDirty=TRUE;
 /*N*/   BOOL bOneEdgeMarked=FALSE;
@@ -581,7 +488,6 @@ namespace binfilter {
 /*N*/   if (!bRet) bRet=SdrSnapView::ReadRecord(rViewHead,rSubHead,rIn);
 /*N*/   return bRet;
 /*N*/ }
-
 
 
 /*N*/ void SdrMarkView::SetDesignMode(BOOL bOn)
