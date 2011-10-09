@@ -159,15 +159,13 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void SdrMarkView::ShowMarkHdl(OutputDevice* pOut, BOOL bNoRefHdl)
+/*N*/ void SdrMarkView::ShowMarkHdl(OutputDevice* /*pOut*/, BOOL /*bNoRefHdl*/)
 /*N*/ {
-/*N*/       bNoRefHdl=FALSE; // geht leider erstmal nicht anders
 /*N*/ }
 
 
-/*N*/ void SdrMarkView::HideMarkHdl(OutputDevice* /*pOut*/, BOOL bNoRefHdl)
+/*N*/ void SdrMarkView::HideMarkHdl(OutputDevice* /*pOut*/, BOOL /*bNoRefHdl*/)
 /*N*/ {
-/*N*/       bNoRefHdl=FALSE; // geht leider erstmal nicht anders
 /*N*/ }
 
 /*N*/ BOOL SdrMarkView::ImpIsFrameHandles() const
@@ -385,7 +383,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void SdrMarkView::AdjustMarkHdl(BOOL bRestraintPaint)
+/*N*/ void SdrMarkView::AdjustMarkHdl(BOOL /*bRestraintPaint*/)
 /*N*/ {
 /*N*/   CheckMarked();
 /*N*/   SetMarkRects();
