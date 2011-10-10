@@ -118,6 +118,7 @@ namespace xmloff
 
     public:
         OFormLayerXMLExport_Impl(SvXMLExport& _rContext);
+        virtual ~OFormLayerXMLExport_Impl();
 
     protected:
         /** exports one single grid column

@@ -94,6 +94,10 @@ namespace xmloff
         clear();
     }
 
+    OFormLayerXMLExport_Impl::~OFormLayerXMLExport_Impl()
+    {
+    }
+
     //---------------------------------------------------------------------
     sal_Bool OFormLayerXMLExport_Impl::implCheckPage(const Reference< XDrawPage >& _rxDrawPage, Reference< XIndexAccess >& _rxForms)
     {
