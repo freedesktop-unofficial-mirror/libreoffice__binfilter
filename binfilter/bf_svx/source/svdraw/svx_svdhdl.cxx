@@ -47,16 +47,6 @@ SdrHdl::~SdrHdl() {}
 /*N*/ };
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ SdrHdl* SdrHdlList::GetFocusHdl() const
-/*N*/ {
-/*N*/   if (pImpl->mnFocusIndex != CONTAINER_ENTRY_NOTFOUND && pImpl->mnFocusIndex < GetHdlCount())
-/*?*/       return GetHdl(pImpl->mnFocusIndex);
-/*N*/   else
-/*?*/       return 0L;
-/*N*/ }
-
 /*N*/ SdrHdlList::SdrHdlList(SdrMarkView* pV)
 /*N*/ : pImpl(new ImplHdlListData(pV))
 /*N*/ , aList(1024,32,32)

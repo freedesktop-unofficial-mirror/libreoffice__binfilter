@@ -87,14 +87,6 @@ namespace binfilter {
 /*N*/   if (pXPolyPoly!=NULL) { delete pXPolyPoly; pXPolyPoly=NULL; }
 /*N*/ }
 
-/*N*/ void SdrViewUserMarker::SetLineWidth(USHORT nWdt)
-/*N*/ {
-/*N*/   bool bVis=bVisible;
-/*N*/   if (bVis) Hide();
-/*N*/   nLineWdt=nWdt;
-/*N*/   if (bVis) Show();
-/*N*/ }
-
 /*N*/ void SdrViewUserMarker::Show()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }

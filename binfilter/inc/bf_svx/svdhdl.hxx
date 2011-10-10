@@ -178,8 +178,6 @@ public:
     ~SdrHdlList();
     void Clear();
 
-    SdrHdl* GetFocusHdl() const;
-
     // Access to View
     SdrMarkView* GetView() const;
 

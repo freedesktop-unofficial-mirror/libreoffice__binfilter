@@ -115,11 +115,6 @@ public:
     void SetOutputDevice(OutputDevice* pOut) { pForcedOutDev=pOut; }
     OutputDevice* GetOutputDevice() const { return pForcedOutDev; }
 
-    // Der Marker kann durchaus auch in einen andere View gesteckt werden.
-    // (Beim Destruieren der View wird die View am Marker automatisch auf NULL gesetzt.)
-
-    void SetLineWidth(USHORT nWdt);
-
     void SetAnimateDelay(USHORT nTime) { nAnimateDelay=(nTime+25)/50; }
     void SetAnimateSpeed(USHORT nTime) { nAnimateSpeed=(nTime+25)/50; if (nAnimateSpeed>0) nAnimateSpeed--; }
     void SetAnimateCount(USHORT nAnz) { nAnimateAnz=nAnz; }
