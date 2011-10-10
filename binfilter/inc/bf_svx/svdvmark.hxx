@@ -150,8 +150,6 @@ public:
     bool IsAnimateBackward() const { return bAnimateBwd; }
     bool IsAnimateToggle() const { return bAnimateToggle; }
 
-    void Show();
-    void Hide();
     bool IsVisible() const { return bVisible; }
 
     bool HasPointer() const { return bHasPointer; }

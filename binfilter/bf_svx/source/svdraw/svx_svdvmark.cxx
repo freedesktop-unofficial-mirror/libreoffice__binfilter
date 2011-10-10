@@ -87,15 +87,6 @@ namespace binfilter {
 /*N*/   if (pXPolyPoly!=NULL) { delete pXPolyPoly; pXPolyPoly=NULL; }
 /*N*/ }
 
-/*N*/ void SdrViewUserMarker::Show()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void SdrViewUserMarker::Hide()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
