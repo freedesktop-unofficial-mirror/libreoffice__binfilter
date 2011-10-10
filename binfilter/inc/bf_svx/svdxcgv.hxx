@@ -58,11 +58,6 @@ class SdrExchangeView: public SdrObjEditView
 {
     friend class SdrPageView;
 
-protected:
-
-
-    // liefert True, wenn rPt geaendert wurde
-
 public:
 
     SdrExchangeView(SdrModel* pModel1, OutputDevice* pOut=NULL);

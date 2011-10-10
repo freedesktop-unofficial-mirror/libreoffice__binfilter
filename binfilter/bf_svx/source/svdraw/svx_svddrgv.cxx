@@ -32,69 +32,31 @@
 
 namespace binfilter {
 
-#define XOR_DRAG_PEN   PEN_DOT
-
 /*N*/ void SdrDragView::ImpClearVars()
 /*N*/ {
-/*N*/   bFramDrag=FALSE;
 /*N*/   eDragMode=SDRDRAG_MOVE;
-/*N*/   bDragLimit=FALSE;
 /*N*/   bMarkedHitMovesAlways=FALSE;
-/*N*/   eDragHdl=HDL_MOVE;
-/*N*/   pDragHdl=NULL;
-/*N*/   bDragHdl=FALSE;
-/*N*/   bDragSpecial=FALSE;
-/*N*/   pDragBla=NULL;
 /*N*/   bDragStripes=FALSE;
 /*N*/   bNoDragHdl=TRUE;
 /*N*/   bMirrRefDragObj=TRUE;
 /*N*/   bSolidDragging=FALSE;
-/*N*/   bSolidDrgNow=FALSE;
-/*N*/   bSolidDrgChk=FALSE;
 /*N*/   bDragWithCopy=FALSE;
-/*N*/   pInsPointUndo=NULL;
-/*N*/   bInsAfter=FALSE;
-/*N*/   bInsGluePoint=FALSE;
-/*N*/   bInsObjPointMode=FALSE;
-/*N*/   bInsGluePointMode=FALSE;
-/*N*/   nDragXorPolyLimit=100;
-/*N*/   nDragXorPointLimit=500;
 /*N*/   bNoDragXorPolys=FALSE;
-/*N*/   bAutoVertexCon=TRUE;
-/*N*/   bAutoCornerCon=FALSE;
-/*N*/   bRubberEdgeDragging=TRUE;
-/*N*/   nRubberEdgeDraggingLimit=100;
-/*N*/   bDetailedEdgeDragging=TRUE;
-/*N*/   nDetailedEdgeDraggingLimit=10;
-/*N*/   bResizeAtCenter=FALSE;
-/*N*/   bCrookAtCenter=FALSE;
-/*N*/   bMouseHideWhileDraggingPoints=FALSE;
-/*N*/ }
-
-/*N*/ void SdrDragView::ImpMakeDragAttr()
-/*N*/ {
-/*N*/   ImpDelDragAttr();
 /*N*/ }
 
 /*N*/ SdrDragView::SdrDragView(SdrModel* pModel1, OutputDevice* pOut):
 /*N*/   SdrExchangeView(pModel1,pOut)
 /*N*/ {
 /*N*/   ImpClearVars();
-/*N*/   ImpMakeDragAttr();
 /*N*/ }
 
 /*N*/ SdrDragView::~SdrDragView()
-/*N*/ {
-/*N*/   ImpDelDragAttr();
-/*N*/ }
-
-/*N*/ void SdrDragView::ImpDelDragAttr()
 /*N*/ {
 /*N*/ }
 
 /*N*/ BOOL SdrDragView::IsAction() const
 /*N*/ {
-/*N*/   return SdrExchangeView::IsAction() || pDragBla!=NULL;
+/*N*/   return SdrExchangeView::IsAction();
 /*N*/ }
 
 /*N*/ void SdrDragView::BrkAction()
@@ -118,8 +80,7 @@ namespace binfilter {
 
 /*N*/ void SdrDragView::SetDragStripes(BOOL bOn)
 /*N*/ {
-/*N*/   if ( !(pDragBla!=NULL && aDragStat.IsShown() ) )
-/*N*/       bDragStripes=bOn;
+/*N*/   bDragStripes=bOn;
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -107,7 +107,7 @@ namespace binfilter {
 /*N*/   aMark.SetUnsorted();
 /*N*/   aMark.ForceSort();
 /*N*/   SdrView* pV=(SdrView*)this;
-/*N*/   if (pV!=NULL && !pV->IsDragObj() && !pV->IsInsObjPoint()) { // an dieser Stelle habe ich ein ziemliches Problem !!!
+/*N*/   if (pV!=NULL && !pV->IsInsObjPoint()) { // an dieser Stelle habe ich ein ziemliches Problem !!!
 /*N*/       AdjustMarkHdl();
     }
 /*N*/ }

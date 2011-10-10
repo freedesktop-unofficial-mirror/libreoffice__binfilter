@@ -146,10 +146,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // Das Standardlayerflag kam direkt nach der Betalieferung dazu
 /*N*/       rIn >> rLayer.nType;
-/*N*/
-/*N*/       if(rLayer.nType == 1)
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*N*/   }
 /*N*/
 /*N*/   if(aHead.GetVersion() <= 12)
