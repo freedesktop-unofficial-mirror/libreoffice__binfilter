@@ -469,9 +469,6 @@ using namespace ::com::sun::star::i18n;
 /*?*/                       nAngle += 2700;
 /*?*/                       aFont.SetOrientation(nAngle);
 /*?*/                       pOut->SetFont(aFont);
-/*?*/                       if(bDraw)
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP");
-/*?*/                       }
 /*N*/                   }
 /*N*/                   else
 /*N*/                   {
@@ -480,10 +477,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/                           nAngle = 3600 - nAngle;
 /*N*/                       aFont.SetOrientation(nAngle);
 /*N*/                       pOut->SetFont(aFont);
-/*N*/                       if(bDraw)
-/*N*/                       {
-/*?*/                           DBG_BF_ASSERT(0, "STRIP");
-/*N*/                       }
 /*N*/                   }
 /*N*/               }
 /*N*/           }
@@ -524,22 +517,9 @@ using namespace ::com::sun::star::i18n;
 /*?*/                       // Here the wrong index was called for the ImpXOutGetTextOutlines(...)
 /*?*/                       // call. nChar needs to be added here to index the different characters.
 /*?*/                       ImpXOutGetTextOutlines(aPolyPolyVector, pOut, pInfo, nChar + i, nNextGlyphLen);
-/*?*/
-/*?*/                       // #102382# iterate over single PolyPolygons
-/*?*/                       for(sal_uInt32 a(0); a < aPolyPolyVector.size(); a++)
-/*?*/                       {
-/*?*/                           PolyPolygon aPolyPoly(aPolyPolyVector[a]);
-/*?*/
-/*?*/                           if(aPolyPoly.Count() > 0 && aPolyPoly[0].GetSize() > 0)
-/*?*/                           {DBG_BF_ASSERT(0, "STRIP");
-/*?*/                           }
-/*?*/                       }
 /*?*/                   }
 /*?*/
-/*?*/                   if ( eFormTextStyle == XFT_SLANTY )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");
-/*?*/                   }
-/*?*/                   else
+/*?*/                   if ( eFormTextStyle != XFT_SLANTY )
 /*?*/                   {
 /*?*/                       long nW;
 /*?*/
@@ -556,16 +536,13 @@ using namespace ::com::sun::star::i18n;
 /*?*/                       else if ( bDrawAsPoly )
 /*?*/                           aPolyPos.Y() -= nAscent;
 /*?*/                   }
+
 /*?*/                   aChar.Translate(aPolyPos);
 /*?*/
 /*?*/                   if ( bDraw )
 /*?*/                   {
 /*?*/                       if ( bDrawAsPoly )
 /*?*/                           DrawXPolyPolygon(aChar);
-/*?*/                       else
-/*?*/                       {
-/*?*/                       DBG_BF_ASSERT(0, "STRIP");
-/*?*/                       }
 /*?*/                   }
 /*?*/
 /*?*/                   i += nNextGlyphLen;

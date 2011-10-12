@@ -53,7 +53,6 @@ class SdrPageView;
 class SwPageFrm;
 class ExtOutputDevice;
 class SdrPaintInfoRec;
-struct SdrPaintProcRec;
 #ifdef ACCESSIBLE_LAYOUT
 class SwAccessibleMap;
 class SdrObject;
@@ -75,14 +74,7 @@ class SwViewImp
                                 //mal eine ViewShell braucht hier die
                                 //Rueckwaertsverkettung.
 
-    SwDrawView  *pDrawView;     //Unsere DrawView
     SdrPageView *pSdrPageView;  //Genau eine Seite fuer unsere DrawView
-
-    SwPageFrm     *pFirstVisPage;//Zeigt immer auf die erste sichtbare Seite.
-    SwScrollAreas *pScrollRects; //Sammler fuer Scrollrects aus der LayAction.
-    SwScrollAreas *pScrolledArea;//Sammler der gescrollten Rechtecke.
-
-    AutoTimer     aScrollTimer;  //Fuer das Aufraeumen nach dem Scrollen.
 
     BOOL bFirstPageInvalid  :1; //Pointer auf erste Seite ungueltig?
     BOOL bNextScroll        :1; //Scroll in der folgenden EndAction erlaubt?
@@ -121,9 +113,6 @@ public:
     void ResetScroll()        { bScroll = FALSE; }
 
     // neues Interface fuer StarView Drawing
-    inline BOOL HasDrawView() const { return 0 != pDrawView; }
-          SwDrawView* GetDrawView()       { return pDrawView; }
-    const SwDrawView* GetDrawView() const { return pDrawView; }
           SdrPageView*GetPageView()       { return pSdrPageView; }
     const SdrPageView*GetPageView() const { return pSdrPageView; }
 };

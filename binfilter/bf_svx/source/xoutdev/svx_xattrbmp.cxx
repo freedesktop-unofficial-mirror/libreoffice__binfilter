@@ -407,11 +407,9 @@ namespace binfilter {
 /*?*/           aXOBitmap.SetBitmap( aBmp );
 /*?*/           aXOBitmap.SetBitmapStyle( XBITMAP_TILE );
 /*?*/
-/*?*/           if( aBmp.GetSizePixel().Width() == 8 &&
-/*?*/               aBmp.GetSizePixel().Height() == 8 )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
-/*?*/           else
+/*?*/           if( !(  aBmp.GetSizePixel().Width()  == 8
+                     && aBmp.GetSizePixel().Height() == 8 )
+                  )
 /*?*/               aXOBitmap.SetBitmapType( XBITMAP_IMPORT );
 /*?*/       }
 /*N*/   }
@@ -503,13 +501,9 @@ namespace binfilter {
 *************************************************************************/
 
 const XOBitmap& XFillBitmapItem::GetValue(
-//    const XBitmapTable* pTable
 ) const
 {
-//    if (!IsIndex())
-        return aXOBitmap;
-//    else
-//        return pTable->Get(GetIndex())->GetXBitmap();
+    return aXOBitmap;
 }
 
 
@@ -598,11 +592,6 @@ const XOBitmap& XFillBitmapItem::GetValue(
 /*?*/           aXOBitmap.SetBitmap( aInput );
 /*?*/           aXOBitmap.SetBitmapType(XBITMAP_IMPORT);
 /*?*/
-/*?*/           if(aInput.GetSizePixel().Width() == 8
-/*?*/               && aInput.GetSizePixel().Height() == 8
-/*?*/               && aInput.GetColorCount() == 2)
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
 /*?*/           return true;
 /*?*/       }
 /*?*/   }

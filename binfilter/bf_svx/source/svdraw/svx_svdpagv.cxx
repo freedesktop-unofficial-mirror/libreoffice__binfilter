@@ -66,14 +66,6 @@ using namespace ::com::sun::star;
 /*N*/     DBG_ASSERT( xControl.is(), "SdrUnoControlRec::SdrUnoControlRec: invalid control, this will crash!" );
 /*N*/
 /*N*/     bVisible = xControl.is() ? !xControl->isDesignMode() : TRUE;
-/*N*/
-/*N*/     // if bVisible is TRUE here, then switchControlListening will also start
-/*N*/     // DesignModeListening
-/*N*/     switchControlListening( true );
-/*N*/
-/*N*/     // adjust the initial visibility according to the visibility of the layer
-/*N*/     adjustControlVisibility( true );
-/*N*/
 /*N*/ }
 
 //------------------------------------------------------------------------------
@@ -82,101 +74,16 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 //------------------------------------------------------------------------------
-/*?*/ void SdrUnoControlRec::adjustControlVisibility( bool /*_bForce*/ )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}
-/*?*/ }
 
-//------------------------------------------------------------------------------
-/*?*/ void SdrUnoControlRec::switchControlListening( bool /*_bStart*/ )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}
-/*?*/ }
-
-//------------------------------------------------------------------------------
-/*N*/ void SAL_CALL SdrUnoControlRec::disposing( const ::com::sun::star::lang::EventObject& Source )
-/*N*/   throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {
-/*N*/   uno::Reference< awt::XControl > xSource( Source.Source, uno::UNO_QUERY);
-/*N*/   if (xSource.is())
-/*?*/   {  {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/   }
-/*N*/ }
-
-//------------------------------------------------------------------------------
-
-// XWindowListener
-/*N*/ void SAL_CALL SdrUnoControlRec::windowResized( const ::com::sun::star::awt::WindowEvent& /*e*/ )
-/*N*/   throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {
-/*N*/ }
-
-/*N*/ void SAL_CALL SdrUnoControlRec::windowMoved( const ::com::sun::star::awt::WindowEvent& /*e*/ )
-/*N*/   throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {
-/*N*/ }
-
-/*N*/ void SAL_CALL SdrUnoControlRec::windowShown( const ::com::sun::star::lang::EventObject& /*e*/ )
-/*N*/   throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-//------------------------------------------------------------------------------
-/*N*/ void SAL_CALL SdrUnoControlRec::windowHidden( const ::com::sun::star::lang::EventObject& /*e*/ )
-/*N*/   throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-// XPropertyChangeListener
-//------------------------------------------------------------------------------
-/*N*/ void SAL_CALL SdrUnoControlRec::propertyChange( const ::com::sun::star::beans::PropertyChangeEvent& /*evt*/ )
-/*N*/   throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {
-/*N*/ }
-
-// XImageConsumer
-//------------------------------------------------------------------------------
-/*N*/ void SAL_CALL SdrUnoControlRec::complete( sal_Int32, const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XImageProducer >& )
-/*N*/   throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {
-/*N*/ }
-
-//------------------------------------------------------------------------------
-/*N*/ void SAL_CALL SdrUnoControlRec::init(sal_Int32, sal_Int32 ) throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {
-/*N*/ }
-
-/*N*/ void SAL_CALL SdrUnoControlRec::setColorModel( sal_Int16, const ::com::sun::star::uno::Sequence< sal_Int32 >&, sal_Int32, sal_Int32, sal_Int32, sal_Int32 ) throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {
-/*N*/ }
-
-/*N*/ void SAL_CALL SdrUnoControlRec::setPixelsByBytes( sal_Int32, sal_Int32, sal_Int32, sal_Int32, const ::com::sun::star::uno::Sequence< sal_Int8 >&, sal_Int32, sal_Int32 ) throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {
-/*N*/ }
-
-/*N*/ void SAL_CALL SdrUnoControlRec::setPixelsByLongs( sal_Int32, sal_Int32, sal_Int32, sal_Int32, const ::com::sun::star::uno::Sequence< sal_Int32 >&, sal_Int32, sal_Int32 ) throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {
-/*N*/ }
-
-//------------------------------------------------------------------------------
-/*?*/ void SAL_CALL SdrUnoControlRec::modeChanged( const util::ModeChangeEvent& /*_rSource*/ ) throw (uno::RuntimeException)
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}
-/*?*/ }
-
-//------------------------------------------------------------------------------
 /*N*/ void SdrUnoControlRec::Clear(BOOL bDispose)
 /*N*/ {
 /*N*/   if (xControl.is())
 /*N*/   {
-/*N*/         switchControlListening( false );
-/*N*/
 /*N*/       if (bDispose)
 /*?*/           xControl->dispose();
 /*N*/       xControl = NULL;
 /*N*/   }
 /*N*/ }
-
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /*N*/ SV_IMPL_OP_PTRARR_SORT( SdrUnoControlAccessArr, SdrUnoControlAccessPtr )
@@ -474,14 +381,6 @@ using namespace ::com::sun::star;
 /*N*/           if (xUnoControl.is())
 /*N*/           {
 /*N*/               xUnoControl->setModel(xUnoControlModel);
-/*N*/               if (pRec->pOutDev->GetOutDevType() != OUTDEV_WINDOW)
-/*N*/               {
-/*?*/                   uno::Reference< awt::XView > xView = xUnoControl->getView();
-/*?*/                   if (xView.is())
-/*?*/                   {
-/*?*/ //                          xView->setGraphics(pRec->pOutDev->GetGraphicsInterface(TRUE));
-/*?*/                   }
-/*N*/               }
 /*N*/
 /*N*/               // ControlContainer ggf. erzeugen
 /*N*/               pRec->CreateControlContainer();
@@ -555,12 +454,6 @@ using namespace ::com::sun::star;
 /*N*/                   {
 /*N*/                       ImpUnoInserted(pObj);
 /*N*/                   }
-/*N*/                   else if (eKind == HINT_OBJREMOVED ||
-/*N*/                            eKind == HINT_CONTROLREMOVED)
-/*N*/
-/*N*/                   {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP");
-/*N*/                   }
 /*N*/               }
 /*N*/               else if (pObj->GetObjIdentifier() == OBJ_GRUP &&
 /*N*/                        pObj->GetObjInventor() == SdrInventor)
@@ -581,12 +474,6 @@ using namespace ::com::sun::star;
 /*?*/
 /*?*/                           {
 /*?*/                               ImpUnoInserted(pLclObj);
-/*?*/                           }
-/*?*/                           else if (eKind == HINT_OBJREMOVED ||
-/*?*/                                    eKind == HINT_CONTROLREMOVED)
-/*?*/
-/*?*/                           {
-/*?*/                               DBG_BF_ASSERT(0, "STRIP");
 /*?*/                           }
 /*N*/                       }
 /*N*/                   }
@@ -721,12 +608,6 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   if(GetAktGroup())
 /*N*/   {
-/*?*/       BOOL bDisInvalidate = (rView.pDisabledAttr != NULL);
-/*?*/       BOOL bGlueInvalidate = (!bDisInvalidate && rView.ImpIsGlueVisible());
-/*?*/
-/*?*/       if(bGlueInvalidate)
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }
-/*?*/
 /*?*/       SdrObject* pLastGroup = GetAktGroup();
 /*?*/
 /*?*/       // Alles deselektieren
@@ -750,9 +631,6 @@ using namespace ::com::sun::star;
 /*?*/       // invalidate only when view wants to visualize group entering
 /*?*/       if(rView.DoVisualizeEnteredGroup())
 /*?*/           InvalidateAllWin();
-/*?*/
-/*?*/       if(bGlueInvalidate)
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   }
 /*N*/ }
 
@@ -765,8 +643,8 @@ using namespace ::com::sun::star;
 /*N*/       pGrp=pGrp->GetUpGroup();
 /*N*/   }
 /*N*/   if (pGrp!=GetAktGroup()) {
-/*?*/       if (pGrp!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/       else LeaveAllGroup();
+/*?*/       if (pGrp == NULL)
+/*N*/           LeaveAllGroup();
 /*N*/   }
 /*N*/ }
 
@@ -834,8 +712,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   return rIn;
 /*N*/ }
-
-// #103834# Set background color for svx at SdrPageViews
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 

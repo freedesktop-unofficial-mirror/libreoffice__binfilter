@@ -676,7 +676,7 @@ uno::Any SAL_CALL SdGenericDrawPage::getPropertyValue( const OUString& PropertyN
     }
     case WID_PAGE_ISDARK:
     {
-        aAny <<= (sal_Bool)GetPage()->GetBackgroundColor().IsDark();
+        aAny <<= Color().IsDark();
         break;
     }
 

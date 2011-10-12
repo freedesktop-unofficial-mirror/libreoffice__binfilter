@@ -274,7 +274,6 @@ void SAL_CALL SvxShapeGroup::remove( const uno::Reference< drawing::XShape >& xS
 
     if( nObjNum < nObjCount )
     {
-        delete rList.NbcRemoveObject( nObjNum );
         pShape->InvalidateSdrObject();
     }
     else

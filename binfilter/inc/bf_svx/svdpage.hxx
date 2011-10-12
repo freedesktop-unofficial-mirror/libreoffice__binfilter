@@ -121,9 +121,9 @@ public:
     virtual ~SdrObjList();
     // !!! Diese Methode nur fuer Leute, die ganz genau wissen was sie tun !!!
     Container& GetContainer()                           { return aList; }
-    void SetObjOrdNumsDirty()                           { bObjOrdNumsDirty=TRUE; }
+
     // pModel, pPage, pUpList und pOwnerObj werden Zuweisungeoperator nicht veraendert!
-    void operator=(const SdrObjList& rSrcList);
+    void operator=(const SdrObjList&) {} // DBG_BF_ASSERT
     void CopyObjects(const SdrObjList& rSrcList);
     // alles Aufraeumen (ohne Undo)
     void    Clear();
@@ -147,10 +147,8 @@ public:
                               , const SdrInsertReason* pReason=NULL
                                                                      );
     // aus Liste entfernen ohne delete
-    //virtual void RemoveObject(SdrObject* pObj);
-    virtual SdrObject* NbcRemoveObject(ULONG nObjNum);
     virtual SdrObject* RemoveObject(ULONG nObjNum);
-//    virtual SdrObject* RemoveObjectNum(ULONG nObjNum);
+
     // Vorhandenes Objekt durch ein anderes ersetzen.
     // Wie Remove&Insert jedoch performanter, da die Ordnungsnummern
     // nicht Dirty gesetzt werden muessen.
@@ -215,24 +213,6 @@ public:
     // Objektverknuepfungen ueber Surrogate herzustellen o.ae.
     // Anwendungsbeispiel hierfuer SdrEdgeObj (Objektverbinder)
     virtual void AfterRead();
-    /** Makes the object list flat, i.e. the object list content are
-        then tree leaves
-
-        This method travels recursively over all group objects in this
-        list, extracts the content, inserts it flat to the list and
-        removes the group object afterwards.
-     */
-    virtual void FlattenGroups();
-    /** Ungroup the object at the given index
-
-        This method ungroups the content of the group object at the
-        given index, i.e. the content is put flat into the object list
-        (if the object at the given index is no group, this method is
-        a no-op). If the group itself contains group objects, the
-        operation is performed recursively, such that the content of
-        the given object contains no groups afterwards.
-     */
-    virtual void UnGroupObj( ULONG nObjNum );
 };
 
 /*
@@ -258,7 +238,6 @@ public:
     void             SetPageNum(USHORT nNum)                     { nPgNum=nNum; }
     const SetOfByte& GetVisibleLayers() const                    { return aVisLayers; }
     void             SetVisibleLayers(const SetOfByte& rVisLay)  { aVisLayers=rVisLay; }
-//    SetOfByte&       VisibleLayers()                             { return aVisLayers; }
     friend SvStream& operator<<(SvStream& rOut, const SdrMasterPageDescriptor& rMDP);
     friend SvStream& operator>>(SvStream& rIn, SdrMasterPageDescriptor& rMDP);
 };
@@ -302,13 +281,13 @@ class SdrPageGridFrameList {
     Container aList;
 private:
     SdrPageGridFrameList(const SdrPageGridFrameList& /*rSrcList*/): aList(1024,4,4) {}
-    void           operator=(const SdrPageGridFrameList& /*rSrcList*/)              {}
+    void           operator=(const SdrPageGridFrameList& /*rSrcList*/)              {} // DBG_BF_ASSERT
 protected:
     SdrPageGridFrame* GetObject(USHORT i) const { return (SdrPageGridFrame*)(aList.GetObject(i)); }
 public:
     SdrPageGridFrameList(): aList(1024,4,4)                            {}
-    ~SdrPageGridFrameList()                                            { Clear(); }
-    void           Clear();
+    ~SdrPageGridFrameList()                                            {}
+
     USHORT         GetCount() const                                    { return USHORT(aList.Count()); }
     void           Insert(const SdrPageGridFrame& rGF, USHORT nPos=0xFFFF) { aList.Insert(new SdrPageGridFrame(rGF),nPos); }
     void           Delete(USHORT nPos)                                 { delete (SdrPageGridFrame*)aList.Remove(nPos); }
@@ -377,12 +356,9 @@ public:
     virtual void SetChanged();
             void   SetPageNum(USHORT nNum) { nPageNum=nNum; }; // wird vom Model gesetzt!
             USHORT GetPageNum() const;
-    //virtual void InsertObject(SdrObject* pObj, ULONG nPos=CONTAINER_APPEND);
-    //virtual void RemoveObject(SdrObject* pObj);
-    //virtual SdrObject* RemoveObjectNum(ULONG nObjNum);
     virtual void SetSize(const Size& aSiz);
     virtual Size GetSize() const;
-    virtual void SetOrientation(Orientation eOri);
+    virtual void SetOrientation(Orientation) {} // DBG_BF_ASSERT
     virtual INT32 GetWdt() const;
     virtual INT32 GetHgt() const;
     virtual void  SetBorder(INT32 nLft, INT32 nUpp, INT32 nRgt, INT32 Lwr);
@@ -464,13 +440,6 @@ public:
     ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > getUnoPage();
 
     virtual SfxStyleSheet* GetTextStyleSheetForObject( SdrObject* pObj ) const;
-
-
-    /** *deprecated* returns an averaged background color of this page */
-    Color GetBackgroundColor() const;
-
-    /** *deprecated* returns an averaged background color of this page */
-    Color GetBackgroundColor( SdrPageView* pView ) const;
 };
 
 }//end of namespace binfilter

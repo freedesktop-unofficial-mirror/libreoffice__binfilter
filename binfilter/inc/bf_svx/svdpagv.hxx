@@ -72,6 +72,7 @@ class SdrPageViewWinList;
 #if _SOLAR__PRIVATE
 
 #include <cppuhelper/implbase4.hxx>
+
 namespace binfilter {
 #define SDRUNOCONTROL_NOTFOUND USHRT_MAX
 
@@ -99,27 +100,27 @@ public:
     ~SdrUnoControlRec() throw();
 
 protected:
-    // XEventListener
-    virtual void SAL_CALL disposing( const ::com::sun::star::lang::EventObject& Source ) throw(::com::sun::star::uno::RuntimeException);
-
     // XWindowListener
-    virtual void SAL_CALL windowResized( const ::com::sun::star::awt::WindowEvent& e ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL windowMoved( const ::com::sun::star::awt::WindowEvent& e ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL windowShown( const ::com::sun::star::lang::EventObject& e ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL windowHidden( const ::com::sun::star::lang::EventObject& e ) throw(::com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL windowResized( const ::com::sun::star::awt::WindowEvent&  ) throw(::com::sun::star::uno::RuntimeException) {} // DBG_BF_ASSERT
+    virtual void SAL_CALL windowMoved(   const ::com::sun::star::awt::WindowEvent&  ) throw(::com::sun::star::uno::RuntimeException) {} // DBG_BF_ASSERT
+    virtual void SAL_CALL windowShown(   const ::com::sun::star::lang::EventObject& ) throw(::com::sun::star::uno::RuntimeException) {} // DBG_BF_ASSERT
+    virtual void SAL_CALL windowHidden(  const ::com::sun::star::lang::EventObject& ) throw(::com::sun::star::uno::RuntimeException) {} // DBG_BF_ASSERT
+
+    // XEventListener
+    virtual void SAL_CALL disposing(     const ::com::sun::star::lang::EventObject& ) throw(::com::sun::star::uno::RuntimeException) {} // DBG_BF_ASSERT
 
     // XPropertyChangeListener
-    virtual void SAL_CALL propertyChange( const ::com::sun::star::beans::PropertyChangeEvent& evt ) throw(::com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL propertyChange( const ::com::sun::star::beans::PropertyChangeEvent& ) throw(::com::sun::star::uno::RuntimeException) {} // DBG_BF_ASSERT
 
     // XImageConsumer
-    virtual void SAL_CALL init( sal_Int32 Width, sal_Int32 Height ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL setColorModel( sal_Int16 BitCount, const ::com::sun::star::uno::Sequence< sal_Int32 >& RGBAPal, sal_Int32 RedMask, sal_Int32 GreenMask, sal_Int32 BlueMask, sal_Int32 AlphaMask ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL setPixelsByBytes( sal_Int32 nX, sal_Int32 nY, sal_Int32 nWidth, sal_Int32 nHeight, const ::com::sun::star::uno::Sequence< sal_Int8 >& aProducerData, sal_Int32 nOffset, sal_Int32 nScanSize ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL setPixelsByLongs( sal_Int32 nX, sal_Int32 nY, sal_Int32 nWidth, sal_Int32 nHeight, const ::com::sun::star::uno::Sequence< sal_Int32 >& aProducerData, sal_Int32 nOffset, sal_Int32 nScanSize ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL complete( sal_Int32 Status, const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XImageProducer >& xProducer ) throw(::com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL init( sal_Int32, sal_Int32 ) throw(::com::sun::star::uno::RuntimeException) {} // DBG_BF_ASSERT
+    virtual void SAL_CALL setColorModel( sal_Int16 , const ::com::sun::star::uno::Sequence< sal_Int32 >& , sal_Int32 , sal_Int32 , sal_Int32 , sal_Int32  ) throw(::com::sun::star::uno::RuntimeException) {} // DBG_BF_ASSERT
+    virtual void SAL_CALL setPixelsByBytes( sal_Int32 , sal_Int32 , sal_Int32 , sal_Int32 , const ::com::sun::star::uno::Sequence< sal_Int8 >& , sal_Int32 , sal_Int32 ) throw(::com::sun::star::uno::RuntimeException) {} // DBG_BF_ASSERT
+    virtual void SAL_CALL setPixelsByLongs( sal_Int32 , sal_Int32 , sal_Int32 , sal_Int32 , const ::com::sun::star::uno::Sequence< sal_Int32 >& , sal_Int32 , sal_Int32 ) throw(::com::sun::star::uno::RuntimeException) {} // DBG_BF_ASSERT
+    virtual void SAL_CALL complete( sal_Int32 , const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XImageProducer >& ) throw(::com::sun::star::uno::RuntimeException) {} // DBG_BF_ASSERT
 
     // XModeChangeListener
-    virtual void SAL_CALL modeChanged( const ::com::sun::star::util::ModeChangeEvent& _rSource ) throw (::com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL modeChanged( const ::com::sun::star::util::ModeChangeEvent& ) throw (::com::sun::star::uno::RuntimeException) {} // DBG_BF_ASSERT
 
 public:
     // More functions
@@ -130,36 +131,6 @@ public:
 
     // Setzen eines neuen Controls
     void Clear(BOOL bDispose);
-
-    struct AccessControl { friend class SdrUnoControlPaintGuard; private: AccessControl() { } };
-    inline void EnterPaint( const AccessControl& )  { ++mnPaintLevel; }
-    inline void LeavePaint( const AccessControl& )  { DBG_ASSERT( mnPaintLevel, "SdrUnoControlRec::LeavePaint: not locked!" ); --mnPaintLevel; }
-
-    // in alive mode, the visibility of the control must be adjusted to the visibility of the layer
-    void    adjustControlVisibility( bool _bForce );
-
-private:
-    // starts or stops listening for any relevant events on the control or it's model
-    void    switchControlListening( bool _bStart );
-
-};
-
-// class for temporarily (during painting) locking some functionality of the SdrUnoControlRec
-class SdrUnoControlPaintGuard
-{
-private:
-    SdrUnoControlRec&  m_rRec;
-
-public:
-    inline SdrUnoControlPaintGuard( SdrUnoControlRec& _rRec )
-        :m_rRec( _rRec )
-    {
-        m_rRec.EnterPaint( SdrUnoControlRec::AccessControl( ) );
-    }
-    inline ~SdrUnoControlPaintGuard( )
-    {
-        m_rRec.LeavePaint( SdrUnoControlRec::AccessControl( ) );
-    }
 };
 
 // Klasse fuer den schnellen Zugriff auf Recs ueber das ControlModel
@@ -317,17 +288,9 @@ private:
     SdrPageViewWinRec* ImpMakePageViewWinRec(OutputDevice* pOutDev1);
     void        ImpInsertControl(const SdrUnoObj* pObj, SdrPageViewWinRec* pRec);
     void        ImpUnoInserted(const SdrObject* pObj);
-protected:
 #endif // __PRIVATE
-protected:
-    //USHORT      GetWinCount() const       { return USHORT(aRedraw.Count()); }
-    //SdrPageWin* GetWin(USHORT nNum) const { return (SdrPageWin*)(aRedraw.GetObject(nNum)); }
-    //void        AddWin()                  { aRedraw.Insert(new SdrPageWin,CONTAINER_APPEND); }
-    //void        DelWin(USHORT nNum)       { delete aRedraw.Remove(nNum); }
-    //void        ClearWinList();
-    // Jeder ContainerEntry muss auf ein OutputDevice zeigen:
-    //void        SetWinList(const Container& rWinList);
 
+protected:
     void AddWin(OutputDevice* pOutDev1);
     void DelWin(OutputDevice* pOutDev1);
 
@@ -338,6 +301,7 @@ protected:
     void CheckAktGroup();
     // Wird von der PaintView gerufen, wenn Modelaenderungen abgeschlossen sind
     void ModelHasChanged();
+
 public:
     TYPEINFO();
     SdrPageView(SdrPage* pPage1, const Point& rOffs, SdrView& rNewView);
@@ -352,7 +316,7 @@ public:
     // rRect bezieht sich auf die Page
     void InvalidateAllWin(const Rectangle& rRect, bool bPlus1Pix=FALSE);
     // rReg bezieht sich auf's OutDev, nicht auf die Page
-    void InitRedraw(OutputDevice*, const Region&, USHORT =0, const Link* =NULL){DBG_BF_ASSERT(0, "STRIP");}
+    void InitRedraw(OutputDevice*, const Region&, USHORT =0, const Link* =NULL) {} // DBG_BF_ASSERT
     // rReg bezieht sich auf's OutDev, nicht auf die Page
     // Painten aller Objekte eines Layer der Page ohne MasterPage
     // pOut==NULL -> alle OutputDevices
@@ -383,23 +347,12 @@ public:
 
     // PV stellt eine RefPage oder eine SubList eines RefObj dar oder Model ist ReadOnly
 
-    // der Origin bezieht sich immer auf die obere linke Ecke der Page
-    const Point& GetPageOrigin() const                          { return aPgOrg; }
-    void LogicToPagePos(Point& rPnt) const                      { rPnt-=aPgOrg; }
-    void LogicToPagePos(Rectangle& rRect) const                 { rRect.Move(-aPgOrg.X(),-aPgOrg.Y()); }
-    void PagePosToLogic(Point& rPnt) const                      { rPnt+=aPgOrg; }
-    void PagePosToLogic(Rectangle& rRect) const                 { rRect.Move(aPgOrg.X(),aPgOrg.Y()); }
-
     void SetVisibleLayers(const SetOfByte& rSet)                { aLayerVisi=rSet; InvalidateAllWin(); }
     const SetOfByte& GetVisibleLayers() const                   { return aLayerVisi; }
     void SetPrintableLayers(const SetOfByte& rSet)              { aLayerPrn=rSet; }
     const SetOfByte& GetPrintableLayers() const                 { return aLayerPrn;  }
     void SetLockedLayers(const SetOfByte& rSet)                 { aLayerLock=rSet; }
     const SetOfByte& GetLockedLayers() const                    { return aLayerLock; }
-
-    const SdrHelpLineList& GetHelpLines() const                 { return aHelpLines; }
-    void SetHelpLine(USHORT nNum, const SdrHelpLine& rNewHelpLine);
-    void MoveHelpLine(USHORT nNum, USHORT nNewNum)              { aHelpLines.Move(nNum,nNewNum); }
 
     // Liefert TRUE, wenn Layer des Obj sichtbar und nicht gesperrt.
     // Beim Gruppenobjekt muss wenigstens ein Member sichtbar sein,
@@ -413,26 +366,9 @@ public:
     // Verlassen einer betretenen Objektgruppe. (wie MsDos chdir ..)
     // Verlassen aller betretenen Objektgruppen. (wie MsDos chdir \)
     void LeaveAllGroup();
-    // Name der aktuellen Objektgruppe
-    // Die Namen aller z.Zt. betretenen Gruppen
-
-    const XPolyPolygon& DragPoly0() const { return *pDragPoly0; }
-    const XPolyPolygon& DragPoly () const { return *pDragPoly;  }
-    XPolyPolygon& DragPoly0()             { return *pDragPoly0; }
-    XPolyPolygon& DragPoly ()             { return *pDragPoly;  }
-
-    void        SetPaintingPageObj( SdrPageObj* pObj ) { pPaintingPageObj = pObj; }
-    SdrPageObj* GetPaintingPageObj() const { return pPaintingPageObj; }
 
     friend SvStream& operator<<(SvStream& rOut, const SdrPageView& rPageView);
     friend SvStream& operator>>(SvStream& rIn, SdrPageView& rPageView);
-
-    // #103834# Set background color for svx at SdrPageViews
-    void SetApplicationBackgroundColor(Color aBackgroundColor);
-
-    // #103911# Set/Get document color for svx at SdrPageViews
-    void SetApplicationDocumentColor(Color aDocumentColor);
-    Color GetApplicationDocumentColor() const;
 };
 
 }//end of namespace binfilter

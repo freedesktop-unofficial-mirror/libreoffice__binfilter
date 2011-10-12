@@ -134,7 +134,6 @@ private:
     ScDocument*         pDoc;
     SfxPrinter*         pPrinter;
     OutputDevice*       pDev;
-    FmFormView*         pDrawView;
 
     MapMode             aOldPrinterMode;    //  MapMode vor dem Aufruf
 

@@ -32,7 +32,6 @@
 #include <horiornt.hxx>
 
 #include <fesh.hxx>
-#include <viewimp.hxx>      // Imp->SetFirstVisPageInvalid()
 #include <statstr.hrc>      //      -- " --
 #include <ptqueue.hxx>
 

@@ -444,52 +444,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*    XOutputDevice::CalcFatLineJoin()
-|*
-|*    Beschreibung      Uebergang zwischen zwei Linien eines Polygons
-|*                      berechnen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|*    XOutputDevice::DrawStartEndPoly()
-|*
-|*    Linienanfang- bzw. -endpolygon zeichnen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|*    XOutputDevice::DrawLineStartEnd()
-|*
-|*    Linienanfang bzw. -ende eines Polygons zeichnen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|*    XOutputDevice::DrawFatLine()
-|*
-|*    Beschreibung      Dicke Linie mit oder ohne Linienstile zeichnen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|*    XOutputDevice::DrawPatternLine()
-|*
-|*    Beschreibung      Haarlinie mit Linienstil zeichnen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |*    XOutputDevice::DrawLinePolygon()
 |*
 |*    Beschreibung      Polygon-Linie (ggf. mit Linienmuster) zeichnen
@@ -564,175 +518,150 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-/*N*/ void XOutputDevice::ImpDrawLinePolygon(const Polygon& rPoly, BOOL bClosePoly)
-/*N*/ {
-/*N*/   Polygon         aPoly( rPoly );
-/*N*/   Point           aLineStartPos, aLineEndPos;
-/*N*/   XLineParam      aLParam, aStartParam, aEndParam;
-/*N*/   USHORT          nPntMax = aPoly.GetSize() - 1;
-/*N*/
-/*N*/   if( nPntMax >= 1 )
-/*N*/   {
-/*N*/       if( bHair || ( ( XLINE_SOLID == eLineStyle ) && ( nLineWidth ==  0 ) ) )
-/*N*/       {{DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/       }
-/*N*/       else if( XLINE_NONE != eLineStyle )
-/*N*/       {
-/*?*/           Color       aOldLineColor;
-/*?*/           Color       aOldFillColor;
-/*?*/           Point       aDiff;
-/*?*/           const ULONG nOldDrawMode = pOut->GetDrawMode();
-/*?*/           USHORT      i = 0;
-/*?*/
-/*?*/           if( !nLineWidth )
-/*?*/           {
-/*?*/               aOldLineColor = pOut->GetLineColor();
-/*?*/               pOut->SetLineColor( aLineColor );
-/*?*/           }
-/*?*/
-/*?*/           aOldFillColor = pOut->GetFillColor();
-/*?*/
-/*?*/           if( nOldDrawMode & DRAWMODE_WHITEFILL )
-/*?*/           {
-/*?*/               ULONG nNewDrawMode = nOldDrawMode;
-/*?*/
-/*?*/               nNewDrawMode &= ~DRAWMODE_WHITEFILL;
-/*?*/               nNewDrawMode |= DRAWMODE_BLACKFILL;
-/*?*/               pOut->SetDrawMode( nNewDrawMode );
-/*?*/           }
-/*?*/
-/*?*/             if( nOldDrawMode & DRAWMODE_BLACKLINE )
-/*?*/             {
-/*?*/                 const Color aBlack( COL_BLACK );
-/*?*/
-/*?*/                 pOut->SetDrawMode( pOut->GetDrawMode() & (~DRAWMODE_SETTINGSFILL) );
-/*?*/                 pOut->SetFillColor( aBlack );
-/*?*/             }
-/*?*/             else if( nOldDrawMode & DRAWMODE_SETTINGSLINE )
-/*?*/             {
-/*?*/                 pOut->SetDrawMode( pOut->GetDrawMode() & (~DRAWMODE_SETTINGSFILL) );
-/*?*/               ColorConfig aColorConfig;
-/*?*/               Color aColor( aColorConfig.GetColorValue( FONTCOLOR ).nColor );
-/*?*/                 pOut->SetFillColor( aColor );
-/*?*/             }
-/*?*/             else
-/*?*/                 pOut->SetFillColor( aLineColor );
-/*?*/
-/*?*/           // bei einfachen Linien darf das Polygon nicht geschlossen sein (#24000)
-/*?*/           if ( aPoly[ nPntMax ] == aPoly[ 0 ] )
-/*?*/           {
-/*?*/               if ( nPntMax > 2 )
-/*?*/               {
-/*?*/                   nPntMax--;
-/*?*/                   bClosePoly = TRUE;
-/*?*/               }
-/*?*/               else if ( 2 == nPntMax )
-/*?*/                   bClosePoly = FALSE;
-/*?*/           }
-/*?*/
-/*?*/           // Linien mit Laenge 0 nicht beruecksichtigen
-/*?*/           while ( i < nPntMax )
-/*?*/           {
-/*?*/               aDiff = aPoly[i+1] - aPoly[0];
-/*?*/
-/*?*/               if ( bLineStart && !bClosePoly )
-/*?*/               {
-/*?*/                   long nSqLen = aDiff.X() * aDiff.X() + aDiff.Y() * aDiff.Y();
-/*?*/                   if ( nSqLen > nLineStartSqLen || i == nPntMax-1 )
-/*?*/                   {
-/*?*/                       aLineStartPos = aPoly[0];
-/*?*/                       aStartParam.Init(aPoly[0], aPoly[i+1], 1);
-/*?*/                       double fLen = sqrt((double)nLineStartSqLen);
-/*?*/                       if ( aStartParam.fLength )
-/*?*/                           fLen /= aStartParam.fLength;
-/*?*/                       aPoly[i].X() = aPoly[0].X() + (long) (fLen * aStartParam.nLineDx);
-/*?*/                       aPoly[i].Y() = aPoly[0].Y() + (long) (fLen * aStartParam.nLineDy);
-/*?*/                       break;
-/*?*/                   }
-/*?*/               }
-/*?*/               else if ( aDiff.X() || aDiff.Y() )
-/*?*/                   break;
-/*?*/               i++;
-/*?*/           }
-/*?*/           USHORT  nLastPnt = nPntMax;
-/*?*/
-/*?*/           while ( nPntMax > i )
-/*?*/           {
-/*?*/               aDiff = aPoly[nPntMax-1] - aPoly[nLastPnt];
-/*?*/               if ( bLineEnd && !bClosePoly )
-/*?*/               {
-/*?*/                   long nSqLen = aDiff.X() * aDiff.X() + aDiff.Y() * aDiff.Y();
-/*?*/                   if ( nSqLen > nLineEndSqLen || nPntMax == i+1 )
-/*?*/                   {
-/*?*/                       aLineEndPos = aPoly[nLastPnt];
-/*?*/                       aEndParam.Init(aPoly[nLastPnt], aPoly[nPntMax-1], 1);
-/*?*/                       double fLen = sqrt((double)nLineEndSqLen);
-/*?*/                       if ( aEndParam.fLength )
-/*?*/                           fLen /= aEndParam.fLength;
-/*?*/                       aPoly[nPntMax].X() = aPoly[nLastPnt].X() + (long) (fLen * aEndParam.nLineDx);
-/*?*/                       aPoly[nPntMax].Y() = aPoly[nLastPnt].Y() + (long) (fLen * aEndParam.nLineDy);
-/*?*/                       break;
-/*?*/                   }
-/*?*/               }
-/*?*/               else if ( aDiff.X() || aDiff.Y() )
-/*?*/                   break;
-/*?*/               nPntMax--;
-/*?*/           }
-/*?*/
-/*?*/           if ( bClosePoly )
-/*?*/           {
-/*?*/               aDiff = aPoly[nPntMax] - aPoly[i];
-/*?*/               if ( !aDiff.X() && !aDiff.Y() )
-/*?*/                   nPntMax--;
-/*?*/               aLParam.Init(aPoly[nPntMax], aPoly[i], nLineWidth);
-/*?*/               if ( nLineWidth > 0 )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
-/*?*/           }
-/*?*/           else
-/*?*/               aLParam.Init(aPoly[i], aPoly[i+1], nLineWidth);
-/*?*/
-/*?*/           while ( i < nPntMax )
-/*?*/           {
-/*?*/               USHORT nPos = i + 1;
-/*?*/               while ( nPos < nPntMax )
-/*?*/               {
-/*?*/                   aDiff = aPoly[nPos+1] - aPoly[nPos];
-/*?*/                   if ( aDiff.X() || aDiff.Y() )
-/*?*/                       break;
-/*?*/                   nPos++;
-/*?*/               }
-/*?*/
-/*?*/               if ( nLineWidth > 0 )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }
-/*?*/               else
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
-/*?*/               i = nPos;
-/*?*/           }
-/*?*/           if ( bClosePoly )
-/*?*/           {
-/*?*/               if ( nLineWidth > 0 )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }
-/*?*/               else
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
-/*?*/           }
-/*?*/           else
-/*?*/           {
-/*?*/               if ( bLineStart )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }
-/*?*/               if ( bLineEnd )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
-/*?*/           }
-/*?*/
-/*?*/           if( nLineWidth == 0 )
-/*?*/               pOut->SetLineColor( aOldLineColor );
-/*?*/
-/*?*/           pOut->SetFillColor( aOldFillColor );
-/*?*/           pOut->SetDrawMode( nOldDrawMode );
-/*N*/       }
-/*N*/   }
-/*N*/ }
+void XOutputDevice::ImpDrawLinePolygon(const Polygon& rPoly, BOOL bClosePoly)
+{
+    Polygon         aPoly( rPoly );
+    XLineParam      aStartParam, aEndParam;
+    USHORT          nPntMax = aPoly.GetSize() - 1;
+
+    if( nPntMax >= 1 )
+    {
+        if( !( bHair || ( ( XLINE_SOLID == eLineStyle ) && ( nLineWidth ==  0 ) ) ) )
+        {
+            if( XLINE_NONE != eLineStyle )
+            {
+                Color       aOldLineColor;
+                Color       aOldFillColor;
+                Point       aDiff;
+                const ULONG nOldDrawMode = pOut->GetDrawMode();
+                USHORT      i = 0;
+
+                if ( !nLineWidth )
+                {
+                    aOldLineColor = pOut->GetLineColor();
+                    pOut->SetLineColor( aLineColor );
+                }
+
+                aOldFillColor = pOut->GetFillColor();
+
+                if( nOldDrawMode & DRAWMODE_WHITEFILL )
+                {
+                    ULONG nNewDrawMode = nOldDrawMode;
+
+                    nNewDrawMode &= ~DRAWMODE_WHITEFILL;
+                    nNewDrawMode |= DRAWMODE_BLACKFILL;
+                    pOut->SetDrawMode( nNewDrawMode );
+                }
+
+                if( nOldDrawMode & DRAWMODE_BLACKLINE )
+                {
+                    const Color aBlack( COL_BLACK );
+
+                    pOut->SetDrawMode( pOut->GetDrawMode() & (~DRAWMODE_SETTINGSFILL) );
+                    pOut->SetFillColor( aBlack );
+                }
+                else if( nOldDrawMode & DRAWMODE_SETTINGSLINE )
+                {
+                    pOut->SetDrawMode( pOut->GetDrawMode() & (~DRAWMODE_SETTINGSFILL) );
+                    ColorConfig aColorConfig;
+                    Color aColor( aColorConfig.GetColorValue( FONTCOLOR ).nColor );
+                    pOut->SetFillColor( aColor );
+                }
+                else
+                    pOut->SetFillColor( aLineColor );
+
+                // bei einfachen Linien darf das Polygon nicht geschlossen sein (#24000)
+                if ( aPoly[ nPntMax ] == aPoly[ 0 ] )
+                {
+                    if ( nPntMax > 2 )
+                    {
+                        nPntMax--;
+                        bClosePoly = TRUE;
+                    }
+                    else if ( 2 == nPntMax )
+                        bClosePoly = FALSE;
+                }
+
+                // Linien mit Laenge 0 nicht beruecksichtigen
+                while ( i < nPntMax )
+                {
+                    aDiff = aPoly[i+1] - aPoly[0];
+
+                    if ( bLineStart && !bClosePoly )
+                    {
+                        long nSqLen = aDiff.X() * aDiff.X() + aDiff.Y() * aDiff.Y();
+                        if ( nSqLen > nLineStartSqLen || i == nPntMax-1 )
+                        {
+                            aStartParam.Init(aPoly[0], aPoly[i+1], 1);
+                            double fLen = sqrt((double)nLineStartSqLen);
+                            if ( aStartParam.fLength )
+                                fLen /= aStartParam.fLength;
+                            aPoly[i].X() = aPoly[0].X() + (long) (fLen * aStartParam.nLineDx);
+                            aPoly[i].Y() = aPoly[0].Y() + (long) (fLen * aStartParam.nLineDy);
+                            break;
+                        }
+                    }
+                    else if ( aDiff.X() || aDiff.Y() )
+                        break;
+                    i++;
+                }
+                USHORT  nLastPnt = nPntMax;
+
+                while ( nPntMax > i )
+                {
+                    aDiff = aPoly[nPntMax-1] - aPoly[nLastPnt];
+                    if ( bLineEnd && !bClosePoly )
+                    {
+                        long nSqLen = aDiff.X() * aDiff.X() + aDiff.Y() * aDiff.Y();
+                        if ( nSqLen > nLineEndSqLen || nPntMax == i+1 )
+                        {
+                            aEndParam.Init(aPoly[nLastPnt], aPoly[nPntMax-1], 1);
+                            double fLen = sqrt((double)nLineEndSqLen);
+                            if ( aEndParam.fLength )
+                                fLen /= aEndParam.fLength;
+
+                            aPoly[nPntMax].X() = aPoly[nLastPnt].X() + (long) (fLen * aEndParam.nLineDx);
+                            aPoly[nPntMax].Y() = aPoly[nLastPnt].Y() + (long) (fLen * aEndParam.nLineDy);
+                            break;
+                        }
+                    }
+                    else if ( aDiff.X() || aDiff.Y() )
+                        break;
+
+                    nPntMax--;
+                }
+
+                if ( bClosePoly )
+                {
+                    aDiff = aPoly[nPntMax] - aPoly[i];
+                    if ( !aDiff.X() && !aDiff.Y() )
+                        nPntMax--;
+                }
+
+                while ( i < nPntMax )
+                {
+                    USHORT nPos = i + 1;
+                    while ( nPos < nPntMax )
+                    {
+                        aDiff = aPoly[nPos+1] - aPoly[nPos];
+                        if ( aDiff.X() || aDiff.Y() )
+                            break;
+
+                        nPos++;
+                    }
+
+                    i = nPos;
+                }
+
+                if( nLineWidth == 0 )
+                    pOut->SetLineColor( aOldLineColor );
+
+                pOut->SetFillColor( aOldFillColor );
+                pOut->SetDrawMode( nOldDrawMode );
+            }
+        }
+    }
+}
 
 
 }

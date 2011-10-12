@@ -91,10 +91,6 @@ using namespace ::com::sun::star;
 /*N*/   Clear(); // Containerinhalt loeschen!
 /*N*/ }
 
-/*N*/ void SdrObjList::operator=(const SdrObjList& /*rSrcList*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ void SdrObjList::CopyObjects(const SdrObjList& rSrcList)
 /*N*/ {
 /*N*/   Clear();
@@ -341,10 +337,6 @@ using namespace ::com::sun::star;
 /*N*/           pModel->SetChanged();
 /*N*/       }
 /*N*/   }
-/*N*/ }
-
-/*N*/ SdrObject* SdrObjList::NbcRemoveObject(ULONG /*nObjNum*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");return NULL;
 /*N*/ }
 
 /*N*/ SdrObject* SdrObjList::RemoveObject(ULONG nObjNum)
@@ -677,10 +669,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/                       if( bPaintFlag )
 /*N*/                       {
-/*N*/                           if( pObj->IsNeedColorRestore() )
-/*?*/                           {DBG_BF_ASSERT(0, "STRIP");
-/*N*/                           }
-/*N*/                           else
+/*N*/                           if( !pObj->IsNeedColorRestore() )
 /*N*/                               bColorsDirty=TRUE; // andere aendern die Farben
 /*N*/
 /*N*/                           if( rInfoRec.pPaintProc!=NULL )
@@ -955,14 +944,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-/*?*/ void SdrObjList::FlattenGroups()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
-
-/*?*/ void SdrObjList::UnGroupObj( ULONG /*nObjNum*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
-/*?*/ }
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ SvStream& operator<<(SvStream& rOut, const SdrMasterPageDescriptor& rMDP)
@@ -1022,12 +1003,6 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void SdrPageGridFrameList::Clear()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
 /*N*/ TYPEINIT1(SdrPage,SdrObjList);
 
 /*N*/ SdrPage::SdrPage(SdrModel& rNewModel, bool bMasterPage):
@@ -1082,11 +1057,6 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   return nWdt;
 /*N*/ }
-
-/*N*/ void SdrPage::SetOrientation(Orientation /*eOri*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 
 /*N*/ INT32 SdrPage::GetHgt() const
 /*N*/ {
@@ -1483,17 +1453,6 @@ using namespace ::com::sun::star;
 /*N*/   return pObj->GetStyleSheet();
 /*N*/ }
 
-
-/** returns an averaged background color of this page */
-/*N*/ Color SdrPage::GetBackgroundColor( SdrPageView* /*pView*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); Color aColor; return aColor;
-/*N*/ }
-
-/** *deprecated, use GetBackgroundColor with SdrPageView */
-/*N*/ Color SdrPage::GetBackgroundColor() const
-/*N*/ {
-/*N*/   return GetBackgroundColor( NULL );
-/*N*/ }
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

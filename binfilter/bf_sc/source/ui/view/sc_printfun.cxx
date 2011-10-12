@@ -152,7 +152,6 @@ namespace binfilter {
 /*N*/                           ScPageBreakData* pData )
 /*N*/   :   pDocShell           ( pShell ),
 /*N*/       pPrinter            ( pNewPrinter ),
-/*N*/       pDrawView           ( NULL ),
 /*N*/       nPrintTab           ( nTab ),
 /*N*/       nPageStart          ( nPage ),
 /*N*/       nDocPages           ( nDocP ),

@@ -197,7 +197,6 @@ void SAL_CALL Svx3DSceneObject::remove( const Reference< drawing::XShape >& xSha
 
         if( nObjNum < nObjCount )
         {
-            delete rList.NbcRemoveObject( nObjNum );
             pShape->InvalidateSdrObject();
         }
         else

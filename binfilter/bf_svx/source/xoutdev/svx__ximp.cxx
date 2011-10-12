@@ -37,22 +37,6 @@
 #include "xoutx.hxx"
 namespace binfilter {
 
-// -----------
-// - Statics -
-// -----------
-
-#ifdef MAC
-    const BOOL XIMP_bDrawRasterOps = FALSE;
-#else
-    const BOOL XIMP_bDrawRasterOps = TRUE;
-#endif
-
-// -----------
-// - Defines -
-// -----------
-
-#define FILL_TILE 200
-
 // ----------------
 // - XOuputDevice -
 // ----------------
@@ -180,27 +164,10 @@ namespace binfilter {
 /*?*/           else
 /*?*/           {
 /*?*/               Rectangle       aPolyRect( rPolyPoly.GetBoundRect() );
-/*?*/               GDIMetaFile*    pMtf = pOut->GetConnectMetaFile();
+/*?*/               /*GDIMetaFile*    pMtf = */ pOut->GetConnectMetaFile();
 /*?*/
 /*?*/               pOut->Push();
 /*?*/               pOut->SetRasterOp( ROP_OVERPAINT );
-/*?*/
-/*?*/               if( pMtf && !bPrinter )
-/*?*/               {
-/*?*/                   if( !pOut->GetPDFWriter() && XIMP_bDrawRasterOps )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");
-/*?*/                   }
-/*?*/                   else
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");
-/*?*/                   }
-/*?*/               }
-/*?*/               else if( bRect || bPrinter )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
-/*?*/               else
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
-/*?*/
 /*?*/               pOut->Pop();
 /*?*/           }
 /*?*/       }
@@ -208,12 +175,6 @@ namespace binfilter {
 /*?*/       pOut->SetLineColor( aOldLineColor );
 /*N*/   }
 /*N*/ }
-
-// ------------------------------------------------------------------------
-
-
-// ------------------------------------------------------------------------
-
 
 // ------------------------------------------------------------------------
 

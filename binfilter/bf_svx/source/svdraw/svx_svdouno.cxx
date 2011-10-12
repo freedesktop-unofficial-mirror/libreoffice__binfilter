@@ -163,10 +163,6 @@ namespace binfilter {
 /*N*/
 /*N*/   pEventListener = new SdrControlEventListenerImpl(this);
 /*N*/   pEventListener->acquire();
-/*N*/
-/*N*/   // nur ein owner darf eigenstaendig erzeugen
-/*N*/   if (rModelName.Len())
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ }
 
 /*N*/ SdrUnoObj::~SdrUnoObj()
@@ -406,10 +402,6 @@ namespace binfilter {
 /*N*/ #ifdef DBG_UTIL
 /*N*/   aCompat.SetID("SdrUnoObj");
 /*N*/ #endif
-/*N*/
-/*N*/   if (bOwnUnoControlModel)                    // nur als besitzt des Models dieses auch lesen
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/ }
 
 /*N*/ void SdrUnoObj::SetUnoControlModel( uno::Reference< awt::XControlModel > xModel)
