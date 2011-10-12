@@ -84,17 +84,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------
-
-int SvxColorTableItem::operator==( const SfxPoolItem& /*rItem*/ ) const
-{
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-    return 0;
-}
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxColorTableItem::Clone( SfxItemPool * ) const
 /*N*/ {
 /*N*/   return new SvxColorTableItem( *this );
@@ -127,17 +116,6 @@ int SvxColorTableItem::operator==( const SfxPoolItem& /*rItem*/ ) const
 /*N*/ }
 
 //------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-int SvxGradientListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
-{
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-    return 0;
-}
-
-// -----------------------------------------------------------------------
 
 /*N*/ SfxPoolItem* SvxGradientListItem::Clone( SfxItemPool * ) const
 /*N*/ {
@@ -172,17 +150,6 @@ int SvxGradientListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
 
 //------------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------
-
-int SvxHatchListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
-{
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-    return 0;
-}
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxHatchListItem::Clone( SfxItemPool * ) const
 /*N*/ {
 /*N*/   return new SvxHatchListItem( *this );
@@ -216,22 +183,10 @@ int SvxHatchListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
 
 //------------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------
-
-int SvxBitmapListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
-{
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-    return 0;
-}
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxBitmapListItem::Clone( SfxItemPool * ) const
 /*N*/ {
 /*N*/   return new SvxBitmapListItem( *this );
 /*N*/ }
-
 
 //==================================================================
 //
@@ -260,17 +215,6 @@ int SvxBitmapListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
 /*N*/ }
 
 //------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-int SvxDashListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
-{
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-    return 0;
-}
-
-// -----------------------------------------------------------------------
 
 /*N*/ SfxPoolItem* SvxDashListItem::Clone( SfxItemPool * ) const
 /*N*/ {
@@ -303,9 +247,6 @@ int SvxDashListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
 /*N*/ {
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-
 // -----------------------------------------------------------------------
 
 /*N*/ int SvxLineEndListItem::operator==( const SfxPoolItem& rItem ) const
@@ -320,7 +261,6 @@ int SvxDashListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
 /*N*/ {
 /*N*/   return new SvxLineEndListItem( *this );
 /*N*/ }
-
 
 }
 

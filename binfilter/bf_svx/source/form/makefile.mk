@@ -1,7 +1,7 @@
 #*************************************************************************
 #
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
-# 
+#
 # Copyright 2000, 2010 Oracle and/or its affiliates.
 #
 # OpenOffice.org - a multi-platform office productivity suite
@@ -60,12 +60,11 @@ SLOFILES = \
     $(SLO)$/svx_fmobjfac.obj \
     $(SLO)$/svx_fmimplids.obj \
     $(SLO)$/svx_fmdmod.obj \
-    $(SLO)$/svx_ParseContext.obj \
     $(SLO)$/svx_siimport.obj \
     $(SLO)$/svx_fmtools.obj \
     $(SLO)$/svx_fmpgeimp.obj
 
-.IF "$(OS)$(CPU)"=="SOLARISI" 
+.IF "$(OS)$(CPU)"=="SOLARISI"
 NOOPTFILES=$(SLO)$/svx_fmprop.obj
 .ENDIF
 

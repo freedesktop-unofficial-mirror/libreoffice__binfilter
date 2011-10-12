@@ -199,19 +199,9 @@ struct TabInfo
 /*N*/       ParaPortion* pParaPortion = GetParaPortions().GetObject( nPara );
 /*N*/       if ( pParaPortion->MustRepaint() || ( pParaPortion->IsInvalid() && pParaPortion->IsVisible() ) )
 /*N*/       {
-/*N*/           if ( pParaPortion->IsInvalid() )
-/*N*/           {
-/*N*/               sal_Bool bChangedByDerivedClass = GetEditEnginePtr()->FormattingParagraph( nPara );
-/*N*/               if ( bChangedByDerivedClass )
-/*N*/               {
-/*?*/                   pParaPortion->GetTextPortions().Reset();
-/*?*/                   pParaPortion->MarkSelectionInvalid( 0, pParaPortion->GetNode()->Len() );
-/*N*/               }
-/*N*/           }
 /*N*/           // bei MustRepaint() sollte keine Formatierung noetig sein!
 /*N*/           // 23.1.95: Evtl. ist sie durch eine andere Aktion aber doch
 /*N*/           // ungueltig geworden!
-/*N*/ //            if ( pParaPortion->MustRepaint() || CreateLines( nPara ) )
 /*N*/           if ( ( pParaPortion->MustRepaint() && !pParaPortion->IsInvalid() )
 /*N*/                   || CreateLines( nPara, nY ) )
 /*N*/           {
@@ -416,9 +406,6 @@ struct TabInfo
 /*N*/   const SvxLineSpacingItem& rLSItem = (const SvxLineSpacingItem&) pNode->GetContentAttribs().GetItem( EE_PARA_SBL );
 /*N*/   const BOOL bScriptSpace = ((const SvxScriptSpaceItem&) pNode->GetContentAttribs().GetItem( EE_PARA_ASIANCJKSPACING )).GetValue();
 /*N*/
-/*N*/ //    const sal_uInt16 nInvalidEnd = ( pParaPortion->GetInvalidDiff() > 0 )
-/*N*/ //        ? pParaPortion->GetInvalidPosStart() + pParaPortion->GetInvalidDiff()
-/*N*/ //        : pNode->Len();
 /*N*/   const short nInvalidDiff = pParaPortion->GetInvalidDiff();
 /*N*/   const sal_uInt16 nInvalidStart = pParaPortion->GetInvalidPosStart();
 /*N*/   const sal_uInt16 nInvalidEnd =  nInvalidStart + Abs( nInvalidDiff );
@@ -633,7 +620,6 @@ struct TabInfo
 /*N*/
 /*N*/                       // Tab-Pos suchen...
 /*N*/                       long nCurPos = nTmpWidth+nStartX;
-/*N*/ //                        nCurPos -= rLRItem.GetTxtLeft();    // Tabs relativ zu LI
 /*N*/                       // Skalierung rausrechnen
 /*N*/                       if ( aStatus.DoStretch() && ( nStretchX != 100 ) )
 /*?*/                           nCurPos = nCurPos*100/nStretchX;
@@ -1004,20 +990,6 @@ struct TabInfo
 /*N*/           }
 /*N*/       }
 /*N*/
-/*N*/
-/*N*/       // #80582# - Bullet should not influence line height
-/*N*/ //        if ( !nLine )
-/*N*/ //        {
-/*N*/ //            long nBulletHeight = aBulletArea.GetHeight();
-/*N*/ //            if ( nBulletHeight > (long)pLine->GetHeight() )
-/*N*/ //            {
-/*N*/ //                long nDiff =  nBulletHeight - (long)pLine->GetHeight();
-/*N*/ //                // nDiff auf oben und unten verteilen.
-/*N*/ //                pLine->SetMaxAscent( (sal_uInt16)(pLine->GetMaxAscent() + nDiff/2) );
-/*N*/ //                pLine->SetHeight( (sal_uInt16)nBulletHeight );
-/*N*/ //            }
-/*N*/ //        }
-/*N*/
 /*N*/       if ( ( !IsVertical() && aStatus.AutoPageWidth() ) ||
 /*N*/            ( IsVertical() && aStatus.AutoPageHeight() ) )
 /*N*/       {
@@ -1364,9 +1336,6 @@ struct TabInfo
 /*N*/ //    CalcCharPositions( pParaPortion );
 /*N*/   pParaPortion->SetValid();
 /*N*/   long nOldHeight = pParaPortion->GetHeight();
-/*N*/ //    sal_uInt16 nPos = GetParaPortions().GetPos( pParaPortion );
-/*N*/ //    DBG_ASSERT( nPos != USHRT_MAX, "FinishCreateLines: Portion nicht in Liste!" );
-/*N*/ //    ParaPortion* pPrev = nPos ? GetParaPortions().GetObject( nPos-1 ) : 0;
 /*N*/   CalcHeight( pParaPortion );
 /*N*/
 /*N*/   DBG_ASSERT( pParaPortion->GetTextPortions().Count(), "FinishCreateLines: Keine Text-Portion?" );
@@ -1708,10 +1677,6 @@ struct TabInfo
 /*N*/       {
 /*N*/           if ( nTmpPos == nPos )  // dann braucht nichts geteilt werden
 /*N*/           {
-/*N*/               // Skip Portions with ExtraSpace
-/*N*/ //                while ( ( (nSplitPortion+1) < nPortions ) && (pPortion->GetTextPortions().GetObject(nSplitPortion+1)->GetKind() == PORTIONKIND_EXTRASPACE ) )
-/*N*/ //                    nSplitPortion++;
-/*N*/
 /*N*/               return nSplitPortion;
 /*N*/           }
 /*N*/           pTextPortion = pTP;
@@ -2212,13 +2177,8 @@ struct TabInfo
 /*N*/       // Damit sich die Leading nicht wieder rausrechnet,
 /*N*/       // wenn die ganze Zeile den Font hat, nTmpLeading.
 /*N*/
-/*N*/       // 4/96: Kommt bei HP Laserjet 4V auch nicht hin
-/*N*/       // => Werte komplett vom Bildschirm holen.
-/*N*/ //        sal_uInt16 nTmpLeading = (sal_uInt16)aMetric.GetIntLeading();
-/*N*/ //        nAscent += nTmpLeading;
 /*N*/       nAscent = (sal_uInt16)aMetric.GetAscent();
 /*N*/       nDescent = (sal_uInt16)aMetric.GetDescent();
-/*N*/ //        nLeading = (sal_uInt16)aMetric.GetIntLeading();
 /*N*/   }
 /*N*/   if ( nAscent > rCurMetrics.nMaxAscent )
 /*N*/       rCurMetrics.nMaxAscent = nAscent;
@@ -2324,11 +2284,6 @@ struct TabInfo
 /*N*/               if ( ( !IsVertical() && ( aStartPos.Y() > aClipRec.Top() ) )
 /*N*/                   || ( IsVertical() && aStartPos.X() < aClipRec.Right() ) )
 /*N*/               {
-/*N*/                   if ( ( nLine == 0 ) && !bStripOnly )    // erste Zeile
-/*N*/                   {
-/*N*/                       // VERT???
-/*N*/                       GetEditEnginePtr()->PaintingFirstLine( n, aParaStart, aTmpPos.Y(), aOrigin, nOrientation, pOutDev );
-/*N*/                   }
 /*N*/                   // --------------------------------------------------
 /*N*/                   // Ueber die Portions der Zeile...
 /*N*/                   // --------------------------------------------------
@@ -2352,18 +2307,6 @@ struct TabInfo
 /*?*/                             if ( aTmpPos.Y() > aClipRec.Bottom() )
 /*?*/                                 break;    // Keine weitere Ausgabe in Zeile noetig
 /*N*/                         }
-/*N*/
-/*N*/                         // R2L replaces with obove...
-/*N*/                         // New position after processing R2L text...
-/*N*/ // R2L                        if ( nR2LWidth && !pTextPortion->GetRightToLeft() )
-/*N*/ // R2L                        {
-/*N*/ // R2L                            if ( !IsVertical() )
-/*N*/ // R2L                                aTmpPos.X() += nR2LWidth;
-/*N*/ // R2L                            else
-/*N*/ // R2L                                aTmpPos.Y() += nR2LWidth;
-/*N*/ // R2L
-/*N*/ // R2L                            nR2LWidth = 0;
-/*N*/ // R2L                        }
 /*N*/
 /*N*/                       switch ( pTextPortion->GetKind() )
 /*N*/                       {
@@ -2451,24 +2394,6 @@ struct TabInfo
 /*N*/
 /*N*/                               Point aOutPos( aTmpPos );
 /*N*/                                 aRedLineTmpPos = aTmpPos;
-/*N*/ //L2R                                if ( pTextPortion->GetRightToLeft() )
-/*N*/ //L2R                                {
-/*N*/ //L2R                                    sal_uInt16 nNextPortion = y+1;
-/*N*/ //L2R                                    while ( nNextPortion <= pLine->GetEndPortion() )
-/*N*/ //L2R                                    {
-/*N*/ //L2R                                     TextPortion* pNextTextPortion = pPortion->GetTextPortions().GetObject( nNextPortion );
-/*N*/ //L2R                                        if ( pNextTextPortion->GetRightToLeft() )
-/*N*/ //L2R                                        {
-/*N*/ //L2R                                         if ( !IsVertical() )
-/*N*/ //L2R                                                aOutPos.X() += pNextTextPortion->GetSize().Width();
-/*N*/ //L2R                                         else
-/*N*/ //L2R                                                aOutPos.Y() += pNextTextPortion->GetSize().Width();
-/*N*/ //L2R                                        }
-/*N*/ //L2R                                        else
-/*N*/ //L2R                                            break;
-/*N*/ //L2R                                        nNextPortion++;
-/*N*/ //L2R                                    }
-/*N*/ //L2R                                }
 /*N*/                               if ( bStripOnly )
 /*N*/                               {
 /*N*/                                   // VERT???
@@ -2531,19 +2456,6 @@ struct TabInfo
 /*N*/
 /*N*/                                 if ( pTmpDXArray )
 /*?*/                                   delete[] pTmpDXArray;
-/*N*/
-/*N*/ // R2L                                if ( !pTextPortion->GetRightToLeft() )
-/*N*/ // R2L                                {
-/*N*/ // R2L                                    if ( !IsVertical() )
-/*N*/ // R2L                                        aTmpPos.X() += nTxtWidth;
-/*N*/ // R2L                                    else
-/*N*/ // R2L                                        aTmpPos.Y() += nTxtWidth;
-/*N*/ // R2L                                }
-/*N*/ // R2L                                else
-/*N*/ // R2L                                {
-/*N*/ // R2L                                    nR2LWidth += nTxtWidth;
-/*N*/ // R2L                                }
-/*N*/
 /*N*/                           }
 /*N*/                           break;
 /*N*/ //                        case PORTIONKIND_EXTRASPACE:
@@ -2566,17 +2478,9 @@ struct TabInfo
 /*?*/                                   aText.Fill( (USHORT)nChars, pTextPortion->GetExtraValue() );
 /*?*/                                   pOutDev->DrawStretchText( aTmpPos, pTextPortion->GetSize().Width(), aText );
 /*?*/                               }
-/*?*/ // R2L                                if ( !IsVertical() )
-/*?*/ // R2L                                    aTmpPos.X() += pTextPortion->GetSize().Width();
-/*?*/ // R2L                                else
-/*?*/ // R2L                                    aTmpPos.Y() += pTextPortion->GetSize().Width();
 /*N*/                           }
 /*N*/                           break;
 /*N*/                       }
-/*N*/ // R2L                        if ( !IsVertical() && ( aTmpPos.X() > aClipRec.Right() ) )
-/*N*/ // R2L                            break;  // Keine weitere Ausgabe in Zeile noetig
-/*N*/ // R2L                        else if ( IsVertical() && ( aTmpPos.Y() > aClipRec.Bottom() ) )
-/*N*/ // R2L                            break;  // Keine weitere Ausgabe in Zeile noetig
 /*N*/                       nIndex += pTextPortion->GetLen();
 /*N*/                   }
 /*N*/               }
@@ -2717,7 +2621,6 @@ struct TabInfo
 /*N*/       if ( GetTextRanger() )
 /*N*/       {
 /*?*/           // Some problems here with push/pop, why?!
-/*?*/ //            pOutWin->Push( PUSH_CLIPREGION|PUSH_MAPMODE );
 /*?*/           bClipRegion = pOutWin->IsClipRegion();
 /*?*/           aOldRegion = pOutWin->GetClipRegion();
 /*?*/           // Wie bekomme ich das Polygon an die richtige Stelle????
@@ -2739,7 +2642,6 @@ struct TabInfo
 /*N*/
 /*N*/       if ( GetTextRanger() )
 /*N*/       {
-/*?*/ //            pOutWin->Pop();
 /*?*/           if ( bClipRegion )
 /*?*/               pOutWin->SetClipRegion( aOldRegion );
 /*?*/           else
@@ -2800,19 +2702,6 @@ struct TabInfo
 /*N*/ void ImpEditEngine::SetUpdateMode( sal_Bool bUp, EditView* pCurView, sal_Bool bForceUpdate )
 /*N*/ {
 /*N*/   sal_Bool bChanged = ( GetUpdateMode() != bUp );
-/*N*/
-/*N*/   // Beim Umschalten von sal_True auf sal_False waren alle Selektionen sichtbar,
-/*N*/   // => Wegmalen
-/*N*/   // Umgekehrt waren alle unsichtbar => malen
-/*N*/
-/*N*/ //    DrawAllSelections();    sieht im Outliner schlecht aus !
-/*N*/ //    EditView* pView = aEditViewList.First();
-/*N*/ //    while ( pView )
-/*N*/ //    {
-/*N*/ //        DBG_CHKOBJ( pView, EditView, 0 );
-/*N*/ //        pView->pImpEditView->DrawSelection();
-/*N*/ //        pView = aEditViewList.Next();
-/*N*/ //    }
 /*N*/
 /*N*/   // Wenn !bFormatted, also z.B. nach SetText, braucht bei UpdateMode sal_True
 /*N*/   // nicht sofort formatiert werden, weil warscheinlich noch Text kommt.

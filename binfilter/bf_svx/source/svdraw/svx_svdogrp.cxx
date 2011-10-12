@@ -491,21 +491,6 @@ namespace binfilter {
 
 /*N*/ void SdrObjGroup::NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact)
 /*N*/ {
-/*N*/   bool bXMirr=(xFact.GetNumerator()<0) != (xFact.GetDenominator()<0);
-/*N*/   bool bYMirr=(yFact.GetNumerator()<0) != (yFact.GetDenominator()<0);
-/*N*/   if (bXMirr || bYMirr) {
-/*N*/       Point aRef1(GetSnapRect().Center());
-/*N*/       if (bXMirr) {
-/*N*/           Point aRef2(aRef1);
-/*N*/           aRef2.Y()++;
-/*N*/           NbcMirrorGluePoints(aRef1,aRef2);
-/*N*/       }
-/*N*/       if (bYMirr) {
-/*N*/           Point aRef2(aRef1);
-/*N*/           aRef2.X()++;
-/*N*/           NbcMirrorGluePoints(aRef1,aRef2);
-/*N*/       }
-/*N*/   }
 /*N*/   ResizePoint(aRefPoint,rRef,xFact,yFact);
 /*N*/   if (pSub->GetObjCount()!=0) {
 /*N*/       SdrObjList* pOL=pSub;
@@ -601,21 +586,6 @@ namespace binfilter {
 /*N*/ void SdrObjGroup::Resize(const Point& rRef, const Fraction& xFact, const Fraction& yFact)
 /*N*/ {
 /*N*/   if (xFact.GetNumerator()!=xFact.GetDenominator() || yFact.GetNumerator()!=yFact.GetDenominator()) {
-/*N*/       bool bXMirr=(xFact.GetNumerator()<0) != (xFact.GetDenominator()<0);
-/*N*/       bool bYMirr=(yFact.GetNumerator()<0) != (yFact.GetDenominator()<0);
-/*N*/       if (bXMirr || bYMirr) {
-/*N*/           Point aRef1(GetSnapRect().Center());
-/*N*/           if (bXMirr) {
-/*N*/               Point aRef2(aRef1);
-/*N*/               aRef2.Y()++;
-/*N*/               NbcMirrorGluePoints(aRef1,aRef2);
-/*N*/           }
-/*N*/           if (bYMirr) {
-/*N*/               Point aRef2(aRef1);
-/*N*/               aRef2.X()++;
-/*N*/               NbcMirrorGluePoints(aRef1,aRef2);
-/*N*/           }
-/*N*/       }
 /*N*/       Rectangle aBoundRect0; if (pUserCall!=NULL) aBoundRect0=GetBoundRect();
 /*N*/       ResizePoint(aRefPoint,rRef,xFact,yFact);
 /*N*/       if (pSub->GetObjCount()!=0) {
@@ -745,11 +715,8 @@ namespace binfilter {
 /*N*/       sal_uInt32 a; for(a = 0; a < nCount; a++)
 /*N*/       {
 /*N*/           SdrObject* pObj = pSub->GetObj(a);
-/*N*/           if(pObj->AllowItemChange(nWhich, pNewItem))
-/*N*/           {
-/*N*/               pObj->ItemChange(nWhich, pNewItem);
-/*N*/               aPostItemChangeList.Insert((void*)pObj, LIST_APPEND);
-/*N*/           }
+/*N*/           pObj->ItemChange(nWhich, pNewItem);
+/*N*/           aPostItemChangeList.Insert((void*)pObj, LIST_APPEND);
 /*N*/       }
 /*N*/
 /*N*/       for(a = 0; a < aPostItemChangeList.Count(); a++)

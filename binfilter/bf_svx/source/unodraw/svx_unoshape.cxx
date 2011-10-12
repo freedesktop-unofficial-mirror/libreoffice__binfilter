@@ -448,7 +448,6 @@ void SvxShape::ObtainSettingsFromPropertySet(SvxItemPropertySet& rPropSet) throw
         Reference< beans::XPropertySet > xShape( (OWeakObject*)this, UNO_QUERY );
         aPropSet.ObtainSettingsFromPropertySet(rPropSet, aSet, xShape);
         pObj->SetItemSetAndBroadcast(aSet);
-        pObj->ApplyNotPersistAttr( aSet );
     }
 }
 
@@ -1741,7 +1740,6 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
             sal_Bool bPrintable(sal_False);
             if( rVal >>= bPrintable )
             {
-                pObj->SetPrintable(bPrintable);
                 return;
             }
             break;
@@ -1864,15 +1862,6 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
             {
                 if( pSet->GetItemState( pMap->nWID ) != SFX_ITEM_SET )
                 {
-                    if(bIsNotPersist)
-                    {
-                        // Not-Persistant Attribute, hole diese extra
-                        pObj->TakeNotPersistAttr(*pSet, sal_False);
-                    }
-                }
-
-                if( pSet->GetItemState( pMap->nWID ) != SFX_ITEM_SET )
-                {
                     // Default aus ItemPool holen
                     if(pModel->GetItemPool().IsWhich(pMap->nWID))
                         pSet->Put(pModel->GetItemPool().GetDefaultItem(pMap->nWID));
@@ -1887,8 +1876,6 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
 
             if(bIsNotPersist)
             {
-                // Not-Persist Attribute extra setzen
-                pObj->ApplyNotPersistAttr( *pSet );
                 delete pSet;
             }
             else
@@ -2327,15 +2314,6 @@ uno::Any SvxShape::_getPropertyValue( const OUString& PropertyName )
 
                 if(SvxUnoTextRangeBase::GetPropertyValueHelper(  aSet, pMap, aAny ))
                     return aAny;
-
-                if(!aSet.Count())
-                {
-                    if(pMap->nWID >= SDRATTR_NOTPERSIST_FIRST && pMap->nWID <= SDRATTR_NOTPERSIST_LAST)
-                    {
-                        // Not-Persistant Attribute, hole diese extra
-                        pObj->TakeNotPersistAttr(aSet, sal_False);
-                    }
-                }
 
                 if(!aSet.Count())
                 {

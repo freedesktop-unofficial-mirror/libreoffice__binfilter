@@ -131,19 +131,6 @@ namespace binfilter {
 /*N*/   long nTHgt0=aRect.GetHeight()-1-nVDist; if (nTHgt0<0) nTHgt0=0;
 /*N*/   bool bXMirr=(xFact.GetNumerator()<0) != (xFact.GetDenominator()<0);
 /*N*/   bool bYMirr=(yFact.GetNumerator()<0) != (yFact.GetDenominator()<0);
-/*N*/   if (bXMirr || bYMirr) {
-/*N*/       Point aRef1(GetSnapRect().Center());
-/*N*/       if (bXMirr) {
-/*N*/           Point aRef2(aRef1);
-/*N*/           aRef2.Y()++;
-/*N*/           NbcMirrorGluePoints(aRef1,aRef2);
-/*N*/       }
-/*N*/       if (bYMirr) {
-/*N*/           Point aRef2(aRef1);
-/*N*/           aRef2.X()++;
-/*N*/           NbcMirrorGluePoints(aRef1,aRef2);
-/*N*/       }
-/*N*/   }
 /*N*/
 /*N*/   if (aGeo.nDrehWink==0 && aGeo.nShearWink==0) {
 /*N*/       ResizeRect(aRect,rRef,xFact,yFact);
@@ -211,9 +198,6 @@ namespace binfilter {
 /*N*/   if (bTextFrame && (pModel==NULL || !pModel->IsPasteResize())) { // #51139#
 /*N*/       if (nTWdt0!=nTWdt1 && IsAutoGrowWidth() ) NbcSetMinTextFrameWidth(nTWdt1);
 /*N*/       if (nTHgt0!=nTHgt1 && IsAutoGrowHeight()) NbcSetMinTextFrameHeight(nTHgt1);
-/*N*/       if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
 /*?*/       NbcAdjustTextFrameWidthAndHeight();
 /*N*/   }
 /*N*/   ImpCheckShear();
@@ -222,7 +206,6 @@ namespace binfilter {
 
 /*N*/ void SdrTextObj::NbcRotate(const Point& rRef, long nWink, double sn, double cs)
 /*N*/ {
-/*N*/   SetGlueReallyAbsolute(TRUE);
 /*N*/   long dx=aRect.Right()-aRect.Left();
 /*N*/   long dy=aRect.Bottom()-aRect.Top();
 /*N*/   Point aP(aRect.TopLeft());
@@ -240,14 +223,10 @@ namespace binfilter {
 /*N*/       aGeo.RecalcSinCos();
 /*N*/   }
 /*N*/   SetRectsDirty();
-/*N*/   NbcRotateGluePoints(rRef,nWink,sn,cs);
-/*N*/   SetGlueReallyAbsolute(FALSE);
 /*N*/ }
 
 /*N*/ void SdrTextObj::NbcShear(const Point& rRef, long nWink, double tn, bool bVShear)
 /*N*/ {
-/*N*/   SetGlueReallyAbsolute(TRUE);
-/*N*/
 /*N*/   // #75889# when this is a SdrPathObj aRect maybe not initialized
 /*N*/   Polygon aPol(Rect2Poly(aRect.IsEmpty() ? GetSnapRect() : aRect, aGeo));
 /*N*/
@@ -262,8 +241,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   ImpCheckShear();
 /*N*/   SetRectsDirty();
-/*N*/   NbcShearGluePoints(rRef,nWink,tn,bVShear);
-/*N*/   SetGlueReallyAbsolute(FALSE);
 /*N*/ }
 
 
@@ -292,19 +269,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SdrObjKind ePathKind=bClosed?OBJ_PATHFILL:OBJ_PATHLINE;
 /*N*/   XPolyPolygon aXPP(rXPP);
-/*N*/   if (bClosed) {
-/*N*/       // Alle XPolygone des XPolyPolygons schliessen, sonst kommt das PathObj durcheinander!
-/*N*/       for (USHORT i=0; i<aXPP.Count(); i++) {
-/*N*/           const XPolygon& rXP=aXPP[i];
-/*N*/           USHORT nAnz=rXP.GetPointCount();
-/*N*/           if (nAnz>0) {
-/*N*/               USHORT nMax=USHORT(nAnz-1);
-/*N*/               Point aPnt(rXP[0]);
-/*N*/               if (aPnt!=rXP[nMax]) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/   }
 /*N*/   if (!bBezier && pModel!=NULL) {
 /*N*/       // Polygon aus Bezierkurve interpolieren
 /*N*/       VirtualDevice   aVDev;
@@ -322,8 +286,6 @@ namespace binfilter {
 /*N*/       ePathKind=bClosed?OBJ_POLY:OBJ_PLIN;
 /*N*/   }
 /*N*/   SdrPathObj* pPathObj=new SdrPathObj(ePathKind,aXPP);
-/*N*/   if (bBezier) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/   ImpConvertSetAttrAndLayer(pPathObj,bNoSetAttr);
 /*N*/   return pPathObj;
 /*N*/ }
@@ -331,7 +293,7 @@ namespace binfilter {
 /*N*/ SdrObject* SdrTextObj::ImpConvertAddText(SdrObject* pObj, bool /*bBezier*/) const
 /*N*/ {
 /*N*/   if (!ImpCanConvTextToCurve()) return pObj;
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return pObj;
+/*?*/   return pObj;
 /*N*/ }
 
 }

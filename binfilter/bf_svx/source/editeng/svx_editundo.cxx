@@ -40,12 +40,6 @@ namespace binfilter {
 
 DBG_NAME( EditUndo )
 
-#define MAX_UNDOS   100     // ab dieser Menge darf geloescht werden....
-#define MIN_UNDOS   50      // soviel muss stehen bleiben...
-
-#define NO_UNDO         0xFFFF
-#define GROUP_NOTFOUND  0xFFFF
-
 /*N*/ TYPEINIT1( EditUndoInsertChars, EditUndo );
 
 
@@ -56,8 +50,6 @@ DBG_NAME( EditUndo )
 /*N*/ {
 /*N*/   pImpEE = p;
 /*N*/ }
-
-
 
 // -----------------------------------------------------------------------
 // EditUndo
@@ -101,16 +93,6 @@ DBG_NAME( EditUndo )
 /*N*/ {
 /*N*/ }
 
-void EditUndoInsertChars::Undo()
-{
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-}
-
-void EditUndoInsertChars::Redo()
-{
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-}
-
 /*N*/ BOOL EditUndoInsertChars::Merge( SfxUndoAction* pNextAction )
 /*N*/ {
 /*N*/   if ( !pNextAction->ISA( EditUndoInsertChars ) )
@@ -129,12 +111,6 @@ void EditUndoInsertChars::Redo()
 /*N*/   return FALSE;
 /*N*/ }
 
-void EditUndoInsertChars::Repeat()
-{
-    OSL_FAIL( "EditUndoInsertChars::Repeat nicht implementiert!" );
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-}
-
 // -----------------------------------------------------------------------
 // EditUndoInsertFeature
 // ------------------------------------------------------------------------
@@ -149,22 +125,6 @@ void EditUndoInsertChars::Repeat()
 /*N*/ {
 /*N*/   delete pFeature;
 /*N*/ }
-
-void EditUndoInsertFeature::Undo()
-{
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-}
-
-void EditUndoInsertFeature::Redo()
-{
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-}
-
-void EditUndoInsertFeature::Repeat()
-{
-    OSL_FAIL( "EditUndoInsertFeature::Repeat nicht implementiert!" );
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-}
 
 // -----------------------------------------------------------------------
 // EditUndoSetStyleSheet
@@ -181,22 +141,6 @@ void EditUndoInsertFeature::Repeat()
 /*N*/   nPara = nP;
 /*N*/ }
 
-void EditUndoSetStyleSheet::Undo()
-{
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-}
-
-void EditUndoSetStyleSheet::Redo()
-{
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-}
-
-void EditUndoSetStyleSheet::Repeat()
-{
-    OSL_FAIL( "EditUndoSetStyleSheet::Repeat nicht implementiert!" );
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-}
-
 // -----------------------------------------------------------------------
 // EditUndoSetParaAttribs
 // ------------------------------------------------------------------------
@@ -207,22 +151,6 @@ void EditUndoSetStyleSheet::Repeat()
 /*N*/ {
 /*N*/   nPara = nP;
 /*N*/ }
-
-void EditUndoSetParaAttribs::Undo()
-{
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-}
-
-void EditUndoSetParaAttribs::Redo()
-{
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-}
-
-void EditUndoSetParaAttribs::Repeat()
-{
-    OSL_FAIL( "EditUndoSetParaAttribs::Repeat nicht implementiert!" );
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-}
 
 }
 

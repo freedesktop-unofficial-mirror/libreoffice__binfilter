@@ -52,7 +52,6 @@
 #include "fmsearch.hxx"
 #include <cppuhelper/compbase6.hxx>
 #include <unotools/configitem.hxx>
-#include "dbtoolsclient.hxx"
 
 #include <queue>
 namespace binfilter {

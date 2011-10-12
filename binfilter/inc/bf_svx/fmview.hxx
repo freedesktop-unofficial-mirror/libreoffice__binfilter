@@ -63,7 +63,6 @@ namespace svx {
 
 class FmFormView : public E3dView
 {
-    friend class FmXFormController;
     friend class FmFormShell;
     friend class FmXFormShell;
     friend class FmXFormView;

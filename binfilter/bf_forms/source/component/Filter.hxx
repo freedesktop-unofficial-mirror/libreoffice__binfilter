@@ -42,7 +42,6 @@
 #include <comphelper/uno3.hxx>
 #include <connectivity/sqlparse.hxx>
 
-#include <bf_svx/ParseContext.hxx>
 class Window;
 namespace binfilter {
 
@@ -64,7 +63,6 @@ namespace frm
 
     class OFilterControl    :public UnoControl
                             ,public OFilterControl_BASE
-                            ,public ::binfilter::svxform::OParseContextClient
     {
         TextListenerMultiplexer     m_aTextListeners;
 

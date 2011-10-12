@@ -1040,11 +1040,8 @@ namespace binfilter {
 /*N*/   for( a=0; a < nCount; a++)
 /*N*/   {
 /*N*/       SdrObject* pObj = pSub->GetObj(a);
-/*N*/       if(pObj->AllowItemChange(nWhich, pNewItem))
-/*N*/       {
-/*N*/           pObj->ItemChange(nWhich, pNewItem);
-/*N*/           aPostItemChangeList.Insert((void*)pObj, LIST_APPEND);
-/*N*/       }
+/*N*/       pObj->ItemChange(nWhich, pNewItem);
+/*N*/       aPostItemChangeList.Insert((void*)pObj, LIST_APPEND);
 /*N*/   }
 /*N*/
 /*N*/   for(a = 0; a < aPostItemChangeList.Count(); a++)

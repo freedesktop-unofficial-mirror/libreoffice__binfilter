@@ -67,15 +67,11 @@ namespace binfilter {
 /*N*/ void OutlinerEditEng::ParagraphInserted( USHORT nNewParagraph )
 /*N*/ {
 /*N*/   pOwner->ParagraphInserted( nNewParagraph );
-/*N*/
-/*N*/     EditEngine::ParagraphInserted( nNewParagraph );
 /*N*/ }
 
 /*N*/ void OutlinerEditEng::ParagraphDeleted( USHORT nDeletedParagraph )
 /*N*/ {
 /*N*/   pOwner->ParagraphDeleted( nDeletedParagraph );
-/*N*/
-/*N*/     EditEngine::ParagraphDeleted( nDeletedParagraph );
 /*N*/ }
 
 

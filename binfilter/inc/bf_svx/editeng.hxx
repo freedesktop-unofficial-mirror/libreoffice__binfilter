@@ -292,17 +292,12 @@ public:
     void            SetBeginPasteOrDropHdl( const Link& rLink );
     void            SetEndPasteOrDropHdl( const Link& rLink );
 
-    virtual void    PaintingFirstLine( USHORT nPara, const Point& rStartPos, long nBaseLineY, const Point& rOrigin, short nOrientation, OutputDevice* pOutDev );
-    virtual void    ParagraphInserted( USHORT nNewParagraph );
-    virtual void    ParagraphDeleted( USHORT nDeletedParagraph );
-    virtual void    ParaAttribsChanged( USHORT nParagraph );
-    virtual void    ParagraphHeightChanged( USHORT nPara );
+    virtual void    ParaAttribsChanged( USHORT ) {} // DBG_BF_ASSERT
+    virtual void    ParagraphHeightChanged( USHORT ) {} // DBG_BF_ASSERT
 
-    // #101498#
-    virtual void    DrawingText( const Point& rStartPos, const String& rText, USHORT nTextStart, USHORT nTextLen, const sal_Int32* pDXArray, const SvxFont& rFont, USHORT nPara, xub_StrLen nIndex, BYTE nRightToLeft);
+    virtual void    DrawingText( const Point&, const String&, USHORT, USHORT, const sal_Int32*, const SvxFont&, USHORT, xub_StrLen, BYTE) {} // DBG_BF_ASSERT
 
     virtual String  GetUndoComment( USHORT nUndoId ) const;
-    virtual BOOL    FormattingParagraph( USHORT nPara );
     virtual String  CalcFieldValue( const SvxFieldItem& rField, USHORT nPara, xub_StrLen nPos, Color*& rTxtColor, Color*& rFldColor );
     virtual Rectangle GetBulletArea( USHORT nPara );
 

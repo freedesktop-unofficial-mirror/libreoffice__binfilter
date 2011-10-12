@@ -447,7 +447,6 @@ protected:
     BOOL                        bSnapRectDirty : 1;
     BOOL                        bNetLock : 1;   // ni
     BOOL                        bInserted : 1;  // nur wenn TRUE gibt's RepaintBroadcast & SetModify
-    BOOL                        bGrouped : 1;   // Member eines GroupObjektes?
 
     // Die folgende Flags werden gestreamt
     BOOL                        bMovProt : 1; // Position geschuetzt
@@ -484,7 +483,6 @@ public:
 private:
 
 protected:
-    void ImpDeleteUserData();
     SdrObjUserData* ImpGetMacroUserData() const;
 
     // Fuer GetDragComment
@@ -506,9 +504,9 @@ protected:
     // geometrische Daten besitzt, die fuer den Undo-Fall gesichert werden
     // sollen. NewGeoData() erzeugt lediglich eine leere Instanz auf eine von
     // SdrObjGeoData abgeleitete Klasse.
-    virtual SdrObjGeoData* NewGeoData() const;
+    virtual SdrObjGeoData* NewGeoData() const { return NULL; } // DBG_BF_ASSERT
     virtual void SaveGeoData(SdrObjGeoData& rGeo) const;
-    virtual void RestGeoData(const SdrObjGeoData& rGeo);
+    virtual void RestGeoData(const SdrObjGeoData& /*rGeo*/) {} // DBG_BF_ASSERT
 
 public:
     TYPEINFO();
@@ -556,7 +554,7 @@ public:
 
     // Fuer Gruppenobjekte
     bool IsGroupObject() const { return GetSubList()!=NULL; }
-    virtual SdrObjList* GetSubList() const;
+    virtual SdrObjList* GetSubList() const { return NULL; } // DBG_BF_ASSERT
     SdrObject* GetUpGroup() const;
 
     // Ueber die Objekt-Ordnungsnummer kann man feststellen, ob ein Objekt vor
@@ -584,7 +582,7 @@ public:
     //    Selektion (HitTest), 1. Stufe
     //    Obj nach vorn/hinten: Nur Objs im gleichen Bereich werden beruecksichtigt.
     virtual const Rectangle& GetBoundRect() const;
-    virtual void RecalcBoundRect();
+    virtual void RecalcBoundRect() {} // DBG_BF_ASSERT
     void SendRepaintBroadcast(BOOL bNoPaintNeeded = FALSE) const;
     void SendRepaintBroadcast(const Rectangle& rRect) const;
 
@@ -660,10 +658,8 @@ public:
     // HitTest, 2. Stufe. nTol ist die zulaessige Toleranz in logischen Einheiten.
     // rVisiLayer ist hauptsaechlich fuer Gruppenobjekte gedacht, die ja Objekte
     // mit unterschiedlichen Layerzuordnungen beinhalten koennen.
-    virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
+    virtual SdrObject* CheckHit(const Point&, USHORT, const SetOfByte*) const { return NULL; } // DBG_BF_ASSERT
     SdrObject* CheckHit(const Point& rPnt, USHORT nTol) const { return CheckHit(rPnt,nTol,NULL); }
-    bool IsHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const { return CheckHit(rPnt,nTol,pVisiLayer)!=NULL; }
-    bool IsHit(const Point& rPnt, USHORT nTol) const { return CheckHit(rPnt,nTol,NULL)!=NULL; }
 
     // Clone() soll eine komplette Kopie des Objektes erzeugen.
     virtual SdrObject* Clone() const;
@@ -679,7 +675,7 @@ public:
 
     // Die Kontur fuer TextToContour
     virtual void TakeContour(XPolyPolygon& rPoly) const;
-    virtual void TakeContour(XPolyPolygon& rXPoly, SdrContourType eType) const;
+    virtual void TakeContour(XPolyPolygon&, SdrContourType) const {} // DBG_BF_ASSERT
 
     // Ueber GetHdlCount gibt ein Objekt die Anzahl seiner Handles preis.
     // Im Normalfall werden dies 8 sein, bei einer Strecke 2. Bei Polygonobjekten
@@ -732,7 +728,7 @@ public:
 /*N*/   virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
 /*N*/   virtual void NbcRotate(const Point& rRef, long nWink, double sn, double cs);
 /*N*/   virtual void NbcMirror(const Point& rRef1, const Point& rRef2);
-/*N*/   virtual void NbcShear (const Point& rRef, long nWink, double tn, bool bVShear);
+/*N*/   virtual void NbcShear (const Point&, long, double, bool) {} // DBG_BF_ASSERT
 
     virtual void Move  (const Size& rSiz);
     virtual void Resize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
@@ -765,8 +761,8 @@ public:
     virtual void NbcSetLogicRect(const Rectangle& rRect);
 
     // Drehwinkel und Shear
-    virtual long GetRotateAngle() const;
-    virtual long GetShearAngle(bool bVertical=FALSE) const;
+    virtual long GetRotateAngle() const { return 0; } // DBG_BF_ASSERT
+    virtual long GetShearAngle(bool=FALSE) const { return 0; } // DBG_BF_ASSERT
 
     // Zum Fangen von/auf ausgezeichneten Punkten eines Obj (Polygonpunkte,
     // Kreismittelpunkt, ...)
@@ -777,11 +773,11 @@ public:
     // als Mehrfachselektion verschoben und gedreht, ...
     // Nur solche Objekte koennen PlusHandles haben (z.B. die Gewichte an den
     // Bezierkurven.
-    virtual bool IsPolyObj() const;
-    virtual USHORT GetPointCount() const;
-    virtual const Point& GetPoint(USHORT i) const;
+    virtual bool IsPolyObj() const { return false; } // DBG_BF_ASSERT
+    virtual USHORT GetPointCount() const { return 0; } // DBG_BF_ASSERT
+    virtual const Point& GetPoint(USHORT) const { return *((Point*)NULL); } // DBG_BF_ASSERT
     virtual void SetPoint(const Point& rPnt, USHORT i);
-    virtual void NbcSetPoint(const Point& rPnt, USHORT i);
+    virtual void NbcSetPoint(const Point&, USHORT) {} // DBG_BF_ASSERT
 
     // Einfuegen eines neuen Polygonpunktes. Ret muss die Nummer des passenden
     // Hdl sein. 0xFFFF= einfuegen nicht moeglich.
@@ -831,53 +827,44 @@ public:
     virtual void ClearItem(const sal_uInt16 nWhich = 0);
     virtual void SetItemSet(const SfxItemSet& rSet);
     virtual void BroadcastItemChange(const SdrBroadcastItemChange& rChange);
-    virtual void ItemSetChanged(const SfxItemSet& rSet);
+    virtual void ItemSetChanged(const SfxItemSet&) {} // DBG_BF_ASSERT
 
     // syntactical sugar for ItemSet accesses
     void SetItemSetAndBroadcast(const SfxItemSet& rSet);
     const SfxPoolItem& GetItem(const sal_uInt16 nWhich) const;
 
     // private support routines for ItemSet access. NULL pointer means clear item.
-    virtual BOOL AllowItemChange(const sal_uInt16 nWhich, const SfxPoolItem* pNewItem = 0) const;
-    virtual void ItemChange(const sal_uInt16 nWhich, const SfxPoolItem* pNewItem = 0);
-    virtual void PostItemChange(const sal_uInt16 nWhich);
+    virtual void ItemChange(const sal_uInt16, const SfxPoolItem* = 0) {} // DBG_BF_ASSERT
+    virtual void PostItemChange(const sal_uInt16) {} // DBG_BF_ASSERT
 
     // pre- and postprocessing for objects for saving
     virtual void PreSave() {}
     virtual void PostSave() {}
 
-    // NotPersistAttr fuer Layer, ObjName, geometrische Transformationen, ...
-    void TakeNotPersistAttr(SfxItemSet& rAttr, bool bMerge) const;
-    void ApplyNotPersistAttr(const SfxItemSet& rAttr);
-
     // bDontRemoveHardAttr=FALSE: alle in der Vorlage gesetzten Attribute werden am
     // Zeichenobjekt auf Default gesetzt; TRUE: alle harten Attribute bleiben erhalten.
-    virtual void SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
-    virtual SfxStyleSheet* GetStyleSheet() const;
+    virtual void SetStyleSheet(SfxStyleSheet*, bool) {} // DBG_BF_ASSERT
+    virtual void NbcSetStyleSheet(SfxStyleSheet*, bool) {} // DBG_BF_ASSERT
+    virtual SfxStyleSheet* GetStyleSheet() const { return NULL; } // DBG_BF_ASSERT
 
     // TextEdit
-    virtual bool HasTextEdit() const;
-    virtual SdrObject* CheckTextEditHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
-    SdrObject* CheckTextEditHit(const Point& rPnt, USHORT nTol) const { return CheckTextEditHit(rPnt,nTol,NULL); }
-    bool IsTextEditHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const { return CheckTextEditHit(rPnt,nTol,pVisiLayer)!=NULL; }
-    bool IsTextEditHit(const Point& rPnt, USHORT nTol) const { return CheckTextEditHit(rPnt,nTol,NULL)!=NULL; }
+    virtual bool HasTextEdit() const { return false; } // DBG_BF_ASSERT
 
     // Return==TRUE: TextEditMode gestartet
-    virtual bool BegTextEdit(SdrOutliner& rOutl);
-    virtual void EndTextEdit(SdrOutliner& rOutl);
+    virtual bool BegTextEdit(SdrOutliner& /*rOutl*/) { return false; } // DBG_BF_ASSERT
+    virtual void EndTextEdit(SdrOutliner& /*rOutl*/) {} // DBG_BF_ASSERT
 
     // Text wird im Format des Outliners gehalten
     // SetOutlinerParaObject: Eigentumsuebereignung von *pTextObject!
     virtual void SetOutlinerParaObject(OutlinerParaObject* pTextObject);
-    virtual void NbcSetOutlinerParaObject(OutlinerParaObject* pTextObject);
-    virtual OutlinerParaObject* GetOutlinerParaObject() const;
-    virtual void NbcReformatText();
+    virtual void NbcSetOutlinerParaObject(OutlinerParaObject*) {} // DBG_BF_ASSERT
+    virtual OutlinerParaObject* GetOutlinerParaObject() const { return NULL; } // DBG_BF_ASSERT
+    virtual void NbcReformatText() {} // DBG_BF_ASSERT
     virtual void ReformatText();
 
     // Animations-Iterationscounter Resetten. Neustart der Animation
     // beim naechsten Paint. pPageView=NULL: Alle PageViews.
-    virtual void RestartAnimation(SdrPageView* pPageView) const;
+    virtual void RestartAnimation(SdrPageView*) const {} // DBG_BF_ASSERT
 
     // Macrofaehigkeit, z.B. ein Rechteck als PushButton.
     virtual bool HasMacro() const;
@@ -899,7 +886,7 @@ public:
     // Beim Verschieben/Resizen der Kante wird dagegen die Verbindung
     // geloesst.
     // Objekt ist ein Knoten?
-    virtual bool IsNode() const;
+    virtual bool IsNode() const { return true; } // DBG_BF_ASSERT
 
     // Automatische Klebepunkte:
     // je 4 Scheitelpunkt- und Eckpositionen muss ein Knotenobjekt liefern
@@ -914,20 +901,14 @@ public:
     // Nach veraendern der GluePointList muss man am Obj SendRepaintBroadcast rufen!
     virtual SdrGluePointList* ForceGluePointList();
 
-    // Temporaer zu setzen fuer Transformationen am Bezugsobjekt
-    void SetGlueReallyAbsolute(bool bOn);
-    void NbcRotateGluePoints(const Point& rRef, long nWink, double sn, double cs);
-    void NbcMirrorGluePoints(const Point& rRef1, const Point& rRef2);
-    void NbcShearGluePoints (const Point& rRef, long nWink, double tn, bool bVShear);
-
     // Objekt ist eine Kante?
 
     // Xor-Darstellung der Kante beim Draggen einer der beiden Knoten
 
     // bTail1=TRUE: Linienanfang, sonst LinienEnde
     // pObj=NULL: Disconnect
-    virtual void ConnectToNode(bool bTail1, SdrObject* pObj);
-    virtual void DisconnectFromNode(bool bTail1);
+    virtual void ConnectToNode(bool /*bTail1*/, SdrObject* /*pObj*/) {} // DBG_BF_ASSERT
+    virtual void DisconnectFromNode(bool /*bTail1*/) {} // DBG_BF_ASSERT
 
     // Wenn ein Objekt in der Lage ist, sich in ein Polygon oder in eine
     // Bezierkurve (oder beides) zu verwandeln, dann sollten die folgenden
@@ -949,7 +930,7 @@ public:
     // Bei der Konvertierung von TextObj nach PathObj wird es wohl so sein,
     // dass beide Modi (bLineToArea=TRUE/FALSE) identisch sind.
     // Defaulted sind diese Methoden auf "Ich kann das nicht" (FALSE/NULL).
-    virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
+    virtual SdrObject* DoConvertToPolyObj(BOOL /*bBezier*/) const { return NULL; } // DBG_BF_ASSERT
     SdrObject* ConvertToPolyObj(BOOL bBezier, BOOL bLineToArea) const;
 
     // convert this path object to contour object; bForceLineDash converts even
@@ -961,7 +942,7 @@ public:
     //   WriteData() auf. Zum Schluss wird noch das vorerst auf 0 initiallisierte
     //   Feld nByteAnz des SdrObjIOHeader gefuellt. Die geerbte Methode WriteData
     //   ist in ueberlagerten Methoden stets am Anfang zu rufen.
-    virtual void WriteData(SvStream& ) const {}
+    virtual void WriteData(SvStream& ) const {} // DBG_BF_ASSERT
 
     // Lesen aus einem Stream: Zunaest wird der SdrIOHeader von einem Reader am
     //   SdrModel gelesen (Read und SeekBack). Der Reader versucht dann eine
@@ -981,9 +962,6 @@ public:
     friend SvStream& operator<<(SvStream& rOut, const SdrObject& rObj);
     friend SvStream& operator>>(SvStream& rIn, SdrObject& rObj);
 
-    // TRUE: Referenz auf ein Obj
-    bool IsVirtualObj() const { return bVirtObj; }
-
     // TRUE=Obj kann warsch. gefuellt werden; FALSE=Obj kann warsch. Linienenden haben.
     // ungueltig, wenn es sich um ein GroupObj handelt.
     bool IsClosedObj() const { return bClosedObj; }
@@ -992,20 +970,14 @@ public:
     bool Is3DObj() const { return bIs3DObj; }
     bool IsUnoObj() const { return bIsUnoObj; }
     bool IsMasterCachable() const { return !bNotMasterCachable; }
-    bool ShareLock() { bool r=!bNetLock; bNetLock=TRUE; return r; }
-    void ShareUnlock() { bNetLock=FALSE; }
-    bool IsShareLock() const { return bNetLock; }
     void SetMarkProtect(bool bProt) { bMarkProt=bProt; }
     bool IsMarkProtect() const { return bMarkProt; }
     void SetInserted(bool bIns);
     bool IsInserted() const { return bInserted; }
-    void SetGrouped(bool bGrp) { bGrouped=bGrp; }
-    bool IsGrouped() const { return bGrouped; }
     void SetMoveProtect(bool bProt);
     bool IsMoveProtect() const { return bMovProt; }
     void SetResizeProtect(bool bProt);
     bool IsResizeProtect() const { return bSizProt; }
-    void SetPrintable(bool bPrn);
     bool IsPrintable() const { return !bNoPrint; }
     void SetEmptyPresObj(bool bEpt) { bEmptyPresObj=bEpt; }
     bool IsEmptyPresObj() const { return bEmptyPresObj; }

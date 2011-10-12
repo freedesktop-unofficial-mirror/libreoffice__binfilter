@@ -51,7 +51,7 @@ public:
                             SvxColorTableItem( const SvxColorTableItem& );
 
 
-    virtual int             operator==( const SfxPoolItem& ) const;
+    virtual int             operator==( const SfxPoolItem& ) const { return 0; } // DBG_BF_ASSERT
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
     XColorTable*            GetColorTable() const { return pColorTable; }
@@ -80,7 +80,7 @@ public:
                             SvxGradientListItem( const SvxGradientListItem& );
 
 
-    virtual int             operator==( const SfxPoolItem& ) const;
+    virtual int             operator==( const SfxPoolItem& ) const { return 0; } // DBG_BF_ASSERT
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
     XGradientList*          GetGradientList() const { return pGradientList; }
@@ -109,7 +109,7 @@ public:
                             SvxHatchListItem( const SvxHatchListItem& );
 
 
-    virtual int             operator==( const SfxPoolItem& ) const;
+    virtual int             operator==( const SfxPoolItem& ) const { return 0; } // DBG_BF_ASSERT
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
     XHatchList*             GetHatchList() const { return pHatchList; }
@@ -138,7 +138,7 @@ public:
                             SvxBitmapListItem( const SvxBitmapListItem& );
 
 
-    virtual int             operator==( const SfxPoolItem& ) const;
+    virtual int             operator==( const SfxPoolItem& ) const { return 0; } // DBG_BF_ASSERT
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
     XBitmapList*            GetBitmapList() const { return pBitmapList; }
@@ -167,7 +167,7 @@ public:
                             SvxDashListItem( const SvxDashListItem& );
 
 
-    virtual int             operator==( const SfxPoolItem& ) const;
+    virtual int             operator==( const SfxPoolItem& ) const { return 0; } // DBG_BF_ASSERT
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
     XDashList*              GetDashList() const { return pDashList; }

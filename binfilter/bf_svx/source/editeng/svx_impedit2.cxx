@@ -237,12 +237,6 @@ using namespace ::com::sun::star;
 /*N*/   GetParaPortions().Insert( pIniPortion, 0 );
 /*N*/
 /*N*/   bFormatted = FALSE;
-/*N*/
-/*N*/   if ( IsCallParaInsertedOrDeleted() )
-/*N*/   {
-/*N*/       GetEditEnginePtr()->ParagraphDeleted( EE_PARA_ALL );
-/*N*/       GetEditEnginePtr()->ParagraphInserted( 0 );
-/*N*/   }
 /*N*/ }
 
 
@@ -858,9 +852,6 @@ using namespace ::com::sun::star;
 /*N*/   DBG_ASSERT( pRightPortion, "Blinde Portion in ImpConnectParagraphs(2)" );
 /*N*/   DBG_ASSERT( nParagraphTobeDeleted == GetParaPortions().GetPos( pRightPortion ), "NodePos != PortionPos?" );
 /*N*/
-/*N*/   if ( IsCallParaInsertedOrDeleted() )
-/*N*/       GetEditEnginePtr()->ParagraphDeleted( nParagraphTobeDeleted );
-/*N*/
 /*N*/   EditPaM aPaM = aEditDoc.ConnectParagraphs( pLeft, pRight );
 /*N*/   GetParaPortions().Remove( nParagraphTobeDeleted );
 /*N*/   delete pRightPortion;
@@ -1073,8 +1064,6 @@ using namespace ::com::sun::star;
 /*N*/   ParaPortion* pNewPortion = new ParaPortion( aPaM.GetNode() );
 /*N*/   GetParaPortions().Insert( pNewPortion, nPos + 1 );
 /*N*/   ParaAttribsChanged( pNewPortion->GetNode() );
-/*N*/   if ( IsCallParaInsertedOrDeleted() )
-/*N*/       GetEditEnginePtr()->ParagraphInserted( nPos+1 );
 /*N*/
 /*N*/   TextModified();
 /*N*/   return aPaM;
@@ -1090,8 +1079,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   ParaPortion* pNewPortion = new ParaPortion( pNode );
 /*N*/   GetParaPortions().Insert( pNewPortion, nPara );
-/*N*/   if ( IsCallParaInsertedOrDeleted() )
-/*N*/       GetEditEnginePtr()->ParagraphInserted( nPara );
 /*N*/
 /*N*/   return EditPaM( pNode, 0 );
 /*N*/ }

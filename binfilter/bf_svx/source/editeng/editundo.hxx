@@ -32,13 +32,8 @@
 #include <editdoc.hxx>
 #include <editund2.hxx>
 #include <editdata.hxx>
-namespace binfilter {
 
-#define UNDO_NOACTION           0
-#define UNDO_NEWUNDO            1
-#define UNDO_UNDOSDELETED       2
-#define UNDO_EMPTYGROUPDELETED  3
-#define UNDO_INVALIDEND         4
+namespace binfilter {
 
 class ImpEditEngine;
 class EditView;
@@ -55,10 +50,6 @@ private:
 public:
                     TYPEINFO();
                     EditUndoInsertChars( ImpEditEngine* pImpEE, const EPaM& rEPaM, const String& rStr );
-
-    virtual void    Undo();
-    virtual void    Redo();
-    virtual void    Repeat();
 
     using SfxUndoAction::Repeat;
 
@@ -78,10 +69,6 @@ public:
                     EditUndoInsertFeature( ImpEditEngine* pImpEE, const EPaM& rEPaM,
                                             const SfxPoolItem& rFeature);
                     ~EditUndoInsertFeature();
-
-    virtual void    Undo();
-    virtual void    Redo();
-    virtual void    Repeat();
 
     using SfxUndoAction::Repeat;
 };
@@ -106,10 +93,6 @@ public:
                         const XubString& rNewName, SfxStyleFamily eNewFamily,
                         const SfxItemSet& rPrevParaAttribs );
 
-    virtual void    Undo();
-    virtual void    Redo();
-    virtual void    Repeat();
-
     using SfxUndoAction::Repeat;
 };
 
@@ -125,10 +108,6 @@ private:
 
 public:
                     EditUndoSetParaAttribs( ImpEditEngine* pImpEE, USHORT nPara, const SfxItemSet& rPrevItems, const SfxItemSet& rNewItems );
-
-    virtual void    Undo();
-    virtual void    Redo();
-    virtual void    Repeat();
 
     using SfxUndoAction::Repeat;
 };

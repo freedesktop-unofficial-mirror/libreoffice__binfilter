@@ -1109,7 +1109,6 @@ static double SMALLEST_DASH_WIDTH(26.95);
 /*N*/   bSnapRectDirty   =TRUE;
 /*N*/   bNetLock         =FALSE;
 /*N*/   bInserted        =FALSE;
-/*N*/   bGrouped         =FALSE;
 /*N*/   bMovProt         =FALSE;
 /*N*/   bSizProt         =FALSE;
 /*N*/   bNoPrint         =FALSE;
@@ -1278,15 +1277,6 @@ static double SMALLEST_DASH_WIDTH(26.95);
 /*N*/ }
 
 
-
-
-
-
-/*N*/ SdrObjList* SdrObject::GetSubList() const
-/*N*/ {
-/*N*/   return NULL;
-/*N*/ }
-
 /*N*/ SdrObject* SdrObject::GetUpGroup() const
 /*N*/ {
 /*N*/   return pObjList!=NULL ? pObjList->GetOwnerObj() : NULL;
@@ -1339,10 +1329,6 @@ static double SMALLEST_DASH_WIDTH(26.95);
 /*N*/       ((SdrObject*)this)->bBoundRectDirty=FALSE;
 /*N*/   }
 /*N*/   return aOutRect;
-/*N*/ }
-
-/*N*/ void SdrObject::RecalcBoundRect()
-/*N*/ {
 /*N*/ }
 
 /*N*/ void SdrObject::SendRepaintBroadcast(const Rectangle& rRect) const
@@ -1448,35 +1434,15 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
-//#define TEST_SKELETON
+
 #ifdef TEST_SKELETON
 
 static OutputDevice* pImpTestOut = 0L;
 
 class ImpSkeleton;
 
-
-///////////////////////////////////////////////////////////////////////////////
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-
 #endif
+
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -1873,10 +1839,6 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/*N*/ SdrObject* SdrObject::CheckHit(const Point& /*rPnt*/, USHORT /*nTol*/, const SetOfByte* /*pVisiLayer*/) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");  return NULL;
-/*N*/ }
-
 /*N*/ SdrObject* SdrObject::Clone() const
 /*N*/ {
 /*N*/   SdrObject* pObj=SdrObjFactory::MakeNewObject(GetObjInventor(),GetObjIdentifier(),NULL);
@@ -1919,10 +1881,6 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/   bSnapRectDirty=TRUE; //rObj.bSnapRectDirty;
 /*N*/   bNotMasterCachable=rObj.bNotMasterCachable;
 /*N*/   if (pPlusData!=NULL) { delete pPlusData; pPlusData=NULL; }
-/*N*/   if (rObj.pPlusData!=NULL) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/   if (pPlusData!=NULL && pPlusData->pBroadcast!=NULL) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/ }
 
 
@@ -2022,8 +1980,6 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/           break;
 /*N*/
 /*?*/           case META_POLYPOLYGON_ACTION:
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
 /*?*/           break;
 /*?*/
 /*N*/           case META_POLYLINE_ACTION:
@@ -2060,10 +2016,6 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/       rPoly.Clear();
 /*N*/ }
 
-/*?*/ void SdrObject::TakeContour(XPolyPolygon& /*rXPoly*/, SdrContourType /*eType*/) const
-/*?*/ {
-/*?*/ }
-
 /*N*/ Pointer SdrObject::GetCreatePointer() const
 /*N*/ {
 /*N*/   return Pointer(POINTER_CROSS);
@@ -2078,28 +2030,12 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 
 /*N*/ void SdrObject::NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact)
 /*N*/ {
-/*N*/   bool bXMirr=(xFact.GetNumerator()<0) != (xFact.GetDenominator()<0);
-/*N*/   bool bYMirr=(yFact.GetNumerator()<0) != (yFact.GetDenominator()<0);
-/*N*/   if (bXMirr || bYMirr) {
-/*N*/       Point aRef1(GetSnapRect().Center());
-/*N*/       if (bXMirr) {
-/*N*/           Point aRef2(aRef1);
-/*N*/           aRef2.Y()++;
-/*N*/           NbcMirrorGluePoints(aRef1,aRef2);
-/*N*/       }
-/*N*/       if (bYMirr) {
-/*N*/           Point aRef2(aRef1);
-/*N*/           aRef2.X()++;
-/*N*/           NbcMirrorGluePoints(aRef1,aRef2);
-/*N*/       }
-/*N*/   }
 /*N*/   ResizeRect(aOutRect,rRef,xFact,yFact);
 /*N*/   SetRectsDirty();
 /*N*/ }
 
 /*N*/ void SdrObject::NbcRotate(const Point& rRef, long nWink, double sn, double cs)
 /*N*/ {
-/*N*/   SetGlueReallyAbsolute(TRUE);
 /*N*/   aOutRect.Move(-rRef.X(),-rRef.Y());
 /*N*/   Rectangle R(aOutRect);
 /*N*/   if (sn==1.0 && cs==0.0) { // 90?
@@ -2121,13 +2057,10 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/   aOutRect.Move(rRef.X(),rRef.Y());
 /*N*/   aOutRect.Justify(); // Sicherheitshalber
 /*N*/   SetRectsDirty();
-/*N*/   NbcRotateGluePoints(rRef,nWink,sn,cs);
-/*N*/   SetGlueReallyAbsolute(FALSE);
 /*N*/ }
 
 /*N*/ void SdrObject::NbcMirror(const Point& rRef1, const Point& rRef2)
 /*N*/ {
-/*N*/   SetGlueReallyAbsolute(TRUE);
 /*N*/   aOutRect.Move(-rRef1.X(),-rRef1.Y());
 /*N*/   Rectangle R(aOutRect);
 /*N*/   long dx=rRef2.X()-rRef1.X();
@@ -2152,15 +2085,6 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/   aOutRect.Move(rRef1.X(),rRef1.Y());
 /*N*/   aOutRect.Justify(); // Sicherheitshalber
 /*N*/   SetRectsDirty();
-/*N*/   NbcMirrorGluePoints(rRef1,rRef2);
-/*N*/   SetGlueReallyAbsolute(FALSE);
-/*N*/ }
-
-/*N*/ void SdrObject::NbcShear(const Point& rRef, long nWink, double tn, bool bVShear)
-/*N*/ {
-/*N*/   SetGlueReallyAbsolute(TRUE);
-/*N*/   NbcShearGluePoints(rRef,nWink,tn,bVShear);
-/*N*/   SetGlueReallyAbsolute(FALSE);
 /*N*/ }
 
 /*N*/ void SdrObject::Move(const Size& rSiz)
@@ -2304,33 +2228,6 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/   SendUserCall(SDRUSERCALL_RESIZE,aBoundRect0);
 /*N*/ }
 
-/*N*/ long SdrObject::GetRotateAngle() const
-/*N*/ {
-/*N*/   return 0;
-/*N*/ }
-
-/*N*/ long SdrObject::GetShearAngle(bool /*bVertical*/) const
-/*N*/ {
-/*N*/   return 0;
-/*N*/ }
-
-
-
-/*N*/ bool SdrObject::IsPolyObj() const
-/*N*/ {
-/*N*/   return FALSE;
-/*N*/ }
-
-/*?*/ USHORT SdrObject::GetPointCount() const
-/*?*/ {
-/*?*/   return 0;
-/*?*/ }
-
-/*?*/ const Point& SdrObject::GetPoint(USHORT /*i*/) const
-/*?*/ {
-/*?*/   return *((Point*)NULL);
-/*?*/ }
-
 /*N*/ void SdrObject::SetPoint(const Point& rPnt, USHORT i)
 /*N*/ {
 /*N*/   Rectangle aBoundRect0; if (pUserCall!=NULL) aBoundRect0=GetBoundRect();
@@ -2339,29 +2236,6 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/   SetChanged();
 /*N*/   SendRepaintBroadcast();
 /*N*/   SendUserCall(SDRUSERCALL_RESIZE,aBoundRect0);
-/*N*/ }
-
-/*N*/ void SdrObject::NbcSetPoint(const Point& /*rPnt*/, USHORT /*i*/)
-/*N*/ {
-/*N*/ }
-
-/*N*/ bool SdrObject::HasTextEdit() const
-/*N*/ {
-/*N*/   return FALSE;
-/*N*/ }
-
-/*N*/ SdrObject* SdrObject::CheckTextEditHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const
-/*N*/ {
-/*N*/   return CheckHit(rPnt,nTol,pVisiLayer);
-/*N*/ }
-
-/*N*/ bool SdrObject::BegTextEdit(SdrOutliner& /*rOutl*/)
-/*N*/ {
-/*N*/   return FALSE;
-/*N*/ }
-
-/*N*/ void SdrObject::EndTextEdit(SdrOutliner& /*rOutl*/)
-/*N*/ {
 /*N*/ }
 
 /*N*/ void SdrObject::SetOutlinerParaObject(OutlinerParaObject* pTextObject)
@@ -2376,19 +2250,6 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrObject::NbcSetOutlinerParaObject(OutlinerParaObject* /*pTextObject*/)
-/*N*/ {
-/*N*/ }
-
-/*N*/ OutlinerParaObject* SdrObject::GetOutlinerParaObject() const
-/*N*/ {
-/*N*/   return NULL;
-/*N*/ }
-
-/*N*/ void SdrObject::NbcReformatText()
-/*N*/ {
-/*N*/ }
-
 /*N*/ void SdrObject::ReformatText()
 /*N*/ {
 /*N*/   Rectangle aBoundRect0; if (pUserCall!=NULL) aBoundRect0=GetBoundRect();
@@ -2401,10 +2262,6 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/   }
 /*N*/ }
 
-
-/*N*/ void SdrObject::RestartAnimation(SdrPageView* /*pPageView*/) const
-/*N*/ {
-/*N*/ }
 
 /*N*/ #define Imp2ndKennung (0x434F4D43)
 /*N*/ SdrObjUserData* SdrObject::ImpGetMacroUserData() const
@@ -2432,10 +2289,6 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ SdrObjGeoData* SdrObject::NewGeoData() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*N*/ }
-
 /*N*/ void SdrObject::SaveGeoData(SdrObjGeoData& rGeo) const
 /*N*/ {
 /*N*/   rGeo.aBoundRect    =GetBoundRect();
@@ -2461,10 +2314,6 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/   }
 /*N*/ }
 /*N*/
-/*N*/ void SdrObject::RestGeoData(const SdrObjGeoData& /*rGeo*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ SdrObjGeoData* SdrObject::GetGeoData() const
 /*N*/ {
 /*N*/   SdrObjGeoData* pGeo=NewGeoData();
@@ -2497,27 +2346,21 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/ {
 /*N*/   sal_uInt16 nWhichID(rItem.Which());
 /*N*/
-/*N*/   if(AllowItemChange(nWhichID, &rItem))
-/*N*/   {
-/*N*/       ItemChange(nWhichID, &rItem);
-/*N*/       PostItemChange(nWhichID);
+/*N*/   ItemChange(nWhichID, &rItem);
+/*N*/   PostItemChange(nWhichID);
 /*N*/
-/*N*/       SfxItemSet aSet( *GetItemPool(), nWhichID, nWhichID, 0 );
-/*N*/       aSet.Put( rItem );
-/*N*/       ItemSetChanged( aSet );
-/*N*/   }
+/*N*/   SfxItemSet aSet( *GetItemPool(), nWhichID, nWhichID, 0 );
+/*N*/   aSet.Put( rItem );
+/*N*/   ItemSetChanged( aSet );
 /*N*/ }
 
 /*N*/ void SdrObject::ClearItem( const sal_uInt16 nWhich )
 /*N*/ {
-/*N*/   if(AllowItemChange(nWhich))
-/*N*/   {
-/*N*/       ItemChange(nWhich);
-/*N*/       PostItemChange(nWhich);
+/*N*/   ItemChange(nWhich);
+/*N*/   PostItemChange(nWhich);
 /*N*/
-/*N*/       SfxItemSet aSet( *GetItemPool(), nWhich, nWhich, 0 );
-/*N*/       ItemSetChanged( aSet );
-/*N*/   }
+/*N*/   SfxItemSet aSet( *GetItemPool(), nWhich, nWhich, 0 );
+/*N*/   ItemSetChanged( aSet );
 /*N*/ }
 /*N*/
 /*N*/ void SdrObject::SetItemSet( const SfxItemSet& rSet )
@@ -2533,13 +2376,10 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/   {
 /*N*/       if(SFX_ITEM_SET == rSet.GetItemState(nWhich, FALSE, &pPoolItem))
 /*N*/       {
-/*N*/           if(AllowItemChange(nWhich, pPoolItem))
-/*N*/           {
-/*N*/               bDidChange = TRUE;
-/*N*/               ItemChange(nWhich, pPoolItem);
-/*N*/               aPostItemChangeList.push_back( nWhich );
-/*N*/               aSet.Put( *pPoolItem );
-/*N*/           }
+/*N*/           bDidChange = TRUE;
+/*N*/           ItemChange(nWhich, pPoolItem);
+/*N*/           aPostItemChangeList.push_back( nWhich );
+/*N*/           aSet.Put( *pPoolItem );
 /*N*/       }
 /*N*/       nWhich = aWhichIter.NextWhich();
 /*N*/   }
@@ -2556,13 +2396,6 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/
 /*N*/       ItemSetChanged( aSet );
 /*N*/   }
-/*N*/ }
-/*N*/
-/*N*/ ////////////////////////////////////////////////////////////////////////////////////////////////////
-/*N*/ // ItemSet was changed, maybe user wants to react
-/*N*/
-/*N*/ void SdrObject::ItemSetChanged(const SfxItemSet& /*rSet*/)
-/*N*/ {
 /*N*/ }
 /*N*/
 /*N*/ void SdrObject::BroadcastItemChange(const SdrBroadcastItemChange& rChange)
@@ -2605,54 +2438,8 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/   return GetItemSet().Get(nWhich);
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// private support routines for ItemSet access
-
-/*N*/ BOOL SdrObject::AllowItemChange(const sal_uInt16 /*nWhich*/, const SfxPoolItem* /*pNewItem*/) const
-/*N*/ {
-/*N*/   return TRUE;
-/*N*/ }
-
-/*N*/ void SdrObject::ItemChange(const sal_uInt16 /*nWhich*/, const SfxPoolItem* /*pNewItem*/)
-/*N*/ {
-/*N*/   DBG_ASSERT(FALSE,"SdrObject::ItemChange() should never be called, SdrObject has no Items");
-/*N*/ }
-
-/*N*/ void SdrObject::PostItemChange(const sal_uInt16 /*nWhich*/)
-/*N*/ {
-/*N*/ }
-
-/*N*/ void SdrObject::ApplyNotPersistAttr(const SfxItemSet& /*rAttr*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-
-
-/*N*/ void SdrObject::TakeNotPersistAttr(SfxItemSet& /*rAttr*/, bool /*bMerge*/) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ SfxStyleSheet* SdrObject::GetStyleSheet() const
-/*N*/ {
-/*N*/   // Das hier ist ein Hack:
-/*N*/   return NULL;
-/*N*/ }
-
-/*N*/ void SdrObject::SetStyleSheet(SfxStyleSheet* /*pNewStyleSheet*/, bool /*bDontRemoveHardAttr*/)
-/*N*/ {
-/*N*/ }
-
-/*N*/ void SdrObject::NbcSetStyleSheet(SfxStyleSheet* /*pNewStyleSheet*/, bool /*bDontRemoveHardAttr*/)
-/*N*/ {
-/*N*/ }
-
 // Das Broadcasting beim Setzen der Attribute wird vom AttrObj gemanagt
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ bool SdrObject::IsNode() const
-/*N*/ {
-/*N*/   return TRUE;
-/*N*/ }
 
 /*N*/ SdrGluePoint SdrObject::GetVertexGluePoint(USHORT nPosNum) const
 /*N*/ {
@@ -2687,73 +2474,16 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/   return pPlusData->pGluePoints;
 /*N*/ }
 
-/*N*/ void SdrObject::SetGlueReallyAbsolute(bool /*bOn*/)
-/*N*/ {
-/*N*/   // erst Const-Aufruf um zu sehen, ob
-/*N*/   // ueberhaupt Klebepunkte da sind
-/*N*/   // const-Aufruf erzwingen!
-/*N*/   if (GetGluePointList()!=NULL) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ }
-
-/*N*/ void SdrObject::NbcRotateGluePoints(const Point& /*rRef*/, long /*nWink*/, double /*sn*/, double /*cs*/)
-/*N*/ {
-/*N*/   // erst Const-Aufruf um zu sehen, ob
-/*N*/   // ueberhaupt Klebepunkte da sind
-/*N*/   // const-Aufruf erzwingen!
-/*N*/   if (GetGluePointList()!=NULL) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ }
-
-/*N*/ void SdrObject::NbcMirrorGluePoints(const Point& /*rRef1*/, const Point& /*rRef2*/)
-/*N*/ {
-/*N*/   // erst Const-Aufruf um zu sehen, ob
-/*N*/   // ueberhaupt Klebepunkte da sind
-/*N*/   // const-Aufruf erzwingen!
-/*N*/   if (GetGluePointList()!=NULL) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ }
-
-/*N*/ void SdrObject::NbcShearGluePoints(const Point& /*rRef*/, long /*nWink*/, double /*tn*/, bool /*bVShear*/)
-/*N*/ {
-/*N*/   // erst Const-Aufruf um zu sehen, ob
-/*N*/   // ueberhaupt Klebepunkte da sind
-/*N*/   // const-Aufruf erzwingen!
-/*N*/   if (GetGluePointList()!=NULL) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ }
-
-/*N*/ void SdrObject::ConnectToNode(bool /*bTail1*/, SdrObject* /*pObj*/)
-/*N*/ {
-/*N*/ }
-
-/*N*/ void SdrObject::DisconnectFromNode(bool /*bTail1*/)
-/*N*/ {
-/*N*/ }
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 // convert this path object to contour object, even when it is a group
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ SdrObject* SdrObject::ConvertToPolyObj(BOOL bBezier, BOOL bLineToArea) const
+/*N*/ SdrObject* SdrObject::ConvertToPolyObj(BOOL bBezier, BOOL /* bLineToArea */) const
 /*N*/ {
 /*N*/   SdrObject* pRet = DoConvertToPolyObj(bBezier);
-/*N*/
-/*N*/   if(pRet && bLineToArea)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   return pRet;
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ SdrObject* SdrObject::DoConvertToPolyObj(BOOL /*bBezier*/) const
-/*N*/ {
-/*N*/   return NULL;
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2955,10 +2685,6 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/       aHint.SetNeedRepaint(FALSE);
 /*N*/       pModel->Broadcast(aHint);
 /*N*/   }
-/*N*/ }
-
-/*N*/ void SdrObject::SetPrintable(bool /*bPrn*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3262,11 +2988,6 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/           i++;
 /*N*/       }
 /*N*/       delete pFact;
-/*N*/   }
-/*N*/
-/*N*/   if(pObj == NULL)
-/*N*/   {
-/*N*/       // Na wenn's denn keiner will ...
 /*N*/   }
 /*N*/
 /*N*/   if(pObj != NULL)

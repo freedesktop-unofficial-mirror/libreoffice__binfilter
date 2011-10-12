@@ -996,50 +996,6 @@ using namespace ::com::sun::star::linguistic2;
 // =====================================================================
 // ======================   Virtuelle Methoden   =======================
 // =====================================================================
-void EditEngine::DrawingText( const Point&, const XubString&, USHORT, USHORT, const sal_Int32*, const SvxFont&, sal_uInt16, sal_uInt16, BYTE )
-{
-    DBG_CHKTHIS( EditEngine, 0 );
-    DBG_BF_ASSERT(0, "STRIP");      // VIRTUAL
-}
-
-void EditEngine::PaintingFirstLine( sal_uInt16, const Point&, long, const Point&, short, OutputDevice* )
-{
-    DBG_CHKTHIS( EditEngine, 0 );
-    DBG_BF_ASSERT(0, "STRIP");      // VIRTUAL
-}
-
-void EditEngine::ParagraphInserted( sal_uInt16 )
-{
-    DBG_CHKTHIS( EditEngine, 0 );
-    DBG_BF_ASSERT(0, "STRIP");      // VIRTUAL
-}
-
-void EditEngine::ParagraphDeleted( sal_uInt16 )
-{
-    DBG_CHKTHIS( EditEngine, 0 );
-    DBG_BF_ASSERT(0, "STRIP");      // VIRTUAL
-}
-
-sal_Bool EditEngine::FormattingParagraph( sal_uInt16 )
-{
-    DBG_CHKTHIS( EditEngine, 0 );
-    DBG_BF_ASSERT(0, "STRIP");      // VIRTUAL
-    return sal_False;
-}
-
-void EditEngine::ParaAttribsChanged( sal_uInt16 /* nParagraph */ )
-{
-    DBG_CHKTHIS( EditEngine, 0 );
-    DBG_BF_ASSERT(0, "STRIP");      // VIRTUAL
-}
-
-
-void EditEngine::ParagraphHeightChanged( sal_uInt16 )
-{
-    DBG_CHKTHIS( EditEngine, 0 );
-    DBG_BF_ASSERT(0, "STRIP");      // VIRTUAL
-}
-
 /*N*/ XubString EditEngine::GetUndoComment( sal_uInt16 nId ) const
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
