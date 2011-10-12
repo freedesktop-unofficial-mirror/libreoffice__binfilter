@@ -470,9 +470,9 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   RotateXPoly(aPathPolygon,rRef,sn,cs);
 /*N*/ }
 
-/*N*/ void SdrPathObj::NbcShear(const Point& rRefPnt, long nAngle, double fTan, bool bVShear)
+/*N*/ void SdrPathObj::NbcShear(const Point& rRefPnt, double fTan, bool bVShear)
 /*N*/ {
-/*N*/   SdrTextObj::NbcShear(rRefPnt,nAngle,fTan,bVShear);
+/*N*/   SdrTextObj::NbcShear(rRefPnt,fTan,bVShear);
 /*N*/   ShearXPoly(aPathPolygon,rRefPnt,fTan,bVShear);
 /*N*/ }
 

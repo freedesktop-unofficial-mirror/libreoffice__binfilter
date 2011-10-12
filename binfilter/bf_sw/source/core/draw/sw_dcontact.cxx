@@ -1090,9 +1090,9 @@ void SwDrawVirtObj::NbcMirror(const Point& rRef1, const Point& rRef2)
     SetRectsDirty();
 }
 
-void SwDrawVirtObj::NbcShear(const Point& rRef, long nWink, double tn, bool bVShear)
+void SwDrawVirtObj::NbcShear(const Point& rRef, double tn, bool bVShear)
 {
-    rRefObj.NbcShear(rRef - maOffset, nWink, tn, bVShear);
+    rRefObj.NbcShear(rRef - maOffset, tn, bVShear);
     SetRectsDirty();
 }
 

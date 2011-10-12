@@ -108,7 +108,7 @@ public:
     virtual void NbcMove(const Size& aSize);
     virtual void NbcResize(const Point& rRefPnt, const Fraction& aXFact, const Fraction& aYFact);
     virtual void NbcRotate(const Point& rRefPnt, long nAngle, double fSin, double fCos);
-    virtual void NbcShear(const Point& rRefPnt, long nAngle, double fTan, bool bVShear);
+    virtual void NbcShear(const Point& rRefPnt, double fTan, bool bVShear);
 
 
     virtual bool IsPolyObj() const;

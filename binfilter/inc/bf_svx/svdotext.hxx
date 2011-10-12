@@ -325,7 +325,7 @@ public:
     virtual void NbcMove(const Size& rSiz);
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
     virtual void NbcRotate(const Point& rRef, long nWink, double sn, double cs);
-    virtual void NbcShear(const Point& rRef, long nWink, double tn, bool bVShear);
+    virtual void NbcShear(const Point& rRef, double tn, bool bVShear);
 
     virtual bool HasTextEdit() const;
     virtual bool BegTextEdit(SdrOutliner& rOutl);

@@ -200,7 +200,7 @@ class SwDrawVirtObj : public SdrVirtObj
         virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
         virtual void NbcRotate(const Point& rRef, long nWink, double sn, double cs);
         virtual void NbcMirror(const Point& rRef1, const Point& rRef2);
-        virtual void NbcShear(const Point& rRef, long nWink, double tn, bool bVShear);
+        virtual void NbcShear(const Point& rRef, double tn, bool bVShear);
         virtual void Move(const Size& rSiz);
         virtual void Resize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
         virtual void Rotate(const Point& rRef, long nWink, double sn, double cs);

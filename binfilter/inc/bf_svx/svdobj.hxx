@@ -728,7 +728,7 @@ public:
 /*N*/   virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
 /*N*/   virtual void NbcRotate(const Point& rRef, long nWink, double sn, double cs);
 /*N*/   virtual void NbcMirror(const Point& rRef1, const Point& rRef2);
-/*N*/   virtual void NbcShear (const Point&, long, double, bool) {} // DBG_BF_ASSERT
+/*N*/   virtual void NbcShear (const Point&, double, bool) {} // DBG_BF_ASSERT
 
     virtual void Move  (const Size& rSiz);
     virtual void Resize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);

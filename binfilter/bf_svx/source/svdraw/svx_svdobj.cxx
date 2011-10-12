@@ -2034,7 +2034,7 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/   SetRectsDirty();
 /*N*/ }
 
-/*N*/ void SdrObject::NbcRotate(const Point& rRef, long nWink, double sn, double cs)
+/*N*/ void SdrObject::NbcRotate(const Point& rRef, long, double sn, double cs)
 /*N*/ {
 /*N*/   aOutRect.Move(-rRef.X(),-rRef.Y());
 /*N*/   Rectangle R(aOutRect);
@@ -2129,7 +2129,7 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/   if (nWink!=0) {
 /*N*/       Rectangle aBoundRect0; if (pUserCall!=NULL) aBoundRect0=GetBoundRect();
 /*N*/       SendRepaintBroadcast();
-/*N*/       NbcShear(rRef,nWink,tn,bVShear);
+/*N*/       NbcShear(rRef,tn,bVShear);
 /*N*/       SetChanged();
 /*N*/       SendRepaintBroadcast();
 /*N*/       SendUserCall(SDRUSERCALL_RESIZE,aBoundRect0);

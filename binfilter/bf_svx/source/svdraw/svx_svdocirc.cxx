@@ -516,9 +516,9 @@ namespace binfilter {
 /*N*/   ImpSetCircInfoToAttr();
 /*N*/ }
 
-/*N*/ void SdrCircObj::NbcShear(const Point& rRef, long nWink, double tn, bool bVShear)
+/*N*/ void SdrCircObj::NbcShear(const Point& rRef, double tn, bool bVShear)
 /*N*/ {
-/*N*/   SdrTextObj::NbcShear(rRef,nWink,tn,bVShear);
+/*N*/   SdrTextObj::NbcShear(rRef,tn,bVShear);
 /*N*/   SetXPolyDirty();
 /*N*/   ImpSetCircInfoToAttr();
 /*N*/ }

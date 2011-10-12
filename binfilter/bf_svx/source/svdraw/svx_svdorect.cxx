@@ -457,9 +457,9 @@ namespace binfilter {
 /*N*/   SetXPolyDirty();
 /*N*/ }
 
-/*N*/ void SdrRectObj::NbcShear(const Point& rRef, long nWink, double tn, bool bVShear)
+/*N*/ void SdrRectObj::NbcShear(const Point& rRef, double tn, bool bVShear)
 /*N*/ {
-/*N*/   SdrTextObj::NbcShear(rRef,nWink,tn,bVShear);
+/*N*/   SdrTextObj::NbcShear(rRef,tn,bVShear);
 /*N*/   SetXPolyDirty();
 /*N*/ }
 

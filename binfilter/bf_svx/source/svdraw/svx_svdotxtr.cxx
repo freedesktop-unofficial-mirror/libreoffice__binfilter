@@ -225,7 +225,7 @@ namespace binfilter {
 /*N*/   SetRectsDirty();
 /*N*/ }
 
-/*N*/ void SdrTextObj::NbcShear(const Point& rRef, long nWink, double tn, bool bVShear)
+/*N*/ void SdrTextObj::NbcShear(const Point& rRef, double tn, bool bVShear)
 /*N*/ {
 /*N*/   // #75889# when this is a SdrPathObj aRect maybe not initialized
 /*N*/   Polygon aPol(Rect2Poly(aRect.IsEmpty() ? GetSnapRect() : aRect, aGeo));

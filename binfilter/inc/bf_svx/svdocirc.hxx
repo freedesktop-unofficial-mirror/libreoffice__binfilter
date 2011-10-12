@@ -109,7 +109,7 @@ public:
 
     virtual void NbcMove(const Size& aSiz);
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
-    virtual void NbcShear (const Point& rRef, long nWink, double tn, bool bVShear);
+    virtual void NbcShear (const Point& rRef, double tn, bool bVShear);
     virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 
 protected:
