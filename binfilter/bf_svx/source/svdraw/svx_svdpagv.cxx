@@ -628,9 +628,7 @@ using namespace ::com::sun::star;
 /*?*/
 /*?*/       rView.AdjustMarkHdl();
 /*?*/
-/*?*/       // invalidate only when view wants to visualize group entering
-/*?*/       if(rView.DoVisualizeEnteredGroup())
-/*?*/           InvalidateAllWin();
+/*?*/       InvalidateAllWin();
 /*N*/   }
 /*N*/ }
 

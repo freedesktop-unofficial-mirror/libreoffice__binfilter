@@ -87,19 +87,6 @@ class FmFormShell : public SfxShell
         // Ereignis interesiert, nicht sauber verstaendigen (sie koennte sich lediglich von der Application
         // das Navigator-Fenster geben lassen, aber das wollen wir ja nicht, ge ? ...))
 
-//#ifdef NOOLDSV
-//  class FormShellWaitObject
-//  {
-//      Window* m_pWindow;
-//  public:
-//      FormShellWaitObject(const FmFormShell* _pShell);
-//      ~FormShellWaitObject();
-//  };
-//  friend class FormShellWaitObject;
-//
-//  const OutputDevice* GetCurrentViewDevice() const { return m_pFormView ? m_pFormView->GetActualOutDev() : NULL; }
-//#endif
-
 public:
     SFX_DECL_INTERFACE(SVX_INTERFACE_FORM_SH);
     TYPEINFO();

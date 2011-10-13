@@ -119,7 +119,6 @@ public:
     FmXFormView* GetImpl() const {return pImpl;}
 
 private:
-    const OutputDevice* GetActualOutDev() const {return pActualOutDev;}
     void AdjustMarks(const SdrMarkList& rMarkList);
     sal_Bool checkUnMarkAll(const ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >& _xSource);
     FmFormObj* getMarkedGrid() const;

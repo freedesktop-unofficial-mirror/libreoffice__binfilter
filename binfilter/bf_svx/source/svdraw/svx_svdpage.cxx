@@ -491,12 +491,8 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   if(rInfoRec.pPV && rInfoRec.bNotActive)
 /*N*/   {
-/*?*/       if(rInfoRec.pPV->GetView().DoVisualizeEnteredGroup())
-/*?*/       {
-/*?*/           // Darstellung schmal
-/*?*/           rXOut.GetOutDev()->SetDrawMode(nWasDrawMode | (
-/*?*/               DRAWMODE_GHOSTEDLINE|DRAWMODE_GHOSTEDFILL|DRAWMODE_GHOSTEDTEXT|DRAWMODE_GHOSTEDBITMAP|DRAWMODE_GHOSTEDGRADIENT));
-/*?*/       }
+/*?*/       rXOut.GetOutDev()->SetDrawMode( nWasDrawMode | (
+/*?*/           DRAWMODE_GHOSTEDLINE|DRAWMODE_GHOSTEDFILL|DRAWMODE_GHOSTEDTEXT|DRAWMODE_GHOSTEDBITMAP|DRAWMODE_GHOSTEDGRADIENT));
 /*N*/   }
 /*N*/   else
 /*N*/   {

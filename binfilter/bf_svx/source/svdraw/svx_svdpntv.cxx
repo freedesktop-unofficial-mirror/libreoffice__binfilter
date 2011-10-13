@@ -57,11 +57,7 @@ using namespace ::com::sun::star;
 /*N*/   pOut=NULL;
 /*N*/ }
 
-/*N*/ IMPL_LINK(FrameAnimator,Hdl,AutoTimer*,EMPTYARG)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return 0;
-/*N*/ }
-
+IMPL_LINK(FrameAnimator,Hdl,AutoTimer*,EMPTYARG) { return 0; } // DBG_BF_ASSERT
 
 /*N*/ SdrViewWinRec::SdrViewWinRec(OutputDevice* pW)
 /*N*/ : pWin(pW),
@@ -110,57 +106,29 @@ using namespace ::com::sun::star;
 /*N*/ void SdrPaintView::ImpClearVars()
 /*N*/ {
 /*N*/   pXOut=NULL;
-/*N*/   bForeignXOut=FALSE;
-/*N*/   pItemBrowser=NULL;
 /*N*/   bLayerSortedRedraw=FALSE;
 /*N*/   bPageVisible=TRUE;
-/*N*/   bPageBorderVisible=TRUE;
 /*N*/   bBordVisible=TRUE;
 /*N*/   bGridVisible=TRUE;
 /*N*/   bGridFront  =FALSE;
 /*N*/   bHlplVisible=TRUE;
 /*N*/   bHlplFront  =TRUE;
 /*N*/   bGlueVisible=FALSE;
-/*N*/   bGlueVisible2=FALSE;
-/*N*/   bGlueVisible3=FALSE;
-/*N*/   bGlueVisible4=FALSE;
 /*N*/   bSwapAsynchron=FALSE;
 /*N*/   bPrintPreview=FALSE;
 /*N*/   bLineDraft=FALSE;
 /*N*/   bFillDraft=FALSE;
 /*N*/   bGrafDraft=FALSE;
-/*N*/   bHideGrafDraft=FALSE;
 /*N*/   bTextDraft=FALSE;
-/*N*/   bLineDraftPrn=FALSE;
-/*N*/   bFillDraftPrn=FALSE;
-/*N*/   bGrafDraftPrn=FALSE;
-/*N*/   bTextDraftPrn=FALSE;
-/*N*/
-/*N*/   bObjectPaintIgnoresClipping=FALSE;
 /*N*/
 /*N*/   eAnimationMode = SDR_ANIMATION_ANIMATE;
-/*N*/     bAnimationPause = FALSE;
 /*N*/
-/*N*/   nHitTolPix=2;
-/*N*/   nMinMovPix=3;
-/*N*/   nHitTolLog=0;
-/*N*/   nMinMovLog=0;
-/*N*/   pActualOutDev=NULL;
-/*N*/
-/*N*/   bSaveHiddenPages=FALSE;
-/*N*/   bPageTwice=FALSE;
-/*N*/   pDragWin=NULL;
-/*N*/   bRestoreColors=TRUE;
-/*N*/   pDisabledAttr=NULL;
 /*N*/   pDefaultStyleSheet=NULL;
-/*N*/   bEncircle=FALSE;
 /*N*/   bSomeObjChgdFlag=FALSE;
 /*N*/
 /*N*/   bMasterBmp=FALSE;
-/*N*/   pMasterBmp=NULL;
-/*N*/   nMasterCacheMode = SDR_MASTERPAGECACHE_DEFAULT;
 /*N*/
-/*N*/     nGraphicManagerDrawMode = GRFMGR_DRAW_STANDARD;
+/*N*/   nGraphicManagerDrawMode = GRFMGR_DRAW_STANDARD;
 /*N*/
 /*N*/   aComeBackTimer.SetTimeout(1);
 /*N*/   aComeBackTimer.SetTimeoutHdl(LINK(this,SdrPaintView,ImpComeBackHdl));
@@ -193,9 +161,6 @@ using namespace ::com::sun::star;
 /*N*/   if (pOut!=NULL) AddWin(pOut);
 /*N*/   pXOut=new ExtOutputDevice(pOut);
 /*N*/
-/*N*/   // Flag zur Visualisierung von Gruppen
-/*N*/   bVisualizeEnteredGroup = TRUE;
-/*N*/
 /*N*/   StartListening( maColorConfig );
 /*N*/   onChangeColorConfig();
 /*N*/ }
@@ -208,20 +173,9 @@ using namespace ::com::sun::star;
 /*N*/   EndListening( maColorConfig );
 /*N*/
 /*N*/   ClearAll();
-/*N*/   if (!bForeignXOut && pXOut!=NULL) {
+/*N*/   if (pXOut!=NULL) {
 /*N*/       delete pXOut;
 /*N*/   }
-/*N*/   if (pDisabledAttr!=NULL) {
-/*?*/       delete pDisabledAttr;
-/*N*/   }
-/*N*/   if (pMasterBmp!=NULL) {
-/*?*/       delete pMasterBmp;
-/*N*/   }
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pItemBrowser!=NULL) {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/ #endif
 /*N*/   USHORT nAnz=ImpGetUserMarkerCount();
 /*N*/   for (USHORT nNum=0; nNum<nAnz; nNum++) {
 /*?*/       SdrViewUserMarker* pUM=ImpGetUserMarker(nNum);
@@ -234,8 +188,7 @@ using namespace ::com::sun::star;
 /*N*/ void SdrPaintView::SFX_NOTIFY(SfxBroadcaster& /*rBC*/, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/   BOOL bObjChg=!bSomeObjChgdFlag; // TRUE= auswerten fuer ComeBack-Timer
-/*N*/   BOOL bMaster=pMasterBmp!=NULL;  // TRUE= auswerten fuer MasterPagePaintCache
-/*N*/   if (bObjChg || bMaster) {
+/*N*/   if ( bObjChg ) {
 /*N*/       SdrHint* pSdrHint=PTR_CAST(SdrHint,&rHint);
 /*N*/       if (pSdrHint!=NULL) {
 /*N*/           SdrHintKind eKind=pSdrHint->GetKind();
@@ -243,12 +196,6 @@ using namespace ::com::sun::star;
 /*N*/               if (bObjChg) {
 /*N*/                   bSomeObjChgdFlag=TRUE;
 /*N*/                   aComeBackTimer.Start();
-/*N*/               }
-/*N*/               if (bMaster) {
-/*?*/                   const SdrPage* pPg=pSdrHint->GetPage();
-/*?*/                   if (pPg!=NULL && pPg->IsMasterPage() && pPg->GetPageNum()==pMasterBmp->GetMasterPageNum()) {
-/*?*/                       ReleaseMasterPagePaintCache();
-/*N*/                   }
 /*N*/               }
 /*N*/           }
 /*N*/           if (eKind==HINT_PAGEORDERCHG) {
@@ -264,10 +211,6 @@ using namespace ::com::sun::star;
 /*N*/                       }
 /*N*/                   }
 /*N*/               }
-/*N*/               if (bMaster) ReleaseMasterPagePaintCache();
-/*N*/           }
-/*N*/           if (eKind==HINT_PAGECHG) {
-/*N*/               if (bMaster) ReleaseMasterPagePaintCache();
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -294,14 +237,7 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*?*/ void SdrPaintView::ImpAsyncPaintDone( const SdrObject* /*pObj*/ )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}
-/*?*/ }
-
-/*N*/ IMPL_LINK(SdrPaintView,ImpAfterPaintHdl,Timer*,EMPTYARG)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return 0;
-/*N*/ }
+IMPL_LINK(SdrPaintView,ImpAfterPaintHdl,Timer*,EMPTYARG) { return 0; } // DBG_BF_ASSERT
 
 /*N*/ void SdrPaintView::ModelHasChanged()
 /*N*/ {
@@ -326,22 +262,11 @@ using namespace ::com::sun::star;
 /*?*/       SdrPageView* pPV=GetPageHidePvNum(nv);
 /*?*/       pPV->ModelHasChanged();
 /*N*/   }
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/ #endif
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ IMPL_LINK_INLINE_START(SdrPaintView,ImpUserMarkerAnimatorHdl,AutoTimer*,EMPTYARG)
-/*N*/ {
-/*N*/   USHORT nAnz=ImpGetUserMarkerCount();
-/*N*/   for (USHORT nNum=0; nNum<nAnz; nNum++) {
-/*N*/       SdrViewUserMarker* pUM=ImpGetUserMarker(nNum);
-/*N*/       if (pUM->IsAnimate() && pUM->IsVisible()) {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/   }
-/*N*/   return 0;
-/*N*/ }
+IMPL_LINK_INLINE_START(SdrPaintView,ImpUserMarkerAnimatorHdl,AutoTimer*,EMPTYARG) { return 0; } // DBG_BF_ASSERT
 
 /*N*/ IMPL_LINK_INLINE_END(SdrPaintView,ImpUserMarkerAnimatorHdl,AutoTimer*,pTimer)
 
@@ -367,38 +292,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   if (bNeed) aUserMarkerAnimator.Start();
 /*N*/   else aUserMarkerAnimator.Stop();
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ BOOL SdrPaintView::IsAction() const
-/*N*/ {
-/*N*/   return IsEncirclement();
-/*N*/ }
-
-/*N*/ void SdrPaintView::BrkAction()
-/*N*/ {
-/*N*/   BrkEncirclement();
-/*N*/ }
-
-
-/*N*/ void SdrPaintView::ToggleShownXor(OutputDevice* /*pOut*/, const Region* /*pRegion*/) const
-/*N*/ {
-/*N*/   if (IsEncirclement() && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/   USHORT nAnz=ImpGetUserMarkerCount();
-/*N*/   for (USHORT nNum=0; nNum<nAnz; nNum++) {
-/*N*/       SdrViewUserMarker* pUM=ImpGetUserMarker(nNum);
-/*N*/       if (pUM->IsVisible()) {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/   }
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ void SdrPaintView::BrkEncirclement()
-/*N*/ {
-/*N*/   if (IsEncirclement()) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -431,33 +324,23 @@ using namespace ::com::sun::star;
 
 /*N*/ void SdrPaintView::ClearAll()
 /*N*/ {
-/*N*/   for( void* p = aAsyncPaintList.First(); p; p = aAsyncPaintList.Next() )
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/
-/*N*/   aAsyncPaintList.Clear();
 /*N*/   ClearPageViews();
 /*N*/   ClearHideViews();
-/*N*/     ImpForceSwapOut();
 /*N*/ }
 
 /*N*/ SdrPageView* SdrPaintView::ShowPage(SdrPage* pPage, const Point& rOffs)
 /*N*/ {
 /*N*/   SdrPageView* pPV=NULL;
 /*N*/   if (pPage!=NULL) {
-/*N*/       SdrPageView* pTmpPV=NULL;
-/*N*/       if (!bPageTwice) pTmpPV=GetPageView(pPage); // Evtl. jede Seite nur einmal!
+/*N*/       SdrPageView* pTmpPV = GetPageView(pPage); // Evtl. jede Seite nur einmal!
 /*N*/       if (pTmpPV==NULL) {
 /*N*/           USHORT nPos=GetHiddenPV(pPage);   // War die schon mal da?
-/*N*/           if (nPos<GetPageHideCount()) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/           } else {
+/*N*/           if ( !(nPos<GetPageHideCount()) ) {
 /*N*/               pPV=new SdrPageView(pPage,rOffs,*((SdrView*)this));
 /*N*/           }
 /*N*/           if (pPV!=NULL) {
 /*N*/               aPagV.Insert(pPV,CONTAINER_APPEND);
 /*N*/               pPV->Show();
-/*N*/
-/*N*/                 // #110290# Swap out graphics when switching pages
-/*N*/                 ImpForceSwapOut();
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -471,19 +354,9 @@ using namespace ::com::sun::star;
 /*N*/       if (nPos!=CONTAINER_ENTRY_NOTFOUND) {
 /*N*/           aPagV.Remove(nPos);
 /*N*/           pPV->Hide();
-/*N*/           if (bSaveHiddenPages) {
-/*?*/               aPagHide.Insert(pPV,CONTAINER_APPEND);
-/*N*/           } else {
-/*N*/               delete pPV;
-/*N*/           }
+/*N*/           delete pPV;
 /*N*/       }
 /*N*/   }
-/*N*/ }
-
-
-/*N*/ void SdrPaintView::HideAllPages()
-/*N*/ {
-/*N*/   while (GetPageViewCount()>0) HidePagePvNum(0);
 /*N*/ }
 
 
@@ -523,9 +396,6 @@ using namespace ::com::sun::star;
 /*N*/   for (USHORT i=0; i<GetPageViewCount(); i++) {
 /*?*/       GetPageViewPvNum(i)->AddWin(pWin1);
 /*N*/   }
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/ #endif
 /*N*/ }
 
 /*N*/ void SdrPaintView::DelWin(OutputDevice* pWin1)
@@ -537,24 +407,9 @@ using namespace ::com::sun::star;
 /*N*/       }
 /*N*/       aWinList.Delete(nPos);
 /*N*/   }
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/ #endif
-/*N*/ }
-
-/*N*/ Rectangle SdrPaintView::GetVisibleArea( USHORT )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return Rectangle();
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ void SdrPaintView::InitRedraw(OutputDevice*, const Region&, USHORT)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-/*N*/ void SdrPaintView::GlueInvalidate() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
 
 /*N*/ void SdrPaintView::InvalidateAllWin()
 /*N*/ {
@@ -613,30 +468,7 @@ using namespace ::com::sun::star;
 /*N*/ void SdrPaintView::SetMasterPagePaintCaching( BOOL bOn, ULONG nCacheMode )
 /*N*/ {
 /*N*/   bMasterBmp = bOn;
-/*N*/
-/*N*/   if( bOn )
-/*N*/   {
-/*N*/       if( SDR_MASTERPAGECACHE_DEFAULT == nCacheMode || SDR_MASTERPAGECACHE_NONE == nCacheMode )
-/*N*/           nMasterCacheMode = SDR_MASTERPAGECACHE_FULL;
-/*N*/       else
-/*N*/           nMasterCacheMode = nCacheMode;
-/*N*/
-/*N*/       ReleaseMasterPagePaintCache();
-/*N*/   }
-/*N*/   else
-/*N*/       nMasterCacheMode = SDR_MASTERPAGECACHE_NONE;
 /*N*/ }
-
-// z.B. rufen, wenn Obj der MPg geaendert
-/*N*/ void SdrPaintView::ReleaseMasterPagePaintCache()
-/*N*/ {
-/*N*/   if (pMasterBmp!=NULL) {
-/*?*/       delete pMasterBmp;
-/*?*/       pMasterBmp=NULL;
-/*N*/   }
-/*N*/ }
-
-
 
 
 /*N*/ void SdrPaintView::SetDefaultStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr)
@@ -652,9 +484,6 @@ using namespace ::com::sun::star;
 /*?*/           nWhich=aIter.NextWhich();
 /*?*/       }
 /*N*/   }
-#ifndef SVX_LIGHT
-/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }
-#endif
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -773,21 +602,6 @@ using namespace ::com::sun::star;
 /*N*/ void SdrPaintView::SetGridColor( Color aColor )
 /*N*/ {
 /*N*/   maGridColor = aColor;
-/*N*/ }
-
-
-// #103834# Set background color for svx at SdrPageViews
-
-/*N*/ void SdrPaintView::ImpForceSwapOut()
-/*N*/ {
-/*N*/     // #110290# Force swap out all graphics on this page. There might be
-/*N*/   // some left, since every graphic that has not received a Draw yet,
-/*N*/     // but is swapped in, has its swapout handler disabled.
-/*N*/     while( !maSwappedInGraphicsStack.empty() )
-/*N*/     {
-/*N*/         maSwappedInGraphicsStack.front()->ForceSwapOut();
-/*N*/         maSwappedInGraphicsStack.pop_front();
-/*N*/     }
 /*N*/ }
 
 // eof

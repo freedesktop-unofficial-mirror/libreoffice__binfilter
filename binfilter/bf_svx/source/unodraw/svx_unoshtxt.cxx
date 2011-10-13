@@ -729,7 +729,7 @@ Rectangle SvxTextEditSourceImpl::GetVisArea()
 {
     if( IsValid() )
     {
-        Rectangle aVisArea = mpView->GetVisibleArea( mpView->FindWin( const_cast< Window* > (mpWindow) ) );
+        Rectangle aVisArea;
 
         // offset vis area by edit engine left-top position
         SdrTextObj* pTextObj = PTR_CAST( SdrTextObj, mpObject );

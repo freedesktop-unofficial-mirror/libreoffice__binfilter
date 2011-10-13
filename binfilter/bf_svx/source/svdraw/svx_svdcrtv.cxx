@@ -167,7 +167,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   CheckEdgeMode();
-/*N*/   ImpSetGlueVisible3(IsEdgeTool());
 /*N*/ }
 
 

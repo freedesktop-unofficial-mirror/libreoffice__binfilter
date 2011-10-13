@@ -417,8 +417,6 @@ namespace binfilter {
 /*N*/   bEdgesOfMarkedNodesDirty=TRUE;
 /*N*/   bMarkedObjRectDirty=TRUE;
 /*N*/   bMarkedPointsRectsDirty=TRUE;
-/*N*/   BOOL bOneEdgeMarked=FALSE;
-/*N*/   ImpSetGlueVisible4(bOneEdgeMarked);
 /*N*/ }
 /*N*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -471,7 +469,6 @@ namespace binfilter {
 /*N*/                   rIn>>nTmpUShort;
 /*N*/                   eEditMode=(SdrViewEditMode)nTmpUShort;
 /*N*/               }
-/*N*/               bGlueVisible2=eEditMode==SDREDITMODE_GLUEPOINTEDIT;
 /*N*/               if (rSubHead.GetBytesLeft()!=0) {
 /*N*/                   rIn>>bTmpBool;
 /*N*/                   bMarkHdlWhenTextEdit=bTmpBool;

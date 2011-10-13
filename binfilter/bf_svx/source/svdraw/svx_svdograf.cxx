@@ -718,8 +718,6 @@ namespace binfilter {
 /*?*/           aLogPos.Y() -= ( aLogSize.Height() - 1L );
 /*?*/       }
 /*?*/
-/*?*/         bool bDidPaint( false );
-/*?*/
 /*?*/       if( pGraphic->GetType() == GRAPHIC_BITMAP )
 /*?*/       {
 /*?*/           if( pGraphic->IsAnimated() )
@@ -744,8 +742,6 @@ namespace binfilter {
 /*?*/                   }
 /*?*/                   else if( eAnimMode == SDR_ANIMATION_DONT_ANIMATE )
 /*?*/                       pGraphic->Draw( pOutDev, aLogPos, aLogSize, &aAttr, nGraphicManagerDrawMode );
-/*?*/
-/*?*/                     bDidPaint = true;
 /*?*/               }
 /*?*/           }
 /*?*/           else
@@ -754,7 +750,6 @@ namespace binfilter {
 /*?*/                   aAttr.SetRotation( nDrehWink / 10 );
 /*?*/
 /*?*/               pGraphic->Draw( pOutDev, aLogPos, aLogSize, &aAttr, nGraphicManagerDrawMode );
-/*?*/                 bDidPaint = true;
 /*?*/           }
 /*?*/       }
 /*?*/       else
@@ -775,16 +770,7 @@ namespace binfilter {
 /*?*/
 /*?*/           pGraphic->Draw( pOutDev, aLogPos, aLogSize, &aAttr, nGraphicManagerDrawMode );
 /*?*/           pOutDev->SetDrawMode( nOldDrawMode );
-/*?*/
-/*?*/             bDidPaint = true;
 /*?*/       }
-/*?*/
-/*?*/         // #110290# Remove the SdrGraphObj from the list of objects to be removed on
-/*?*/         // page switch. This is permissible, as the Draw above reenabled the swapout
-/*?*/         // timer.
-/*?*/         // #110573# Occasionally, the view is NULL (e.g. previews in impress and calc)
-/*?*/         if( bDidPaint && pView )
-/*?*/             ( (SdrView*) pView )->ImpAsyncPaintDone( this );
 /*N*/   }
 
     // auch GRAPHIC_NONE oder SwappedOut( AsyncSwap )
