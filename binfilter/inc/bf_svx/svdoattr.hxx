@@ -112,13 +112,8 @@ public:
 
     virtual const Rectangle& GetSnapRect() const;
     virtual void operator=(const SdrObject& rObj);
-    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
     virtual void SetModel(SdrModel* pNewModel);
-
-    // pre- and postprocessing for objects for saving
-    virtual void PreSave() {}
-    virtual void PostSave() {}
 
     // ItemSet access
     virtual const SfxItemSet& GetItemSet() const;

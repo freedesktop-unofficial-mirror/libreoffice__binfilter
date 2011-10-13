@@ -67,7 +67,6 @@ public:
 
     virtual SdrObjUserData* Clone( SdrObject* /*pObj*/ ) const { return new SdIMapInfo( *this ); }
 
-    virtual void WriteData( SvStream& ) {}
     virtual void ReadData( SvStream& rIStm );
 
     void            SetImageMap( const ImageMap& rIMap ) { aImageMap = rIMap; }

@@ -95,7 +95,6 @@ public:
     virtual ~ImpSdrObjTextLinkUserData();
 
     virtual SdrObjUserData* Clone(SdrObject* pObj1) const;
-    virtual void WriteData(SvStream& ) {}
     virtual void ReadData(SvStream& rIn);
     virtual void AfterRead();
 };
@@ -353,7 +352,6 @@ public:
     virtual void ItemChange(const sal_uInt16 nWhich, const SfxPoolItem* pNewItem = 0);
 
 
-    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     void SetTextEditOutliner(SdrOutliner* pOutl) { pEdtOutl=pOutl; }
@@ -389,9 +387,6 @@ public:
         to e.g. determine the top, left position of text in shapes.
      */
     void UpdateOutlinerFormatting( SdrOutliner& /*rOutl*/, Rectangle& /*rPaintRect*/ ){DBG_BF_ASSERT(0, "STRIP");}
-
-    // pre- and postprocessing for objects for saving
-    virtual void PreSave() {}
 
     void ForceOutlinerParaObject();
     BOOL IsVerticalWriting() const;

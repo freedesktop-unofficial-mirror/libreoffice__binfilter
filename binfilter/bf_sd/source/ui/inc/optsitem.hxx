@@ -116,7 +116,6 @@ protected:
 
     virtual void            GetPropNameArray( const char**& ppNames, ULONG& rCount ) const = 0;
     virtual BOOL            ReadData( const ::com::sun::star::uno::Any* pValues ) = 0;
-    virtual BOOL WriteData( ::com::sun::star::uno::Any* pValues ) const = 0;
 
 public:
 
@@ -153,7 +152,6 @@ protected:
 
     virtual void GetPropNameArray( const char**& ppNames, ULONG& rCount ) const;
     virtual BOOL ReadData( const ::com::sun::star::uno::Any* pValues );
-    virtual BOOL WriteData( ::com::sun::star::uno::Any* ) const {return FALSE;}
 
 public:
             SdOptionsLayout( USHORT nConfigId, BOOL bUseConfig );
@@ -198,7 +196,6 @@ protected:
 
     virtual void GetPropNameArray( const char**& ppNames, ULONG& rCount ) const;
     virtual BOOL ReadData( const ::com::sun::star::uno::Any* pValues );
-    virtual BOOL WriteData( ::com::sun::star::uno::Any* ) const {return FALSE;}
 
 public:
 
@@ -265,7 +262,6 @@ protected:
 
     virtual void GetPropNameArray( const char**& ppNames, ULONG& rCount ) const;
     virtual BOOL ReadData( const ::com::sun::star::uno::Any* pValues );
-    virtual BOOL WriteData( ::com::sun::star::uno::Any* ) const {return FALSE;}
 
 public:
 
@@ -358,7 +354,6 @@ protected:
 
     virtual void GetPropNameArray( const char**& ppNames, ULONG& rCount ) const;
     virtual BOOL ReadData( const ::com::sun::star::uno::Any* pValues );
-    virtual BOOL WriteData( ::com::sun::star::uno::Any* ) const {return FALSE;}
 
 public:
 
@@ -409,7 +404,6 @@ protected:
 
     virtual void GetPropNameArray( const char**& ppNames, ULONG& rCount ) const;
     virtual BOOL ReadData( const ::com::sun::star::uno::Any* pValues );
-    virtual BOOL WriteData( ::com::sun::star::uno::Any* ) const {return FALSE;}
 
 public:
 
@@ -434,7 +428,6 @@ protected:
 
     virtual void GetPropNameArray( const char**& ppNames, ULONG& rCount ) const;
     virtual BOOL ReadData( const ::com::sun::star::uno::Any* pValues );
-    virtual BOOL WriteData( ::com::sun::star::uno::Any* ) const {return FALSE;}
 
 public:
 
@@ -501,7 +494,6 @@ protected:
 
     virtual void GetPropNameArray( const char**& ppNames, ULONG& rCount ) const;
     virtual BOOL ReadData( const ::com::sun::star::uno::Any* pValues );
-    virtual BOOL WriteData( ::com::sun::star::uno::Any* ) const {return FALSE;}
 
 public:
 

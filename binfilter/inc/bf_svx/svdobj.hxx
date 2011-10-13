@@ -227,7 +227,6 @@ public:
     virtual SdrObjUserData* Clone(SdrObject* pObj1) const = 0;
     UINT32  GetInventor() const { return nInventor; }
     UINT16  GetId() const { return nIdentifier; }
-    virtual void WriteData(SvStream& ) {}
     virtual void ReadData(SvStream& rIn);
 
     // z.B. fuer die Wiederherstellung von Surrogaten.
@@ -307,7 +306,6 @@ public:
     TYPEINFO();
     SdrObjPlusData();
     virtual ~SdrObjPlusData();
-    // Keine Streamoperatoren. Jede Obj streamt seinen Teil in Obj::WriteData().
 };
 
 //************************************************************
@@ -837,10 +835,6 @@ public:
     virtual void ItemChange(const sal_uInt16, const SfxPoolItem* = 0) {} // DBG_BF_ASSERT
     virtual void PostItemChange(const sal_uInt16) {} // DBG_BF_ASSERT
 
-    // pre- and postprocessing for objects for saving
-    virtual void PreSave() {}
-    virtual void PostSave() {}
-
     // bDontRemoveHardAttr=FALSE: alle in der Vorlage gesetzten Attribute werden am
     // Zeichenobjekt auf Default gesetzt; TRUE: alle harten Attribute bleiben erhalten.
     virtual void SetStyleSheet(SfxStyleSheet*, bool) {} // DBG_BF_ASSERT
@@ -932,17 +926,6 @@ public:
     // Defaulted sind diese Methoden auf "Ich kann das nicht" (FALSE/NULL).
     virtual SdrObject* DoConvertToPolyObj(BOOL /*bBezier*/) const { return NULL; } // DBG_BF_ASSERT
     SdrObject* ConvertToPolyObj(BOOL bBezier, BOOL bLineToArea) const;
-
-    // convert this path object to contour object; bForceLineDash converts even
-    // when there is no filled new polygon created from line-to-polygon conversion,
-    // specially used for XLINE_DASH and 3D conversion
-
-    // Schreiben in einen Stream: Der Operator << schreibt zunaest den 28 Bytes
-    //   langen SdrObjIOHeader in den Stream und ruft anschliessend die vMethode
-    //   WriteData() auf. Zum Schluss wird noch das vorerst auf 0 initiallisierte
-    //   Feld nByteAnz des SdrObjIOHeader gefuellt. Die geerbte Methode WriteData
-    //   ist in ueberlagerten Methoden stets am Anfang zu rufen.
-    virtual void WriteData(SvStream& ) const {} // DBG_BF_ASSERT
 
     // Lesen aus einem Stream: Zunaest wird der SdrIOHeader von einem Reader am
     //   SdrModel gelesen (Read und SeekBack). Der Reader versucht dann eine

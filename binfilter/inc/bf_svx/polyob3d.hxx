@@ -55,9 +55,8 @@ class E3dPolyObj : public E3dObject
     long    nObjectnumber;  // default ist -1;
 
     // [FG]: Zwecks schreiben des Formates der 3.1 Version
-    //       Diese Funktionen werden nur von ReadData31 und WriteData31
+    //       Diese Funktionen werden nur von ReadData31
     //       aufgerufen.
-    void WriteData31(SvStream& ) const {}
     void ReadData31(const SdrObjIOHeader& rHead, SvStream& rIn);
 
 public:
@@ -90,10 +89,7 @@ public:
 
     virtual const   Rectangle& GetBoundRect() const;
 
-    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
-
-
 
     virtual SdrObjGeoData *NewGeoData() const;
     virtual void          SaveGeoData(SdrObjGeoData &rGeo) const;

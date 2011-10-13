@@ -54,7 +54,6 @@ public:
 
     virtual SdrObjUserData* Clone(SdrObject *) const { return NULL; } // DBG_BF_ASSERT
 
-    virtual void WriteData(SvStream& ) {}
     virtual void ReadData(SvStream& rIn);
 
     long &AxisId ()

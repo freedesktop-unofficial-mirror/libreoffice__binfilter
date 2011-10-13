@@ -96,7 +96,6 @@ public:
 
     virtual SdrObjUserData* Clone(SdrObject* /*pObj*/) const {DBG_BF_ASSERT(0, "STRIP"); return NULL;}
 
-    virtual void WriteData(SvStream& ) {}
     virtual void            ReadData(SvStream& rIn);
 
             // NULL loest die Verbindung zum Pfadobjekt

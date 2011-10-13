@@ -74,7 +74,6 @@ public:
     virtual void     InsertMasterPage(SdrPage* pPage, sal_uInt16 nPos=0xFFFF);
     virtual SdrPage* RemoveMasterPage(sal_uInt16 nPgNum);
 
-    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrIOHeader& rHead, SvStream& rIn);
 
     virtual SdrLayerID      GetControlExportLayerId( const SdrObject& rObj ) const;

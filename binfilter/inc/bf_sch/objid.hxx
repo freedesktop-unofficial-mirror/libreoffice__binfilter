@@ -51,10 +51,9 @@ public:
 
     virtual SdrObjUserData* Clone(SdrObject *) const { return NULL; } // DBG_BF_ASSERT
 
-    virtual void WriteData(SvStream& ) {}
     virtual void ReadData(SvStream& rIn);
 
-        void SetObjId(UINT16 nId) {  nObjId = nId; }
+    void SetObjId(UINT16 nId) {  nObjId = nId; }
     UINT16 GetObjId() { return nObjId; }
 };
 

@@ -312,9 +312,8 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ SvStream& operator<<(SvStream& rOStream, const Camera3D& rCam)
+/*N*/ SvStream& operator<<(SvStream& rOStream, const Camera3D&)
 /*N*/ {
-/*N*/   rCam.WriteData31(rOStream);
 /*N*/   return rOStream;
 /*N*/ }
 

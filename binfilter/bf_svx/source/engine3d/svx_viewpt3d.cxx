@@ -456,7 +456,7 @@ namespace binfilter {
 
 
 // FG: eigentlich sollten die Stream-Funktionen in der 3D-Engine nicht verwendet werden
-//     sondern WriteData und ReadData, da man insbesondere bei ReadData einen
+//     sondern ReadData, da man insbesondere bei ReadData einen
 //     zusaetzlichen Parameter hat der die File-Revision enthaelt.
 
 /*************************************************************************
@@ -466,9 +466,8 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ #ifndef SVX_LIGHT
-/*N*/ SvStream& operator<<(SvStream& rOStream, const Viewport3D& rViewpt)
+/*N*/ SvStream& operator<<(SvStream& rOStream, const Viewport3D& )
 /*N*/ {
-/*N*/   rViewpt.WriteData31(rOStream);
 /*N*/   return rOStream;
 /*N*/ }
 /*N*/ #endif

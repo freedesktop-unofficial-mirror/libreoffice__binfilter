@@ -112,9 +112,7 @@ public:
     virtual void NbcShear (const Point& rRef, double tn, bool bVShear);
     virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 
-protected:
 public:
-    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     long GetStartWink() const { return nStartWink; }
@@ -126,10 +124,6 @@ public:
 
     // private support routines for ItemSet access. NULL pointer means clear item.
     virtual void ItemSetChanged(const SfxItemSet& rSet);
-
-    // pre- and postprocessing for objects for saving
-    virtual void PreSave() {}
-    virtual void PostSave() {}
 };
 
 }//end of namespace binfilter

@@ -1651,9 +1651,6 @@ using namespace ::com::sun::star;
 /*N*/   ((SdrModel*)&rMod)->nProgressMax=rMod.ImpCountAllSteamComponents(); // Hier passenden Wert einsetzen
 /*N*/   ((SdrModel*)&rMod)->DoProgress(0);
 /*N*/   SdrIOHeader aHead(rOut,STREAM_WRITE,SdrIOModlID);
-/*N*/   USHORT nCompressMerk=rOut.GetCompressMode(); // Der CompressMode wird von SdrModel::ReadData() gesetzt
-/*N*/   rMod.WriteData(rOut);
-/*N*/   rOut.SetCompressMode(nCompressMerk); // CompressMode wieder restaurieren
 /*N*/   ((SdrModel*)&rMod)->DoProgress(0xFFFFFFFF);
 /*N*/   ((SdrModel*)&rMod)->Broadcast(SdrHint(HINT_MODELSAVED)); // #43095#
 /*N*/   return rOut;

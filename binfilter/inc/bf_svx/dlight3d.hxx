@@ -71,7 +71,6 @@ class E3dDistantLight : public E3dLight
 
     const Vector3D& GetDirection() const { return aDirection; }
 
-    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
 };

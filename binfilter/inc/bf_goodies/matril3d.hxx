@@ -86,13 +86,11 @@ public:
     B3dMaterial();
 
     // Laden/Speichern in StarView
-    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(SvStream& rIn);
 
     // Vergleichsoperator
     BOOL operator==(const B3dMaterial&);
     BOOL operator!=(const B3dMaterial& rMat) { return (!((*this) == rMat)); }
-protected:
 };
 
 }//end of namespace binfilter

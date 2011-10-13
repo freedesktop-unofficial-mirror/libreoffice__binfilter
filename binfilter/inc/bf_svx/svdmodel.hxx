@@ -649,24 +649,23 @@ public:
     // Strings werden beim rausstreamen in den am Stream eingestellten
     // StreamCharSet konvertiert.
     // Abgeleitete Klassen mit eigenen persistenten Membern ueberladen
-    // die virtuellen Methoden ReadData() und WriteData().
+    // die virtuellen Methoden ReadData().
     friend SvStream& operator<<(SvStream& rOut, const SdrModel& rMod);
     // Wenn das Model im Stream in einem fremden CharSet vorliegt
     // wird beim einstreamen implizit auf den SystemCharSet konvertiert.
     // Abgeleitete Klassen mit eigenen persistenten Membern ueberladen
-    // die virtuellen Methoden ReadData() und WriteData().
+    // die virtuellen Methoden ReadData().
     friend SvStream& operator>>(SvStream& rIn, SdrModel& rMod);
 
     // Stream muss am Anfang des SdrModel stehen. Die FileVersion des im
     // Stream befindlichen Models muss >=11 sein, ansonsten wird die
     // ModelInfo nicht geschrieben.
 
-    // Abgeleitete Klassen ueberladen lediglich die Methoden ReadData() und
-    // WriteData(). Diese werden von den Streamoperatoren des Model gerufen.
+    // Abgeleitete Klassen ueberladen lediglich die Methoden ReadData().
+    // Diese werden von den Streamoperatoren des Model gerufen.
     // Wichtig ist, dass die ueberladen Methoden der abgeleiteten Klasse
     // als erstes die Methode der Basisklasse rufen, da sonst der CharSet
     // am Stream nicht korrekt gesetzt wird, ...
-    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrIOHeader& rHead, SvStream& rIn);
     // AfterRead wird gerufen, nachdem das gesamte Model eingestreamt
     // worden ist. Damit ist ein PostProcessing moeglich um beispielsweise
@@ -688,10 +687,6 @@ public:
 
     SotStorage* GetModelStorage() const { return pModelStorage; }
     void        SetModelStorage( SotStorage* pStor ) { pModelStorage = pStor; }
-
-    // pre- and postprocessing for objects for saving
-    void PreSave() {}
-    void PostSave() {}
 
     ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > getUnoModel();
     void setUnoModel( ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > xModel ) { mxUnoModel = xModel; }

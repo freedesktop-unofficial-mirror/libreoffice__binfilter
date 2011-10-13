@@ -1374,7 +1374,6 @@ using namespace ::com::sun::star;
 /*N*/ SvStream& operator<<(SvStream& rOut, const SdrPage& rPg)
 /*N*/ {
 /*N*/   SdrIOHeader aHead(rOut,STREAM_WRITE,!rPg.bMaster ? SdrIOPageID : SdrIOMaPgID);
-/*N*/   rPg.WriteData(rOut);
 /*N*/   return rOut;
 /*N*/ }
 

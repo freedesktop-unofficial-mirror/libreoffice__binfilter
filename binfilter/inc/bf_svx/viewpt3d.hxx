@@ -128,16 +128,14 @@ class Viewport3D
     Vector3D    MapToDevice(const Vector3D&) const;
 
 
-    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     // Wird nur vom Stream-Operator gerufen
     virtual void ReadData31(SvStream& rIn);
-    virtual void WriteData31(SvStream& ) const {}
 };
 
 // FG: eigentlich sollten die Stream-Funktionen in der 3D-Engine nicht verwendet werden
-//     sondern WriteData und ReadData, da man insbesondere bei ReadData einen
+//     sondern ReadData, da man insbesondere bei ReadData einen
 //     zusaetzlichen Parameter hat der die File-Revision enthaelt.
 //     Sie sind aus Kompatibilitaetsgruenden noch vorhanden.
 SvStream& operator<<(SvStream& rOStream, const Viewport3D&);

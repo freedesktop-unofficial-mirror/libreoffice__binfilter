@@ -427,12 +427,11 @@ public:
     SdrObject* GetBackgroundObj() const { return pBackgroundObj; }
     void       SetBackgroundObj( SdrObject* pObj );
 
-    // Abgeleitete Klassen ueberlagern ggf. WriteData() und ReadData(). Diese
+    // Abgeleitete Klassen ueberlagern ggf. ReadData(). Diese
     // Methoden werden dann von den Stream-Operatoren gerufen.
     // Ausserdem muss man sich in diesem Fall von SdrModel ableiten und die
     // vMethode AllocPage() ueberladen, damit das Model beim reinstreamen die
     // richtige Page erzeugen kann.
-    virtual void  WriteData(SvStream& ) const {}
     virtual void  ReadData(const SdrIOHeader& rHead, SvStream& rIn);
     friend SvStream& operator<<(SvStream& rOut, const SdrPage& rPg);
     friend SvStream& operator>>(SvStream& rIn, SdrPage& rPg);

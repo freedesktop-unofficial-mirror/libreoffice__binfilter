@@ -62,7 +62,6 @@ public:
     using SdrPage::NbcInsertObject;
     using SdrPage::ReplaceObject;
 
-    virtual void    WriteData(SvStream& ) const {}
     virtual void    ReadData(const SdrIOHeader& rHead, SvStream& rIn);
     virtual void    SetModel(SdrModel* pNewModel);
 
@@ -72,22 +71,6 @@ public:
                                     const SdrInsertReason* pReason=NULL);
 
     virtual SdrObject* RemoveObject(ULONG nObjNum);
-
-    /** Insert _pClone into the page.
-        If _pClone is no form object, InsertObject will be called.
-        If _pClone is a form object, the page will create forms as needed to properly place the control model of the new object
-        (so it is located within the forms hierarchy in an position analogous to the source objects model with it's hierarchy).
-        If _pClone is NULL, it will be created via _pSourceObject->Clone(SdrPage*, SdrModel*).
-        If bTryPreserveName is sal_True, the property value for "Name" will be restored after calling the InsertObject (which otherwise
-        may alter the name to ensure uniqueness).
-    */
-
-    /** Create an environment (within the forms hierarchy of the page) for inserting a form object which is a clone
-        of the given form object (which has to belong to a foreign page).
-        "environment" means that the UnoControlModel of the given object may be inserted into our forms hierarchy
-        without (to much) structure loss.
-        If _pObj isn't a form object, nothing happens.
-    */
 
     // Zugriff auf alle Formulare
     const ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameContainer>& GetForms() const;

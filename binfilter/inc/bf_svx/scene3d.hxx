@@ -261,7 +261,6 @@ public:
     bool IsFitInSnapRect() const { return bFitInSnapRect; }
 
     void FitSnapRectToBoundVol();
-    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
 
@@ -276,10 +275,6 @@ public:
     // private support routines for ItemSet access. NULL pointer means clear item.
     virtual void ItemChange(const sal_uInt16 nWhich, const SfxPoolItem* pNewItem = 0);
     virtual void PostItemChange(const sal_uInt16 nWhich);
-
-    // pre- and postprocessing for objects for saving
-    virtual void PreSave() {}
-    virtual void PostSave() {}
 
     virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
     virtual SfxStyleSheet* GetStyleSheet() const;

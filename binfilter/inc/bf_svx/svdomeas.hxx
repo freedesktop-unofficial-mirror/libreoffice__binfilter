@@ -127,11 +127,6 @@ public:
     // private support routines for ItemSet access. NULL pointer means clear item.
     virtual void ItemSetChanged(const SfxItemSet& rSet);
 
-    // pre- and postprocessing for objects for saving
-    virtual void PreSave() {}
-    virtual void PostSave() {}
-
-    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 };
 

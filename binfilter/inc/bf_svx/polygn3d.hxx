@@ -73,12 +73,7 @@ public:
 
     virtual UINT16 GetObjIdentifier() const;
 
-    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
-
-    // Geometrieerzeugung
-
-    // Give out simple line geometry
 
     // LineOnly?
     BOOL GetLineOnly() { return bLineOnly; }

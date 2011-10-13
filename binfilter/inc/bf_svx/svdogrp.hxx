@@ -86,7 +86,6 @@ public:
     virtual ~ImpSdrObjGroupLinkUserData();
 
     virtual SdrObjUserData* Clone(SdrObject* pObj1) const;
-    virtual void WriteData(SvStream& ) {} // DBG_BF_ASSERT
     virtual void ReadData(SvStream& rIn);
     virtual void AfterRead() {} // DBG_BF_ASSERT
 };
@@ -197,7 +196,6 @@ public:
     virtual void RestartAnimation(SdrPageView* pPageView) const;
 
 
-    virtual void WriteData(SvStream& ) const {} // DBG_BF_ASSERT
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
     virtual void AfterRead();
 

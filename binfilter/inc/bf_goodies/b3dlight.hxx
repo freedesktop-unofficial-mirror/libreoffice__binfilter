@@ -155,10 +155,7 @@ public:
     void Init();
 
     // Laden/Speichern in StarView
-    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(SvStream& rIn);
-
-protected:
 };
 
 /*************************************************************************
@@ -214,10 +211,7 @@ public:
     B3dLight& GetLightObject(Base3DLightNumber=Base3DLight0);
 
     // Laden/Speichern in StarView
-    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(SvStream& rIn);
-
-protected:
 };
 
 }//end of namespace binfilter

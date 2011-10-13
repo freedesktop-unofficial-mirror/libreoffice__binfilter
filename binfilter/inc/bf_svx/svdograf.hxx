@@ -155,7 +155,6 @@ public:
 
     virtual void            SetPage(SdrPage* pNewPage);
     virtual void            SetModel(SdrModel* pNewModel);
-    virtual void            WriteData(SvStream& ) const {}
     virtual void            ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
     void                    ReadDataTilV10(const SdrObjIOHeader& rHead, SvStream& rIn);
 

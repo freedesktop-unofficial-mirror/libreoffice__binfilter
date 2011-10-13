@@ -120,8 +120,8 @@ class SdrView: public SdrCreateView
     unsigned                    bTextEditOnObjectsWithoutTextIfTextTool : 1;
 
 protected:
-    // Abgeleitete Klassen ueberladen lediglich die Methoden ReadData() und
-    // WriteData(). Diese werden von den Streamoperatoren der View gerufen.
+    // Abgeleitete Klassen ueberladen lediglich die Methoden ReadData().
+    // Diese werden von den Streamoperatoren der View gerufen.
     // Wichtig ist, dass die ueberladen Methoden der abgeleiteten Klasse
     // als erstes die Methode der Basisklasse rufen, da sonst der CharSet
     // am Stream nicht korrekt gesetzt wird, ...
@@ -173,13 +173,13 @@ public:
     // Strings werden beim rausstreamen in den am Stream eingestellten
     // StreamCharSet konvertiert.
     // Abgeleitete Klassen mit eigenen persistenten Membern ueberladen
-    // die virtuellen Methoden ReadData() und WriteData().
+    // die virtuellen Methoden ReadData()
     friend SvStream& operator<<(SvStream& rOut, const SdrView& rView);
 
     // Wenn das Model im Stream in einem fremden CharSet vorliegt
     // wird beim einstreamen implizit auf den SystemCharSet konvertiert.
     // Abgeleitete Klassen mit eigenen persistenten Membern ueberladen
-    // die virtuellen Methoden ReadData() und WriteData().
+    // die virtuellen Methoden ReadData()
     friend SvStream& operator>>(SvStream& rIn, SdrView& rView);
 
 

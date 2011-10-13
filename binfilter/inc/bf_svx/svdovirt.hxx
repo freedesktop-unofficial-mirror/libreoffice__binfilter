@@ -74,10 +74,6 @@ public:
     virtual void SetChanged();
 
 
-
-
-
-
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
 
     virtual void Resize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
@@ -98,16 +94,9 @@ public:
 
     // private support routines for ItemSet access. NULL pointer means clear item.
 
-    // pre- and postprocessing for objects for saving
-    virtual void PreSave() {}
-    virtual void PostSave() {}
-
     virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
     virtual void SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
 
-
-
-    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
     virtual void AfterRead();
 

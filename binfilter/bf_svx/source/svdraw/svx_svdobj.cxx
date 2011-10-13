@@ -2634,14 +2634,8 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*N*/
 /*N*/   if(rObj.ISA(SdrVirtObj))
 /*N*/   {
-/*N*/       // #108784#
 /*N*/       // force to write a naked SdrObj
 /*N*/       aHead.nIdentifier = OBJ_NONE;
-/*N*/       rObj.SdrObject::WriteData(rOut);
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       rObj.WriteData(rOut);
 /*N*/   }
 /*N*/
 /*N*/   return rOut;

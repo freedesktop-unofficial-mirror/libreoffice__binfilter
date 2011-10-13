@@ -65,8 +65,6 @@ class ChartScene : public E3dPolyScene
     BOOL GetAskForLogicRect() {return bAskForLogicRect;}
     void SetAskForLogicRect(BOOL value) {bAskForLogicRect = value;}
 
-    virtual void WriteData(SvStream& ) const {}
-
     void InsertAllTitleText (DescrList         &rList,
                              E3dObject         *pGroup,
                              long              nAxisId);

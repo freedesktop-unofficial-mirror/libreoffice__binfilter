@@ -131,7 +131,6 @@ public:
     bool HasGDIMetaFile() const;
     const GDIMetaFile* GetGDIMetaFile() const;
 
-    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     BOOL Unload();
