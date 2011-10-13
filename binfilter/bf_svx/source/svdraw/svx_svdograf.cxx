@@ -286,21 +286,6 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-/*N*/ String SdrGrafObj::GetGrafStreamURL() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); String aString; return aString;
-/*N*/ }
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
 /*N*/ void SdrGrafObj::SetName(const XubString& rStr)
 /*N*/ {
 /*N*/   aName = rStr;
@@ -683,23 +668,19 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   bool        bDraft = ( 0 != ( rInfoRec.nPaintMode & SDRPAINTMODE_DRAFTGRAF ) );
-/*N*/   bool        bSwappedOut = pGraphic->IsSwappedOut() || ( pGraphic->GetType() == GRAPHIC_NONE );
 /*N*/   bool        bLoading = FALSE;
 /*N*/   OutputDevice*   pOutDev = rOut.GetOutDev();
 /*N*/   /*GDIMetaFile*  pRecMetaFile =*/ pOutDev->GetConnectMetaFile();
 /*N*/   const SdrView*  pView = ( rInfoRec.pPV ? &rInfoRec.pPV->GetView() : NULL );
 /*N*/
-/*N*/   if( bSwappedOut && !bDraft )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 
 /*N*/   if( pGraphic->IsSwappedOut() || ( pGraphic->GetType() == GRAPHIC_NONE ) || ( pGraphic->GetType() == GRAPHIC_DEFAULT ) )
 /*?*/       bDraft=TRUE;
 /*N*/
-/*N*/   long          nDrehWink = aGeo.nDrehWink;
+/*N*/   long      nDrehWink = aGeo.nDrehWink;
 /*N*/   bool      bRotate = ( nDrehWink != 0 && nDrehWink != 18000 );
 /*N*/   bool      bRota180 = nDrehWink == 18000;
-/*N*/   USHORT        nMirrorCase = ( bRota180 ? ( bMirrored ? 3 : 4 ) : ( bMirrored ? 2 : 1 ) );   //  4 | 3   H&V gespiegelt | nur Vertikal
+/*N*/   USHORT    nMirrorCase = ( bRota180 ? ( bMirrored ? 3 : 4 ) : ( bMirrored ? 2 : 1 ) );   //  4 | 3   H&V gespiegelt | nur Vertikal
 /*N*/   bool      bHMirr = ( ( 2 == nMirrorCase ) || ( 4 == nMirrorCase ) );                    // ---+---  ---------------+-----------------
 /*N*/   bool      bVMirr = ( ( 3 == nMirrorCase ) || ( 4 == nMirrorCase ) );                    //  2 | 1   nur Horizontal | nicht gespiegelt
 /*N*/
@@ -729,18 +710,11 @@ namespace binfilter {
 /*?*/               {
 /*?*/                   eAnimMode= pView->GetAnimationMode();
 /*?*/                   bEnable = ( eAnimMode != SDR_ANIMATION_DISABLE );
-/*?*/
-/*?*/                   if( bEnable )
-/*?*/                   {{DBG_BF_ASSERT(0, "STRIP"); }
-/*?*/                   }
 /*?*/               }
 /*?*/
 /*?*/               if( bEnable )
 /*?*/               {
-/*?*/                   if( eAnimMode == SDR_ANIMATION_ANIMATE )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");
-/*?*/                   }
-/*?*/                   else if( eAnimMode == SDR_ANIMATION_DONT_ANIMATE )
+/*?*/                   if( eAnimMode == SDR_ANIMATION_DONT_ANIMATE )
 /*?*/                       pGraphic->Draw( pOutDev, aLogPos, aLogSize, &aAttr, nGraphicManagerDrawMode );
 /*?*/               }
 /*?*/           }
@@ -778,10 +752,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       XubString   aText;
 /*N*/       Bitmap*     pBmp = NULL;
-/*N*/       bool    bFill = FALSE;
-/*N*/
-/*N*/       if( bEmptyPresObj )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }
+/*N*/       bool        bFill = FALSE;
 /*N*/
 /*N*/       // und nun noch einen grauen Rahmen drum herum, Text rein, ...
 /*N*/       if( !bEmptyPresObj )
@@ -826,12 +797,6 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
 /*N*/ void SdrGrafObj::operator=( const SdrObject& rObj )
 /*N*/ {
 /*N*/   SdrRectObj::operator=( rObj );
@@ -845,24 +810,8 @@ namespace binfilter {
 /*N*/   aName = rGraf.aName;
 /*N*/   bMirrored = rGraf.bMirrored;
 /*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if( rGraf.pGraphicLink != NULL)
-/*N*/ #else
-/*N*/   if( rGraf.aFileName.Len() )
-/*N*/ #endif
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
-/*N*/
 /*N*/   ImpSetAttrToGrafInfo();
 /*N*/ }
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------------
 
@@ -883,12 +832,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SdrRectObj::NbcRotate(rRef,nWink,sn,cs);
 /*N*/ }
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------------
 
@@ -922,13 +865,9 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------------
-
 /*N*/ void SdrGrafObj::SetPage( SdrPage* pNewPage )
 /*N*/ {
 /*N*/   bool bRemove = pNewPage == NULL && pPage != NULL;
-/*N*/   bool bInsert = pNewPage != NULL && pPage == NULL;
 /*N*/
 /*N*/   if( bRemove )
 /*N*/   {
@@ -941,9 +880,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   SdrRectObj::SetPage( pNewPage );
-/*N*/
-/*N*/   if(aFileName.Len() && bInsert)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -965,11 +901,8 @@ namespace binfilter {
 /*?*/           ImpLinkAbmeldung();
 /*N*/   }
 
-    // Model umsetzen
+        // Model umsetzen
 /*N*/   SdrRectObj::SetModel(pNewModel);
-/*N*/
-/*N*/   if( bChg && aFileName.Len() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 
 /*N*/ void SdrGrafObj::ReadDataTilV10( const SdrObjIOHeader& rHead, SvStream& rIn )
@@ -1161,23 +1094,11 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
 /*N*/ void SdrGrafObj::RestartAnimation(SdrPageView* pPageView) const
 /*N*/ {
 /*N*/   // ToDo: hier noch entsprechend implementieren wie im TextObj
 /*N*/   SdrRectObj::RestartAnimation( pPageView );
 /*N*/ }
-
-// -----------------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------------
 

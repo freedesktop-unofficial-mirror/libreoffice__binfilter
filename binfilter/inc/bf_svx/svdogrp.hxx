@@ -86,9 +86,9 @@ public:
     virtual ~ImpSdrObjGroupLinkUserData();
 
     virtual SdrObjUserData* Clone(SdrObject* pObj1) const;
-    virtual void WriteData(SvStream& ) {}
+    virtual void WriteData(SvStream& ) {} // DBG_BF_ASSERT
     virtual void ReadData(SvStream& rIn);
-    virtual void AfterRead();
+    virtual void AfterRead() {} // DBG_BF_ASSERT
 };
 
 //************************************************************
@@ -109,12 +109,10 @@ protected:
     String                      aName;
 
     Point                       aRefPoint; // Referenzpunkt innerhalb der Objektgruppe
-    bool                    bRefPoint; // Ist ein RefPoint gesetzt?
+    bool                        bRefPoint; // Ist ein RefPoint gesetzt?
 
 private:
     ImpSdrObjGroupLinkUserData* GetLinkUserData() const;
-    void ImpLinkAnmeldung();
-    void ImpLinkAbmeldung();
 
 public:
     TYPEINFO();
@@ -140,12 +138,11 @@ public:
     // von selbst (SfxLinkManager). Die Methode LoadGroup() kann ausserdem
     // verwendet werden, um eine benannte Gruppe aus einem fremden Dokument zu
     // laden (ohne Verknuepfung).
-    void ReleaseGroupLink();
     bool IsLinkedGroup() const { return pPlusData!=NULL && GetLinkUserData()!=NULL; }
 
     // pnPgNum, etc. ist zum schnelleren wiederauffinden gedacht
 
-    virtual UINT16 GetObjIdentifier() const;
+    virtual UINT16 GetObjIdentifier() const { return UINT16(OBJ_GRUP); } // DBG_BF_ASSERT
     using SdrObject::GetLayer;
     virtual SdrLayerID GetLayer() const;
     virtual void NbcSetLayer(SdrLayerID nLayer);
@@ -164,7 +161,7 @@ public:
     virtual void SetName(const String& rStr);
     virtual String GetName() const;
 
-    virtual void RecalcSnapRect();
+    virtual void RecalcSnapRect() {} // DBG_BF_ASSERT
     virtual void TakeXorPoly(XPolyPolygon& rPoly, bool bDetail) const;
 
 
@@ -191,12 +188,8 @@ public:
     // private support routines for ItemSet access. NULL pointer means clear item.
     virtual void ItemChange(const sal_uInt16 nWhich, const SfxPoolItem* pNewItem = 0);
 
-    // pre- and postprocessing for objects for saving
-    virtual void PreSave() {}
-    virtual void PostSave() {};
-
     virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
-    virtual void SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
+    virtual void SetStyleSheet(SfxStyleSheet*, bool ) {} // DBG_BF_ASSERT
     virtual SfxStyleSheet* GetStyleSheet() const;
 
     virtual void ReformatText();
@@ -204,7 +197,7 @@ public:
     virtual void RestartAnimation(SdrPageView* pPageView) const;
 
 
-    virtual void WriteData(SvStream& ) const {}
+    virtual void WriteData(SvStream& ) const {} // DBG_BF_ASSERT
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
     virtual void AfterRead();
 

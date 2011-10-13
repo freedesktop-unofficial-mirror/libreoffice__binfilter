@@ -67,7 +67,6 @@ public:
 // - SdrGrafObj -
 // --------------
 
-class SdrGrafSetItem;
 class SdrGraphicLink;
 
 class SdrGrafObj: public SdrRectObj
@@ -80,7 +79,7 @@ protected:
     void                    ImpSetAttrToGrafInfo(); // Werte vom Pool kopieren
     void                    ImpSetGrafInfoToAttr(); // Werte in den Pool kopieren
     BfGraphicAttr           aGrafInfo;
-    bool                bCopyToPoolOnAfterRead;
+    bool                    bCopyToPoolOnAfterRead;
 
     String                  aName;
 
@@ -88,17 +87,10 @@ protected:
                                                 // Ausschnitt der Grafik in logischen Eingeiten der Grafik! Also Bitmap->=Pixel
     String                  aFileName;          // Wenn es sich um einen Link handelt, steht hier der Dateiname drin.
     String                  aFilterName;
-    BfGraphicObject*            pGraphic;           // Zur Beschleunigung von Bitmapausgaben, besonders von gedrehten.
-    void*                   pReserve1;
-    void*                   pReserve2;
-    void*                   pReserve3;
-    void*                   pReserve4;
-    void*                   pReserve5;
+    BfGraphicObject*        pGraphic;           // Zur Beschleunigung von Bitmapausgaben, besonders von gedrehten.
     SdrGraphicLink*         pGraphicLink;       // Und hier noch ein Pointer fuer gelinkte Grafiken
-    bool                bMirrored;          // True bedeutet, die Grafik ist horizontal, d.h. ueber die Y-Achse gespiegelt auszugeben.
+    bool                    bMirrored;          // True bedeutet, die Grafik ist horizontal, d.h. ueber die Y-Achse gespiegelt auszugeben.
     ULONG                   nGrafStreamPos;
-    bool                bDummy1:1;
-    bool                bDummy2:1;
 
 #if _SOLAR__PRIVATE
 
@@ -129,14 +121,14 @@ public:
     GraphicType             GetGraphicType() const;
 
     void                    SetGrafStreamURL( const String& rGraphicStreamURL );
-    String                  GetGrafStreamURL() const;
+    String                  GetGrafStreamURL() const { return String(); } // DBG_BF_ASSERT
 
     void                    ForceSwapIn() const;
     void                    ForceSwapOut() const;
 
     void                    SetGraphicLink(const String& rFileName, const String& rFilterName);
     void                    ReleaseGraphicLink();
-    bool                IsLinkedGraphic() const { return (BOOL)aFileName.Len(); }
+    bool                    IsLinkedGraphic() const { return (BOOL)aFileName.Len(); }
 
     const String&           GetFileName() const { return aFileName; }
     const String&           GetFilterName() const { return aFilterName; }
@@ -147,7 +139,7 @@ public:
     virtual String          GetName() const;
 
     virtual UINT16          GetObjIdentifier() const;
-    virtual bool        Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
+    virtual bool            Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
     virtual SdrObject*      CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
 
 
@@ -163,10 +155,9 @@ public:
 
     virtual void            SetPage(SdrPage* pNewPage);
     virtual void            SetModel(SdrModel* pNewModel);
-    virtual void WriteData(SvStream& ) const {}
+    virtual void            WriteData(SvStream& ) const {}
     virtual void            ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
     void                    ReadDataTilV10(const SdrObjIOHeader& rHead, SvStream& rIn);
-
 
     void                    AdjustToMaxRect( const Rectangle& rMaxRect, BOOL bShrinkOnly );
 
@@ -176,14 +167,10 @@ public:
     virtual void            NbcSetStyleSheet( SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr );
 
     // ItemSet access
-    virtual SfxItemSet* CreateNewItemSet(SfxItemPool& rPool);
+    virtual SfxItemSet*     CreateNewItemSet(SfxItemPool& rPool);
 
     // private support routines for ItemSet access. NULL pointer means clear item.
-    virtual void ItemSetChanged(const SfxItemSet& rSet);
-
-    // pre- and postprocessing for objects for saving
-    virtual void PreSave() {}
-    virtual void PostSave() {}
+    virtual void            ItemSetChanged(const SfxItemSet& rSet);
 
     virtual void            AfterRead();
 
