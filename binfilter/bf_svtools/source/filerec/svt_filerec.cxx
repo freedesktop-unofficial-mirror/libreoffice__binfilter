@@ -157,14 +157,14 @@ SfxMiniRecordReader::SfxMiniRecordReader
     {
         // Header lesen
         DBG( DbgOutf( "SfxFileRec: searching record at %ul", pStream->Tell() ) );
-        UINT32 nHeader;
+        UINT32 nHeader(0);
         *pStream >> nHeader;
 
         // Headerdaten von Basisklasse extrahieren lassen
         SetHeader_Impl( nHeader );
 
         // ggf. Fehler behandeln
-        if ( pStream->IsEof() )
+        if ( !pStream->good() )
             _nPreTag = SFX_REC_PRETAG_EOR;
         else if ( _nPreTag == SFX_REC_PRETAG_EOR )
             pStream->SetError( ERRCODE_IO_WRONGFORMAT );
@@ -201,7 +201,7 @@ inline bool SfxSingleRecordReader::ReadHeader_Impl( USHORT nTypes )
     bool bRet;
 
     // Basisklassen-Header einlesen
-    UINT32 nHeader=0;
+    UINT32 nHeader(0);
     *_pStream >> nHeader;
     if ( !SetHeader_Impl( nHeader ) )
         bRet = FALSE;
@@ -259,13 +259,13 @@ bool SfxSingleRecordReader::FindHeader_Impl
     UINT32 nStartPos = _pStream->Tell();
 
     // richtigen Record suchen
-    while ( !_pStream->IsEof() )
+    while ( _pStream->good() )
     {
         // Header lesen
-        UINT32 nHeader;
+        UINT32 nHeader(0);
         DBG( DbgOutf( "SfxFileRec: searching record at %ul", _pStream->Tell() ) );
         *_pStream >> nHeader;
-        if ( !SetHeader_Impl( nHeader ) )
+        if ( !_pStream->good() || !SetHeader_Impl( nHeader ) )
             // EOR => Such-Schleife abbreichen
             break;
 
@@ -274,6 +274,8 @@ bool SfxSingleRecordReader::FindHeader_Impl
         {
             // Extended Header lesen
             *_pStream >> nHeader;
+            if ( !_pStream->good() )
+                break;
             _nRecordTag = sal::static_int_cast< UINT16 >(SFX_REC_TAG(nHeader));
 
             // richtigen Record gefunden?
@@ -292,7 +294,7 @@ bool SfxSingleRecordReader::FindHeader_Impl
         }
 
         // sonst skippen
-        if ( !_pStream->IsEof() )
+        if ( _pStream->good() )
             _pStream->Seek( _nEofRec );
     }
 
