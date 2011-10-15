@@ -465,7 +465,7 @@ IMPL_LINK_INLINE_START(SdrPaintView,ImpUserMarkerAnimatorHdl,AutoTimer*,EMPTYARG
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrPaintView::SetMasterPagePaintCaching( BOOL bOn, ULONG nCacheMode )
+/*N*/ void SdrPaintView::SetMasterPagePaintCaching( BOOL bOn )
 /*N*/ {
 /*N*/   bMasterBmp = bOn;
 /*N*/ }

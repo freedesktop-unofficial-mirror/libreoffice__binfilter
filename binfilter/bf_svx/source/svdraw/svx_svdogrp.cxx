@@ -352,12 +352,10 @@ namespace binfilter {
 /*N*/ void SdrObjGroup::NbcSetSnapRect(const Rectangle& rRect)
 /*N*/ {
 /*N*/   Rectangle aOld(GetSnapRect());
-/*N*/   long nMulX=rRect.Right()-rRect.Left();
 /*N*/   long nDivX=aOld.Right()-aOld.Left();
-/*N*/   long nMulY=rRect.Bottom()-rRect.Top();
 /*N*/   long nDivY=aOld.Bottom()-aOld.Top();
-/*N*/   if (nDivX==0) { nMulX=1; nDivX=1; }
-/*N*/   if (nDivY==0) { nMulY=1; nDivY=1; }
+/*N*/   if (nDivX==0) { nDivX=1; }
+/*N*/   if (nDivY==0) { nDivY=1; }
 /*N*/   if (rRect.Left()!=aOld.Left() || rRect.Top()!=aOld.Top()) {
 /*N*/       NbcMove(Size(rRect.Left()-aOld.Left(),rRect.Top()-aOld.Top()));
 /*N*/   }

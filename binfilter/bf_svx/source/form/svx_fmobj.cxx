@@ -56,7 +56,7 @@ using namespace ::binfilter::svxform;
 
 //------------------------------------------------------------------
 /*N*/ FmFormObj::FmFormObj(sal_Int32 _nType)
-/*N*/         :SdrUnoObj(String(), sal_False)
+/*N*/         :SdrUnoObj(sal_False)
 /*N*/         ,pTempView(0)
 /*N*/         ,nEvent(0)
 /*N*/         ,nPos(-1)

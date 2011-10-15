@@ -156,7 +156,7 @@ namespace binfilter {
 
 /*N*/ TYPEINIT1(SdrUnoObj, SdrRectObj);
 
-/*N*/ SdrUnoObj::SdrUnoObj(const String& rModelName, BOOL _bOwnUnoControlModel)
+/*N*/ SdrUnoObj::SdrUnoObj(BOOL _bOwnUnoControlModel)
 /*N*/ : bOwnUnoControlModel(_bOwnUnoControlModel)
 /*N*/ {
 /*N*/   bIsUnoObj = TRUE;

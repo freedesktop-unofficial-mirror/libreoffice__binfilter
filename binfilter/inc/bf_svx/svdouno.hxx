@@ -68,7 +68,7 @@ private:
 public:
     TYPEINFO();
 
-    SdrUnoObj(const String& rModelName, BOOL bOwnsModel = TRUE);
+    SdrUnoObj(BOOL bOwnsModel = TRUE);
     virtual ~SdrUnoObj();
     using SdrRectObj::operator=;
 

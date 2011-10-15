@@ -114,6 +114,7 @@ void SfxItemPool::readTheItems (
     SvStream & rStream, USHORT nItemCount, USHORT nVersion,
     SfxPoolItem * pDefItem, SfxPoolItemArray_Impl ** ppArr)
 {
+/*SB*/fprintf(stderr,"SfxItemPool::readTheItems %d %d\n",(int)nItemCount,(int)nVersion);
     SfxMultiRecordReader aItemsRec( &rStream, SFX_ITEMPOOL_REC_ITEMS );
 
     SfxPoolItemArray_Impl *pNewArr = new SfxPoolItemArray_Impl( nItemCount );
@@ -136,6 +137,7 @@ void SfxItemPool::readTheItems (
         USHORT nRef(0);
         rStream >> nRef;
 
+/*SB*/fprintf(stderr,"... X\n");
         pItem = pDefItem->Create(rStream, nVersion);
         pNewArr->C40_INSERT(SfxPoolItem, pItem, nSurrogate);
 
@@ -369,8 +371,10 @@ SvStream &SfxItemPool::Load(SvStream &rStream)
                 nWhich = GetNewWhich( nWhich );
 
             // unbekanntes Item aus neuerer Version
+/*SB*/fprintf(stderr,"nWhich = %d\n",(int)nWhich);
             if ( !IsInRange(nWhich) )
                 continue;
+/*SB*/fprintf(stderr," ,,,\n");
 
             rStream >> nVersion;
             rStream >> nCount;
@@ -1159,6 +1163,7 @@ const SfxPoolItem* SfxItemPool::LoadItem( SvStream &rStream, bool bDirect,
 {
     USHORT nWhich=0, nSlot=0; // nSurrogate;
     rStream >> nWhich >> nSlot;
+/*SB*/fprintf(stderr,"A nWhich = %d\n",(int)nWhich);
 
     BOOL bDontPut = (SfxItemPool*)-1 == pRefPool;
     if ( bDontPut || !pRefPool )
@@ -1188,6 +1193,7 @@ const SfxPoolItem* SfxItemPool::LoadItem( SvStream &rStream, bool bDirect,
     if ( !bCurVersion )
         // Which-Id auf neue Version mappen
         nWhich = pRefPool->GetNewWhich( nWhich );
+/*SB*/fprintf(stderr,"B nWhich = %d\n",(int)nWhich);
 
     DBG_ASSERT( !nWhich || !pImp->bInSetItem ||
                 !pRefPool->ppStaticDefaults[pRefPool->GetIndex_Impl(nWhich)]->ISA(SfxSetItem),
@@ -1221,6 +1227,7 @@ const SfxPoolItem* SfxItemPool::LoadItem( SvStream &rStream, bool bDirect,
             // Item direkt laden
             SfxPoolItem *pNewItem =
                     pRefPool->GetDefaultItem(nWhich).Create(rStream, nVersion);
+/*SB*/fprintf(stderr,"C nWhich = %d, pNewItem = %p\n",(int)nWhich,pNewItem);
             if ( bDontPut )
                 pItem = pNewItem;
             else

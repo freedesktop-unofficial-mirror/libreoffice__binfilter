@@ -397,7 +397,7 @@ public:
 
     // Painten der MasterPage mit 'ner Bitmap
     BOOL IsMasterPagePaintCaching() { return bMasterBmp; }
-    void SetMasterPagePaintCaching( BOOL bOn, ULONG nCacheMode = SDR_MASTERPAGECACHE_DEFAULT );
+    void SetMasterPagePaintCaching( BOOL bOn );
 
     // use this mode as mode to draw all internal GraphicManager objects with
     ULONG GetGraphicManagerDrawMode() const { return nGraphicManagerDrawMode; }

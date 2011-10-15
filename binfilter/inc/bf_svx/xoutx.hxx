@@ -166,7 +166,7 @@ private:
     // umschliessendes Rechteck der Formtext-Effekte
     Rectangle           aFormTextBoundRect;
 
-    void                ImpDrawFillPolyPolygon( const PolyPolygon& rPoly, BOOL bRect, BOOL bPrinter );
+    void                ImpDrawFillPolyPolygon( const PolyPolygon& rPoly, BOOL bRect );
     void                ImpDrawLinePolygon(const Polygon& rPoly, BOOL bClosePoly);
 
 protected:

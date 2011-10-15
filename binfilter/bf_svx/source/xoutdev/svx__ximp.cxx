@@ -63,7 +63,7 @@ namespace binfilter {
 /*?*/       aVDev.SetFont( pOldOut->GetFont() );
 /*?*/       aVDev.SetDrawMode( pOldOut->GetDrawMode() );
 /*?*/       aVDev.SetRefPoint( pOldOut->GetRefPoint() );
-/*?*/       ImpDrawFillPolyPolygon( rPolyPoly, bRect, pOldOut->GetOutDevType() == OUTDEV_PRINTER );
+/*?*/       ImpDrawFillPolyPolygon( rPolyPoly, bRect );
 /*?*/       aMtf.Stop();
 /*?*/       aMtf.WindStart();
 /*?*/       aMap.SetOrigin( aBound.TopLeft() );
@@ -85,12 +85,12 @@ namespace binfilter {
 /*?*/       pOut->DrawTransparent( aMtf, aBound.TopLeft(), aBound.GetSize(), aVCLGradient );
 /*N*/   }
 /*N*/   else
-/*N*/       ImpDrawFillPolyPolygon( rPolyPoly, bRect, pOut->GetOutDevType() == OUTDEV_PRINTER );
+/*N*/       ImpDrawFillPolyPolygon( rPolyPoly, bRect );
 /*N*/ }
 
 // ------------------------------------------------------------------------
 
-/*N*/ void XOutputDevice::ImpDrawFillPolyPolygon( const PolyPolygon& rPolyPoly, BOOL bRect, BOOL bPrinter )
+/*N*/ void XOutputDevice::ImpDrawFillPolyPolygon( const PolyPolygon& rPolyPoly, BOOL bRect )
 /*N*/ {
 /*N*/   if( eFillStyle != XFILL_NONE )
 /*N*/   {

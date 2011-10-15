@@ -2966,7 +2966,7 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*?*/           case USHORT(OBJ_FRAME      ): pObj=new SdrOle2Obj(TRUE);            break;
 /*N*/           case USHORT(OBJ_CAPTION    ): pObj=new SdrCaptionObj;               break;
 /*N*/           case USHORT(OBJ_PAGE       ): pObj=new SdrPageObj;                  break;
-/*?*/           case USHORT(OBJ_UNO        ): pObj=new SdrUnoObj(String());    break;
+/*?*/           case USHORT(OBJ_UNO        ): pObj=new SdrUnoObj;    break;
 /*N*/       }
 /*N*/   }
 
