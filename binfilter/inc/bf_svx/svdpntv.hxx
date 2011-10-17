@@ -39,7 +39,6 @@
 #include <bf_svtools/smplhint.hxx>
 #include <bf_svtools/itemset.hxx>
 #include <bf_svtools/undo.hxx>
-#include <bf_svx/svddrag.hxx>
 #include <bf_svx/svdlayer.hxx>
 #include <vcl/svapp.hxx>
 #include <vcl/window.hxx>
@@ -70,6 +69,7 @@ class SdrIOHeader;
 class SdrOle2Obj;
 class ImpMasterBmp;
 class SdrObject;
+class SdrPageView;
 
 //************************************************************
 //   Defines for cache modes

@@ -55,7 +55,6 @@ namespace binfilter {
 /*N*/   bCurrentLibObjMoveNoResize=FALSE;
 /*N*/   bCurrentLibObjSetDefAttr=FALSE;
 /*N*/   bCurrentLibObjSetDefLayer=FALSE;
-/*N*/   pLibObjDragMeth=NULL;
 /*N*/   pAktCreate=NULL;
 /*N*/   pCreatePV=NULL;
 /*N*/   bAutoTextEdit=FALSE;
@@ -122,14 +121,6 @@ namespace binfilter {
                || nAktIdent==OBJ_TITLETEXT
                || nAktIdent==OBJ_OUTLINETEXT
                );
-/*N*/ }
-
-/*N*/ BOOL SdrCreateView::IsEdgeTool() const
-/*N*/ {
-/*N*/   return eEditMode==SDREDITMODE_CREATE
-            && pCurrentLibObj==NULL
-            && nAktInvent==SdrInventor
-            && (nAktIdent==OBJ_EDGE);
 /*N*/ }
 
 

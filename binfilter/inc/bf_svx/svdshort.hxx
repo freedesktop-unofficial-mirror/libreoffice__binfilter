@@ -87,7 +87,6 @@ namespace binfilter {
 #define SdrMarkView                  SdrMV
 #define SdrPathObj                   SdrBO
 #define SdrPageView                  SdrPV
-#define SdrDragStat                  SdrDS
 #define SdrVirtObj                   SdrVO
 #define SdrObject                    SdrO
 

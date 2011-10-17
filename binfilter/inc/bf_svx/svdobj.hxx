@@ -64,7 +64,6 @@ class SfxPoolItem;
 class ExtOutputDevice;
 class OutlinerParaObject;
 class SdrOutliner;
-class SdrDragStat;
 class SdrHdl;
 class SdrHdlList;
 class SdrItemPool;

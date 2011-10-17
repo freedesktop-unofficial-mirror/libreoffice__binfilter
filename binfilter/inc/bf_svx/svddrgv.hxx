@@ -43,7 +43,6 @@ namespace binfilter {
 class SdrDragView: public SdrExchangeView
 {
     friend class                SdrPageView;
-    friend class                SdrDragMethod;
 
 protected:
     unsigned                    bMarkedHitMovesAlways : 1; // Persistent

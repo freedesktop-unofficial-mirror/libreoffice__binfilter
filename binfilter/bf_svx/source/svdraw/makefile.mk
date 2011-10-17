@@ -46,7 +46,6 @@ SLOFILES=\
          $(SLO)$/svx_dialdll.obj         \
          $(SLO)$/svx_svdattr.obj         \
          $(SLO)$/svx_svdcrtv.obj         \
-         $(SLO)$/svx_svddrag.obj         \
          $(SLO)$/svx_svddrgv.obj         \
          $(SLO)$/svx_svdedtv.obj         \
          $(SLO)$/svx_svdedtv2.obj        \

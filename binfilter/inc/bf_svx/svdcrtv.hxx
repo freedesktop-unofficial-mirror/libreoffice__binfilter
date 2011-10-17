@@ -63,7 +63,6 @@ protected:
     SdrObject*                  pAktCreate;   // Aktuell in Erzeugung befindliches Objekt
     SdrPageView*                pCreatePV;    // Hier wurde die Erzeugung gestartet
     SdrObject*                  pCurrentLibObj;
-    SdrDragMethod*              pLibObjDragMeth;
 
     Pointer                     aAktCreatePointer;
 
@@ -105,9 +104,6 @@ public:
 
     // Feststellen, ob Textwerkzeug aktiviert
     BOOL IsTextTool() const;
-
-    // Feststellen, ob Objektverbinderwerkzeug aktiviert
-    BOOL IsEdgeTool() const;
 
     // Feststellen, ob Bemassungswerkzeug aktiviert
 
