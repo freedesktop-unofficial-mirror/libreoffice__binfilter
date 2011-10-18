@@ -48,11 +48,9 @@ CDEFS+=-Dmydebug
 SLOFILES =	\
         $(SLO)$/sw_bookmrk.obj \
         $(SLO)$/sw_crsrsh.obj \
-        $(SLO)$/sw_findattr.obj \
         $(SLO)$/sw_pam.obj \
         $(SLO)$/sw_paminit.obj \
         $(SLO)$/sw_swcrsr.obj \
-        $(SLO)$/sw_trvlreg.obj \
         $(SLO)$/sw_trvltbl.obj \
         $(SLO)$/sw_unocrsr.obj \
         $(SLO)$/sw_viscrs.obj

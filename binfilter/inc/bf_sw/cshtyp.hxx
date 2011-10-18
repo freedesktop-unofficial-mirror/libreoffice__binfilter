@@ -60,13 +60,13 @@ extern SwPosPara fnParaStart, fnParaEnd;
 // Richtungsparameter fuer MoveSection
 typedef SwMoveFnCollection* SwPosSection;
 typedef bool (*SwWhichSection)( SwPaM&, SwPosSection );
-extern SwWhichSection fnSectionPrev, fnSectionCurr, fnSectionNext;
+extern SwWhichSection fnSectionCurr;
 extern SwPosSection fnSectionStart, fnSectionEnd;
 
 // Richtungsparameter fuer MoveTable
 typedef SwMoveFnCollection* SwPosTable;
 typedef bool (*SwWhichTable)( SwPaM&, SwPosTable, bool bInReadOnly );
-extern SwWhichTable fnTablePrev, fnTableCurr, fnTableNext;
+extern SwWhichTable fnTableCurr;
 extern SwPosTable fnTableStart, fnTableEnd;
 
 // Richtungsparameter fuer MoveColumn
@@ -74,13 +74,6 @@ typedef SwLayoutFrm * (*SwWhichColumn)( const SwLayoutFrm * );
 typedef SwCntntFrm  * (*SwPosColumn)( const SwLayoutFrm * );
 extern SwWhichColumn fnColumnPrev, fnColumnCurr, fnColumnNext;
 extern SwPosColumn fnColumnStart, fnColumnEnd;
-
-// Richtungsparameter fuer MoveRegion   (Bereiche!)
-typedef SwMoveFnCollection* SwPosRegion;
-typedef bool (*SwWhichRegion)( SwPaM&, SwPosRegion, bool bInReadOnly );
-extern SwWhichRegion fnRegionPrev, fnRegionCurr, fnRegionNext, fnRegionCurrAndSkip;
-extern SwPosRegion fnRegionStart, fnRegionEnd;
-
 
 
 /*

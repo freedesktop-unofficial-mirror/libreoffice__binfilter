@@ -41,10 +41,6 @@ namespace binfilter {
 /*N*/   /* fnNd         */  &GoNext,
 /*N*/   /* fnNds        */  &GoNextNds,
 /*N*/   /* fnDoc        */  &GoEndDoc,
-/*N*/   /* fnSections   */  &GoEndSection,
-/*N*/   /* fnCmpOp      */  &SwPosition::operator<,
-/*N*/   /* fnGetHint    */  &GetFrwrdTxtHint,
-/*N*/   /* fnSearch     */  &::utl::TextSearch::SearchFrwrd,
 /*N*/   /* fnSection    */  &SwNodes::GoStartOfSection
 /*N*/ };
 
@@ -52,15 +48,10 @@ namespace binfilter {
 /*N*/   /* fnNd         */  &GoPrevious,
 /*N*/   /* fnNds        */  &GoPreviousNds,
 /*N*/   /* fnDoc        */  &GoStartDoc,
-/*N*/   /* fnSections   */  &GoStartSection,
-/*N*/   /* fnCmpOp      */  &SwPosition::operator>,
-/*N*/   /* fnGetHint    */  &GetBkwrdTxtHint,
-/*N*/   /* fnSearch     */  &::utl::TextSearch::SearchBkwrd,
 /*N*/   /* fnSection    */  &SwNodes::GoEndOfSection
 /*N*/ };
 
 /*N*/ SwGoInDoc fnGoDoc         = &GoInDoc;
-/*N*/ SwGoInDoc fnGoSection     = &GoInSection;
 /*N*/ SwGoInDoc fnGoNode        = &GoInNode;
 /*N*/ SwGoInDoc fnGoCntnt       = &GoInCntnt;
 /*N*/ SwGoInDoc fnGoCntntCells  = &GoInCntntCells;
@@ -71,68 +62,20 @@ namespace binfilter {
 /*N*/ SwPosPara fnParaStart     = &aFwrd;
 /*N*/ SwPosPara fnParaEnd       = &aBwrd;
 
-/*N*/ SwWhichSection fnSectionPrev  = &GoPrevSection;
 /*N*/ SwWhichSection fnSectionCurr  = &GoCurrSection;
-/*N*/ SwWhichSection fnSectionNext  = &GoNextSection;
 /*N*/ SwPosSection fnSectionStart   = &aFwrd;
 /*N*/ SwPosSection fnSectionEnd     = &aBwrd;
 
 // Travelling in Tabellen
-/*N*/ bool GotoPrevTable( SwPaM&, SwPosTable, bool bInReadOnly );
 /*N*/ bool GotoCurrTable( SwPaM&, SwPosTable, bool bInReadOnly );
-/*N*/ bool GotoNextTable( SwPaM&, SwPosTable, bool bInReadOnly );
 
-/*N*/ SwWhichTable fnTablePrev  = &GotoPrevTable;
 /*N*/ SwWhichTable fnTableCurr  = &GotoCurrTable;
-/*N*/ SwWhichTable fnTableNext  = &GotoNextTable;
 /*N*/ SwPosTable fnTableStart   = &aFwrd;
 /*N*/ SwPosTable fnTableEnd     = &aBwrd;
 
 // Travelling in Bereichen
-/*N*/ bool GotoPrevRegion( SwPaM&, SwPosRegion, bool bInReadOnly );
-/*N*/ bool GotoCurrRegion( SwPaM&, SwPosRegion, bool bInReadOnly );
-/*N*/ bool GotoCurrRegionAndSkip( SwPaM&, SwPosRegion, bool bInReadOnly );
-/*N*/ bool GotoNextRegion( SwPaM&, SwPosRegion, bool bInReadOnly );
-
-/*N*/ SwWhichRegion fnRegionPrev    = &GotoPrevRegion;
-/*N*/ SwWhichRegion fnRegionCurr    = &GotoCurrRegion;
-/*N*/ SwWhichRegion fnRegionCurrAndSkip = &GotoCurrRegionAndSkip;
-/*N*/ SwWhichRegion fnRegionNext    = &GotoNextRegion;
-/*N*/ SwPosRegion fnRegionStart     = &aFwrd;
-/*N*/ SwPosRegion fnRegionEnd       = &aBwrd;
-/*N*/
 /*N*/ SwMoveFn fnMoveBackward   = &aBwrd;
 /*N*/ SwMoveFn fnMoveForward    = &aFwrd;
-
-
-#ifdef USED
-
-// JP 30.11.95:
-//  war fuer die CFRONT-Compiler noetig, jetzt sollte das nicht mehr
-//  benoetigt werden.
-
-/*N*/ void _InitPam()
-/*N*/ {
-/*N*/   aBwrd.fnNd      =  &GoPrevious;
-/*N*/   aBwrd.fnNds     =  &GoPreviousNds;
-/*N*/   aBwrd.fnDoc     =  &GoStartDoc;
-/*N*/   aBwrd.fnSections=  &GoStartSection;
-/*N*/   aBwrd.fnCmpOp   =  &SwPosition::operator>;
-/*N*/   aBwrd.fnGetHint =  &GetBkwrdTxtHint;
-/*N*/   aBwrd.fnSearch  =  &SearchText::SearchBkwrd;
-/*N*/   aBwrd.fnSection =  &SwNodes::GoEndOfSection;
-/*N*/
-/*N*/   aFwrd.fnNd      =  &GoNext;
-/*N*/   aFwrd.fnNds     =  &GoNextNds;
-/*N*/   aFwrd.fnDoc     =  &GoEndDoc;
-/*N*/   aFwrd.fnSections=  &GoEndSection;
-/*N*/   aFwrd.fnCmpOp   =  &SwPosition::operator<;
-/*N*/   aFwrd.fnGetHint =  &GetFrwrdTxtHint;
-/*N*/   aFwrd.fnSearch  =  &SearchText::SearchFrwrd;
-/*N*/   aFwrd.fnSection =  &SwNodes::GoStartOfSection;
-/*N*/ }
-#endif
-
 
 }
 

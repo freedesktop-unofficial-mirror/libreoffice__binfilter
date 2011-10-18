@@ -131,11 +131,6 @@ Verhalten von Delete-Redline:
 /*N*/   return 0;
 /*N*/ }
 
-typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
-                        BOOL bCallDelete,
-                        const SwPosition* pSttRng,
-                        const SwPosition* pEndRng);
-
 // Kommentar am Redline setzen
 
     // fuer die Reader usw. - neuen Author in die Tabelle eintragen
@@ -207,7 +202,6 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*N*/           }
 /*N*/
 /*N*/           pNew->SetMark();
-/*N*/           GoEndSection( pNew->GetPoint() );
 /*N*/           if( *pNew->GetPoint() > *pEnd )
 /*N*/           {
 /*N*/               pC = 0;

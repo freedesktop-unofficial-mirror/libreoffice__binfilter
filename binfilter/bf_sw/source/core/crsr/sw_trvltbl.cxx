@@ -31,9 +31,7 @@
 #endif
 
 #include <hintids.hxx>
-
 #include <horiornt.hxx>
-
 #include <doc.hxx>
 #include <cntfrm.hxx>
 #include <crsrsh.hxx>
@@ -42,6 +40,7 @@
 #include <ndtxt.hxx>
 #include <shellres.hxx>
 #include <cellfrm.hxx>
+
 namespace binfilter {
 
 // setze Crsr in die naechsten/vorherigen Celle
@@ -62,29 +61,8 @@ namespace binfilter {
 //      0   - Idx steht auf/in einer nicht geschuetzten Zelle
 //      !0  - Node hinter der Tabelle
 
-/*N*/ bool GotoPrevTable( SwPaM& /*rCurCrsr*/, SwPosTable /*fnPosTbl*/,
-/*N*/                       bool /*bInReadOnly*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return FALSE;
-/*N*/ }
-
-/*N*/ bool GotoNextTable( SwPaM& /*rCurCrsr*/, SwPosTable /*fnPosTbl*/,
-/*N*/                       bool /*bInReadOnly*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return FALSE;
-/*N*/ }
-
-/*N*/ bool GotoCurrTable( SwPaM& /*rCurCrsr*/, SwPosTable /*fnPosTbl*/,
-/*N*/                       bool /*bInReadOnly*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return TRUE;
-/*N*/ }
-
-/*N*/ bool SwCursor::MoveTable( SwWhichTable /*fnWhichTbl*/, SwPosTable /*fnPosTbl*/ )
-/*N*/ {
-/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return bRet;
-/*N*/ }
+bool GotoCurrTable( SwPaM&, SwPosTable, bool ) { return true; } // DBG_BF_ASSERT
+bool SwCursor::MoveTable( SwWhichTable, SwPosTable ) { return false; } // DBG_BF_ASSERT
 
 /*N*/ bool SwCrsrShell::CheckTblBoxCntnt( const SwPosition* pPos )
 /*N*/ {
@@ -139,13 +117,6 @@ namespace binfilter {
 /*?*/             SFX_ITEM_SET == pChkBox->GetFrmFmt()->
 /*?*/                           GetItemState( RES_BOXATR_FORMULA )) )
 /*?*/           pChkBox = 0;
-/*?*/   }
-/*?*/
-/*?*/   if( pChkBox )
-/*?*/   {
-/*?*/       // jetzt sollten wir mal die Pointer zerstoeren, bevor ein weiterer
-/*?*/       // aufruf kommt.
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 /*?*/
 /*?*/   return 0 != pChkBox;

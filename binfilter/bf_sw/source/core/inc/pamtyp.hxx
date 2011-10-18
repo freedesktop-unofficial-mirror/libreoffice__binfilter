@@ -30,31 +30,24 @@
 #define _PAMTYP_HXX
 
 #include <bf_svtools/bf_solar.h>
-
 #include <unotools/textsearch.hxx>
 #include <pam.hxx>
 #include <node.hxx>
 #include <tools/string.hxx>
+
 namespace binfilter {
 
-class SwpHints;
 struct SwPosition;
 class SwPaM;
-class SwTxtAttr;
 
 // Funktions-Deklarationen fuer die Move/Find-Methoden vom SwPaM
 
 void GoStartDoc( SwPosition*);
 void GoEndDoc( SwPosition*);
-void GoStartSection( SwPosition*);
-void GoEndSection( SwPosition*);
 bool GoInDoc( SwPaM&, SwMoveFn);
-bool GoInSection( SwPaM&, SwMoveFn);
 bool GoInNode( SwPaM&, SwMoveFn);
 bool GoInCntnt( SwPaM&, SwMoveFn);
 bool GoInCntntCells( SwPaM&, SwMoveFn);
-const SwTxtAttr* GetFrwrdTxtHint( const SwpHints&, USHORT&, xub_StrLen );
-const SwTxtAttr* GetBkwrdTxtHint( const SwpHints&, USHORT&, xub_StrLen );
 
 bool GoNext(SwNode* pNd, SwIndex * pIdx, USHORT nMode );
 bool GoPrevious(SwNode* pNd, SwIndex * pIdx, USHORT nMode );
@@ -66,9 +59,7 @@ SwCntntNode* GoPreviousNds( SwNodeIndex * pIdx, bool );
 bool GoPrevPara( SwPaM&, SwPosPara);
 bool GoCurrPara( SwPaM&, SwPosPara);
 bool GoNextPara( SwPaM&, SwPosPara);
-bool GoPrevSection( SwPaM&, SwPosSection);
 bool GoCurrSection( SwPaM&, SwPosSection);
-bool GoNextSection( SwPaM&, SwPosSection);
 
 
 // ------------ Typedefiniton fuer Funktionen ----------------------
@@ -76,11 +67,6 @@ bool GoNextSection( SwPaM&, SwPosSection);
 typedef bool (*GoNd)( SwNode*, SwIndex*, USHORT );
 typedef SwCntntNode* (*GoNds)( SwNodeIndex*, bool );
 typedef void (*GoDoc)( SwPosition* );
-typedef void (*GoSection)( SwPosition* );
-typedef bool (SwPosition:: *CmpOp)( const SwPosition& ) const;
-typedef const SwTxtAttr* (*GetHint)( const SwpHints&, USHORT&, xub_StrLen );
-typedef int (::utl::TextSearch:: *SearchTxt)( const String&, xub_StrLen*,
-                    xub_StrLen*, ::com::sun::star::util::SearchResult* );
 typedef void (SwNodes:: *MvSection)( SwNodeIndex * ) const;
 
 
@@ -89,10 +75,6 @@ struct SwMoveFnCollection
     GoNd      fnNd;
     GoNds     fnNds;
     GoDoc     fnDoc;
-    GoSection fnSections;
-    CmpOp     fnCmpOp;
-    GetHint   fnGetHint;
-    SearchTxt fnSearch;
     MvSection fnSection;
 };
 

@@ -475,28 +475,14 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ void GoStartSection( SwPosition* /*pPos*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
-// gehe an das Ende der akt. Grund-Section
-
-
-/*N*/ void GoEndSection( SwPosition* /*pPos*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
+// These are used in bf_sw/source/core/crsr/sw_paminit.cxx
+bool GoInCntntCells( SwPaM & /*rPam*/, SwMoveFn /*fnMove*/ ) { return FALSE; } // DBG_BF_ASSERT
+bool GoPrevPara( SwPaM & /*rPam*/, SwPosPara /*aPosPara*/) { return FALSE; } // DBG_BF_ASSERT
 
 
 /*N*/ bool GoInDoc( SwPaM & rPam, SwMoveFn fnMove )
 /*N*/ {
 /*N*/   (*fnMove->fnDoc)( rPam.GetPoint() );
-/*N*/   return TRUE;
-/*N*/ }
-
-
-/*N*/ bool GoInSection( SwPaM & /*rPam*/, SwMoveFn /*fnMove*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
@@ -519,18 +505,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/   return GoInNode( rPam, fnMove );
 /*N*/ }
 
-/*N*/ bool GoInCntntCells( SwPaM & /*rPam*/, SwMoveFn /*fnMove*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*N*/ }
-
 // --------- Funktionsdefinitionen fuer die SwCrsrShell --------------
-
-
-/*N*/ bool GoPrevPara( SwPaM & /*rPam*/, SwPosPara /*aPosPara*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return FALSE;
-/*N*/ }
-
 
 /*N*/ bool GoCurrPara( SwPaM & rPam, SwPosPara aPosPara )
 /*N*/ {
@@ -594,18 +569,6 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/   rPos.nContent.Assign( pNd,
 /*N*/                       ::binfilter::GetSttOrEnd( fnMove == fnMoveForward, *pNd ) );
 /*N*/   return aSavePos != rPos;
-/*N*/ }
-
-
-/*N*/ bool GoNextSection( SwPaM & /*rPam*/, SwMoveFn /*fnMove*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return TRUE;
-/*N*/ }
-
-
-/*N*/ bool GoPrevSection( SwPaM & /*rPam*/, SwMoveFn /*fnMove*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return TRUE;
 /*N*/ }
 
 }

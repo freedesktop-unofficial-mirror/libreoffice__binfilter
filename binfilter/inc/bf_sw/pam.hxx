@@ -81,28 +81,13 @@ struct SwPosition
 };
 
 
-// das Ergebnis eines Positions Vergleiches
-enum SwComparePosition {
-    POS_BEFORE,             // Pos1 liegt vor Pos2
-    POS_BEHIND,             // Pos1 liegt hinter Pos2
-    POS_INSIDE,             // Pos1 liegt vollstaendig in Pos2
-    POS_OUTSIDE,            // Pos2 liegt vollstaendig in Pos1
-    POS_EQUAL,              // Pos1 ist genauso gross wie Pos2
-    POS_OVERLAP_BEFORE,     // Pos1 ueberlappt Pos2 am Anfang
-    POS_OVERLAP_BEHIND,     // Pos1 ueberlappt Pos2 am Ende
-    POS_COLLIDE_START,      // Pos1 Start stoesst an Pos2 Ende
-    POS_COLLIDE_END         // Pos1 End stoesst an Pos2 Start
-};
-
 // SwPointAndMark / SwPaM
 struct SwMoveFnCollection;
 typedef SwMoveFnCollection* SwMoveFn;
 extern SwMoveFn fnMoveForward, fnMoveBackward;
 
 typedef bool (*SwGoInDoc)( SwPaM& rPam, SwMoveFn fnMove );
-extern SwGoInDoc fnGoDoc, fnGoSection, fnGoNode, fnGoCntnt, fnGoCntntCells;
-
-void _InitPam();
+extern SwGoInDoc fnGoDoc, fnGoNode, fnGoCntnt, fnGoCntntCells;
 
 class SwPaM : public Ring
 {
