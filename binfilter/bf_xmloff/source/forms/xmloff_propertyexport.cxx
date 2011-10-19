@@ -167,7 +167,17 @@ namespace xmloff
         examinePersistence();
     }
 
-    //---------------------------------------------------------------------
+    template< typename T > void
+    OPropertyExport::exportRemainingPropertiesSequence(Any const & value) {
+        OSequenceIterator< T > i(value);
+        while (i.hasMoreElements())
+        {
+            SvXMLElementExport aLclValueTag(m_rContext.getGlobalContext(), XML_NAMESPACE_FORM, "property-value", sal_True, sal_False);
+                // (no whitespace inside the tag)
+            m_rContext.getGlobalContext().GetDocHandler()->characters(implConvertAny(i.nextElement()));
+        }
+    }
+
     void OPropertyExport::exportRemainingProperties()
     {
         // the properties tag (will be created if we have at least one no-default property)
@@ -255,45 +265,34 @@ namespace xmloff
                 }
 
                 // the not-that-simple case, we need to iterate through the sequence elements
-                IIterator* pSequenceIterator = NULL;
                 switch (aSimpleType.getTypeClass())
                 {
                     case TypeClass_STRING:
-                        pSequenceIterator = new OSequenceIterator< ::rtl::OUString >(aValue);
+                        exportRemainingPropertiesSequence< ::rtl::OUString >(
+                            aValue);
                         break;
                     case TypeClass_DOUBLE:
-                        pSequenceIterator = new OSequenceIterator< double >(aValue);
+                        exportRemainingPropertiesSequence< double >(aValue);
                         break;
                     case TypeClass_BOOLEAN:
-                        pSequenceIterator = new OSequenceIterator< sal_Bool >(aValue);
+                        exportRemainingPropertiesSequence< sal_Bool >(aValue);
                         break;
                     case TypeClass_BYTE:
-                        pSequenceIterator = new OSequenceIterator< sal_Int8 >(aValue);
+                        exportRemainingPropertiesSequence< sal_Int8 >(aValue);
                         break;
                     case TypeClass_SHORT:
-                        pSequenceIterator = new OSequenceIterator< sal_Int16 >(aValue);
+                        exportRemainingPropertiesSequence< sal_Int16 >(aValue);
                         break;
                     case TypeClass_LONG:
-                        pSequenceIterator = new OSequenceIterator< sal_Int32 >(aValue);
+                        exportRemainingPropertiesSequence< sal_Int32 >(aValue);
                         break;
                     case TypeClass_HYPER:
-                        pSequenceIterator = new OSequenceIterator< sal_Int64 >(aValue);
+                        exportRemainingPropertiesSequence< sal_Int64 >(aValue);
                         break;
                     default:
                         OSL_FAIL("OPropertyExport::exportRemainingProperties: unsupported sequence tyoe !");
                         break;
                 }
-                if (pSequenceIterator)
-                {
-                    ::rtl::OUString sCurrent;
-                    while (pSequenceIterator->hasMoreElements())
-                    {
-                        SvXMLElementExport aLclValueTag(m_rContext.getGlobalContext(), XML_NAMESPACE_FORM, "property-value", sal_True, sal_False);
-                            // (no whitespace inside the tag)
-                        m_rContext.getGlobalContext().GetDocHandler()->characters(implConvertAny(pSequenceIterator->nextElement()));
-                    }
-                }
-                delete pSequenceIterator;
             }
         }
         catch(...)

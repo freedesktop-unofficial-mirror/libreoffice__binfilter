@@ -102,8 +102,9 @@ namespace xmloff
         */
         void examinePersistence();
 
-        /**
-        */
+        template< typename T > void exportRemainingPropertiesSequence(
+            com::sun::star::uno::Any const & value);
+
         void exportRemainingProperties();
 
         /** indicates that a property has been handled by a derived class, without using the helper methods of this
