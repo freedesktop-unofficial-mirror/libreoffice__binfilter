@@ -2013,7 +2013,7 @@ void * SAL_CALL legacysmgr_component_getFactory(
                 UNO_QUERY_THROW );
             rtl::OUString rdbUrl(
                 RTL_CONSTASCII_USTRINGPARAM(
-                    "$OOO_BASE_DIR/program/legacy_binfilters.rdb"));
+                    "$BRAND_BASE_DIR/program/legacy_binfilters.rdb"));
             rtl::Bootstrap::expandMacros(rdbUrl); //TODO: detect failure
             xSimReg->open(
                 rdbUrl, sal_True /* read-only */, sal_False /* ! create */ );
