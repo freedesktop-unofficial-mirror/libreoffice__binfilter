@@ -812,7 +812,7 @@ sal_Bool SdXShape::IsEmptyPresObj() const throw()
 
     // check if the object is in edit, than its temporarely not empty
     SdrTextObj* pTextObj = PTR_CAST( SdrTextObj, pObj );
-    return (NULL == pTextObj) || ( NULL == pTextObj->GetEditOutlinerParaObject() );
+    return (NULL == pTextObj);
 }
 
 /** sets/reset the empty status of a presentation object

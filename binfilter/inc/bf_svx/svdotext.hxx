@@ -130,12 +130,6 @@ protected:
     // Hier merke ich mir die Ausmasse des Textes (n.i.)
     Size                        aTextSize;
 
-    // Ein Outliner*, damit
-    // 1. das TextObj nicht von mehreren Views gleichzeitig editiert und
-    // 2. beim Streamen waerend des Editierens ein Flush() ausgefuehrt
-    // werden kann
-    SdrOutliner*                pEdtOutl;
-
     // Bei Fontwork muss soviel auf's BoundRect draufgerechnet werden
     // damit es ausreichend gross ist.
     Rectangle*                  pFormTextBoundRect;
@@ -149,16 +143,6 @@ protected:
     // um ein beschriftetes Grafikobjekt handelt.
     SdrObjKind                  eTextKind;
 
-    // #108784#
-    // For text editing in SW Haeder/Footer it is necessary to be
-    // able to set an offset for the text edit to allow text editing at the
-    // position of the virtual object. This offset is used when setting up
-    // and maintaining the OutlinerView.
-    Point                       maTextEditOffset;
-public:
-    const Point& GetTextEditOffset() const { return maTextEditOffset; }
-    void SetTextEditOffset(const Point& rNew) { maTextEditOffset = rNew; }
-
 protected:
     // Fuer beschriftete Zeichenobjekte ist bTextFrame=FALSE. Der Textblock
     // wird dann hoizontal und vertikal an aRect zentriert. Bei bTextFrame=
@@ -167,23 +151,8 @@ protected:
     BOOL                        bTextFrame : 1;
     BOOL                        bPortionInfoChecked : 1; // Fuer Optimierung von Textobjekten
     BOOL                        bNoShear : 1;            // Obj darf nicht gesheart werden   (->Graf+Ole+TextFrame)
-    BOOL                        bNoRotate : 1;           // Obj darf nicht gedreht werden    (->Ole)
     BOOL                        bNoMirror : 1;           // Obj darf nicht gespiegelt werden (->Ole,TextFrame)
     BOOL                        bTextSizeDirty : 1;
-
-    // #101684#
-    BOOL                        mbInEditMode : 1;   // Is this text obejct in edit mode?
-
-    // Fuer Objekt mit freier Groesse im Draw (Mengentext). Das Flag wird vom
-    // der App beim Create gesetzt.
-    // Wenn das Objekt dann spaeter in der Breite resized wird, wird
-    // AutoGrowWidth abgeschaltet (Hart auf FALSE attributiert). Das Flag wird
-    // dann ebenfalls auf FALSE gesetzt, sodass sich das Objekt anschliessend
-    // wie ein normales Textobjekt verhaelt.
-    // Resize in der Breite kann sein:
-    // - Interaktives Resize in Einfach- oder Mehrfachselektion
-    // - Positions+Groesse Dialog
-    BOOL bDisableAutoWidthOnDragging : 1;
 
 private:
     void ImpCheckMasterCachable();
@@ -194,7 +163,6 @@ private:
     void ImpLinkAnmeldung();
     void ImpLinkAbmeldung();
     ImpSdrObjTextLinkUserData* GetLinkUserData() const;
-//  void ImpCheckItemSetChanges(const SfxItemSet& rAttr);
 
 protected:
     bool ImpCanConvTextToCurve() const { return pOutlinerParaObject!=NULL && pModel!=NULL && !IsOutlText() && !IsFontwork(); }
@@ -230,9 +198,6 @@ protected:
 public:
     TYPEINFO();
 
-    // #101684#
-    BOOL IsInEditMode() const { return mbInEditMode; }
-
     // via eCharSet kann der CharSet der vorliegenden Datei uebergeben werden.
     // Bei RTL_TEXTENCODING_DONTKNOW wird der CharSet der aktuellen Plattform verwendet.
     // Derzeit unterstuetzt wird ASCII und RTF wobei ich die Unterscheidung
@@ -251,15 +216,7 @@ public:
     bool IsTextFrame() const { return bTextFrame; }
     bool IsOutlText() const { return bTextFrame && (eTextKind==OBJ_OUTLINETEXT || eTextKind==OBJ_TITLETEXT); }
     BOOL GetTextKind() const { return eTextKind; }
-    bool HasText() const { return pEdtOutl==NULL ? pOutlinerParaObject!=NULL : HasEditText(); }
-    bool HasEditText() const;
-    bool IsTextEditActive() const { return pEdtOutl!=NULL; }
-
-    /** returns true only if we are in edit mode and the user actually changed anything */
-    bool IsRealyEdited(){DBG_BF_ASSERT(0, "STRIP"); return false;}
-
-    void SetDisableAutoWidthOnDragging(bool bOn) { bDisableAutoWidthOnDragging=bOn; }
-    bool IsDisableAutoWidthOnDragging() { return bDisableAutoWidthOnDragging; }
+    bool HasText() const { return pOutlinerParaObject != NULL; }
 
     // FitToSize und Fontwork wird bei GetTextSize() nicht berueksichtigt!
     virtual const Size& GetTextSize() const;
@@ -269,7 +226,6 @@ public:
     virtual void TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, bool bNoEditText=FALSE,
         Rectangle* pAnchorRect=NULL, BOOL bLineWidth=TRUE ) const;
     virtual void TakeTextAnchorRect(Rectangle& rAnchorRect) const;
-    const GeoStat& GetGeoStat() const { return aGeo; }
     inline long GetEckenradius() const;
     bool IsAutoGrowHeight() const;
     inline long GetMinTextFrameHeight() const;
@@ -331,15 +287,12 @@ public:
     virtual void EndTextEdit(SdrOutliner& rOutl);
     virtual SdrObject* CheckTextEditHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
 
-    bool IsTextAnimated() const { return GetTextAniKind()!=SDRTEXTANI_NONE; }
-
     virtual void NbcSetOutlinerParaObject(OutlinerParaObject* pTextObject);
     virtual OutlinerParaObject* GetOutlinerParaObject() const;
-    OutlinerParaObject* GetEditOutlinerParaObject() const;
 
     virtual void NbcReformatText();
     virtual void ReformatText();
-    virtual void RestartAnimation(SdrPageView* pPageView) const;
+    virtual void RestartAnimation(SdrPageView*) const {} // DBG_BF_ASSERT
 
     virtual bool CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
         bool bEdit, Color*& rpTxtColor, Color*& rpFldColor, String& rRet) const;
@@ -353,40 +306,6 @@ public:
 
 
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
-
-    void SetTextEditOutliner(SdrOutliner* pOutl) { pEdtOutl=pOutl; }
-
-    /** Setup given Outliner equivalently to SdrTextObj::Paint()
-
-        To setup an arbitrary Outliner in the same way as the draw
-        outliner on SdrTextObj::Paint(). Among others, the paper size,
-        control word and character stretching are initialized, such
-        that the formatting should match the screen representation.
-        The textual content of the outliner is not touched, i.e. no
-        Init() or Clear() is called on the Outliner.
-
-        @param rOutl
-        The Outliner to setup.
-
-        @param rPaintRect
-        The region to paint the outliner content into. This is useful
-        to e.g. determine the top, left position of text in shapes.
-     */
-    void SetupOutlinerFormatting( SdrOutliner& rOutl, Rectangle& rPaintRect ) const;
-
-    /** Update given Outliner equivalently to SdrTextObj::Paint()
-
-        Same functionality as in SetupOutlinerFormatting(), except
-        that the outliner content is not cleared.
-
-        @param rOutl
-        The Outliner to update.
-
-        @param rPaintRect
-        The region to paint the outliner content into. This is useful
-        to e.g. determine the top, left position of text in shapes.
-     */
-    void UpdateOutlinerFormatting( SdrOutliner& /*rOutl*/, Rectangle& /*rPaintRect*/ ){DBG_BF_ASSERT(0, "STRIP");}
 
     void ForceOutlinerParaObject();
     BOOL IsVerticalWriting() const;
@@ -408,10 +327,6 @@ public:
     // to use (0,0) as upper left and will be scaled to the given size in the matrix.
     virtual void TRSetBaseGeometry(const Matrix3D& rMat, const XPolyPolygon& rPolyPolygon);
 
-    // #103836# iterates over the paragraphs of a given SdrObject and removes all
-    //          hard set character attributes with the which ids contained in the
-    //          given vector
-    void RemoveOutlinerCharacterAttribs( const std::vector<sal_uInt16>& rCharWhichIds );
 };
 
 //************************************************************

@@ -76,8 +76,7 @@ namespace binfilter {
 /*N*/       if (bAutoVertex) {
 /*N*/           rGP=pObj->GetVertexGluePoint(nConId);
 /*N*/           bRet=TRUE;
-/*N*/       } else if (bAutoCorner) {DBG_BF_ASSERT(0, "STRIP");
-/*?*/       } else {
+/*N*/       } else if (!bAutoCorner) {
 /*?*/           const SdrGluePointList* pGPL=pObj->GetGluePointList();
 /*N*/           if (pGPL!=NULL) {
 /*?*/               USHORT nNum=pGPL->FindGluePoint(nConId);
@@ -519,11 +518,6 @@ namespace binfilter {
 /*N*/   bHit=IsRectTouchesLine(aPoly,aR);
 /*N*/   if (!bHit && HasText()) bHit=SdrTextObj::CheckHit(rPnt,nTol,pVisiLayer)!=NULL;
 /*N*/   return bHit ? (SdrObject*)this : NULL;
-/*N*/ }
-
-/*N*/ bool SdrEdgeObj::IsNode() const
-/*N*/ {
-/*N*/   return TRUE;
 /*N*/ }
 
 /*N*/ SdrGluePoint SdrEdgeObj::GetVertexGluePoint(USHORT nNum) const
@@ -1599,23 +1593,6 @@ je Objekt variiert von 0-3:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*N*/ void SdrEdgeObj::NbcSetSnapRect(const Rectangle& rRect)
 /*N*/ {
 /*N*/   Rectangle aOld(GetSnapRect());
@@ -1652,11 +1629,6 @@ je Objekt variiert von 0-3:
 /*N*/       aEdgeInfo.aObj2Line3 = Point();
 /*N*/       aEdgeInfo.aMiddleLine = Point();
 /*N*/   }
-/*N*/ }
-
-/*N*/ void SdrEdgeObj::NbcSetPoint(const Point&, USHORT)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   // ToDo: Umconnekten fehlt noch
 /*N*/ }
 
 /*N*/ void SdrEdgeObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)

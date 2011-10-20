@@ -109,11 +109,7 @@ private:
     void                            SetupOutliner();
 
     sal_Bool                        HasView() const { return mpView ? sal_True : sal_False; }
-    sal_Bool                        IsEditMode() const
-                                    {
-                                        SdrTextObj* pTextObj = PTR_CAST( SdrTextObj, mpObject );
-                                        return mbShapeIsEditMode && pTextObj && pTextObj->IsTextEditActive() ? sal_True : sal_False;
-                                    }
+    sal_Bool                        IsEditMode() const { return sal_False; }  // DBG_BF_ASSERT
 
 public:
     SvxTextEditSourceImpl( SdrObject* pObject );
@@ -394,7 +390,6 @@ void SvxTextEditSourceImpl::SetupOutliner()
         if( pTextObj )
         {
             Rectangle aBoundRect( pTextObj->GetBoundRect() );
-            pTextObj->SetupOutlinerFormatting( *mpOutliner, aPaintRect );
 
             // #101029# calc text offset from shape anchor
             maTextOffset = aPaintRect.TopLeft() - aBoundRect.TopLeft();
@@ -459,7 +454,7 @@ SvxTextForwarder* SvxTextEditSourceImpl::GetBackgroundTextForwarder()
         BOOL bTextEditActive = FALSE;
         SdrTextObj* pTextObj = PTR_CAST( SdrTextObj, mpObject );
         if( pTextObj )
-            mpOutlinerParaObject = pTextObj->GetEditOutlinerParaObject(); // Get the OutlinerParaObject if text edit is active
+            mpOutlinerParaObject = NULL; // Get the OutlinerParaObject if text edit is active
 
         if( mpOutlinerParaObject )
             bTextEditActive = TRUE; // text edit active
@@ -469,13 +464,6 @@ SvxTextForwarder* SvxTextEditSourceImpl::GetBackgroundTextForwarder()
         if( mpOutlinerParaObject && ( bTextEditActive || !mpObject->IsEmptyPresObj() || mpObject->GetPage()->IsMasterPage() ) )
         {
             mpOutliner->SetText( *mpOutlinerParaObject );
-
-            // #91254# put text to object and set EmptyPresObj to FALSE
-            if( pTextObj && bTextEditActive && mpOutlinerParaObject && mpObject->IsEmptyPresObj() && pTextObj->IsRealyEdited() )
-            {
-                mpObject->SetEmptyPresObj( FALSE );
-                pTextObj->SetOutlinerParaObject( mpOutlinerParaObject );
-            }
         }
         else
         {
@@ -813,10 +801,7 @@ Point SvxTextEditSourceImpl::PixelToLogic( const Point& rPoint, const MapMode& r
     return Point();
 }
 
-IMPL_LINK(SvxTextEditSourceImpl, NotifyHdl, EENotify*, EMPTYARG)
-{
-    return 0;
-}
+IMPL_LINK(SvxTextEditSourceImpl, NotifyHdl, EENotify*, EMPTYARG) { return 0; } // DBG_BF_ASSERT
 
 //------------------------------------------------------------------------
 

@@ -198,18 +198,6 @@ namespace binfilter {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /*N*/ void SdrCaptionObj::ImpGetCaptParams(ImpCaptParams& rPara) const
 /*N*/ {
 /*N*/   const SfxItemSet& rSet = GetItemSet();
@@ -263,9 +251,6 @@ namespace binfilter {
 /*N*/           else aPol[1].Y()+=rPara.nLineLen;
 /*N*/       }
 /*N*/   }
-/*N*/   if (!rPara.bFixedAngle) {
-/*N*/       // fehlende Implementation
-/*N*/   }
 /*N*/   rPoly=aPol;
 /*N*/ }
 
@@ -273,16 +258,12 @@ namespace binfilter {
 /*N*/ void SdrCaptionObj::ImpCalcTail(const ImpCaptParams& rPara, Polygon& rPoly, Rectangle& rRect) const
 /*N*/ {
 /*N*/   switch (rPara.eType) {
-/*?*/       case SDRCAPT_TYPE1: DBG_BF_ASSERT(0, "STRIP"); break;
-/*?*/       case SDRCAPT_TYPE2: DBG_BF_ASSERT(0, "STRIP"); break;
+/*?*/       case SDRCAPT_TYPE1: break;
+/*?*/       case SDRCAPT_TYPE2: break;
 /*N*/       case SDRCAPT_TYPE3: ImpCalcTail3(rPara,rPoly,rRect); break;
-/*?*/       case SDRCAPT_TYPE4: DBG_BF_ASSERT(0, "STRIP"); break;
+/*?*/       case SDRCAPT_TYPE4: break;
 /*N*/   }
 /*N*/ }
-
-
-
-
 
 
 

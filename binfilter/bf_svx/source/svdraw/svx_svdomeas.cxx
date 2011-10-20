@@ -397,9 +397,6 @@ namespace binfilter {
 /*N*/   rPol.eUsedTextVPos=rRec.eWantTextVPos;
 /*N*/   if (rPol.eUsedTextVPos==SDRMEASURE_TEXTVAUTO) rPol.eUsedTextVPos=SDRMEASURE_ABOVE;
 /*N*/   bool bBrkLine=rPol.eUsedTextVPos==SDRMEASURETEXT_BREAKEDLINE;
-/*N*/   if (rPol.eUsedTextVPos==SDRMEASURETEXT_VERTICALCENTERED) {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/   rPol.bBreakedLine=bBrkLine;
 /*N*/   if (rPol.eUsedTextHPos==SDRMEASURE_TEXTHAUTO) { // bei zu breitem Text diesen eventuell nach aussen schieben
 /*N*/       bool bOutside=FALSE;
@@ -774,10 +771,6 @@ namespace binfilter {
 /*N*/   if (i==1) aPt2=rPnt;
 /*N*/   SetRectsDirty();
 /*N*/   SetTextDirty();
-/*N*/ }
-
-/*N*/ bool SdrMeasureObj::BegTextEdit(SdrOutliner& /*rOutl*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE;
 /*N*/ }
 
 /*N*/ void SdrMeasureObj::EndTextEdit(SdrOutliner& rOutl)

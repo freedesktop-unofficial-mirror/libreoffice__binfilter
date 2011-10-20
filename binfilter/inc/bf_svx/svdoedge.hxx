@@ -197,7 +197,7 @@ public:
     virtual UINT16 GetObjIdentifier() const;
     virtual const Rectangle& GetBoundRect() const;
     virtual const Rectangle& GetSnapRect() const;
-    virtual bool IsNode() const;
+    virtual bool IsNode() const { return true; } // DBG_BF_ASSERT
     virtual SdrGluePoint GetVertexGluePoint(USHORT nNum) const;
 
     // ItemSet access
@@ -231,8 +231,7 @@ public:
     virtual void NbcSetAnchorPos(const Point& rPnt);
 
 
-    virtual void NbcSetPoint(const Point& rPnt, USHORT i);
-
+    virtual void NbcSetPoint(const Point&, USHORT ) {} // DBG_BF_ASSERT
 
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
     virtual void AfterRead();

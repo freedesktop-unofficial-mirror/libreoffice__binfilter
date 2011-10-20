@@ -111,7 +111,7 @@ public:
     virtual void NbcShear(const Point& rRefPnt, double fTan, bool bVShear);
 
 
-    virtual bool IsPolyObj() const;
+    virtual bool IsPolyObj() const { return true; } // DBG_BF_ASSERT
     virtual USHORT GetPointCount() const;
     virtual const Point& GetPoint(USHORT nHdlNum) const;
     virtual void NbcSetPoint(const Point& rPnt, USHORT nHdlNum);
@@ -129,21 +129,11 @@ public:
     void SetPathPoly(const XPolyPolygon& rPathPoly);
     void NbcSetPathPoly(const XPolyPolygon& rPathPoly);
 
-    // Man stecke die Handlenummer rein und bekomme die Polygon- und Punktnummer
-    // des zugehoerigen Punkts im XPolyPolygon.
-    bool TakePolyIdxForHdlNum(USHORT nHdlNum, USHORT& rPolyNum, USHORT& rPointNum) const { return FindPolyPnt(nHdlNum,rPolyNum,rPointNum,FALSE); }
-
     // Spezialfunktionen fuer Bezierpolygon-Bearbeitung
     static bool IsClosed(SdrObjKind eKind) { return eKind==OBJ_POLY || eKind==OBJ_PATHPOLY || eKind==OBJ_PATHFILL || eKind==OBJ_FREEFILL || eKind==OBJ_SPLNFILL; }
     static bool IsLine(SdrObjKind eKind) { return eKind==OBJ_PLIN || eKind==OBJ_PATHPLIN || eKind==OBJ_PATHLINE || eKind==OBJ_FREELINE || eKind==OBJ_SPLNLINE || eKind==OBJ_LINE; }
-    static bool IsFreeHand(SdrObjKind eKind) { return eKind==OBJ_FREELINE || eKind==OBJ_FREEFILL; }
-    static bool IsBezier(SdrObjKind eKind) { return eKind==OBJ_PATHLINE || eKind==OBJ_PATHFILL; }
-    static bool IsSpline(SdrObjKind eKind) { return eKind==OBJ_SPLNLINE || eKind==OBJ_SPLNFILL; }
     bool IsClosed() const { return eKind==OBJ_POLY || eKind==OBJ_PATHPOLY || eKind==OBJ_PATHFILL || eKind==OBJ_FREEFILL || eKind==OBJ_SPLNFILL; }
     bool IsLine() const { return eKind==OBJ_PLIN || eKind==OBJ_PATHPLIN || eKind==OBJ_PATHLINE || eKind==OBJ_FREELINE || eKind==OBJ_SPLNLINE || eKind==OBJ_LINE; }
-    bool IsFreeHand() const { return eKind==OBJ_FREELINE || eKind==OBJ_FREEFILL; }
-    bool IsBezier() const { return eKind==OBJ_PATHLINE || eKind==OBJ_PATHFILL; }
-    bool IsSpline() const { return eKind==OBJ_SPLNLINE || eKind==OBJ_SPLNFILL; }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //

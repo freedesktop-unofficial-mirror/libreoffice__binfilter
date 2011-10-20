@@ -302,12 +302,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*?*/
 /*?*/             rXOut.DrawXPolyPolygon(aTmpXPoly);
 /*?*/         }
-/*?*/
-/*?*/       // new shadow line drawing
-/*?*/       if( pLineGeometry.get() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");
-/*?*/           // draw the line geometry
-/*?*/       }
 /*N*/   }
 
     // Before here the LineAttr were set: if(pLineAttr) rXOut.SetLineAttr(*pLineAttr);
@@ -337,9 +331,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   bool bOk=TRUE;
 /*N*/   if (HasText()) {
 /*?*/       bOk=SdrTextObj::Paint(rXOut,rInfoRec);
-/*N*/   }
-/*N*/   if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   return bOk;
@@ -398,57 +389,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   // am 14.1.97 wg. Umstellung TakeContour ueber Mtf und Paint. Joe.
 /*N*/   SdrTextObj::TakeContour(rPoly);
 /*N*/ }
-
-
-
-
-
-
-
-
-/*?*/ inline USHORT GetPrevPnt(USHORT nPnt, USHORT nPntMax, bool bClosed)
-/*?*/ {
-/*?*/   if (nPnt>0) {
-/*?*/       nPnt--;
-/*?*/   } else {
-/*?*/       nPnt=nPntMax;
-/*?*/       if (bClosed) nPnt--;
-/*?*/   }
-/*?*/   return nPnt;
-/*?*/ }
-
-/*?*/ inline USHORT GetNextPnt(USHORT nPnt, USHORT nPntMax, bool bClosed)
-/*?*/ {
-/*?*/   nPnt++;
-/*?*/   if (nPnt>nPntMax || (bClosed && nPnt>=nPntMax)) nPnt=0;
-/*?*/   return nPnt;
-/*?*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -520,11 +460,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 
 
-/*N*/ bool SdrPathObj::IsPolyObj() const
-/*N*/ {
-/*N*/   return TRUE;
-/*N*/ }
-
 /*N*/ USHORT SdrPathObj::GetPointCount() const
 /*N*/ {
 /*N*/   USHORT nPolyCnt = aPathPolygon.Count();
@@ -571,12 +506,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 // zur Strecke AB, so ist der Abstand zum naechstliegenden Punkt verwendet;
 // dazu wird nocheinmal der einfache Abstand parallel zu AB draufaddiert
 // (als Winkelersatz) (=> groesserer Abstand=unguenstigerer Winkel).
-
-
-
-
-
-
 
 
 
@@ -663,10 +592,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/                   // Polygon schliessen (wird dabei um einen Punkt erweitert)
 /*N*/                   aPathPolygon[nPolyNum][nPointAnz]=aStartPt;
 /*N*/               }
-/*N*/           } else {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
-/*N*/
 /*N*/       }
 /*N*/   }
 /*N*/   SetRectsDirty();
@@ -681,13 +607,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   SendRepaintBroadcast();
 /*N*/   SendUserCall(SDRUSERCALL_RESIZE,aBoundRect0);
 /*N*/ }
-
-
-
-
-
-
-
 
 
 

@@ -190,19 +190,6 @@ Any SAL_CALL SvxOle2Shape::getPropertyValue( const OUString& PropertyName ) thro
         {
             Graphic* pGraphic = pOle->GetGraphic();
 
-            // if there isn't already a preview graphic set, check if we need to generate
-            // one if model says so
-            if( pGraphic == NULL && !pOle->IsEmptyPresObj() && pModel->IsSaveOLEPreview() )
-            {
-                const GDIMetaFile* pMetaFile = pOle->GetGDIMetaFile();
-                if( pMetaFile )
-                {
-                    Graphic aNewGrf( *pMetaFile );
-                    pOle->SetGraphic( &aNewGrf );
-                    pGraphic = pOle->GetGraphic();
-                }
-            }
-
             if( pGraphic )
             {
                 BfGraphicObject aObj( *pGraphic );

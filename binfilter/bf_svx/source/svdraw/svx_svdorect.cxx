@@ -274,13 +274,6 @@ namespace binfilter {
 /*?*/                 rXOut.DrawRect(aR,USHORT(2*nEckRad),USHORT(2*nEckRad));
 /*?*/             }
 /*?*/         }
-/*?*/
-/*?*/       // new shadow line drawing
-/*?*/       if( pLineGeometry.get() )
-/*?*/       {
-/*?*/           // draw the line geometry
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
 /*N*/   }
 
     // Before here the LineAttr were set: if(pLineAttr) rXOut.SetLineAttr(*pLineAttr);
@@ -312,9 +305,6 @@ namespace binfilter {
 /*N*/   if (HasText()) {
 /*?*/       bOk=SdrTextObj::Paint(rXOut,rInfoRec);
 /*N*/   }
-/*N*/   if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   return bOk;
 /*N*/ }
@@ -334,7 +324,7 @@ namespace binfilter {
 /*N*/   if (bFilled && nBoundWdt>short(nTol) && nBoundHgt>short(nTol) && Abs(aGeo.nShearWink)<=4500) {
 /*N*/       if (!bForceTol && !bTextFrame ) nMyTol=0; // Keine Toleranz noetig hier
 /*N*/   }
-/*N*/   if (nWdt>nMyTol && (!bTextFrame || pEdtOutl==NULL)) nMyTol=nWdt; // Bei dicker Umrandung keine Toleranz noetig, ausser wenn bei TextEdit
+/*N*/   if (nWdt > nMyTol ) nMyTol=nWdt; // Bei dicker Umrandung keine Toleranz noetig, ausser wenn bei TextEdit
 /*N*/   Rectangle aR(aRect);
 /*N*/   if (nMyTol!=0 && bFilled) {
 /*N*/       aR.Left  ()-=nMyTol;
@@ -422,15 +412,6 @@ namespace binfilter {
 /*N*/   SdrTextObj::NbcSetLogicRect(rRect);
 /*N*/   SetXPolyDirty();
 /*N*/ }
-
-
-
-
-
-
-
-
-
 
 
 /*N*/ Pointer SdrRectObj::GetCreatePointer() const

@@ -2153,22 +2153,7 @@ uno::Any SvxShape::_getPropertyValue( const OUString& PropertyName )
             }
             case OWN_ATTR_METAFILE:
             {
-                if( pObj->ISA(SdrOle2Obj))
-                {
-                    SdrOle2Obj& aObj = *(SdrOle2Obj*)pObj;
-
-                    if(aObj.HasGDIMetaFile() && aObj.GetGDIMetaFile())
-                    {
-                        SvMemoryStream aDestStrm( 65535, 65535 );
-
-                        ConvertGDIMetaFileToWMF( *aObj.GetGDIMetaFile(), aDestStrm, NULL, sal_False );
-                        const uno::Sequence<sal_Int8> aSeq(
-                            static_cast< const sal_Int8* >(aDestStrm.GetData()),
-                            aDestStrm.GetEndOfData());
-                        aAny <<= aSeq;
-                    }
-                }
-                else
+                if( !pObj->ISA(SdrOle2Obj))
                 {
                     aAny = GetBitmap( sal_True );
                 }

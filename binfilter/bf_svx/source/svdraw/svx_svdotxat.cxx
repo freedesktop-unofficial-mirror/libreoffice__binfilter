@@ -111,7 +111,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SdrAttrObj::NbcSetStyleSheet(pNewStyleSheet,bDontRemoveHardAttr);
 /*N*/
-/*N*/   if ( pOutlinerParaObject && !pEdtOutl && !IsLinkedText() )
+/*N*/   if ( pOutlinerParaObject && !IsLinkedText() )
 /*N*/   {
 /*N*/       // StyleSheet auf alle Absaetze anwenden
 /*N*/       SdrOutliner& rOutliner=ImpGetDrawOutliner();
@@ -199,15 +199,8 @@ namespace binfilter {
 /*N*/   {
 /*N*/       Outliner* pOutliner;
 /*N*/
-/*N*/       if(!pEdtOutl)
-/*N*/       {
-/*N*/           pOutliner = &ImpGetDrawOutliner();
-/*N*/           pOutliner->SetText(*pOutlinerParaObject);
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*?*/           pOutliner = pEdtOutl;
-/*N*/       }
+/*N*/       pOutliner = &ImpGetDrawOutliner();
+/*N*/       pOutliner->SetText(*pOutlinerParaObject);
 /*N*/
 /*N*/       sal_uInt16 nParaCount((sal_uInt16)pOutliner->GetParagraphCount());
 /*N*/       for(sal_uInt16 nPara(0); nPara < nParaCount; nPara++)
@@ -217,18 +210,15 @@ namespace binfilter {
 /*N*/           pOutliner->SetParaAttribs(nPara, aSet);
 /*N*/       }
 /*N*/
-/*N*/       if(!pEdtOutl)
+/*N*/       if(nParaCount)
 /*N*/       {
-/*N*/           if(nParaCount)
-/*N*/           {
-/*N*/               SfxItemSet aNewSet(pOutliner->GetParaAttribs(0));
-/*N*/               mpObjectItemSet->Put(aNewSet);
-/*N*/           }
-/*N*/
-/*N*/           OutlinerParaObject* pTemp = pOutliner->CreateParaObject(0, nParaCount);
-/*N*/           pOutliner->Clear();
-/*N*/           NbcSetOutlinerParaObject(pTemp);
+/*N*/           SfxItemSet aNewSet(pOutliner->GetParaAttribs(0));
+/*N*/           mpObjectItemSet->Put(aNewSet);
 /*N*/       }
+/*N*/
+/*N*/       OutlinerParaObject* pTemp = pOutliner->CreateParaObject(0, nParaCount);
+/*N*/       pOutliner->Clear();
+/*N*/       NbcSetOutlinerParaObject(pTemp);
 /*N*/   }
 /*N*/
 /*N*/   // Extra-Repaint wenn das Layout so radikal geaendert wird (#43139#)
@@ -314,41 +304,24 @@ namespace binfilter {
 /*N*/           if (aSiz.Width()<2) aSiz.Width()=2;   // Mindestgroesse 2
 /*N*/           if (aSiz.Height()<2) aSiz.Height()=2; // Mindestgroesse 2
 /*N*/
-/*N*/           // #101684#
-/*N*/           BOOL bInEditMode = IsInEditMode();
+/*N*/           if (bHScroll) aSiz.Width()  = 0x0FFFFFFF; // Laufschrift nicht umbrechen
+/*N*/           if (bVScroll) aSiz.Height() = 0x0FFFFFFF;
 /*N*/
-/*N*/           if(!bInEditMode)
-/*N*/           {
-/*N*/               if (bHScroll) aSiz.Width()=0x0FFFFFFF; // Laufschrift nicht umbrechen
-/*N*/               if (bVScroll) aSiz.Height()=0x0FFFFFFF;
-/*N*/           }
-/*N*/
-/*N*/           if(pEdtOutl)
-/*N*/           {
-/*?*/               pEdtOutl->SetMaxAutoPaperSize(aSiz);
-/*?*/               if (bWdtGrow) {
-/*?*/                   Size aLclSiz(pEdtOutl->CalcTextSize());
-/*?*/                   nWdt=aLclSiz.Width()+1; // lieber etwas Tolleranz
-/*?*/                   if (bHgtGrow) nHgt=aLclSiz.Height()+1; // lieber etwas Tolleranz
-/*?*/               } else {
-/*?*/                   nHgt=pEdtOutl->GetTextHeight()+1; // lieber etwas Tolleranz
-/*?*/               }
+/*N*/           Outliner& rOutliner=ImpGetDrawOutliner();
+/*N*/           rOutliner.SetPaperSize(aSiz);
+/*N*/           rOutliner.SetUpdateMode(TRUE);
+/*N*/           // !!! hier sollte ich wohl auch noch mal die Optimierung mit
+/*N*/           // bPortionInfoChecked usw einbauen
+/*N*/           if (pOutlinerParaObject!=NULL) rOutliner.SetText(*pOutlinerParaObject);
+/*N*/           if (bWdtGrow) {
+/*N*/               Size aLclSiz(rOutliner.CalcTextSize());
+/*N*/               nWdt=aLclSiz.Width()+1; // lieber etwas Tolleranz
+/*N*/               if (bHgtGrow) nHgt=aLclSiz.Height()+1; // lieber etwas Tolleranz
 /*N*/           } else {
-/*N*/               Outliner& rOutliner=ImpGetDrawOutliner();
-/*N*/               rOutliner.SetPaperSize(aSiz);
-/*N*/               rOutliner.SetUpdateMode(TRUE);
-/*N*/               // !!! hier sollte ich wohl auch noch mal die Optimierung mit
-/*N*/               // bPortionInfoChecked usw einbauen
-/*N*/               if (pOutlinerParaObject!=NULL) rOutliner.SetText(*pOutlinerParaObject);
-/*N*/               if (bWdtGrow) {
-/*N*/                   Size aLclSiz(rOutliner.CalcTextSize());
-/*N*/                   nWdt=aLclSiz.Width()+1; // lieber etwas Tolleranz
-/*N*/                   if (bHgtGrow) nHgt=aLclSiz.Height()+1; // lieber etwas Tolleranz
-/*N*/               } else {
-/*N*/                   nHgt=rOutliner.GetTextHeight()+1; // lieber etwas Tolleranz
-/*N*/               }
-/*N*/               rOutliner.Clear();
+/*N*/               nHgt=rOutliner.GetTextHeight()+1; // lieber etwas Tolleranz
 /*N*/           }
+/*N*/           rOutliner.Clear();
+
 /*N*/           if (nWdt<nMinWdt) nWdt=nMinWdt;
 /*N*/           if (nWdt>nMaxWdt) nWdt=nMaxWdt;
 /*N*/           nWdt+=nHDist;

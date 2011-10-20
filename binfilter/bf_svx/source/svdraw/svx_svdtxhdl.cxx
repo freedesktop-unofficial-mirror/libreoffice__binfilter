@@ -77,9 +77,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   bDraw = bDrawEffect;
 /*N*/
 /*N*/   OutlinerParaObject* pPara=rTextObj.GetOutlinerParaObject();
-/*N*/   if (rTextObj.IsTextEditActive()) {
-/*?*/       pPara=rTextObj.GetEditOutlinerParaObject();
-/*N*/   }
 /*N*/   if (pPara!=NULL) {
 /*N*/       XPolyPolygon aXPP;
 /*N*/       //rTextObj.TakeContour(aXPP);
@@ -130,9 +127,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/       rXOut.GetOutDev()->SetFont(aFont);
 /*N*/       rOutliner.Clear();
-/*N*/   }
-/*N*/   if (rTextObj.IsTextEditActive()) {
-/*?*/       delete pPara;
 /*N*/   }
 /*N*/ }
 

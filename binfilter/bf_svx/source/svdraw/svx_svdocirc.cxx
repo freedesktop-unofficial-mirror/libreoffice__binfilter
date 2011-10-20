@@ -345,11 +345,6 @@ namespace binfilter {
 /*?*/             }
 /*?*/         }
 /*?*/
-/*?*/       // new shadow line drawing
-/*?*/       if( pLineGeometry.get() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");
-/*?*/           // draw the line geometry
-/*?*/       }
 /*N*/   }
 
     // Before here the LineAttr were set: if(pLineAttr) rXOut.SetLineAttr(*pLineAttr);
@@ -395,11 +390,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   bool bOk=TRUE;
-/*N*/   if (HasText()) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/   if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   return bOk;
 /*N*/ }
 
@@ -432,22 +422,6 @@ namespace binfilter {
 /*N*/   // am 14.1.97 wg. Umstellung TakeContour ueber Mtf und Paint. Joe.
 /*N*/   SdrRectObj::TakeContour(rPoly);
 /*N*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -522,8 +496,6 @@ namespace binfilter {
 /*N*/   SetXPolyDirty();
 /*N*/   ImpSetCircInfoToAttr();
 /*N*/ }
-
-
 
 
 

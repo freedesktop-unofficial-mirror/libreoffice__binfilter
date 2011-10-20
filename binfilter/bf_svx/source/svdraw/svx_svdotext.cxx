@@ -71,7 +71,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 /*N*/ SdrTextObj::SdrTextObj():
 /*N*/   pOutlinerParaObject(NULL),
-/*N*/   pEdtOutl(NULL),
 /*N*/   pFormTextBoundRect(NULL),
 /*N*/   eTextKind(OBJ_TEXT)
 /*N*/ {
@@ -79,21 +78,12 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   bPortionInfoChecked=FALSE;
 /*N*/   bTextFrame=FALSE;
 /*N*/   bNoShear=FALSE;
-/*N*/   bNoRotate=FALSE;
 /*N*/   bNoMirror=FALSE;
-/*N*/   bDisableAutoWidthOnDragging=FALSE;
-/*N*/
-/*N*/   // #101684#
-/*N*/   mbInEditMode = FALSE;
-/*N*/
-/*N*/   // #108784#
-/*N*/   maTextEditOffset = Point(0, 0);
 /*N*/ }
 
 /*N*/ SdrTextObj::SdrTextObj(const Rectangle& rNewRect):
 /*N*/   aRect(rNewRect),
 /*N*/   pOutlinerParaObject(NULL),
-/*N*/   pEdtOutl(NULL),
 /*N*/   pFormTextBoundRect(NULL),
 /*N*/   eTextKind(OBJ_TEXT)
 /*N*/ {
@@ -101,60 +91,34 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   bPortionInfoChecked=FALSE;
 /*N*/   bTextFrame=FALSE;
 /*N*/   bNoShear=FALSE;
-/*N*/   bNoRotate=FALSE;
 /*N*/   bNoMirror=FALSE;
-/*N*/   bDisableAutoWidthOnDragging=FALSE;
 /*N*/   ImpJustifyRect(aRect);
-/*N*/
-/*N*/   // #101684#
-/*N*/   mbInEditMode = FALSE;
-/*N*/
-/*N*/   // #108784#
-/*N*/   maTextEditOffset = Point(0, 0);
 /*N*/ }
 
 /*N*/ SdrTextObj::SdrTextObj(SdrObjKind eNewTextKind):
 /*N*/   pOutlinerParaObject(NULL),
-/*N*/   pEdtOutl(NULL),
 /*N*/   pFormTextBoundRect(NULL),
 /*N*/   eTextKind(eNewTextKind)
 /*N*/ {
 /*N*/   bTextSizeDirty=FALSE;
 /*N*/   bTextFrame=TRUE;
 /*N*/   bNoShear=TRUE;
-/*N*/   bNoRotate=FALSE;
 /*N*/   bNoMirror=TRUE;
 /*N*/   bPortionInfoChecked=FALSE;
-/*N*/   bDisableAutoWidthOnDragging=FALSE;
-/*N*/
-/*N*/   // #101684#
-/*N*/   mbInEditMode = FALSE;
-/*N*/
-/*N*/   // #108784#
-/*N*/   maTextEditOffset = Point(0, 0);
 /*N*/ }
 
 /*N*/ SdrTextObj::SdrTextObj(SdrObjKind eNewTextKind, const Rectangle& rNewRect):
 /*N*/   aRect(rNewRect),
 /*N*/   pOutlinerParaObject(NULL),
-/*N*/   pEdtOutl(NULL),
 /*N*/   pFormTextBoundRect(NULL),
 /*N*/   eTextKind(eNewTextKind)
 /*N*/ {
 /*N*/   bTextSizeDirty=FALSE;
 /*N*/   bTextFrame=TRUE;
 /*N*/   bNoShear=TRUE;
-/*N*/   bNoRotate=FALSE;
 /*N*/   bNoMirror=TRUE;
 /*N*/   bPortionInfoChecked=FALSE;
-/*N*/   bDisableAutoWidthOnDragging=FALSE;
 /*N*/   ImpJustifyRect(aRect);
-/*N*/
-/*N*/   // #101684#
-/*N*/   mbInEditMode = FALSE;
-/*N*/
-/*N*/   // #108784#
-/*N*/   maTextEditOffset = Point(0, 0);
 /*N*/ }
 
 /*N*/ SdrTextObj::~SdrTextObj()
@@ -226,10 +190,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   const SfxItemSet& rSet = GetItemSet();
 /*N*/   BOOL bRet = ((SdrTextAutoGrowHeightItem&)(rSet.Get(SDRATTR_TEXT_AUTOGROWWIDTH))).GetValue();
 /*N*/
-/*N*/   // #101684#
-/*N*/   BOOL bInEditMOde = IsInEditMode();
-/*N*/
-/*N*/   if(!bInEditMOde && bRet)
+/*N*/   if(bRet)
 /*N*/   {
 /*N*/       SdrTextAniKind eAniKind = ((SdrTextAniKindItem&)(rSet.Get(SDRATTR_TEXT_ANIKIND))).GetValue();
 /*N*/
@@ -254,10 +215,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   const SfxItemSet& rSet = GetItemSet();
 /*N*/   SdrTextHorzAdjust eRet = ((SdrTextHorzAdjustItem&)(rSet.Get(SDRATTR_TEXT_HORZADJUST))).GetValue();
 /*N*/
-/*N*/   // #101684#
-/*N*/   BOOL bInEditMode = IsInEditMode();
-/*N*/
-/*N*/   if(!bInEditMode && eRet == SDRTEXTHORZADJUST_BLOCK)
+/*N*/   if(eRet == SDRTEXTHORZADJUST_BLOCK)
 /*N*/   {
 /*N*/       SdrTextAniKind eAniKind = ((SdrTextAniKindItem&)(rSet.Get(SDRATTR_TEXT_ANIKIND))).GetValue();
 /*N*/
@@ -283,10 +241,9 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   // #103516# Take care for vertical text animation here
 /*N*/   const SfxItemSet& rSet = GetItemSet();
 /*N*/   SdrTextVertAdjust eRet = ((SdrTextVertAdjustItem&)(rSet.Get(SDRATTR_TEXT_VERTADJUST))).GetValue();
-/*N*/   BOOL bInEditMode = IsInEditMode();
 /*N*/
 /*N*/   // #103516# Take care for vertical text animation here
-/*N*/   if(!bInEditMode && eRet == SDRTEXTVERTADJUST_BLOCK)
+/*N*/   if(eRet == SDRTEXTVERTADJUST_BLOCK)
 /*N*/   {
 /*N*/       SdrTextAniKind eAniKind = ((SdrTextAniKindItem&)(rSet.Get(SDRATTR_TEXT_ANIKIND))).GetValue();
 /*N*/
@@ -322,26 +279,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/ }
 
 
-
-/*N*/ bool SdrTextObj::HasEditText() const
-/*N*/ {
-/*N*/   bool bRet=FALSE;
-/*N*/   if (pEdtOutl!=NULL) {
-/*N*/       Paragraph* p1stPara=pEdtOutl->GetParagraph( 0 );
-/*N*/       ULONG nParaAnz=pEdtOutl->GetParagraphCount();
-/*N*/       if (p1stPara==NULL) nParaAnz=0;
-/*N*/       if (nParaAnz==1) { // bei nur einem Para nachsehen ob da ueberhaupt was drin steht
-/*N*/           XubString aStr(pEdtOutl->GetText(p1stPara));
-/*N*/
-/*N*/           // Aha, steht nix drin!
-/*N*/           if(!aStr.Len())
-/*N*/               nParaAnz = 0;
-/*N*/       }
-/*N*/       bRet=nParaAnz!=0;
-/*N*/   }
-/*N*/   return bRet;
-/*N*/ }
-
 /*N*/ void SdrTextObj::SetPage(SdrPage* pNewPage)
 /*N*/ {
 /*N*/   bool bRemove=pNewPage==NULL && pPage!=NULL;
@@ -373,9 +310,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   SdrAttrObj::SetModel(pNewModel);
 /*N*/
 /*N*/   if (bChg && pOutlinerParaObject!=NULL && pOldModel!=NULL && pNewModel!=NULL) {
-/*?*/       MapUnit aOldUnit(pOldModel->GetScaleUnit());
-/*?*/       MapUnit aNewUnit(pNewModel->GetScaleUnit());
-/*?*/       bool bScaleUnitChanged=aNewUnit!=aOldUnit;
 /*?*/       SetTextSizeDirty();
 /*?*/       // und nun dem OutlinerParaObject einen neuen Pool verpassen
 /*?*/       // !!! Hier muss noch DefTab und RefDevice der beiden Models
@@ -396,8 +330,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*?*/       rOutliner.SetText(*pOutlinerParaObject);
 /*?*/       delete pOutlinerParaObject;
 /*?*/       pOutlinerParaObject=NULL;
-/*?*/       if (bScaleUnitChanged) {DBG_BF_ASSERT(0, "STRIP");
-/*?*/       }
 /*?*/       SetOutlinerParaObject(rOutliner.CreateParaObject()); // #34494#
 /*?*/       pOutlinerParaObject->ClearPortionInfo();
 /*?*/       bPortionInfoChecked=FALSE;
@@ -431,15 +363,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   if(bTextFrame)
 /*N*/   {
 /*N*/       SetItem(SdrTextMinFrameHeightItem(nHgt));
-/*N*/
-/*N*/       // #84974# use bDisableAutoWidthOnDragging as
-/*N*/       // bDisableAutoHeightOnDragging if vertical.
-/*N*/       if(IsVerticalWriting() && bDisableAutoWidthOnDragging)
-/*N*/       {
-/*?*/           bDisableAutoWidthOnDragging = FALSE;
-/*?*/           SetItem(SdrTextAutoGrowHeightItem(FALSE));
-/*N*/       }
-/*N*/
 /*N*/       return TRUE;
 /*N*/   }
 /*?*/   return FALSE;
@@ -452,15 +375,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   if(bTextFrame)
 /*N*/   {
 /*N*/       SetItem(SdrTextMinFrameWidthItem(nWdt));
-/*N*/
-/*N*/       // #84974# use bDisableAutoWidthOnDragging only
-/*N*/       // when not vertical.
-/*N*/       if(!IsVerticalWriting() && bDisableAutoWidthOnDragging)
-/*N*/       {
-/*?*/           bDisableAutoWidthOnDragging = FALSE;
-/*?*/           SetItem(SdrTextAutoGrowWidthItem(FALSE));
-/*N*/       }
-/*N*/
 /*N*/       return TRUE;
 /*N*/   }
 /*N*/   return FALSE;
@@ -543,10 +457,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/           long nWdt=nAnkWdt;
 /*N*/           long nHgt=nAnkHgt;
 /*N*/
-/*N*/           // #101684#
-/*N*/           BOOL bInEditMode = IsInEditMode();
-/*N*/
-/*N*/           if (!bInEditMode && (eAniKind==SDRTEXTANI_SCROLL || eAniKind==SDRTEXTANI_ALTERNATE || eAniKind==SDRTEXTANI_SLIDE))
+/*N*/           if ( eAniKind==SDRTEXTANI_SCROLL || eAniKind==SDRTEXTANI_ALTERNATE || eAniKind==SDRTEXTANI_SLIDE )
 /*N*/           {
 /*?*/               // Grenzenlose Papiergroesse fuer Laufschrift
 /*?*/               if (eAniDirection==SDRTEXTANI_LEFT || eAniDirection==SDRTEXTANI_RIGHT) nWdt=1000000;
@@ -569,14 +480,9 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   }
 /*N*/
 /*N*/   rOutliner.SetPaperSize(aNullSize);
-/*N*/   if (bContourFrame)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   // Text in den Outliner stecken - ggf. den aus dem EditOutliner
 /*N*/   OutlinerParaObject* pPara=pOutlinerParaObject;
-/*N*/   if (pEdtOutl && !bNoEditText)
-/*?*/       pPara=pEdtOutl->CreateParaObject();
-/*N*/
 /*N*/   if (pPara)
 /*N*/   {
 /*N*/       BOOL bHitTest = FALSE;
@@ -598,9 +504,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   {
 /*?*/       rOutliner.SetTextObj( NULL );
 /*N*/   }
-/*N*/
-/*N*/   if (pEdtOutl && !bNoEditText && pPara)
-/*?*/       delete pPara;
 /*N*/
 /*N*/   rOutliner.SetUpdateMode(TRUE);
 /*N*/   rOutliner.SetControlWord(nStat0);
@@ -671,26 +574,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   rTextRect=Rectangle(aTextPos,aTextSiz);
 /*N*/   if (bContourFrame)
 /*?*/       rTextRect=aAnkRect;
-/*N*/ }
-
-/*N*/ OutlinerParaObject* SdrTextObj::GetEditOutlinerParaObject() const
-/*N*/ {
-/*N*/   OutlinerParaObject* pPara=NULL;
-/*N*/   if (pEdtOutl!=NULL) { // Wird gerade editiert, also das ParaObject aus dem aktiven Editor verwenden
-/*?*/       Paragraph* p1stPara=pEdtOutl->GetParagraph( 0 );
-/*?*/       ULONG nParaAnz=pEdtOutl->GetParagraphCount();
-/*?*/       if (nParaAnz==1 && p1stPara!=NULL) { // bei nur einem Para nachsehen ob da ueberhaupt was drin steht
-/*?*/           XubString aStr(pEdtOutl->GetText(p1stPara));
-/*?*/
-/*?*/           // Aha, steht nix drin!
-/*?*/           if(!aStr.Len())
-/*?*/               nParaAnz = 0;
-/*?*/       }
-/*?*/       if (p1stPara!=NULL && nParaAnz!=0) {
-/*?*/           pPara = pEdtOutl->CreateParaObject(0, (sal_uInt16)nParaAnz);
-/*?*/       }
-/*N*/   }
-/*N*/   return pPara;
 /*N*/ }
 
 // Geht z.Zt. nur wenn das Obj schon wenigstens einmal gepaintet wurde
@@ -852,18 +735,11 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/
 /*N*/       // #101776# Not all of the necessary parameters were copied yet.
 /*N*/       bNoShear = pText->bNoShear;
-/*N*/       bNoRotate = pText->bNoRotate;
 /*N*/       bNoMirror = pText->bNoMirror;
-/*N*/       bDisableAutoWidthOnDragging = pText->bDisableAutoWidthOnDragging;
 /*N*/
 /*N*/       if (pOutlinerParaObject!=NULL) delete pOutlinerParaObject;
 /*N*/       if (pText->HasText()) {
-/*N*/           const Outliner* pEO=pText->pEdtOutl;
-/*N*/           if (pEO!=NULL) {
-/*?*/               pOutlinerParaObject=pEO->CreateParaObject();
-/*N*/           } else {
-/*N*/               pOutlinerParaObject=pText->pOutlinerParaObject->Clone();
-/*N*/           }
+/*N*/           pOutlinerParaObject=pText->pOutlinerParaObject->Clone();
 /*N*/       } else {
 /*N*/           pOutlinerParaObject=NULL;
 /*N*/       }
@@ -953,10 +829,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 // #101029#: Extracted from Paint()
 
-/*N*/ void SdrTextObj::SetupOutlinerFormatting( SdrOutliner&, Rectangle& ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/ }
-
 /*N*/ OutlinerParaObject* SdrTextObj::GetOutlinerParaObject() const
 /*N*/ {
 /*N*/   return pOutlinerParaObject;
@@ -1026,10 +898,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/           SendUserCall(SDRUSERCALL_RESIZE,aBoundRect0);
 /*N*/       }
 /*N*/   }
-/*N*/ }
-
-/*N*/ void SdrTextObj::RestartAnimation(SdrPageView*) const
-/*N*/ {
 /*N*/ }
 
 /*N*/ void SdrTextObj::SaveGeoData(SdrObjGeoData& rGeo) const
@@ -1213,8 +1081,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   // #89459#
 /*N*/   if(pOutlinerParaObject)
 /*N*/       return pOutlinerParaObject->IsVertical();
-/*N*/   if(pEdtOutl)
-/*?*/       return pEdtOutl->IsVertical();
 /*N*/   return FALSE;
 /*N*/ }
 

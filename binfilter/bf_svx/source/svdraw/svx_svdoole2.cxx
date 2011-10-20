@@ -99,7 +99,7 @@ SdrOle2Obj::SdrOle2Obj(bool bFrame_)
 
 SdrOle2Obj::SdrOle2Obj(const SvInPlaceObjectRef& /*rNewObjRef*/, const XubString& /*rNewObjName*/, const Rectangle& rNewRect, bool /*bFrame_*/) :
     SdrRectObj(rNewRect)
-{DBG_BF_ASSERT(0, "STRIP");
+{
 }
 
 void SdrOle2Obj::Init()
@@ -306,17 +306,6 @@ void SdrOle2Obj::SetModel(SdrModel* pNewModel)
     if( bChg )
         Disconnect(); // mit dem alten Namen
 
-    if( pModel && pNewModel )
-    {
-        SvPersist* pDestPers = pNewModel->GetPersist();
-        SvPersist* pSrcPers  = pModel->GetPersist();
-
-        if( pDestPers && pSrcPers && ( pDestPers != pSrcPers ) )
-        {
-                {DBG_BF_ASSERT(0, "STRIP");}
-        }
-    }
-
     SdrRectObj::SetModel( pNewModel );
 
     if( bChg )
@@ -482,18 +471,6 @@ void SdrOle2Obj::NbcSetLogicRect(const Rectangle& rRect)
     ImpSetVisAreaSize();
 }
 
-bool SdrOle2Obj::HasGDIMetaFile() const
-{
-    DBG_BF_ASSERT(0, "STRIP");
-    return FALSE;
-}
-
-const GDIMetaFile* SdrOle2Obj::GetGDIMetaFile() const
-{
-    DBG_BF_ASSERT(0, "STRIP");
-    return NULL;
-}
-
 void SdrOle2Obj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 {
     rIn.SetError( 0 );
@@ -584,10 +561,6 @@ BOOL SdrOle2Obj::Unload()
         if (pPersist)
         {
             SvPersist* pO = *ppObjRef;
-            if( pO->IsModified() )
-            {
-                        DBG_BF_ASSERT(0, "return value of DoSave() or DoSaveCompleted() is not checked here");
-            }
             ppObjRef->Clear();
             if (pPersist->Unload(pO))
                 bUnloaded = TRUE;

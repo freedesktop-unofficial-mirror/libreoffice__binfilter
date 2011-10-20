@@ -44,21 +44,6 @@ struct ImpMeasureRec;
 struct ImpMeasurePoly;
 
 //************************************************************
-//   Hilfsklasse SdrMeasureObjGeoData
-//************************************************************
-
-class SdrMeasureObjGeoData : public SdrTextObjGeoData
-{
-public:
-    Point                       aPt1;
-    Point                       aPt2;
-
-public:
-    SdrMeasureObjGeoData();
-    virtual ~SdrMeasureObjGeoData();
-};
-
-//************************************************************
 //   SdrMeasureObj
 //************************************************************
 
@@ -91,11 +76,6 @@ public:
     virtual UINT16 GetObjIdentifier() const;
     virtual void TakeUnrotatedSnapRect(Rectangle& rRect) const;
 
-
-
-
-
-
     virtual void NbcMove(const Size& rSiz);
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
     virtual long GetRotateAngle() const;
@@ -107,7 +87,7 @@ public:
     virtual void NbcSetPoint(const Point& rPnt, USHORT i);
 
 
-    virtual bool BegTextEdit(SdrOutliner& rOutl);
+    virtual bool BegTextEdit(SdrOutliner& rOutl) { return false; } // DBG_BF_ASSERT
     virtual void EndTextEdit(SdrOutliner& rOutl);
     virtual const Size& GetTextSize() const;
     virtual void TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, bool bNoEditText=FALSE,
