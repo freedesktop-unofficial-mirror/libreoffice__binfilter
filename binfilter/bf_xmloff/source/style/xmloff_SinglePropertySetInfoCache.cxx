@@ -36,9 +36,11 @@ using ::com::sun::star::beans::XPropertySet;
 using ::com::sun::star::beans::XPropertySetInfo;
 
 sal_Bool SinglePropertySetInfoCache::hasProperty(
-        const Reference< XPropertySet >& /*rPropSet*/,
+        const Reference< XPropertySet >& rPropSet,
         Reference< XPropertySetInfo >& rPropSetInfo )
 {
+    if( !rPropSetInfo.is() )
+        rPropSetInfo = rPropSet->getPropertySetInfo();
     iterator aIter = find( rPropSetInfo );
     if( aIter != end() )
     {
