@@ -223,8 +223,8 @@ public:
 
     // Gleichzeitig wird der Text in den Outliner gesetzt (ggf.
     // der des EditOutliners) und die PaperSize gesetzt.
-    virtual void TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, bool bNoEditText=FALSE,
-        Rectangle* pAnchorRect=NULL, BOOL bLineWidth=TRUE ) const;
+    virtual void TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect,
+        Rectangle* pAnchorRect ) const;
     virtual void TakeTextAnchorRect(Rectangle& rAnchorRect) const;
     inline long GetEckenradius() const;
     bool IsAutoGrowHeight() const;

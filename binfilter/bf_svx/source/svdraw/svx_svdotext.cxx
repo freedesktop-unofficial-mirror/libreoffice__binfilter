@@ -424,8 +424,8 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   rAnchorRect=aAnkRect;
 /*N*/ }
 
-/*N*/ void SdrTextObj::TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, bool bNoEditText,
-/*N*/                              Rectangle* pAnchorRect, BOOL /*bLineWidth*/ ) const
+/*N*/ void SdrTextObj::TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect,
+/*N*/                              Rectangle* pAnchorRect ) const
 /*N*/ {
 /*N*/   Rectangle aAnkRect; // Rect innerhalb dem geankert wird
 /*N*/   TakeTextAnchorRect(aAnkRect);
@@ -615,7 +615,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/               SdrOutliner& rOutliner=ImpGetDrawOutliner();
 /*N*/               Rectangle aTextRect;
 /*N*/               Rectangle aAnchorRect;
-/*N*/               TakeTextRect(rOutliner,aTextRect,TRUE,&aAnchorRect); // EditText ignorieren!
+/*N*/               TakeTextRect(rOutliner,aTextRect,&aAnchorRect); // EditText ignorieren!
 /*N*/               SdrFitToSizeType eFit=GetFitToSize();
 /*N*/               bool bFitToSize=(eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES);
 /*N*/               if (bFitToSize) aTextRect=aAnchorRect;
@@ -652,7 +652,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       TakeTextRect( *pOutliner, aTextRect, FALSE, &aLclAnchor, FALSE ); // EditText nicht mehr ignorieren! TRUE); // EditText ignorieren!
+/*N*/       TakeTextRect( *pOutliner, aTextRect, &aLclAnchor ); // EditText nicht mehr ignorieren! TRUE); // EditText ignorieren!
 /*N*/
 /*N*/       if (bFitToSize)
 /*?*/           aR=aLclAnchor;
@@ -761,7 +761,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   if (pOutlinerParaObject!=NULL && !IsFontwork() && !IsContourTextFrame()) {
 /*?*/       Rectangle aLclAnchor;
 /*?*/       Rectangle aR;
-/*?*/       TakeTextRect(rOutliner,aR,FALSE,&aLclAnchor);
+/*?*/       TakeTextRect(rOutliner,aR,&aLclAnchor);
 /*?*/       rOutliner.Clear();
 /*?*/       SdrFitToSizeType eFit=GetFitToSize();
 /*?*/       bool bFitToSize=(eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES);

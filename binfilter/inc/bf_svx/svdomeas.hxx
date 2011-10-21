@@ -87,11 +87,11 @@ public:
     virtual void NbcSetPoint(const Point& rPnt, USHORT i);
 
 
-    virtual bool BegTextEdit(SdrOutliner& rOutl) { return false; } // DBG_BF_ASSERT
+    virtual bool BegTextEdit(SdrOutliner&) { return false; } // DBG_BF_ASSERT
     virtual void EndTextEdit(SdrOutliner& rOutl);
     virtual const Size& GetTextSize() const;
-    virtual void TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, bool bNoEditText=FALSE,
-        Rectangle* pAnchorRect=NULL, BOOL bLineWidth=TRUE ) const;
+    virtual void TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect,
+        Rectangle* pAnchorRect ) const;
     virtual void TakeTextAnchorRect(Rectangle& rAnchorRect) const;
     virtual void NbcSetOutlinerParaObject(OutlinerParaObject* pTextObject);
     virtual OutlinerParaObject* GetOutlinerParaObject() const;

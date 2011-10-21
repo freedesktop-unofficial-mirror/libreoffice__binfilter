@@ -796,11 +796,11 @@ namespace binfilter {
 /*N*/   if (pOutlinerParaObject==NULL) SetTextDirty(); // Text neu berechnen!
 /*N*/ }
 
-/*N*/ void SdrMeasureObj::TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, bool bNoEditText,
-/*N*/   Rectangle* pAnchorRect, BOOL bLineWidth ) const
+/*N*/ void SdrMeasureObj::TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect,
+/*N*/   Rectangle* pAnchorRect ) const
 /*N*/ {
 /*N*/   if (bTextDirty) UndirtyText();
-/*N*/   SdrTextObj::TakeTextRect( rOutliner, rTextRect, bNoEditText, pAnchorRect, bLineWidth );
+/*N*/   SdrTextObj::TakeTextRect( rOutliner, rTextRect, pAnchorRect );
 /*N*/ }
 
 /*N*/ void SdrMeasureObj::TakeTextAnchorRect(Rectangle& rAnchorRect) const
