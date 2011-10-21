@@ -274,7 +274,7 @@ using namespace ::com::sun::star;
 
 /*N*/ IMPL_LINK( ScChartListenerCollection, TimerHdl, Timer*, EMPTYARG )
 /*N*/ {
-/*N*/   if ( Application::AnyInput( INPUT_KEYBOARD ) )
+/*N*/   if ( Application::AnyInput( VCL_INPUT_KEYBOARD ) )
 /*N*/   {
 /*?*/       aTimer.Start();
 /*?*/       return 0;
