@@ -101,17 +101,6 @@ namespace clipboard {
 
 namespace binfilter {
 
-struct ImplIMEInfos
-{
-    String      aOldTextAfterStartPos;
-    sal_uInt16* pAttribs;
-    EditPaM     aPos;
-    sal_uInt16  nLen;
-    sal_Bool    bCursor;
-    sal_Bool    bWasCursorOverwrite;
-};
-
-
 struct FormatterFontMetric
 {
     sal_uInt16 nMaxAscent;
@@ -138,39 +127,15 @@ private:
     Window*             pOutWin;
     Pointer*            pPointer;
 
-    long                nInvMore;
     ULONG               nControl;
-    sal_uInt32          nTravelXPos;
-    sal_uInt16          nExtraCursorFlags;
-    sal_uInt16          nCursorBidiLevel;
-    sal_uInt16          nScrollDiffX;
     sal_Bool            bReadOnly;
-    sal_Bool            bClickedInSelection;
-    sal_Bool            bActiveDragAndDropListener;
 
-    Point               aAnchorPoint;
     Rectangle           aOutArea;
     Point               aVisDocStartPos;
-    EESelectionMode     eSelectionMode;
     EditSelection       aEditSelection;
-    EVAnchorMode        eAnchorMode;
-
-protected:
-
-    // DragAndDropClient
-
-
 
 public:
                     ~ImpEditView();
-
-    EditView*       GetEditViewPtr() { return pEditView; }
-
-    sal_uInt16      GetScrollDiffX() const          { return nScrollDiffX; }
-    void            SetScrollDiffX( sal_uInt16 n )  { nScrollDiffX = n; }
-
-    sal_uInt16      GetCursorBidiLevel() const      { return nCursorBidiLevel; }
-    void            SetCursorBidiLevel( sal_uInt16 n ) { nCursorBidiLevel = n; }
 
     Point           GetDocPos( const Point& rWindowPos ) const;
     Point           GetWindowPos( const Point& rDocPos ) const;
@@ -179,9 +144,6 @@ public:
     const Rectangle&    GetOutputArea() const   { return aOutArea; }
 
     BOOL            IsVertical() const;
-
-    void            SetVisDocStartPos( const Point& rPos ) { aVisDocStartPos = rPos; }
-    const Point&    GetVisDocStartPos() const { return aVisDocStartPos; }
 
     long            GetVisDocLeft() const { return aVisDocStartPos.X(); }
     long            GetVisDocTop() const { return aVisDocStartPos.Y(); }
@@ -198,36 +160,19 @@ public:
 
     Window*         GetWindow() const           { return pOutWin; }
 
-    EESelectionMode GetSelectionMode() const    { return eSelectionMode; }
-
     inline void     SetPointer( const Pointer& rPointer );
-    inline const Pointer&   GetPointer();
+    inline const    Pointer&   GetPointer();
 
     inline void     SetCursor( const Cursor& rCursor );
     inline Cursor*  GetCursor();
 
-
-    EVAnchorMode    GetAnchorMode() const           { return eAnchorMode; }
     void            ShowCursor( sal_Bool bGotoCursor, sal_Bool bForceVisCursor, BOOL test );
 
-    sal_Bool            IsInsertMode() const            { return ( ( nControl & EV_CNTRL_OVERWRITE ) == 0 ); }
-
-    void                EnablePaste( sal_Bool bEnable )     { SetFlags( nControl, EV_CNTRL_ENABLEPASTE, bEnable ); }
-    sal_Bool            IsPasteEnabled() const          { return ( ( nControl & EV_CNTRL_ENABLEPASTE ) != 0 ); }
-
-    sal_Bool            DoSingleLinePaste() const       { return ( ( nControl & EV_CNTRL_SINGLELINEPASTE ) != 0 ); }
-    sal_Bool            DoAutoScroll() const            { return ( ( nControl & EV_CNTRL_AUTOSCROLL ) != 0 ); }
-    sal_Bool            DoBigScroll() const             { return ( ( nControl & EV_CNTRL_BIGSCROLL ) != 0 ); }
-    sal_Bool            DoAutoSize() const              { return ( ( nControl & EV_CNTRL_AUTOSIZE ) != 0 ); }
-    sal_Bool            DoAutoWidth() const             { return ( ( nControl & EV_CNTRL_AUTOSIZEX) != 0 ); }
-    sal_Bool            DoInvalidateMore() const        { return ( ( nControl & EV_CNTRL_INVONEMORE ) != 0 ); }
+    sal_Bool        IsInsertMode() const { return ( ( nControl & EV_CNTRL_OVERWRITE ) == 0 ); }
+    sal_Bool        DoAutoScroll() const { return ( ( nControl & EV_CNTRL_AUTOSCROLL ) != 0 ); }
 
     const Color&    GetBackgroundColor() const {
                         return ( pBackgroundColor ? *pBackgroundColor : pOutWin->GetBackground().GetColor() ); }
-
-    // Ggf. mehr als OutputArea invalidieren, fuer den DrawingEngine-Textrahmen...
-    void            SetInvalidateMore( sal_uInt16 nPixel ) { nInvMore = nPixel; }
-    sal_uInt16      GetInvalidateMore() const { return (sal_uInt16)nInvMore; }
 };
 
 // ----------------------------------------------------------------------
@@ -288,8 +233,6 @@ private:
     EditUndoManager*    pUndoManager;
     ESelection*         pUndoMarkSelection;
 
-    ImplIMEInfos*       mpIMEInfos;
-
     NotifyList          aNotifyCache;
 
     XubString           aWordDelimiters;
@@ -306,8 +249,6 @@ private:
 
     USHORT              nAsianCompressionMode;
     BOOL                bKernAsianPunctuation;
-
-    EEHorizontalTextDirection eDefaultHorizontalTextDirection;
 
     sal_uInt16          nBigTextObjectStart;
     ::com::sun::star::uno::Reference < ::com::sun::star::i18n::XBreakIterator > xBI;
@@ -410,8 +351,6 @@ private:
 
     void                ImpFindKashidas( ContentNode* pNode, USHORT nStart, USHORT nEnd, SvUShorts& rArray );
 
-
-
     EditPaM             WordRight( const EditPaM& rPaM, sal_Int16 nWordType = ::com::sun::star::i18n::WordType::ANYWORD_IGNOREWHITESPACES );
     EditSelection       SelectWord( const EditSelection& rCurSelection, sal_Int16 nWordType = ::com::sun::star::i18n::WordType::ANYWORD_IGNOREWHITESPACES, BOOL bAcceptStartOfWord = TRUE );
     EditPaM             CursorVisualLeftRight( EditView* pEditView, const EditPaM& rPaM, USHORT nCharacterIteratorMode, BOOL bToLeft );
@@ -424,10 +363,7 @@ private:
     BOOL                IsScriptChange( const EditPaM& rPaM ) const;
     BOOL                HasScriptType( USHORT nPara, USHORT nType ) const;
 
-
     void                ImplInitLayoutMode( OutputDevice* pOutDev, USHORT nPara, USHORT nIndex );
-
-
 
     inline short        GetXValue( short nXValue ) const;
     inline sal_uInt16   GetXValue( sal_uInt16 nXValue ) const;
@@ -435,8 +371,6 @@ private:
 
     inline short        GetYValue( short nYValue ) const;
     inline sal_uInt16   GetYValue( sal_uInt16 nYValue ) const;
-
-
 
     void                SetBackgroundColor( const Color& rColor ) { maBackgroundColor = rColor; }
     Color               GetBackgroundColor() const { return maBackgroundColor; }
@@ -457,10 +391,6 @@ private:
     void                SetValidPaperSize( const Size& rSz );
 
     ::com::sun::star::uno::Reference < ::com::sun::star::i18n::XBreakIterator > ImplGetBreakIterator();
-
-
-
-protected:
 
 public:
                             ImpEditEngine( EditEngine* pEditEngine, SfxItemPool* pPool );
@@ -484,10 +414,6 @@ public:
 
     void                    SetVertical( BOOL bVertical );
     BOOL                    IsVertical() const                      { return GetEditDoc().IsVertical(); }
-
-    void                        SetDefaultHorizontalTextDirection( EEHorizontalTextDirection eHTextDir ) { eDefaultHorizontalTextDirection = eHTextDir; }
-    EEHorizontalTextDirection   GetDefaultHorizontalTextDirection() const { return eDefaultHorizontalTextDirection; }
-
 
     void                    InitWritingDirections( USHORT nPara );
     BOOL                    IsRightToLeft( USHORT nPara ) const;

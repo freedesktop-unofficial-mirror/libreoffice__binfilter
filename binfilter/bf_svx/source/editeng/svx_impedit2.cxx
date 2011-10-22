@@ -99,7 +99,6 @@ using namespace ::com::sun::star;
 /*N*/   pEmptyItemSet       = NULL;
 /*N*/   pActiveView         = NULL;
 /*N*/   pTextObjectPool     = NULL;
-/*N*/   mpIMEInfos          = NULL;
 /*N*/   pStylePool          = NULL;
 /*N*/   pUndoManager        = NULL;
 /*N*/   pUndoMarkSelection  = NULL;
@@ -136,9 +135,6 @@ using namespace ::com::sun::star;
 /*N*/     nAsianCompressionMode = text::CharacterCompressionType::NONE;
 /*N*/   bKernAsianPunctuation = FALSE;
 /*N*/
-/*N*/     eDefaultHorizontalTextDirection = EE_HTEXTDIR_DEFAULT;
-/*N*/
-/*N*/
 /*N*/   aStatus.GetControlWord() =  EE_CNTRL_USECHARATTRIBS | EE_CNTRL_DOIDLEFORMAT |
 /*N*/                               EE_CNTRL_PASTESPECIAL | EE_CNTRL_UNDOATTRIBS |
 /*N*/                               EE_CNTRL_ALLOWBIGOBJS | EE_CNTRL_RTFSTYLESHEETS |
@@ -168,9 +164,8 @@ using namespace ::com::sun::star;
 /*N*/   delete pEmptyItemSet;
 /*N*/   delete pUndoManager;
 /*N*/   delete pTextRanger;
-/*N*/   delete mpIMEInfos;
-/*N*/     delete pColorConfig;
-/*N*/     delete pCTLOptions;
+/*N*/   delete pColorConfig;
+/*N*/   delete pCTLOptions;
 /*N*/   if ( bOwnerOfRefDev )
 /*N*/       delete pRefDev;
 /*N*/ }
@@ -403,21 +398,6 @@ using namespace ::com::sun::star;
 //  ----------------------------------------------------------------------
 //  Cursorbewegungen
 //  ----------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -740,20 +720,11 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/     if ( !IsVertical() )
 /*N*/     {
-/*N*/         bR2L = GetDefaultHorizontalTextDirection() == EE_HTEXTDIR_R2L;
 /*N*/         pFrameDirItem = &(const SvxFrameDirectionItem&)GetParaAttrib( nPara, EE_PARA_WRITINGDIR );
 /*N*/         if ( pFrameDirItem->GetValue() == FRMDIR_ENVIRONMENT )
 /*N*/         {
-/*N*/             // #103045# if DefaultHorizontalTextDirection is set, use that value, otherwise pool default.
-/*N*/             if ( GetDefaultHorizontalTextDirection() != EE_HTEXTDIR_DEFAULT )
-/*N*/             {
-/*?*/                 pFrameDirItem = NULL; // bR2L allready set to default horizontal text direction
-/*N*/             }
-/*N*/             else
-/*N*/             {
-/*N*/                 // Use pool default
-/*N*/                 pFrameDirItem = &(const SvxFrameDirectionItem&)((ImpEditEngine*)this)->GetEmptyItemSet().Get( EE_PARA_WRITINGDIR );
-/*N*/             }
+/*N*/             // Use pool default
+/*N*/             pFrameDirItem = &(const SvxFrameDirectionItem&)((ImpEditEngine*)this)->GetEmptyItemSet().Get( EE_PARA_WRITINGDIR );
 /*N*/         }
 /*N*/     }
 /*N*/
@@ -767,7 +738,6 @@ using namespace ::com::sun::star;
 
 /*N*/ BYTE ImpEditEngine::GetRightToLeft( USHORT nPara, USHORT nPos, USHORT* pStart, USHORT* pEnd )
 /*N*/ {
-/*N*/ //    BYTE nRightToLeft = IsRightToLeft( nPara ) ? 1 : 0;
 /*N*/     BYTE nRightToLeft = 0;
 /*N*/
 /*N*/     ContentNode* pNode = aEditDoc.SaveGetObject( nPara );
@@ -1448,19 +1418,6 @@ using namespace ::com::sun::star;
 /*N*/   if ( pActiveView && pActiveView->HasSelection() )
 /*?*/       pActiveView->pImpEditView->DrawSelection(); // Wegzeichnen...
 /*N*/
-/*N*/   //  NN: Quick fix for #78668#:
-/*N*/   //  When editing of a cell in Calc is ended, the edit engine is not deleted,
-/*N*/   //  only the edit views are removed. If mpIMEInfos is still set in that case,
-/*N*/   //  mpIMEInfos->aPos points to an invalid selection.
-/*N*/   //  -> reset mpIMEInfos now
-/*N*/   //  (probably something like this is necessary whenever the content is modified
-/*N*/   //  from the outside)
-/*N*/
-/*N*/   if ( !pView && mpIMEInfos )
-/*N*/   {
-/*?*/       delete mpIMEInfos;
-/*?*/       mpIMEInfos = NULL;
-/*N*/   }
 /*N*/ }
 
 
@@ -1578,14 +1535,6 @@ using namespace ::com::sun::star;
 /*N*/   // Wenn Zeile gefunden, nur noch X-Position => Index
 /*N*/   nCurIndex = GetChar( pPortion, pLine, aDocPos.X(), bSmart );
 /*N*/   aPaM.SetIndex( nCurIndex );
-/*N*/
-/*N*/   if (  nCurIndex
-           && ( nCurIndex == pLine->GetEnd() )
-           && ( pLine != pPortion->GetLines().GetObject( pPortion->GetLines().Count()-1) )
-           )
-/*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP");
-/*N*/     }
 /*N*/
 /*N*/   return aPaM;
 /*N*/ }

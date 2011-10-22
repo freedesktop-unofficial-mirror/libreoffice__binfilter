@@ -1737,20 +1737,6 @@ struct TabInfo
 /*N*/   for ( USHORT nD = 0; nD < rWritingDirections.Count(); nD++ )
 /*?*/       aPositions.Insert( rWritingDirections[nD].nStartPos );
 /*N*/
-/*N*/   if ( mpIMEInfos && mpIMEInfos->nLen && mpIMEInfos->pAttribs && ( mpIMEInfos->aPos.GetNode() == pNode ) )
-/*N*/   {
-/*?*/       sal_uInt16 nLastAttr = 0xFFFF;
-/*?*/       for( sal_uInt16 n = 0; n < mpIMEInfos->nLen; n++ )
-/*?*/       {
-/*?*/           if ( mpIMEInfos->pAttribs[n] != nLastAttr )
-/*?*/           {
-/*?*/               aPositions.Insert( mpIMEInfos->aPos.GetIndex() + n );
-/*?*/               nLastAttr = mpIMEInfos->pAttribs[n];
-/*?*/           }
-/*?*/       }
-/*?*/       aPositions.Insert( mpIMEInfos->aPos.GetIndex() + mpIMEInfos->nLen );
-/*N*/   }
-/*N*/
 /*N*/   // Ab ... loeschen:
 /*N*/   // Leider muss die Anzahl der TextPortions mit aPositions.Count()
 /*N*/   // nicht uebereinstimmen, da evtl. Zeilenumbrueche...
@@ -2116,37 +2102,6 @@ struct TabInfo
 /*?*/             else
 /*?*/                 rFont.SetColor( COL_BLACK );
 /*N*/         }
-/*N*/   }
-/*N*/
-/*N*/   if ( mpIMEInfos && mpIMEInfos->pAttribs && ( mpIMEInfos->aPos.GetNode() == pNode ) &&
-/*N*/       ( nPos > mpIMEInfos->aPos.GetIndex() ) && ( nPos <= ( mpIMEInfos->aPos.GetIndex() + mpIMEInfos->nLen ) ) )
-/*N*/   {
-/*?*/       sal_uInt16 nAttr = mpIMEInfos->pAttribs[ nPos - mpIMEInfos->aPos.GetIndex() - 1 ];
-/*?*/       if ( nAttr & EXTTEXTINPUT_ATTR_UNDERLINE )
-/*?*/           rFont.SetUnderline( UNDERLINE_SINGLE );
-/*?*/       else if ( nAttr & EXTTEXTINPUT_ATTR_BOLDUNDERLINE )
-/*?*/           rFont.SetUnderline( UNDERLINE_BOLD );
-/*?*/       else if ( nAttr & EXTTEXTINPUT_ATTR_DOTTEDUNDERLINE )
-/*?*/           rFont.SetUnderline( UNDERLINE_DOTTED );
-/*?*/       else if ( nAttr & EXTTEXTINPUT_ATTR_DASHDOTUNDERLINE )
-/*?*/           rFont.SetUnderline( UNDERLINE_DOTTED );
-/*?*/       else if ( nAttr & EXTTEXTINPUT_ATTR_REDTEXT )
-/*?*/           rFont.SetColor( Color( COL_RED ) );
-/*?*/       else if ( nAttr & EXTTEXTINPUT_ATTR_HALFTONETEXT )
-/*?*/           rFont.SetColor( Color( COL_LIGHTGRAY ) );
-/*?*/       if ( nAttr & EXTTEXTINPUT_ATTR_HIGHLIGHT )
-/*?*/       {
-/*?*/           const StyleSettings& rStyleSettings = Application::GetSettings().GetStyleSettings();
-/*?*/           rFont.SetColor( rStyleSettings.GetHighlightTextColor() );
-/*?*/           rFont.SetFillColor( rStyleSettings.GetHighlightColor() );
-/*?*/           rFont.SetTransparent( FALSE );
-/*?*/       }
-/*?*/       else if ( nAttr & EXTTEXTINPUT_ATTR_GRAYWAVELINE )
-/*?*/       {
-/*?*/           rFont.SetUnderline( UNDERLINE_WAVE );
-/*?*/           if( pOut )
-/*?*/               pOut->SetTextLineColor( Color( COL_LIGHTGRAY ) );
-/*?*/       }
 /*N*/   }
 /*N*/ }
 
