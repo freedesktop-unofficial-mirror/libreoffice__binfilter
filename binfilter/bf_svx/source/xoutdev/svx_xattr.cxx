@@ -3880,7 +3880,6 @@ const XHatch& XFillHatchItem::GetValue() const
 
 /*N*/ SfxPoolItem* XFillAttrSetItem::Create( SvStream& rStream, USHORT /*nVersion*/ ) const
 /*N*/ {
-/*SB*/fprintf(stderr,"XFillAttrSetItem::Create\n");
 /*N*/   SfxItemSet* _pSet = new SfxItemSet( *GetItemSet().GetPool(),
 /*N*/                                   XATTR_FILL_FIRST, XATTR_FILL_LAST);
 /*N*/   _pSet->Load( rStream );
