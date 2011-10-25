@@ -353,7 +353,7 @@ static USHORT nIdleCount = 0;
 
 /*N*/ IMPL_LINK( ScModule, IdleHandler, Timer*, EMPTYARG )
 /*N*/ {
-/*N*/   if ( Application::AnyInput( INPUT_MOUSEANDKEYBOARD ) )
+/*N*/   if ( Application::AnyInput( VCL_INPUT_MOUSEANDKEYBOARD ) )
 /*N*/   {
 /*N*/       aIdleTimer.Start();         // Timeout unveraendert
 /*N*/       return 0;
