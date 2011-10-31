@@ -239,7 +239,7 @@ static Sequence< OUString > retrieveAsciiValueList(
                 }
             }
         }
-        catch( InvalidRegistryException & )
+        catch( const InvalidRegistryException & )
         {
         }
     }
@@ -794,11 +794,13 @@ void OServiceManager::disposing()
             if( xComp.is() )
                 xComp->dispose();
         }
-        catch (RuntimeException & exc)
+        catch (const RuntimeException & exc)
         {
 #ifdef DEBUG
             OString str( OUStringToOString( exc.Message, RTL_TEXTENCODING_ASCII_US ) );
             OSL_TRACE( "### RuntimeException occurred upon disposing factory: %s", str.getStr() );
+#else
+            (void)exc;
 #endif
         }
     }
@@ -1004,11 +1006,13 @@ Reference< XInterface > OServiceManager::createInstanceWithContext(
                 }
             }
         }
-        catch (lang::DisposedException & exc)
+        catch (const lang::DisposedException & exc)
         {
 #ifdef DEBUG
             OString str( OUStringToOString( exc.Message, RTL_TEXTENCODING_ASCII_US ) );
             OSL_TRACE( "### DisposedException occurred: %s", str.getStr() );
+#else
+            (void)exc;
 #endif
         }
     }
@@ -1053,11 +1057,13 @@ Reference< XInterface > OServiceManager::createInstanceWithArgumentsAndContext(
                 }
             }
         }
-        catch (lang::DisposedException & exc)
+        catch (const lang::DisposedException & exc)
         {
 #ifdef DEBUG
             OString str( OUStringToOString( exc.Message, RTL_TEXTENCODING_ASCII_US ) );
             OSL_TRACE( "### DisposedException occurred: %s", str.getStr() );
+#else
+            (void)exc;
 #endif
         }
     }
@@ -1510,7 +1516,7 @@ Reference<XInterface > ORegistryServiceManager::loadWithImplementationName(
             m_SetLoadedFactories.insert( ret);
         }
     }
-    catch (InvalidRegistryException &)
+    catch (const InvalidRegistryException &)
     {
     }
 
@@ -1569,7 +1575,7 @@ void ORegistryServiceManager::fillAllNamesFromRegistry( HashSet_OWString & rSet 
                 rSet.insert( aKeys.getConstArray()[i]->getKeyName().copy( nPrefix ) );
         }
     }
-    catch (InvalidRegistryException &)
+    catch (const InvalidRegistryException &)
     {
     }
 }
@@ -2063,7 +2069,7 @@ void * SAL_CALL legacysmgr_component_getFactory(
         return component_getFactoryHelper(
             implName, s_xLegacyMgr.get(), key, s_entries );
     }
-    catch (Exception & exc)
+    catch (const Exception & exc)
     {
 #if defined _DEBUG
         OUStringBuffer buf( 128 );
@@ -2076,6 +2082,8 @@ void * SAL_CALL legacysmgr_component_getFactory(
             OUStringToOString(
                 buf.makeStringAndClear(), RTL_TEXTENCODING_ASCII_US ) );
         OSL_FAIL( cstr.getStr() );
+#else
+        (void)exc;
 #endif
     }
     return 0;
