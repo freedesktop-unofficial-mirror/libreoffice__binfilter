@@ -39,6 +39,7 @@
 #include <bf_sfx2/fcontnr.hxx>
 #include <bf_sfx2/docfac.hxx>
 #include <bf_so3/staticbaseurl.hxx>
+#include <comphelper/mediadescriptor.hxx>
 
 namespace binfilter {
 
@@ -86,64 +87,51 @@ sal_Bool bf_MigrateFilter::getContactToLegacyProcessServiceFactory()
 sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::PropertyValue >& aDescriptor)
     throw (RuntimeException)
 {
-    sal_Int32 nLength(aDescriptor.getLength());
-    const PropertyValue* pValue = aDescriptor.getConstArray();
+    comphelper::MediaDescriptor aMediaDescriptor(aDescriptor);
+    aMediaDescriptor.addInputStream();
 
     Reference < XInputStream > xInputStream;
+    aMediaDescriptor[comphelper::MediaDescriptor::PROP_INPUTSTREAM()] >>= xInputStream;
+
+    OUString sURL;
+    aMediaDescriptor[comphelper::MediaDescriptor::PROP_URL()] >>= sURL;
+
+    OUString sFilterName;
+    aMediaDescriptor[comphelper::MediaDescriptor::PROP_FILTERNAME()] >>= sFilterName;
+
+    Reference< XInteractionHandler > xInteractionHandler;
+    aMediaDescriptor[comphelper::MediaDescriptor::PROP_INTERACTIONHANDLER()] >>= xInteractionHandler;
+
+    sal_Bool bInserting(sal_False);
+    aMediaDescriptor[rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("InsertMode"))] >>= bInserting;
+
     Reference< XCloseable > rStrippedDocument;
     Reference< XMultiServiceFactory > rStrippedMSF;
     Reference < XDocumentHandler > xLocalDocumentHandler;
     Reference < XExporter > xStrippedExporter;
-    Reference< XInteractionHandler > xInteractionHandler;
 
-    OUString sFilterName;
-    OUString sURL;
     OUString sXMLImportService;
     OUString sXMLExportService;
     OUString sStrippedDocumentType;
 
     sal_Bool bRetval(sal_True);
     sal_Bool bStrippedDocumentCreated(sal_False);
-    sal_Bool bInserting(sal_False);
 
-    for(sal_Int32 a(0); a < nLength; a++)
+    // test for necessary parameters
+    if(!xInputStream.is())
     {
-        OUString sName(pValue[a].Name);
-
-        if(pValue[a].Name.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("InputStream")))
-            pValue[a].Value >>= xInputStream;
-
-        else if(pValue[a].Name.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("FilterName")))
-            pValue[a].Value >>= sFilterName;
-
-        else if(pValue[a].Name.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("URL")))
-            pValue[a].Value >>= sURL;
-
-        else if(pValue[a].Name.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("InteractionHandler")))
-            pValue[a].Value >>= xInteractionHandler;
-
-        else if(pValue[a].Name.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("InsertMode")))
-            pValue[a].Value >>= bInserting;
+        OSL_ASSERT(0);
+        bRetval = sal_False;
     }
-
-    if(bRetval)
+    else if(!sURL.getLength())
     {
-        // test for necessary parameters
-        if(!xInputStream.is())
-        {
-            OSL_ASSERT(0);
-            bRetval = sal_False;
-        }
-        else if(!sURL.getLength())
-        {
-            OSL_ASSERT(0);
-            bRetval = sal_False;
-        }
-        else if(!sFilterName.getLength())
-        {
-            OSL_ASSERT(0);
-            bRetval = sal_False;
-        }
+        OSL_ASSERT(0);
+        bRetval = sal_False;
+    }
+    else if(!sFilterName.getLength())
+    {
+        OSL_ASSERT(0);
+        bRetval = sal_False;
     }
 
     if(bRetval)
@@ -185,6 +173,8 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
 
     // Get DocumentType using GetFilterMatcher() (test)
     const SfxFilter* pFilter = SFX_APP()->GetFilterMatcher().GetFilter4FilterName( sFilterName );
+
+    fprintf(stderr, "pFilter is %p\n", pFilter);
 
     if(bRetval)
     {
@@ -247,12 +237,12 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
 
                 rStrippedLoadable->load(seqPropValues);
             }
-            catch(IOException& /*e*/)
+            catch (const IOException&)
             {
                 OSL_FAIL("IO exception.");
                 bRetval = sal_False;
             }
-            catch(IllegalArgumentException& /*e*/)
+            catch (const IllegalArgumentException&)
             {
                 OSL_FAIL("uno url invalid");
                 bRetval = sal_False;
@@ -325,7 +315,7 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
                     UNO_QUERY );
                 bRetval = xSubFilter->filter( aDescriptor );
             }
-            catch(Exception& )
+            catch (const Exception&)
             {
             }
         }
@@ -390,7 +380,7 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
                 xStrippedExporter = Reference< XExporter >( rStrippedMSF->createInstanceWithArguments(sXMLExportService, aAnys), UNO_QUERY_THROW );
 
                 // set source document to Strippedly loaded read-only document
-                    xStrippedExporter->setSourceDocument( Reference < XComponent >( rStrippedDocument, UNO_QUERY ) );
+                xStrippedExporter->setSourceDocument( Reference < XComponent >( rStrippedDocument, UNO_QUERY ) );
 
                 // lock target document controllers
                 Reference < com::sun::star::frame::XModel > xTargetDocumentModel(mxDoc, UNO_QUERY);
@@ -414,7 +404,7 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
         }
     }
     }
-    catch ( Exception& )
+    catch (const Exception&)
     {
         OSL_ASSERT(0);
         bRetval = sal_False;
@@ -427,7 +417,7 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
         {
             rStrippedDocument->close(sal_True);
         }
-        catch(Exception& /*e*/)
+        catch (const Exception&)
         {
         }
     }
@@ -524,6 +514,7 @@ Reference< XInterface > SAL_CALL bf_MigrateFilter_createInstance(const Reference
     if ( !mxLegServFact.is() )
     {
         mxLegServFact = ::legacy_binfilters::getLegacyProcessServiceFactory();
+        fprintf(stderr, "mxLegServFact is %d\n", mxLegServFact.is());
         ::com::sun::star::uno::Reference < XComponent > xWrapper( mxLegServFact->createInstance(
             ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.office.OfficeWrapper" ))), UNO_QUERY );
     }
