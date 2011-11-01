@@ -174,8 +174,6 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
     // Get DocumentType using GetFilterMatcher() (test)
     const SfxFilter* pFilter = SFX_APP()->GetFilterMatcher().GetFilter4FilterName( sFilterName );
 
-    fprintf(stderr, "pFilter is %p\n", pFilter);
-
     if(bRetval)
     {
         if(pFilter)
@@ -514,7 +512,6 @@ Reference< XInterface > SAL_CALL bf_MigrateFilter_createInstance(const Reference
     if ( !mxLegServFact.is() )
     {
         mxLegServFact = ::legacy_binfilters::getLegacyProcessServiceFactory();
-        fprintf(stderr, "mxLegServFact is %d\n", mxLegServFact.is());
         ::com::sun::star::uno::Reference < XComponent > xWrapper( mxLegServFact->createInstance(
             ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.office.OfficeWrapper" ))), UNO_QUERY );
     }

@@ -2017,12 +2017,28 @@ void * SAL_CALL legacysmgr_component_getFactory(
                 xMgr->createInstance(
                     OUSTR("com.sun.star.registry.SimpleRegistry") ),
                 UNO_QUERY_THROW );
-            rtl::OUString rdbUrl(
-                RTL_CONSTASCII_USTRINGPARAM(
-                    "$BRAND_BASE_DIR/program/legacy_binfilters.rdb"));
-            rtl::Bootstrap::expandMacros(rdbUrl); //TODO: detect failure
-            xSimReg->open(
-                rdbUrl, sal_True /* read-only */, sal_False /* ! create */ );
+
+            try
+            {
+                rtl::OUString rdbUrl(
+                    RTL_CONSTASCII_USTRINGPARAM(
+                        "$BRAND_BASE_DIR/program/legacy_binfilters.rdb"));
+                fprintf(stderr, "1: trying to open %s\n", rtl::OUStringToOString(rdbUrl, RTL_TEXTENCODING_UTF8).getStr());
+                rtl::Bootstrap::expandMacros(rdbUrl); //TODO: detect failure
+                xSimReg->open(
+                    rdbUrl, sal_True /* read-only */, sal_False /* ! create */ );
+            }
+            catch (...)
+            {
+                rtl::OUString rdbUrl(
+                    RTL_CONSTASCII_USTRINGPARAM(
+                        "$BRAND_BASE_DIR/legacy_binfilters.rdb"));
+                rtl::Bootstrap::expandMacros(rdbUrl);
+                fprintf(stderr, "2: trying to open %s\n", rtl::OUStringToOString(rdbUrl, RTL_TEXTENCODING_UTF8).getStr());
+                xSimReg->open(
+                    rdbUrl, sal_True /* read-only */, sal_False /* ! create */ );
+            }
+
             Any arg( makeAny( xSimReg ) );
 
             // * legacy rdb mgr *
@@ -2071,7 +2087,7 @@ void * SAL_CALL legacysmgr_component_getFactory(
     }
     catch (const Exception & exc)
     {
-#if defined _DEBUG
+#if OSL_DEBUG_LEVEL > 1
         OUStringBuffer buf( 128 );
         buf.appendAscii(
             RTL_CONSTASCII_STRINGPARAM(
