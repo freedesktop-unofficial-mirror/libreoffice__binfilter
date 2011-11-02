@@ -2,10 +2,16 @@
 #ifndef _LEGACYBINFILTERSMGR_HXX
 #define _LEGACYBINFILTERSMGR_HXX
 
-#include "com/sun/star/lang/XMultiServiceFactory.hpp"
-#include <com/sun/star/uno/Reference.hxx>
-#include <com/sun/star/registry/XRegistryKey.hpp>
-#include "cppuhelper/factory.hxx"
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Reference.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star {
+    namespace lang { class XMultiServiceFactory; }
+    namespace registry { class XRegistryKey; }
+} } }
+
 namespace legacy_binfilters
 {
 
@@ -13,13 +19,10 @@ namespace legacy_binfilters
 
 } //namespace legacy_binfilters
 
-extern "C"
-{
-void SAL_CALL legacy_component_getImplementationEnvironment(
-    sal_Char const ** ppEnvTypeName, uno_Environment ** ppEnv );
-void * SAL_CALL legacysmgr_component_getFactory(
-    sal_Char const * implName, ::com::sun::star::lang::XMultiServiceFactory * smgr, ::com::sun::star::registry::XRegistryKey * key );
-}
+extern "C" void * SAL_CALL legacysmgr_component_getFactory(
+    char const * implName, com::sun::star::lang::XMultiServiceFactory * smgr,
+    com::sun::star::registry::XRegistryKey * key);
+
 #endif
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

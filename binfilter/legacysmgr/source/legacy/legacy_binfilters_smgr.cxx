@@ -2023,7 +2023,6 @@ void * SAL_CALL legacysmgr_component_getFactory(
                 rtl::OUString rdbUrl(
                     RTL_CONSTASCII_USTRINGPARAM(
                         "$BRAND_BASE_DIR/program/legacy_binfilters.rdb"));
-                fprintf(stderr, "1: trying to open %s\n", rtl::OUStringToOString(rdbUrl, RTL_TEXTENCODING_UTF8).getStr());
                 rtl::Bootstrap::expandMacros(rdbUrl); //TODO: detect failure
                 xSimReg->open(
                     rdbUrl, sal_True /* read-only */, sal_False /* ! create */ );
@@ -2034,7 +2033,6 @@ void * SAL_CALL legacysmgr_component_getFactory(
                     RTL_CONSTASCII_USTRINGPARAM(
                         "$BRAND_BASE_DIR/legacy_binfilters.rdb"));
                 rtl::Bootstrap::expandMacros(rdbUrl);
-                fprintf(stderr, "2: trying to open %s\n", rtl::OUStringToOString(rdbUrl, RTL_TEXTENCODING_UTF8).getStr());
                 xSimReg->open(
                     rdbUrl, sal_True /* read-only */, sal_False /* ! create */ );
             }
@@ -2087,28 +2085,17 @@ void * SAL_CALL legacysmgr_component_getFactory(
     }
     catch (const Exception & exc)
     {
-#if OSL_DEBUG_LEVEL > 1
-        OUStringBuffer buf( 128 );
-        buf.appendAscii(
-            RTL_CONSTASCII_STRINGPARAM(
-                "### unexpected exception occurred in binfilters "
-                "component_getFactory(): ") );
-        buf.append( exc.Message );
-        OString cstr(
-            OUStringToOString(
-                buf.makeStringAndClear(), RTL_TEXTENCODING_ASCII_US ) );
-        OSL_FAIL( cstr.getStr() );
-#else
-        (void)exc;
-#endif
+        (void) exc; // avoid warnings
+        OSL_FAIL(
+            OSL_FORMAT(
+                ("unexpected exception in legacysmgr_component_getFactory:"
+                 " \"%s\""),
+                (rtl::OUStringToOString(exc.Message, RTL_TEXTENCODING_UTF8).
+                 getStr())));
     }
     return 0;
 }
 
-// added by jmeng for i31251 begin
-static sal_Bool  IsBinfilterInit =  sal_False;
-void legcy_setBinfilterInitState(void){IsBinfilterInit =  sal_True;}
-//added by jmeng for i31251 end
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

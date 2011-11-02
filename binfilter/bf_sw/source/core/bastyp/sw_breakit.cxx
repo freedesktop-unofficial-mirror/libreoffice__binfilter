@@ -31,7 +31,8 @@
 #pragma hdrstop
 #endif
 
-#include <com/sun/star/i18n/ScriptType.hdl>
+#include <com/sun/star/i18n/ScriptType.hpp>
+#include <com/sun/star/lang/XMultiServiceFactory.hpp>
 #include <unotools/localedatawrapper.hxx>
 #include <bf_svx/unolingu.hxx>
 #include <bf_svx/scripttypeitem.hxx>

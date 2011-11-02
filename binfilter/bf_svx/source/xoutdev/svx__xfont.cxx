@@ -35,9 +35,10 @@
 #include "xoutx.hxx"
 #include "outliner.hxx"
 
-#include <com/sun/star/i18n/ScriptType.hdl>
+#include <com/sun/star/i18n/ScriptType.hpp>
 #include <com/sun/star/i18n/XBreakIterator.hpp>
-#include <com/sun/star/i18n/CharacterIteratorMode.hdl>
+#include <com/sun/star/i18n/CharacterIteratorMode.hpp>
+#include <com/sun/star/lang/XMultiServiceFactory.hpp>
 
 #include "unolingu.hxx"
 #include <legacysmgr/legacy_binfilters_smgr.hxx>

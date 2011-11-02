@@ -32,6 +32,7 @@
 #endif
 
 #include <checkit.hxx>
+#include <com/sun/star/lang/XMultiServiceFactory.hpp>
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star::uno;

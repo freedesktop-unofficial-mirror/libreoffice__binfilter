@@ -118,12 +118,6 @@ Reference< XInterface >  SAL_CALL bf_OfficeWrapper_CreateInstance( const Referen
     return (XComponent*)0;
 }
 
-extern "C"
-{
-    //added for #i31251#
-    void legcy_setBinfilterInitState(void);
-}
-
 bf_OfficeWrapper::bf_OfficeWrapper( const Reference < XMultiServiceFactory >& )
     : pApp( new OfficeApplication )
     , aListeners( aMutex )
@@ -158,8 +152,6 @@ bf_OfficeWrapper::bf_OfficeWrapper( const Reference < XMultiServiceFactory >& )
         pSmDLL = new SmDLL;
         SmDLL::LibInit();
     }
-    //added i#31251#
-    legcy_setBinfilterInitState();
 }
 
 void SAL_CALL bf_OfficeWrapper::initialize( const Sequence< Any >& ) throw( Exception )

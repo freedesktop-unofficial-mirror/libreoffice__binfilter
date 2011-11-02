@@ -36,7 +36,9 @@
 #include <bf_svx/svdoutl.hxx>
 #include <bf_svx/svxerr.hxx>
 #include <com/sun/star/container/XSet.hpp>
+#include <com/sun/star/lang/XSingleServiceFactory.hpp>
 #include <comphelper/processfactory.hxx>
+#include <cppuhelper/factory.hxx>
 #include <bf_svtools/pathoptions.hxx>
 #include <bf_svx/fmobjfac.hxx>
 #include <bf_svx/siimport.hxx>
