@@ -1119,12 +1119,12 @@ int SvxBoxItem::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/   table::BorderLine aRetLine;
-/*N*/   sal_uInt16 nDist;
+/*N*/   sal_uInt16 nDist(0);
 /*N*/   sal_Bool bDistMember = sal_False;
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch(nMemberId)
 /*N*/   {
-/*N*/         case MID_LEFT_BORDER:
+/*N*/       case MID_LEFT_BORDER:
 /*N*/       case LEFT_BORDER:
 /*N*/           aRetLine = lcl_SvxLineToLine(GetLeft(), bConvert);
 /*N*/           break;
