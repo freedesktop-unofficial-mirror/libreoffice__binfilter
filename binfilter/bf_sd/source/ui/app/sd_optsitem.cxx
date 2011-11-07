@@ -308,7 +308,6 @@ using namespace ::com::sun::star::uno;
 /*N*/   bClickChangeRotation( FALSE ),
 /*N*/   bStartWithActualPage( FALSE ),
 /*N*/   bSolidDragging( FALSE ),
-/*N*/   bSolidMarkHdl( TRUE ),
 /*N*/   bSummationOfParagraphs( FALSE ),
 /*N*/   bShowUndoDeleteWarning( TRUE ),
 /*N*/   mnPrinterIndependentLayout( 1 )
@@ -332,7 +331,6 @@ using namespace ::com::sun::star::uno;
 /*N*/       "RotateClick",
 /*N*/       "Preview",
 /*N*/       "CreateWithAttributes",
-/*N*/       "SimpleHandles",
 /*N*/       // #97016#
 /*N*/       "DefaultObjectSize/Width",
 /*N*/       "DefaultObjectSize/Height",
@@ -368,24 +366,23 @@ using namespace ::com::sun::star::uno;
 /*N*/   if( pValues[8].hasValue() ) SetClickChangeRotation( *(sal_Bool*) pValues[ 8 ].getValue() );
 /*N*/   if( pValues[9].hasValue() ) SetPreviewQuality( FRound( *(double*) pValues[ 9 ].getValue() ) );
 /*N*/   if( pValues[10].hasValue() ) SetSolidDragging( *(sal_Bool*) pValues[ 10 ].getValue() );
-/*N*/   if( pValues[11].hasValue() ) SetSolidMarkHdl( *(sal_Bool*) pValues[ 11 ].getValue() );
 /*N*/   // #97016#
-/*N*/   if( pValues[12].hasValue() ) SetDefaultObjectSizeWidth( *(sal_uInt32*) pValues[ 12 ].getValue() );
-/*N*/   if( pValues[13].hasValue() ) SetDefaultObjectSizeHeight( *(sal_uInt32*) pValues[ 13 ].getValue() );
-/*N*/   if( pValues[14].hasValue() ) SetPrinterIndependentLayout( *(sal_uInt16*) pValues[ 14 ].getValue() );
+/*N*/   if( pValues[11].hasValue() ) SetDefaultObjectSizeWidth( *(sal_uInt32*) pValues[ 11 ].getValue() );
+/*N*/   if( pValues[12].hasValue() ) SetDefaultObjectSizeHeight( *(sal_uInt32*) pValues[ 12 ].getValue() );
+/*N*/   if( pValues[13].hasValue() ) SetPrinterIndependentLayout( *(sal_uInt16*) pValues[ 13 ].getValue() );
 /*N*/
 /*N*/   // just for Impress
 /*N*/   if( GetConfigId() == SDCFG_IMPRESS )
 /*N*/   {
+/*N*/       if( pValues[14].hasValue() )
+/*N*/           SetStartWithTemplate( *(sal_Bool*) pValues[ 14 ].getValue() );
 /*N*/       if( pValues[15].hasValue() )
-/*N*/           SetStartWithTemplate( *(sal_Bool*) pValues[ 15 ].getValue() );
+/*N*/           SetStartWithActualPage( *(sal_Bool*) pValues[ 15 ].getValue() );
 /*N*/       if( pValues[16].hasValue() )
-/*N*/           SetStartWithActualPage( *(sal_Bool*) pValues[ 16 ].getValue() );
-/*N*/       if( pValues[17].hasValue() )
-/*N*/           SetSummationOfParagraphs( *(sal_Bool*) pValues[ 17 ].getValue() );
+/*N*/           SetSummationOfParagraphs( *(sal_Bool*) pValues[ 16 ].getValue() );
 /*N*/       // #90356#
-/*N*/       if( pValues[18].hasValue() )
-/*N*/           SetShowUndoDeleteWarning( *(sal_Bool*) pValues[ 18 ].getValue() );
+/*N*/       if( pValues[17].hasValue() )
+/*N*/           SetShowUndoDeleteWarning( *(sal_Bool*) pValues[ 17 ].getValue() );
 /*N*/   }
 /*N*/
 /*N*/   return TRUE;

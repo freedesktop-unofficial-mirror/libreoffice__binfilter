@@ -55,7 +55,6 @@ SdrHdl::~SdrHdl() {}
 /*N*/   bRotateShear = FALSE;
 /*N*/   bMoveOutside = FALSE;
 /*N*/   bDistortShear = FALSE;
-/*N*/   bFineHandles = FALSE;
 /*N*/ }
 /*N*/
 /*N*/ SdrHdlList::~SdrHdlList()

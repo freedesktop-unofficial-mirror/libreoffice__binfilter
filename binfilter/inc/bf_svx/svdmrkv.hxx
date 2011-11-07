@@ -224,14 +224,6 @@ public:
     // Diese Funktion kostet etwas Zeit, da die MarkList durchsucht werden muss.
     const SdrMarkList& GetMarkList() const { return aMark; }
 
-    // Die Groesse der Markierungs-Handles wird ueber die jeweilige Aufloesung
-    // und die Groesse des Bereichs der markierten Objekte so angepasst, dass
-    // sie sich bei einer Frame-Selektion moeglichst nicht ueberschneiden.
-    // Dazu muessen die Handles ggf. verkleinert dargestellt werden. Mit der
-    // MinMarkHdlSize kann man hierfuer eine Mindestgroesse angeben.
-    // Defaultwert ist 3, Mindestwert 3 Pixel.
-    void SetSolidMarkHdl(BOOL bOn);
-
     BOOL HasMarkedPoints() const;
 
     // Zusatzhandles dauerhaft sichtbar schalten

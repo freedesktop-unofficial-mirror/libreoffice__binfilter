@@ -245,7 +245,6 @@ private:
     BOOL    bClickChangeRotation    : 1;    // Misc/RotateClick
     BOOL    bStartWithActualPage    : 1;    // Misc/Start/CurrentPage
     BOOL    bSolidDragging          : 1;    // Misc/CreateWithAttributes
-    BOOL    bSolidMarkHdl           : 1;    // /Misc/SimpleHandles
     BOOL    bSummationOfParagraphs  : 1;    // misc/SummationOfParagraphs
     // #90356#
     BOOL    bShowUndoDeleteWarning  : 1;    // Misc/ShowUndoDeleteWarning
@@ -282,7 +281,6 @@ public:
     BOOL    IsStartWithActualPage() const { Init(); return (BOOL) bStartWithActualPage; }
     ULONG   GetPreviewQuality() const { Init(); return nPreviewQuality; }
     BOOL    IsSolidDragging() const { Init(); return (BOOL) bSolidDragging; }
-    BOOL    IsSolidMarkHdl() const { Init(); return (BOOL) bSolidMarkHdl; }
     BOOL    IsSummationOfParagraphs() const { Init(); return bSummationOfParagraphs != 0; };
     /** Return the currently selected printer independent layout mode.
         @return
@@ -318,7 +316,6 @@ public:
     void    SetPrinterIndependentLayout (USHORT nOn = 1 ){ if ( nOn != mnPrinterIndependentLayout ) { OptionsChanged(); mnPrinterIndependentLayout = nOn; } }
     void    SetPreviewQuality( ULONG nQual ) { if( nPreviewQuality != nQual ) { OptionsChanged(); nPreviewQuality = nQual; } }
     void    SetSolidDragging( BOOL bOn = TRUE ) { if( bSolidDragging != bOn ) { OptionsChanged(); bSolidDragging = bOn; } }
-    void    SetSolidMarkHdl( BOOL bOn = TRUE ) { if( bSolidMarkHdl != bOn ) { OptionsChanged(); bSolidMarkHdl = bOn; } }
     // #90356#
     void    SetShowUndoDeleteWarning( BOOL bOn = TRUE ) { if( bShowUndoDeleteWarning != bOn ) { OptionsChanged(); bShowUndoDeleteWarning = bOn; } }
     // #97016#

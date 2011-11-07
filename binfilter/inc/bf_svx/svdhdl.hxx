@@ -165,7 +165,6 @@ protected:
     unsigned                    bRotateShear : 1;
     unsigned                    bDistortShear : 1;
     unsigned                    bMoveOutside : 1;      // Handles nach aussen ruecken (fuer TextEdit)
-    unsigned                    bFineHandles : 1;
 
 private:
     SdrHdlList(const SdrHdlList&): aList(1024,64,64)  {}
@@ -195,9 +194,6 @@ public:
 
     void    SetDistortShear(BOOL bOn)           { bDistortShear = bOn; }
     BOOL    IsDistortShear() const              { return bDistortShear; }
-
-    void    SetFineHdl(BOOL bOn)                { bFineHandles = bOn; }
-    BOOL    IsFineHdl() const                   { return bFineHandles; }
 };
 
 }//end of namespace binfilter

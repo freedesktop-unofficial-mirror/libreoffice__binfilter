@@ -291,7 +291,6 @@ void FrameView::Update(SdOptions* pOptions)
         SetFillDraft( pOptions->IsOutlineMode() );
         SetTextDraft( pOptions->IsNoText() );
         SetGrafDraft( pOptions->IsExternGraphic() );
-        SetSolidMarkHdl( pOptions->IsSolidMarkHdl() );
         SetSolidDragging( pOptions->IsSolidDragging() );
 
         SetGridCoarse( Size( pOptions->GetFldDrawX(), pOptions->GetFldDrawY() ) );

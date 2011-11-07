@@ -294,13 +294,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrMarkView::SetSolidMarkHdl(BOOL bOn)
-/*N*/ {
-/*N*/   if (bOn!=aHdl.IsFineHdl()) {
-/*N*/       aHdl.SetFineHdl(bOn);
-/*N*/   }
-/*N*/ }
-
 /*N*/ #define SDRSEARCH_IMPISMASTER 0x80000000 /* MasterPage wird gerade durchsucht */
 /*N*/ SdrObject* SdrMarkView::ImpCheckObjHit(const Point& rPnt, USHORT nTol, SdrObject* pObj, SdrPageView* pPV, ULONG nOptions, const SetOfByte* pMVisLay) const
 /*N*/ {
@@ -523,9 +516,7 @@ namespace binfilter {
 //   - Xor:  Nach dem Painten werden die Handles im (vom PaintHandler gerufenen)
 //           InitRedraw per ToggleShownXor bei gesetzter ClipRegion nochmal gemalt
 //           und damit ist alles in Butter.
-//   - ToggleShownXor macht bei SolidHdl nix weil bHdlShown=FALSE
 //   - Der AfterPaintTimer wird gestartet.
-// - SolidHdl: Im AfterPaintHandler wird ShowMarkHdl gerufen.
 //   Da die Handles zu diesem Zeitpunkt nicht angezeigt sind wird:
 //   - SaveBackground durchgefuehrt.
 //   - DrawMarkHdl gerufen und bHdlShown gesetzt.
@@ -533,7 +524,6 @@ namespace binfilter {
 // MarkHandles bei sonstigem Invalidate:
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // In diesem Fall bekomme ich kein Notify und beim Aufruf des
-// PaintHandlers->InitRedraw() sind auch die SolidHandles sichtbar.
 
 }
 

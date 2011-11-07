@@ -253,7 +253,6 @@ using ::rtl::OUString;
 /*M*/                 switch(nProp)
 /*M*/               {
 /*M*/                     case  0: rParent.SetCrossHair(bSet); break;// "Line/Guide",
-/*M*/                     case  1: rParent.SetSolidMarkHdl(bSet); break;// "Line/SimpleControlPoint",
 /*M*/                     case  2: rParent.SetBigMarkHdl(bSet); break;// "Line/LargeControlPoint",
 /*M*/                     case  3: rParent.SetViewHScrollBar(bSet); break;// "Window/HorizontalScroll",
 /*M*/                     case  4: rParent.SetViewVScrollBar(bSet); break;// "Window/VerticalScroll",

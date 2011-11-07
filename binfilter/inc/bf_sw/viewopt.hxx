@@ -74,7 +74,6 @@ class SwDocShell;
 #define VIEWOPT_1_RESERVED1     0x10000000L
 #define VIEWOPT_1_VIEWMETACHARS 0x20000000L
 #define VIEWOPT_1_PAGEBACK      0x40000000L
-#define VIEWOPT_1_SOLIDMARKHDL  0x80000000L
 
 #define VIEWOPT_CORE2_BLACKFONT         0x00000001L
 #define VIEWOPT_CORE2_HIDDENPARA        0x00000002L
@@ -270,11 +269,6 @@ public:
         { return nCoreOptions & VIEWOPT_1_PAGEBACK ? TRUE : FALSE; }
     inline void SetPageBack( BOOL b )
         { (b != 0) ? (nCoreOptions |= VIEWOPT_1_PAGEBACK) : ( nCoreOptions &= ~VIEWOPT_1_PAGEBACK); }
-
-    inline BOOL IsSolidMarkHdl() const
-        { return nCoreOptions & VIEWOPT_1_SOLIDMARKHDL ? TRUE : FALSE; }
-    inline void SetSolidMarkHdl( BOOL b )
-        { (b != 0) ? (nCoreOptions |= VIEWOPT_1_SOLIDMARKHDL) : ( nCoreOptions &= ~VIEWOPT_1_SOLIDMARKHDL); }
 
     inline BOOL IsBigMarkHdl() const
         { return nCore2Options & VIEWOPT_CORE2_BIGMARKHDL ? TRUE : FALSE;}

@@ -103,11 +103,11 @@ static const char aPostItStr[] = "  ";
 /*M*/   // Initialisierung ist jetzt etwas einfacher
 /*M*/   // alle Bits auf 0
 /*M*/   nCoreOptions =  VIEWOPT_1_IDLE | VIEWOPT_1_HARDBLANK | VIEWOPT_1_SOFTHYPH |
-/*M*/                     VIEWOPT_1_REF |
-/*M*/                     VIEWOPT_1_GRAPHIC |
+/*M*/                   VIEWOPT_1_REF |
+/*M*/                   VIEWOPT_1_GRAPHIC |
 /*M*/                   VIEWOPT_1_TABLE    | VIEWOPT_1_DRAW | VIEWOPT_1_CONTROL |
-/*M*/                     VIEWOPT_1_PAGEBACK |
-/*M*/                   VIEWOPT_1_SOLIDMARKHDL | VIEWOPT_1_POSTITS;
+/*M*/                   VIEWOPT_1_PAGEBACK |
+/*M*/                   VIEWOPT_1_POSTITS;
 /*M*/     nCore2Options = VIEWOPT_CORE2_BLACKFONT | VIEWOPT_CORE2_HIDDENPARA;
 /*M*/     nUIOptions    = VIEWOPT_2_MODIFIED | VIEWOPT_2_EXECHYPERLINKS | VIEWOPT_2_GRFKEEPZOOM |VIEWOPT_2_ANY_RULER;
 /*M*/

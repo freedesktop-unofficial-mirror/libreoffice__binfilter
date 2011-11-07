@@ -194,7 +194,6 @@ using ::rtl::OUString;
 /*N*/   aOptArr[ VOPT_GRID        ] =
 /*N*/   aOptArr[ VOPT_ANCHOR      ] =
 /*N*/   aOptArr[ VOPT_PAGEBREAKS  ] =
-/*N*/   aOptArr[ VOPT_SOLIDHANDLES] =
 /*N*/   aOptArr[ VOPT_CLIPMARKS   ] = TRUE;
 /*N*/
 /*N*/   aModeArr[VOBJ_TYPE_OLE ]  =
@@ -286,9 +285,6 @@ using ::rtl::OUString;
 /*N*/
 /*N*/   if( aHdr.BytesLeft() )
 /*N*/       rStream >> rOpt.aOptArr[VOPT_PAGEBREAKS];
-/*N*/
-/*N*/   if( aHdr.BytesLeft() )
-/*N*/       rStream >> rOpt.aOptArr[VOPT_SOLIDHANDLES];
 /*N*/
 /*N*/   if( aHdr.BytesLeft() )
 /*N*/       rStream >> rOpt.aOptArr[VOPT_CLIPMARKS];
@@ -458,10 +454,6 @@ using ::rtl::OUString;
 /*N*/                       break;
 /*N*/                   case SCLAYOUTOPT_GUIDE:
 /*N*/                       SetOption( VOPT_HELPLINES, ScUnoHelpFunctions::GetBoolFromAny( pValues[nProp] ) );
-/*N*/                       break;
-/*N*/                   case SCLAYOUTOPT_SIMPLECONT:
-/*N*/                       // content is reversed
-/*N*/                       SetOption( VOPT_SOLIDHANDLES, !ScUnoHelpFunctions::GetBoolFromAny( pValues[nProp] ) );
 /*N*/                       break;
 /*N*/                   case SCLAYOUTOPT_LARGECONT:
 /*N*/                       SetOption( VOPT_BIGHANDLES, ScUnoHelpFunctions::GetBoolFromAny( pValues[nProp] ) );
