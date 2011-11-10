@@ -345,9 +345,7 @@ using namespace ::com::sun::star::uno;
 /*N*/       "ShowUndoDeleteWarning"
 /*N*/   };
 /*N*/
-/*N*/   // #90356# rCount = ( ( GetConfigId() == SDCFG_IMPRESS ) ? 15 : 12 );
-/*N*/   // #97016# rCount = ( ( GetConfigId() == SDCFG_IMPRESS ) ? 16 : 12 );
-/*N*/   rCount = ( ( GetConfigId() == SDCFG_IMPRESS ) ? 19 : 15 );
+/*N*/   rCount = ( ( GetConfigId() == SDCFG_IMPRESS ) ? 18 : 14 );
 /*N*/   ppNames = aPropNames;
 /*N*/ }
 
