@@ -223,20 +223,18 @@ rtl::OUString lcl_GetProductName()
     //  get the correct product name from the configuration
 
     ::rtl::OUStringBuffer aName;
-    utl::ConfigManager& rMgr = utl::ConfigManager::GetConfigManager();
-    ::rtl::OUString aValue;
-    uno::Any aAny = rMgr.GetDirectConfigProperty(utl::ConfigManager::PRODUCTNAME);
     ::rtl::OUString os( RTL_CONSTASCII_USTRINGPARAM("$_OS") );
     ::rtl::Bootstrap::expandMacros(os);
-    if ( (aAny >>= aValue) && aValue.getLength() )
+    rtl::OUString aValue( utl::ConfigManager::getProductName() );
+    if ( !aValue.isEmpty() )
         aName.append( aValue ).append( (sal_Unicode)' ' );
 
-    aAny = rMgr.GetDirectConfigProperty(utl::ConfigManager::PRODUCTVERSION);
-    if ( (aAny >>= aValue) && aValue.getLength() )
+    aValue = utl::ConfigManager::getProductVersion();
+    if ( !aValue.isEmpty() )
         aName.append( aValue ).append( (sal_Unicode)' ' );
 
-    aAny = rMgr.GetDirectConfigProperty(utl::ConfigManager::PRODUCTEXTENSION);
-    if ( (aAny >>= aValue) && aValue.getLength() )
+    aValue = utl::ConfigManager::getProductExtension();
+    if ( !aValue.isEmpty() )
         aName.append( aValue ).append( (sal_Unicode)' ' );
     aName.append( (sal_Unicode)'(' );
     aName.append( os );

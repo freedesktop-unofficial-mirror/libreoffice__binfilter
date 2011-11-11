@@ -28,7 +28,6 @@
 
 #include <bf_svtools/useroptions.hxx>
 
-#include <unotools/configmgr.hxx>
 #include <tools/debug.hxx>
 #include <com/sun/star/uno/Any.hxx>
 #include <com/sun/star/uno/Sequence.hxx>
@@ -73,7 +72,6 @@ private:
 
     String          m_aEmptyString;
     String          m_aFullName;
-    String          m_aLocale;
 
     sal_Bool        m_bIsROCompany;
     sal_Bool        m_bIsROFirstName;
@@ -128,7 +126,6 @@ public:
     const String&   GetApartment() const { return m_aApartment; }
 
     const String&   GetFullName();
-    const String&   GetLocale() const { return m_aLocale; }
 };
 
 // global ----------------------------------------------------------------
@@ -217,14 +214,6 @@ SvtUserOptions_Impl::SvtUserOptions_Impl() :
     InitUserPropertyNames();
     EnableNotification( PropertyNames::get() );
     Load();
-    Any aAny = ConfigManager::GetConfigManager().GetDirectConfigProperty( ConfigManager::LOCALE );
-    OUString aLocale;
-    if ( aAny >>= aLocale )
-        m_aLocale = String( aLocale );
-    else
-    {
-        DBG_ERRORFILE( "SvtUserOptions_Impl::SvtUserOptions_Impl(): no locale found" );
-    }
 }
 // -----------------------------------------------------------------------
 

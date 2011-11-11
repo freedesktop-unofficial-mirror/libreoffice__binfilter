@@ -200,7 +200,6 @@ Sequence< OUString > GetDefaultPropertyNames()
 
 SvtDefaultOptions_Impl::SvtDefaultOptions_Impl() : ConfigItem( ASCII_STR("Office.Common/Path/Default") )
 {
-    /*ConfigManager* pCfgMgr =*/ ConfigManager::GetConfigManager();
     Sequence< OUString > aNames = GetDefaultPropertyNames();
     Sequence< Any > aValues = GetProperties( aNames );
     EnableNotification( aNames );
