@@ -36,7 +36,7 @@
 #include <vcl/svapp.hxx>
 #include <vcl/stdtext.hxx>
 #include <tools/debug.hxx>
-#include <unotools/processfactory.hxx>
+#include <comphelper/processfactory.hxx>
 
 #include "bf_so3/ipclient.hxx"
 #include <bf_so3/svstor.hxx>
@@ -261,7 +261,7 @@ BOOL SvPlugInObject::StartPlugIn( )
         pArgs[i] = rCmd.GetArgument();
     }
 
-    Reference< XMultiServiceFactory > xFac( ::utl::getProcessServiceFactory() );
+    Reference< XMultiServiceFactory > xFac( ::comphelper::getProcessServiceFactory() );
     Reference< XPluginManager > xPMgr( xFac->createInstance( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.plugin.PluginManager" )) ), UNO_QUERY );
     if (! xPMgr.is() )
         ShowServiceNotAvailableError( NULL, String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "PluginManager" ) ), TRUE );
@@ -491,7 +491,7 @@ ErrCode SvPlugInObject::Verb
     (void)pWorkRectPixel;
 
     ErrCode nRet = ERRCODE_SO_NOT_INPLACEACTIVE;
-    Reference< XMultiServiceFactory > xFac( ::utl::getProcessServiceFactory() );
+    Reference< XMultiServiceFactory > xFac( ::comphelper::getProcessServiceFactory() );
     Sequence< OUString > aNames( xFac->getAvailableServiceNames() );
     const OUString * pNames = aNames.getConstArray();
     INT32 nPos;

@@ -42,7 +42,7 @@
 #include <rtl/ustrbuf.hxx>
 #include <unotools/configpathes.hxx>
 #include <comphelper/configurationhelper.hxx>
-#include <unotools/processfactory.hxx>
+#include <comphelper/processfactory.hxx>
 #include <itemholder1.hxx>
 
 namespace binfilter
@@ -337,7 +337,7 @@ SvtViewOptionsBase_Impl::SvtViewOptionsBase_Impl( const ::rtl::OUString& sList )
     {
         m_xRoot = css::uno::Reference< css::container::XNameAccess >(
                         ::comphelper::ConfigurationHelper::openConfig(
-                            ::utl::getProcessServiceFactory(),
+                            ::comphelper::getProcessServiceFactory(),
                             PACKAGE_VIEWS,
                             ::comphelper::ConfigurationHelper::E_STANDARD),
                         css::uno::UNO_QUERY);

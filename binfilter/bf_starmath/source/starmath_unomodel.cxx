@@ -37,7 +37,6 @@
 #include <bf_svtools/ctrltool.hxx>
 #include <bf_svtools/itemprop.hxx>
 #include <unotools/localedatawrapper.hxx>
-#include <unotools/processfactory.hxx>
 #include <bf_svx/paperinf.hxx>
 #include <vcl/settings.hxx>
 #include <toolkit/awt/vclxdevice.hxx>

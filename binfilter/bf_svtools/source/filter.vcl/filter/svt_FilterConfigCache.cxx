@@ -36,7 +36,7 @@
 #include <rtl/ustring.hxx>
 
 #include <com/sun/star/uno/Any.h>
-#include <unotools/processfactory.hxx>
+#include <comphelper/processfactory.hxx>
 #include <com/sun/star/uno/Exception.hpp>
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
 #include <com/sun/star/beans/XPropertySet.hpp>
@@ -50,7 +50,6 @@ using namespace ::com::sun::star::lang          ;   // XMultiServiceFactory
 using namespace ::com::sun::star::container     ;   // XNameAccess
 using namespace ::com::sun::star::uno           ;   // Reference
 using namespace ::com::sun::star::beans         ;   // PropertyValue
-using namespace ::utl                           ;   // getProcessServiceFactory();
 using namespace ::rtl                           ;
 
 namespace binfilter
@@ -147,7 +146,8 @@ Reference< XInterface > openConfig(const char* sPackage)
     static OUString TYPEPKG( RTL_CONSTASCII_USTRINGPARAM( "types" ) );
     static OUString FILTERPKG( RTL_CONSTASCII_USTRINGPARAM( "filters" ) );
 
-    Reference< XMultiServiceFactory > xSMGR = getProcessServiceFactory();
+    Reference< XMultiServiceFactory > xSMGR(
+        comphelper::getProcessServiceFactory() );
     Reference< XInterface >           xCfg;
     try
     {

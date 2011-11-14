@@ -62,7 +62,6 @@ one go*/
 #include <bf_xmloff/xmluconv.hxx>
 #include <bf_xmloff/xmlmetai.hxx>
 
-#include <unotools/processfactory.hxx>
 #include <unotools/streamwrap.hxx>
 
 #include <com/sun/star/xml/sax/XErrorHandler.hpp>

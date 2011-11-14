@@ -64,7 +64,7 @@
 
 #include <com/sun/star/container/XHierarchicalNameAccess.hpp>
 #include <com/sun/star/container/XNameAccess.hpp>
-#include <unotools/processfactory.hxx>
+#include <comphelper/processfactory.hxx>
 
 #define _SVSTDARR_STRINGSDTOR
 #include <bf_svtools/svstdarr.hxx>
@@ -121,7 +121,7 @@ void SvObjectServerList::FillInsertObjects()
 */
 {
     try{
-    Reference< XMultiServiceFactory > _globalMSFactory= utl::getProcessServiceFactory();
+    Reference< XMultiServiceFactory > _globalMSFactory= comphelper::getProcessServiceFactory();
     if( _globalMSFactory.is())
     {
         OUString sProviderService( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.configuration.ConfigurationProvider" ));

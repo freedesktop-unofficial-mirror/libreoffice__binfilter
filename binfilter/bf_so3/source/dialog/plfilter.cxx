@@ -28,7 +28,6 @@
 
 #include <set>
 #include <map>
-#include <unotools/processfactory.hxx>
 
 #include <tools/debug.hxx>
 #include <vcl/stdtext.hxx>

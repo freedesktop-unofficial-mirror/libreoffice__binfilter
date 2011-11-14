@@ -36,7 +36,7 @@
 #include <comphelper/sequenceashashmap.hxx>
 #include <unotools/configmgr.hxx>
 #include <unotools/configitem.hxx>
-#include <unotools/processfactory.hxx>
+#include <comphelper/processfactory.hxx>
 #include <osl/diagnose.h>
 #include <rtl/ustrbuf.hxx>
 #include <rtl/logfile.hxx>
@@ -123,7 +123,7 @@ struct FactoryInfo
         {
             free();
             // @@@ should be supplied from outside!
-            xSMgr = ::utl::getProcessServiceFactory();
+            xSMgr = ::comphelper::getProcessServiceFactory();
         }
 
         //---------------------------------------------------------------------------------------------------------

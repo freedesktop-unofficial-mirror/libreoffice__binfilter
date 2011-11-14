@@ -44,7 +44,7 @@
 #include <com/sun/star/ucb/XContentProvider.hpp>
 #include <com/sun/star/ucb/XContentProviderManager.hpp>
 
-#include <unotools/processfactory.hxx>
+#include <comphelper/processfactory.hxx>
 
 #include <transuno.hxx>
 
@@ -83,7 +83,7 @@ com::sun::star::uno::Reference<com::sun::star::uno::XInterface>
 SvBindingTransport_Impl::getProcessServiceFactory (void)
 {
     return com::sun::star::uno::Reference<com::sun::star::uno::XInterface>(
-        utl::getProcessServiceFactory(), com::sun::star::uno::UNO_QUERY_THROW);
+        comphelper::getProcessServiceFactory(), com::sun::star::uno::UNO_QUERY_THROW);
 }
 
 /*
