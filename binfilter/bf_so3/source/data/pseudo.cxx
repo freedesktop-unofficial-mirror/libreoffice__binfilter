@@ -30,7 +30,7 @@
 #include <bf_so3/pseudo.hxx>
 #include <tools/date.hxx>
 #include <tools/debug.hxx>
-#include <tools/unqid.hxx>
+#include <bf_tools/unqid.hxx>
 #include <vcl/svapp.hxx>
 #include <vcl/wrkwin.hxx>
 #include <vcl/menu.hxx>

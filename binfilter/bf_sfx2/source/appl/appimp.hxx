@@ -31,7 +31,6 @@
 #include <tools/time.hxx>
 #include <tools/string.hxx>
 class MenuBar;
-class UniqueIndex;
 class BasicManager;
 class Timer;
 namespace binfilter {
@@ -47,6 +46,7 @@ class SfxTemplateDialog;
 class SfxDialogLibraryContainer;
 class SfxScriptLibraryContainer;
 class SfxBasicTestWin;
+class UniqueIndex;
 
 struct SfxApplication_Impl
 {

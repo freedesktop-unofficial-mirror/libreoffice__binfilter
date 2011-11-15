@@ -38,7 +38,9 @@ INC+= -I$(PRJ)$/inc$/bf_svtools
 # --- Files --------------------------------------------------------
 
 SLOFILES=\
-    $(SLO)$/svt_svarray.obj
+    $(SLO)$/svt_svarray.obj \
+    $(SLO)$/tl_contnr.obj \
+    $(SLO)$/tl_unqidx.obj
 
 # --- Targets -------------------------------------------------------
 

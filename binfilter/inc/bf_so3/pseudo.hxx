@@ -30,7 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#include <tools/unqid.hxx>
+#include <bf_tools/unqid.hxx>
 #include <bf_so3/iface.hxx>
 #include <bf_svtools/ownlist.hxx>
 
