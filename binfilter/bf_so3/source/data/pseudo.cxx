@@ -30,6 +30,7 @@
 #include <bf_so3/pseudo.hxx>
 #include <tools/date.hxx>
 #include <tools/debug.hxx>
+#include <tools/unqid.hxx>
 #include <vcl/svapp.hxx>
 #include <vcl/wrkwin.hxx>
 #include <vcl/menu.hxx>
@@ -45,6 +46,15 @@ namespace binfilter {
 //=========================================================================
 PRV_SV_IMPL_OWNER_LIST(SvVerbList,SvVerb)
 
+namespace
+{
+    UniqueItemId lclCreateUniqueId()
+    {
+        static UniqueIdContainer aUniqueIdContainer(UNIQUEID_SV_BEGIN);
+        return aUniqueIdContainer.CreateId();
+    }
+}
+
 //=========================================================================
 SvVerb::SvVerb
 (
@@ -56,7 +66,7 @@ SvVerb::SvVerb
 {
     nId     = nIdP;
     aName   = rNameP;
-    aMenuId = GetpApp()->CreateUniqueId();
+    aMenuId = lclCreateUniqueId();
     bConst  = bConstP;
     bOnMenu = bOnMenuP;
 }
