@@ -31,11 +31,9 @@
 #pragma hdrstop
 #endif
 
-#define _SVSTDARR_USHORTSSORT
-#define _SVSTDARR_USHORTS
-
 #include <com/sun/star/text/ReferenceFieldPart.hpp>
 #include <com/sun/star/text/ReferenceFieldSource.hpp>
+#include <comphelper/string.hxx>
 #include <unotools/localedatawrapper.hxx>
 #include <bf_svx/unolingu.hxx>
 
@@ -347,16 +345,16 @@ void SwGetRefField::SetSubType( USHORT n )
 /*N*/
 /*N*/               // alle Sonderzeichen entfernen (durch Blanks ersetzen):
 /*N*/               if( sTxt.Len() )
-/*N*/                 {
-/*N*/                     sTxt.EraseAllChars( 0xad );
-/*N*/                     for( sal_Unicode* p = sTxt.GetBufferAccess(); *p; ++p )
+/*N*/               {
+/*N*/                   sTxt = comphelper::string::remove(sTxt, 0xad);
+/*N*/                   for( sal_Unicode* p = sTxt.GetBufferAccess(); *p; ++p )
 /*N*/                   {
 /*N*/                       if( *p < 0x20 )
 /*N*/                           *p = 0x20;
 /*N*/                         else if(*p == 0x2011)
 /*N*/                           *p = '-';
 /*N*/                   }
-/*N*/                 }
+/*N*/               }
 /*N*/           }
 /*N*/       }
 /*N*/       break;

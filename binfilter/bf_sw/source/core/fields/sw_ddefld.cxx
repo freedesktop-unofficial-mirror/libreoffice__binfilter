@@ -32,9 +32,9 @@
 #endif
 
 #include <bf_svx/linkmgr.hxx>
+#include <comphelper/string.hxx>
 
 #include <horiornt.hxx>
-
 #include <doc.hxx>
 #include <osl/diagnose.h>
 #include <ddefld.hxx>
@@ -217,9 +217,8 @@ BOOL SwDDEFieldType::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId
 /*N*/ String SwDDEField::Expand() const
 /*N*/ {
 /*N*/   xub_StrLen nPos;
-/*N*/   String aStr( ((SwDDEFieldType*)GetTyp())->GetExpansion() );
+/*N*/   String aStr(comphelper::string::remove(((SwDDEFieldType*)GetTyp())->GetExpansion(), '\r'));
 /*N*/
-/*N*/   aStr.EraseAllChars( '\r' );
 /*N*/   while( (nPos = aStr.Search( '\t' )) != STRING_NOTFOUND )
 /*?*/       aStr.SetChar( nPos, ' ' );
 /*N*/   while( (nPos = aStr.Search( '\n' )) != STRING_NOTFOUND )

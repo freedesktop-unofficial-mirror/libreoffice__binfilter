@@ -33,6 +33,7 @@
 #include <float.h>
 #include <errno.h>
 
+#include <comphelper/string.hxx>
 #include <tools/date.hxx>
 #include <tools/debug.hxx>
 #include <rtl/math.hxx>
@@ -2047,7 +2048,7 @@ BOOL ImpSvNumberInputScan::ScanStringNumFor(
         if ( !bDontDetectNegation && (nString == 0) && !bFirst && (nSign < 0)
                 && pFormat->IsNegativeRealNegative() )
         {   // simply negated twice? --1
-            aString.EraseAllChars( ' ' );
+            aString = comphelper::string::remove(aString, ' ');
             if ( (aString.Len() == 1) && (aString.GetChar(0) == '-') )
             {
                 bFound = TRUE;

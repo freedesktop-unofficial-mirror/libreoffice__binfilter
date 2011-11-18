@@ -31,6 +31,7 @@
 #pragma hdrstop
 #endif
 
+#include <comphelper/string.hxx>
 #include <tools/resid.hxx>
 #include <txtatr.hxx>
 #include <ndtxt.hxx>
@@ -971,8 +972,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*?*/       if( sText.Len() )
 /*?*/       {
 /*?*/           sRet += TOX_STYLE_DELIMITER;
-/*?*/           String sTmp( sText );
-/*?*/           sTmp.EraseAllChars( TOX_STYLE_DELIMITER );
+/*?*/           String sTmp( comphelper::string::remove(sText, TOX_STYLE_DELIMITER) );
 /*?*/           sRet += sTmp;
 /*?*/           sRet += TOX_STYLE_DELIMITER;
 /*?*/       }

@@ -31,6 +31,8 @@
 #pragma hdrstop
 #endif
 
+#include <comphelper/string.hxx>
+
 #include <cmdid.h>
 #include <hintids.hxx>
 
@@ -259,8 +261,8 @@ String* SwFldMgr::pTime = 0;
 /*N*/   SwFieldType::pFldNames = new SvStringsDtor( (BYTE)coFldCnt, 2 );
 /*N*/   for( USHORT nIdx = 0; nIdx < coFldCnt; ++nIdx )
 /*N*/   {
-/*N*/       String* pTmp = new SW_RESSTR( coFldNms[ nIdx ] );
-/*N*/       pTmp->EraseAllChars('~');
+/*N*/       rtl::OUString sTmp(SW_RESSTR(coFldNms[nIdx]));
+/*N*/       String* pTmp = new String(comphelper::string::remove(sTmp, '~'));
 /*N*/       SwFieldType::pFldNames->Insert(pTmp, nIdx );
 /*N*/   }
 /*N*/ }

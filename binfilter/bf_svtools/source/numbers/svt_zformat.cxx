@@ -34,6 +34,7 @@
 #include <errno.h>
 #include <stdlib.h>
 
+#include <comphelper/string.hxx>
 #include <tools/debug.hxx>
 #include <i18npool/mslangid.hxx>
 #include <rtl/math.hxx>
@@ -1037,7 +1038,7 @@ short SvNumberformat::ImpNextSymbol(String& rString,
                     case '>':
                     case '=':
                     {
-                        sSymbol.EraseAllChars('[');
+                        sSymbol = comphelper::string::remove(sSymbol, '[');
                         sSymbol += cToken;
                         cLetter = cToken;
                         eState = SsGetCon;
@@ -1061,7 +1062,7 @@ short SvNumberformat::ImpNextSymbol(String& rString,
                     {
                         if ( rString.GetChar(nPos) == '-' )
                         {   // [$-xxx] locale
-                            sSymbol.EraseAllChars('[');
+                            sSymbol = comphelper::string::remove(sSymbol, '[');
                             eSymbolType = BRACKET_SYMBOLTYPE_LOCALE;
                             eState = SsGetPrefix;
                         }
@@ -1091,7 +1092,7 @@ short SvNumberformat::ImpNextSymbol(String& rString,
                         sal_Unicode cDBNum = rString.GetChar( nPos-1+aDBNum.Len() );
                         if ( aUpperNatNum == aNatNum && 0 <= nNatNumNum && nNatNumNum <= 19 )
                         {
-                            sSymbol.EraseAllChars('[');
+                            sSymbol = comphelper::string::remove(sSymbol, '[');
                             sSymbol += rString.Copy( --nPos, aNatNum.Len()+1 );
                             nPos += aNatNum.Len()+1;
                             //! SymbolType is negative
@@ -1100,7 +1101,7 @@ short SvNumberformat::ImpNextSymbol(String& rString,
                         }
                         else if ( aUpperDBNum == aDBNum && '1' <= cDBNum && cDBNum <= '9' )
                         {
-                            sSymbol.EraseAllChars('[');
+                            sSymbol = comphelper::string::remove(sSymbol, '[');
                             sSymbol += rString.Copy( --nPos, aDBNum.Len()+1 );
                             nPos += aDBNum.Len()+1;
                             //! SymbolType is negative
@@ -1118,7 +1119,7 @@ short SvNumberformat::ImpNextSymbol(String& rString,
                         }
                         else
                         {
-                            sSymbol.EraseAllChars('[');
+                            sSymbol = comphelper::string::remove(sSymbol, '[');
                             sSymbol += cToken;
                             eSymbolType = BRACKET_SYMBOLTYPE_COLOR;
                             eState = SsGetPrefix;
@@ -1158,14 +1159,14 @@ short SvNumberformat::ImpNextSymbol(String& rString,
                         }
                         else
                         {
-                            sSymbol.EraseAllChars('[');
+                            sSymbol = comphelper::string::remove(sSymbol, '[');
                             sSymbol += cToken;
                             eState = SsGetPrefix;
                         }
                     }
                     else
                     {
-                        sSymbol.EraseAllChars('[');
+                        sSymbol = comphelper::string::remove(sSymbol, '[');
                         sSymbol += cToken;
                         eSymbolType = BRACKET_SYMBOLTYPE_COLOR;
                         eState = SsGetPrefix;
@@ -2088,7 +2089,8 @@ BOOL SvNumberformat::GetOutputString(double fNumber,
                     }
                     ExpStr = sStr.Copy( nExpStart );    // part following the "E+"
                     sStr.Erase( nExPos );
-                    sStr.EraseAllChars('.');        // cut any decimal delimiter
+                    // cut any decimal delimiter
+                    sStr = comphelper::string::remove(sStr, '.');
                     if ( rInfo.nCntPre != 1 )       // rescale Exp
                     {
                         sal_Int32 nExp = ExpStr.ToInt32() * nExpSign;

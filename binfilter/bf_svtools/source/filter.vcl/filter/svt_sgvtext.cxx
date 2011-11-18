@@ -1263,8 +1263,7 @@ void SgfFontLst::ReadList()
 
         for (i=0;i<Anz;i++)
         {
-            FID = aCfg.GetKeyName( i );
-            FID = FID.EraseAllChars(); // Leerzeichen weg
+            FID = comphelper::string::remove(aCfg.GetKeyName(i), ' ');
             Dsc = aCfg.ReadKey( i );
             if ( comphelper::string::isdigitAsciiString(FID) )
             {

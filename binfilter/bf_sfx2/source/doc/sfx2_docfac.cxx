@@ -29,6 +29,7 @@
 #include <com/sun/star/registry/MergeConflictException.hpp>
 #include <com/sun/star/registry/XSimpleRegistry.hpp>
 #include <comphelper/processfactory.hxx>
+#include <comphelper/string.hxx>
 
 #include <bf_so3/embobj.hxx>
 
@@ -264,10 +265,10 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 )
 /*N*/   /*SfxApplication *pApp =*/ SFX_APP();
 /*N*/
 /*N*/   // "swriter4" durch "swriter" ersetzen, zum Vergleichen uppercase verwenden
-/*N*/   WildCard aSearchedFac( aFact.EraseAllChars('4').ToUpperAscii() );
-/*N*/     for( sal_uInt16 n = GetObjectFactoryCount_Impl(); !pFactory && n--; )
+/*N*/   WildCard aSearchedFac( comphelper::string::remove(aFact, '4').toAsciiUpperCase() );
+/*N*/   for( sal_uInt16 n = GetObjectFactoryCount_Impl(); !pFactory && n--; )
 /*N*/   {
-/*N*/         pFactory = &GetObjectFactory_Impl( n );
+/*N*/       pFactory = &GetObjectFactory_Impl( n );
 /*N*/       String aCompareTo = String::CreateFromAscii( pFactory->GetShortName() );
 /*N*/       aCompareTo.ToUpperAscii();
 /*N*/       if( !aSearchedFac.Matches( aCompareTo ) )

@@ -33,6 +33,7 @@
 #include "ddeimp.hxx"
 #include <bf_svtools/svdde.hxx>
 #include <bf_svtools/svarray.hxx>
+#include <comphelper/string.hxx>
 
 #include <tools/debug.hxx>
 
@@ -137,7 +138,8 @@ HDDEDATA CALLBACK _export DdeInternal::SvrCallback(
                     while( STRING_NOTFOUND != n )
                     {
                         String s( sTopics.GetToken( 0, '\t', n ));
-                        s.EraseAllChars( '\n' ).EraseAllChars( '\r' );
+                        s = comphelper::string::remove(s, '\n');
+                        s = comphelper::string::remove(s, '\r');
                         if( !hText1 || s == reinterpret_cast<const sal_Unicode*>(chTopicBuf) )
                         {
                             DdeString aDStr( pInst->hDdeInstSvr, s );

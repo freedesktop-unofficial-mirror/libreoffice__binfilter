@@ -49,9 +49,7 @@
 #include <bf_svx/flditem.hxx>
 #include <bf_svtools/inethist.hxx>
 #include <bf_svtools/syslocale.hxx>
-#ifndef _SVSTDARR_USHORTS
-#define _SVSTDARR_USHORTS
-#endif
+#include <comphelper/string.hxx>
 
 #include "editutil.hxx"
 #include "docpool.hxx"
@@ -70,8 +68,8 @@ const sal_Char ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 
 /*N*/ String ScEditUtil::ModifyDelimiters( const String& rOld )
 /*N*/ {
-/*N*/   String aRet = rOld;
-/*N*/   aRet.EraseAllChars( '_' );  // underscore is used in function argument names
+/*N*/   // underscore is used in function argument names
+/*N*/   String aRet = comphelper::string::remove(rOld, '_');
 /*N*/   aRet.AppendAscii( RTL_CONSTASCII_STRINGPARAM( pCalcDelimiters ) );
 /*N*/   return aRet;
 /*N*/ }
