@@ -33,8 +33,7 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#include <tools/dynary.hxx>
-
+#include <dynary.hxx>
 #include "parse.hxx"
 #include "types.hxx"
 #include "rect.hxx"

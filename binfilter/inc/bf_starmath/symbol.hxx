@@ -32,7 +32,7 @@
 
 #include <vcl/font.hxx>
 #include <tools/debug.hxx>
-#include <tools/dynary.hxx>
+#include <dynary.hxx>
 #include <bf_svtools/lstner.hxx>
 #include <bf_svtools/svarray.hxx>
 
