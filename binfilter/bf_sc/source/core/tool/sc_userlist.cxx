@@ -119,9 +119,9 @@ namespace binfilter {
 /*N*/     using namespace ::com::sun::star;
 /*N*/
 /*N*/   sal_Unicode cDelimiter = ScGlobal::cListDelimiter;
-/*N*/   uno::Sequence< i18n::CalendarItem > xCal;
+/*N*/   uno::Sequence< i18n::CalendarItem2 > xCal;
 /*N*/
-/*N*/     uno::Sequence< i18n::Calendar > xCalendars(
+/*N*/     uno::Sequence< i18n::Calendar2 > xCalendars(
 /*N*/             ScGlobal::pLocaleData->getAllCalendars() );
 /*N*/
 /*N*/     for ( sal_Int32 j = 0; j < xCalendars.getLength(); ++j )

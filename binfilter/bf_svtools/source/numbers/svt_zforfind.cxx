@@ -2367,7 +2367,7 @@ void ImpSvNumberInputScan::InitText()
     const CalendarWrapper* pCal = pFormatter->GetCalendar();
     delete [] pUpperMonthText;
     delete [] pUpperAbbrevMonthText;
-    ::com::sun::star::uno::Sequence< ::com::sun::star::i18n::CalendarItem > xElems
+    ::com::sun::star::uno::Sequence< ::com::sun::star::i18n::CalendarItem2 > xElems
         = pCal->getMonths();
     nElems = xElems.getLength();
     pUpperMonthText = new String[nElems];

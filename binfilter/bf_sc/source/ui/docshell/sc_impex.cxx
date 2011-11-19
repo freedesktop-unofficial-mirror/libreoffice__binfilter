@@ -329,7 +329,7 @@ enum DoubledQuoteMode
 /*M*/           {
 /*M*/                 static const String aSeptCorrect( RTL_CONSTASCII_USTRINGPARAM( "SEPT" ) );
 /*M*/                 static const String aSepShortened( RTL_CONSTASCII_USTRINGPARAM( "SEP" ) );
-/*M*/               uno::Sequence< i18n::CalendarItem > xMonths;
+/*M*/               uno::Sequence< i18n::CalendarItem2 > xMonths;
 /*M*/               sal_Int32 i, nLclLen;
 /*M*/               //  first test all month names from local international
 /*M*/               xMonths = rCalendar.getMonths();
