@@ -30,8 +30,6 @@
 #pragma hdrstop
 #endif
 
-#define ENABLE_BYTESTRING_STREAM_OPERATORS
-
 #include "fmpage.hxx"
 
 #include "fmmodel.hxx"
@@ -84,7 +82,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/           SdrDownCompat aVCCompat2( rIn, STREAM_READ );
 /*N*/           ByteString aByteStringName;
-/*N*/           rIn >> aByteStringName;
+/*N*/           rIn.ReadByteString(aByteStringName);
 /*N*/           aPageName = String(aByteStringName, gsl_getSystemTextEncoding());
 /*N*/       }
 /*N*/   }
