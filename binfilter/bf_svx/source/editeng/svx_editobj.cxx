@@ -32,8 +32,6 @@
 #pragma hdrstop
 #endif
 
-//#define ENABLE_STRING_STREAM_OPERATORS
-
 #include <vcl/outdev.hxx>
 
 #include <editobj2.hxx>
