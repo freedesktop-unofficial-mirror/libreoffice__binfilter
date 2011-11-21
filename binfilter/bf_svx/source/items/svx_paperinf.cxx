@@ -115,7 +115,7 @@ static const int nTabSize = SAL_N_ELEMENTS(aDinTab);
 
 /*?*/ inline BOOL IsValidPrinter( const Printer* pPtr )
 /*?*/ {
-/*?*/   return pPtr->GetName().getLength() ? TRUE : FALSE;
+/*?*/   return !pPtr->GetName().isEmpty();
 /*?*/ }
 
 /*------------------------------------------------------------------------
