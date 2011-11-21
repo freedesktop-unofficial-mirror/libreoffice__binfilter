@@ -337,13 +337,17 @@ public:
 
     OutputDevice& GetOut() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bOut, "DrawTextInfo: Undefined Outputdevice" );
+#endif
         return *pOut;
     }
 
     OutputDevice *GetpOut() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bOut, "DrawTextInfo: Undefined Outputdevice" );
+#endif
         return pOut;
     }
 
@@ -354,98 +358,130 @@ public:
 
     const Point &GetPos() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bPos, "DrawTextInfo: Undefined Position" );
+#endif
         return *pPos;
     }
 
     xub_StrLen *GetHyphPos() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bHyph, "DrawTextInfo: Undefined Hyph Position" );
+#endif
         return pHyphPos;
     }
 
     const XubString &GetText() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bText, "DrawTextInfo: Undefined String" );
+#endif
         return *pText;
     }
 
     const SwWrongList* GetWrong() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bWrong, "DrawTextInfo: Undefined WrongList" );
+#endif
         return pWrong;
     }
 
     const Size &GetSize() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bSize, "DrawTextInfo: Undefined Size" );
+#endif
         return *pSize;
     }
 
     SwFont* GetFont() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bFnt, "DrawTextInfo: Undefined Font" );
+#endif
         return pFnt;
     }
 
     SwUnderlineFont* GetUnderFnt() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bSpec, "DrawTextInfo: Undefined Underlinefont" );
+#endif
         return pUnderFnt;
     }
 
     xub_StrLen GetIdx() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bIdx, "DrawTextInfo: Undefined Index" );
+#endif
         return nIdx;
     }
 
     xub_StrLen GetLen() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bLen, "DrawTextInfo: Undefined Length" );
+#endif
         return nLen;
     }
 
     xub_StrLen GetOfst() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bOfst, "DrawTextInfo: Undefined Offset" );
+#endif
         return nOfst;
     }
 
     xub_StrLen GetEnd() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bIdx, "DrawTextInfo: Undefined Index" );
         OSL_ENSURE( bLen, "DrawTextInfo: Undefined Length" );
+#endif
         return nIdx + nLen;
     }
 
     long GetLeft() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bLeft, "DrawTextInfo: Undefined left range" );
+#endif
         return nLeft;
     }
 
     long GetRight() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bRight, "DrawTextInfo: Undefined right range" );
+#endif
         return nRight;
     }
 
     long GetKanaDiff() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bKana, "DrawTextInfo: Undefined kana difference" );
+#endif
         return nKanaDiff;
     }
 
     USHORT GetWidth() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bWidth, "DrawTextInfo: Undefined Width" );
+#endif
         return nWidth;
     }
 
     USHORT GetAscent() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bAscent, "DrawTextInfo: Undefined Ascent" );
+#endif
         return nAscent;
     }
 
@@ -456,19 +492,25 @@ public:
 
     short GetSperren() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bSperr, "DrawTextInfo: Undefined >Sperren<" );
+#endif
         return nSperren;
     }
 
     short GetKern() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bKern, "DrawTextInfo: Undefined Kerning" );
+#endif
         return nKern;
     }
 
     short GetSpace() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bSpace, "DrawTextInfo: Undefined Spacing" );
+#endif
         return nSpace;
     }
 
@@ -479,25 +521,33 @@ public:
 
     BOOL GetBullet() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bBull, "DrawTextInfo: Undefined Bulletflag" );
+#endif
         return bBullet;
     }
 
     BOOL GetUpper() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bUppr, "DrawTextInfo: Undefined Upperflag" );
+#endif
         return bUpper;
     }
 
     BOOL GetDrawSpace() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bDrawSp, "DrawTextInfo: Undefined DrawSpaceflag" );
+#endif
         return bDrawSpace;
     }
 
     BOOL GetGreyWave() const
     {
+#if OSL_DEBUG_LEVEL > 1
         OSL_ENSURE( bGreyWv, "DrawTextInfo: Undefined GreyWave" );
+#endif
         return bGreyWave;
     }
 

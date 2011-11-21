@@ -844,6 +844,8 @@ namespace binfilter {
 /*N*/                           BOOL /*bKeepScenarioFlags*/, BOOL /*bIncludeObjects*/)
 /*N*/ {
 /*N*/   DBG_ASSERT( bAllTabs || pMarks, "CopyToClip: ScMarkData fehlt" );
+        (void) bAllTabs; // avoid warnings
+        (void) pMarks; // avoid warnings
 /*N*/
 /*N*/   if (!bIsClip)
 /*N*/   {

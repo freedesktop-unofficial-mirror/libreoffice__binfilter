@@ -52,7 +52,7 @@
 namespace binfilter {
 
 
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 0
 static ULONG nCntntBox = 0;
 #endif
 
@@ -142,7 +142,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/ {
 /*N*/   Sw3FrmFmts *pOldTblLineBoxFmts = pTblLineBoxFmts;
 /*N*/   pTblLineBoxFmts = 0;
-/*N*/ #ifdef DBG_UTIL
+/*N*/ #if OSL_DEBUG_LEVEL > 0
 /*N*/   ULONG nOldCntntBox = nCntntBox;
 /*N*/ #endif
 /*N*/
@@ -237,7 +237,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/           // Die einzelnen Zeilen einlesen
 /*N*/           // aIdx zeigt auf den Startnode der ersten Box
 /*N*/           rPos = *pNd; rPos++;
-/*N*/ #ifdef DBG_UTIL
+/*N*/ #if OSL_DEBUG_LEVEL > 0
 /*N*/           nCntntBox = 0;
 /*N*/ #endif
 /*N*/           USHORT nLine = 0;
@@ -267,7 +267,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/
 /*N*/   delete pTblLineBoxFmts;
 /*N*/   pTblLineBoxFmts = pOldTblLineBoxFmts;
-/*N*/ #ifdef DBG_UTIL
+/*N*/ #if OSL_DEBUG_LEVEL > 0
 /*N*/   nCntntBox = nOldCntntBox;
 /*N*/ #endif
 /*N*/ }
@@ -394,7 +394,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/           // jetzt die entsprechende Aktualisierung erfolgen.
 /*N*/           pBox->ChgByLanguageSystem();
 /*N*/
-/*N*/ #ifdef DBG_UTIL
+/*N*/ #if OSL_DEBUG_LEVEL > 0
 /*N*/           ++nCntntBox;
 /*N*/ #endif
 /*N*/       }
@@ -415,7 +415,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*?*/               delete pBox;
 /*?*/               pBox = pNewBox;
 /*?*/               rPos = pBox->GetSttNd()->EndOfSectionIndex() + 1;
-/*?*/ #ifdef DBG_UTIL
+/*?*/ #if OSL_DEBUG_LEVEL > 0
 /*?*/               OSL_ENSURE( !this, "Tabellenzelle ohne Lines und ohne Content" );
 /*?*/               ++nCntntBox;
 /*?*/ #endif
