@@ -52,7 +52,7 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-/*N*/ SfxFont::SfxFont( const FontFamily eFontFamily, const String& aFontName,
+/*N*/ SfxFont::SfxFont( const FontFamily eFontFamily, const rtl::OUString& aFontName,
 /*N*/                 const FontPitch eFontPitch, const CharSet eFontCharSet ):
 /*N*/   aName( aFontName ),
 /*N*/   eFamily( eFontFamily ),
@@ -130,7 +130,7 @@ namespace binfilter {
 //--------------------------------------------------------------------
 
 /*N*/ SfxPrinter::SfxPrinter( SfxItemSet* pTheOptions,
-/*N*/                       const String& rPrinterName ) :
+/*N*/                       const rtl::OUString& rPrinterName ) :
 /*N*/
 /*N*/   Printer         ( rPrinterName ),
 /*N*/   pOptions        ( pTheOptions ),

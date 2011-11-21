@@ -1692,7 +1692,7 @@ void ScStyleObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const uno:
                                         Printer* pPrinter = pDocShell->GetPrinter();
                                         if (pPrinter)
                                         {
-                                            String aNameStr = aName;
+                                            rtl::OUString aNameStr = aName;
                                             USHORT nCount = pPrinter->GetPaperBinCount();
                                             for (USHORT i=0; i<nCount; i++)
                                                 if ( aNameStr == pPrinter->GetPaperBinName(i) )

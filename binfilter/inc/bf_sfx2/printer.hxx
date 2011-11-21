@@ -59,7 +59,7 @@ struct SfxPrinter_Impl;
 class SfxFont
 {
 private:
-    String                  aName;
+    rtl::OUString           aName;
     FontFamily              eFamily;
     FontPitch               ePitch;
     CharSet                 eCharSet;
@@ -68,11 +68,11 @@ private:
 
 public:
     SfxFont( const FontFamily eFam,
-             const String& aName,
+             const rtl::OUString& aName,
              const FontPitch eFontPitch = PITCH_DONTKNOW,
              const CharSet eFontCharSet = RTL_TEXTENCODING_DONTKNOW );
     // ZugriffsMethoden:
-    inline const String&    GetName() const { return aName; }
+    inline const rtl::OUString& GetName() const { return aName; }
     inline FontFamily       GetFamily() const { return eFamily; }
     inline FontPitch        GetPitch() const { return ePitch; }
     inline CharSet          GetCharSet() const { return eCharSet; }
@@ -92,11 +92,11 @@ private:
 public:
                             SfxPrinter( SfxItemSet *pTheOptions );
                             SfxPrinter( SfxItemSet *pTheOptions,
-                                        const String &rPrinterName );
+                                        const rtl::OUString &rPrinterName );
                             SfxPrinter( SfxItemSet *pTheOptions,
                                         const JobSetup &rTheOrigJobSetup );
                             SfxPrinter( SfxItemSet *pTheOptions,
-                                        const String &rPrinterName,
+                                        const rtl::OUString &rPrinterName,
                                         const JobSetup &rTheOrigJobSetup );
                             ~SfxPrinter();
 
