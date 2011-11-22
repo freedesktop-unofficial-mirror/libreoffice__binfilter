@@ -57,6 +57,7 @@
 #include <bf_svx/cntritem.hxx>
 #include <bf_svx/shdditem.hxx>
 #include <bf_svx/colritem.hxx>
+#include <comphelper/string.hxx>
 
 
 #include <fmtpdsc.hxx>
@@ -3361,10 +3362,10 @@ BOOL Sw6Layout::TextBefehl(const sal_Char *pPatt,const sal_Char *pOrig)
     return !*pPatt && (!cLen || *pOrig<'A' || *pOrig>'Z');
 }
 
-void Sw6Layout::AddXForm(sal_Char cLead,ByteString &rTmp,String &rStr)
+void Sw6Layout::AddXForm(sal_Char cLead, ByteString &rTmp, String &rStr)
 // Kurzform, wird oefter benoetigt
 {
-    rTmp.EraseLeadingChars();
+    rTmp = comphelper::string::stripStart(rTmp, ' ');
     rTmp.EraseTrailingChars();
     rTmp.Insert((sal_Char)rTmp.Len(),0);
     rTmp.Insert(cLead,0);
@@ -3496,7 +3497,7 @@ size_t Sw6Layout::PutRest(String &rStr,sal_Char *pCtrl)
                     aTmp = rtl::OUStringToOString(
                         rtl::OStringToOUString(aTmp, RTL_TEXTENCODING_IBM_850),
                         osl_getThreadTextEncoding());
-                    aTmp.EraseLeadingChars();
+                    aTmp = comphelper::string::stripStart(aTmp, ' ');
                     aTmp.EraseTrailingChars();
                     aTmp.Insert('}');            // Mache versteckten Text
                     aTmp.Insert('{',0);
@@ -5318,7 +5319,7 @@ BOOL SwSw6Parser::ReadDocInfo(void)
             String &rTmp=pDat->DocInfo.Thema[Idx];
             if (ReadLn(rTmp))
             {
-                rTmp.EraseLeadingChars();
+                rTmp = comphelper::string::stripStart(rTmp, ' ');
                 rTmp.EraseTrailingChars();
             }
             else
@@ -5329,7 +5330,7 @@ BOOL SwSw6Parser::ReadDocInfo(void)
             String &rTmp=pDat->DocInfo.Keys[Idx];
             if (ReadLn(rTmp))
             {
-                rTmp.EraseLeadingChars();
+                rTmp = comphelper::string::stripStart(rTmp, ' ');
                 rTmp.EraseTrailingChars();
             }
             else
