@@ -674,6 +674,7 @@ SfxPoolItem* SwTextGridItem::Create(SvStream& rStrm, USHORT /*nIVer*/) const
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/             "SwTextGridItem: Gibt es ein neues Fileformat?" );
+        (void) nFFVer; // avoid warnings
 /*N*/
 /*N*/     return USHRT_MAX;
 /*N*/ }

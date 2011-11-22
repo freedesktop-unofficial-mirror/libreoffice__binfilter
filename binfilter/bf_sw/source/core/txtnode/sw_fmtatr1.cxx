@@ -52,6 +52,7 @@ namespace binfilter {
 /*N*/   OSL_ENSURE( !bCheck || (' ' != cCh && '-' != cCh),
 /*N*/           "Invalid character for the HardBlank attribute - "
 /*N*/           "must be a normal unicode character" );
+        (void) bCheck; // avoid warnings
 /*N*/ }
 
 

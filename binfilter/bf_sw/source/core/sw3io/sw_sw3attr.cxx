@@ -378,6 +378,7 @@ SfxPoolItem* SwFmtNoBalancedColumns::Create(SvStream &rStrm, USHORT) const
 /*M*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*M*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*M*/             "SwHeaderAndFooterEatSpacingItem: Gibt es ein neues Fileformat?" );
+        (void) nFFVer; // avoid warnings
 /*M*/     return USHRT_MAX;
 /*M*/ }
 
@@ -417,6 +418,7 @@ SfxPoolItem* SwFmtNoBalancedColumns::Create(SvStream &rStrm, USHORT) const
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwCropGrf: Gibt es ein neues Fileformat?" );
+        (void) nFFVer; // avoid warnings
 /*N*/
 /*N*/   return GRFCROP_VERSION_SWDEFAULT;
 /*N*/ }

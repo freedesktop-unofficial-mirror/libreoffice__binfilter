@@ -697,6 +697,7 @@ public:
 /*N*/       nLvl--;
 /*N*/       OSL_ENSURE( cType == aRecTypes[nLvl],
 /*N*/               "CloseRec: Falscher Block-Header" );
+            (void) cType; // avoid warnings
 /*N*/       sal_uInt32 nPos = pStrm->Tell();
 /*N*/       if( bOut )
 /*N*/       {

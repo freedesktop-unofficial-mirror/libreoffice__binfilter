@@ -347,6 +347,7 @@ namespace binfilter {
 /*N*/ CurrShell::CurrShell( ViewShell *pNew )
 /*N*/ {
 /*N*/   OSL_ENSURE( pNew, "0-Shell einsetzen?" );
+        (void) pNew; // avoid warnings
 /*?*/   pPrev = 0;
 /*N*/ }
 

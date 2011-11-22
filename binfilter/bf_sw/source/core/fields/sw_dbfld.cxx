@@ -743,6 +743,7 @@ BOOL    SwDBNumSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE 
 /*N*/ String SwDBNameFieldType::Expand(ULONG nFmt) const
 /*N*/ {
 /*N*/   OSL_ENSURE( nFmt < FF_END, "Expand: kein guelt. Fmt!" );
+        (void) nFmt; // avoid warnings
 /*N*/   const SwDBData aData = pDoc->GetDBData();
 /*N*/   String sRet(aData.sDataSource);
 /*N*/   sRet += '.';

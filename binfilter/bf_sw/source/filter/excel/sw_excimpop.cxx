@@ -1043,7 +1043,7 @@ void SwExcelParser::Bof5()
 double SwExcelParser::RkToDouble( const UINT32 &nRk )
     {
     //PLATTFORMABHAENGIG//
-    double fVal;
+    union { UINT32 words[2]; double fVal; };
 
     // jetzt kommt Code aus'm Excel-Developer's-Kit-Buch V5 (S.223)
     if( nRk & 0x02 )
@@ -1053,12 +1053,12 @@ double SwExcelParser::RkToDouble( const UINT32 &nRk )
         {// 64-Bit IEEE-Float
 #ifdef OSL_BIGENDIAN
 //680xx und alle anderen vernuenftigen Prozessoren...
-        *( ( UINT32 * ) &fVal + 1 ) = 0;    // unteren 32 Bits = 0
-        *( ( UINT32 * ) &fVal ) = nRk & 0xFFFFFFFC; // Bit 0, 1 = 0
+        words[1] = 0;    // unteren 32 Bits = 0
+        words[0] = nRk & 0xFFFFFFFC; // Bit 0, 1 = 0
 #else
 //Intel-Sch...
-        *( ( UINT32 * ) &fVal ) = 0;    // unteren 32 Bits = 0
-        *( ( UINT32 * ) &fVal + 1 ) = nRk & 0xFFFFFFFC; // Bit 0, 1 = 0
+        words[0] = 0;    // unteren 32 Bits = 0
+        words[1] = nRk & 0xFFFFFFFC; // Bit 0, 1 = 0
 #endif
         }
 

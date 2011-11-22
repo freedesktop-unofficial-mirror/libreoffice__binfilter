@@ -700,6 +700,7 @@ void SwPageFrm::RemoveVirtDrawObj( SwDrawContact*, SwDrawVirtObj* _pDrawVirtObj 
 /*N*/ {
 /*N*/   //Der Fly will immer an der Seite direkt haengen.
 /*N*/   OSL_ENSURE( pAnch->GetAnchorId() == FLY_PAGE, "Unerwartete AnchorId." );
+        (void) pAnch; // avoid warnings
 /*N*/
 /*N*/   //Wenn ein Fly uebergeben wurde, so benutzen wir diesen, ansonsten wird
 /*N*/   //mit dem Format einer erzeugt.

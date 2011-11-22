@@ -491,13 +491,11 @@ void OServiceManager_Listener::disposing(const EventObject & rEvt )
         }
         catch( const IllegalArgumentException & e )
         {
-            (void) e; // avoid warnings
             SAL_WARN_S(
                 "binfilter", "IllegalArgumentException caught: " << e.Message);
         }
         catch( const NoSuchElementException & e )
         {
-            (void) e; // avoid warnings
             SAL_WARN_S(
                 "binfilter", "NoSuchElementException caught: " << e.Message);
         }
@@ -806,7 +804,6 @@ void OServiceManager::disposing()
         }
         catch (const RuntimeException & e)
         {
-            (void) e; // avoid warnings
             SAL_WARN_S(
                 "binfilter",
                 "RuntimeException occurred upon disposing factory: "
@@ -1017,7 +1014,6 @@ Reference< XInterface > OServiceManager::createInstanceWithContext(
         }
         catch (const lang::DisposedException & e)
         {
-            (void) e; // avoid warnings
             SAL_WARN_S(
                 "binfilter", "DisposedException occurred: " << e.Message);
         }
@@ -1065,7 +1061,6 @@ Reference< XInterface > OServiceManager::createInstanceWithArgumentsAndContext(
         }
         catch (const lang::DisposedException & e)
         {
-            (void) e; // avoid warnings
             SAL_WARN_S(
                 "binfilter", "DisposedException occurred: " << e.Message);
         }
@@ -2093,7 +2088,6 @@ void * SAL_CALL legacysmgr_component_getFactory(
     }
     catch (const Exception & e)
     {
-        (void) e; // avoid warnings
         SAL_WARN_S(
             "binfilter",
             "unexpected exception in legacysmgr_component_getFactory: \""
