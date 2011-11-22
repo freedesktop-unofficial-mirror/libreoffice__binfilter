@@ -832,7 +832,6 @@ void SfxItemPool::Remove( const SfxPoolItem& rItem )
             else
             {
                 SFX_ASSERT( 0, rItem.Which(), "removing Item without ref" );
-                SFX_TRACE( "to be removed, but not no refs: ", *ppHtArr );
             }
 
             // ggf. kleinstmoegliche freie Position merken
@@ -849,7 +848,6 @@ void SfxItemPool::Remove( const SfxPoolItem& rItem )
 
     // nicht vorhanden
     SFX_ASSERT( 0, rItem.Which(), "removing Item not in Pool" );
-    SFX_TRACE( "to be removed, but not in pool: ", &rItem );
 }
 
 // -----------------------------------------------------------------------

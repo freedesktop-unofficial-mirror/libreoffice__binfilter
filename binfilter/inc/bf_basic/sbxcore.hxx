@@ -41,6 +41,7 @@
 class SvStream;
 class String;
 class UniString;
+namespace rtl { class OUString; }
 
 // Das nachfolgende Makro definiert die vier  (fuenf) notwendigen Methoden
 // innerhalb eines SBX-Objekts. LoadPrivateData() und StorePrivateData()
@@ -138,7 +139,7 @@ public:
     static void RemoveFactory( SbxFactory* );
 
     static SbxBase* Create( UINT16, UINT32=SBXCR_SBX );
-    static SbxObject* CreateObject( const String& );
+    static SbxObject* CreateObject( const rtl::OUString& );
     // Sbx-Loesung als Ersatz fuer SfxBroadcaster::Enable()
     static BOOL StaticIsEnabledBroadcasting( void );
 };

@@ -26,6 +26,8 @@
  *
  ************************************************************************/
 
+#include <rtl/oustringostreaminserter.hxx>
+#include <sal/log.h>
 #include <tools/stream.hxx>
 
 #include "sbx.hxx"
@@ -202,7 +204,7 @@ SbxBase* SbxBase::Create( UINT16 nSbxId, UINT32 nCreator )
     return pNew;
 }
 
-SbxObject* SbxBase::CreateObject( const XubString& rClass )
+SbxObject* SbxBase::CreateObject( const rtl::OUString& rClass )
 {
     SbxAppData* p = GetSbxData_Impl();
     SbxObject* pNew = NULL;
@@ -212,15 +214,7 @@ SbxObject* SbxBase::CreateObject( const XubString& rClass )
         if( pNew )
             break;
     }
-#ifdef DBG_UTIL
-    if( !pNew )
-    {
-        ByteString aMsg( "SBX: Keine Factory fuer Objektklasse " );
-        ByteString aClassStr( (const UniString&)rClass, RTL_TEXTENCODING_ASCII_US );
-        aMsg += aClassStr;
-        DbgError( (const char*)aMsg.GetBuffer() );
-    }
-#endif
+    SAL_WARN_IF_S(!pNew, "binfilter", "No factory for object class " << rClass);
     return pNew;
 }
 

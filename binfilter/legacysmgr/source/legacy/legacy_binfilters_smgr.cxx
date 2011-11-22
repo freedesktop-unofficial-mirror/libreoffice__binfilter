@@ -25,16 +25,22 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
+
+#include "sal/config.h"
+
+#include <cassert>
+
 #include <boost/unordered_map.hpp>
 #include <boost/unordered_set.hpp>
 #include <list>
 
-#include "osl/diagnose.h"
 #include "osl/file.hxx"
 #include "osl/process.h"
 #include "rtl/bootstrap.hxx"
+#include "rtl/oustringostreaminserter.hxx"
 #include "rtl/ustrbuf.hxx"
 #include "rtl/unload.h"
+#include "sal/log.h"
 
 #include "uno/dispatcher.h"
 
@@ -483,13 +489,17 @@ void OServiceManager_Listener::disposing(const EventObject & rEvt )
         {
             x->remove( Any( &rEvt.Source, ::getCppuType( (const Reference<XInterface > *)0 ) ) );
         }
-        catch( const IllegalArgumentException & )
+        catch( const IllegalArgumentException & e )
         {
-            OSL_FAIL( "IllegalArgumentException catched" );
+            (void) e; // avoid warnings
+            SAL_WARN_S(
+                "binfilter", "IllegalArgumentException caught: " << e.Message);
         }
-        catch( const NoSuchElementException & )
+        catch( const NoSuchElementException & e )
         {
-            OSL_FAIL( "NoSuchElementException catched" );
+            (void) e; // avoid warnings
+            SAL_WARN_S(
+                "binfilter", "NoSuchElementException caught: " << e.Message);
         }
     }
 }
@@ -794,14 +804,13 @@ void OServiceManager::disposing()
             if( xComp.is() )
                 xComp->dispose();
         }
-        catch (const RuntimeException & exc)
+        catch (const RuntimeException & e)
         {
-#ifdef DEBUG
-            OString str( OUStringToOString( exc.Message, RTL_TEXTENCODING_ASCII_US ) );
-            OSL_TRACE( "### RuntimeException occurred upon disposing factory: %s", str.getStr() );
-#else
-            (void)exc;
-#endif
+            (void) e; // avoid warnings
+            SAL_WARN_S(
+                "binfilter",
+                "RuntimeException occurred upon disposing factory: "
+                    << e.Message);
         }
     }
 
@@ -820,7 +829,7 @@ void OServiceManager::disposing()
     m_xContext.clear();
 
     // not only the Event should hold the object
-    OSL_ASSERT( m_refCount != 1 );
+    SAL_WARN_IF(m_refCount == 1, "binfilter", "only Event holds object");
 
     // Revoke this service manager as unloading listener
     rtl_removeUnloadingListener( m_nUnloadingListenerId);
@@ -997,23 +1006,20 @@ Reference< XInterface > OServiceManager::createInstanceWithContext(
                     Reference< XSingleServiceFactory > xFac2( xFactory, UNO_QUERY );
                     if (xFac2.is())
                     {
-#ifdef DEBUG
-                        OString aStr( OUStringToOString( rServiceSpecifier, RTL_TEXTENCODING_ASCII_US ) );
-                        OSL_TRACE( "### ignoring given context raising service %s !!!\n", aStr.getStr() );
-#endif
+                        SAL_INFO_S(
+                            "binfilter",
+                            "ignoring given context raising service "
+                                << rServiceSpecifier);
                         return xFac2->createInstance();
                     }
                 }
             }
         }
-        catch (const lang::DisposedException & exc)
+        catch (const lang::DisposedException & e)
         {
-#ifdef DEBUG
-            OString str( OUStringToOString( exc.Message, RTL_TEXTENCODING_ASCII_US ) );
-            OSL_TRACE( "### DisposedException occurred: %s", str.getStr() );
-#else
-            (void)exc;
-#endif
+            (void) e; // avoid warnings
+            SAL_WARN_S(
+                "binfilter", "DisposedException occurred: " << e.Message);
         }
     }
 
@@ -1048,23 +1054,20 @@ Reference< XInterface > OServiceManager::createInstanceWithArgumentsAndContext(
                     Reference< XSingleServiceFactory > xFac2( xFactory, UNO_QUERY );
                     if (xFac2.is())
                     {
-#ifdef DEBUG
-                        OString aStr( OUStringToOString( rServiceSpecifier, RTL_TEXTENCODING_ASCII_US ) );
-                        OSL_TRACE( "### ignoring given context raising service %s !!!\n", aStr.getStr() );
-#endif
+                        SAL_INFO_S(
+                            "binfilter",
+                            "ignoring given context raising service "
+                                << rServiceSpecifier);
                         return xFac2->createInstanceWithArguments( rArguments );
                     }
                 }
             }
         }
-        catch (const lang::DisposedException & exc)
+        catch (const lang::DisposedException & e)
         {
-#ifdef DEBUG
-            OString str( OUStringToOString( exc.Message, RTL_TEXTENCODING_ASCII_US ) );
-            OSL_TRACE( "### DisposedException occurred: %s", str.getStr() );
-#else
-            (void)exc;
-#endif
+            (void) e; // avoid warnings
+            SAL_WARN_S(
+                "binfilter", "DisposedException occurred: " << e.Message);
         }
     }
 
@@ -1105,7 +1108,7 @@ void OServiceManager::initialize( Sequence< Any > const & )
     throw (Exception)
 {
     check_undisposed();
-    OSL_FAIL( "not impl!" );
+    SAL_WARN("binfilter", "not impl!");
 }
 
 // XServiceInfo
@@ -1502,7 +1505,8 @@ Reference<XInterface > ORegistryServiceManager::loadWithImplementationName(
 
         if( xImpKey.is() )
         {
-            OSL_ASSERT( s_xLegacyMgr.is() );
+            SAL_WARN_IF(
+                !s_xLegacyMgr.is(), "binfilter", "no legacy service manager");
             ret = createSingleRegistryFactory(
                 s_xLegacyMgr.is()
                 ? s_xLegacyMgr
@@ -1593,7 +1597,7 @@ void ORegistryServiceManager::initialize(const Sequence< Any >& Arguments)
     }
 #if defined _DEBUG
     // to find all bootstrapping processes to be fixed...
-    OSL_ENSURE( !m_init, "### second init of service manager instance!" );
+    SAL_WARN_IF(m_init, "binfilter", "second init of service manager instance");
     m_init = true;
 #endif
 }
@@ -1762,12 +1766,16 @@ public:
     }
     virtual sal_Bool SAL_CALL supportsService(const OUString& ServiceName) throw (RuntimeException)
     {
-        OSL_FAIL( "### unexpected call LegacyServiceManager::supportsService()!" );
+        SAL_WARN(
+            "binfilter",
+            "unexpected call LegacyServiceManager::supportsService()");
         return m_xOfficeMgr_si->supportsService( ServiceName );
     }
     virtual Sequence< OUString > SAL_CALL getSupportedServiceNames() throw (RuntimeException)
     {
-        OSL_FAIL( "### unexpected call LegacyServiceManager::getSupportedServiceNames()!" );
+        SAL_WARN(
+            "binfilter",
+            "unexpected call LegacyServiceManager::getSupportedServiceNames()");
         return m_xOfficeMgr_si->getSupportedServiceNames();
     }
 
@@ -2000,13 +2008,13 @@ void * SAL_CALL legacysmgr_component_getFactory(
     lang::XMultiServiceFactory * smgr,
     registry::XRegistryKey * key )
 {
+    assert(smgr != 0);
     try
     {
         if (! s_xLegacyMgr.is())
         {
             // * office mgr *
             Reference< lang::XMultiServiceFactory > xMgr( smgr );
-            OSL_ASSERT( xMgr.is() );
             Reference< beans::XPropertySet > xProps( xMgr, UNO_QUERY_THROW );
             Reference< XComponentContext > xOfficeContext(
                 xProps->getPropertyValue( OUSTR("DefaultContext") ),
@@ -2083,15 +2091,13 @@ void * SAL_CALL legacysmgr_component_getFactory(
         return component_getFactoryHelper(
             implName, s_xLegacyMgr.get(), key, s_entries );
     }
-    catch (const Exception & exc)
+    catch (const Exception & e)
     {
-        (void) exc; // avoid warnings
-        OSL_FAIL(
-            OSL_FORMAT(
-                ("unexpected exception in legacysmgr_component_getFactory:"
-                 " \"%s\""),
-                (rtl::OUStringToOString(exc.Message, RTL_TEXTENCODING_UTF8).
-                 getStr())));
+        (void) e; // avoid warnings
+        SAL_WARN_S(
+            "binfilter",
+            "unexpected exception in legacysmgr_component_getFactory: \""
+                << e.Message << '"');
     }
     return 0;
 }
