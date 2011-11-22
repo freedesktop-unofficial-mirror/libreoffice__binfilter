@@ -26,6 +26,7 @@
  *
  ************************************************************************/
 
+#include <comphelper/string.hxx>
 #include <tools/tenccvt.hxx>
 #include <osl/thread.h>
 
@@ -217,7 +218,7 @@ int GetTextEncodingTabIndex( const String &rTxt, xub_StrLen nPos )
 /*N*/     // in old 2.0 or 3.0 formulas the strings to be imported do have an
 /*N*/     // additional '\0' character at the end that gets removed here.
 /*N*/     if (aString.Len())
-/*N*/         aString.EraseTrailingChars( '\0' );
+/*N*/         aString = comphelper::string::stripEnd(aString, '\0');
 /*N*/
 /*N*/   aString.ConvertLineEnd();
 /*N*/     return aString;

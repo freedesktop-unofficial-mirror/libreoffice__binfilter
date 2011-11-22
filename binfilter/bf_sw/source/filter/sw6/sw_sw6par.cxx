@@ -3366,7 +3366,7 @@ void Sw6Layout::AddXForm(sal_Char cLead, ByteString &rTmp, String &rStr)
 // Kurzform, wird oefter benoetigt
 {
     rTmp = comphelper::string::stripStart(rTmp, ' ');
-    rTmp.EraseTrailingChars();
+    rTmp = comphelper::string::stripEnd(rTmp, ' ');
     rTmp.Insert((sal_Char)rTmp.Len(),0);
     rTmp.Insert(cLead,0);
     AddHForm(rTmp.GetBuffer(),rStr.Len(),rTmp.Len(),1);
@@ -3498,7 +3498,7 @@ size_t Sw6Layout::PutRest(String &rStr,sal_Char *pCtrl)
                         rtl::OStringToOUString(aTmp, RTL_TEXTENCODING_IBM_850),
                         osl_getThreadTextEncoding());
                     aTmp = comphelper::string::stripStart(aTmp, ' ');
-                    aTmp.EraseTrailingChars();
+                    aTmp = comphelper::string::stripEnd(aTmp, ' ');
                     aTmp.Insert('}');            // Mache versteckten Text
                     aTmp.Insert('{',0);
                     AddXForm('-',aTmp,rStr);
@@ -5320,7 +5320,7 @@ BOOL SwSw6Parser::ReadDocInfo(void)
             if (ReadLn(rTmp))
             {
                 rTmp = comphelper::string::stripStart(rTmp, ' ');
-                rTmp.EraseTrailingChars();
+                rTmp = comphelper::string::stripEnd(rTmp, ' ');
             }
             else
                 break;
@@ -5331,7 +5331,7 @@ BOOL SwSw6Parser::ReadDocInfo(void)
             if (ReadLn(rTmp))
             {
                 rTmp = comphelper::string::stripStart(rTmp, ' ');
-                rTmp.EraseTrailingChars();
+                rTmp = comphelper::string::stripEnd(rTmp, ' ');
             }
             else
                 break;

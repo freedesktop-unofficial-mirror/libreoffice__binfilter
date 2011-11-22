@@ -76,6 +76,7 @@ one go*/
 #include <com/sun/star/task/XStatusIndicatorFactory.hpp>
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #include <comphelper/genericpropertyset.hxx>
+#include <comphelper/string.hxx>
 
 #include <bf_svtools/itemprop.hxx>
 
@@ -630,7 +631,7 @@ void SmXMLImport::endDocument(void)
                 //Make up some editable text
                 aText = pDocShell->GetText();
                 pTree->CreateTextFromNode(aText);
-                aText.EraseTrailingChars();
+                aText = comphelper::string::stripEnd(aText, ' ');
                 if((aText.GetChar(0) == '{') &&
                     (aText.GetChar(aText.Len()-1) == '}'))
                 {
