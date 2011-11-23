@@ -27,7 +27,7 @@
  ************************************************************************/
 
 #include <bf_svtools/useroptions.hxx>
-
+#include <comphelper/string.hxx>
 #include <tools/debug.hxx>
 #include <com/sun/star/uno/Any.hxx>
 #include <com/sun/star/uno/Sequence.hxx>
@@ -179,8 +179,7 @@ void SvtUserOptions_Impl::InitUserPropertyNames()
 
 void SvtUserOptions_Impl::InitFullName()
 {
-    m_aFullName = GetFirstName();
-    m_aFullName.EraseLeadingAndTrailingChars();
+    m_aFullName = comphelper::string::strip(GetFirstName(), ' ');
     if ( m_aFullName.Len() )
         m_aFullName += ' ';
     m_aFullName += GetLastName();
