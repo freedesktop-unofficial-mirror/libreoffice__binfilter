@@ -27,7 +27,7 @@
  ************************************************************************/
 
 #include <rtl/oustringostreaminserter.hxx>
-#include <sal/log.h>
+#include <sal/log.hxx>
 #include <tools/stream.hxx>
 
 #include "sbx.hxx"
@@ -214,7 +214,7 @@ SbxObject* SbxBase::CreateObject( const rtl::OUString& rClass )
         if( pNew )
             break;
     }
-    SAL_WARN_IF_S(!pNew, "binfilter", "No factory for object class " << rClass);
+    SAL_WARN_IF(!pNew, "binfilter", "No factory for object class " << rClass);
     return pNew;
 }
 

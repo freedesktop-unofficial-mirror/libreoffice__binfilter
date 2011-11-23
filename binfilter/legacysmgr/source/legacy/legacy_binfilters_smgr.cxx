@@ -40,7 +40,7 @@
 #include "rtl/oustringostreaminserter.hxx"
 #include "rtl/ustrbuf.hxx"
 #include "rtl/unload.h"
-#include "sal/log.h"
+#include "sal/log.hxx"
 
 #include "uno/dispatcher.h"
 
@@ -491,12 +491,12 @@ void OServiceManager_Listener::disposing(const EventObject & rEvt )
         }
         catch( const IllegalArgumentException & e )
         {
-            SAL_WARN_S(
+            SAL_WARN(
                 "binfilter", "IllegalArgumentException caught: " << e.Message);
         }
         catch( const NoSuchElementException & e )
         {
-            SAL_WARN_S(
+            SAL_WARN(
                 "binfilter", "NoSuchElementException caught: " << e.Message);
         }
     }
@@ -804,7 +804,7 @@ void OServiceManager::disposing()
         }
         catch (const RuntimeException & e)
         {
-            SAL_WARN_S(
+            SAL_WARN(
                 "binfilter",
                 "RuntimeException occurred upon disposing factory: "
                     << e.Message);
@@ -1003,7 +1003,7 @@ Reference< XInterface > OServiceManager::createInstanceWithContext(
                     Reference< XSingleServiceFactory > xFac2( xFactory, UNO_QUERY );
                     if (xFac2.is())
                     {
-                        SAL_INFO_S(
+                        SAL_INFO(
                             "binfilter",
                             "ignoring given context raising service "
                                 << rServiceSpecifier);
@@ -1014,8 +1014,7 @@ Reference< XInterface > OServiceManager::createInstanceWithContext(
         }
         catch (const lang::DisposedException & e)
         {
-            SAL_WARN_S(
-                "binfilter", "DisposedException occurred: " << e.Message);
+            SAL_WARN("binfilter", "DisposedException occurred: " << e.Message);
         }
     }
 
@@ -1050,7 +1049,7 @@ Reference< XInterface > OServiceManager::createInstanceWithArgumentsAndContext(
                     Reference< XSingleServiceFactory > xFac2( xFactory, UNO_QUERY );
                     if (xFac2.is())
                     {
-                        SAL_INFO_S(
+                        SAL_INFO(
                             "binfilter",
                             "ignoring given context raising service "
                                 << rServiceSpecifier);
@@ -1061,8 +1060,7 @@ Reference< XInterface > OServiceManager::createInstanceWithArgumentsAndContext(
         }
         catch (const lang::DisposedException & e)
         {
-            SAL_WARN_S(
-                "binfilter", "DisposedException occurred: " << e.Message);
+            SAL_WARN("binfilter", "DisposedException occurred: " << e.Message);
         }
     }
 
@@ -2088,7 +2086,7 @@ void * SAL_CALL legacysmgr_component_getFactory(
     }
     catch (const Exception & e)
     {
-        SAL_WARN_S(
+        SAL_WARN(
             "binfilter",
             "unexpected exception in legacysmgr_component_getFactory: \""
                 << e.Message << '"');
