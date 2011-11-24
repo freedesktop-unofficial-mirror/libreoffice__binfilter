@@ -219,7 +219,7 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/
 /*N*/   rStream >> nShort;
 /*N*/   nCharTextDistance       = nShort;
-/*N*/   rtl_TextEncoding eEnc = gsl_getSystemTextEncoding();
+/*N*/   rtl_TextEncoding eEnc = osl_getThreadTextEncoding();
 /*N*/   rStream.ReadByteString(sPrefix, eEnc);
 /*N*/   rStream.ReadByteString(sSuffix, eEnc);
 /*N*/   rStream.ReadByteString(sCharStyleName, eEnc);

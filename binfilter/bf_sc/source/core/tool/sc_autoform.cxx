@@ -278,7 +278,7 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/          aNumFormat.Load( rStream );
 /*N*/
 /*N*/      //  adjust charset in font
-/*N*/      CharSet eSysSet = gsl_getSystemTextEncoding();
+/*N*/      CharSet eSysSet = osl_getThreadTextEncoding();
 /*N*/      CharSet eSrcSet = rStream.GetStreamCharSet();
 /*N*/      if( eSrcSet != eSysSet && aFont.GetCharSet() == eSrcSet )
 /*N*/          aFont.GetCharSet() = eSysSet;
@@ -447,7 +447,7 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/      if( bRet && (nVer == AUTOFORMAT_DATA_ID_X ||
 /*N*/              (AUTOFORMAT_DATA_ID_504 <= nVer && nVer <= AUTOFORMAT_DATA_ID)) )
 /*N*/   {
-/*N*/       gsl_getSystemTextEncoding();
+/*N*/       osl_getThreadTextEncoding();
 /*N*/       CharSet eSrcSet = rStream.GetStreamCharSet();
 /*N*/
 /*N*/       BOOL b;

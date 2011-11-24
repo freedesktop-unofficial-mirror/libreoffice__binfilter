@@ -631,7 +631,7 @@ enum ChartStyleV0
 /*N*/   CHART_TRACE1( "ChartModel::StoreAttributes (%s)", aBStr.GetBuffer() );
 /*N*/ #endif
 /*N*/
-/*N*/   rtl_TextEncoding eSysSet = ::GetSOStoreTextEncoding( gsl_getSystemTextEncoding());
+/*N*/   rtl_TextEncoding eSysSet = ::GetSOStoreTextEncoding( osl_getThreadTextEncoding());
 /*N*/   rOut.SetStreamCharSet( eSysSet );
 /*N*/
 /*N*/   SchIOCompat aIO(rOut, STREAM_WRITE, 17);

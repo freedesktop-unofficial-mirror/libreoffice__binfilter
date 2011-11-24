@@ -96,7 +96,7 @@ using namespace ::com::sun::star;
 /*N*/   if (bInit)
 /*N*/   {
 /*N*/       aCreationDate = DateTime();
-/*N*/       eCreationCharSet = gsl_getSystemTextEncoding();
+/*N*/       eCreationCharSet = osl_getThreadTextEncoding();
 /*N*/   }
 /*N*/ }
 

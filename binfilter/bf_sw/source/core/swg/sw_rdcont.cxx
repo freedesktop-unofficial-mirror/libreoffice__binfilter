@@ -177,7 +177,7 @@ void SwSwgReader::InContents( BOOL bNode1, BOOL bBlock, USHORT nInsFirstPara )
                 if( !cFlag ) r.skipnext();
                 else {
                     // TODO: unicode: check for 8 bit encoding
-                    BYTE eCharSet = (BYTE) gsl_getSystemTextEncoding();
+                    BYTE eCharSet = (BYTE) osl_getThreadTextEncoding();
                     if( cFlag & 0x02 )
                       r >> eCharSet;
                     BYTE eSave = aHdr.cCodeSet;
@@ -232,7 +232,7 @@ String SwSwgReader::InContentsText( BOOL bBlock )
                 if( !cFlag ) r.skipnext();
                 else {
                     // TODO: unicode: check for 8 bit encoding
-                    BYTE eCharSet = (BYTE) gsl_getSystemTextEncoding();
+                    BYTE eCharSet = (BYTE) osl_getThreadTextEncoding();
                     if( cFlag & 0x02 )
                       r >> eCharSet;
                     BYTE eSave = aHdr.cCodeSet;

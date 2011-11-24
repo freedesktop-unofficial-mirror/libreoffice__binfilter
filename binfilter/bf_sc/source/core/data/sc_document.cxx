@@ -2439,7 +2439,7 @@ namespace binfilter {
 /*N*/                   {
 /*N*/                       //  StylePool konvertiert beim Laden selber
 /*N*/                       CharSet eOld = rStream.GetStreamCharSet();
-/*N*/                       rStream.SetStreamCharSet( gsl_getSystemTextEncoding() );    //! ???
+/*N*/                       rStream.SetStreamCharSet( osl_getThreadTextEncoding() );    //! ???
 /*N*/                       xPoolHelper->GetStylePool()->Load( rStream );
 /*N*/                       rStream.SetStreamCharSet( eOld );
 /*N*/                       lcl_RemoveMergeFromStyles( xPoolHelper->GetStylePool() );   // setzt auch ReadOnly zurueck

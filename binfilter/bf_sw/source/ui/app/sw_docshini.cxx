@@ -193,7 +193,7 @@ using namespace ::rtl;
 /*?*/                 sEntry = pStdFont->GetFontFor(nFontId);
 /*?*/                 const SfxFont* pFnt = NULL;
 /*?*/                 pFnt = new SfxFont( FAMILY_DONTKNOW, sEntry, PITCH_DONTKNOW,
-/*?*/                                     ::gsl_getSystemTextEncoding() );
+/*?*/                                     ::osl_getThreadTextEncoding() );
 /*?*/                 pFontItem = new SvxFontItem(pFnt->GetFamily(), pFnt->GetName(),
 /*?*/                                     aEmptyStr, pFnt->GetPitch(), pFnt->GetCharSet(),
                                           nFontWhich);
@@ -259,7 +259,7 @@ using namespace ::rtl;
 /*M*/                 sEntry = pStdFont->GetFontFor(aFontIdPoolId[nIdx]);
 /*M*/                 const SfxFont* pFnt = NULL;
 /*M*/                 pFnt = new SfxFont( FAMILY_DONTKNOW, sEntry, PITCH_DONTKNOW,
-/*M*/                                    ::gsl_getSystemTextEncoding() );
+/*M*/                                    ::osl_getThreadTextEncoding() );
 /*M*/                 SwTxtFmtColl *pColl = pDoc->GetTxtCollFromPool(aFontIdPoolId[nIdx + 1]);
 /*M*/                 if( !bHTMLTemplSet ||
 /*M*/                     SFX_ITEM_SET != pColl->GetAttrSet().GetItemState(

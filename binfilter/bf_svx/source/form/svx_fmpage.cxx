@@ -83,7 +83,7 @@ namespace binfilter {
 /*N*/           SdrDownCompat aVCCompat2( rIn, STREAM_READ );
 /*N*/           ByteString aByteStringName;
 /*N*/           rIn.ReadByteString(aByteStringName);
-/*N*/           aPageName = String(aByteStringName, gsl_getSystemTextEncoding());
+/*N*/           aPageName = String(aByteStringName, osl_getThreadTextEncoding());
 /*N*/       }
 /*N*/   }
 /*N*/

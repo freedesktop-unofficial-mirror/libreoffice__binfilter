@@ -774,7 +774,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 //-------------------------------------------------------------------------
 
 /*N*/ SfxDocumentInfo::SfxDocumentInfo() :
-/*N*/   eFileCharSet(gsl_getSystemTextEncoding()),
+/*N*/   eFileCharSet(osl_getThreadTextEncoding()),
 /*N*/   bPasswd(FALSE),
 /*N*/   bQueryTemplate(FALSE),
 /*N*/   bTemplateConfig(FALSE),

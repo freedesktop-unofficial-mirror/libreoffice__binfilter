@@ -284,7 +284,7 @@ namespace binfilter {
 /*N*/           bInUnoBroadcast( FALSE ),
 /*N*/           bStyleSheetUsageInvalid( TRUE )
 /*N*/ {
-/*N*/   eSrcSet = gsl_getSystemTextEncoding();
+/*N*/   eSrcSet = osl_getThreadTextEncoding();
 /*N*/   nSrcVer = SC_CURRENT_VERSION;
 /*N*/   nSrcMaxRow = MAXROW;
 /*N*/

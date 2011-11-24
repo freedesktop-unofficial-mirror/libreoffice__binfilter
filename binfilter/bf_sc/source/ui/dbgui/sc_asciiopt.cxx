@@ -57,7 +57,7 @@ static const sal_Char pStrMrg[] = "MRG";
 /*N*/   aFieldSeps      ( ';' ),
 /*N*/   bMergeFieldSeps ( FALSE ),
 /*N*/   cTextSep        ( 34 ),
-/*N*/   eCharSet        ( gsl_getSystemTextEncoding() ),
+/*N*/   eCharSet        ( osl_getThreadTextEncoding() ),
 /*N*/   bCharSetSystem  ( FALSE ),
 /*N*/   nStartRow       ( 1 ),
 /*N*/   nInfoCount      ( 0 ),

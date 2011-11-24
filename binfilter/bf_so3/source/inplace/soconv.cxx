@@ -218,14 +218,14 @@ static ULONG LoadStarObject
         return 0;
     rObjName = String(
         cBuf, sal::static_int_cast< xub_StrLen >( aHdr.nObjName ),
-        gsl_getSystemTextEncoding() );
+        osl_getThreadTextEncoding() );
 
     rSrc.Read( cBuf, aHdr.nServerName );
     if ( rSrc.GetError() )
         return 0;
     rSvrName = String(
         cBuf, sal::static_int_cast< xub_StrLen >( aHdr.nServerName ),
-        gsl_getSystemTextEncoding() );
+        osl_getThreadTextEncoding() );
     if ( aHdr.nPrivData )
     {
         UINT32 nLen;
@@ -294,7 +294,7 @@ BOOL SvEmbeddedObject::InsertStarObject
     {
         // gefunden!
         pClsId = new SvGlobalName( pIds->nId, 0, 0, 0xc0,0,0,0,0,0,0,0x46 );
-        aFull = String( pIds->pDspName, gsl_getSystemTextEncoding() );
+        aFull = String( pIds->pDspName, osl_getThreadTextEncoding() );
         aShort = aSvrName;
     }
     else if( (COMPARE_EQUAL == aSvrName.CompareToAscii( "StarMath2" ))

@@ -352,7 +352,7 @@ namespace binfilter {
     USHORT n, i;
     BYTE cGUIType, cCharSet;
     // TODO: unicode: is this correct?
-    rtl_TextEncoding eCharSet = gsl_getSystemTextEncoding();
+    rtl_TextEncoding eCharSet = osl_getThreadTextEncoding();
     SfxStamp aStamp;
     String aText;
 

@@ -87,7 +87,7 @@ SdPage::SdPage(SdDrawDocument& rNewDoc, StarBASIC* pInBasic, BOOL bMasterPage) :
     aLayoutName.AppendAscii( RTL_CONSTASCII_STRINGPARAM( SD_LT_SEPARATOR ));
     aLayoutName += String(SdResId(STR_LAYOUT_OUTLINE));
 
-    eCharSet = gsl_getSystemTextEncoding();
+    eCharSet = osl_getThreadTextEncoding();
 
     Size aPageSize(GetSize());
 

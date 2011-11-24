@@ -192,11 +192,11 @@ WinMtfFontStyle::WinMtfFontStyle( LOGFONTW& rFont )
 {
     CharSet eCharSet;
     if ( ( rFont.lfCharSet == OEM_CHARSET ) || ( rFont.lfCharSet == DEFAULT_CHARSET ) )
-        eCharSet = gsl_getSystemTextEncoding();
+        eCharSet = osl_getThreadTextEncoding();
     else
         eCharSet = rtl_getTextEncodingFromWindowsCharset( rFont.lfCharSet );
     if ( eCharSet == RTL_TEXTENCODING_DONTKNOW )
-        eCharSet = gsl_getSystemTextEncoding();
+        eCharSet = osl_getThreadTextEncoding();
     aFont.SetCharSet( eCharSet );
     aFont.SetName( rFont.alfFaceName );
     FontFamily eFamily;
@@ -933,7 +933,7 @@ WinMtfOutput::WinMtfOutput( GDIMetaFile& rGDIMetaFile ) :
                                                                             // SetClipRgn( NULL ) and similar ClipRgn actions (SJ)
 
     maFont.SetName( String( RTL_CONSTASCII_USTRINGPARAM( "Arial" )) );  // sj: #i57205#, we do have some scaling problems if using
-    maFont.SetCharSet( gsl_getSystemTextEncoding() );                       // the default font then most times a x11 font is used, we
+    maFont.SetCharSet( osl_getThreadTextEncoding() );                       // the default font then most times a x11 font is used, we
     maFont.SetHeight( 423 );                                                // will prevent this defining a font
 
     maLatestLineStyle.aLineColor = Color( 0x12, 0x34, 0x56 );

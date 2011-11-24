@@ -428,7 +428,7 @@ namespace binfilter {
 /*N*/       uno::Reference< beans::XPropertySet > xSet(xUnoControlModel, uno::UNO_QUERY);
 /*N*/       if (xSet.is())
 /*N*/       {
-/*N*/           uno::Any aValue( xSet->getPropertyValue(String("DefaultControl", gsl_getSystemTextEncoding())) );
+/*N*/           uno::Any aValue( xSet->getPropertyValue(String("DefaultControl", osl_getThreadTextEncoding())) );
 /*N*/           OUString aStr;
 /*N*/           if( aValue >>= aStr )
 /*N*/               aUnoControlTypeName = String(aStr);

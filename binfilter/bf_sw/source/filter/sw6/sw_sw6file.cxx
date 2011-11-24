@@ -370,7 +370,7 @@ BOOL Sw6File::ReadLn(String &rStr)
         if( nAsc )
         {
             rtl_TextEncoding eEnc = aSta.bTrs ? RTL_TEXTENCODING_IBM_850
-                                              : gsl_getSystemTextEncoding();
+                                              : osl_getThreadTextEncoding();
             rStr += String( (sal_Char*)pStt, nAsc, eEnc );
 
             aBuf.nIdx += nAsc;

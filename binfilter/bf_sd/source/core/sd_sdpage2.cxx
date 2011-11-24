@@ -77,7 +77,7 @@ void SdPage::ReadData(const SdrIOHeader& rHead, SvStream& rIn)
 {
     FmFormPage::ReadData( rHead, rIn );
 
-    rIn.SetStreamCharSet(GetSOLoadTextEncoding(gsl_getSystemTextEncoding(), (sal_uInt16)rIn.GetVersion()));
+    rIn.SetStreamCharSet(GetSOLoadTextEncoding(osl_getThreadTextEncoding(), (sal_uInt16)rIn.GetVersion()));
 
     if ( pModel->IsStreamingSdrModel() )
     {

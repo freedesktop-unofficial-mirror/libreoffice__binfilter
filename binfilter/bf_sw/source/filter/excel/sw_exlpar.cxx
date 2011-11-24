@@ -205,7 +205,7 @@ ULONG ExcelReader::Read( SwDoc &rDoc, SwPaM &rPam,
 
     if( !nRet )
     {
-        SwExcelParser* pParser = new SwExcelParser( rDoc, rPam, *pIn, !bInsertMode, gsl_getSystemTextEncoding() );
+        SwExcelParser* pParser = new SwExcelParser( rDoc, rPam, *pIn, !bInsertMode, osl_getThreadTextEncoding() );
         nRet = pParser->CallParser();   // 0 == kein Fehler aufgetreten
 
         delete pParser;

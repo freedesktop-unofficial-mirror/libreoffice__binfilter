@@ -351,7 +351,7 @@ namespace binfilter {
 /*N*/
 /*N*/   BOOL bUpdateOld = ( nSrcVer < SC_FONTCHARSET );
 /*N*/
-/*N*/   CharSet eSysSet = gsl_getSystemTextEncoding();
+/*N*/   CharSet eSysSet = osl_getThreadTextEncoding();
 /*N*/   if ( eSrcSet != eSysSet || bUpdateOld )
 /*N*/   {
 /*N*/       USHORT nCount,i;

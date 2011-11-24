@@ -668,7 +668,7 @@ SvInPlaceObjectRef SvOutPlaceObject::InsertObject
             {
             tType=TENANTTYPE_EMBEDDEDFILE;
             pv=szFile;
-            rFileName.Assign( String( szFile, gsl_getSystemTextEncoding() ) );
+            rFileName.Assign( String( szFile, osl_getThreadTextEncoding() ) );
             }
 
         if ((io.dwFlags & IOF_CHECKDISPLAYASICON)

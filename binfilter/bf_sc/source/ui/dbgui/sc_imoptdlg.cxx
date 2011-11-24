@@ -64,7 +64,7 @@ private:
 /*N*/ void ScImportOptions::SetTextEncoding( rtl_TextEncoding nEnc )
 /*N*/ {
 /*N*/   eCharSet = (nEnc == RTL_TEXTENCODING_DONTKNOW ?
-/*N*/       gsl_getSystemTextEncoding() : nEnc);
+/*N*/       osl_getThreadTextEncoding() : nEnc);
 /*N*/   aStrFont = ScGlobal::GetCharsetString( nEnc );
 /*N*/ }
 }

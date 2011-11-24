@@ -262,7 +262,7 @@ public:
 /*N*/   pCurNumRule = NULL;
 /*N*/   pCurPaM     =
 /*N*/   pCurNumRange= NULL;
-/*N*/   eSrcSet     = gsl_getSystemTextEncoding();
+/*N*/   eSrcSet     = osl_getThreadTextEncoding();
 /*N*/   if( pStrm )
 /*N*/       eSrcSet = GetSOStoreTextEncoding( eSrcSet, pStrm->GetVersion() );
 /*N*/   else if( pRoot.Is() )
@@ -1501,7 +1501,7 @@ void Sw3StringPool::LoadOld( SvStream& r )
 
 /*N*/ void Sw3IoImp::ChangeFontItemCharSet()
 /*N*/ {
-/*N*/   rtl_TextEncoding eSysEnc = gsl_getSystemTextEncoding();
+/*N*/   rtl_TextEncoding eSysEnc = osl_getThreadTextEncoding();
 /*N*/   sal_uInt16 nMaxItems = pDoc->GetAttrPool().GetItemCount( RES_CHRATR_FONT );
 /*N*/   SvxFontItem *pItem;
 /*N*/   for( sal_uInt16 i=0; i<nMaxItems; i++ )
@@ -1547,7 +1547,7 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*N*/   // Temporaere Namenserweiterungen entfernen
 /*N*/   aStringPool.RemoveExtensions( *pDoc );
 /*N*/
-/*N*/   rtl_TextEncoding eSysEnc = gsl_getSystemTextEncoding();
+/*N*/   rtl_TextEncoding eSysEnc = osl_getThreadTextEncoding();
 /*N*/   if( eSysEnc != eSrcSet )
 /*N*/   {
 /*N*/       // Bug 9714: Der CharSet an den Fonts muss geaendert werden, wenn

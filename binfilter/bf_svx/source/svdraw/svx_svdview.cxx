@@ -144,7 +144,7 @@ namespace binfilter {
 /*N*/
 /*N*/       // UNICODE:
 /*N*/       // rtl_TextEncoding eOutCharSet=rOut.GetStreamCharSet();
-/*N*/       rtl_TextEncoding eOutCharSet = gsl_getSystemTextEncoding();
+/*N*/       rtl_TextEncoding eOutCharSet = osl_getThreadTextEncoding();
 /*N*/
 /*N*/       // #90477# rOut << UINT16( GetStoreCharSet( eOutCharSet ) );
 /*N*/       rOut << (UINT16)GetSOStoreTextEncoding(eOutCharSet, (sal_uInt16)rOut.GetVersion());

@@ -51,7 +51,7 @@ SbiImage::SbiImage()
     bInit      =
     bError     = FALSE;
     bFirstInit = TRUE;
-    eCharSet   = gsl_getSystemTextEncoding();
+    eCharSet   = osl_getThreadTextEncoding();
 }
 
 SbiImage::~SbiImage()
@@ -73,7 +73,7 @@ void SbiImage::Clear()
     nStringSize= 0;
     nLegacyCodeSize  = 0;
     nCodeSize  = 0;
-    eCharSet   = gsl_getSystemTextEncoding();
+    eCharSet   = osl_getThreadTextEncoding();
     nDimBase   = 0;
     bError     = FALSE;
 }

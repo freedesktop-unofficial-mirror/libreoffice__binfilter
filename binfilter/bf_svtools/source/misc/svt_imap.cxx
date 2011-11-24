@@ -987,7 +987,7 @@ void ImageMap::Read( SvStream& rIStm, const String& rBaseURL )
         // Version ueberlesen wir
         rIStm.SeekRel( 2 );
 
-        rIStm.ReadByteString( aString ); aName = String( aString, gsl_getSystemTextEncoding() );
+        rIStm.ReadByteString( aString ); aName = String( aString, osl_getThreadTextEncoding() );
         rIStm.ReadByteString( aString ); // Dummy
         rIStm >> nCount;
         rIStm.ReadByteString( aString ); // Dummy

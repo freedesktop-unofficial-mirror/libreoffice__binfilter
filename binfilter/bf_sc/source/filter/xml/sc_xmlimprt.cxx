@@ -1434,7 +1434,7 @@ SvXMLImportContext *ScXMLImport::CreateFontDeclsContext(const USHORT nInPrefix, 
         XMLFontStylesContext *pFSContext =
             new XMLFontStylesContext( *this, nInPrefix,
                                         rLocalName, xAttrList,
-                                        gsl_getSystemTextEncoding() );
+                                        osl_getThreadTextEncoding() );
         SetFontDecls( pFSContext );
         pContext = pFSContext;
     }

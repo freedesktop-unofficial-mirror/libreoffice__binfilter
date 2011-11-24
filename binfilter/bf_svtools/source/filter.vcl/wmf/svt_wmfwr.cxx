@@ -1495,7 +1495,7 @@ void WMFWriter::WriteRecords( const GDIMetaFile & rMTF )
                     aSrcFont = pA->GetFont();
 
                     if ( aSrcFont.GetCharSet() == RTL_TEXTENCODING_DONTKNOW )
-                        aSrcFont.SetCharSet( GetExtendedTextEncoding( gsl_getSystemTextEncoding() ) );
+                        aSrcFont.SetCharSet( GetExtendedTextEncoding( osl_getThreadTextEncoding() ) );
                     if ( aSrcFont.GetCharSet() == RTL_TEXTENCODING_UNICODE )
                         aSrcFont.SetCharSet( RTL_TEXTENCODING_MS_1252 );
                     eSrcTextAlign = aSrcFont.GetAlign();
@@ -1813,7 +1813,7 @@ BOOL WMFWriter::WriteWMF( const GDIMetaFile& rMTF, SvStream& rTargetStream,
     bDstIsClipping = bSrcIsClipping = FALSE;
 
     Font aFont;
-    aFont.SetCharSet( GetExtendedTextEncoding( gsl_getSystemTextEncoding() ) );
+    aFont.SetCharSet( GetExtendedTextEncoding( osl_getThreadTextEncoding() ) );
     aFont.SetColor( Color( COL_WHITE ) );
     aFont.SetAlign( ALIGN_BASELINE );
     aDstFont = aSrcFont = aFont;

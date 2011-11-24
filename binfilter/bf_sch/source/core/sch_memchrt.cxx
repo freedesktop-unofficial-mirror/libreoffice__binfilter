@@ -452,7 +452,7 @@ namespace binfilter {
 
 /*N*/ SvStream& operator << (SvStream& rOut, const SchMemChart& rMemChart)
 /*N*/ {
-/*N*/   CharSet aSysCharSet = static_cast< CharSet >( ::GetSOStoreTextEncoding( gsl_getSystemTextEncoding(),
+/*N*/   CharSet aSysCharSet = static_cast< CharSet >( ::GetSOStoreTextEncoding( osl_getThreadTextEncoding(),
 /*N*/                                                                             (USHORT)rOut.GetVersion()) );
 /*N*/   rOut.SetStreamCharSet( aSysCharSet );
 /*N*/

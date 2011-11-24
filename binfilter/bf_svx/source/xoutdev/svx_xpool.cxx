@@ -82,14 +82,14 @@ static USHORT nVersion4Map[141];
 
 
 /*N*/ XOutdevItemPool::XOutdevItemPool(USHORT nAttrStart, USHORT nAttrEnd, bool bLoadRefCounts):
-/*N*/   SfxItemPool(String("XOutdevItemPool", gsl_getSystemTextEncoding()), nAttrStart, nAttrEnd, NULL, NULL, bLoadRefCounts)
+/*N*/   SfxItemPool(String("XOutdevItemPool", osl_getThreadTextEncoding()), nAttrStart, nAttrEnd, NULL, NULL, bLoadRefCounts)
 /*N*/ {
 /*N*/   Ctor(NULL,nAttrStart,nAttrEnd);
 /*N*/ }
 
 
 /*N*/ XOutdevItemPool::XOutdevItemPool(SfxItemPool* pInMaster, USHORT nAttrStart, USHORT nAttrEnd, bool bLoadRefCounts):
-/*N*/   SfxItemPool(String("XOutdevItemPool", gsl_getSystemTextEncoding()), nAttrStart, nAttrEnd, NULL, NULL, bLoadRefCounts)
+/*N*/   SfxItemPool(String("XOutdevItemPool", osl_getThreadTextEncoding()), nAttrStart, nAttrEnd, NULL, NULL, bLoadRefCounts)
 /*N*/ {
 /*N*/   Ctor(pInMaster,nAttrStart,nAttrEnd);
 /*N*/ }

@@ -97,9 +97,9 @@ using namespace ::com::sun::star;
 /*N*/   SdIOCompat aIO(rOut, STREAM_WRITE, 0);
 /*N*/
 /*N*/   // Name
-/*N*/   // #90477# rOut.WriteByteString( rCustomShow.aName, ::GetStoreCharSet( gsl_getSystemTextEncoding() ) );
+/*N*/   // #90477# rOut.WriteByteString( rCustomShow.aName, ::GetStoreCharSet( osl_getThreadTextEncoding() ) );
 /*N*/   rOut.WriteByteString(rCustomShow.aName,
-/*N*/       GetSOStoreTextEncoding(gsl_getSystemTextEncoding(), (sal_uInt16)rOut.GetVersion()));
+/*N*/       GetSOStoreTextEncoding(osl_getThreadTextEncoding(), (sal_uInt16)rOut.GetVersion()));
 /*N*/
 /*N*/   // Anzahl Seiten
 /*N*/   UINT32 nCount = rCustomShow.Count();
@@ -131,9 +131,9 @@ using namespace ::com::sun::star;
 /*N*/   SdIOCompat aIO(rIn, STREAM_READ);
 /*N*/
 /*N*/   // Name
-/*N*/   // #90477# rIn.ReadByteString( rCustomShow.aName, ::GetStoreCharSet( gsl_getSystemTextEncoding() ) );
+/*N*/   // #90477# rIn.ReadByteString( rCustomShow.aName, ::GetStoreCharSet( osl_getThreadTextEncoding() ) );
 /*N*/   rIn.ReadByteString(rCustomShow.aName,
-/*N*/       GetSOLoadTextEncoding(gsl_getSystemTextEncoding(), (sal_uInt16)rIn.GetVersion()));
+/*N*/       GetSOLoadTextEncoding(osl_getThreadTextEncoding(), (sal_uInt16)rIn.GetVersion()));
 /*N*/
 /*N*/   // Anzahl Seiten
 /*N*/   UINT32 nCount = 0;

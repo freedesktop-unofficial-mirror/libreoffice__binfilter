@@ -170,7 +170,7 @@ namespace binfilter {
 /*N*/           //JP 18.08.98: Bug 55115 - PageDescAttribute mit ihren Vorlagen
 /*N*/           //              verbinden
 /*?*/           ConnectPageDescAttrs();
-/*?*/           if( gsl_getSystemTextEncoding() != eSrcSet )
+/*?*/           if( osl_getThreadTextEncoding() != eSrcSet )
 /*?*/               ChangeFontItemCharSet();
 /*?*/
 /*?*/           // Temporaere Namenserweiterungen entfernen
@@ -178,7 +178,7 @@ namespace binfilter {
 /*?*/           ConvertFmtsToStarSymbol();
 /*N*/       }
 /*N*/       // TODO: unicode: is this required really?
-/*N*/       eSrcSet = GetSOLoadTextEncoding( gsl_getSystemTextEncoding(),
+/*N*/       eSrcSet = GetSOLoadTextEncoding( osl_getThreadTextEncoding(),
 /*N*/                                        pStrm->GetVersion() );
 /*N*/   }
 /*N*/ }

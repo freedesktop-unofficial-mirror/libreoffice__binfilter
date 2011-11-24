@@ -546,7 +546,7 @@ ByteString SwSwgReader::GetAsciiText( BOOL bReq )
     // Bug 9714: Der CharSet an den Fonts muss geaendert werden, wenn
     // es der globale CharSet ist
     USHORT nMaxItems = pDoc->GetAttrPool().GetItemCount( RES_CHRATR_FONT );
-    rtl_TextEncoding eSysCharSet = gsl_getSystemTextEncoding();
+    rtl_TextEncoding eSysCharSet = osl_getThreadTextEncoding();
     SvxFontItem* pItem;
     for( USHORT n = 0; n < nMaxItems; ++n )
     {

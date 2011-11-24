@@ -552,7 +552,7 @@ void global_InitAppOptions();
 /*N*/   {
 /*?*/       sal_Int32 nVal = rCharSet.ToInt32();
 /*?*/       if ( !nVal || nVal == RTL_TEXTENCODING_DONTKNOW )
-/*?*/           return gsl_getSystemTextEncoding();
+/*?*/           return osl_getThreadTextEncoding();
 /*?*/       return (CharSet) nVal;
 /*N*/   }
 /*N*/   // old CharSet values for compatibility
@@ -565,8 +565,8 @@ void global_InitAppOptions();
 /*N*/   else if (rCharSet.EqualsIgnoreCaseAscii("IBMPC_861")) return RTL_TEXTENCODING_IBM_861;
 /*N*/   else if (rCharSet.EqualsIgnoreCaseAscii("IBMPC_863")) return RTL_TEXTENCODING_IBM_863;
 /*N*/   else if (rCharSet.EqualsIgnoreCaseAscii("IBMPC_865")) return RTL_TEXTENCODING_IBM_865;
-/*N*/ //    else if (rCharSet.EqualsIgnoreCaseAscii("SYSTEM")   ) return gsl_getSystemTextEncoding();
-/*N*/   else return gsl_getSystemTextEncoding();
+/*N*/ //    else if (rCharSet.EqualsIgnoreCaseAscii("SYSTEM")   ) return osl_getThreadTextEncoding();
+/*N*/   else return osl_getThreadTextEncoding();
 /*N*/ }
 
 //------------------------------------------------------------------------
