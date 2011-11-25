@@ -30,6 +30,7 @@
 
 #define _XBMPRIVATE
 #include <ctype.h>
+#include <comphelper/string.hxx>
 #include "xbmread.hxx"
 
 // -------------
@@ -232,7 +233,7 @@ BOOL XBMReader::ParseData( SvStream* pInStm, const ByteString& aLastLine, XBMFor
 
             for( USHORT i = 0; ( i < nCount ) && ( nRow < nHeight ); i++ )
             {
-                const ByteString    aToken( aLine.GetToken( i, ',' ) );
+                const ByteString    aToken(comphelper::string::getToken(aLine, i, ',') );
                 const xub_StrLen nLen = aToken.Len();
                 BOOL                bProcessed = FALSE;
 
