@@ -3078,21 +3078,15 @@ void SvNumberFormatter::GetCompatibilityCurrency( String& rSymbol, String& rAbbr
 
 void lcl_CheckCurrencySymbolPosition( const NfCurrencyEntry& rCurr )
 {
-    short nPos = -1;        // -1:=unknown, 0:=vorne, 1:=hinten
-    short nNeg = -1;
     switch ( rCurr.GetPositiveFormat() )
     {
         case 0:                                         // $1
-            nPos = 0;
         break;
         case 1:                                         // 1$
-            nPos = 1;
         break;
         case 2:                                         // $ 1
-            nPos = 0;
         break;
         case 3:                                         // 1 $
-            nPos = 1;
         break;
         default:
             LocaleDataWrapper::outputCheckMessage(
@@ -3102,70 +3096,41 @@ void lcl_CheckCurrencySymbolPosition( const NfCurrencyEntry& rCurr )
     switch ( rCurr.GetNegativeFormat() )
     {
         case 0:                                         // ($1)
-            nNeg = 0;
         break;
         case 1:                                         // -$1
-            nNeg = 0;
         break;
         case 2:                                         // $-1
-            nNeg = 0;
         break;
         case 3:                                         // $1-
-            nNeg = 0;
         break;
         case 4:                                         // (1$)
-            nNeg = 1;
         break;
         case 5:                                         // -1$
-            nNeg = 1;
         break;
         case 6:                                         // 1-$
-            nNeg = 1;
         break;
         case 7:                                         // 1$-
-            nNeg = 1;
         break;
         case 8:                                         // -1 $
-            nNeg = 1;
         break;
         case 9:                                         // -$ 1
-            nNeg = 0;
         break;
         case 10:                                        // 1 $-
-            nNeg = 1;
         break;
         case 11:                                        // $ -1
-            nNeg = 0;
         break;
         case 12 :                                       // $ 1-
-            nNeg = 0;
         break;
         case 13 :                                       // 1- $
-            nNeg = 1;
         break;
         case 14 :                                       // ($ 1)
-            nNeg = 0;
         break;
         case 15 :                                       // (1 $)
-            nNeg = 1;
         break;
         default:
             LocaleDataWrapper::outputCheckMessage(
                     "lcl_CheckCurrencySymbolPosition: unknown NegativeFormat");
         break;
-    }
-    if ( nPos >= 0 && nNeg >= 0 && nPos != nNeg )
-    {
-        ByteString aStr( "positions of currency symbols differ\nLanguage: " );
-        aStr += ByteString_CreateFromInt32( rCurr.GetLanguage() );
-        aStr += " <";
-        aStr += ByteString( rCurr.GetSymbol(), RTL_TEXTENCODING_UTF8 );
-        aStr += "> positive: ";
-        aStr += ByteString_CreateFromInt32( rCurr.GetPositiveFormat() );
-        aStr += ( nPos ? " (postfix)" : " (prefix)" );
-        aStr += ", negative: ";
-        aStr += ByteString_CreateFromInt32( rCurr.GetNegativeFormat() );
-        aStr += ( nNeg ? " (postfix)" : " (prefix)" );
     }
 }
 
