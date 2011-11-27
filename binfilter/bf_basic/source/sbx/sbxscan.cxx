@@ -65,7 +65,7 @@ void ImpGetIntntlSep( sal_Unicode& rcDecimalSep, sal_Unicode& rcThousandSep )
 SbxError ImpScan( const XubString& rWSrc, double& nVal, SbxDataType& rType,
                   USHORT* pLen, BOOL bAllowIntntl, BOOL bOnlyIntntl )
 {
-    ByteString aBStr( rWSrc, RTL_TEXTENCODING_ASCII_US );
+    rtl::OString aBStr(rtl::OUStringToOString(rWSrc, RTL_TEXTENCODING_ASCII_US));
 
     // Bei International Komma besorgen
     char cIntntlComma, cIntntl1000;
@@ -91,7 +91,7 @@ SbxError ImpScan( const XubString& rWSrc, double& nVal, SbxDataType& rType,
         cIntntl1000 = (char)cThousandSep;
     }
 
-    const char* pStart = aBStr.GetBuffer();
+    const char* pStart = aBStr.getStr();
     const char* p = pStart;
     char buf[ 80 ], *q = buf;
     BOOL bRes = TRUE;

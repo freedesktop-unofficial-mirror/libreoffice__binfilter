@@ -450,7 +450,8 @@ void WMFWriter::WMFRecord_CreateFontIndirect(const Font & rFont)
         case PITCH_VARIABLE: nPitchFamily=W_VARIABLE_PITCH; break;
         default:             nPitchFamily=W_DEFAULT_PITCH;
     }
-    switch (rFont.GetFamily()) {
+    switch (rFont.GetFamily())
+    {
         case FAMILY_DECORATIVE: nPitchFamily|=W_FF_DECORATIVE; break;
         case FAMILY_MODERN:     nPitchFamily|=W_FF_MODERN;     break;
         case FAMILY_ROMAN:      nPitchFamily|=W_FF_ROMAN;      break;
@@ -460,10 +461,10 @@ void WMFWriter::WMFRecord_CreateFontIndirect(const Font & rFont)
     }
     *pWMF << nPitchFamily;
 
-    ByteString aFontName( rFont.GetName(), eFontNameEncoding );
+    rtl::OString aFontName(rtl::OUStringToOString(rFont.GetName(), eFontNameEncoding));
     for ( i = 0; i < W_LF_FACESIZE; i++ )
     {
-        sal_Char nChar = ( i < aFontName.Len() ) ? aFontName.GetChar( i ) : 0;
+        sal_Char nChar = ( i < aFontName.getLength() ) ? aFontName[i] : 0;
         *pWMF << nChar;
     }
     UpdateRecordHeader();
@@ -562,8 +563,8 @@ sal_Bool WMFWriter::WMFRecord_Escape_Unicode( const Point& rPoint, const String&
         {
             const sal_Unicode* pBuf = rUniStr.GetBuffer();
 
-            ByteString aByteStr( rUniStr, aSrcFont.GetCharSet() );
-            String     aUniStr2( aByteStr, aSrcFont.GetCharSet() );
+            rtl::OString aByteStr(rtl::OUStringToOString(rUniStr, aSrcFont.GetCharSet()));
+            String aUniStr2( aByteStr, aSrcFont.GetCharSet() );
             const sal_Unicode* pConversion = aUniStr2.GetBuffer();  // this is the unicode array after bytestring <-> unistring conversion
             for ( i = 0; i < nStringLen; i++ )
             {
@@ -630,8 +631,8 @@ void WMFWriter::WMFRecord_ExtTextOut( const Point & rPoint,
         return;
     }
     rtl_TextEncoding eChrSet = aSrcFont.GetCharSet();
-    ByteString aByteString(rString, eChrSet);
-    TrueExtTextOut(rPoint,rString,aByteString,pDXAry);
+    rtl::OString aByteString(rtl::OUStringToOString(rString, eChrSet));
+    TrueExtTextOut(rPoint, rString, aByteString, pDXAry);
 }
 
 void WMFWriter::TrueExtTextOut( const Point & rPoint, const String & rString,
@@ -662,8 +663,9 @@ void WMFWriter::TrueExtTextOut( const Point & rPoint, const String & rString,
         *pWMF << nDx;
         if ( nOriginalTextLen < nNewTextLen )
         {
-            ByteString aTemp( rString.GetChar( i ), aSrcFont.GetCharSet());
-            j = aTemp.Len();
+            sal_Unicode cUniChar = rString.GetChar(i);
+            rtl::OString aTemp(&cUniChar, 1, aSrcFont.GetCharSet());
+            j = aTemp.getLength();
             while ( --j > 0 )
                 *pWMF << (sal_uInt16)0;
         }
@@ -919,7 +921,7 @@ void WMFWriter::WMFRecord_StretchDIB( const Point & rPoint, const Size & rSize,
 void WMFWriter::WMFRecord_TextOut(const Point & rPoint, const String & rStr)
 {
     rtl_TextEncoding eChrSet = aSrcFont.GetCharSet();
-    ByteString aString( rStr, eChrSet );
+    rtl::OString aString(rtl::OUStringToOString(rStr, eChrSet));
     TrueTextOut(rPoint, aString);
 }
 

@@ -1572,8 +1572,8 @@ void SAL_CALL SvxGraphicObject::setPropertyValue( const OUString& aPropertyName,
             // graphic manager url
             aURL = aURL.copy( sizeof( UNO_NAME_GRAPHOBJ_URLPREFIX ) - 1 );
             String aTmpStr(aURL);
-            ByteString aUniqueID( aTmpStr, RTL_TEXTENCODING_UTF8 );
-            BfGraphicObject aGrafObj( aUniqueID );
+            rtl::OString aUniqueID(rtl::OUStringToOString(aTmpStr, RTL_TEXTENCODING_UTF8));
+            BfGraphicObject aGrafObj(aUniqueID);
 
             // #101808# since loading a graphic can cause a reschedule of the office
             //          it is possible that our shape is removed while where in this

@@ -855,9 +855,9 @@ using namespace ::com::sun::star;
 /*N*/          nDelimiterPos >= nEndPos )
 /*N*/      {
 /*N*/  #if OSL_DEBUG_LEVEL > 0
-/*N*/          String aStr( rXMLString.copy( nStartPos, nEndPos - nStartPos + 1 ));
-/*N*/          ByteString aBstr( aStr, RTL_TEXTENCODING_ASCII_US );
-/*N*/          OSL_TRACE( "Invalid Cell Range <%s> found in XML file", aBstr.GetBuffer());
+/*N*/          rtl::OUString aStr( rXMLString.copy( nStartPos, nEndPos - nStartPos + 1 ));
+/*N*/          rtl::OString aBstr(rtl::OUStringToOString(aStr, RTL_TEXTENCODING_ASCII_US));
+/*N*/          OSL_TRACE( "Invalid Cell Range <%s> found in XML file", aBstr.getStr());
 /*N*/  #endif
 /*N*/          return false;
 /*N*/      }

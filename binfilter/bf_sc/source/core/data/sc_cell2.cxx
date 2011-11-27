@@ -32,6 +32,7 @@
 
 // INCLUDE ---------------------------------------------------------------
 
+#include <rtl/strbuf.hxx>
 #include <vcl/mapmod.hxx>
 #include <bf_svx/editobj.hxx>
 
@@ -449,13 +450,13 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/               {
 /*N*/ #ifdef DBG_UTIL
 /*N*/                   String aTmp;
-/*N*/                   ByteString aMsg( "broken Matrix, no MatFormula at origin, Pos: " );
+/*N*/                   rtl::OStringBuffer aMsg( "broken Matrix, no MatFormula at origin, Pos: " );
 /*N*/                   aPos.Format( aTmp, SCA_VALID_COL | SCA_VALID_ROW, pDocument );
-/*N*/                   aMsg += ByteString( aTmp, RTL_TEXTENCODING_ASCII_US );
-/*N*/                   aMsg += ", MatOrg: ";
+/*N*/                   aMsg.append(rtl::OUStringToOString(aTmp, RTL_TEXTENCODING_ASCII_US));
+/*N*/                   aMsg.append(", MatOrg: ");
 /*N*/                   aOrg.Format( aTmp, SCA_VALID_COL | SCA_VALID_ROW, pDocument );
-/*N*/                   aMsg += ByteString( aTmp, RTL_TEXTENCODING_ASCII_US );
-/*N*/                   DBG_ERRORFILE( aMsg.GetBuffer() );
+/*N*/                   aMsg.append(rtl::OUStringToOString(aTmp, RTL_TEXTENCODING_ASCII_US));
+/*N*/                   DBG_ERRORFILE(aMsg.getStr());
 /*N*/ #endif
 /*N*/                   return 0;           // bad luck ...
 /*N*/               }

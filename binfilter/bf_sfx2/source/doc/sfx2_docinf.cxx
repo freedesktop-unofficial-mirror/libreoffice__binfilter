@@ -216,7 +216,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   else
 /*N*/   {
 /*N*/       // Non-unicode strings are always stored with UTF8 encoding
-/*N*/       return ByteString( aString, RTL_TEXTENCODING_UTF8 ).Len() + 5;
+/*N*/       return rtl::OUStringToOString(aString, RTL_TEXTENCODING_UTF8).getLength() + 5;
 /*N*/   }
 /*N*/ }
 

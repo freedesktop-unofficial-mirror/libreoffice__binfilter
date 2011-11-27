@@ -365,11 +365,10 @@ void SchXMLPlotAreaContext::EndElement()
                 xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "NumberOfLines" )),
                                          uno::makeAny( mnNumOfLines ));
             }
-            catch( uno::Exception & aEx )
+            catch (const uno::Exception & aEx)
             {
-                String aStr( aEx.Message );
-                ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-                OSL_TRACE( "Exception caught for property NumberOfLines: %s", aBStr.GetBuffer());
+                rtl::OString aBStr(rtl::OUStringToOString(aEx.Message, RTL_TEXTENCODING_ASCII_US));
+                OSL_TRACE( "Exception caught for property NumberOfLines: %s", aBStr.getStr());
             }
         }
 
@@ -382,11 +381,10 @@ void SchXMLPlotAreaContext::EndElement()
                 xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Volume" )),
                                          uno::makeAny( mbStockHasVolume ));
             }
-            catch( uno::Exception & aEx )
+            catch (const uno::Exception & aEx)
             {
-                String aStr( aEx.Message );
-                ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-                OSL_TRACE( "Exception caught for property NumberOfLines: %s", aBStr.GetBuffer());
+                rtl::OString aBStr(rtl::OUStringToOString(aEx.Message, RTL_TEXTENCODING_ASCII_US));
+                OSL_TRACE( "Exception caught for property NumberOfLines: %s", aBStr.getStr());
             }
         }
     }

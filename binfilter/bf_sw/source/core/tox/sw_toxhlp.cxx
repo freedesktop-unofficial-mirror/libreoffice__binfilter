@@ -34,6 +34,7 @@
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
 #include <comphelper/processfactory.hxx>
 #include <com/sun/star/i18n/XExtendedIndexEntrySupplier.hpp>
+#include <rtl/strbuf.hxx>
 #include <tools/string.hxx>
 #include <tools/debug.hxx>
 
@@ -57,12 +58,12 @@ namespace binfilter {
             x >>= xIES;
         }
     }
-    catch ( UNO_NMSPC::Exception& e )
+    catch ( const UNO_NMSPC::Exception& e )
     {
  #ifdef DBG_UTIL
-        ByteString aMsg( "IndexEntrySupplierWrapper: Exception caught\n" );
-        aMsg += ByteString( String( e.Message ), RTL_TEXTENCODING_UTF8 );
-        DBG_ERRORFILE( aMsg.GetBuffer() );
+        rtl::OStringBuffer aMsg("IndexEntrySupplierWrapper: Exception caught\n");
+        aMsg.append(rtl::OUStringToOString(e.Message, RTL_TEXTENCODING_UTF8));
+        DBG_ERRORFILE(aMsg.getStr());
  #endif
     }
  }
@@ -79,12 +80,12 @@ namespace binfilter {
     try {
          sRet = xIES->getAlgorithmList( rLcl );
     }
-    catch ( UNO_NMSPC::Exception& e )
+    catch ( const UNO_NMSPC::Exception& e )
     {
  #ifdef DBG_UTIL
-         ByteString aMsg( "getAlgorithmList: Exception caught\n" );
-        aMsg += ByteString( String( e.Message ), RTL_TEXTENCODING_UTF8 );
-        DBG_ERRORFILE( aMsg.GetBuffer() );
+        rtl::OStringBuffer aMsg("getAlgorithmList: Exception caught\n");
+        aMsg.append(rtl::OUStringToOString(e.Message, RTL_TEXTENCODING_UTF8));
+        DBG_ERRORFILE(aMsg.getStr());
  #endif
     }
     return sRet;
@@ -98,12 +99,12 @@ namespace binfilter {
     try {
          bRet = xIES->loadAlgorithm( rLcl, sSortAlgorithm, nOptions );
     }
-    catch ( UNO_NMSPC::Exception& e )
+    catch (const UNO_NMSPC::Exception& e)
     {
  #ifdef DBG_UTIL
-         ByteString aMsg( "loadAlgorithm: Exception caught\n" );
-        aMsg += ByteString( String( e.Message ), RTL_TEXTENCODING_UTF8 );
-        DBG_ERRORFILE( aMsg.GetBuffer() );
+        rtl::OStringBuffer aMsg("loadAlgorithm: Exception caught\n");
+        aMsg.append(rtl::OUStringToOString(e.Message, RTL_TEXTENCODING_UTF8));
+        DBG_ERRORFILE(aMsg.getStr());
  #endif
     }
      return bRet;
@@ -120,12 +121,12 @@ namespace binfilter {
          nRet = xIES->compareIndexEntry( rTxt1, rTxtReading1, rLocale1,
                                          rTxt2, rTxtReading2, rLocale2 );
     }
-    catch ( UNO_NMSPC::Exception& e )
+    catch (const UNO_NMSPC::Exception& e)
     {
  #ifdef DBG_UTIL
-         ByteString aMsg( "compareIndexEntry: Exception caught\n" );
-        aMsg += ByteString( String( e.Message ), RTL_TEXTENCODING_UTF8 );
-        DBG_ERRORFILE( aMsg.GetBuffer() );
+        rtl::OStringBuffer aMsg( "compareIndexEntry: Exception caught\n" );
+        aMsg.append(rtl::OUStringToOString(e.Message, RTL_TEXTENCODING_UTF8));
+        DBG_ERRORFILE(aMsg.getStr());
  #endif
     }
      return nRet;

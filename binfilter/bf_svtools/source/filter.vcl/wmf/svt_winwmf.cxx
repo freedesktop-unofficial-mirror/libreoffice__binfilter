@@ -461,10 +461,11 @@ void WMFReader::ReadRecordParams( USHORT nFunc )
                             *pWMF >> nDx;
                             if ( nNewTextLen != nOriginalTextLen )
                             {
-                                ByteString aTmp( aText.GetChar( i ), pOut->GetCharSet() );
-                                if ( aTmp.Len() > 1 )
+                                sal_Unicode cUniChar = aText.GetChar(i);
+                                rtl::OString aTmp(&cUniChar, 1, pOut->GetCharSet());
+                                if ( aTmp.getLength() > 1 )
                                 {
-                                    sal_Int32 nDxCount = aTmp.Len() - 1;
+                                    sal_Int32 nDxCount = aTmp.getLength() - 1;
                                     if ( ( ( nDxCount * 2 ) + pWMF->Tell() ) > nMaxStreamPos )
                                         break;
                                     while ( nDxCount-- )

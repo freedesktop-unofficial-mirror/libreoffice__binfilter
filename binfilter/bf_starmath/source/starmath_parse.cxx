@@ -1850,7 +1850,7 @@ const sal_Int32 coNumContFlags =
 /*N*/   double    fTmp;
 /*N*/   Fraction  aValue;
 /*N*/   if(lcl_IsNumber(CurToken.aText) &&
-/*N*/       sscanf(ByteString(CurToken.aText, RTL_TEXTENCODING_ASCII_US).GetBuffer(), "%lf", &fTmp) == 1)
+/*N*/       sscanf(rtl::OUStringToOString(CurToken.aText, RTL_TEXTENCODING_ASCII_US).getStr(), "%lf", &fTmp) == 1)
 /*N*/       aValue = fTmp;
 /*N*/
 /*N*/   NextToken();

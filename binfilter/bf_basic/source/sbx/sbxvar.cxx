@@ -305,8 +305,8 @@ void SbxVariable::SetParent( SbxObject* p )
             aMsg.AppendAscii( "].SetParent([" );
             aMsg += p->GetName();
             aMsg.AppendAscii( "])" );
-            ByteString aBStr( (const UniString&)aMsg, RTL_TEXTENCODING_ASCII_US );
-            DbgOut( aBStr.GetBuffer(), DBG_OUT_WARNING, __FILE__, __LINE__);
+            rtl::OString aBStr(rtl::OUStringToOString(aMsg, RTL_TEXTENCODING_ASCII_US));
+            DbgOut( aBStr.getStr(), DBG_OUT_WARNING, __FILE__, __LINE__);
         }
     }
 #endif
@@ -466,13 +466,13 @@ void SbxAlias::SFX_NOTIFY( SfxBroadcaster&, const TypeId&,
 
 void SbxVariable::Dump( SvStream& rStrm, BOOL bFill )
 {
-    ByteString aBNameStr( (const UniString&)GetName( SbxNAME_SHORT_TYPES ), RTL_TEXTENCODING_ASCII_US );
+    rtl::OString aBNameStr(rtl::OUStringToOString(GetName( SbxNAME_SHORT_TYPES ), RTL_TEXTENCODING_ASCII_US));
     rStrm << "Variable( "
           << rtl::OString::valueOf(reinterpret_cast<sal_Int64>(this)).getStr() << "=="
-          << aBNameStr.GetBuffer();
-    ByteString aBParentNameStr( (const UniString&)GetParent()->GetName(), RTL_TEXTENCODING_ASCII_US );
+          << aBNameStr.getStr();
+    rtl::OString aBParentNameStr(rtl::OUStringToOString(GetParent()->GetName(), RTL_TEXTENCODING_ASCII_US));
     if ( GetParent() )
-        rStrm << " in parent '" << aBParentNameStr.GetBuffer() << "'";
+        rStrm << " in parent '" << aBParentNameStr.getStr() << "'";
     else
         rStrm << " no parent";
     rStrm << " ) ";

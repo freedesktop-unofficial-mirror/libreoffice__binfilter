@@ -99,7 +99,7 @@
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
-#define S2BS(s) ByteString( s, RTL_TEXTENCODING_MS_1252 )
+#define S2BS(s) rtl::OUStringToOString(s, RTL_TEXTENCODING_MS_1252)
 
 
 extern sal_uInt32 CheckPasswd_Impl( SfxObjectShell*, SfxItemPool&, SfxMedium* );

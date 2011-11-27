@@ -247,10 +247,10 @@ namespace binfilter {
 /*?*/                         pStrCell->GetString( aOldStr );
 /*?*/
 /*?*/                         //  convert back to stream character set (get original data)
-/*?*/                         ByteString aByteStr( aOldStr, eStreamCharSet );
+/*?*/                         rtl::OString aByteStr(rtl::OUStringToOString(aOldStr, eStreamCharSet));
 /*?*/
 /*?*/                         //  convert using symbol encoding, as for CELLTYPE_SYMBOLS cells
-/*?*/                         String aNewStr( aByteStr, RTL_TEXTENCODING_SYMBOL );
+/*?*/                         String aNewStr(rtl::OStringToOUString(aByteStr, RTL_TEXTENCODING_SYMBOL));
 /*?*/                         pStrCell->SetString( aNewStr );
 /*?*/
 /*?*/                         ScSymbolStringCellEntry * pEntry = new ScSymbolStringCellEntry;

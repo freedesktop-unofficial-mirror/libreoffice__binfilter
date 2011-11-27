@@ -1006,11 +1006,10 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
                 xDiaProp->getPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "NumberOfLines" )))
                     >>= nNumberOfLinesInBarChart;
             }
-            catch( uno::Exception & aEx )
+            catch(const uno::Exception & aEx)
             {
-                String aStr( aEx.Message );
-                ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-                OSL_TRACE( "Exception caught for property NumberOfLines: %s", aBStr.GetBuffer());
+                rtl::OString aBStr(rtl::OUStringToOString(aEx.Message, RTL_TEXTENCODING_ASCII_US));
+                OSL_TRACE( "Exception caught for property NumberOfLines: %s", aBStr.getStr());
             }
         }
         else if( 0 == xDiagram->getDiagramType().reverseCompareToAsciiL(
@@ -1022,11 +1021,10 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
                 xDiaProp->getPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Volume" )))
                     >>= bStockHasVolume;
             }
-            catch( uno::Exception & aEx )
+            catch (const uno::Exception & aEx)
             {
-                String aStr( aEx.Message );
-                ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-                OSL_TRACE( "Exception caught for property Volume: %s", aBStr.GetBuffer());
+                rtl::OString aBStr(rtl::OUStringToOString(aEx.Message, RTL_TEXTENCODING_ASCII_US));
+                OSL_TRACE( "Exception caught for property Volume: %s", aBStr.getStr());
             }
         }
     }

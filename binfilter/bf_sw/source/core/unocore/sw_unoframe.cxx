@@ -1066,8 +1066,8 @@ void SwXFrame::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
                 else if( sTmp.EqualsAscii( sGraphicObjectProtocol,
                                            0, sizeof(sGraphicObjectProtocol)-1 ) )
                 {
-                    ByteString sId( sTmp.Copy(sizeof(sGraphicObjectProtocol)-1),
-                                    RTL_TEXTENCODING_ASCII_US );
+                    rtl::OString sId(rtl::OUStringToOString(sTmp.Copy(sizeof(sGraphicObjectProtocol)-1),
+                                    RTL_TEXTENCODING_ASCII_US));
                     pGrfObj = new BfGraphicObject( sId );
                     sGrfName.Erase();
                 }
@@ -1787,8 +1787,8 @@ void SwXFrame::attachToRange(const uno::Reference< XTextRange > & xTextRange)
                 else if( sGraphicURL.EqualsAscii( sGraphicObjectProtocol,
                                        0, sizeof(sGraphicObjectProtocol)-1 ) )
                 {
-                    ByteString sId( sGraphicURL.Copy( sizeof(sGraphicObjectProtocol)-1 ),
-                                    RTL_TEXTENCODING_ASCII_US );
+                    rtl::OString sId(rtl::OUStringToOString(sGraphicURL.Copy( sizeof(sGraphicObjectProtocol)-1 ),
+                                    RTL_TEXTENCODING_ASCII_US));
                     pGrfObj = new BfGraphicObject( sId );
                     sGraphicURL.Erase();
                 }

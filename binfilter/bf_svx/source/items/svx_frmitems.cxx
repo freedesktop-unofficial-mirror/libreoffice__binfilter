@@ -2160,9 +2160,9 @@ public:
 /*N*/               {
 /*N*/                   DELETEZ( pStrLink );
 /*N*/                   String sTmp( sLink );
-/*N*/                   ByteString sId( sTmp.Copy(
+/*N*/                   rtl::OString sId(rtl::OUStringToOString(sTmp.Copy(
 /*N*/                                       sizeof(UNO_NAME_GRAPHOBJ_URLPREFIX)-1),
-/*N*/                                   RTL_TEXTENCODING_ASCII_US );
+/*N*/                                   RTL_TEXTENCODING_ASCII_US));
 /*N*/                   BfGraphicObject *pOldGrfObj = pImpl->pGraphicObject;
 /*N*/                   pImpl->pGraphicObject = new BfGraphicObject( sId );
 /*N*/                     ApplyGraphicTransparency_Impl();

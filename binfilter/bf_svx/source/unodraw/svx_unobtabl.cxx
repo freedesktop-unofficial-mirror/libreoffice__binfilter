@@ -114,8 +114,8 @@ BfGraphicObject CreateGraphicObjectFromURL( const ::rtl::OUString &rURL ) throw(
     if( aURL.Search( aPrefix ) == 0 )
     {
         // graphic manager url
-        ByteString aUniqueID( String(rURL.copy( sizeof( UNO_NAME_GRAPHOBJ_URLPREFIX ) - 1 )), RTL_TEXTENCODING_UTF8 );
-        return BfGraphicObject( aUniqueID );
+        rtl::OString aUniqueID(rtl::OUStringToOString(rURL.copy(sizeof(UNO_NAME_GRAPHOBJ_URLPREFIX)-1), RTL_TEXTENCODING_UTF8));
+        return BfGraphicObject(aUniqueID);
     }
     else
     {

@@ -2840,7 +2840,7 @@ void SwXTextTable::setPropertyValue(const OUString& rPropertyName,
     {
         String aPropertyName(rPropertyName);
         if(!pTableProps->SetProperty(
-             ByteString( aPropertyName, RTL_TEXTENCODING_ASCII_US).GetBuffer(),
+             rtl::OUStringToOString(aPropertyName, RTL_TEXTENCODING_ASCII_US).getStr(),
             aValue))
             throw IllegalArgumentException();
     }
@@ -2981,7 +2981,7 @@ uno::Any SwXTextTable::getPropertyValue(const OUString& rPropertyName) throw( be
     {
         uno::Any* pAny = 0;
         String aPropertyName(rPropertyName);
-        if(!pTableProps->GetProperty(ByteString(aPropertyName, RTL_TEXTENCODING_ASCII_US).GetBuffer(),
+        if(!pTableProps->GetProperty(rtl::OUStringToOString(aPropertyName, RTL_TEXTENCODING_ASCII_US).getStr(),
                                                                                                 pAny))
             throw IllegalArgumentException();
         else if(pAny)

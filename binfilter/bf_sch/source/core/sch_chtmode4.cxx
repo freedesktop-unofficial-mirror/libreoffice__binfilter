@@ -1228,8 +1228,8 @@ private:
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR (context, "sch", "af119097", "::ChartModel::BuildChart");
 /*N*/
 /*N*/ #ifdef DBG_UTIL
-/*N*/   ByteString aBStr( aMainTitle, RTL_TEXTENCODING_ASCII_US );
-/*N*/   CHART_TRACE1( "ChartModel::BuildChart (%s)", aBStr.GetBuffer());
+/*N*/   rtl::OString aBStr(rtl::OUStringToOString(aMainTitle, RTL_TEXTENCODING_ASCII_US));
+/*N*/   CHART_TRACE1( "ChartModel::BuildChart (%s)", aBStr.getStr());
 /*N*/ #endif
 /*N*/
 /*N*/   //kein setzen der p*Attr durch die Objekte
@@ -1404,10 +1404,10 @@ private:
 /*?*/                       catch( ::com::sun::star::uno::Exception aEx )
 /*?*/                       {
 /*?*/ #ifdef DBG_UTIL
-/*?*/                           // convert ::rtl::OUString => tools String => ByteString
-/*?*/                           String aStr( aEx.Message );
-/*?*/                           ByteString aTmpBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-/*?*/                           OSL_TRACE( "AddIn threw exception during refresh(): %s", aTmpBStr.GetBuffer());
+/*?*/                           rtl::OString aTmpBStr(rtl::OUStringToOString(aEx.Message, RTL_TEXTENCODING_ASCII_US));
+/*?*/                           OSL_TRACE( "AddIn threw exception during refresh(): %s", aTmpBStr.getStr());
+/*?*/ #else
+/*?*/                           (void)aEx;
 /*?*/ #endif
 /*?*/                       }
 /*?*/                       ResetChartStatusFlag( CHS_NO_ADDIN_REFRESH );

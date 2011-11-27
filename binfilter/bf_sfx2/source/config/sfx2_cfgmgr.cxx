@@ -470,10 +470,10 @@ static const char pStorageName[] = "Configurations";
 
 /*?*/ USHORT SfxConfigManagerImExport_Impl::GetType( const String& rStreamName )
 /*?*/ {
-/*NBFF*/     ByteString aCmp( rStreamName, RTL_TEXTENCODING_ASCII_US );
+/*NBFF*/  rtl::OString aCmp(rtl::OUStringToOString(rStreamName, RTL_TEXTENCODING_ASCII_US));
 /*NBFF*/
-/*NBFF*/         if ( !strcmp( aCmp.GetBuffer(), "eventbindings.xml" ) )
-/*NBFF*/             return 11;
+/*NBFF*/  if ( !strcmp( aCmp.getStr(), "eventbindings.xml" ) )
+/*NBFF*/      return 11;
 /*NBFF*/
 /*?*/     return 0;
 /*?*/ }

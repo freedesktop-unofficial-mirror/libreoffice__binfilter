@@ -185,8 +185,8 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
         if(pSet && SFX_ITEM_SET == pSet->GetItemState(SID_PASSWORD, TRUE, &pItem))
         {
             DBG_ASSERT(pItem->IsA( TYPE(SfxStringItem) ), "Fehler Parametertype");
-            ByteString aLclPasswd( ((const SfxStringItem *)pItem)->GetValue(),
-                                osl_getThreadTextEncoding() );
+            rtl::OString aLclPasswd(rtl::OUStringToOString(((const SfxStringItem *)pItem)->GetValue(),
+                osl_getThreadTextEncoding()));
             aStor->SetKey( aLclPasswd );
         }
         // Fuer's Dokument-Einfuegen noch die FF-Version, wenn's der

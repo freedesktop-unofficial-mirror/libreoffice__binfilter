@@ -86,8 +86,7 @@ public:
 
 /*N*/ SvXMLGraphicInputStream::SvXMLGraphicInputStream( const OUString& rGraphicId )
 /*N*/ {
-/*N*/   String          aGraphicId( rGraphicId );
-/*N*/   BfGraphicObject aGrfObject( ByteString( aGraphicId, RTL_TEXTENCODING_ASCII_US ) );
+/*N*/   BfGraphicObject aGrfObject(rtl::OUStringToOString(rGraphicId, RTL_TEXTENCODING_ASCII_US));
 /*N*/
 /*N*/     maTmp.EnableKillingFile();
 /*N*/
@@ -433,7 +432,7 @@ public:
 /*N*/
 /*N*/     if( ( rFileName.Len() >= 4 ) && ( rFileName.GetChar( rFileName.Len() - 4 ) == '.' ) )
 /*N*/     {
-/*N*/         const ByteString aExt( rFileName.Copy( rFileName.Len() - 3 ), RTL_TEXTENCODING_ASCII_US );
+/*N*/         const ByteString aExt(rtl::OUStringToOString(rFileName.Copy( rFileName.Len() - 3 ), RTL_TEXTENCODING_ASCII_US));
 /*N*/
 /*N*/         for( long i = 0, nCount = SAL_N_ELEMENTS( aMapper ); ( i < nCount ) && !aMimeType.Len(); i++ )
 /*N*/             if( aExt == aMapper[ i ].pExt )
@@ -463,8 +462,7 @@ public:
 /*N*/                                              const ::rtl::OUString& rPictureStreamName,
 /*N*/                                              const ::rtl::OUString& rGraphicId )
 /*N*/ {
-/*N*/   String          aGraphicId( rGraphicId );
-/*N*/   BfGraphicObject aGrfObject( ByteString( aGraphicId, RTL_TEXTENCODING_ASCII_US ) );
+/*N*/   BfGraphicObject aGrfObject(rtl::OUStringToOString(rGraphicId, RTL_TEXTENCODING_ASCII_US));
 /*N*/   sal_Bool        bRet = sal_False;
 /*N*/
 /*N*/   if( aGrfObject.GetType() != GRAPHIC_NONE )
@@ -563,7 +561,7 @@ public:
 /*N*/       else
 /*N*/       {
 /*N*/           const String        aGraphicObjectId( aPictureStreamName );
-/*N*/           const BfGraphicObject aGrfObject( ByteString( aGraphicObjectId, RTL_TEXTENCODING_ASCII_US ) );
+/*N*/           const BfGraphicObject aGrfObject( rtl::OUStringToOString(aGraphicObjectId, RTL_TEXTENCODING_ASCII_US) );
 /*N*/
 /*N*/           if( aGrfObject.GetType() != GRAPHIC_NONE )
 /*N*/           {

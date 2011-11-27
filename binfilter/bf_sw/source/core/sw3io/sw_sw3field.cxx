@@ -399,8 +399,8 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/
 /*N*/   p->SetContent( aContent );
 /*N*/   sal_Char* dummy;
-/*N*/   ByteString sTmp( aValue, RTL_TEXTENCODING_ASCII_US );
-/*N*/   p->SetValue( strtod( sTmp.GetBuffer(), &dummy ) );
+/*N*/   rtl::OString sTmp(rtl::OUStringToOString(aValue, RTL_TEXTENCODING_ASCII_US));
+/*N*/   p->SetValue( strtod( sTmp.getStr(), &dummy ) );
 /*N*/   if( !nType )
 /*N*/       nType = GSE_STRING;
 /*N*/   p->SetType( nType );
@@ -645,8 +645,8 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   if( rIo.nVersion >= SWG_SHORTFIELDS && (0x01 & cFlag) )
 /*N*/   {
             sal_Char* dummy;
-/*?*/       ByteString sTmp( aExpand, RTL_TEXTENCODING_ASCII_US );
-/*?*/       pFld->ChgValue( strtod( sTmp.GetBuffer(), &dummy ), TRUE );
+/*?*/       rtl::OString sTmp(rtl::OUStringToOString(aExpand, RTL_TEXTENCODING_ASCII_US));
+/*?*/       pFld->ChgValue( strtod( sTmp.getStr(), &dummy ), TRUE );
 /*N*/   }
 /*N*/   else
 /*N*/       pFld->InitContent( aExpand );
@@ -1237,8 +1237,8 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   if( GSE_SEQ & nType )
 /*N*/   {
 /*N*/       sal_Char* dummy;
-/*N*/       ByteString sTmp( aExpand, RTL_TEXTENCODING_ASCII_US );
-/*N*/       pFld->SetValue( strtod( sTmp.GetBuffer(), &dummy ) );
+/*N*/       rtl::OString sTmp(rtl::OUStringToOString(aExpand, RTL_TEXTENCODING_ASCII_US));
+/*N*/       pFld->SetValue( strtod( sTmp.getStr(), &dummy ) );
 /*N*/
 /*N*/       USHORT n = (USHORT)pFld->GetValue();
 /*N*/

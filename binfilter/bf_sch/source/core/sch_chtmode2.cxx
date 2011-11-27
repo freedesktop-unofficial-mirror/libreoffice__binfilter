@@ -627,8 +627,8 @@ enum ChartStyleV0
 /*N*/ void ChartModel::StoreAttributes(SvStream& rOut) const
 /*N*/ {
 /*N*/ #ifdef DBG_UTIL
-/*N*/   ByteString aBStr( aMainTitle, RTL_TEXTENCODING_ASCII_US );
-/*N*/   CHART_TRACE1( "ChartModel::StoreAttributes (%s)", aBStr.GetBuffer() );
+/*N*/   rtl::OString aBStr(rtl::OUStringToOString(aMainTitle, RTL_TEXTENCODING_ASCII_US));
+/*N*/   CHART_TRACE1( "ChartModel::StoreAttributes (%s)", aBStr.getStr() );
 /*N*/ #endif
 /*N*/
 /*N*/   rtl_TextEncoding eSysSet = ::GetSOStoreTextEncoding( osl_getThreadTextEncoding());
@@ -1144,8 +1144,8 @@ enum ChartStyleV0
 /*N*/ void ChartModel::LoadAttributes(SvStream& rIn)
 /*N*/ {
 /*N*/ #ifdef DBG_UTIL
-/*N*/   ByteString aBStr( aMainTitle, RTL_TEXTENCODING_ASCII_US );
-/*N*/   CHART_TRACE1( "ChartModel::LoadAttributes (%s)", aBStr.GetBuffer() );
+/*N*/   rtl::OString aBStr(rtl::OUStringToOString(aMainTitle, RTL_TEXTENCODING_ASCII_US));
+/*N*/   CHART_TRACE1( "ChartModel::LoadAttributes (%s)", aBStr.getStr() );
 /*N*/ #endif
 /*N*/
 /*N*/     // aInfo is a member of SdrModel
