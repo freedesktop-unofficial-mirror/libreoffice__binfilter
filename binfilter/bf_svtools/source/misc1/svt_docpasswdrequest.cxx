@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
 #include "docpasswdrequest.hxx"
 
 #include <com/sun/star/task/XInteractionAbort.hpp>

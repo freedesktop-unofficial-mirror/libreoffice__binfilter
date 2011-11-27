@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
 #include <tools/urlobj.hxx>
 #include <string.h>
 #include <stdio.h>

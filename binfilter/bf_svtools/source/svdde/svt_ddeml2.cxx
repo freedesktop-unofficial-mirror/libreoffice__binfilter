@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
 #define INCL_DOS
 #include <stdlib.h>
 

@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
 #include <bf_svtools/intitem.hxx>
 
 #include <com/sun/star/uno/Any.hxx>

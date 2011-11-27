@@ -26,10 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
-
 #include <com/sun/star/lang/Locale.hpp>
 
 #include <i18npool/mslangid.hxx>

@@ -33,10 +33,8 @@ class StarBASIC;
 #pragma hdrstop
 #endif
 
-#ifndef PCH
 #include "bf_sc.hrc"
 #define GLOBALOVERFLOW
-#endif
 
 
 #include <stdio.h>

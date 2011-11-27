@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
 #include <com/sun/star/uno/Any.hxx>
 
 #include <unotools/intlwrapper.hxx>

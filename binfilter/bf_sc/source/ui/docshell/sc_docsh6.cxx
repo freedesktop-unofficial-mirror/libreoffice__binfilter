@@ -116,10 +116,8 @@
 #pragma hdrstop
 #endif
 
-#ifndef PCH
 #include <bf_so3/ipenv.hxx>
 #include <bf_svx/linkmgr.hxx>
-#endif
 
 #include "docsh.hxx"
 

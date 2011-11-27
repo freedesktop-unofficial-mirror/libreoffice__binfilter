@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
 #define _LCKBITEM_CXX
 #include <bf_svtools/lckbitem.hxx>
 

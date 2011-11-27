@@ -26,10 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
-
 #include "winmtf.hxx"
 #include <vcl/metaact.hxx>
 #include <vcl/metric.hxx>

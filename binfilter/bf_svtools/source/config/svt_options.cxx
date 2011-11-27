@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
 #include "sal/config.h"
 
 #include <bf_svtools/options.hxx>

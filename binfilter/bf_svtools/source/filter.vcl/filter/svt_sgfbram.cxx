@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
 #include <string.h>
 #include <osl/endian.h>
 #include <tools/stream.hxx>

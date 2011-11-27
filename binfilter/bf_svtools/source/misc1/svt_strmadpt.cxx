@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
 #include <functional> // needed under Solaris when including <algorithm>...
 
 #include <algorithm>

@@ -27,8 +27,6 @@
 PRJ=..$/..
 SUBPRJ=$(PRJ)$/bf_so3
 
-PRJPCH=
-
 PRJNAME=binfilter
 TARGET=bf_so
 

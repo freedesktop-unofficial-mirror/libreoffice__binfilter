@@ -28,8 +28,6 @@
 PRJ=..$/..$/..$/..
 BFPRJ=..$/..$/..
 
-PROJECTPCH=sch
-PROJECTPCHSOURCE=$(BFPRJ)$/util$/sch_sch
 
 PRJNAME=binfilter
 TARGET=sch_docshell

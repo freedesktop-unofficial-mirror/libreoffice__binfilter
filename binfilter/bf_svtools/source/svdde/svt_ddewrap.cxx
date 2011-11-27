@@ -27,8 +27,6 @@
  ************************************************************************/
 
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
 #define _SVTOOLS_SVDDE_DDEWRAP_CXX_
 
 #if defined _MSC_VER

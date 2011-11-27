@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
 #define _SFX_CANCEL_CXX
 #include <bf_svtools/cancel.hxx>
 

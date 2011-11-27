@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
 #include <tools/date.hxx>
 #include <tools/time.hxx>
 #include <tools/string.hxx>

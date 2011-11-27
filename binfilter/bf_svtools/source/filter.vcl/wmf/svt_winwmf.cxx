@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
 #include "winmtf.hxx"
 #include <rtl/crc.h>
 #include <rtl/tencinfo.h>

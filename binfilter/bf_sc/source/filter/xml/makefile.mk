@@ -35,10 +35,6 @@ NO_HIDS=TRUE
 
 ENABLE_EXCEPTIONS=TRUE
 
-PROJECTPCH4DLL=TRUE
-PROJECTPCH=filt_pch
-PROJECTPCHSOURCE=..\pch\sc_filt_pch
-
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk

@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
 #include <tools/config.hxx>
 #include <bf_svtools/filter.hxx>
 #include <comphelper/string.hxx>

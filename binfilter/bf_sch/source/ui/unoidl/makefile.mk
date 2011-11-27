@@ -29,8 +29,6 @@ PRJ=..$/..$/..$/..
 BFPRJ=..$/..$/..
 
 PRJNAME					= binfilter
-PROJECTPCH				= sch
-PROJECTPCHSOURCE		= $(BFPRJ)$/util$/sch_sch
 TARGET					= sch_chxchart
 ENABLE_EXCEPTIONS		= TRUE
 BOOTSTRAP_SERVICE		= FALSE

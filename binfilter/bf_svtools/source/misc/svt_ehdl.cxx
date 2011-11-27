@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
 #include <osl/mutex.hxx>
 #include <tools/debug.hxx>
 #include <tools/rcid.h>

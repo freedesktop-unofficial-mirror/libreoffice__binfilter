@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
 // ACHTUNG: es wird angenommen, dass StarView-Clipboard-Foamatnummern
 // und Windows-Formatnummern identisch sind! Ist dies einmal nicht der
 // Fall, muessen die Routinen hier angepasst werden. Die Implementation

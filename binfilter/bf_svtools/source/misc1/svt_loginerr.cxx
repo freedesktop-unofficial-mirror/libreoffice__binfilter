@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
 #include <bf_svtools/loginerr.hxx>
 
 namespace binfilter

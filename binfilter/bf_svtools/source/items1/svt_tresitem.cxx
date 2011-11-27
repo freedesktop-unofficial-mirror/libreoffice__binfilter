@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
 #include <bf_svtools/tresitem.hxx>
 
 using namespace com::sun::star;

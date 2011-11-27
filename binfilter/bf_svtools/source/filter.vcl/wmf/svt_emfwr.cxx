@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
 #include "emfwr.hxx"
 #include <vcl/salbtype.hxx>
 

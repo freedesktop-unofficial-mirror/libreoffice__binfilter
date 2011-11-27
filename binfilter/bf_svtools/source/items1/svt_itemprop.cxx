@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
 #include <string.h>
 
 #include <bf_svtools/itemprop.hxx>

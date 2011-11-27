@@ -33,11 +33,6 @@ TARGET=svx_outliner
 
 NO_HIDS=TRUE
 
-PROJECTPCH4DLL=TRUE
-PROJECTPCH=outl_pch
-PROJECTPCHSOURCE=svx_outl_pch
-
-
 # --- Settings -----------------------------------------------------------
 
 .INCLUDE :  settings.mk

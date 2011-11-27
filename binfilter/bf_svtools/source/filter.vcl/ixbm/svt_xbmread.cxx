@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
 #define XBMMINREAD 512
 
 #define _XBMPRIVATE

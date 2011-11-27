@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
 #if defined UNX && defined ALPHA
 #include <fstream.hxx>
 #endif

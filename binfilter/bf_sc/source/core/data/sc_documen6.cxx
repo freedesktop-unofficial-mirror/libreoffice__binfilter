@@ -26,10 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#include "core_pch.hxx"
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif

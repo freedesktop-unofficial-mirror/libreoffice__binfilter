@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
 #define _SVSTDARR_STRINGS
 #define _SVSTDARR_STRINGSSORTDTOR
 #define _SVSTDARR_BYTESTRINGS

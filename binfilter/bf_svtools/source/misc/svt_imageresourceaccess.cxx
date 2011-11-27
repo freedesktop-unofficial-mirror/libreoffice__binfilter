@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
 #include "imageresourceaccess.hxx"
 
 /** === begin UNO includes === **/

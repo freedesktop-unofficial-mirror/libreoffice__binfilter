@@ -28,9 +28,6 @@
 PRJ=..$/..$/..
 BFPRJ=..$/..
 
-PROJECTPCH=svxpch
-PROJECTPCHSOURCE=$(BFPRJ)$/util$/svx_svxpch
-
 PRJNAME=binfilter
 TARGET=svx_svxlink
 

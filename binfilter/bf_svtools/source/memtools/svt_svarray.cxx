@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
-
 #define _SVARRAY_CXX
 
 #define _SVSTDARR_BOOLS

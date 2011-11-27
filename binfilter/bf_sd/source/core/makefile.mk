@@ -28,9 +28,6 @@
 PRJ=..$/..$/..
 BFPRJ=..$/..
 
-PROJECTPCH=sd
-PROJECTPCHSOURCE=$(BFPRJ)$/util$/sd_sd
-
 PRJNAME=binfilter
 TARGET=sd_core
 

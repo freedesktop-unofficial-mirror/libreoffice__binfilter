@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
 #define _ZFORLIST_DECLARE_TABLE
 
 #include <vcl/svapp.hxx>

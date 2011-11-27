@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-// MARKER(update_precomp.py): autogen include statement, do not remove
-
 #include <osl/endian.h>
 #include <vcl/graph.hxx>
 #include <tools/poly.hxx>
