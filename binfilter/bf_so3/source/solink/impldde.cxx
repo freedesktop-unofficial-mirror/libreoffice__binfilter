@@ -36,6 +36,7 @@
 #include <vcl/svapp.hxx>
 #include <vcl/msgbox.hxx>
 #include <sot/exchange.hxx>
+#include <rtl/strbuf.hxx>
 #include <rtl/ustring.hxx>
 
 #include <bf_so3/iface.hxx>
@@ -196,11 +197,13 @@ BOOL SvDDEObject::Connect( SvBaseLink * pSvLink )
         // Server nicht da, starten und nochmal versuchen
         if( !bInWinExec )
         {
-            ByteString aCmdLine( sServer, RTL_TEXTENCODING_ASCII_US );
-            aCmdLine.Append( ".exe " );
-            aCmdLine.Append( ByteString( sTopic, RTL_TEXTENCODING_ASCII_US ) );
+            rtl::OStringBuffer aCmdLine(rtl::OUStringToOString(sServer,
+                RTL_TEXTENCODING_ASCII_US));
+            aCmdLine.append(".exe ");
+            aCmdLine.append(rtl::OUStringToOString(sTopic,
+                RTL_TEXTENCODING_ASCII_US));
 
-            if( WinExec( aCmdLine.GetBuffer(), SW_SHOWMINIMIZED ) < 32 )
+            if( WinExec( aCmdLine.getStr(), SW_SHOWMINIMIZED ) < 32 )
                 nError = DDELINK_ERROR_APP;
             else
             {
