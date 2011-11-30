@@ -186,7 +186,7 @@ BOOL TimeStamp::IsValid () const
     // The name can have a defaultvalue!
     // And its better to safe this result in a local variable ... for better debug! (to see value)
     BOOL bResult = ( m_aModifiedDateTime != TIMESTAMP_INVALID_DATETIME ) ;
-    return bResult && m_aModifiedDateTime.IsValid();
+    return bResult && m_aModifiedDateTime.IsValidAndGregorian();
 }
 
 
