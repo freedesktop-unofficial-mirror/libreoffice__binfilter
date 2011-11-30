@@ -75,7 +75,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   Date aDate(1, nM, nY);
 /*N*/   aDate += nDay - 1;
-/*N*/   if (aDate.IsValid())
+/*N*/   if (aDate.IsValidAndGregorian())
 /*N*/       return (double) (aDate - *(pFormatter->GetNullDate()));
 /*N*/   else
 /*N*/   {
