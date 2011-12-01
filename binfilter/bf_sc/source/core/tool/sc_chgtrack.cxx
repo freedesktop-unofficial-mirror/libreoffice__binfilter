@@ -73,6 +73,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/  ScChangeAction::ScChangeAction( ScChangeActionType eTypeP, const ScRange& rRange )
 /*N*/       :
 /*N*/       aBigRange( rRange ),
+            aDateTime( DateTime::SYSTEM ),
 /*N*/       pNext( NULL ),
 /*N*/       pPrev( NULL ),
 /*N*/       pLinkAny( NULL ),
@@ -113,6 +114,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/                       const ULONG nTempAction)
 /*N*/       :
 /*N*/       aBigRange( rRange ),
+            aDateTime( DateTime::SYSTEM ),
 /*N*/       pNext( NULL ),
 /*N*/       pPrev( NULL ),
 /*N*/       pLinkAny( NULL ),
@@ -130,6 +132,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/  ScChangeAction::ScChangeAction( SvStream& rStrm, ScMultipleReadHeader& /*rHdr*/,
 /*N*/           ScChangeTrack* /*pTrack*/ )
 /*N*/       :
+            aDateTime( DateTime::EMPTY ),
 /*N*/       pNext( NULL ),
 /*N*/       pPrev( NULL ),
 /*N*/       pLinkAny( NULL ),
@@ -2014,6 +2017,7 @@ const USHORT ScChangeTrack::nContentSlots =
 
 
 /*N*/ ScChangeTrack::ScChangeTrack( ScDocument* pDocP ) : // Changetracking.sdc
+            aFixDateTime( DateTime::SYSTEM ),
 /*N*/       pDoc( pDocP )
 /*N*/ {
 /*N*/ Init();
@@ -2024,6 +2028,7 @@ const USHORT ScChangeTrack::nContentSlots =
 
 /*N*/ ScChangeTrack::ScChangeTrack( ScDocument* pDocP, const StrCollection& aTempUserCollection) :
 /*N*/       aUserCollection(aTempUserCollection),
+            aFixDateTime( DateTime::SYSTEM ),
 /*N*/       pDoc( pDocP )
 /*N*/ {
 /*N*/ Init();

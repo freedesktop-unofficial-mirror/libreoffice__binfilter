@@ -75,6 +75,8 @@ struct SfxApplication_Impl
     USHORT                      nWarnLevel;
     BOOL                        bConfigLoaded:1;
     BOOL                        bAutoSaveNow:1;     // ist TRUE, wenn der Timer abgelaufen ist, wenn die App nicht aktiv war
+
+    SfxApplication_Impl() : aAutoSaveTime( Time::EMPTY ) {}
 };
 
 }//end of namespace binfilter

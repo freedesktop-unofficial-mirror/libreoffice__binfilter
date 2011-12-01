@@ -593,7 +593,7 @@ namespace binfilter {
 /*N*/   else
 /*N*/       aFieldData.nTotalPages = nTotalPages;
 /*N*/
-/*N*/   SetDateTime( Date(), Time() );
+/*N*/   SetDateTime( Date( Date::SYSTEM ), Time( Time::SYSTEM ) );
 /*N*/
 /*N*/   aFieldData.aTitle       = pDocShell->GetTitle();
 /*N*/   const INetURLObject& rURLObj = pDocShell->GetMedium()->GetURLObject();

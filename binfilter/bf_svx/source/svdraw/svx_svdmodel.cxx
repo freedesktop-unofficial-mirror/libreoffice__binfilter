@@ -95,7 +95,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   if (bInit)
 /*N*/   {
-/*N*/       aCreationDate = DateTime();
+/*N*/       aCreationDate = DateTime( DateTime::SYSTEM );
 /*N*/       eCreationCharSet = osl_getThreadTextEncoding();
 /*N*/   }
 /*N*/ }
@@ -333,6 +333,7 @@ using namespace ::com::sun::star;
 
 /*N*/ SdrModel::SdrModel(SfxItemPool* pPool, SvPersist* pPers, INT32 bLoadRefCounts):
 /*N*/   aInfo(TRUE),
+        aReadDate( DateTime::EMPTY ),
 /*N*/   aMaPag(1024,32,32),
 /*N*/   aPages(1024,32,32)
 /*N*/ {
@@ -346,6 +347,7 @@ using namespace ::com::sun::star;
 
 /*N*/ SdrModel::SdrModel(const String& rPath, SfxItemPool* pPool, SvPersist* pPers, INT32 bLoadRefCounts):
 /*N*/   aInfo(TRUE),
+        aReadDate( DateTime::EMPTY ),
 /*N*/   aMaPag(1024,32,32),
 /*N*/   aPages(1024,32,32),
 /*N*/   aTablePath(rPath)
@@ -360,6 +362,7 @@ using namespace ::com::sun::star;
 
 /*N*/ SdrModel::SdrModel(const String& rPath, SfxItemPool* pPool, SvPersist* pPers, bool bUseExtColorTable, INT32 bLoadRefCounts):
 /*N*/   aInfo(TRUE),
+        aReadDate( DateTime::EMPTY ),
 /*N*/   aMaPag(1024,32,32),
 /*N*/   aPages(1024,32,32),
 /*N*/   aTablePath(rPath)
@@ -374,6 +377,7 @@ using namespace ::com::sun::star;
 
 /*N*/ SdrModel::SdrModel(const SdrModel& /*rSrcModel*/):
 /*N*/   SfxBroadcaster(),
+        aReadDate( DateTime::EMPTY ),
 /*N*/   aMaPag(1024,32,32),
 /*N*/   aPages(1024,32,32)
 /*N*/ {
@@ -1659,7 +1663,7 @@ using namespace ::com::sun::star;
 /*N*/ SvStream& operator>>(SvStream& rIn, SdrModel& rMod)
 /*N*/ {
 /*N*/   if (rIn.GetError()!=0) return rIn;
-/*N*/   rMod.aReadDate=DateTime(); // Zeitpunkt des Lesens merken
+/*N*/   rMod.aReadDate=DateTime( DateTime::SYSTEM ); // Zeitpunkt des Lesens merken
 /*N*/   rMod.nProgressOfs=rIn.Tell();
 /*N*/   rMod.nProgressMax=0xFFFFFFFF; // Vorlaeufiger Wert
 /*N*/   rMod.DoProgress(0);

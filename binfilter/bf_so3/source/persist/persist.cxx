@@ -343,6 +343,7 @@ SvPersist::SvPersist()
     , nModifyCount    ( 0 )        // Anzahl der modifizierten Childs und sich selbst
     , pParent         ( NULL )     // kein zusaetzlicher RefCount
     , pChildList      ( NULL )
+    , aModifiedTime   ( Time::EMPTY )
 {
 }
 
@@ -969,7 +970,7 @@ void SvPersist::SetModified( BOOL bModifiedP )
         CountModified( bModifiedP );
     }
 
-    aModifiedTime = Time();
+    aModifiedTime = Time( Time::SYSTEM );
 }
 
 void SvPersist::CountModified( BOOL bMod )

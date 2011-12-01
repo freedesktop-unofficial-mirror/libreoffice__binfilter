@@ -408,7 +408,7 @@ void SfxXMLMetaExport::Export()
         sal_Int32 nSecs = 0;
         if ( aPropVal >>= nSecs )
         {
-            Time aTime;
+            Time aTime( Time::EMPTY );
             aTime.MakeTimeFromMS( nSecs * 1000 );
             ::rtl::OUString sReloadTime = GetISODurationString( aTime );
 

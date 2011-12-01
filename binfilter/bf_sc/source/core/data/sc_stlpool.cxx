@@ -378,7 +378,7 @@ namespace binfilter {
 /*N*/   aStr = String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM(", "));
 /*N*/   pEdEngine->SetText( aStr );
 /*N*/   pEdEngine->QuickInsertField( SvxFieldItem(SvxTimeField()), ESelection(0,2,0,2) );
-/*N*/   pEdEngine->QuickInsertField( SvxFieldItem(SvxDateField(Date(),SVXDATETYPE_VAR)),
+/*N*/   pEdEngine->QuickInsertField( SvxFieldItem(SvxDateField(Date( Date::SYSTEM),SVXDATETYPE_VAR)),
 /*N*/                                   ESelection() );
 /*N*/   pTxtObj = pEdEngine->CreateTextObject();
 /*N*/   pHeaderItem->SetRightArea( *pTxtObj );

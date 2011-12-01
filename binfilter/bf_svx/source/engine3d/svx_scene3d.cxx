@@ -64,7 +64,7 @@ namespace binfilter {
 /*N*/   aCamera(Vector3D(0,0,4), Vector3D()),
 /*N*/   nSaveStatus (0),
 /*N*/   nRestStatus (0),
-/*N*/   aPaintTime(),
+/*N*/   aPaintTime( Time::EMPTY ),
 /*N*/   nDisplayQuality(255),
 /*N*/   bDoubleBuffered(FALSE),
 /*N*/   bClipping(FALSE),

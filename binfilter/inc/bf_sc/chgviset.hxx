@@ -70,6 +70,10 @@ private:
 public:
 
                         ScChangeViewSettings()
+                            :
+                                aFirstDateTime( DateTime::EMPTY ),
+                                aLastDateTime( DateTime::EMPTY )
+
                         {
                             pCommentSearcher=NULL;
                             bIsDate=FALSE;

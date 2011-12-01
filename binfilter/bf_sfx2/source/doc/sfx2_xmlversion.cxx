@@ -186,7 +186,7 @@ sal_Char XMLN_VERSIONSLIST[] = "VersionList.xml";
 /*?*/                   ( aLclLocalName.compareToAscii( sXML_date_time ) == 0 ) )
 /*?*/         {
 /*?*/             const OUString& rAttrValue = xAttrList->getValueByIndex( i );
-/*?*/             DateTime aTime;
+/*?*/             DateTime aTime( DateTime::EMPTY );
 /*?*/             if ( ParseISODateTimeString( rAttrValue, aTime ) )
 /*?*/                 pInfo->aCreateStamp.SetTime( aTime );
 /*?*/         }

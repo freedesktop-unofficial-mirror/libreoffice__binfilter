@@ -113,7 +113,7 @@ SfxPoolItem* SfxDateTimeRangeItem::Create( SvStream& rStream, USHORT ) const
     rStream >> nEndDate;
     rStream >> nEndTime;
 
-    DateTime aStartDT, aEndDT;
+    DateTime aStartDT( DateTime::EMPTY ), aEndDT( DateTime::EMPTY );
 
     aStartDT.SetDate( nStartDate );
     aStartDT.SetTime( nStartTime );

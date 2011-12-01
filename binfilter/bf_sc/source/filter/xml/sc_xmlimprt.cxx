@@ -1630,7 +1630,7 @@ void ScXMLImport::SetChangeTrackingViewSettings(const ::com::sun::star::uno::Seq
                     util::DateTime aDateTime;
                     if (rChangeProps[i].Value >>= aDateTime)
                     {
-                        DateTime aCoreDateTime;
+                        DateTime aCoreDateTime( DateTime::EMPTY );
                         ScXMLConverter::ConvertAPIToCoreDateTime(aDateTime, aCoreDateTime);
                         pViewSettings->SetTheFirstDateTime(aCoreDateTime);
                     }
@@ -1640,7 +1640,7 @@ void ScXMLImport::SetChangeTrackingViewSettings(const ::com::sun::star::uno::Seq
                     util::DateTime aDateTime;
                     if (rChangeProps[i].Value >>= aDateTime)
                     {
-                        DateTime aCoreDateTime;
+                        DateTime aCoreDateTime( DateTime::EMPTY );
                         ScXMLConverter::ConvertAPIToCoreDateTime(aDateTime, aCoreDateTime);
                         pViewSettings->SetTheLastDateTime(aCoreDateTime);
                     }

@@ -249,6 +249,9 @@ using namespace ::com::sun::star;
  }
 /*N*/ Reader::Reader()
 /*N*/   : pTemplate(0)
+        , aDStamp( Date::EMPTY )
+        , aTStamp( Time::EMPTY )
+        , aChkDateTime( DateTime::EMPTY )
 /*N*/   , pStrm(0)
 /*N*/   , pStg(0)
 /*N*/   , pMedium(0)
@@ -283,15 +286,15 @@ using namespace ::com::sun::star;
 /*N*/   else
 /*N*/   {
 /*?*/       INetURLObject aTDir( ::binfilter::StaticBaseUrl::SmartRelToAbs(aTemplateNm) );
-/*?*/       DateTime aCurrDateTime;
+/*?*/       DateTime aCurrDateTime( DateTime::SYSTEM );
 /*?*/       BOOL bLoad = FALSE;
 /*?*/
 /*?*/       // Wenn das Template schon mal geladen wurde, nur einmal pro
 /*?*/       // Minute nachschauen, ob es geaendert wurde.
 /*?*/       if( !pTemplate || aCurrDateTime >= aChkDateTime )
 /*?*/       {
-/*?*/           Date aTstDate;
-/*?*/           Time aTstTime;
+/*?*/           Date aTstDate( Date::EMPTY );
+/*?*/           Time aTstTime( Time::EMPTY );
 /*?*/           if( ::binfilter::GetModifiedDateTimeOfFile(
 /*?*/                           aTDir.GetMainURL( INetURLObject::NO_DECODE ),
 /*?*/                           &aTstDate, &aTstTime ) &&

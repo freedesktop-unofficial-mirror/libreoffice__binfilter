@@ -336,7 +336,7 @@ static SwField* In_SwFixDateField( SwSwgReader& rPar, SwDateTimeFieldType* pType
     rPar.r >> nVal;
     rPar.r.long3();
     SwDateTimeField* pFld = new SwDateTimeField( pType, DATEFLD|FIXEDFLD );
-    Time aTmpTime;
+    Time aTmpTime( Time::SYSTEM );
     Date aTmpDate(nVal);
     DateTime aDT(aTmpDate, aTmpTime);
     pFld->SetDateTime( aDT );
@@ -350,7 +350,7 @@ static SwField* In_SwFixTimeField( SwSwgReader& rPar, SwDateTimeFieldType* pType
     rPar.r >> nVal;
     rPar.r.long3();
     SwDateTimeField* pFld = new SwDateTimeField( pType );
-    Date aTmpDate;
+    Date aTmpDate( Date::SYSTEM );
     DateTime aDT(aTmpDate, Time(nVal));
     pFld->SetDateTime( aDT );
     return pFld;

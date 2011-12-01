@@ -48,7 +48,7 @@ namespace binfilter {
 
 TimeStamp::TimeStamp ()
         :   m_sModifiedByName   ()
-        ,   m_aModifiedDateTime ()
+        ,   m_aModifiedDateTime ( DateTime::SYSTEM )
 {
 }
 
@@ -63,7 +63,7 @@ TimeStamp::TimeStamp ()
 
 TimeStamp::TimeStamp ( const String& rName )
         :   m_sModifiedByName   ( rName )
-        ,   m_aModifiedDateTime (       )
+        ,   m_aModifiedDateTime ( DateTime::SYSTEM )
 {
     // Safe impossible cases
     DBG_ASSERT ( impl_debug_checkParameter ( rName ), "TimeStamp::TimeStamp(String)\nInvalid parameter detected!\n" ) ;

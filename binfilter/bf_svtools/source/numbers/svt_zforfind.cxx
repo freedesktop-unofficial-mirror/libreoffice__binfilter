@@ -973,7 +973,7 @@ BOOL ImpSvNumberInputScan::GetDateRef( double& fDays, USHORT& nCounter,
     CalendarWrapper* pCal = pFormatter->GetCalendar();
     for ( int nTryOrder = 1; nTryOrder <= nFormatOrder; nTryOrder++ )
     {
-        pCal->setGregorianDateTime( Date() );       // today
+        pCal->setGregorianDateTime( Date( Date::SYSTEM ) );       // today
         String aOrgCalendar;        // empty => not changed yet
         DateFormat DateFmt;
         BOOL bFormatTurn;
@@ -1149,7 +1149,7 @@ input for the following reasons:
                         if ( !bHadExact || !pCal->isValid() )
                         {
                             if ( !bHadExact && nExactDateOrder )
-                                pCal->setGregorianDateTime( Date() );   // reset today
+                                pCal->setGregorianDateTime( Date( Date::SYSTEM ) );   // reset today
                             switch (DateFmt)
                             {
                                 case MDY:

@@ -839,7 +839,7 @@ namespace binfilter {
 /*?*/   }
 /*?*/   else if( rKV.GetKey().CompareIgnoreCaseToAscii( "expires" ) == COMPARE_EQUAL )
 /*?*/   {
-/*?*/       DateTime aDateTime;
+/*?*/       DateTime aDateTime( DateTime::EMPTY );
 /*?*/       INetRFC822Message::ParseDateField( rKV.GetValue(), aDateTime );
 /*?*/   }
 /*?*/   else if( rKV.GetKey().CompareIgnoreCaseToAscii( "content-type" ) == COMPARE_EQUAL )

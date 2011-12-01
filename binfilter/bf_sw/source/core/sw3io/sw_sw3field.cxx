@@ -1000,7 +1000,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   INT32 nVal;
 /*N*/   *rIo.pStrm >> nVal;
 /*N*/   SwDateTimeField* pFld = new SwDateTimeField( (SwDateTimeFieldType*)pType, DATEFLD|FIXEDFLD );
-/*N*/     Time aTmpTime;
+/*N*/     Time aTmpTime( Time::SYSTEM );
 /*N*/     Date aTmpDate(nVal);
 /*N*/     DateTime aDT(aTmpDate, aTmpTime);
 /*N*/     pFld->SetDateTime( aDT );
@@ -1013,7 +1013,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         INT32 nVal;
         *rIo.pStrm >> nVal;
         SwDateTimeField* pFld = new SwDateTimeField( (SwDateTimeFieldType*)pType, TIMEFLD|FIXEDFLD );
-         Date aTmpDate;
+         Date aTmpDate( Date::SYSTEM );
         DateTime aDT(aTmpDate, Time(nVal));
            pFld->SetDateTime( aDT );
         return pFld;
@@ -1770,7 +1770,7 @@ static Sw3InFieldFn aInFieldFnTbl[] =
 /*?*/       switch( nWhich )
 /*?*/       {
 /*?*/       case RES_DATETIMEFLD:
-/*?*/             ((SwDateTimeField*)pFld)->SetDateTime( DateTime() );
+/*?*/             ((SwDateTimeField*)pFld)->SetDateTime( DateTime( DateTime::SYSTEM ) );
 /*?*/           break;
 /*?*/
 /*?*/       case RES_EXTUSERFLD:

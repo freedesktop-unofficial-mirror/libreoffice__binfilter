@@ -277,7 +277,9 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/       , aDateTime( rDateTime )
 /*N*/       {}
 /*N*/   SfxPSDateTimeProperty_Impl( UINT32 nIdP ) :
-/*N*/       SfxPSProperty_Impl( nIdP, VT_FILETIME ) {};
+/*N*/       SfxPSProperty_Impl( nIdP, VT_FILETIME )
+/*N*/       , aDateTime( DateTime::SYSTEM )
+             {};
 /*N*/
 /*N*/   virtual ULONG Save( SvStream& ) {return 1;}
 /*N*/   virtual ULONG Load( SvStream& rStream );
@@ -591,6 +593,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 //-------------------------------------------------------------------------
 
 /*N*/ SfxDocumentInfo::SfxDocumentInfo( const SfxDocumentInfo& rInf ):
+        aTemplateDate( DateTime::EMPTY ),
 /*N*/   nUserDataSize(0),
 /*N*/   pUserData(0)
 /*N*/ {
@@ -781,6 +784,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   bSaveVersionOnClose( FALSE ),
 /*N*/   aChanged( TIMESTAMP_INVALID_DATETIME ),
 /*N*/   aPrinted( TIMESTAMP_INVALID_DATETIME ),
+        aTemplateDate( DateTime::EMPTY ),
 /*N*/   nUserDataSize(0),
 /*N*/   nDocNo(1),
 /*N*/   pUserData(0),

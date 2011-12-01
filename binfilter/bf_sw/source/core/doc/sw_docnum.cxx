@@ -536,8 +536,8 @@ namespace binfilter {
 /*N*/   String aName;
 /*N*/   if( bAutoNum )
 /*N*/   {
-/*N*/       long n = Time().GetTime();
-/*N*/       n += Date().GetDate();
+/*N*/       long n = Time( Time::SYSTEM ).GetTime();
+/*N*/       n += Date( Date::SYSTEM ).GetDate();
 /*N*/       aName = String::CreateFromInt32( n );
 /*N*/       if( pChkStr && !pChkStr->Len() )
 /*N*/           pChkStr = 0;

@@ -62,6 +62,7 @@ namespace binfilter {
 /*N*/ ImpSdrObjGroupLinkUserData::ImpSdrObjGroupLinkUserData(SdrObject* pObj1):
 /*N*/   SdrObjUserData(SdrInventor,SDRUSERDATA_OBJGROUPLINK,0),
 /*N*/   pObj(pObj1),
+        aFileDate0( DateTime::EMPTY ),
 /*N*/   nDrehWink0(0),
 /*N*/   nShearWink0(0),
 /*N*/   pLink(NULL),

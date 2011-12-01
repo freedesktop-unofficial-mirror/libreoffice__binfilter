@@ -4314,7 +4314,7 @@ BOOL Sw6Layout::InsertNote(SwDoc &rDoc,SwPaM &rPaM,USHORT nNote, BOOL bFuss)
                     (aSta.cFrst!=NewPage));
                 if (!bErrs && aNot.Len())
                 {
-                    Date aDate;
+                    Date aDate( Date::SYSTEM );
                     String aLeer;
 
                     SwPostItField aFld((SwPostItFieldType*)

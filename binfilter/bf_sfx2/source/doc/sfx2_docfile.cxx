@@ -373,7 +373,7 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*N*/   pAntiImpl( pAntiImplP ),
 /*N*/   nFileVersion( 0 ),
 /*N*/   pOrigFilter( 0 ),
-/*N*/   aExpireTime( Date() + 10, Time() ),
+/*N*/   aExpireTime( Date( Date::SYSTEM ) + 10, Time( Time::SYSTEM ) ),
 /*N*/   pTempDir( NULL ),
 /*N*/   pTempFile( NULL ),
 /*N*/   nLastStorageError( 0 ),

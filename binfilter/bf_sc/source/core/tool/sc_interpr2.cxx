@@ -91,7 +91,7 @@ namespace binfilter {
 /*N*/ void ScInterpreter::ScGetActDate()
 /*N*/ {
 /*N*/   nFuncFmtType = NUMBERFORMAT_DATE;
-/*N*/   Date aActDate;
+/*N*/   Date aActDate( Date::SYSTEM );
 /*N*/   long nDiff = aActDate - *(pFormatter->GetNullDate());
 /*N*/   PushDouble((double) nDiff);
 /*N*/ }
@@ -99,9 +99,9 @@ namespace binfilter {
 void ScInterpreter::ScGetActTime()
 {
     nFuncFmtType = NUMBERFORMAT_DATETIME;
-    Date aActDate;
+    Date aActDate( Date::SYSTEM );
     long nDiff = aActDate - *(pFormatter->GetNullDate());
-    Time aActTime;
+    Time aActTime( Time::SYSTEM );
     double nTime = ((double)aActTime.Get100Sec() / 100 +
                     (double)(aActTime.GetSec()        +
                             (aActTime.GetMin()  * 60) +

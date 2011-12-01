@@ -72,7 +72,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   if (IsFixed())
 /*N*/   {
-/*N*/         DateTime aDateTime;
+/*N*/         DateTime aDateTime( DateTime::SYSTEM );
 /*N*/         SetDateTime(aDateTime);
 /*N*/   }
 /*N*/ }
@@ -87,7 +87,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   if (!(IsFixed()))
 /*N*/   {
-/*N*/         DateTime aDateTime;
+/*N*/         DateTime aDateTime( DateTime::SYSTEM );
 /*N*/         fVal = GetDateTime(GetDoc(), aDateTime);
 /*N*/   }
 /*N*/   else
@@ -167,7 +167,7 @@ using namespace ::com::sun::star;
 /*N*/   if (IsFixed())
 /*N*/       return SwValueField::GetValue();
 /*N*/   else
-/*N*/         return GetDateTime(GetDoc(), DateTime());
+/*N*/         return GetDateTime(GetDoc(), DateTime( DateTime::SYSTEM ));
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -278,7 +278,7 @@ using namespace ::com::sun::star;
 /*N*/           util::DateTime aDateTimeValue;
 /*N*/           if(!(rVal >>= aDateTimeValue))
 /*N*/               return FALSE;
-/*N*/           DateTime aDateTime;
+/*N*/           DateTime aDateTime( DateTime::EMPTY );
 /*N*/           aDateTime.Set100Sec(aDateTimeValue.HundredthSeconds);
 /*N*/           aDateTime.SetSec(aDateTimeValue.Seconds);
 /*N*/           aDateTime.SetMin(aDateTimeValue.Minutes);

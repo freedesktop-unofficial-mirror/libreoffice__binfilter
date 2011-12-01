@@ -372,6 +372,9 @@ const sal_Char ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/ }
 
 /*N*/ ScHeaderFieldData::ScHeaderFieldData()
+        :
+            aDate( Date::EMPTY ),
+            aTime( Time::EMPTY )
 /*N*/ {
 /*N*/   nPageNo = nTotalPages = 0;
 /*N*/   eNumType = SVX_ARABIC;

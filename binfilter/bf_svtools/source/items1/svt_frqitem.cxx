@@ -64,7 +64,8 @@ SfxFrequencyItem::SfxFrequencyItem( USHORT which, FrequencyMode eMode, Frequency
     nTInterval1     ( nTI1 ),
     aTime1          ( rT1 ),
     aTime2          ( rT2 ),
-    bMissingDate    ( FALSE )
+    bMissingDate    ( FALSE ),
+    aMissingDate    ( DateTime::EMPTY )
 {
     DBG_CTOR( SfxFrequencyItem, 0 );
 }
@@ -81,7 +82,8 @@ SfxFrequencyItem::SfxFrequencyItem( const SfxFrequencyItem& rItem ) :
     nTInterval1     ( rItem.nTInterval1 ),
     aTime1          ( rItem.aTime1 ),
     aTime2          ( rItem.aTime2 ),
-    bMissingDate    ( rItem.bMissingDate )
+    bMissingDate    ( rItem.bMissingDate ),
+    aMissingDate    ( rItem.aMissingDate )
 {
     DBG_CTOR( SfxFrequencyItem, 0 );
 }

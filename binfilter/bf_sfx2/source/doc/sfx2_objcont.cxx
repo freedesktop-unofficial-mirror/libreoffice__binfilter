@@ -148,7 +148,7 @@ using namespace ::com::sun::star::uno;
 /*N*/   Time aOldTime(rInfo.GetTime());
 /*N*/
 /*N*/   // Initialize some local member! Its neccessary for wollow operations!
-/*N*/   DateTime    aNow                    ;   // Date and time at current moment
+/*N*/   DateTime    aNow( DateTime::SYSTEM );   // Date and time at current moment
 /*N*/   Time        n24Time     (24,0,0,0)  ;   // Time-value for 24 hours - see follow calculation
 /*N*/   ULONG       nDays       = 0         ;   // Count of days between now and last editing
 /*N*/   Time        nAddTime    (0)         ;   // Value to add on aOldTime

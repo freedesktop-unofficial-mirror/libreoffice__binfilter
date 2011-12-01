@@ -159,7 +159,7 @@ namespace binfilter {
 
 /*N*/ SvxDateField::SvxDateField()
 /*N*/ {
-/*N*/   nFixDate = Date().GetDate();
+/*N*/   nFixDate = Date( Date::SYSTEM ).GetDate();
 /*N*/   eType = SVXDATETYPE_VAR;
 /*N*/   eFormat = SVXDATEFORMAT_STDSMALL;
 /*N*/ }
@@ -414,7 +414,7 @@ namespace binfilter {
 
 /*N*/ SvxExtTimeField::SvxExtTimeField()
 /*N*/ {
-/*N*/   nFixTime = Time().GetTime();
+/*N*/   nFixTime = Time( Time::SYSTEM ).GetTime();
 /*N*/   eType = SVXTIMETYPE_VAR;
 /*N*/   eFormat = SVXTIMEFORMAT_STANDARD;
 /*N*/ }

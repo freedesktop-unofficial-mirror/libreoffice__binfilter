@@ -469,7 +469,7 @@ SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rInImport, sal_
                         break;
                     case XML_TOK_META_RELOAD_DELAY:
                         {
-                            Time aTime;
+                            Time aTime( Time::EMPTY );
                             if ( ParseISODurationString( sValue, aTime ) )
                             {
                                 sal_Int32 nSecs = aTime.GetMSFromTime() / 1000;
@@ -568,7 +568,7 @@ void SfxXMLMetaElementContext::EndElement()
 
     uno::Any aPropAny;
     util::DateTime aDateTime;
-    Time aTime;
+    Time aTime( Time::EMPTY );
     sal_Int32 nValue;
     switch ( nElementType )
     {

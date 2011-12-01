@@ -139,7 +139,7 @@ struct SfxObjectShell_Impl
         pBasicLibContainer( 0 ),
         pDialogLibContainer( 0 ),
         pProgress( 0),
-        nTime(),
+        nTime( DateTime::EMPTY ),
         nVisualDocumentNumber( USHRT_MAX),
 
         bTemplateConfig( sal_False),

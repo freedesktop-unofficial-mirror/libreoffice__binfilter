@@ -824,7 +824,7 @@ namespace binfilter {
 /*N*/ void ScPostIt::AutoSetText( const String& rNewText )
 /*N*/ {
 /*N*/   aStrText   = rNewText;
-/*N*/   aStrDate   = ScGlobal::pLocaleData->getDate( Date() );
+/*N*/   aStrDate   = ScGlobal::pLocaleData->getDate( Date( Date::SYSTEM ) );
 /*N*/
 /*N*/   SvtUserOptions aUserOpt;
 /*N*/   aStrAuthor = aUserOpt.GetID();

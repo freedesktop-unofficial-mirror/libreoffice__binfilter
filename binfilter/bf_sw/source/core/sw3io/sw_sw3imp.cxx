@@ -215,8 +215,8 @@ public:
 
 /*N*/ void Sw3IoImp::Reset()
 /*N*/ {
-/*N*/   Date aDate;
-/*N*/   Time aTime;
+/*N*/   Date aDate( Date::SYSTEM );
+/*N*/   Time aTime( Time::SYSTEM );
 /*N*/   // die folgenden beiden Felder werden auch zum Passwort-Check benutzt
 /*N*/   nDate       = aDate.GetDate();
 /*N*/   nTime       = aTime.GetTime();

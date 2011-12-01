@@ -138,6 +138,7 @@ namespace binfilter {
 /*N*/ ImpSdrObjTextLinkUserData::ImpSdrObjTextLinkUserData(SdrTextObj* pObj1):
 /*N*/   SdrObjUserData(SdrInventor,SDRUSERDATA_OBJTEXTLINK,0),
 /*N*/   pObj(pObj1),
+        aFileDate0( DateTime::EMPTY ),
 /*N*/   pLink(NULL),
 /*N*/   eCharSet(RTL_TEXTENCODING_DONTKNOW)
 /*N*/ {

@@ -689,7 +689,7 @@ using namespace ::com::sun::star;
 /*N*/       while ((nPos = aStr.Search(pCommands[2])) != STRING_NOTFOUND)
 /*N*/       {
 /*N*/           ESelection aSel( nPar,nPos, nPar,nPos+pCommands[2].Len() );
-/*N*/           rEng.QuickInsertField( SvxFieldItem(SvxDateField(Date(),SVXDATETYPE_VAR)), aSel );
+/*N*/           rEng.QuickInsertField( SvxFieldItem(SvxDateField(Date( Date::SYSTEM),SVXDATETYPE_VAR)), aSel );
 /*N*/           lcl_SetSpace(aStr, aSel ); bChange = TRUE;
 /*N*/       }
 /*N*/       while ((nPos = aStr.Search(pCommands[3])) != STRING_NOTFOUND)
