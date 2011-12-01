@@ -794,12 +794,12 @@ OUString XMLTextImportHelper::ConvertStarFonts( const OUString& rChars,
             }
             if( (rFlags & CONV_FROM_STAR_BATS ) != 0 )
             {
-                sChars.setCharAt( i, rImport.ConvStarBatsCharToStarSymbol( c ) );
+                sChars[i] = rImport.ConvStarBatsCharToStarSymbol( c );
                 bConverted = sal_True;
             }
             else if( (rFlags & CONV_FROM_STAR_MATH ) != 0 )
             {
-                sChars.setCharAt( i, rImport.ConvStarMathCharToStarSymbol( c ) );
+                sChars[i] = rImport.ConvStarMathCharToStarSymbol( c );
                 bConverted = sal_True;
             }
         }

@@ -72,7 +72,7 @@ void Crypter::Encrypt( rtl::OStringBuffer& r ) const
 
     while( nLen-- )
     {
-        r.setCharAt(i, r[i] ^ ( *p ^ (BYTE) ( cBuf[ 0 ] * nCryptPtr ) ));
+        r[i] = r[i] ^ ( *p ^ (BYTE) ( cBuf[ 0 ] * nCryptPtr ) );
         *p += ( nCryptPtr < (PASSWDLEN-1) ) ? *(p+1) : cBuf[ 0 ];
         if( !*p )
             *p += 1;
