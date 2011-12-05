@@ -40,7 +40,6 @@
 #include <sot/object.hxx>
 #include <boost/shared_ptr.hpp>
 #include <tools/debug.hxx>
-#include <tools/stack.hxx>
 #include <tools/table.hxx>
 #include <vcl/graph.hxx>
 #include <vcl/virdev.hxx>

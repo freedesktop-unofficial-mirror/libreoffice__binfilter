@@ -28,11 +28,11 @@
 #ifndef PARSE_HXX
 #define PARSE_HXX
 
+#include <bf_tools/stack.hxx>
 #include <bf_svtools/bf_solar.h>
 
 
 #include <vcl/svapp.hxx>
-#include <tools/stack.hxx>
 #include <vector>
 
 namespace binfilter {

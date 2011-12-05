@@ -36,8 +36,8 @@
 
 #include <tools/datetime.hxx>
 #include <tools/table.hxx>
-#include <tools/stack.hxx>
 #include <tools/mempool.hxx>
+#include <bf_tools/stack.hxx>
 #include <bf_svtools/lstner.hxx>
 
 #include "bigrange.hxx"

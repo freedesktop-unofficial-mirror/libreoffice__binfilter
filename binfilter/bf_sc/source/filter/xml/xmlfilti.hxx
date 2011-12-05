@@ -28,13 +28,13 @@
 #ifndef SC_XMLFILTI_HXX
 #define SC_XMLFILTI_HXX
 
+#include <bf_tools/stack.hxx>
 #include <bf_xmloff/xmlictxt.hxx>
 #include <bf_xmloff/xmlimp.hxx>
 #include <com/sun/star/table/CellAddress.hpp>
 #include <com/sun/star/table/CellRangeAddress.hpp>
 #include <com/sun/star/sheet/FilterOperator.hpp>
 #include <com/sun/star/sheet/TableFilterField.hpp>
-#include <tools/stack.hxx>
 
 #include "xmldrani.hxx"
 #include "xmldpimp.hxx"
