@@ -58,7 +58,7 @@ public:
 
     inline SwFntCache() : SwCache(50,50
 #ifdef DBG_UTIL
-    , ByteString( RTL_CONSTASCII_STRINGPARAM(
+    , rtl::OString( RTL_CONSTASCII_STRINGPARAM(
                         "Globaler Font-Cache pFntCache" ))
 #endif
     ) {}
