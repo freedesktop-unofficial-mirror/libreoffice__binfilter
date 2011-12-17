@@ -1894,7 +1894,6 @@ USHORT GraphicFilter::ExportGraphic( const Graphic& rGraphic, const String& rPat
 
                                 SvMemoryStream aMemStm( 65535, 65535 );
 
-                                aMemStm.SetCompressMode( COMPRESSMODE_FULL );
                                 ( (GDIMetaFile&) aGraphic.GetGDIMetaFile() ).Write( aMemStm );
 
                                 xActiveDataSource->setOutputStream( ::com::sun::star::uno::Reference< ::com::sun::star::io::XOutputStream >(

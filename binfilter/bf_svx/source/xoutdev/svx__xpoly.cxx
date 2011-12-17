@@ -969,39 +969,6 @@ namespace binfilter {
 /*N*/   else
 /*N*/       rXPoly.pImpXPolygon->Resize( nMerkPoints );
 /*N*/
-/*N*/   // Je nach CompressMode das Polygon einlesen
-/*N*/   if ( rIStream.GetCompressMode() == COMPRESSMODE_FULL )
-/*N*/   {
-/*?*/       i = 0;
-/*?*/       while ( i < nReadPoints )
-/*?*/       {
-/*?*/           rIStream >> bShort >> nCurPoints;
-/*?*/
-/*?*/           if ( bShort )
-/*?*/           {
-/*?*/               for ( nStart = i; i < nStart+nCurPoints; i++ )
-/*?*/               {
-/*?*/                   rIStream >> nShortX >> nShortY;
-/*?*/                   if (i<nMerkPoints) { // restliche Punkte ueberspringen
-/*?*/                       rXPoly.pImpXPolygon->pPointAry[i].X() = nShortX;
-/*?*/                       rXPoly.pImpXPolygon->pPointAry[i].Y() = nShortY;
-/*?*/                   }
-/*?*/               }
-/*?*/           }
-/*?*/           else
-/*?*/           {
-/*?*/               for ( nStart = i; i < nStart+nCurPoints; i++ )
-/*?*/               {
-/*?*/                   rIStream >> nLongX >> nLongY;
-/*?*/                   if (i<nMerkPoints) { // restliche Punkte ueberspringen
-/*?*/                       rXPoly.pImpXPolygon->pPointAry[i].X() = nLongX;
-/*?*/                       rXPoly.pImpXPolygon->pPointAry[i].Y() = nLongY;
-/*?*/                   }
-/*?*/               }
-/*?*/           }
-/*?*/       }
-/*N*/   }
-/*N*/   else
 /*N*/   {
         // Feststellen, ob ueber die Operatoren gelesen werden muss
 #if (__SIZEOFLONG) != 4
@@ -1065,65 +1032,6 @@ namespace binfilter {
 /*N*/   // Anzahl der Punkte rausschreiben
 /*N*/   rOStream << nPoints;
 /*N*/
-/*N*/   // Je nach CompressMode das Polygon rausschreiben
-/*N*/   if ( rOStream.GetCompressMode() == COMPRESSMODE_FULL )
-/*N*/   {
-/*?*/       i = 0;
-/*?*/       while ( i < nPoints )
-/*?*/       {
-/*?*/           nStart = i;
-/*?*/
-/*?*/           // Feststellen, welcher Typ geschrieben werden soll
-/*?*/           if ( ((rXPoly.pImpXPolygon->pPointAry[nStart].X() >= SHRT_MIN) &&
-/*?*/                 (rXPoly.pImpXPolygon->pPointAry[nStart].X() <= SHRT_MAX)) &&
-/*?*/                ((rXPoly.pImpXPolygon->pPointAry[nStart].Y() >= SHRT_MIN) &&
-/*?*/                 (rXPoly.pImpXPolygon->pPointAry[nStart].Y() <= SHRT_MAX)) )
-/*?*/               bShort = TRUE;
-/*?*/           else
-/*?*/               bShort = FALSE;
-/*?*/           while ( i < nPoints )
-/*?*/           {
-/*?*/               // Feststellen, welcher Typ geschrieben werden soll
-/*?*/               if ( ((rXPoly.pImpXPolygon->pPointAry[nStart].X() >= SHRT_MIN) &&
-/*?*/                     (rXPoly.pImpXPolygon->pPointAry[nStart].X() <= SHRT_MAX)) &&
-/*?*/                    ((rXPoly.pImpXPolygon->pPointAry[nStart].Y() >= SHRT_MIN) &&
-/*?*/                     (rXPoly.pImpXPolygon->pPointAry[nStart].Y() <= SHRT_MAX)) )
-/*?*/                   bCurShort = TRUE;
-/*?*/               else
-/*?*/                   bCurShort = FALSE;
-/*?*/
-/*?*/               // Wenn sich die Werte in einen anderen Bereich begeben,
-/*?*/               // muessen wir neu rausschreiben
-/*?*/               if ( bCurShort != bShort )
-/*?*/               {
-/*?*/                   bShort = bCurShort;
-/*?*/                   break;
-/*?*/               }
-/*?*/
-/*?*/               i++;
-/*?*/           }
-/*?*/
-/*?*/           rOStream << bShort << (USHORT)(i-nStart);
-/*?*/
-/*?*/           if ( bShort )
-/*?*/           {
-/*?*/               for( ; nStart < i; nStart++ )
-/*?*/               {
-/*?*/                   rOStream << (short)rXPoly.pImpXPolygon->pPointAry[nStart].X()
-/*?*/                            << (short)rXPoly.pImpXPolygon->pPointAry[nStart].Y();
-/*?*/               }
-/*?*/           }
-/*?*/           else
-/*?*/           {
-/*?*/               for( ; nStart < i; nStart++ )
-/*?*/               {
-/*?*/                   rOStream << rXPoly.pImpXPolygon->pPointAry[nStart].X()
-/*?*/                            << rXPoly.pImpXPolygon->pPointAry[nStart].Y();
-/*?*/               }
-/*?*/           }
-/*?*/       }
-/*N*/   }
-/*N*/   else
 /*N*/   {
         // Feststellen, ob ueber die Operatoren geschrieben werden muss
 #if (__SIZEOFLONG) != 4
