@@ -1426,9 +1426,8 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*N*/   while( n-- )
 /*N*/   {
 /*N*/       sal_uInt16 nId;
-/*N*/       ByteString s8;
 /*N*/       r >> nId;
-/*N*/       r.ReadByteString( s8 );
+/*N*/       rtl::OString s8 = read_lenPrefixed_uInt8s_ToOString(r);
 /*N*/       if( nId == IDX_NOCONV_FF )
 /*N*/           s = Sw3IoImp::ConvertStringNoDbDelim( s8, eSrcEnc );
 /*N*/       else

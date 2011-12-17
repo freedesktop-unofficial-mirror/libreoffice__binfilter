@@ -413,10 +413,9 @@ namespace binfilter {
 /*N*/   if( nVersion >= SWG_FLYWRAPCHGD )
 /*N*/   {
 /*N*/       String aLinkFileName;
-/*N*/       ByteString s8;
 /*N*/
-/*N*/       pStrm->ReadByteString( s8 );
-/*N*/         aLinkFileName = ConvertStringNoDelim( s8, '\xff', ::binfilter::cTokenSeperator,
+/*N*/       rtl::OString s8 = read_lenPrefixed_uInt8s_ToOString(*pStrm);
+/*N*/       aLinkFileName = ConvertStringNoDelim( s8, '\xff', ::binfilter::cTokenSeperator,
 /*N*/                                             eSrcSet );
 /*N*/
 /*N*/       if( aLinkFileName.Len() && FILE_LINK_SECTION == nType )

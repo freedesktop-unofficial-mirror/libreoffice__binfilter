@@ -41,14 +41,13 @@ namespace binfilter {
 /*N*/ SvStream& operator >> (SvStream& rStream, SmFace& rFont)
 /*N*/ {
 /*N*/   sal_uInt32 nData;
-/*N*/     ByteString  aByteStr;
 /*N*/
-/*N*/     rStream.ReadByteString( aByteStr );
-/*N*/     rFont.SetName( ImportString( aByteStr ) );
+/*N*/   rtl::OString aByteStr = read_lenPrefixed_uInt8s_ToOString(rStream);
+/*N*/   rFont.SetName( ImportString( aByteStr ) );
 /*N*/   rStream >> nData;
 /*N*/   rFont.SetFamily((FontFamily)nData);
 /*N*/   rStream >> nData;
-/*N*/     rFont.SetCharSet( GetSOLoadTextEncoding( (rtl_TextEncoding) nData ) );
+/*N*/   rFont.SetCharSet( GetSOLoadTextEncoding( (rtl_TextEncoding) nData ) );
 /*N*/   rStream >> nData;
 /*N*/   rFont.SetWeight((FontWeight)nData);
 /*N*/   rStream >> nData;
@@ -61,14 +60,13 @@ namespace binfilter {
 /*?*/ {
 /*?*/   BOOL    bData;
 /*?*/   sal_uInt32 nData;
-/*?*/     ByteString  aByteStr;
 /*?*/
-/*?*/     rStream.ReadByteString( aByteStr );
-/*?*/     rFont.SetName( ImportString( aByteStr ) );
+/*?*/   rtl::OString aByteStr = read_lenPrefixed_uInt8s_ToOString(rStream);
+/*?*/   rFont.SetName( ImportString( aByteStr ) );
 /*?*/   rStream >> nData;
 /*?*/   rFont.SetFamily((FontFamily)nData);
 /*?*/   rStream >> nData;
-/*?*/     rFont.SetCharSet( GetSOLoadTextEncoding( (rtl_TextEncoding) nData ) );
+/*?*/   rFont.SetCharSet( GetSOLoadTextEncoding( (rtl_TextEncoding) nData ) );
 /*?*/   rStream >> nData;
 /*?*/   rFont.SetWeight((FontWeight)nData);
 /*?*/   rStream >> bData;

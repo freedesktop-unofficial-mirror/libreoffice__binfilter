@@ -95,16 +95,15 @@ void IMapObject::Read( SvStream& rIStm, const String& rBaseURL )
 {
     IMapCompat*         pCompat;
     rtl_TextEncoding    nTextEncoding;
-    ByteString          aString;
 
     // Typ und Version ueberlesen wir
     rIStm.SeekRel( 2 );
     rIStm >> nReadVersion;
     rIStm >> nTextEncoding;
-    rIStm.ReadByteString( aString ); aURL = String( aString.GetBuffer(), nTextEncoding );
-    rIStm.ReadByteString( aString ); aAltText = String( aString.GetBuffer(), nTextEncoding );
+    aURL = read_lenPrefixed_uInt8s_ToOUString(rIStm, nTextEncoding);
+    aAltText = read_lenPrefixed_uInt8s_ToOUString(rIStm, nTextEncoding);
     rIStm >> bActive;
-    rIStm.ReadByteString( aString ); aTarget = String( aString.GetBuffer(), nTextEncoding );
+    aTarget = read_lenPrefixed_uInt8s_ToOUString(rIStm, nTextEncoding);
 
     // URL absolut machen
     aURL = ::binfilter::SmartRel2Abs( INetURLObject(rBaseURL), aURL, ::binfilter::GetMaybeFileHdl(), true, false, INetURLObject::WAS_ENCODED, INetURLObject::DECODE_UNAMBIGUOUS );
@@ -120,7 +119,7 @@ void IMapObject::Read( SvStream& rIStm, const String& rBaseURL )
         // ab Version 5 kann ein Objektname vorhanden sein
         if ( nReadVersion >= 0x0005 )
         {
-            rIStm.ReadByteString( aString ); aName = String( aString.GetBuffer(), nTextEncoding );
+            aName = read_lenPrefixed_uInt8s_ToOUString(rIStm, nTextEncoding);
         }
     }
 
@@ -967,7 +966,6 @@ void ImageMap::ImpReadImageMap( SvStream& rIStm, USHORT nCount, const String& rB
 
 void ImageMap::Read( SvStream& rIStm, const String& rBaseURL )
 {
-    ByteString  aString;
     char        cMagic[6];
     USHORT      nOldFormat = rIStm.GetNumberFormatInt();
     UINT16      nCount;
@@ -985,10 +983,11 @@ void ImageMap::Read( SvStream& rIStm, const String& rBaseURL )
         // Version ueberlesen wir
         rIStm.SeekRel( 2 );
 
-        rIStm.ReadByteString( aString ); aName = String( aString, osl_getThreadTextEncoding() );
-        rIStm.ReadByteString( aString ); // Dummy
+        aName = read_lenPrefixed_uInt8s_ToOUString(rIStm,
+            osl_getThreadTextEncoding() );
+        read_lenPrefixed_uInt8s_ToOString(rIStm); // Dummy
         rIStm >> nCount;
-        rIStm.ReadByteString( aString ); // Dummy
+        read_lenPrefixed_uInt8s_ToOString(rIStm); // Dummy
 
         pCompat = new IMapCompat( rIStm, STREAM_READ );
 

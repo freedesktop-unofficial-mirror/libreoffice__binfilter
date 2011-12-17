@@ -473,12 +473,11 @@ void Sw3IoImp::InPasswd()
     if( nVersion >= SWG_CRYPT )
     {
         sal_uInt8 cType;
-        ByteString aPasswd;
         *pStrm >> cType;
         // TODO: unicode: It seems that we had a bug here, because the
         // password was converted from the source to the system encoding
         // before it was decrypted. We now decrypt it first.
-        pStrm->ReadByteString( aPasswd );
+        /*rtl::OString aPasswd =*/ read_lenPrefixed_uInt8s_ToOString(*pStrm);
         /*
         // Datum und Uhrzeit als Passwort fuers Passwort nehmen
         sal_Char buf[ 17 ];
@@ -1297,14 +1296,13 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 
 /*N*/ void Sw3IoImp::InDBName()
 /*N*/ {
-/*N*/   ByteString sStr8;
 /*N*/   String  sStr, sSQL;
 /*N*/   SwDBData aData3;
 /*N*/   OpenRec( SWG_DBNAME );
 /*N*/
 /*N*/   // MIB 9.4.97: Die Datenbanknamen koennen 0xff enthalten und muessen
 /*N*/   // deshalb von Hand konvertiert werden.
-/*N*/   pStrm->ReadByteString( sStr8 );
+/*N*/   rtl::OString sStr8 = read_lenPrefixed_uInt8s_ToOString(*pStrm);
 /*N*/   sStr = ConvertStringNoDbDelim( sStr8,  eSrcSet );
 /*N*/   aData3.sDataSource = sStr.GetToken(0, DB_DELIM);
 /*N*/   aData3.sCommand = sStr.GetToken(1, DB_DELIM);
@@ -1358,7 +1356,7 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*N*/           SwNewDBMgr& rDBMgr = *pDoc->GetNewDBMgr();
 /*N*/           for( sal_uInt16 i = 0; i < nCount; i++ )
 /*N*/           {
-/*N*/               pStrm->ReadByteString( sStr8 );
+/*N*/               sStr8 = read_lenPrefixed_uInt8s_ToOString(*pStrm);
 /*N*/               *pStrm >> nSelStart
 /*N*/                      >> nSelEnd;
 /*N*/               sDBName = ConvertStringNoDbDelim( sStr8, eSrcSet );
