@@ -140,7 +140,6 @@ BOOL SbiImage::Load( SvStream& r, UINT32& nVersion )
                 aOUSource = aTmp;
                 break;
             }
-#ifdef EXTENDED_BINARY_MODULES
             case B_EXTSOURCE:
             {
                 for( UINT16 j = 0 ; j < nCount ; j++ )
@@ -151,7 +150,6 @@ BOOL SbiImage::Load( SvStream& r, UINT32& nVersion )
                 }
                 break;
             }
-#endif
             case B_PCODE:
                 if( bBadVer ) break;
                 pCode = new char[ nLen ];
