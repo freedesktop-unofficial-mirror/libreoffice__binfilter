@@ -938,15 +938,8 @@ namespace binfilter {
 /*N*/   DBG_CHKOBJ( &rXPoly, XPolygon, NULL );
 /*N*/
 /*N*/   USHORT          i;
-/*N*/   USHORT          nStart;
-/*N*/   USHORT          nCurPoints;
 /*N*/   USHORT          nReadPoints; // Anzahl der Punkte im Stream
 /*N*/   USHORT          nMerkPoints; // Anzahl der Punkte die ich speichern kann
-/*N*/   unsigned char   bShort;
-/*N*/   short           nShortX;
-/*N*/   short           nShortY;
-/*N*/   long            nLongX;
-/*N*/   long            nLongY;
 /*N*/
 /*N*/   rXPoly.pImpXPolygon->CheckPointDelete();
 /*N*/
@@ -1021,9 +1014,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   DBG_CHKOBJ( &rXPoly, XPolygon, NULL );
 /*N*/
-/*N*/   unsigned char   bShort;
-/*N*/   unsigned char   bCurShort;
-/*N*/   USHORT          nStart;
 /*N*/   USHORT          i;
 /*N*/   USHORT          nPoints = rXPoly.GetPointCount();
 /*N*/
