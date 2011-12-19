@@ -28,6 +28,12 @@
 
 # Backup files:
 *~
+.*sw?
+\#*
+.DS_Store
+
+# StGit
+.stgit-edit.txt
 
 # Build directories:
 /binfilter/unxlng??
@@ -52,4 +58,17 @@
 /binfilter/unxios?.pro
 /binfilter/unxand?
 /binfilter/unxand?.pro
+
+# libxslt debug memdump
 .memdump
+
+# LibreOffice lock files
+.~lock.*#
+
+# Everyone loves patching
+*.orig
+*.rej
+
+# Somepeople love debugging
+gdbtrace.log
+valgrind.log
