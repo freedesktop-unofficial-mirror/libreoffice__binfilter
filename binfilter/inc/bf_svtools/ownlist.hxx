@@ -70,14 +70,14 @@ public:
 
     friend SvStream& operator >> ( SvStream& rStm, SvCommand & rThis )
                     {
-                        rStm.ReadByteString( rThis.aCommand, osl_getThreadTextEncoding() );
-                        rStm.ReadByteString( rThis.aArgument, osl_getThreadTextEncoding() );
+                        rStm.ReadUniOrByteString( rThis.aCommand, osl_getThreadTextEncoding() );
+                        rStm.ReadUniOrByteString( rThis.aArgument, osl_getThreadTextEncoding() );
                         return rStm;
                     }
     friend SvStream& operator << ( SvStream& rStm, const SvCommand & rThis )
                     {
-                        rStm.WriteByteString( rThis.aCommand, osl_getThreadTextEncoding() );
-                        rStm.WriteByteString( rThis.aArgument, osl_getThreadTextEncoding() );
+                        rStm.WriteUniOrByteString( rThis.aCommand, osl_getThreadTextEncoding() );
+                        rStm.WriteUniOrByteString( rThis.aArgument, osl_getThreadTextEncoding() );
                         return rStm;
                     }
 };

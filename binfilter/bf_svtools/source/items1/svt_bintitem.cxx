@@ -59,7 +59,7 @@ SfxBigIntItem::SfxBigIntItem(USHORT which, SvStream &rStream)
 {
     DBG_CTOR(SfxBigIntItem, 0);
     UniString sTmp;
-    rStream.ReadByteString(sTmp);
+    rStream.ReadUniOrByteString(sTmp, rStream.GetStreamCharSet());
     BigInt aTmp(sTmp);
     aVal = aTmp;
 }

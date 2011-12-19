@@ -1778,8 +1778,8 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*?*/     for( sal_uInt16 i=0; i<nLclCount; ++i )
 /*?*/     {
 /*?*/         SfxVersionInfo *pNew = new SfxVersionInfo;
-/*?*/         rStrm.ReadByteString( pNew->aComment, RTL_TEXTENCODING_UTF8 );
-/*?*/         rStrm.ReadByteString( pNew->aName, RTL_TEXTENCODING_UTF8 );
+/*?*/         pNew->aComment = read_lenPrefixed_uInt8s_ToOUString(rStrm, RTL_TEXTENCODING_UTF8);
+/*?*/         pNew->aName = read_lenPrefixed_uInt8s_ToOUString(rStrm, RTL_TEXTENCODING_UTF8);
 /*?*/         pNew->aCreateStamp.Load( rStrm );
 /*?*/         maList.push_back( pNew );
 /*?*/     }

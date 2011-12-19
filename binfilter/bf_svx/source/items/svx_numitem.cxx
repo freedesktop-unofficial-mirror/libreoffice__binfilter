@@ -220,9 +220,9 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/   rStream >> nShort;
 /*N*/   nCharTextDistance       = nShort;
 /*N*/   rtl_TextEncoding eEnc = osl_getThreadTextEncoding();
-/*N*/   rStream.ReadByteString(sPrefix, eEnc);
-/*N*/   rStream.ReadByteString(sSuffix, eEnc);
-/*N*/   rStream.ReadByteString(sCharStyleName, eEnc);
+/*N*/   rStream.ReadUniOrByteString(sPrefix, eEnc);
+/*N*/   rStream.ReadUniOrByteString(sSuffix, eEnc);
+/*N*/   rStream.ReadUniOrByteString(sCharStyleName, eEnc);
 /*N*/   rStream >> nUSHORT;
 /*N*/   if(nUSHORT)
 /*N*/   {

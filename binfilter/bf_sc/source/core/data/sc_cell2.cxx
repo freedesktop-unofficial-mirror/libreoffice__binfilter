@@ -784,7 +784,7 @@ void ScFormulaCell::UpdateCompile( BOOL )
 /*N*/       if( cData & 0x0F )
 /*?*/           rStream.SeekRel( cData & 0x0F );
 /*N*/   }
-/*N*/   rStream.ReadByteString( aString, rStream.GetStreamCharSet() );
+/*N*/   rStream.ReadUniOrByteString( aString, rStream.GetStreamCharSet() );
 /*N*/ }
 
 /*N*/ void ScStringCell::ConvertFont( FontToSubsFontConverter hConv )

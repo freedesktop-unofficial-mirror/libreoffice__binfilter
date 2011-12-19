@@ -291,7 +291,7 @@ namespace binfilter {
 /*N*/ SfxPoolItem* SwFmtRefMark::Create( SvStream& rStrm, USHORT ) const
 /*N*/ {
 /*N*/   String aName;
-/*N*/   rStrm.ReadByteString( aName, rStrm.GetStreamCharSet() );
+/*N*/   rStrm.ReadUniOrByteString( aName, rStrm.GetStreamCharSet() );
 /*N*/   return new SwFmtRefMark( aName );
 /*N*/ }
 
@@ -310,8 +310,8 @@ namespace binfilter {
 /*N*/ {
 /*N*/   UINT16 nId1, nId2;
 /*N*/   String aURL1, aTarget;
-/*N*/   rStrm.ReadByteString( aURL1, rStrm.GetStreamCharSet() );
-/*N*/   rStrm.ReadByteString( aTarget, rStrm.GetStreamCharSet() );
+/*N*/   rStrm.ReadUniOrByteString( aURL1, rStrm.GetStreamCharSet() );
+/*N*/   rStrm.ReadUniOrByteString( aTarget, rStrm.GetStreamCharSet() );
 /*N*/   rStrm >> nId1 >> nId2;
 /*N*/
 /*N*/   aURL1 = ::binfilter::StaticBaseUrl::SmartRelToAbs( aURL1 );
@@ -342,14 +342,14 @@ namespace binfilter {
 /*N #i27164#*/      USHORT nCurKey;
 /*N #i27164#*/      String aLibName, aMacName;
 /*N #i27164#*/      rStrm >> nCurKey;
-/*N #i27164#*/      rStrm.ReadByteString( aLibName, rStrm.GetStreamCharSet() );
-/*N #i27164#*/      rStrm.ReadByteString( aMacName, rStrm.GetStreamCharSet() );
+/*N #i27164#*/      rStrm.ReadUniOrByteString( aLibName, rStrm.GetStreamCharSet() );
+/*N #i27164#*/      rStrm.ReadUniOrByteString( aMacName, rStrm.GetStreamCharSet() );
 /*N #i27164#*/      pNew->SetMacro( nCurKey, SvxMacro( aMacName, aLibName, STARBASIC ) );
 /*N*/   }
 /*N*/   if( nIVer >= 1 )
 /*N*/   {
 /*N*/       String aName1;
-/*N*/       rStrm.ReadByteString( aName1, rStrm.GetStreamCharSet() );;
+/*N*/       rStrm.ReadUniOrByteString( aName1, rStrm.GetStreamCharSet() );;
 /*N*/       pNew->SetName( aName1 );
 /*N*/   }
 /*N*/   if( nIVer >= 2 )
@@ -360,8 +360,8 @@ namespace binfilter {
 /*N #i27164#*/          USHORT nCurKey, nScriptType;
 /*N #i27164#*/          String aLibName, aMacName;
 /*N #i27164#*/          rStrm >> nCurKey;
-/*N #i27164#*/          rStrm.ReadByteString( aLibName, rStrm.GetStreamCharSet() );
-/*N #i27164#*/          rStrm.ReadByteString( aMacName, rStrm.GetStreamCharSet() );
+/*N #i27164#*/          rStrm.ReadUniOrByteString( aLibName, rStrm.GetStreamCharSet() );
+/*N #i27164#*/          rStrm.ReadUniOrByteString( aMacName, rStrm.GetStreamCharSet() );
 /*N #i27164#*/          rStrm >> nScriptType;
 /*N #i27164#*/          pNew->SetMacro( nCurKey, SvxMacro( aMacName, aLibName,
 /*N #i27164#*/                                      (ScriptType)nScriptType ) );
@@ -386,7 +386,7 @@ namespace binfilter {
 /*N*/   String aNumber1;
 /*N*/   UINT16 nNumber1;
 /*N*/   rStrm >> nNumber1;
-/*N*/   rStrm.ReadByteString( aNumber1, rStrm.GetStreamCharSet() );
+/*N*/   rStrm.ReadUniOrByteString( aNumber1, rStrm.GetStreamCharSet() );
 /*N*/
 /*N*/   // Die Section fuer den Text erzeugen
 /*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
@@ -476,13 +476,13 @@ namespace binfilter {
 /*N*/         >> nLevel1;
 /*N*/
 /*N*/   if( nIVer < IVER_TOXMARK_STRPOOL )
-/*N*/       rStrm.ReadByteString( aTypeName, rStrm.GetStreamCharSet() );
+/*N*/       rStrm.ReadUniOrByteString( aTypeName, rStrm.GetStreamCharSet() );
 /*N*/   else
 /*N*/       rStrm >> nStrIdx;
 /*N*/
-/*N*/   rStrm.ReadByteString( aAltText1, rStrm.GetStreamCharSet() );
-/*N*/   rStrm.ReadByteString( aPrimKey, rStrm.GetStreamCharSet() );
-/*N*/   rStrm.ReadByteString( aSecKey, rStrm.GetStreamCharSet() );
+/*N*/   rStrm.ReadUniOrByteString( aAltText1, rStrm.GetStreamCharSet() );
+/*N*/   rStrm.ReadUniOrByteString( aPrimKey, rStrm.GetStreamCharSet() );
+/*N*/   rStrm.ReadUniOrByteString( aSecKey, rStrm.GetStreamCharSet() );
 /*N*/
 /*N*/   BYTE cFlags = 0;
 /*N*/   // With the 5.2, there are new tox types.
@@ -591,7 +591,7 @@ SfxPoolItem* SwFmtRuby::Create(SvStream & rStrm, USHORT /*nVer*/) const
 SfxPoolItem* SwTblBoxFormula::Create( SvStream & rStrm, USHORT ) const
 {
     String sStr;
-    rStrm.ReadByteString( sStr, rStrm.GetStreamCharSet() );
+    rStrm.ReadUniOrByteString( sStr, rStrm.GetStreamCharSet() );
     return new SwTblBoxFormula( sStr );
 }
 

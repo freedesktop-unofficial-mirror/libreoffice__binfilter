@@ -83,9 +83,9 @@ namespace binfilter {
 /*N*/   rHdr.StartEntry();
 /*N*/
 /*N*/   rtl_TextEncoding eCharSet = rStream.GetStreamCharSet();
-/*N*/   rStream.ReadByteString( aAppl, eCharSet );
-/*N*/   rStream.ReadByteString( aTopic, eCharSet );
-/*N*/   rStream.ReadByteString( aItem, eCharSet );
+/*N*/   rStream.ReadUniOrByteString( aAppl, eCharSet );
+/*N*/   rStream.ReadUniOrByteString( aTopic, eCharSet );
+/*N*/   rStream.ReadUniOrByteString( aItem, eCharSet );
 /*N*/
 /*N*/   BOOL bHasValue;
 /*N*/   rStream >> bHasValue;

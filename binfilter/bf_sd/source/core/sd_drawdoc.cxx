@@ -410,7 +410,7 @@ SvStream& operator << (SvStream& rOut, SdDrawDocument& rDoc)
     rOut << rDoc.bOnlineSpell;
     rOut << rDoc.bHideSpell;
     rOut << rDoc.bPresFullScreen;
-    rOut.WriteByteString( rDoc.aPresPage, eSysSet );
+    rOut.WriteUniOrByteString( rDoc.aPresPage, eSysSet );
     rOut << rDoc.bAnimationAllowed;
 
     UINT16 nDocType = (UINT16) rDoc.eDocType;
@@ -614,7 +614,7 @@ SvStream& operator >> (SvStream& rIn, SdDrawDocument& rDoc)
 
     if (rDoc.nFileFormatVersion >= 10)
     {
-        rIn.ReadByteString( rDoc.aPresPage, eSysSet );
+        rIn.ReadUniOrByteString( rDoc.aPresPage, eSysSet );
     }
 
     if (rDoc.nFileFormatVersion >= 11)

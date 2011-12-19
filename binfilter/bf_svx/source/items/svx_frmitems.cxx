@@ -1964,7 +1964,7 @@ public:
 /*N*/       {
 /*N*/           String aRel;
 /*N*/           // UNICODE: rStream >> aRel;
-/*N*/           rStream.ReadByteString(aRel);
+/*N*/           rStream.ReadUniOrByteString(aRel, rStream.GetStreamCharSet());
 /*N*/
 /*N*/           String aAbs = ::binfilter::StaticBaseUrl::RelToAbs( aRel );
 /*N*/           pStrLink = new String( aAbs );
@@ -1974,7 +1974,7 @@ public:
 /*N*/       {
 /*N*/           pStrFilter = new String;
 /*N*/           // UNICODE: rStream >> *pStrFilter;
-/*N*/           rStream.ReadByteString(*pStrFilter);
+/*N*/           rStream.ReadUniOrByteString(*pStrFilter, rStream.GetStreamCharSet());
 /*N*/       }
 /*N*/
 /*N*/       rStream >> nPos;

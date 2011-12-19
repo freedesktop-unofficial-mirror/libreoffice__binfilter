@@ -483,10 +483,10 @@ void SdrOle2Obj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 #endif
 
     // UNICODE: rIn >> mpImpl->aPersistName;
-    rIn.ReadByteString(mpImpl->aPersistName);
+    rIn.ReadUniOrByteString(mpImpl->aPersistName, rIn.GetStreamCharSet());
 
     // UNICODE: rIn >> aProgName;
-    rIn.ReadByteString(aProgName);
+    rIn.ReadUniOrByteString(aProgName, rIn.GetStreamCharSet());
 
     BOOL bObjRefValid;
     rIn>>bObjRefValid;

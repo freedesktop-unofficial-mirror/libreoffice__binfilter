@@ -140,7 +140,7 @@ namespace binfilter {
 /*N*/   rIn >> rLayer.nID;
 /*N*/
 /*N*/   // UNICODE: rIn >> rLayer.aName;
-/*N*/   rIn.ReadByteString(rLayer.aName);
+/*N*/   rIn.ReadUniOrByteString(rLayer.aName, rIn.GetStreamCharSet());
 /*N*/
 /*N*/   if(aHead.GetVersion() >= 1)
 /*N*/   {
@@ -165,7 +165,7 @@ namespace binfilter {
 /*N*/   rOut << rLayer.nID;
 /*N*/
 /*N*/   // UNICODE: rOut << rLayer.aName;
-/*N*/   rOut.WriteByteString(rLayer.aName);
+/*N*/   rOut.WriteUniOrByteString(rLayer.aName, rOut.GetStreamCharSet());
 /*N*/
 /*N*/   rOut << rLayer.nType;
 /*N*/
@@ -189,7 +189,7 @@ namespace binfilter {
 /*?*/   rIn >> rSet.aExclude;
 /*?*/
 /*?*/   // UNICODE: rIn >> rSet.aName;
-/*?*/   rIn.ReadByteString(rSet.aName);
+/*?*/   rIn.ReadUniOrByteString(rSet.aName, rIn.GetStreamCharSet());
 /*?*/
 /*?*/   return rIn;
 /*?*/ }
@@ -202,7 +202,7 @@ namespace binfilter {
 /*?*/   rOut << rSet.aExclude;
 /*?*/
 /*?*/   // UNICODE: rOut << rSet.aName;
-/*?*/   rOut.WriteByteString(rSet.aName);
+/*?*/   rOut.WriteUniOrByteString(rSet.aName, rOut.GetStreamCharSet());
 /*?*/
 /*?*/   return rOut;
 /*?*/ }

@@ -61,7 +61,7 @@ static const sal_Char pStandardName[] = "Standard";
 /*N*/ void ScNumFormatAbbrev::Load( SvStream& rStream )
 /*N*/ {
 /*N*/   USHORT nSysLang, nLang;
-/*N*/   rStream.ReadByteString( sFormatstring, rStream.GetStreamCharSet() );
+/*N*/   rStream.ReadUniOrByteString( sFormatstring, rStream.GetStreamCharSet() );
 /*N*/   rStream >> nSysLang >> nLang;
 /*N*/   eLnge = (LanguageType) nLang;
 /*N*/   eSysLnge = (LanguageType) nSysLang;

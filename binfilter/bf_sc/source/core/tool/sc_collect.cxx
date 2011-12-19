@@ -287,7 +287,7 @@ namespace binfilter {
 /*N*/   rtl_TextEncoding eSet = rStream.GetStreamCharSet();
 /*N*/   for ( USHORT i=0; i<nCount; i++ )
 /*N*/   {
-/*N*/       rStream.ReadByteString( aStr, eSet );
+/*N*/       rStream.ReadUniOrByteString( aStr, eSet );
 /*N*/       pItems[i] = new StrData( aStr );
 /*N*/   }
 /*N*/ }
