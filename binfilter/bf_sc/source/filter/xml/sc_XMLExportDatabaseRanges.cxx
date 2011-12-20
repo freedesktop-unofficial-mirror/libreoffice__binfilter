@@ -146,7 +146,7 @@ void ScXMLExportDatabaseRanges::WriteImportDescriptor(const uno::Sequence <beans
     sal_Int32 nProperties = aImportDescriptor.getLength();
     ::rtl::OUString sDatabaseName;
     ::rtl::OUString sSourceObject;
-    sheet::DataImportMode nSourceType;
+    sheet::DataImportMode nSourceType = sheet::DataImportMode_NONE;
     sal_Bool bNative = sal_False;
     for (sal_Int16 i = 0; i < nProperties; i++)
     {
