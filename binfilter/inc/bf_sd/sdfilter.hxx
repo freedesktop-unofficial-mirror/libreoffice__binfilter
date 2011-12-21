@@ -66,7 +66,7 @@ protected:
 public:
 
                                 SdFilter( SfxMedium& rMedium, SdDrawDocShell& rDocShell, sal_Bool bShowProgress );
-                                ~SdFilter();
+                                virtual ~SdFilter();
 
     virtual sal_Bool            Import();
     virtual sal_Bool            Export();

@@ -68,7 +68,7 @@ public:
 
     void Load();
 
-    SvPtrarr::Count;
+    using SvPtrarr::Count;
 
     virtual void Commit();
     virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
