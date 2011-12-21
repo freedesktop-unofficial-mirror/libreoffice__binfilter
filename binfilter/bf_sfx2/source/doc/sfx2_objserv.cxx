@@ -122,11 +122,11 @@ AsynchronLink* pPendingCloser = 0;
 /*N*/      if( !aFilterName.Len() )
 /*N*/      {
 /*N*/          sal_uInt16 nActFilt = 0;
-/*N*/          const SfxFilter* pFilt = GetFactory().GetFilter( 0 ); for( ;
-/*N*/               pFilt && ( !pFilt->CanExport()
+/*N*/          const SfxFilter* pFilt = GetFactory().GetFilter( 0 );
+/*N*/          for( ; pFilt && ( !pFilt->CanExport()
 /*N*/                 || (!bSaveTo && !pFilt->CanImport()) // SaveAs case
 /*N*/                || pFilt->IsInternal() );
-/*N*/               pFilt = GetFactory().GetFilter( ++nActFilt ) );
+/*N*/               pFilt = GetFactory().GetFilter( ++nActFilt ) ) ;
 /*N*/
 /*N*/          DBG_ASSERT( pFilt, "No default filter!\n" );
 /*N*/
