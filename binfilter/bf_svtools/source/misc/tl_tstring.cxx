@@ -35,9 +35,8 @@ namespace binfilter
     {
         sal_Char aBuf[RTL_STR_MAX_VALUEOFINT32];
         BOOST_STATIC_ASSERT(RTL_STR_MAX_VALUEOFINT32 <= STRING_MAXLEN);
-        return ByteString(
-            aBuf,
-            static_cast< xub_StrLen >(rtl_str_valueOfInt32( aBuf, n, nRadix )) );
+        return rtl::OString(
+            aBuf, rtl_str_valueOfInt32( aBuf, n, nRadix ) );
     }
 
     sal_Unicode ConvertToUnicode( const char* pChar, sal_Size* pLen, rtl_TextEncoding eTextEncoding )

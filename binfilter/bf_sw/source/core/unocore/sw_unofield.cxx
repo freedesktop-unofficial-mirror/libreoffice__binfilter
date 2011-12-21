@@ -73,6 +73,7 @@
 #include <com/sun/star/beans/XPropertyContainer.hpp>
 #include <com/sun/star/beans/PropertyStateChangeEvent.hpp>
 #include <com/sun/star/beans/PropertyChangeEvent.hpp>
+#include <rtl/strbuf.hxx>
 //undef to prevent error (from bf_sfx2/docfile.cxx)
 #undef SEQUENCE
 #include <com/sun/star/text/SetVariableType.hpp>
@@ -464,10 +465,9 @@ BOOL SwXFieldMaster::supportsService(const OUString& rServiceName) throw( Runtim
         }
         if( pEntry )
         {
-            ByteString aTmp( RTL_CONSTASCII_STRINGPARAM(
-                            "com.sun.star.text.fieldmaster."));
-            aTmp.Append( pEntry );
-            bRet = rServiceName.equalsAsciiL(aTmp.GetBuffer(), aTmp.Len());
+            rtl::OString aTmp(rtl::OStringBuffer(RTL_CONSTASCII_STRINGPARAM(
+                            "com.sun.star.text.fieldmaster.")).append(pEntry).makeStringAndClear());
+            bRet = rServiceName.equalsAsciiL(aTmp.getStr(), aTmp.getLength());
         }
     }
     return bRet;

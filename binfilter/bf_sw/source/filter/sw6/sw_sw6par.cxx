@@ -3482,18 +3482,18 @@ size_t Sw6Layout::PutRest(String &rStr,sal_Char *pCtrl)
                 else
                 if (TextBefehl("INDEX",&pCtrl[1]))
                 {
-                    ByteString aString(&pCtrl[8],(BYTE)pCtrl[1]-6);
+                    ByteString aString(rtl::OString(&pCtrl[8],(BYTE)pCtrl[1]-6));
                     AddXForm('X',aString,rStr);
                 }
                 else
                 if (TextBefehl("INHALT",&pCtrl[1]))
                 {
-                    ByteString aString(&pCtrl[9],(BYTE)pCtrl[1]-7);
+                    ByteString aString(rtl::OString(&pCtrl[9],(BYTE)pCtrl[1]-7));
                     AddXForm('V',aString,rStr);
                 }
                 else
                 {
-                    ByteString aTmp( &pCtrl[2], pCtrl[1] );
+                    ByteString aTmp(rtl::OString(&pCtrl[2], pCtrl[1]));
                     aTmp = rtl::OUStringToOString(
                         rtl::OStringToOUString(aTmp, RTL_TEXTENCODING_IBM_850),
                         osl_getThreadTextEncoding());
@@ -3566,7 +3566,7 @@ size_t Sw6Layout::PutRest(String &rStr,sal_Char *pCtrl)
                     else if ( (*pCtrl>='A' && *pCtrl<='Z') ||
                              (*pCtrl>='a' && *pCtrl<='z') )
                     {
-                        ByteString aFld(pCtrl,p-pCtrl);
+                        ByteString aFld(rtl::OString(pCtrl,p-pCtrl));
                         aFld = rtl::OUStringToOString(
                             rtl::OStringToOUString(aFld,
                                 RTL_TEXTENCODING_IBM_850),

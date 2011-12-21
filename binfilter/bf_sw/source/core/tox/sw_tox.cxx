@@ -300,7 +300,7 @@ String lcl_GetAuthPattern(USHORT nTypeId)
 /*N*/       if( TOX_AUTHORITIES != nType)
 /*N*/       {
 /*N*/           sBStr += SwForm::aFormTab;
-/*N*/           ByteString sTmp( RTL_CONSTASCII_STRINGPARAM( " ,65535,0," ));
+/*N*/           ByteString sTmp(rtl::OString(RTL_CONSTASCII_STRINGPARAM(" ,65535,0,")));
 /*N*/           if(TOX_CONTENT == nType)
 /*N*/           {
 /*N*/               //the most right tab stop is "most_right_aligned"
