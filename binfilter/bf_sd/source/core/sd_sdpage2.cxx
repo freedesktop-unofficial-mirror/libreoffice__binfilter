@@ -106,7 +106,7 @@ void SdPage::ReadData(const SdrIOHeader& rHead, SvStream& rIn)
     rIn >> nTime;
     rIn >> bSoundOn;
     rIn >> bExcluded;
-    rIn.ReadUniOrByteString( aLayoutName, rIn.GetStreamCharSet() );
+    rIn.ReadByteString( aLayoutName );
 
     if (IsObjOrdNumsDirty())
         RecalcObjOrdNums();
@@ -155,7 +155,7 @@ void SdPage::ReadData(const SdrIOHeader& rHead, SvStream& rIn)
         eCharSet = (CharSet)GetSOLoadTextEncoding((rtl_TextEncoding)nCharSet, (sal_uInt16)rIn.GetVersion());
 
         String aSoundFileRel;
-        rIn.ReadUniOrByteString( aSoundFileRel, rIn.GetStreamCharSet() );
+        rIn.ReadByteString( aSoundFileRel );
         INetURLObject aURLObj(::binfilter::StaticBaseUrl::SmartRelToAbs(aSoundFileRel, FALSE,
                                                          INetURLObject::WAS_ENCODED,
                                                          INetURLObject::DECODE_UNAMBIGUOUS));
@@ -166,13 +166,13 @@ void SdPage::ReadData(const SdrIOHeader& rHead, SvStream& rIn)
     if (aIO.GetVersion() >=4)
     {
         String aFileNameRel;
-        rIn.ReadUniOrByteString( aFileNameRel, rIn.GetStreamCharSet() );
+        rIn.ReadByteString( aFileNameRel );
         INetURLObject aURLObj(::binfilter::StaticBaseUrl::SmartRelToAbs(aFileNameRel, FALSE,
                                                          INetURLObject::WAS_ENCODED,
                                                          INetURLObject::DECODE_UNAMBIGUOUS));
         aFileName = aURLObj.GetMainURL( INetURLObject::NO_DECODE );
 
-        rIn.ReadUniOrByteString( aBookmarkName, rIn.GetStreamCharSet() );
+        rIn.ReadByteString( aBookmarkName );
     }
 
     // ab hier werden Daten der Versionen >=5 eingelesen

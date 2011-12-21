@@ -276,7 +276,7 @@ void ImpSvNumFor::Load(SvStream& rStream, ImpSvNumberformatScan& rSc,
     rStream >> nAnz;        //! noch nicht direkt nAnzStrings wg. Enlarge
     Enlarge( nAnz );
     aI.Load( rStream, nAnz );
-    rStream.ReadUniOrByteString( sColorName, rStream.GetStreamCharSet() );
+    rStream.ReadByteString( sColorName, rStream.GetStreamCharSet() );
     rLoadedColorName = sColorName;
     pColor = rSc.GetColor(sColorName);
 }

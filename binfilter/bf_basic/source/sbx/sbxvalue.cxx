@@ -1463,8 +1463,8 @@ BOOL SbxValue::LoadData( SvStream& r, USHORT )
         case SbxSINGLE:
         {
             // Floats als ASCII
-            XubString aVal = read_lenPrefixed_uInt8s_ToOUString(r,
-                RTL_TEXTENCODING_ASCII_US);
+            XubString aVal;
+            r.ReadByteString( aVal, RTL_TEXTENCODING_ASCII_US );
             double d;
             SbxDataType t;
             if( ImpScan( aVal, d, t, NULL ) != SbxERR_OK || t == SbxDOUBLE )
@@ -1479,8 +1479,8 @@ BOOL SbxValue::LoadData( SvStream& r, USHORT )
         case SbxDOUBLE:
         {
             // Floats als ASCII
-            XubString aVal = read_lenPrefixed_uInt8s_ToOUString(r,
-                RTL_TEXTENCODING_ASCII_US);
+            XubString aVal;
+            r.ReadByteString( aVal, RTL_TEXTENCODING_ASCII_US );
             SbxDataType t;
             if( ImpScan( aVal, aData.nDouble, t, NULL ) != SbxERR_OK )
             {
@@ -1502,8 +1502,8 @@ BOOL SbxValue::LoadData( SvStream& r, USHORT )
         }
         case SbxSTRING:
         {
-            XubString aVal = read_lenPrefixed_uInt8s_ToOUString(r,
-                RTL_TEXTENCODING_ASCII_US);
+            XubString aVal;
+            r.ReadByteString( aVal, RTL_TEXTENCODING_ASCII_US );
             if( aVal.Len() )
                 aData.pString = new XubString( aVal );
             else

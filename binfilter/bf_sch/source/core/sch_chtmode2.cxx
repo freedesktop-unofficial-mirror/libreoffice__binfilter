@@ -743,15 +743,15 @@ enum ChartStyleV0
 /*N*/   rOut << (INT16)eSysSet;
 /*N*/
 /*N*/   rOut << bShowMainTitle;
-/*N*/   rOut.WriteUniOrByteString( aMainTitle, rOut.GetStreamCharSet() );
+/*N*/   rOut.WriteByteString( aMainTitle );
 /*N*/   rOut << bShowSubTitle;
-/*N*/   rOut.WriteUniOrByteString( aSubTitle, rOut.GetStreamCharSet() );
+/*N*/   rOut.WriteByteString( aSubTitle );
 /*N*/   rOut << bShowXAxisTitle;
-/*N*/   rOut.WriteUniOrByteString( aXAxisTitle, rOut.GetStreamCharSet() );
+/*N*/   rOut.WriteByteString( aXAxisTitle );
 /*N*/   rOut << bShowYAxisTitle;
-/*N*/   rOut.WriteUniOrByteString( aYAxisTitle, rOut.GetStreamCharSet() );
+/*N*/   rOut.WriteByteString( aYAxisTitle );
 /*N*/   rOut << bShowZAxisTitle;
-/*N*/   rOut.WriteUniOrByteString( aZAxisTitle, rOut.GetStreamCharSet() );
+/*N*/   rOut.WriteByteString( aZAxisTitle );
 /*N*/   rOut << bShowXAxis;
 /*N*/   rOut << bShowXGridMain;
 /*N*/   rOut << bShowXGridHelp;
@@ -936,19 +936,19 @@ enum ChartStyleV0
 /*N*/   {
 /*N*/       if (pChartData)
 /*N*/       {
-/*N*/           rOut.WriteUniOrByteString( pChartData->SomeData1(), rOut.GetStreamCharSet() );
-/*N*/           rOut.WriteUniOrByteString( pChartData->SomeData2(), rOut.GetStreamCharSet() );
-/*N*/           rOut.WriteUniOrByteString( pChartData->SomeData3(), rOut.GetStreamCharSet() );
-/*N*/           rOut.WriteUniOrByteString( pChartData->SomeData4(), rOut.GetStreamCharSet() );
+/*N*/           rOut.WriteByteString( pChartData->SomeData1() );
+/*N*/           rOut.WriteByteString( pChartData->SomeData2() );
+/*N*/           rOut.WriteByteString( pChartData->SomeData3() );
+/*N*/           rOut.WriteByteString( pChartData->SomeData4() );
 /*N*/       }
 /*N*/       else
 /*N*/       {
 /*?*/           String aEmpty;
 /*?*/
-/*?*/           rOut.WriteUniOrByteString( aEmpty, rOut.GetStreamCharSet() );
-/*?*/           rOut.WriteUniOrByteString( aEmpty, rOut.GetStreamCharSet() );
-/*?*/           rOut.WriteUniOrByteString( aEmpty, rOut.GetStreamCharSet() );
-/*?*/           rOut.WriteUniOrByteString( aEmpty, rOut.GetStreamCharSet() );
+/*?*/           rOut.WriteByteString( aEmpty );
+/*?*/           rOut.WriteByteString( aEmpty );
+/*?*/           rOut.WriteByteString( aEmpty );
+/*?*/           rOut.WriteByteString( aEmpty );
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -1370,15 +1370,15 @@ enum ChartStyleV0
 /*N*/   BOOL bShowZDescr;
 /*N*/
 /*N*/   rIn >> bShowMainTitle;
-/*N*/   rIn.ReadUniOrByteString( aMainTitle, rIn.GetStreamCharSet() );
+/*N*/   rIn.ReadByteString( aMainTitle );
 /*N*/   rIn >> bShowSubTitle;
-/*N*/   rIn.ReadUniOrByteString( aSubTitle, rIn.GetStreamCharSet() );
+/*N*/   rIn.ReadByteString( aSubTitle );
 /*N*/   rIn >> bShowXAxisTitle;
-/*N*/   rIn.ReadUniOrByteString( aXAxisTitle, rIn.GetStreamCharSet() );
+/*N*/   rIn.ReadByteString( aXAxisTitle );
 /*N*/   rIn >> bShowYAxisTitle;
-/*N*/   rIn.ReadUniOrByteString( aYAxisTitle, rIn.GetStreamCharSet() );
+/*N*/   rIn.ReadByteString( aYAxisTitle );
 /*N*/   rIn >> bShowZAxisTitle;
-/*N*/   rIn.ReadUniOrByteString( aZAxisTitle, rIn.GetStreamCharSet() );
+/*N*/   rIn.ReadByteString( aZAxisTitle );
 /*N*/   rIn >> bShowXAxis;
 /*N*/   rIn >> bShowXGridMain;
 /*N*/   rIn >> bShowXGridHelp;
@@ -1658,10 +1658,10 @@ enum ChartStyleV0
 /*N*/       {
 /*N*/           ByteString aReadString;
 /*N*/
-/*N*/           rIn.ReadUniOrByteString( pChartData->SomeData1(), rIn.GetStreamCharSet() );
-/*N*/           rIn.ReadUniOrByteString( pChartData->SomeData2(), rIn.GetStreamCharSet() );
-/*N*/           rIn.ReadUniOrByteString( pChartData->SomeData3(), rIn.GetStreamCharSet() );
-/*N*/           rIn.ReadUniOrByteString( pChartData->SomeData4(), rIn.GetStreamCharSet() );
+/*N*/           rIn.ReadByteString( pChartData->SomeData1() );
+/*N*/           rIn.ReadByteString( pChartData->SomeData2() );
+/*N*/           rIn.ReadByteString( pChartData->SomeData3() );
+/*N*/           rIn.ReadByteString( pChartData->SomeData4() );
 /*N*/
 /*N*/           if (nMoreData >= 3) rIn >> fSpotIntensity;
 /*N*/           if (nMoreData <= 8) fAmbientIntensity = fSpotIntensity;

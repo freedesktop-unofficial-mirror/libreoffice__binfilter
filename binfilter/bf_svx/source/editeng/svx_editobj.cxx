@@ -545,7 +545,7 @@ void BinTextObject::CreateData( SvStream& rIStream )
         pC->GetText() = String( aByteString, eSrcEncoding );
 
         // StyleName und Family...
-        rIStream.ReadUniOrByteString( pC->GetStyle(), eSrcEncoding );
+        rIStream.ReadByteString( pC->GetStyle(), eSrcEncoding );
         USHORT nStyleFamily;
         rIStream >> nStyleFamily;
         pC->GetFamily() = (SfxStyleFamily)nStyleFamily;
@@ -960,12 +960,10 @@ void BinTextObject::CreateData300( SvStream& rIStream )
         ContentInfo* pC = CreateAndInsertContent();
 
         // Der Text...
-        rIStream.ReadUniOrByteString( pC->GetText(),
-            rIStream.GetStreamCharSet() );
+        rIStream.ReadByteString( pC->GetText() );
 
         // StyleName und Family...
-        rIStream.ReadUniOrByteString( pC->GetStyle(),
-            rIStream.GetStreamCharSet() );
+        rIStream.ReadByteString( pC->GetStyle() );
         USHORT nStyleFamily;
         rIStream >> nStyleFamily;
         pC->GetFamily() = (SfxStyleFamily)nStyleFamily;

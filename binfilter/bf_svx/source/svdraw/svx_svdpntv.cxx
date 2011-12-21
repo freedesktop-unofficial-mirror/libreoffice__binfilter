@@ -523,8 +523,8 @@ IMPL_LINK_INLINE_START(SdrPaintView,ImpUserMarkerAnimatorHdl,AutoTimer*,EMPTYARG
 /*N*/   } {
 /*N*/       SdrNamedSubRecord aSubRecord(rOut,STREAM_WRITE,SdrInventor,SDRIORECNAME_VIEWAKTLAYER);
 /*N*/
-/*N*/       rOut.WriteUniOrByteString(aAktLayer, rOut.GetStreamCharSet());
-/*N*/       rOut.WriteUniOrByteString(aMeasureLayer, rOut.GetStreamCharSet());
+/*N*/       rOut.WriteByteString(aAktLayer);
+/*N*/       rOut.WriteByteString(aMeasureLayer);
 /*N*/   }
 /*N*/ }
 
@@ -578,11 +578,11 @@ IMPL_LINK_INLINE_START(SdrPaintView,ImpUserMarkerAnimatorHdl,AutoTimer*,EMPTYARG
 /*N*/           }
 /*N*/           case SDRIORECNAME_VIEWAKTLAYER:
 /*N*/           {
-/*N*/               rIn.ReadUniOrByteString(aAktLayer, rIn.GetStreamCharSet());
+/*N*/               rIn.ReadByteString(aAktLayer);
 /*N*/
 /*N*/               if(rSubHead.GetBytesLeft() > 0)
 /*N*/               {
-/*N*/                   rIn.ReadUniOrByteString(aMeasureLayer, rIn.GetStreamCharSet());
+/*N*/                   rIn.ReadByteString(aMeasureLayer);
 /*N*/               }
 /*N*/               break;
 /*N*/           }

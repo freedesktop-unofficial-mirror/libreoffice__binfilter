@@ -825,9 +825,9 @@ BOOL SfxStyleSheetBasePool::Load( SvStream& rStream )
             String aHelpFile;
             USHORT nFamily, nStyleMask,nCount;
             sal_uInt32 nHelpId;
-            rStream.ReadUniOrByteString(aName, eEnc );
-            rStream.ReadUniOrByteString(aParent, eEnc );
-            rStream.ReadUniOrByteString(aFollow, eEnc );
+            rStream.ReadByteString(aName, eEnc );
+            rStream.ReadByteString(aParent, eEnc );
+            rStream.ReadByteString(aFollow, eEnc );
             rStream >> nFamily >> nStyleMask;
             SfxPoolItem::readByteString(rStream, aHelpFile);
             rStream >> nHelpId;
@@ -919,9 +919,9 @@ BOOL SfxStyleSheetBasePool::Load1_Impl( SvStream& rStream )
         String aHelpFile;
         USHORT nFamily, nStyleMask,nCount;
         sal_uInt32 nHelpId;
-        rStream.ReadUniOrByteString(aName, eEnc );
-        rStream.ReadUniOrByteString(aParent, eEnc );
-        rStream.ReadUniOrByteString(aFollow, eEnc );
+        rStream.ReadByteString(aName, eEnc );
+        rStream.ReadByteString(aParent, eEnc );
+        rStream.ReadByteString(aFollow, eEnc );
         rStream >> nFamily >> nStyleMask;
         SfxPoolItem::readByteString(rStream, aHelpFile);
         if(nVersion!=STYLESTREAM_VERSION)

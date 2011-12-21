@@ -281,8 +281,7 @@ BOOL SbxStdCollection::LoadData( SvStream& rStrm, USHORT nVer )
     BOOL bRes = SbxCollection::LoadData( rStrm, nVer );
     if( bRes )
     {
-        aElemClass = read_lenPrefixed_uInt8s_ToOUString(rStrm,
-            RTL_TEXTENCODING_ASCII_US);
+        rStrm.ReadByteString( aElemClass, RTL_TEXTENCODING_ASCII_US );
         rStrm >> bAddRemoveOk;
     }
     return bRes;

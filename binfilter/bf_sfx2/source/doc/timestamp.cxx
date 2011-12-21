@@ -206,7 +206,7 @@ BOOL TimeStamp::Load ( SvStream& rStream )
     CharSet eConvertCharSet = rStream.GetStreamCharSet();
     DBG_ASSERT( !(eConvertCharSet == RTL_TEXTENCODING_DONTKNOW) , "TimeStamp::Load()\nCharSet of stream is unknown. Can't convert bytestring to UniCode!\n" );
     DBG_ASSERT( !(eConvertCharSet == ((rtl_TextEncoding)9))     , "TimeStamp::Load()\nCharSet SYSTEM is obsolete. Can't convert bytestring to UniCode!\n"   );
-    rStream.ReadUniOrByteString( m_sModifiedByName, eConvertCharSet );
+    rStream.ReadByteString( m_sModifiedByName, eConvertCharSet );
 
     // Skip name in stream.
 

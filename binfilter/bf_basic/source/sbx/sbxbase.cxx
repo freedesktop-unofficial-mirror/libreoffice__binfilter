@@ -340,18 +340,15 @@ BOOL SbxInfo::LoadData( SvStream& rStrm, USHORT nVer )
 {
     aParams.Remove( 0, aParams.Count() );
     UINT16 nParam;
-    aComment = read_lenPrefixed_uInt8s_ToOUString(rStrm,
-        RTL_TEXTENCODING_ASCII_US);
-    aHelpFile = read_lenPrefixed_uInt8s_ToOUString(rStrm,
-        RTL_TEXTENCODING_ASCII_US);
+    rStrm.ReadByteString( aComment, RTL_TEXTENCODING_ASCII_US );
+    rStrm.ReadByteString( aHelpFile, RTL_TEXTENCODING_ASCII_US );
     rStrm >> nHelpId >> nParam;
     while( nParam-- )
     {
         XubString aName;
         UINT16 nType, nFlags;
         UINT32 nUserData = 0;
-        aName = read_lenPrefixed_uInt8s_ToOUString(rStrm,
-            RTL_TEXTENCODING_ASCII_US);
+        rStrm.ReadByteString( aName, RTL_TEXTENCODING_ASCII_US );
         rStrm >> nType >> nFlags;
         if( nVer > 1 )
             rStrm >> nUserData;

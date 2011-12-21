@@ -300,7 +300,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
                     {
                         aWinStm->SetBufferSize(1024);
                         String aWinData;
-                        aWinStm->ReadUniOrByteString( aWinData, aWinStm->GetStreamCharSet() );
+                        aWinStm->ReadByteString( aWinData );
                         if ( aWinData.Len() )
                         {
                             char cToken =',';
@@ -308,7 +308,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
                             if ( aWinData.GetToken( 0, cToken ).EqualsAscii( "TASK" ) )
                             {
                                 bOldFormat = FALSE;
-                                aWinStm->ReadUniOrByteString( aWinData, aWinStm->GetStreamCharSet() );    // read next string
+                                aWinStm->ReadByteString( aWinData );    // read next string
                             }
                             USHORT nViewId = (USHORT) aWinData.GetToken( 0, cToken ).ToInt32();
 

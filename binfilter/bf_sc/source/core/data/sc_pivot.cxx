@@ -364,8 +364,8 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/
 /*N*/   if (rHdr.BytesLeft())               // ab 500a
 /*N*/   {
-/*N*/       rStream.ReadUniOrByteString( aName, rStream.GetStreamCharSet() );
-/*N*/       rStream.ReadUniOrByteString( aTag,  rStream.GetStreamCharSet() );
+/*N*/       rStream.ReadByteString( aName, rStream.GetStreamCharSet() );
+/*N*/       rStream.ReadByteString( aTag,  rStream.GetStreamCharSet() );
 /*N*/
 /*N*/       DBG_ASSERT(!pColNames, "Spaltennamen schon gesetzt?");
 /*N*/       rStream >> nColNameCount;
@@ -373,7 +373,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/       {
 /*N*/           pColNames = new String[nColNameCount];
 /*N*/           for (USHORT nCol=0; nCol<nColNameCount; nCol++)
-/*N*/               rStream.ReadUniOrByteString( pColNames[nCol], rStream.GetStreamCharSet() );
+/*N*/               rStream.ReadByteString( pColNames[nCol], rStream.GetStreamCharSet() );
 /*N*/       }
 /*N*/   }
 /*N*/   // sonst wird hinterher aus ScPivotCollection::Load ein Name vergeben

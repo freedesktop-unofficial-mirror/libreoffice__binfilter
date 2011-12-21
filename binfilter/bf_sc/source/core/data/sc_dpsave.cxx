@@ -110,7 +110,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/ ScDPSaveMember::ScDPSaveMember(SvStream& rStream)
 /*N*/ {
-/*N*/   rStream.ReadUniOrByteString( aName, rStream.GetStreamCharSet() );
+/*N*/   rStream.ReadByteString( aName, rStream.GetStreamCharSet() );
 /*N*/   rStream >> nVisibleMode;
 /*N*/   rStream >> nShowDetailsMode;
 /*N*/
@@ -215,7 +215,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   long i;
 /*N*/
-/*N*/   rStream.ReadUniOrByteString( aName, rStream.GetStreamCharSet() );
+/*N*/   rStream.ReadByteString( aName, rStream.GetStreamCharSet() );
 /*N*/   rStream >> bIsDataLayout;
 /*N*/
 /*N*/   rStream >> bDupFlag;

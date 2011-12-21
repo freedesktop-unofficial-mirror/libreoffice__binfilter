@@ -221,7 +221,7 @@ namespace binfilter {
 /*N*/   else
 /*N*/   {
 /*?*/       bIsStr1 = TRUE;
-/*?*/       rStream.ReadUniOrByteString( aStrVal1, rStream.GetStreamCharSet() );
+/*?*/       rStream.ReadByteString( aStrVal1, rStream.GetStreamCharSet() );
 /*N*/   }
 /*N*/
 /*N*/   if ( eOp == SC_COND_BETWEEN || eOp == SC_COND_NOTBETWEEN )
@@ -240,7 +240,7 @@ namespace binfilter {
 /*?*/       else
 /*?*/       {
 /*?*/           bIsStr2 = TRUE;
-/*?*/           rStream.ReadUniOrByteString( aStrVal2, rStream.GetStreamCharSet() );
+/*?*/           rStream.ReadByteString( aStrVal2, rStream.GetStreamCharSet() );
 /*?*/       }
 /*N*/   }
 /*N*/
@@ -873,7 +873,7 @@ namespace binfilter {
 /*N*/   //  im Datei-Header sind getrennte Eintraege fuer ScConditionEntry und ScCondFormatEntry
 /*N*/
 /*N*/   rHdr.StartEntry();
-/*N*/   rStream.ReadUniOrByteString( aStyleName, rStream.GetStreamCharSet() );
+/*N*/   rStream.ReadByteString( aStyleName, rStream.GetStreamCharSet() );
 /*N*/   rHdr.EndEntry();
 /*N*/ }
 

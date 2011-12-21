@@ -496,8 +496,8 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*N*/       case SC_DP_SOURCE_DATABASE:
 /*N*/           pImpDesc = new ScImportSourceDesc;
-/*N*/           rStream.ReadUniOrByteString( pImpDesc->aDBName, rStream.GetStreamCharSet() );
-/*N*/           rStream.ReadUniOrByteString( pImpDesc->aObject, rStream.GetStreamCharSet() );
+/*N*/           rStream.ReadByteString( pImpDesc->aDBName, rStream.GetStreamCharSet() );
+/*N*/           rStream.ReadByteString( pImpDesc->aObject, rStream.GetStreamCharSet() );
 /*N*/           rStream >> pImpDesc->nType;     // USHORT
 /*N*/           rStream >> pImpDesc->bNative;
 /*N*/           break;
@@ -511,11 +511,11 @@ using namespace ::com::sun::star;
 /*N*/       case SC_DP_SOURCE_SERVICE:
 /*N*/           {
 /*N*/               String aServiceName, aParSource, aParName, aParUser, aParPass;
-/*N*/               rStream.ReadUniOrByteString( aServiceName, rStream.GetStreamCharSet() );
-/*N*/               rStream.ReadUniOrByteString( aParSource,   rStream.GetStreamCharSet() );
-/*N*/               rStream.ReadUniOrByteString( aParName,     rStream.GetStreamCharSet() );
-/*N*/               rStream.ReadUniOrByteString( aParUser,     rStream.GetStreamCharSet() );
-/*N*/               rStream.ReadUniOrByteString( aParPass,     rStream.GetStreamCharSet() );
+/*N*/               rStream.ReadByteString( aServiceName, rStream.GetStreamCharSet() );
+/*N*/               rStream.ReadByteString( aParSource,   rStream.GetStreamCharSet() );
+/*N*/               rStream.ReadByteString( aParName,     rStream.GetStreamCharSet() );
+/*N*/               rStream.ReadByteString( aParUser,     rStream.GetStreamCharSet() );
+/*N*/               rStream.ReadByteString( aParPass,     rStream.GetStreamCharSet() );
 /*N*/               pServDesc = new ScDPServiceDesc( aServiceName,
 /*N*/                                       aParSource, aParName, aParUser, aParPass );
 /*N*/           }
@@ -532,8 +532,8 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   if (rHdr.BytesLeft())       //  additional data starting from 561b
 /*N*/   {
-/*N*/       rStream.ReadUniOrByteString( aTableName, rStream.GetStreamCharSet() );
-/*N*/       rStream.ReadUniOrByteString( aTableTag,  rStream.GetStreamCharSet() );
+/*N*/       rStream.ReadByteString( aTableName, rStream.GetStreamCharSet() );
+/*N*/       rStream.ReadByteString( aTableTag,  rStream.GetStreamCharSet() );
 /*N*/   }
 /*N*/
 /*N*/   rHdr.EndEntry();

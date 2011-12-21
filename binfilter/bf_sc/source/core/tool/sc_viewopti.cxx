@@ -269,7 +269,7 @@ using ::rtl::OUString;
 /*N*/       rStream >> n, rOpt.aModeArr[i] = (ScVObjMode)n;
 /*N*/
 /*N*/   rStream >> rOpt.aGridCol;
-/*N*/   rStream.ReadUniOrByteString( rOpt.aGridColName, rStream.GetStreamCharSet() );
+/*N*/   rStream.ReadByteString( rOpt.aGridColName, rStream.GetStreamCharSet() );
 /*N*/
 /*N*/   if( aHdr.BytesLeft() )
 /*N*/       rStream >> rOpt.aOptArr[VOPT_HELPLINES];

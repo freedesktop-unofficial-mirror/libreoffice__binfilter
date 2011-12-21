@@ -128,15 +128,15 @@ BOOL SbiImage::Load( SvStream& r, UINT32& nVersion )
           switch( nSign )
         {
             case B_NAME:
-                r.ReadUniOrByteString( aName, eCharSet );
+                r.ReadByteString( aName, eCharSet );
                 break;
             case B_COMMENT:
-                r.ReadUniOrByteString( aComment, eCharSet );
+                r.ReadByteString( aComment, eCharSet );
                 break;
             case B_SOURCE:
             {
                 String aTmp;
-                r.ReadUniOrByteString( aTmp, eCharSet );
+                r.ReadByteString( aTmp, eCharSet );
                 aOUSource = aTmp;
                 break;
             }
@@ -145,7 +145,7 @@ BOOL SbiImage::Load( SvStream& r, UINT32& nVersion )
                 for( UINT16 j = 0 ; j < nCount ; j++ )
                 {
                     String aTmp;
-                    r.ReadUniOrByteString( aTmp, eCharSet );
+                    r.ReadByteString( aTmp, eCharSet );
                     aOUSource += aTmp;
                 }
                 break;

@@ -924,13 +924,13 @@ namespace binfilter {
 /*N*/   if(rHead.GetVersion() >= 8)
 /*N*/   {
 /*N*/       // UNICODE: rIn>>aFileName;
-/*N*/       rIn.ReadUniOrByteString(aFileName, rIn.GetStreamCharSet());
+/*N*/       rIn.ReadByteString(aFileName);
 /*N*/   }
 /*N*/
 /*N*/   if(rHead.GetVersion() >= 9)
 /*N*/   {
 /*N*/       // UNICODE: rIn >> aFilterName;
-/*N*/       rIn.ReadUniOrByteString(aFilterName, rIn.GetStreamCharSet());
+/*N*/       rIn.ReadByteString(aFilterName);
 /*N*/   }
 /*N*/   else
 /*?*/       aFilterName = String( RTL_CONSTASCII_USTRINGPARAM( "BMP - MS Windows" ) );
@@ -1028,7 +1028,7 @@ namespace binfilter {
 /*N*/       rIn >> aCropRect;
 /*N*/       rIn >> bTmp; bMirrored = bTmp;
 /*N*/
-/*N*/       rIn.ReadUniOrByteString(aName, rIn.GetStreamCharSet());
+/*N*/       rIn.ReadByteString(aName);
 /*N*/       // #85414# since there seems to be some documents wich have an illegal
 /*N*/       // character inside the name of a graphic object we have to fix this
 /*N*/       // here on load time or it will crash our xml later.
@@ -1039,7 +1039,7 @@ namespace binfilter {
 /*?*/               aName.SetChar( nIndex, '?' );
 /*N*/       }
 /*N*/
-/*N*/       rIn.ReadUniOrByteString(aFileNameRel, rIn.GetStreamCharSet());
+/*N*/       rIn.ReadByteString(aFileNameRel);
 /*N*/
 /*N*/       if( aFileNameRel.Len() )
 /*N*/       {
@@ -1051,7 +1051,7 @@ namespace binfilter {
 /*N*/           aFileName.Erase();
 /*N*/
 /*N*/       // UNICODE: rIn >> aFilterName;
-/*N*/       rIn.ReadUniOrByteString(aFilterName, rIn.GetStreamCharSet());
+/*N*/       rIn.ReadByteString(aFilterName);
 /*N*/
 /*N*/       rIn >> bGraphicLink;                    // auch dieses Flag ist neu in V11
 /*N*/

@@ -118,11 +118,11 @@ namespace binfilter {
 /*N*/   rStream >> nDummy;
 /*N*/   eDataMode = (ScValidationMode) nDummy;
 /*N*/   rStream >> bShowInput;
-/*N*/   rStream.ReadUniOrByteString( aInputTitle, rStream.GetStreamCharSet() );
-/*N*/   rStream.ReadUniOrByteString( aInputMessage, rStream.GetStreamCharSet() );
+/*N*/   rStream.ReadByteString( aInputTitle, rStream.GetStreamCharSet() );
+/*N*/   rStream.ReadByteString( aInputMessage, rStream.GetStreamCharSet() );
 /*N*/   rStream >> bShowError;
-/*N*/   rStream.ReadUniOrByteString( aErrorTitle, rStream.GetStreamCharSet() );
-/*N*/   rStream.ReadUniOrByteString( aErrorMessage, rStream.GetStreamCharSet() );
+/*N*/   rStream.ReadByteString( aErrorTitle, rStream.GetStreamCharSet() );
+/*N*/   rStream.ReadByteString( aErrorMessage, rStream.GetStreamCharSet() );
 /*N*/   rStream >> nDummy;
 /*N*/   eErrorStyle = (ScValidErrorStyle) nDummy;
 /*N*/

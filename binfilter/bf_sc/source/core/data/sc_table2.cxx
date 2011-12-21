@@ -1509,14 +1509,14 @@ BOOL ScTable::IsSelectionEditable(
 /*N*/               {
 /*N*/                   ScReadHeader aFlagsHdr( rStream );
 /*N*/
-/*N*/                   rStream.ReadUniOrByteString( aName, rStream.GetStreamCharSet() );
+/*N*/                   rStream.ReadByteString( aName, rStream.GetStreamCharSet() );
 /*N*/
 /*N*/                   rStream >> bScenario;
-/*N*/                   rStream.ReadUniOrByteString( aComment, rStream.GetStreamCharSet() );
+/*N*/                   rStream.ReadByteString( aComment, rStream.GetStreamCharSet() );
 /*N*/
 /*N*/                   rStream >> bProtected;
 /*N*/                   String aPass;
-/*N*/                   rStream.ReadUniOrByteString( aPass, rStream.GetStreamCharSet() );
+/*N*/                   rStream.ReadByteString( aPass, rStream.GetStreamCharSet() );
 /*N*/                   if (aPass.Len())
 /*N*/                       SvPasswordHelper::GetHashPassword(aProtectPass, aPass);
 /*N*/
@@ -1533,7 +1533,7 @@ BOOL ScTable::IsSelectionEditable(
 /*N*/                       SfxStyleSheetBasePool* pStylePool =
 /*N*/                               pDocument->GetStyleSheetPool();
 /*N*/
-/*N*/                       rStream.ReadUniOrByteString( aPageStyle, rStream.GetStreamCharSet() );
+/*N*/                       rStream.ReadByteString( aPageStyle, rStream.GetStreamCharSet() );
 /*N*/
 /*N*/                       if ( !pStylePool->Find( aPageStyle, SFX_STYLE_FAMILY_PAGE ) )
 /*N*/                       {
@@ -1601,10 +1601,10 @@ BOOL ScTable::IsSelectionEditable(
 /*N*/                   ScReadHeader aLinkHdr( rStream );
 /*N*/
 /*N*/                   rStream >> nLinkMode;
-/*N*/                   rStream.ReadUniOrByteString( aLinkDoc, rStream.GetStreamCharSet() );
+/*N*/                   rStream.ReadByteString( aLinkDoc, rStream.GetStreamCharSet() );
 /*N*/                   aLinkDoc = ::binfilter::StaticBaseUrl::RelToAbs( aLinkDoc );
-/*N*/                   rStream.ReadUniOrByteString( aLinkFlt, rStream.GetStreamCharSet() );
-/*N*/                   rStream.ReadUniOrByteString( aLinkTab, rStream.GetStreamCharSet() );
+/*N*/                   rStream.ReadByteString( aLinkFlt, rStream.GetStreamCharSet() );
+/*N*/                   rStream.ReadByteString( aLinkTab, rStream.GetStreamCharSet() );
 /*N*/
 /*N*/                   BOOL bRelURL;
 /*N*/                   if ( aLinkHdr.BytesLeft() )
@@ -1616,7 +1616,7 @@ BOOL ScTable::IsSelectionEditable(
 /*N*/                       aName = ScGlobal::GetDocTabName( aLinkDoc, aLinkTab );
 /*N*/
 /*N*/                   if ( aLinkHdr.BytesLeft() )     // ab 336 auch Filter-Optionen
-/*N*/                       rStream.ReadUniOrByteString( aLinkOpt, rStream.GetStreamCharSet() );
+/*N*/                       rStream.ReadByteString( aLinkOpt, rStream.GetStreamCharSet() );
 /*N*/               }
 /*N*/               break;
 /*N*/           default:

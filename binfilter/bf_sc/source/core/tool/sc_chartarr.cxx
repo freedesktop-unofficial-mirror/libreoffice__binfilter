@@ -118,7 +118,7 @@ namespace binfilter {
 /*N*/   rStream >> nStartRow;
 /*N*/   rStream >> nCol2;
 /*N*/   rStream >> nRow2;
-/*N*/   rStream.ReadUniOrByteString( aName, rStream.GetStreamCharSet() );
+/*N*/   rStream.ReadByteString( aName, rStream.GetStreamCharSet() );
 /*N*/   rStream >> bColHeaders;
 /*N*/   rStream >> bRowHeaders;
 /*N*/

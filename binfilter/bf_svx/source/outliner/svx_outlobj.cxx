@@ -152,7 +152,7 @@ namespace binfilter {
 /*?*/                       rStream >> aColor;
 /*?*/                       rStream.SeekRel( 16 );
 /*?*/                       String aName;
-/*?*/                       rStream.ReadUniOrByteString(aName, rStream.GetStreamCharSet());
+/*?*/                       rStream.ReadByteString(aName);
 /*?*/                       rStream.SeekRel( 12 );
 /*?*/                   }
 /*?*/                   long nDummy;

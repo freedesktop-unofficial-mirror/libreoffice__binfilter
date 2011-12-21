@@ -1217,9 +1217,9 @@ inline SvStream& operator>>( SvStream& rStream, ScPostIt& rPostIt )
     //  ohne bShown !!!
 
     CharSet eSet = rStream.GetStreamCharSet();
-    rStream.ReadUniOrByteString( rPostIt.aStrText, eSet );
-    rStream.ReadUniOrByteString( rPostIt.aStrDate, eSet );
-    rStream.ReadUniOrByteString( rPostIt.aStrAuthor, eSet );
+    rStream.ReadByteString( rPostIt.aStrText, eSet );
+    rStream.ReadByteString( rPostIt.aStrDate, eSet );
+    rStream.ReadByteString( rPostIt.aStrAuthor, eSet );
 
     return rStream;
 }
@@ -1229,9 +1229,9 @@ inline SvStream& operator<<( SvStream& rStream, const ScPostIt& rPostIt )
     //  ohne bShown !!!
 
     CharSet eSet = rStream.GetStreamCharSet();
-    rStream.WriteUniOrByteString( rPostIt.aStrText, eSet );
-    rStream.WriteUniOrByteString( rPostIt.aStrDate, eSet );
-    rStream.WriteUniOrByteString( rPostIt.aStrAuthor, eSet );
+    rStream.WriteByteString( rPostIt.aStrText, eSet );
+    rStream.WriteByteString( rPostIt.aStrDate, eSet );
+    rStream.WriteByteString( rPostIt.aStrAuthor, eSet );
 
     return rStream;
 }

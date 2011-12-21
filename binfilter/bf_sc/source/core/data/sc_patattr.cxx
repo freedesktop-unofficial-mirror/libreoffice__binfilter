@@ -151,7 +151,7 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/   if ( bHasStyle )
 /*N*/   {
 /*N*/       pStr = new String;
-/*N*/       rStream.ReadUniOrByteString( *pStr, rStream.GetStreamCharSet() );
+/*N*/       rStream.ReadByteString( *pStr, rStream.GetStreamCharSet() );
 /*N*/       rStream >> eFamDummy; // wg. altem Dateiformat
 /*N*/   }
 /*N*/   else

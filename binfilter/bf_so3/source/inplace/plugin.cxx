@@ -719,8 +719,8 @@ BOOL SvPlugInObject::Load
             {
                 if( nVer == 1 )
                 {
-                    String aURL = read_lenPrefixed_uInt8s_ToOUString(*xStm,
-                        RTL_TEXTENCODING_ASCII_US);
+                    String aURL;
+                    xStm->ReadByteString( aURL, RTL_TEXTENCODING_ASCII_US );
                     pURL = new INetURLObject( aURL );
                     // Ignore, not necessary
                     BOOL bStrict;
@@ -728,15 +728,15 @@ BOOL SvPlugInObject::Load
                 }
                 else
                 {
-                    String aURL = read_lenPrefixed_uInt8s_ToOUString(*xStm,
-                        RTL_TEXTENCODING_ASCII_US);
+                    String aURL;
+                    xStm->ReadByteString( aURL, RTL_TEXTENCODING_ASCII_US );
                     pURL = new INetURLObject(
                         ::binfilter::StaticBaseUrl::RelToAbs( aURL ));
                 }
             }
 
-            String aMimeType = read_lenPrefixed_uInt8s_ToOUString(*xStm,
-                RTL_TEXTENCODING_ASCII_US);
+            String aMimeType;
+            xStm->ReadByteString( aMimeType, RTL_TEXTENCODING_ASCII_US );
         }
         else
             xStm->SetError( ERRCODE_IO_WRONGVERSION );

@@ -262,7 +262,7 @@ namespace binfilter {
 /*N*/
 /*N*/   rStm >> nFormat;
 /*N*/
-/*N*/   rStm.ReadUniOrByteString(aTmpURL, rStm.GetStreamCharSet());
+/*N*/   rStm.ReadByteString(aTmpURL);
 /*N*/
 /*N*/   // read to a temp string first, read text encoding and
 /*N*/   // convert later to stay compatible to fileformat
@@ -273,7 +273,7 @@ namespace binfilter {
 /*N*/   if ( nFrameMarker == FRAME_MARKER )
 /*N*/   {
 /*N*/       // UNICODE: rStm >> aTargetFrame;
-/*N*/       rStm.ReadUniOrByteString(aTargetFrame, rStm.GetStreamCharSet());
+/*N*/       rStm.ReadByteString(aTargetFrame);
 /*N*/
 /*N*/       rStm >> nCharSetMarker;
 /*N*/       if ( nCharSetMarker == CHARSET_MARKER )
@@ -515,7 +515,7 @@ namespace binfilter {
 /*N*/   USHORT nType, nFormat;
 /*N*/
 /*N*/   // UNICODE: rStm >> aFile;
-/*N*/   rStm.ReadUniOrByteString(aFile, rStm.GetStreamCharSet());
+/*N*/   rStm.ReadByteString(aFile);
 /*N*/
 /*N*/   rStm >> nType;
 /*N*/   rStm >> nFormat;
@@ -585,13 +585,13 @@ namespace binfilter {
 /*N*/   USHORT nType, nFormat;
 /*N*/
 /*N*/   // UNICODE: rStm >> aName;
-/*N*/   rStm.ReadUniOrByteString(aName, rStm.GetStreamCharSet());
+/*N*/   rStm.ReadByteString(aName);
 /*N*/
 /*N*/   // UNICODE: rStm >> aFirstName;
-/*N*/   rStm.ReadUniOrByteString(aFirstName, rStm.GetStreamCharSet());
+/*N*/   rStm.ReadByteString(aFirstName);
 /*N*/
 /*N*/   // UNICODE: rStm >> aShortName;
-/*N*/   rStm.ReadUniOrByteString(aShortName, rStm.GetStreamCharSet());
+/*N*/   rStm.ReadByteString(aShortName);
 /*N*/
 /*N*/   rStm >> nType;
 /*N*/   rStm >> nFormat;

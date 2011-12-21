@@ -107,7 +107,7 @@ namespace binfilter {
 /*N*/           // For unknown types read and forget string (upwards compatibility)
 /*N*/
 /*N*/           if ( nType != CELLTYPE_NONE )
-/*N*/               rStream.ReadUniOrByteString( aMatStr, eCharSet );
+/*N*/               rStream.ReadByteString( aMatStr, eCharSet );
 /*N*/
 /*N*/           if ( i < nCount )
 /*N*/           {

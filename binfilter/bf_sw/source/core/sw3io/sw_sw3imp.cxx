@@ -1403,7 +1403,7 @@ void Sw3StringPool::LoadOld( SvStream& r )
     }
     while( n-- )
     {
-        r.ReadUniOrByteString( s, eSrcEnc );
+        r.ReadByteString( s, eSrcEnc );
         Sw3String* p = new Sw3String( s, 0 );
         aPool.Insert( p, aPool.Count() );
     }

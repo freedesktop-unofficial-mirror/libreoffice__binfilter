@@ -314,7 +314,7 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/       for( long nIndex = 0; nIndex < nCount; nIndex++ )
 /*N*/       {
 /*N*/           // UNICODE:rIn >> aLclName;
-/*N*/           rIn.ReadUniOrByteString(aLclName, rIn.GetStreamCharSet());
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
 /*N*/           aLclName = ConvertName( aLclName );
 /*N*/           rIn >> nStyle;
@@ -342,7 +342,7 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/           XIOCompat aIOC( rIn, STREAM_READ );
 /*N*/
 /*N*/           // UNICODE: rIn >> aLclName;
-/*N*/           rIn.ReadUniOrByteString(aLclName, rIn.GetStreamCharSet());
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
 /*N*/           aLclName = ConvertName( aLclName );
 /*N*/           rIn >> nStyle;

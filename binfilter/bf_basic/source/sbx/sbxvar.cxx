@@ -325,16 +325,14 @@ BOOL SbxVariable::LoadData( SvStream& rStrm, USHORT nVer )
     {
         if( !SbxValue::LoadData( rStrm, nVer ) )
             return FALSE;
-        maName = read_lenPrefixed_uInt8s_ToOUString(rStrm,
-            RTL_TEXTENCODING_ASCII_US);
+        rStrm.ReadByteString( maName, RTL_TEXTENCODING_ASCII_US );
         rStrm >> nUserData;
     }
     else
     {
         rStrm.SeekRel( -1L );
         rStrm >> nType;
-        maName = read_lenPrefixed_uInt8s_ToOUString(rStrm,
-            RTL_TEXTENCODING_ASCII_US);
+        rStrm.ReadByteString( maName, RTL_TEXTENCODING_ASCII_US );
         rStrm >> nUserData;
         // Korrektur: Alte Methoden haben statt SbxNULL jetzt SbxEMPTY
         if( nType == SbxNULL && GetClass() == SbxCLASS_METHOD )
@@ -354,8 +352,7 @@ BOOL SbxVariable::LoadData( SvStream& rStrm, USHORT nVer )
             case SbxSINGLE:
             {
                 // Floats als ASCII
-                aVal = read_lenPrefixed_uInt8s_ToOUString(rStrm,
-                    RTL_TEXTENCODING_ASCII_US);
+                rStrm.ReadByteString( aVal, RTL_TEXTENCODING_ASCII_US );
                 double d;
                 SbxDataType t;
                 if( ImpScan( aVal, d, t, NULL ) != SbxERR_OK || t == SbxDOUBLE )
@@ -370,8 +367,7 @@ BOOL SbxVariable::LoadData( SvStream& rStrm, USHORT nVer )
             case SbxDOUBLE:
             {
                 // Floats als ASCII
-                aVal = read_lenPrefixed_uInt8s_ToOUString(rStrm,
-                    RTL_TEXTENCODING_ASCII_US);
+                rStrm.ReadByteString( aVal, RTL_TEXTENCODING_ASCII_US );
                 SbxDataType t;
                 if( ImpScan( aVal, aTmp.nDouble, t, NULL ) != SbxERR_OK )
                 {
@@ -381,8 +377,7 @@ BOOL SbxVariable::LoadData( SvStream& rStrm, USHORT nVer )
                 break;
             }
             case SbxSTRING:
-                aVal = read_lenPrefixed_uInt8s_ToOUString(rStrm,
-                    RTL_TEXTENCODING_ASCII_US);
+                rStrm.ReadByteString( aVal, RTL_TEXTENCODING_ASCII_US );
                 break;
             case SbxEMPTY:
             case SbxNULL:

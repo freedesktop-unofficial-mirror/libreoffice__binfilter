@@ -545,7 +545,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/           rIn >> nIndex;
 /*N*/
 /*N*/           // UNICODE: rIn >> aLclName;
-/*N*/           rIn.ReadUniOrByteString(aLclName, rIn.GetStreamCharSet());
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/           aLclName = ConvertName( aLclName );
 /*N*/
 /*N*/           rIn >> nRed;
@@ -570,7 +570,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/           rIn >> nIndex;
 /*N*/
 /*N*/           // UNICODE: rIn >> aLclName;
-/*N*/           rIn.ReadUniOrByteString(aLclName, rIn.GetStreamCharSet());
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/           aLclName = ConvertName( aLclName );
 /*N*/
 /*N*/           /*if( aIOC.GetVersion() >= 0 )*/
