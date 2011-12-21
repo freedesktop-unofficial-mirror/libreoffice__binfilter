@@ -77,7 +77,8 @@ CntWallpaperItem::CntWallpaperItem( USHORT which, SvStream& rStream, USHORT nVer
         readUnicodeString(rStream, _aURL, false);
 
         // "Read" SfxWallpaperItem's string member _aFilter.
-        read_lenPrefixed_uInt8s_ToOString(rStream); //dummy
+        ByteString aDummy;
+        rStream.ReadByteString(aDummy);
     }
 }
 

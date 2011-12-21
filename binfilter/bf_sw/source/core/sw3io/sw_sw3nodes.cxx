@@ -677,7 +677,8 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*?*/       pColl = pDoc->GetTxtCollFromPool( RES_POOLCOLL_STANDARD );
 /*N*/
 /*N*/   // Der Text des Nodes darf nicht einfach so konvertiert werden!
-/*N*/   rtl::OString aText8 = read_lenPrefixed_uInt8s_ToOString(*pStrm);
+/*N*/   ByteString aText8;
+/*N*/   pStrm->ReadByteString( aText8 );
 /*N*/   if( pCrypter )
         {
             rtl::OStringBuffer aBuffer(aText8);

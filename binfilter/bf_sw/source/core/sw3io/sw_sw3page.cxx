@@ -254,9 +254,10 @@ void Sw3IoImp::SetDBName()
             case SWG_DBNAME:
             {
                 String sDBName;
+                ByteString s8;
                 OpenRec( SWG_DBNAME );
 
-                rtl::OString s8 = read_lenPrefixed_uInt8s_ToOString(*pStrm);
+                pStrm->ReadByteString( s8 );
                 rtl_TextEncoding eEnc = GetSOLoadTextEncoding(
                                 (rtl_TextEncoding)cSet, pStrm->GetVersion() );
                 sDBName = ConvertStringNoDbDelim( s8, eEnc );

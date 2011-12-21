@@ -262,12 +262,15 @@ namespace binfilter {
 /*N*/
 /*N*/   rStm >> nFormat;
 /*N*/
+/*N*/   // UNICODE: rStm >> aTmpURL;
 /*N*/   rStm.ReadByteString(aTmpURL);
 /*N*/
+/*N*/   // UNICODE: rStm >> aRepresentation;
 /*N*/   // read to a temp string first, read text encoding and
 /*N*/   // convert later to stay compatible to fileformat
+/*N*/   ByteString aTempString;
 /*N*/   rtl_TextEncoding aTempEncoding = RTL_TEXTENCODING_MS_1252;  // #101493# Init for old documents
-/*N*/   rtl::OString aTempString = read_lenPrefixed_uInt8s_ToOString(rStm);
+/*N*/   rStm.ReadByteString(aTempString);
 /*N*/
 /*N*/   rStm >> nFrameMarker;
 /*N*/   if ( nFrameMarker == FRAME_MARKER )
@@ -291,7 +294,7 @@ namespace binfilter {
 /*?*/       rStm.SeekRel( -nUlongSize );
 /*N*/
 /*N*/   // now build representation string due to known encoding
-/*N*/   aRepresentation = rtl::OStringToOUString(aTempString, aTempEncoding);
+/*N*/   aRepresentation = String(aTempString, aTempEncoding);
 /*N*/
 /*N*/   eFormat= (SvxURLFormat)nFormat;
 /*N*/

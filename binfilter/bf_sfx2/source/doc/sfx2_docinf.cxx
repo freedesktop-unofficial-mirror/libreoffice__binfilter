@@ -187,7 +187,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/         {
 /*N*/             if ( nLen>1 )
 /*N*/             {
-/*N*/                 rtl::OString aTemp = read_uInt8s_ToOString(rStream, nLen-1);
+/*N*/                 rtl::OString aTemp = read_uInt8s_AsOString(rStream, nLen-1);
 /*N*/                 sal_uInt8 nTerminator = 0;
 /*N*/                 rStream >> nTerminator;
 /*N*/                 DBG_ASSERT( nTerminator == 0, "expected string to be NULL terminated" );

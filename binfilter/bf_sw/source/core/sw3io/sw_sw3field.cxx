@@ -460,8 +460,9 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   ByteString s8 = read_lenPrefixed_uInt8s_ToOString(*rIo.pStrm);
-/*N*/   sal_Char cSrch = rIo.nVersion < SWG_DDESEP ? ' ' : ::binfilter::cTokenSeperator;
+/*N*/   ByteString s8;
+/*N*/   rIo.pStrm->ReadByteString( s8 );
+/*N*/     sal_Char cSrch = rIo.nVersion < SWG_DDESEP ? ' ' : ::binfilter::cTokenSeperator;
 /*N*/
 /*N*/   {
 /*N*/       // die ersten beiden Blanks gegen den neuen Trenner austauschen

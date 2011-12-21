@@ -81,8 +81,9 @@ namespace binfilter {
 /*N*/       SdrPage::ReadData( rHead, rIn );
 /*N*/       {
 /*N*/           SdrDownCompat aVCCompat2( rIn, STREAM_READ );
-/*N*/           aPageName = read_lenPrefixed_uInt8s_ToOUString(rIn,
-/*N*/               osl_getThreadTextEncoding());
+/*N*/           ByteString aByteStringName;
+/*N*/           rIn.ReadByteString(aByteStringName);
+/*N*/           aPageName = String(aByteStringName, osl_getThreadTextEncoding());
 /*N*/       }
 /*N*/   }
 /*N*/
