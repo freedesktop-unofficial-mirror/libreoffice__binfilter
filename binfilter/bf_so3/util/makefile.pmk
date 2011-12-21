@@ -26,5 +26,5 @@
 #*************************************************************************
 
 # Reduction of exported symbols:
-CDEFS += -DSO3_DLLIMPLEMENTATION
+CDEFS += -DSO3_DLLIMPLEMENTATION -DNOMINMAX
 VISIBILITY_HIDDEN=TRUE
