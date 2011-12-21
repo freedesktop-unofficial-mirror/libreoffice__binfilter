@@ -538,7 +538,6 @@ BOOL SmDocShell::Load(SvStorage *pStor)
 /*N*/       long         lTime;
 /*N*/       sal_uInt32   lDate;
 /*N*/       String       aBuffer;
-/*N*/         ByteString   aByteStr;
 /*N*/
 /*N*/       *pSvStream >> lIdent >> lVersion;
 /*N*/
@@ -554,9 +553,11 @@ BOOL SmDocShell::Load(SvStorage *pStor)
 /*N*/               switch (cTag)
 /*N*/               {
 /*N*/                   case 'T':
-/*N*/                         pSvStream->ReadByteString( aByteStr );
-/*N*/                         aText = ImportString( aByteStr );
-/*N*/                       Parse();
+                            {
+                                rtl::OString aByteStr = read_lenPrefixed_uInt8s_ToOString(*pSvStream);
+/*N*/                           aText = ImportString( aByteStr );
+/*N*/                           Parse();
+                            }
 /*N*/                       break;
 /*N*/
 /*N*/                   case 'D':
@@ -637,7 +638,6 @@ BOOL SmDocShell::Try2x (SvStorage *pStor,
         sal_uInt32   lDate;
         UINT32       lDataSize;
         String       aBuffer;
-        ByteString   aByteStr;
 
         *pSvStream >> lDataSize >> lIdent >> lVersion;
 
@@ -652,9 +652,11 @@ BOOL SmDocShell::Try2x (SvStorage *pStor,
                 switch (cTag)
                 {
                     case 'T':
-                        pSvStream->ReadByteString( aByteStr );
-                        aText = ImportString( aByteStr );
-                        Parse();
+                        {
+                            rtl::OString aByteStr = read_lenPrefixed_uInt8s_ToOString(*pSvStream);
+                            aText = ImportString( aByteStr );
+                            Parse();
+                        }
                         break;
 
                     case 'D':
