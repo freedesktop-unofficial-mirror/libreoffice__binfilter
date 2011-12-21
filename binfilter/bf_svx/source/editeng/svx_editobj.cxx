@@ -541,7 +541,7 @@ void BinTextObject::CreateData( SvStream& rIStream )
         ContentInfo* pC = CreateAndInsertContent();
 
         // Der Text...
-        ByteString aByteString = read_lenPrefixed_uInt8s_ToOString(rIStream);
+        ByteString aByteString = read_lenPrefixed_uInt8s_ToOString<sal_uInt16>(rIStream);
         pC->GetText() = String( aByteString, eSrcEncoding );
 
         // StyleName und Family...

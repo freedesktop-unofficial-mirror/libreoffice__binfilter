@@ -719,7 +719,7 @@ BOOL SvPlugInObject::Load
             {
                 if( nVer == 1 )
                 {
-                    String aURL = read_lenPrefixed_uInt8s_ToOUString(*xStm,
+                    String aURL = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(*xStm,
                         RTL_TEXTENCODING_ASCII_US);
                     pURL = new INetURLObject( aURL );
                     // Ignore, not necessary
@@ -728,14 +728,14 @@ BOOL SvPlugInObject::Load
                 }
                 else
                 {
-                    String aURL = read_lenPrefixed_uInt8s_ToOUString(*xStm,
+                    String aURL = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(*xStm,
                         RTL_TEXTENCODING_ASCII_US);
                     pURL = new INetURLObject(
                         ::binfilter::StaticBaseUrl::RelToAbs( aURL ));
                 }
             }
 
-            String aMimeType = read_lenPrefixed_uInt8s_ToOUString(*xStm,
+            String aMimeType = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(*xStm,
                 RTL_TEXTENCODING_ASCII_US);
         }
         else

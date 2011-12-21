@@ -625,11 +625,11 @@ BOOL SvAppletObject::Load
         if( nVer == APPLET_VERS )
         {
             *xStm >> pImpl->aCmdList;
-            pImpl->aClass = read_lenPrefixed_uInt8s_ToOUString(*xStm,
+            pImpl->aClass = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(*xStm,
                 RTL_TEXTENCODING_ASCII_US );
-            pImpl->aName = read_lenPrefixed_uInt8s_ToOUString(*xStm,
+            pImpl->aName = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(*xStm,
                 RTL_TEXTENCODING_ASCII_US);
-            pImpl->aCodeBase = read_lenPrefixed_uInt8s_ToOUString(*xStm,
+            pImpl->aCodeBase = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(*xStm,
                 RTL_TEXTENCODING_ASCII_US);
             *xStm >> pImpl->bMayScript;
         }

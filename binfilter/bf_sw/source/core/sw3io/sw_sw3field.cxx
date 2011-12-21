@@ -460,7 +460,7 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   ByteString s8 = read_lenPrefixed_uInt8s_ToOString(*rIo.pStrm);
+/*N*/   ByteString s8 = read_lenPrefixed_uInt8s_ToOString<sal_uInt16>(*rIo.pStrm);
 /*N*/   sal_Char cSrch = rIo.nVersion < SWG_DDESEP ? ' ' : ::binfilter::cTokenSeperator;
 /*N*/
 /*N*/   {

@@ -710,7 +710,7 @@ SfxPoolItem* SwGammaGrf::Create(SvStream & rStrm, USHORT ) const
 /*N*/   if( 0 == nIVer )
 /*N*/   {
 /*N*/       sal_Char* dummy;
-/*N*/       rtl::OString sValue = read_lenPrefixed_uInt8s_ToOString(rStrm);
+/*N*/       rtl::OString sValue = read_lenPrefixed_uInt8s_ToOString<sal_uInt16>(rStrm);
 /*N*/       dVal = strtod( sValue.getStr(), &dummy );
 /*N*/   }
 /*N*/   else

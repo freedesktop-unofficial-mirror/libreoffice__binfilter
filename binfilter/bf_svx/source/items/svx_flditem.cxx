@@ -267,7 +267,7 @@ namespace binfilter {
 /*N*/   // read to a temp string first, read text encoding and
 /*N*/   // convert later to stay compatible to fileformat
 /*N*/   rtl_TextEncoding aTempEncoding = RTL_TEXTENCODING_MS_1252;  // #101493# Init for old documents
-/*N*/   rtl::OString aTempString = read_lenPrefixed_uInt8s_ToOString(rStm);
+/*N*/   rtl::OString aTempString = read_lenPrefixed_uInt8s_ToOString<sal_uInt16>(rStm);
 /*N*/
 /*N*/   rStm >> nFrameMarker;
 /*N*/   if ( nFrameMarker == FRAME_MARKER )

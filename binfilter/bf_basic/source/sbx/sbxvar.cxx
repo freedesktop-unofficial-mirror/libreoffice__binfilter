@@ -325,7 +325,7 @@ BOOL SbxVariable::LoadData( SvStream& rStrm, USHORT nVer )
     {
         if( !SbxValue::LoadData( rStrm, nVer ) )
             return FALSE;
-        maName = read_lenPrefixed_uInt8s_ToOUString(rStrm,
+        maName = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(rStrm,
             RTL_TEXTENCODING_ASCII_US);
         rStrm >> nUserData;
     }
@@ -333,7 +333,7 @@ BOOL SbxVariable::LoadData( SvStream& rStrm, USHORT nVer )
     {
         rStrm.SeekRel( -1L );
         rStrm >> nType;
-        maName = read_lenPrefixed_uInt8s_ToOUString(rStrm,
+        maName = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(rStrm,
             RTL_TEXTENCODING_ASCII_US);
         rStrm >> nUserData;
         // Korrektur: Alte Methoden haben statt SbxNULL jetzt SbxEMPTY
@@ -354,7 +354,7 @@ BOOL SbxVariable::LoadData( SvStream& rStrm, USHORT nVer )
             case SbxSINGLE:
             {
                 // Floats als ASCII
-                aVal = read_lenPrefixed_uInt8s_ToOUString(rStrm,
+                aVal = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(rStrm,
                     RTL_TEXTENCODING_ASCII_US);
                 double d;
                 SbxDataType t;
@@ -370,7 +370,7 @@ BOOL SbxVariable::LoadData( SvStream& rStrm, USHORT nVer )
             case SbxDOUBLE:
             {
                 // Floats als ASCII
-                aVal = read_lenPrefixed_uInt8s_ToOUString(rStrm,
+                aVal = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(rStrm,
                     RTL_TEXTENCODING_ASCII_US);
                 SbxDataType t;
                 if( ImpScan( aVal, aTmp.nDouble, t, NULL ) != SbxERR_OK )
@@ -381,7 +381,7 @@ BOOL SbxVariable::LoadData( SvStream& rStrm, USHORT nVer )
                 break;
             }
             case SbxSTRING:
-                aVal = read_lenPrefixed_uInt8s_ToOUString(rStrm,
+                aVal = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(rStrm,
                     RTL_TEXTENCODING_ASCII_US);
                 break;
             case SbxEMPTY:

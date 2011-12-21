@@ -414,7 +414,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       String aLinkFileName;
 /*N*/
-/*N*/       rtl::OString s8 = read_lenPrefixed_uInt8s_ToOString(*pStrm);
+/*N*/       rtl::OString s8 = read_lenPrefixed_uInt8s_ToOString<sal_uInt16>(*pStrm);
 /*N*/       aLinkFileName = ConvertStringNoDelim( s8, '\xff', ::binfilter::cTokenSeperator,
 /*N*/                                             eSrcSet );
 /*N*/

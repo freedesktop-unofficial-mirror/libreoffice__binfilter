@@ -42,7 +42,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   sal_uInt32 nData;
 /*N*/
-/*N*/   rtl::OString aByteStr = read_lenPrefixed_uInt8s_ToOString(rStream);
+/*N*/   rtl::OString aByteStr = read_lenPrefixed_uInt8s_ToOString<sal_uInt16>(rStream);
 /*N*/   rFont.SetName( ImportString( aByteStr ) );
 /*N*/   rStream >> nData;
 /*N*/   rFont.SetFamily((FontFamily)nData);
@@ -61,7 +61,7 @@ namespace binfilter {
 /*?*/   BOOL    bData;
 /*?*/   sal_uInt32 nData;
 /*?*/
-/*?*/   rtl::OString aByteStr = read_lenPrefixed_uInt8s_ToOString(rStream);
+/*?*/   rtl::OString aByteStr = read_lenPrefixed_uInt8s_ToOString<sal_uInt16>(rStream);
 /*?*/   rFont.SetName( ImportString( aByteStr ) );
 /*?*/   rStream >> nData;
 /*?*/   rFont.SetFamily((FontFamily)nData);

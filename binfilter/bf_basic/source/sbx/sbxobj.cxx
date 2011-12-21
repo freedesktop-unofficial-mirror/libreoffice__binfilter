@@ -584,9 +584,9 @@ BOOL SbxObject::LoadData( SvStream& rStrm, USHORT nVer )
         aData.pObj = this;
     sal_uInt32 nSize;
     XubString aDfltProp;
-    aClassName = read_lenPrefixed_uInt8s_ToOUString(rStrm,
+    aClassName = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(rStrm,
         RTL_TEXTENCODING_ASCII_US);
-    aDfltProp = read_lenPrefixed_uInt8s_ToOUString(rStrm,
+    aDfltProp = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(rStrm,
         RTL_TEXTENCODING_ASCII_US);
     ULONG nPos = rStrm.Tell();
     rStrm >> nSize;
@@ -765,7 +765,7 @@ void SbxObject::Dump( SvStream& rStrm, BOOL bFill )
                 aLine += aAttrs2;
             if( !pVar->IsA( TYPE(SbxMethod) ) )
                 aLine.AppendAscii( "  !! Not a Method !!" );
-            write_lenPrefixed_uInt8s_FromOUString(rStrm, aLine,
+            write_lenPrefixed_uInt8s_FromOUString<sal_uInt16>(rStrm, aLine,
                 RTL_TEXTENCODING_ASCII_US);
 
             // bei Object-Methods auch das Object ausgeben
@@ -799,7 +799,7 @@ void SbxObject::Dump( SvStream& rStrm, BOOL bFill )
                     aLine += aAttrs3;
                 if( !pVar->IsA( TYPE(SbxProperty) ) )
                     aLine.AppendAscii( "  !! Not a Property !!" );
-                write_lenPrefixed_uInt8s_FromOUString(rStrm, aLine,
+                write_lenPrefixed_uInt8s_FromOUString<sal_uInt16>(rStrm, aLine,
                     RTL_TEXTENCODING_ASCII_US);
 
                 // bei Object-Properties auch das Object ausgeben

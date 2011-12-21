@@ -554,7 +554,7 @@ BOOL SmDocShell::Load(SvStorage *pStor)
 /*N*/               {
 /*N*/                   case 'T':
                             {
-                                rtl::OString aByteStr = read_lenPrefixed_uInt8s_ToOString(*pSvStream);
+                                rtl::OString aByteStr = read_lenPrefixed_uInt8s_ToOString<sal_uInt16>(*pSvStream);
 /*N*/                           aText = ImportString( aByteStr );
 /*N*/                           Parse();
                             }
@@ -653,7 +653,7 @@ BOOL SmDocShell::Try2x (SvStorage *pStor,
                 {
                     case 'T':
                         {
-                            rtl::OString aByteStr = read_lenPrefixed_uInt8s_ToOString(*pSvStream);
+                            rtl::OString aByteStr = read_lenPrefixed_uInt8s_ToOString<sal_uInt16>(*pSvStream);
                             aText = ImportString( aByteStr );
                             Parse();
                         }

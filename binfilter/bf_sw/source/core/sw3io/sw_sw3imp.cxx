@@ -1427,7 +1427,7 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*N*/   {
 /*N*/       sal_uInt16 nId;
 /*N*/       r >> nId;
-/*N*/       rtl::OString s8 = read_lenPrefixed_uInt8s_ToOString(r);
+/*N*/       rtl::OString s8 = read_lenPrefixed_uInt8s_ToOString<sal_uInt16>(r);
 /*N*/       if( nId == IDX_NOCONV_FF )
 /*N*/           s = Sw3IoImp::ConvertStringNoDbDelim( s8, eSrcEnc );
 /*N*/       else

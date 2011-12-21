@@ -92,19 +92,19 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/       // In der 1.Version ohne Versionskennung
 /*?*/       nAppBasic = nVersion;
 /*?*/       nFileVersion = 1;
-/*?*/       aDocName = read_lenPrefixed_uInt8s_ToOUString(rStream, RTL_TEXTENCODING_UTF8);
-/*?*/       rInfo.aLibName = read_lenPrefixed_uInt8s_ToOUString(rStream, RTL_TEXTENCODING_UTF8);
-/*?*/       rInfo.aModuleName = read_lenPrefixed_uInt8s_ToOUString(rStream, RTL_TEXTENCODING_UTF8);
-/*?*/       rInfo.aMethodName = read_lenPrefixed_uInt8s_ToOUString(rStream, RTL_TEXTENCODING_UTF8);
+/*?*/       aDocName = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(rStream, RTL_TEXTENCODING_UTF8);
+/*?*/       rInfo.aLibName = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(rStream, RTL_TEXTENCODING_UTF8);
+/*?*/       rInfo.aModuleName = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(rStream, RTL_TEXTENCODING_UTF8);
+/*?*/       rInfo.aMethodName = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(rStream, RTL_TEXTENCODING_UTF8);
 /*?*/   }
 /*?*/   else
 /*?*/   {
 /*?*/       String aInput;
 /*?*/       rStream >> nAppBasic;
-/*?*/       aDocName = read_lenPrefixed_uInt8s_ToOUString(rStream, RTL_TEXTENCODING_UTF8);                 // Vorsicht: kann bei AppName Unsinn sein!
-/*?*/       rInfo.aLibName = read_lenPrefixed_uInt8s_ToOUString(rStream, RTL_TEXTENCODING_UTF8);
-/*?*/       rInfo.aModuleName = read_lenPrefixed_uInt8s_ToOUString(rStream, RTL_TEXTENCODING_UTF8);
-/*?*/       aInput = read_lenPrefixed_uInt8s_ToOUString(rStream, RTL_TEXTENCODING_UTF8);
+/*?*/       aDocName = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(rStream, RTL_TEXTENCODING_UTF8);                 // Vorsicht: kann bei AppName Unsinn sein!
+/*?*/       rInfo.aLibName = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(rStream, RTL_TEXTENCODING_UTF8);
+/*?*/       rInfo.aModuleName = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(rStream, RTL_TEXTENCODING_UTF8);
+/*?*/       aInput = read_lenPrefixed_uInt8s_ToOUString<sal_uInt16>(rStream, RTL_TEXTENCODING_UTF8);
 /*?*/
 /*?*/       if ( nFileVersion == nCompatVersion )
 /*?*/           rInfo.aMethodName = aInput;
@@ -131,18 +131,18 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/   {
 /*?*/       rStream << nVersion
 /*?*/               << (sal_uInt16) rInfo.bAppBasic;
-/*?*/       write_lenPrefixed_uInt8s_FromOUString(rStream, rInfo.aLibName, RTL_TEXTENCODING_UTF8);
-/*?*/       write_lenPrefixed_uInt8s_FromOUString(rStream, rInfo.aModuleName, RTL_TEXTENCODING_UTF8);
-/*?*/       write_lenPrefixed_uInt8s_FromOUString(rStream, rInfo.aMethodName, RTL_TEXTENCODING_UTF8);
+/*?*/       write_lenPrefixed_uInt8s_FromOUString<sal_uInt16>(rStream, rInfo.aLibName, RTL_TEXTENCODING_UTF8);
+/*?*/       write_lenPrefixed_uInt8s_FromOUString<sal_uInt16>(rStream, rInfo.aModuleName, RTL_TEXTENCODING_UTF8);
+/*?*/       write_lenPrefixed_uInt8s_FromOUString<sal_uInt16>(rStream, rInfo.aMethodName, RTL_TEXTENCODING_UTF8);
 /*?*/   }
 /*?*/   else
 /*?*/   {
 /*?*/       rStream << nVersion
 /*?*/               << (sal_uInt16) rInfo.bAppBasic;
-/*?*/       write_lenPrefixed_uInt8s_FromOUString(rStream, SFX_APP()->GetName(), RTL_TEXTENCODING_UTF8);
-/*?*/       write_lenPrefixed_uInt8s_FromOUString(rStream, rInfo.aLibName, RTL_TEXTENCODING_UTF8);
-/*?*/       write_lenPrefixed_uInt8s_FromOUString(rStream, rInfo.aModuleName, RTL_TEXTENCODING_UTF8);
-/*?*/       write_lenPrefixed_uInt8s_FromOUString(rStream, rInfo.aMethodName, RTL_TEXTENCODING_UTF8);
+/*?*/       write_lenPrefixed_uInt8s_FromOUString<sal_uInt16>(rStream, SFX_APP()->GetName(), RTL_TEXTENCODING_UTF8);
+/*?*/       write_lenPrefixed_uInt8s_FromOUString<sal_uInt16>(rStream, rInfo.aLibName, RTL_TEXTENCODING_UTF8);
+/*?*/       write_lenPrefixed_uInt8s_FromOUString<sal_uInt16>(rStream, rInfo.aModuleName, RTL_TEXTENCODING_UTF8);
+/*?*/       write_lenPrefixed_uInt8s_FromOUString<sal_uInt16>(rStream, rInfo.aMethodName, RTL_TEXTENCODING_UTF8);
 /*?*/   }
 /*?*/
 /*?*/   return rStream;
