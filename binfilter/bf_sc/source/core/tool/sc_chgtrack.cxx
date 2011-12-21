@@ -149,7 +149,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/   rStrm >> n32; nAction = n32;
 /*N*/   rStrm >> n32; nRejectAction = n32;
 /*N*/   rStrm >> n16; eState = (ScChangeActionState) n16;
-/*N*/   rStrm.ReadByteString( aComment, rStrm.GetStreamCharSet() );
+/*N*/   rStrm.ReadUniOrByteString( aComment, rStrm.GetStreamCharSet() );
 /*N*/   // LinkEntries in zweiter Runde
 /*N*/  }
 
@@ -1353,8 +1353,8 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 /*N*/       ppPrevInSlot( NULL )
 /*N*/ {
 /*N*/ UINT32 n32; // Changetracking.sdc
-/*N*/   rStrm.ReadByteString( aOldValue, rStrm.GetStreamCharSet() );
-/*N*/   rStrm.ReadByteString( aNewValue, rStrm.GetStreamCharSet() );
+/*N*/   rStrm.ReadUniOrByteString( aOldValue, rStrm.GetStreamCharSet() );
+/*N*/   rStrm.ReadUniOrByteString( aNewValue, rStrm.GetStreamCharSet() );
 /*N*/   rStrm >> n32; pNextContent = (ScChangeActionContent*)(ULONG) n32;
 /*N*/   rStrm >> n32; pPrevContent = (ScChangeActionContent*)(ULONG) n32;
 /*N*/

@@ -717,12 +717,12 @@ inline BOOL Sw3IoImp::IsSw31Or40Export() const
 
 inline SvStream& Sw3IoImp::InString( SvStream& rStrm, String& rStr )
 {
-    return rStrm.ReadByteString( rStr, eSrcSet );
+    return rStrm.ReadUniOrByteString( rStr, eSrcSet );
 }
 
 inline SvStream& Sw3IoImp::OutString( SvStream& rStrm, const String& rStr )
 {
-    return rStrm.WriteByteString( rStr, eSrcSet );
+    return rStrm.WriteUniOrByteString( rStr, eSrcSet );
 }
 
 void lcl_sw3io__ConvertNumLRSpace( SwTxtNode& rTxtNd, const SwNumRule& rNumRule,

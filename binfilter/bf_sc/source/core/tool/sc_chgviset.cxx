@@ -99,7 +99,7 @@ ScChangeViewSettings& ScChangeViewSettings::operator=( const ScChangeViewSetting
 /*N*/   rStream >> nDT; aLastDateTime.SetTime( nDT );
 /*N*/   rStream >> bIsAuthor;
 /*N*/   rStream >> bEveryoneButMe;
-/*N*/   rStream.ReadByteString( aAuthorToShow, rStream.GetStreamCharSet() );
+/*N*/   rStream.ReadUniOrByteString( aAuthorToShow, rStream.GetStreamCharSet() );
 /*N*/   rStream >> bIsRange;
 /*N*/   aRangeList.Load( rStream, nVer );
 /*N*/   if ( aHdr.BytesLeft() )
@@ -117,7 +117,7 @@ ScChangeViewSettings& ScChangeViewSettings::operator=( const ScChangeViewSetting
 /*N*/   if ( aHdr.BytesLeft() )  //#59103#
 /*N*/   {
 /*N*/       rStream >> bIsComment;
-/*N*/       rStream.ReadByteString( aComment, rStream.GetStreamCharSet() );
+/*N*/       rStream.ReadUniOrByteString( aComment, rStream.GetStreamCharSet() );
 /*N*/   }
 /*N*/   else
 /*N*/   {

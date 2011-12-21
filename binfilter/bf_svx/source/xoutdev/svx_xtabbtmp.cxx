@@ -257,7 +257,7 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /*N*/           XOBitmap    aXOBitmap;
 /*N*/
 /*N*/           // UNICODE: rIn >> aLclName;
-/*N*/           rIn.ReadByteString(aLclName);
+/*N*/           rIn.ReadUniOrByteString(aLclName, rIn.GetStreamCharSet());
 /*N*/
 /*N*/           aLclName = ConvertName( aLclName );
 /*N*/           rIn >> aBmp;
@@ -284,7 +284,7 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /*N*/       for( long nIndex = 0; nIndex < nCount; nIndex++ )
 /*N*/       {
 /*N*/           // UNICODE: rIn >> aLclName;
-/*N*/           rIn.ReadByteString(aLclName);
+/*N*/           rIn.ReadUniOrByteString(aLclName, rIn.GetStreamCharSet());
 /*N*/
 /*N*/           aLclName = ConvertName( aLclName );
 /*N*/
@@ -332,7 +332,7 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /*N*/           XIOCompat aIOC( rIn, STREAM_READ );
 /*N*/
 /*N*/           // UNICODE: rIn >> aLclName;
-/*N*/           rIn.ReadByteString(aLclName);
+/*N*/           rIn.ReadUniOrByteString(aLclName, rIn.GetStreamCharSet());
 /*N*/
 /*N*/           aLclName = ConvertName( aLclName );
 /*N*/

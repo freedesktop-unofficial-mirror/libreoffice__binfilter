@@ -128,7 +128,7 @@ namespace binfilter
 
         void operator() ( const String& _rString ) const
         {
-            m_rStorage.WriteByteString( _rString );
+            m_rStorage.WriteUniOrByteString( _rString, m_rStorage.GetStreamCharSet() );
         }
     };
 //.........................................................................

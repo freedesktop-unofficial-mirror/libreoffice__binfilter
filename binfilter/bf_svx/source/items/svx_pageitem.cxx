@@ -206,7 +206,7 @@ using namespace ::com::sun::star;
 /*N*/   USHORT nUse;
 /*N*/
 /*N*/   // UNICODE: rStream >> sStr;
-/*N*/   rStream.ReadByteString( sStr );
+/*N*/   rStream.ReadUniOrByteString( sStr, rStream.GetStreamCharSet() );
 /*N*/
 /*N*/   rStream >> eType;
 /*N*/   rStream >> bLand;

@@ -214,7 +214,7 @@ USHORT SfxPoolItem::GetVersion( USHORT ) const
 // static
 bool SfxPoolItem::readByteString(SvStream & rStream, UniString & rString)
 {
-    rStream.ReadByteString(rString);
+    rStream.ReadUniOrByteString(rString, rStream.GetStreamCharSet());
     return rStream.GetError() == ERRCODE_NONE;
 }
 
@@ -223,7 +223,7 @@ bool SfxPoolItem::readByteString(SvStream & rStream, UniString & rString)
 bool SfxPoolItem::readUnicodeString(SvStream & rStream, UniString & rString,
                                     bool bUnicode)
 {
-    rStream.ReadByteString(rString,
+    rStream.ReadUniOrByteString(rString,
                            bUnicode ? RTL_TEXTENCODING_UCS2 :
                                       rStream.GetStreamCharSet());
     return rStream.GetError() == ERRCODE_NONE;

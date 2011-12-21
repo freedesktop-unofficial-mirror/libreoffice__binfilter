@@ -193,7 +193,7 @@ using namespace ::com::sun::star;
 /*N*/       eTextEnc = (rtl_TextEncoding)GetSOLoadTextEncoding((rtl_TextEncoding)nCharSet, (sal_uInt16)rIn.GetVersion());
 /*N*/
 /*N*/       String aSoundFileRel;
-/*N*/       rIn.ReadByteString( aSoundFileRel, eTextEnc );
+/*N*/       rIn.ReadUniOrByteString( aSoundFileRel, eTextEnc );
 /*N*/       if( aSoundFileRel.Len() )
 /*N*/       {
 /*N*/           INetURLObject aURLObj(SmartRel2Abs( INetURLObject(::binfilter::StaticBaseUrl::GetBaseURL()), aSoundFileRel, ::binfilter::GetMaybeFileHdl(), false, false, INetURLObject::WAS_ENCODED, INetURLObject::DECODE_UNAMBIGUOUS, RTL_TEXTENCODING_UTF8, false, INetURLObject::FSYS_DETECT ));
@@ -234,17 +234,17 @@ using namespace ::com::sun::star;
 /*N*/           eClickAction == presentation::ClickAction_SOUND)
 /*N*/       {
 /*N*/           String aBookmarkRel;
-/*N*/           rIn.ReadByteString( aBookmarkRel, eTextEnc );
+/*N*/           rIn.ReadUniOrByteString( aBookmarkRel, eTextEnc );
 /*N*/           INetURLObject aURLObj(::binfilter::StaticBaseUrl::SmartRelToAbs(aBookmarkRel, FALSE,
 /*N*/                                                            INetURLObject::WAS_ENCODED,
 /*N*/                                                            INetURLObject::DECODE_UNAMBIGUOUS));
 /*N*/           aBookmark = aURLObj.GetMainURL( INetURLObject::NO_DECODE );
 /*N*/       }
 /*N*/       else
-/*N*/           rIn.ReadByteString( aBookmark, eTextEnc );
+/*N*/           rIn.ReadUniOrByteString( aBookmark, eTextEnc );
 /*N*/
 /*N*/       String aSecondSoundFileRel;
-/*N*/       rIn.ReadByteString( aSecondSoundFileRel, eTextEnc );
+/*N*/       rIn.ReadUniOrByteString( aSecondSoundFileRel, eTextEnc );
 /*N*/       if( aSecondSoundFileRel.Len() )
 /*N*/       {
 /*N*/           INetURLObject aURLObj(SmartRel2Abs( INetURLObject(::binfilter::StaticBaseUrl::GetBaseURL()), aSecondSoundFileRel, ::binfilter::GetMaybeFileHdl(), false, false, INetURLObject::WAS_ENCODED, INetURLObject::DECODE_UNAMBIGUOUS, RTL_TEXTENCODING_UTF8, false, INetURLObject::FSYS_DETECT ));

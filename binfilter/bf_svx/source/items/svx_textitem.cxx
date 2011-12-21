@@ -327,10 +327,10 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/   rStrm >> eFontTextEncoding;
 /*N*/
 /*N*/   // UNICODE: rStrm >> aName;
-/*N*/   rStrm.ReadByteString(aName);
+/*N*/   rStrm.ReadUniOrByteString(aName, rStrm.GetStreamCharSet());
 /*N*/
 /*N*/   // UNICODE: rStrm >> aStyle;
-/*N*/   rStrm.ReadByteString(aStyle);
+/*N*/   rStrm.ReadUniOrByteString(aStyle, rStrm.GetStreamCharSet());
 /*N*/
 /*N*/   // Task 91008/90471: set the "correct" textencoding
 /*N*/   eFontTextEncoding = (BYTE)GetSOLoadTextEncoding( eFontTextEncoding, (USHORT)rStrm.GetVersion() );
@@ -345,8 +345,8 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/     rStrm >> nMagic;
 /*N*/     if ( nMagic == STORE_UNICODE_MAGIC_MARKER )
 /*N*/     {
-/*N*/         rStrm.ReadByteString( aName, RTL_TEXTENCODING_UNICODE );
-/*N*/       rStrm.ReadByteString( aStyle, RTL_TEXTENCODING_UNICODE );
+/*N*/         rStrm.ReadUniOrByteString( aName, RTL_TEXTENCODING_UNICODE );
+/*N*/       rStrm.ReadUniOrByteString( aStyle, RTL_TEXTENCODING_UNICODE );
 /*N*/     }
 /*N*/     else
 /*N*/     {

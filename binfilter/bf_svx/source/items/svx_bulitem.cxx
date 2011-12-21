@@ -69,7 +69,7 @@ namespace binfilter {
 /*N*/
 /*N*/   // UNICODE: rStream >> aName; aFont.SetName( aName );
 /*N*/   String aName;
-/*N*/   rStream.ReadByteString(aName);
+/*N*/   rStream.ReadUniOrByteString(aName, rStream.GetStreamCharSet());
 /*N*/   aFont.SetName( aName );
 /*N*/
 /*N*/   if( nVer == 1 )
@@ -154,10 +154,10 @@ namespace binfilter {
 /*N*/   rStrm >> nScale;
 /*N*/
 /*N*/   // UNICODE: rStrm >> aPrevText;
-/*N*/   rStrm.ReadByteString(aPrevText);
+/*N*/   rStrm.ReadUniOrByteString(aPrevText, rStrm.GetStreamCharSet());
 /*N*/
 /*N*/   // UNICODE: rStrm >> aFollowText;
-/*N*/   rStrm.ReadByteString(aFollowText);
+/*N*/   rStrm.ReadUniOrByteString(aFollowText, rStrm.GetStreamCharSet());
 /*N*/
 /*N*/   nValidMask = 0xFFFF;
 /*N*/ }
