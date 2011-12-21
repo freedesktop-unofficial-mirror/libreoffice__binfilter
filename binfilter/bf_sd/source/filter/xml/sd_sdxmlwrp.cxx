@@ -136,6 +136,10 @@ SdXMLFilter::SdXMLFilter( SfxMedium& rMedium, SdDrawDocShell& rDocShell, sal_Boo
 {
 }
 
+SdXMLFilter::~SdXMLFilter()
+{
+}
+
 // -----------------------------------------------------------------------------
 
 sal_Bool SdXMLFilter::Import()
