@@ -661,9 +661,8 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
                             else
                             {
 #if OSL_DEBUG_LEVEL > 1
-                                String aTmpString( aPropertyName );
-                                ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                                OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                                rtl::OString aProp(rtl::OUStringToOString(aPropertyName, RTL_TEXTENCODING_ASCII_US));
+                                OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.getStr(), nWID );
 #endif
                             }
                         }
@@ -840,9 +839,8 @@ uno::Any SAL_CALL ChXChartDocument::getPropertyValue( const ::rtl::OUString& aPr
                             else
                             {
 #if OSL_DEBUG_LEVEL > 1
-                                String aTmpString( aPropertyName );
-                                ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                                OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                                rtl::OString aProp(rtl::OUStringToOString(aPropertyName, RTL_TEXTENCODING_ASCII_US));
+                                OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.getStr(), nWID );
 #endif
                             }
                         }

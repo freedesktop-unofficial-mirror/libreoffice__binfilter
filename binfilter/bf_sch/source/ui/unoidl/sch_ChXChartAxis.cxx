@@ -368,9 +368,8 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                 else if( nWID != SID_ATTR_NUMBERFORMAT_SOURCE )
                 {
 #if OSL_DEBUG_LEVEL > 1
-                    String aTmpString( aPropertyName );
-                    ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                    OSL_TRACE( "ChartAxis: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                    rtl::OString aProp(rtl::OUStringToOString(aPropertyName, RTL_TEXTENCODING_ASCII_US));
+                    OSL_TRACE( "ChartAxis: Property %s has an invalid ID (%d)", aProp.getStr(), nWID );
 #endif
                 }
             }
@@ -606,9 +605,8 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
 #if OSL_DEBUG_LEVEL > 1
             else if (nWID != SID_ATTR_NUMBERFORMAT_SOURCE)
             {
-                String aTmpString (*pPropertyName);
-                ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                OSL_TRACE( "ChartAxis: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                rtl::OString aProp(rtl::OUStringToOString(*pPropertyName, RTL_TEXTENCODING_ASCII_US));
+                OSL_TRACE( "ChartAxis: Property %s has an invalid ID (%d)", aProp.getStr(), nWID );
             }
 #endif
         }

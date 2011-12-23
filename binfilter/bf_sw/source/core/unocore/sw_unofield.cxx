@@ -2540,9 +2540,6 @@ uno::Any SwXFieldEnumeration::nextElement(void)
     if (!(nNextIndex < aItems.getLength()))
         throw NoSuchElementException();
 
-#if OSL_DEBUG_LEVEL > 1
-    uno::Reference< XTextField > *pItems = aItems.getArray();
-#endif
     uno::Reference< XTextField >  &rxFld = aItems.getArray()[ nNextIndex++ ];
     uno::Any aRet(&rxFld, ::getCppuType((const uno::Reference<XTextField>*)0));
     rxFld = 0;  // free memory for item that is not longer used

@@ -338,10 +338,8 @@ using namespace ::com::sun::star;
 /*N*/   catch( uno::Exception aEx )
 /*N*/   {
 /*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/         // convert ::rtl::OUString => tools String => ByteString
-/*N*/         String aStr( aEx.Message );
-/*N*/         ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-/*N*/         OSL_TRACE( "LinguProperties threw exception: %s", aBStr.GetBuffer());
+/*N*/         rtl::OString aBStr(rtl::OUStringToOString(aEx.Message, RTL_TEXTENCODING_ASCII_US));
+/*N*/         OSL_TRACE( "LinguProperties threw exception: %s", aBStr.getStr());
 /*N*/ #endif
 /*N*/   }
 /*N*/

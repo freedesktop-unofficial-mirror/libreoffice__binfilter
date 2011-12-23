@@ -2135,10 +2135,6 @@ uno::Reference< XTextCursor >  SwXTextFrame::createTextCursorByRange(const uno::
     if(pFmt && SwXTextRange::XTextRangeToSwPaM(aPam, aTextPosition))
     {
         SwNode& rNode = pFmt->GetCntnt().GetCntntIdx()->GetNode();
-#if OSL_DEBUG_LEVEL > 1
-        const SwStartNode* p1 = aPam.GetNode()->FindFlyStartNode();
-        const SwStartNode* p2 = rNode.FindFlyStartNode();
-#endif
         if(aPam.GetNode()->FindFlyStartNode() == rNode.FindFlyStartNode())
             aRef =  (XWordCursor*)new SwXTextCursor(this ,
                 *aPam.GetPoint(), CURSOR_FRAME, pFmt->GetDoc(), aPam.GetMark());

@@ -219,9 +219,8 @@ void SAL_CALL ChXDataPoint::setPropertyValue( const ::rtl::OUString& aPropertyNa
                 else
                 {
 #if OSL_DEBUG_LEVEL > 1
-                    String aTmpString( aPropertyName );
-                    ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                    OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                    rtl::OString aProp(rtl::OUStringToOString(aPropertyName, RTL_TEXTENCODING_ASCII_US));
+                    OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.getStr(), nWID );
 #endif
                 }
             }
@@ -414,9 +413,8 @@ uno::Any SAL_CALL ChXDataPoint::getPropertyValue( const ::rtl::OUString& Propert
                 else
                 {
 #if OSL_DEBUG_LEVEL > 1
-                    String aTmpString( PropertyName );
-                    ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                    OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                    rtl::OString aProp(rtl::OUStringToOString(PropertyName, RTL_TEXTENCODING_ASCII_US));
+                    OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.getStr(), nWID );
 #endif
                 }
             }

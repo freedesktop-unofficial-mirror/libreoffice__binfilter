@@ -528,9 +528,8 @@ uno::Any SAL_CALL ChXChartObject::getPropertyValue( const ::rtl::OUString& Prope
                 else
                 {
 #if OSL_DEBUG_LEVEL > 1
-                    String aTmpString( PropertyName );
-                    ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                    OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                    rtl::OString aProp(rtl::OUStringToOString(PropertyName, RTL_TEXTENCODING_ASCII_US));
+                    OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.getStr(), nWID );
 #endif
                 }
             }

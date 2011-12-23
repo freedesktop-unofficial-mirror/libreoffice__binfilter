@@ -1058,10 +1058,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/     SwFrmSwapper aSwapper( this, sal_False );
 /*N*/
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/   const SwTwips nDbgY = Frm().Top();
-/*N*/ #endif
-/*N*/
 /*N*/   if ( IsEmpty() )
 /*N*/   {
 /*N*/       switch ( ePrep )

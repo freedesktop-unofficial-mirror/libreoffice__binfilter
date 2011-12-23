@@ -926,9 +926,8 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
                 else
                 {
 #if OSL_DEBUG_LEVEL > 1
-                    String aTmpString( aPropertyName );
-                    ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                    OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                    rtl::OString aProp(rtl::OUStringToOString(aPropertyName, RTL_TEXTENCODING_ASCII_US));
+                    OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.getStr(), nWID );
 #endif
                 }
             }
@@ -1224,9 +1223,8 @@ uno::Any SAL_CALL ChXDiagram::getPropertyValue( const ::rtl::OUString& PropertyN
                 else
                 {
 #if OSL_DEBUG_LEVEL > 1
-                    String aTmpString( PropertyName );
-                    ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                    OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                    rtl::OString aProp(rtl::OUStringToOString(PropertyName, RTL_TEXTENCODING_ASCII_US));
+                    OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.getStr(), nWID );
 #endif
                 }
             }
@@ -1459,9 +1457,9 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
                         RTL_CONSTASCII_USTRINGPARAM (" is not known in :ChXDiagram::getPropertyValues"));
                 }
 #if OSL_DEBUG_LEVEL > 1
-                ByteString sName = ByteString(String(*pPropertyName), RTL_TEXTENCODING_ASCII_US);
+                rtl::OString sName = rtl::OUStringToOString(*pPropertyName, RTL_TEXTENCODING_ASCII_US);
                 OSL_TRACE("Diagram: Property %s has an invalid ID (%d)",
-                    sName.GetBuffer(), nWID);
+                    sName.getStr(), nWID);
 #endif
             }
         }

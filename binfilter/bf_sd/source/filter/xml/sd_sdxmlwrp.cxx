@@ -27,6 +27,7 @@
  ************************************************************************/
 
 #include <rtl/logfile.hxx>
+#include <rtl/strbuf.hxx>
 
 #include <com/sun/star/xml/sax/SAXParseException.hdl>
 #include <bf_sfx2/docfile.hxx>
@@ -369,12 +370,14 @@ sal_Bool SdXMLFilter::Export()
             }
         }
     }
-    catch(uno::Exception e)
+    catch (const uno::Exception &e)
     {
 #if OSL_DEBUG_LEVEL > 1
-        ByteString aError( "uno Exception caught while exporting:\n" );
-        aError += ByteString( String( e.Message), RTL_TEXTENCODING_ASCII_US );
-        OSL_FAIL( aError.GetBuffer() );
+        rtl::OStringBuffer aError( "uno Exception caught while exporting:\n" );
+        aError.append(rtl::OUStringToOString(e.Message, RTL_TEXTENCODING_ASCII_US));
+        OSL_FAIL(aError.getStr());
+#else
+        (void)e;
 #endif
         bDocRet = sal_False;
     }

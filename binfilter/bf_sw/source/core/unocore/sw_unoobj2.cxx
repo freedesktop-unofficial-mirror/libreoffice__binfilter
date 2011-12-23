@@ -292,10 +292,6 @@ uno::Sequence< beans::PropertyValue > SwXTextCursor::createSortDescriptor(sal_Bo
     if (nLen > 0)
         aCollAlg = aSeq.getConstArray()[0];
 
-#if OSL_DEBUG_LEVEL > 1
-    const OUString *pTxt = aSeq.getConstArray();
-#endif
-
     pFields[0].Field = 1;
     pFields[0].IsAscending = sal_True;
     pFields[0].IsCaseSensitive = sal_False;
@@ -1508,10 +1504,6 @@ uno::Reference< XTextRange >  SwXTextRange::CreateTextRangeFromPosition(SwDoc* p
                 const SwTxtFtn* pTxtFtn = pDoc->GetFtnIdxs()[ n ];
                 const SwFmtFtn& rFtn = pTxtFtn->GetFtn();
                 pTxtFtn = rFtn.GetTxtFtn();
-#if OSL_DEBUG_LEVEL > 1
-                const SwStartNode* pTmpSttNode = pTxtFtn->GetStartNode()->GetNode().
-                                FindSttNodeByType(SwFootnoteStartNode);
-#endif
 
                 if(pSttNode == pTxtFtn->GetStartNode()->GetNode().
                                     FindSttNodeByType(SwFootnoteStartNode))

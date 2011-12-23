@@ -342,14 +342,6 @@ namespace binfilter {
 /*?*/       ReleaseRef();
 /*N*/   }
 /*N*/
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/   {
-/*N*/       String sGrfNm;
-/*N*/       GetLinkManager()->GetDisplayNames( this, 0, &sGrfNm, 0, 0 );
-/*N*/       int x = 0;
-/*N*/   }
-/*N*/ #endif
-/*N*/
 /*N*/   if( GetObj() )
 /*N*/   {
 /*N*/       String aMimeType( SotExchange::GetFormatMimeType( GetContentType() ));

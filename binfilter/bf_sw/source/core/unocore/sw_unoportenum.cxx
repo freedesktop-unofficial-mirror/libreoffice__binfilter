@@ -692,13 +692,7 @@ void SwXTextPortionEnumeration::CreatePortions()
         SwDoc* pDoc = pUnoCrsr->GetDoc();
         lcl_FillRedlineArray(*pDoc, *pUnoCrsr, aRedArr);
         lcl_FillBookmarkArray(*pDoc, *pUnoCrsr, aBkmArr );
-#if OSL_DEBUG_LEVEL > 1
-        for(long i_debug = 0; i_debug <aBkmArr.Count(); i_debug++)
-        {
-            SwXBookmarkPortion_ImplPtr pPtr = aBkmArr.GetObject(i_debug);
-        }
 
-#endif
         while(!bAtEnd)
         {
             if(pUnoCrsr->HasMark())
