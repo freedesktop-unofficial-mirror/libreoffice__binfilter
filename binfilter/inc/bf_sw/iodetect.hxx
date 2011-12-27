@@ -156,19 +156,6 @@ struct W1_FIB
     USHORT fFlagsGet()  { return SVBT16ToShort(fFlags); }
     BOOL fComplexGet() { return ((fFlagsGet() >> 2) & 1); }
 };
-#if OSL_DEBUG_LEVEL > 1
-#define WW2B || ((W1_FIB*)pHeader)->wIdentGet() == 0xA5DB &&  \
-                ((W1_FIB*)pHeader)->nFibGet() == 0x2D
-#else
-#define WW2B
-#endif
-
-#if OSL_DEBUG_LEVEL > 1
-#define WW3B || ((W1_FIB*)pHeader)->wIdentGet() == 0xA5DC &&  \
-                ((W1_FIB*)pHeader)->nFibGet() == 0x65
-#else
-#define WW3B
-#endif
 
 #define IO_DETECT_IMPL2 \
 const sal_Char* SwIoDetect::IsReader(const sal_Char* pHeader, ULONG nInLen )\
@@ -204,8 +191,8 @@ const sal_Char* SwIoDetect::IsReader(const sal_Char* pHeader, ULONG nInLen )\
     else if( sWW1 == pName )                                                \
     {                                                                       \
         bRet = (( ((W1_FIB*)pHeader)->wIdentGet() == 0xA59C                 \
-                 && ((W1_FIB*)pHeader)->nFibGet() == 0x21                    \
-                 WW2B ) && ((W1_FIB*)pHeader)->fComplexGet() == 0);          \
+                 && ((W1_FIB*)pHeader)->nFibGet() == 0x21)                  \
+                 && ((W1_FIB*)pHeader)->fComplexGet() == 0);          \
     }                                                                       \
     else if( sSwDos == pName )                                              \
     {                                                                       \
