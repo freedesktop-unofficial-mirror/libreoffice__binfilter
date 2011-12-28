@@ -497,10 +497,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/
 /*N*/   SwFtnBossFrm *pBoss = pCntnt->FindFtnBossFrm( !bEnd );
 /*N*/
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/   SwTwips nRstHeight = GetRstHeight();
-/*N*/ #endif
-/*N*/
 /*N*/   pSect = pBoss->FindSctFrm();
 /*N*/   sal_Bool bDocEnd = bEnd ? !( pSect && pSect->IsEndnAtEnd() ) :
 /*N*/                  ( !( pSect && pSect->IsFtnAtEnd() ) &&
@@ -605,15 +601,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/       ValidateFrm();
 /*N*/   }
 /*N*/
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/   // pFtnFrm kann sich durch Calc veraendert haben ...
-/*N*/   SwFtnFrm *pFtnFrm = pBoss->FindFtn( this, pFtn );
-/*N*/   if( pFtnFrm && pBoss != pFtnFrm->FindFtnBossFrm( !bEnd ) )
-/*N*/   {
-/*N*/       int bla = 5;
-/*N*/   }
-/*N*/   nRstHeight = GetRstHeight();
-/*N*/ #endif
 /*N*/   bInFtnConnect = sal_False;
 /*N*/   return;
 /*N*/ }

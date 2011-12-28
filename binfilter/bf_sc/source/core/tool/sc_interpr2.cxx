@@ -1865,22 +1865,6 @@ void ScInterpreter::ScBase()
 // so ist es etwas besser
                     double fInt = ::rtl::math::approxFloor( fVal / fBase );
                     double fMult = fInt * fBase;
-#if OSL_DEBUG_LEVEL > 1
-                    // #53943# =BASIS(1e308;36) => GPF mit
-                    // nDig = (size_t) ::rtl::math::approxFloor( fVal - fMult );
-                    // trotz vorheriger Pruefung ob fVal >= fMult
-                    double fDebug1 = fVal - fMult;
-                    // fVal    := 7,5975311883090e+290
-                    // fMult   := 7,5975311883090e+290
-                    // fDebug1 := 1,3848924157003e+275  <- RoundOff-Error
-                    // fVal != fMult, aber: ::rtl::math::approxEqual( fVal, fMult ) == TRUE
-                    double fDebug2 = ::rtl::math::approxSub( fVal, fMult );
-                    // und ::rtl::math::approxSub( fVal, fMult ) == 0
-                    double fDebug3 = ( fInt ? fVal / fInt : 0.0 );
-                    // Nach dem strange fDebug1 und fVal < fMult  ist eigentlich
-                    // fDebug2 == fBase, trotzdem wird das mit einem Vergleich
-                    // nicht erkannt, dann schlaegt bDirt zu und alles wird wieder gut..
-#endif
                     size_t nDig;
                     if ( fVal < fMult )
                     {   // da ist was gekippt

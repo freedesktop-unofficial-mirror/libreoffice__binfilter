@@ -549,10 +549,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   // Der Ofst hat sich verschoben.
 /*N*/   if( GetFollow() )
 /*N*/   {
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/       static sal_Bool bTest = sal_False;
-/*N*/       if( !bTest || ( nMode & 1 ) )
-/*N*/ #endif
 /*N*/       if ( nMode )
 /*N*/           GetFollow()->ManipOfst( 0 );
 /*N*/
@@ -1561,25 +1557,6 @@ MSHORT FormatLevel::nLevel = 0;
 
 /*M*/ void SwTxtFrm::Format( const SwBorderAttrs * )
 /*M*/ {
-///*M*/     DBG_LOOP;
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*M*/   const XubString aXXX = GetTxtNode()->GetTxt();
-/*M*/   const SwTwips nDbgY = Frm().Top();
-/*M*/   const SwPageFrm *pDbgPage = FindPageFrm();
-/*M*/   const MSHORT nDbgPageNr = pDbgPage->GetPhyPageNum();
-/*M*/   // Um zu gucken, ob es einen Ftn-Bereich gibt.
-/*M*/   const SwFrm *pDbgFtnCont = (const SwFrm*)(FindPageFrm()->FindFtnCont());
-/*M*/
-/*M*/ #ifdef DBG_UTIL
-/*M*/   // nStopAt laesst sich vom CV bearbeiten.
-/*M*/   static MSHORT nStopAt = 0;
-/*M*/   if( nStopAt == GetFrmId() )
-/*M*/   {
-/*M*/       int i = GetFrmId();
-/*M*/   }
-/*M*/ #endif
-/*M*/ #endif
-/*M*/
 /*M*/   MSHORT nRepeat = 0;
 /*M*/
 /*M*/     SWRECTFN( this )
@@ -1632,15 +1609,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*M*/
 /*M*/           // Waehrend wir formatieren, wollen wir nicht gestoert werden.
 /*M*/           SwTxtFrmLocker aLock(this);
-/*M*/
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*M*/   //MA 25. Jan. 94 Das Flag stimmt sehr haufig beim Eintritt nicht. Das muss
-/*M*/   //             bei naechster Gelegenheit geprueft und gefixt werden.
-/*M*/           const sal_Bool bOldFtnFlag = HasFtn();
-/*M*/           CalcFtnFlag();
-/*M*/           if ( bOldFtnFlag != HasFtn() )
-/*M*/               {int bla = 5;}
-/*M*/ #endif
 /*M*/
 /*M*/           // 8708: Vorsicht, das Format() kann auch durch GetFormatted()
 /*M*/           // angestossen werden.
@@ -1741,32 +1709,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   if ( pPara )
 /*N*/           pPara->SetPrepMustFit( sal_False );
 /*N*/
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*M*/   // Hier ein Instrumentarium, um ungewoehnlichen Master/Follow-Kombinationen,
-/*M*/   // insbesondere bei Fussnoten, auf die Schliche zu kommen
-/*M*/   if( IsFollow() || GetFollow() )
-/*M*/   {
-/*M*/       SwTxtFrm *pTmpFrm = IsFollow() ? FindMaster() : this;
-/*M*/       const SwPageFrm *pTmpPage = pTmpFrm->FindPageFrm();
-/*M*/       MSHORT nPgNr = pTmpPage->GetPhyPageNum();
-/*M*/       MSHORT nLast;
-/*M*/       MSHORT nDummy = 0; // nur zum Breakpoint setzen
-/*M*/       while( pTmpFrm->GetFollow() )
-/*M*/       {
-/*M*/           pTmpFrm = pTmpFrm->GetFollow();
-/*M*/           nLast = nPgNr;
-/*M*/           pTmpPage = pTmpFrm->FindPageFrm();
-/*M*/           nPgNr = pTmpPage->GetPhyPageNum();
-/*M*/           if( nLast > nPgNr )
-/*M*/               ++nDummy; // schon fast eine Assertion wert
-/*M*/           else if( nLast == nPgNr )
-/*M*/               ++nDummy; // bei Spalten voellig normal, aber sonst!?
-/*M*/           else if( nLast < nPgNr - 1 )
-/*M*/               ++nDummy; // kann schon mal temporaer vorkommen
-/*M*/       }
-/*M*/   }
-/*M*/ #endif
-/*N*/
 /*N*/     CalcBaseOfstForFly();
 /*M*/ }
 
@@ -1780,20 +1722,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/ {
 /*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),
 /*N*/             "SwTxtFrm::FormatQuick with swapped frame" );
-/*N*/
-///*N*/     DBG_LOOP;
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/   const XubString aXXX = GetTxtNode()->GetTxt();
-/*N*/   const SwTwips nDbgY = Frm().Top();
-/*N*/ #ifdef DBG_UTIL
-/*N*/   // nStopAt laesst sich vom CV bearbeiten.
-/*N*/   static MSHORT nStopAt = 0;
-/*N*/   if( nStopAt == GetFrmId() )
-/*N*/   {
-/*?*/       int i = GetFrmId();
-/*N*/   }
-/*N*/ #endif
-/*N*/ #endif
 /*N*/
 /*N*/   if( IsEmpty() && FormatEmpty() )
 /*N*/       return sal_True;
@@ -1837,10 +1765,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   const SwTwips nOldHeight = aTopLeft.Y() + Prt().Height();
 /*N*/   if( nNewHeight != nOldHeight && !IsUndersized() )
 /*N*/   {
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*?*/ //    Achtung: Durch FormatLevel==12 kann diese Situation auftreten, don't panic!
-/*?*/ //        OSL_ENSURE( nNewHeight == nOldHeight, "!FormatQuick: rosebud" );
-/*?*/ #endif
 /*?*/       xub_StrLen nStrt = GetOfst();
 /*?*/       _InvalidateRange( SwCharRange( nStrt, nEnd - nStrt) );
 /*?*/       return sal_False;

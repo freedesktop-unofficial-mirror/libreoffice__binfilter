@@ -925,12 +925,13 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
                         rShapeExport->export3DSceneAttributes( xPropSet );
                 }
             }
-            catch( uno::Exception aEx )
+            catch (const uno::Exception &rEx)
             {
 #if OSL_DEBUG_LEVEL > 1
-        String aStr( aEx.Message );
-        ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-        OSL_TRACE( "chart:exportPlotAreaException caught: %s", aBStr.GetBuffer());
+                rtl::OString aBStr(rtl::OUStringToOString(rEx.Message, RTL_TEXTENCODING_ASCII_US));
+                OSL_TRACE( "chart:exportPlotAreaException caught: %s", aBStr.getStr());
+#else
+                (void)rEx;
 #endif
             }
         }

@@ -365,9 +365,9 @@ void SchXMLPlotAreaContext::EndElement()
                 xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "NumberOfLines" )),
                                          uno::makeAny( mnNumOfLines ));
             }
-            catch (const uno::Exception & aEx)
+            catch (const uno::Exception &rEx)
             {
-                rtl::OString aBStr(rtl::OUStringToOString(aEx.Message, RTL_TEXTENCODING_ASCII_US));
+                rtl::OString aBStr(rtl::OUStringToOString(rEx.Message, RTL_TEXTENCODING_ASCII_US));
                 OSL_TRACE( "Exception caught for property NumberOfLines: %s", aBStr.getStr());
             }
         }
@@ -381,9 +381,9 @@ void SchXMLPlotAreaContext::EndElement()
                 xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Volume" )),
                                          uno::makeAny( mbStockHasVolume ));
             }
-            catch (const uno::Exception & aEx)
+            catch (const uno::Exception &rEx)
             {
-                rtl::OString aBStr(rtl::OUStringToOString(aEx.Message, RTL_TEXTENCODING_ASCII_US));
+                rtl::OString aBStr(rtl::OUStringToOString(rEx.Message, RTL_TEXTENCODING_ASCII_US));
                 OSL_TRACE( "Exception caught for property NumberOfLines: %s", aBStr.getStr());
             }
         }
@@ -473,12 +473,13 @@ void SchXMLPlotAreaContext::EndElement()
                             }
                         }
                     }
-                    catch( uno::Exception aEx )
+                    catch (const uno::Exception& rEx)
                     {
 #if OSL_DEBUG_LEVEL > 1
-                        String aStr( aEx.Message );
-                        ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-                        OSL_TRACE( "PlotAreaContext:EndElement(): Exception caught: %s", aBStr.GetBuffer());
+                        rtl::OString aBStr(rtl::OUStringToOString(rEx.Message, RTL_TEXTENCODING_ASCII_US));
+                        OSL_TRACE( "PlotAreaContext:EndElement(): Exception caught: %s", aBStr.getStr());
+#else
+                        (void)rEx;
 #endif
                     }
                 }
@@ -510,12 +511,13 @@ void SchXMLPlotAreaContext::EndElement()
                                 (( XMLPropStyleContext* )pStyle )->FillPropertySet( xProp );
                         }
                     }
-                    catch( uno::Exception aEx )
+                    catch (const uno::Exception& rEx)
                     {
 #if OSL_DEBUG_LEVEL > 1
-                        String aStr( aEx.Message );
-                        ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-                        OSL_TRACE( "PlotAreaContext:EndElement(): Exception caught: %s", aBStr.GetBuffer());
+                        rtl::OString aBStr(rtl::OUStringToOString(rEx.Message, RTL_TEXTENCODING_ASCII_US));
+                        OSL_TRACE( "PlotAreaContext:EndElement(): Exception caught: %s", aBStr.getStr());
+#else
+                        (void)rEx;
 #endif
                     }
                 }

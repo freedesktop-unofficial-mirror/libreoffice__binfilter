@@ -404,17 +404,6 @@ using rtl::OUString;
 /*M*/           xHyphWord = aResult.rHyphenatedWord;
 /*M*/             nBreakPos += xHyphWord->getHyphenationPos() + 1;
 /*M*/
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*M*/             // e.g., Schif-fahrt, referes to our string
-/*M*/             const String aWord = xHyphWord->getWord();
-/*M*/             // e.g., Schiff-fahrt, referes to the word after hyphenation
-/*M*/             const String aHyphenatedWord = xHyphWord->getHyphenatedWord();
-/*M*/             // e.g., Schif-fahrt: 5, referes to our string
-/*M*/             const USHORT nHyphenationPos = xHyphWord->getHyphenationPos();
-/*M*/             // e.g., Schiff-fahrt: 6, referes to the word after hyphenation
-/*M*/             const USHORT nHyphenPos = xHyphWord->getHyphenPos();
-/*M*/ #endif
-/*M*/
 /*M*/             // if not in interactive mode, we have to break behind a soft hyphen
 /*M*/             if ( ! rInf.IsInterHyph() && rInf.GetIdx() )
 /*M*/             {

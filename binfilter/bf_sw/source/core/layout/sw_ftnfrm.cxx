@@ -505,31 +505,12 @@ namespace binfilter {
 /*N*/
 /*N*/ SwTwips SwFtnFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
 /*N*/ {
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/   static USHORT nNum = USHRT_MAX;
-/*N*/   SwTxtFtn* pTxtFtn = GetAttr();
-/*N*/   if ( pTxtFtn->GetFtn().GetNumber() == nNum )
-/*N*/   {
-/*?*/       int bla = 5;
-/*N*/   }
-/*N*/ #endif
 /*N*/     return SwLayoutFrm::GrowFrm( nDist, bTst, bInfo );
 /*N*/ }
 
 
 /*N*/ SwTwips SwFtnFrm::ShrinkFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
 /*N*/ {
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/   static USHORT nNum = USHRT_MAX;
-/*N*/   if( nNum != USHRT_MAX )
-/*N*/   {
-/*?*/       SwTxtFtn* pTxtFtn = GetAttr();
-/*?*/       if( &pTxtFtn->GetAttr() && pTxtFtn->GetFtn().GetNumber() == nNum )
-/*?*/       {
-/*?*/           int bla = 5;
-/*?*/       }
-/*N*/   }
-/*N*/ #endif
 /*N*/     return SwLayoutFrm::ShrinkFrm( nDist, bTst, bInfo );
 /*N*/ }
 /*N*/ #endif
@@ -1007,13 +988,6 @@ namespace binfilter {
 
 /*N*/ void SwFtnBossFrm::InsertFtn( SwFtnFrm* pNew )
 /*N*/ {
-/*N*/ #if (OSL_DEBUG_LEVEL > 1) && defined(DBG_UTIL)
-/*N*/   static USHORT nStop = 0;
-/*N*/   if ( nStop == pNew->GetFrmId() )
-/*N*/   {
-/*?*/       int bla = 5;
-/*N*/   }
-/*N*/ #endif
 /*N*/   //Die Fussnote haben wir, sie muss jetzt nur noch irgendwo
 /*N*/   //hin und zwar vor die Fussnote, deren Attribut vor das
 /*N*/   //der neuen zeigt (Position wird ueber das Doc ermittelt)

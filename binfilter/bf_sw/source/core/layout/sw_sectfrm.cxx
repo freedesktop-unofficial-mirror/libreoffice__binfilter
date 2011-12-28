@@ -528,9 +528,6 @@ namespace binfilter {
 /*N*/   if( !bValidPos && ToMaximize( FALSE ) )
 /*N*/       bValidSize = FALSE;
 /*N*/
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/   const SwFmtCol &rCol = GetFmt()->GetCol();
-/*N*/ #endif
 /*N*/   SwLayoutFrm::MakeAll();
 /*N*/   UnlockJoin();
 /*N*/   if( pSection && IsSuperfluous() )

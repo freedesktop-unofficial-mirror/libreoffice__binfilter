@@ -341,10 +341,7 @@ namespace binfilter {
 /*N*/           ( ++nIndex < pImpl->Count() &&
 /*N*/           pImpl->GetBreakIndex( nIndex ) == nNodeIndex ) ) )
 /*?*/         bFirst = FALSE;
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/     ULONG nBreakIndex = ( pImpl && nIndex < pImpl->Count() ) ?
-/*N*/                         pImpl->GetBreakIndex(nIndex) : 0xffff;
-/*N*/ #endif
+/*N*/
 /*N*/     // always split a big tables.
 /*N*/     if ( !bFirst ||
 /*N*/          ( rpFrm->IsTabFrm() && bLongTab )
@@ -355,10 +352,6 @@ namespace binfilter {
 /*N*/         {
 /*N*/             if( pImpl || bLongTab )
 /*N*/             {
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/                 ULONG nBrkIndex = ( pImpl && nIndex < pImpl->Count() ) ?
-/*N*/                         pImpl->GetBreakIndex(nIndex) : 0xffff;
-/*N*/ #endif
 /*N*/                 xub_StrLen nOfst = STRING_LEN;
 /*N*/                 USHORT nType = SW_LAYCACHE_IO_REC_PAGES;
 /*N*/                 if( bLongTab )

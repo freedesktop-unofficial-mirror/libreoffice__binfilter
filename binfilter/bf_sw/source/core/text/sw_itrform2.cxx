@@ -1506,9 +1506,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/                     default: OSL_FAIL( ": unknown InterLineSpaceRule" );
 /*N*/                 }
 /*N*/         }
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/         KSHORT nDummy = nLineHeight + 1;
-/*N*/ #endif
 /*N*/
 /*N*/         if( IsRegisterOn() )
 /*N*/         {

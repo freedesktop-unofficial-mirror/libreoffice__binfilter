@@ -446,8 +446,10 @@ namespace binfilter {
 /*N*/
 /*N*/ SvStream &SwFlyCntPortion::operator<<( SvStream &rOs ) const //$ ostream
 /*N*/ {
-/*N*/   CONSTCHAR( pTxt, " {FLYCNT:" );
-/*N*/   rOs << pTxt;
+/*N*/   {
+/*N*/       CONSTCHAR( pTxt, " {FLYCNT:" );
+/*N*/       rOs << pTxt;
+/*N*/   }
 /*N*/   SwLinePortion::operator<<( rOs );
 /*N*/   if( bDraw )
 /*N*/   {

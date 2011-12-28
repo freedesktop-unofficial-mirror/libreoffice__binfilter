@@ -86,16 +86,6 @@ namespace binfilter {
 /*N*/   , pPrev( 0 )
 /*N*/   , pDrawObjs( 0 )
 /*N*/ {
-/*N*/ #ifdef DBG_UTIL
-/*N*/     bFlag01 = bFlag02 = bFlag03 = bFlag04 = bFlag05 = 0;
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/   static USHORT nStopAt = USHRT_MAX;
-/*N*/   if ( nFrmId == nStopAt )
-/*N*/   {
-/*N*/       int bla = 5;
-/*N*/   }
-/*N*/ #endif
-/*N*/ #endif
 /*N*/
 /*N*/   OSL_ENSURE( pMod, "Kein Frameformat uebergeben." );
 /*N*/     bInvalidR2L = bInvalidVert = 1;
@@ -296,14 +286,6 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ void SwFrm::InvalidatePage( const SwPageFrm *pPage ) const
 /*N*/ {
-/*N*/ #if (OSL_DEBUG_LEVEL > 1) && defined(DBG_UTIL)
-/*N*/   static USHORT nStop = 0;
-/*N*/   if ( nStop == GetFrmId() )
-/*N*/   {
-/*N*/       int bla = 5;
-/*N*/   }
-/*N*/ #endif
-/*N*/
 /*N*/   if ( !pPage )
 /*N*/       pPage = FindPageFrm();
 /*N*/ }
