@@ -29,6 +29,8 @@
 #ifndef _SMMOD_HXX
 #define _SMMOD_HXX
 
+#include <i18npool/lang.h>
+#include <tools/rc.hxx>
 #include <tools/resary.hxx>
 #include <bf_svtools/lstner.hxx>
 #include <bf_svtools/colorcfg.hxx>

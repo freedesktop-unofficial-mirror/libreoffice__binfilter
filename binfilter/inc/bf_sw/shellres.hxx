@@ -31,7 +31,7 @@
 #include <bf_svtools/bf_solar.h>
 
 
-
+#include <tools/rc.hxx>
 #include <vcl/bitmap.hxx>
 
 #ifndef _SVSTDARR_HXX
