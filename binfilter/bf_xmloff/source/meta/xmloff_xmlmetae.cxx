@@ -34,6 +34,7 @@
 
 
 #include <tools/time.hxx>
+#include <tools/string.hxx>
 
 #include <unotools/bootstrap.hxx>
 #include <rtl/bootstrap.hxx>

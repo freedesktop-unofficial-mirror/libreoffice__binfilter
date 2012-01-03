@@ -29,6 +29,7 @@
 #include <rtl/uuid.h>
 #include <tools/debug.hxx>
 #include <tools/urlobj.hxx>
+#include <tools/string.hxx>
 
 #include <com/sun/star/document/XBinaryStreamResolver.hpp>
 #include <com/sun/star/xml/sax/SAXInvalidCharacterException.hpp>
