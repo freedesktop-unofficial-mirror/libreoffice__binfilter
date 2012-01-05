@@ -316,7 +316,7 @@ JPEGReader::JPEGReader( SvStream& rStm, void* /*pCallData*/, sal_Bool bSetLS ) :
         nLastLines      ( 0 ),
         bSetLogSize     ( bSetLS )
 {
-    maUpperName = String::CreateFromAscii( "SVIJPEG", 7 );
+    maUpperName = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("SVIJPEG"));
     nFormerPos = nLastPos;
 }
 
