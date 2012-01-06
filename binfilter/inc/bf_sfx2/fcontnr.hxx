@@ -35,6 +35,7 @@
 
 #include <bf_sfx2/docfilt.hxx>
 #include <bf_sfx2/sfxdefs.hxx>
+#include <tools/ref.hxx>
 class Window;
 namespace binfilter {
 
