@@ -237,7 +237,7 @@ namespace binfilter {
 /*N*/   sal_uInt16 nRead;
 /*N*/
 /*N*/   // UNICODE: rIn>>aStyleSheetName;
-/*N*/   rIn.ReadUniOrByteString(aStyleSheetName, rIn.GetStreamCharSet());
+/*N*/   aStyleSheetName = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/
 /*N*/   if(aStyleSheetName.Len())
 /*N*/   {

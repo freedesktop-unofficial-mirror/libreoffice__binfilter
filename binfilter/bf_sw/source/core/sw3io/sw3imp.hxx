@@ -717,7 +717,8 @@ inline BOOL Sw3IoImp::IsSw31Or40Export() const
 
 inline SvStream& Sw3IoImp::InString( SvStream& rStrm, String& rStr )
 {
-    return rStrm.ReadUniOrByteString( rStr, eSrcSet );
+    rStr = rStrm.ReadUniOrByteString( eSrcSet );
+    return rStrm;
 }
 
 inline SvStream& Sw3IoImp::OutString( SvStream& rStrm, const String& rStr )

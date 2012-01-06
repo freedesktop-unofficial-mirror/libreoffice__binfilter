@@ -529,24 +529,24 @@ namespace binfilter {
 /*N*/                                                          (USHORT)rIn.GetVersion());
 /*N*/     rIn.SetStreamCharSet( aCharSet );
 /*N*/
-/*N*/   rIn.ReadUniOrByteString( rMemChart.aMainTitle, rIn.GetStreamCharSet() );
-/*N*/   rIn.ReadUniOrByteString( rMemChart.aSubTitle, rIn.GetStreamCharSet() );
-/*N*/   rIn.ReadUniOrByteString( rMemChart.aXAxisTitle, rIn.GetStreamCharSet() );
-/*N*/   rIn.ReadUniOrByteString( rMemChart.aYAxisTitle, rIn.GetStreamCharSet() );
-/*N*/   rIn.ReadUniOrByteString( rMemChart.aZAxisTitle, rIn.GetStreamCharSet() );
+/*N*/   rMemChart.aMainTitle = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );
+/*N*/   rMemChart.aSubTitle = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );
+/*N*/   rMemChart.aXAxisTitle = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );
+/*N*/   rMemChart.aYAxisTitle = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );
+/*N*/   rMemChart.aZAxisTitle = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );
 /*N*/
 /*N*/   rMemChart.pColText = new String[rMemChart.nColCnt];
 /*N*/
 /*N*/   for (short i = 0; i < rMemChart.nColCnt; i++)
 /*N*/   {
-/*N*/       rIn.ReadUniOrByteString( rMemChart.pColText[ i ], rIn.GetStreamCharSet() );
+/*N*/       rMemChart.pColText[ i ] = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );
 /*N*/   }
 /*N*/
 /*N*/   rMemChart.pRowText = new String[rMemChart.nRowCnt];
 /*N*/
 /*N*/   for (short i = 0; i < rMemChart.nRowCnt; i++)
 /*N*/   {
-/*N*/       rIn.ReadUniOrByteString( rMemChart.pRowText[ i ], rIn.GetStreamCharSet() );
+/*N*/       rMemChart.pRowText[ i ] = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );
 /*N*/   }
 /*N*/
 /*N*/   rIn >> nInt16; rMemChart.eDataType = (short)nInt16;

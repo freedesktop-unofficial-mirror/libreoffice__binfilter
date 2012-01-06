@@ -290,8 +290,7 @@ namespace binfilter {
 
 /*N*/ SfxPoolItem* SwFmtRefMark::Create( SvStream& rStrm, USHORT ) const
 /*N*/ {
-/*N*/   String aName;
-/*N*/   rStrm.ReadUniOrByteString( aName, rStrm.GetStreamCharSet() );
+/*N*/   String aName = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
 /*N*/   return new SwFmtRefMark( aName );
 /*N*/ }
 
@@ -309,9 +308,8 @@ namespace binfilter {
 /*N*/ SfxPoolItem* SwFmtINetFmt::Create( SvStream& rStrm, USHORT nIVer ) const
 /*N*/ {
 /*N*/   UINT16 nId1, nId2;
-/*N*/   String aURL1, aTarget;
-/*N*/   rStrm.ReadUniOrByteString( aURL1, rStrm.GetStreamCharSet() );
-/*N*/   rStrm.ReadUniOrByteString( aTarget, rStrm.GetStreamCharSet() );
+/*N*/   String aURL1 = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
+/*N*/   String aTarget = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
 /*N*/   rStrm >> nId1 >> nId2;
 /*N*/
 /*N*/   aURL1 = ::binfilter::StaticBaseUrl::SmartRelToAbs( aURL1 );
@@ -342,14 +340,13 @@ namespace binfilter {
 /*N #i27164#*/      USHORT nCurKey;
 /*N #i27164#*/      String aLibName, aMacName;
 /*N #i27164#*/      rStrm >> nCurKey;
-/*N #i27164#*/      rStrm.ReadUniOrByteString( aLibName, rStrm.GetStreamCharSet() );
-/*N #i27164#*/      rStrm.ReadUniOrByteString( aMacName, rStrm.GetStreamCharSet() );
+/*N #i27164#*/      aLibName = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
+/*N #i27164#*/      aMacName = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
 /*N #i27164#*/      pNew->SetMacro( nCurKey, SvxMacro( aMacName, aLibName, STARBASIC ) );
 /*N*/   }
 /*N*/   if( nIVer >= 1 )
 /*N*/   {
-/*N*/       String aName1;
-/*N*/       rStrm.ReadUniOrByteString( aName1, rStrm.GetStreamCharSet() );;
+/*N*/       String aName1 = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );;
 /*N*/       pNew->SetName( aName1 );
 /*N*/   }
 /*N*/   if( nIVer >= 2 )
@@ -358,10 +355,9 @@ namespace binfilter {
 /*N*/       while( nCnt-- )
 /*N*/       {
 /*N #i27164#*/          USHORT nCurKey, nScriptType;
-/*N #i27164#*/          String aLibName, aMacName;
 /*N #i27164#*/          rStrm >> nCurKey;
-/*N #i27164#*/          rStrm.ReadUniOrByteString( aLibName, rStrm.GetStreamCharSet() );
-/*N #i27164#*/          rStrm.ReadUniOrByteString( aMacName, rStrm.GetStreamCharSet() );
+/*N #i27164#*/          String aLibName = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
+/*N #i27164#*/          String aMacName = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
 /*N #i27164#*/          rStrm >> nScriptType;
 /*N #i27164#*/          pNew->SetMacro( nCurKey, SvxMacro( aMacName, aLibName,
 /*N #i27164#*/                                      (ScriptType)nScriptType ) );
@@ -383,10 +379,9 @@ namespace binfilter {
 
 /*N*/ SfxPoolItem* SwFmtFtn::Create( SvStream& rStrm, USHORT nIVer ) const
 /*N*/ {
-/*N*/   String aNumber1;
 /*N*/   UINT16 nNumber1;
 /*N*/   rStrm >> nNumber1;
-/*N*/   rStrm.ReadUniOrByteString( aNumber1, rStrm.GetStreamCharSet() );
+/*N*/   String aNumber1 = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
 /*N*/
 /*N*/   // Die Section fuer den Text erzeugen
 /*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
@@ -476,13 +471,13 @@ namespace binfilter {
 /*N*/         >> nLevel1;
 /*N*/
 /*N*/   if( nIVer < IVER_TOXMARK_STRPOOL )
-/*N*/       rStrm.ReadUniOrByteString( aTypeName, rStrm.GetStreamCharSet() );
+/*N*/       aTypeName = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
 /*N*/   else
 /*N*/       rStrm >> nStrIdx;
 /*N*/
-/*N*/   rStrm.ReadUniOrByteString( aAltText1, rStrm.GetStreamCharSet() );
-/*N*/   rStrm.ReadUniOrByteString( aPrimKey, rStrm.GetStreamCharSet() );
-/*N*/   rStrm.ReadUniOrByteString( aSecKey, rStrm.GetStreamCharSet() );
+/*N*/   aAltText1 = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
+/*N*/   aPrimKey = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
+/*N*/   aSecKey = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
 /*N*/
 /*N*/   BYTE cFlags = 0;
 /*N*/   // With the 5.2, there are new tox types.
@@ -590,8 +585,7 @@ SfxPoolItem* SwFmtRuby::Create(SvStream & rStrm, USHORT /*nVer*/) const
 
 SfxPoolItem* SwTblBoxFormula::Create( SvStream & rStrm, USHORT ) const
 {
-    String sStr;
-    rStrm.ReadUniOrByteString( sStr, rStrm.GetStreamCharSet() );
+    String sStr = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
     return new SwTblBoxFormula( sStr );
 }
 

@@ -735,7 +735,7 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/           rStream >> nErgValue;
 /*N*/       if( cFlags & 0x10 )
 /*N*/       {
-/*N*/           rStream.ReadUniOrByteString( aErgString, rStream.GetStreamCharSet() );
+/*N*/           aErgString = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/           bIsValue = FALSE;
 /*N*/       }
 /*N*/       pCode->Load( rStream, nVer, aPos );

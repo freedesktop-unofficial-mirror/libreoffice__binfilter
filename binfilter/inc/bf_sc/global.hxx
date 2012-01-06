@@ -1217,9 +1217,9 @@ inline SvStream& operator>>( SvStream& rStream, ScPostIt& rPostIt )
     //  ohne bShown !!!
 
     CharSet eSet = rStream.GetStreamCharSet();
-    rStream.ReadUniOrByteString( rPostIt.aStrText, eSet );
-    rStream.ReadUniOrByteString( rPostIt.aStrDate, eSet );
-    rStream.ReadUniOrByteString( rPostIt.aStrAuthor, eSet );
+    rPostIt.aStrText = rStream.ReadUniOrByteString( eSet );
+    rPostIt.aStrDate = rStream.ReadUniOrByteString( eSet );
+    rPostIt.aStrAuthor = rStream.ReadUniOrByteString( eSet );
 
     return rStream;
 }

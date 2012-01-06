@@ -140,7 +140,7 @@ namespace binfilter {
 /*N*/   rIn >> rLayer.nID;
 /*N*/
 /*N*/   // UNICODE: rIn >> rLayer.aName;
-/*N*/   rIn.ReadUniOrByteString(rLayer.aName, rIn.GetStreamCharSet());
+/*N*/   rLayer.aName = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/
 /*N*/   if(aHead.GetVersion() >= 1)
 /*N*/   {
@@ -189,7 +189,7 @@ namespace binfilter {
 /*?*/   rIn >> rSet.aExclude;
 /*?*/
 /*?*/   // UNICODE: rIn >> rSet.aName;
-/*?*/   rIn.ReadUniOrByteString(rSet.aName, rIn.GetStreamCharSet());
+/*?*/   rSet.aName = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*?*/
 /*?*/   return rIn;
 /*?*/ }

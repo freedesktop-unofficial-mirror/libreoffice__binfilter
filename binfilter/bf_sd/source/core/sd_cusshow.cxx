@@ -132,7 +132,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   // Name
 /*N*/   // #90477# rIn.ReadByteString( rCustomShow.aName, ::GetStoreCharSet( osl_getThreadTextEncoding() ) );
-/*N*/   rIn.ReadUniOrByteString(rCustomShow.aName,
+/*N*/   rCustomShow.aName = rIn.ReadUniOrByteString(
 /*N*/       GetSOLoadTextEncoding(osl_getThreadTextEncoding(), (sal_uInt16)rIn.GetVersion()));
 /*N*/
 /*N*/   // Anzahl Seiten

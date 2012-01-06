@@ -534,10 +534,9 @@ IMPL_LINK( ScDocument, TrackTimeHdl, Timer*, EMPTYARG )
 /*N*/                       ScReadHeader aFlagsHdr( rStream );
 /*N*/
 /*N*/                       rStream >> nVersion;                // 312 abwaerts
-/*N*/                       rStream.ReadUniOrByteString( aPageStyle, rStream.GetStreamCharSet() );
+/*N*/                       aPageStyle = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/                       rStream >> bProtected;              // Dokument geschuetzt
-/*N*/                       String aPass;
-/*N*/                       rStream.ReadUniOrByteString( aPass, rStream.GetStreamCharSet() );
+/*N*/                       String aPass = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/                       if (aPass.Len())
 /*?*/                           SvPasswordHelper::GetHashPassword(aProtectPass, aPass);
 /*N*/                       if ( aFlagsHdr.BytesLeft() )

@@ -200,13 +200,12 @@ using namespace ::com::sun::star;
 
 /*N*/ SfxPoolItem* SvxPageItem::Create( SvStream& rStream, USHORT ) const
 /*N*/ {
-/*N*/   XubString sStr;
 /*N*/   BYTE eType;
 /*N*/   sal_Bool bLand;
 /*N*/   USHORT nUse;
 /*N*/
 /*N*/   // UNICODE: rStream >> sStr;
-/*N*/   rStream.ReadUniOrByteString( sStr, rStream.GetStreamCharSet() );
+/*N*/   String sStr = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/
 /*N*/   rStream >> eType;
 /*N*/   rStream >> bLand;

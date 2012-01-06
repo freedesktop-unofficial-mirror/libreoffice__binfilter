@@ -210,7 +210,7 @@ namespace binfilter {
 /*N*/           >> cConnect
 /*N*/           >> nField
 /*N*/           >> nVal;
-/*N*/   rStream.ReadUniOrByteString( *pStr, rStream.GetStreamCharSet() );
+/*N*/   *pStr = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/   eOp = (ScQueryOp) cOp;
 /*N*/   eConnect = (ScQueryConnect) cConnect;
 /*N*/ }

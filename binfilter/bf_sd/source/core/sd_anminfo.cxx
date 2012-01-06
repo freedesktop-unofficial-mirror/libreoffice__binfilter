@@ -192,8 +192,7 @@ using namespace ::com::sun::star;
 /*N*/       // #unicode# eTextEnc = (rtl_TextEncoding)nCharSet;
 /*N*/       eTextEnc = (rtl_TextEncoding)GetSOLoadTextEncoding((rtl_TextEncoding)nCharSet, (sal_uInt16)rIn.GetVersion());
 /*N*/
-/*N*/       String aSoundFileRel;
-/*N*/       rIn.ReadUniOrByteString( aSoundFileRel, eTextEnc );
+/*N*/       String aSoundFileRel = rIn.ReadUniOrByteString( eTextEnc );
 /*N*/       if( aSoundFileRel.Len() )
 /*N*/       {
 /*N*/           INetURLObject aURLObj(SmartRel2Abs( INetURLObject(::binfilter::StaticBaseUrl::GetBaseURL()), aSoundFileRel, ::binfilter::GetMaybeFileHdl(), false, false, INetURLObject::WAS_ENCODED, INetURLObject::DECODE_UNAMBIGUOUS, RTL_TEXTENCODING_UTF8, false, INetURLObject::FSYS_DETECT ));
@@ -233,18 +232,16 @@ using namespace ::com::sun::star;
 /*N*/           eClickAction == presentation::ClickAction_VANISH   ||
 /*N*/           eClickAction == presentation::ClickAction_SOUND)
 /*N*/       {
-/*N*/           String aBookmarkRel;
-/*N*/           rIn.ReadUniOrByteString( aBookmarkRel, eTextEnc );
+/*N*/           String aBookmarkRel = rIn.ReadUniOrByteString( eTextEnc );
 /*N*/           INetURLObject aURLObj(::binfilter::StaticBaseUrl::SmartRelToAbs(aBookmarkRel, FALSE,
 /*N*/                                                            INetURLObject::WAS_ENCODED,
 /*N*/                                                            INetURLObject::DECODE_UNAMBIGUOUS));
 /*N*/           aBookmark = aURLObj.GetMainURL( INetURLObject::NO_DECODE );
 /*N*/       }
 /*N*/       else
-/*N*/           rIn.ReadUniOrByteString( aBookmark, eTextEnc );
+/*N*/           aBookmark = rIn.ReadUniOrByteString( eTextEnc );
 /*N*/
-/*N*/       String aSecondSoundFileRel;
-/*N*/       rIn.ReadUniOrByteString( aSecondSoundFileRel, eTextEnc );
+/*N*/       String aSecondSoundFileRel = rIn.ReadUniOrByteString( eTextEnc );
 /*N*/       if( aSecondSoundFileRel.Len() )
 /*N*/       {
 /*N*/           INetURLObject aURLObj(SmartRel2Abs( INetURLObject(::binfilter::StaticBaseUrl::GetBaseURL()), aSecondSoundFileRel, ::binfilter::GetMaybeFileHdl(), false, false, INetURLObject::WAS_ENCODED, INetURLObject::DECODE_UNAMBIGUOUS, RTL_TEXTENCODING_UTF8, false, INetURLObject::FSYS_DETECT ));

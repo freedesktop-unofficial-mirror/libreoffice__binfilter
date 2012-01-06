@@ -1962,9 +1962,8 @@ public:
 /*N*/
 /*N*/       if ( nDoLoad & LOAD_LINK )
 /*N*/       {
-/*N*/           String aRel;
 /*N*/           // UNICODE: rStream >> aRel;
-/*N*/           rStream.ReadUniOrByteString(aRel, rStream.GetStreamCharSet());
+/*N*/           String aRel = rStream.ReadUniOrByteString(rStream.GetStreamCharSet());
 /*N*/
 /*N*/           String aAbs = ::binfilter::StaticBaseUrl::RelToAbs( aRel );
 /*N*/           pStrLink = new String( aAbs );
@@ -1974,7 +1973,7 @@ public:
 /*N*/       {
 /*N*/           pStrFilter = new String;
 /*N*/           // UNICODE: rStream >> *pStrFilter;
-/*N*/           rStream.ReadUniOrByteString(*pStrFilter, rStream.GetStreamCharSet());
+/*N*/           *pStrFilter = rStream.ReadUniOrByteString(rStream.GetStreamCharSet());
 /*N*/       }
 /*N*/
 /*N*/       rStream >> nPos;

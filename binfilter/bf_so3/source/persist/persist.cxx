@@ -128,8 +128,8 @@ void SvInfoObject::Load( SvPersistStream & rStm )
         rStm.SetError( SVSTREAM_WRONGVERSION );
     else
     {
-        rStm.ReadUniOrByteString( aStorName, osl_getThreadTextEncoding() );
-        rStm.ReadUniOrByteString( aObjName, osl_getThreadTextEncoding() );
+        aStorName = rStm.ReadUniOrByteString( osl_getThreadTextEncoding() );
+        aObjName = rStm.ReadUniOrByteString( osl_getThreadTextEncoding() );
         if( !aObjName.Len() )
             aObjName = aStorName;
         rStm >> aSvClassName;

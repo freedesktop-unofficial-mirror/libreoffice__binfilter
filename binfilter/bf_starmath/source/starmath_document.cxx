@@ -561,12 +561,12 @@ BOOL SmDocShell::Load(SvStorage *pStor)
 /*N*/                       break;
 /*N*/
 /*N*/                   case 'D':
-/*?*/                       pSvStream->ReadUniOrByteString(aBuffer, eEnc);
-/*?*/                       pSvStream->ReadUniOrByteString(aBuffer, eEnc);
+/*?*/                       aBuffer = pSvStream->ReadUniOrByteString(eEnc);
+/*?*/                       aBuffer = pSvStream->ReadUniOrByteString(eEnc);
 /*?*/                       *pSvStream >> lDate >> lTime;
-/*?*/                       pSvStream->ReadUniOrByteString(aBuffer, eEnc);
+/*?*/                       aBuffer = pSvStream->ReadUniOrByteString(eEnc);
 /*?*/                       *pSvStream >> lDate >> lTime;
-/*?*/                       pSvStream->ReadUniOrByteString(aBuffer, eEnc);
+/*?*/                       aBuffer = pSvStream->ReadUniOrByteString(eEnc);
 /*?*/                       break;
 /*N*/
 /*N*/                   case 'F':
@@ -584,9 +584,8 @@ BOOL SmDocShell::Load(SvStorage *pStor)
 /*N*/
 /*N*/                   case 'S':
 /*N*/                   {
-/*N*/                         String      aTmp;
 /*N*/                         USHORT      n;
-/*N*/                         pSvStream->ReadUniOrByteString(aTmp, eEnc);
+/*N*/                         pSvStream->ReadUniOrByteString(eEnc);
 /*N*/                         *pSvStream >> n;
 /*N*/                       break;
 /*N*/                   }
@@ -661,12 +660,12 @@ BOOL SmDocShell::Try2x (SvStorage *pStor,
 
                     case 'D':
                         {
-                            pSvStream->ReadUniOrByteString(aBuffer, eEnc);
-                            pSvStream->ReadUniOrByteString(aBuffer, eEnc);
+                            aBuffer = pSvStream->ReadUniOrByteString(eEnc);
+                            aBuffer = pSvStream->ReadUniOrByteString(eEnc);
                             *pSvStream >> lDate >> lTime;
-                            pSvStream->ReadUniOrByteString(aBuffer, eEnc);
+                            aBuffer = pSvStream->ReadUniOrByteString(eEnc);
                             *pSvStream >> lDate >> lTime;
-                            pSvStream->ReadUniOrByteString(aBuffer, eEnc);
+                            aBuffer = pSvStream->ReadUniOrByteString(eEnc);
                         }
                         break;
 
@@ -680,9 +679,8 @@ BOOL SmDocShell::Try2x (SvStorage *pStor,
 
                     case 'S':
                     {
-                        String      aTmp;
                         USHORT      n;
-                        pSvStream->ReadUniOrByteString(aTmp, eEnc);
+                        pSvStream->ReadUniOrByteString(eEnc);
                         *pSvStream >> n;
                         break;
                     }

@@ -257,14 +257,13 @@ public:
 /*N*/           for( USHORT n = 0; n < nTmp; ++n )
 /*N*/           {
 /*?*/               SwStyleCondColl* pNew = new SwStyleCondColl;
-/*?*/               r.ReadUniOrByteString( pNew->sColl, r.GetStreamCharSet() );
+/*?*/               pNew->sColl = r.ReadUniOrByteString( r.GetStreamCharSet() );
 /*?*/               r >> pNew->nCondition;
 /*?*/
 /*?*/               if( USRFLD_EXPRESSION & pNew->nCondition )
 /*?*/               {
 /*?*/                   OSL_ENSURE( !this, "noch nicht implementiert" );
-/*?*/                   String s;
-/*?*/                   r.ReadUniOrByteString( s, r.GetStreamCharSet() );
+/*?*/                   r.ReadUniOrByteString( r.GetStreamCharSet() );
 /*?*/               }
 /*?*/               else
 /*?*/                   r >> pNew->nSubCondition;

@@ -1387,7 +1387,6 @@ void Sw3StringPool::LoadOld( SvStream& r )
 {
     aPool.DeleteAndDestroy( 0, aPool.Count() );
     sal_uInt16 n;
-    String s;
     r >> n;
     // Dieser schlimme Hack ist notwendig, da ich vergessen habe,
     // den Zeichensatz im Record zu speichern. Und kein Flag-Byte da!
@@ -1403,7 +1402,7 @@ void Sw3StringPool::LoadOld( SvStream& r )
     }
     while( n-- )
     {
-        r.ReadUniOrByteString( s, eSrcEnc );
+        String s = r.ReadUniOrByteString( eSrcEnc );
         Sw3String* p = new Sw3String( s, 0 );
         aPool.Insert( p, aPool.Count() );
     }

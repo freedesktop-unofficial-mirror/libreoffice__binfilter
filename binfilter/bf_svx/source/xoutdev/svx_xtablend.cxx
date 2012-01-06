@@ -333,7 +333,7 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/       for( long nI = 0; nI < nCount; nI++ )
 /*N*/       {
 /*N*/           // UNICODE: rIn >> aLclName;
-/*N*/           rIn.ReadUniOrByteString(aLclName, rIn.GetStreamCharSet());
+/*N*/           aLclName = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/
 /*N*/           aLclName = ConvertName( aLclName );
 /*N*/           USHORT nPoints;
@@ -359,7 +359,7 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/       for( long nI = 0; nI < nCount; nI++ )
 /*N*/       {
 /*N*/           // UNICODE: rIn >> aLclName;
-/*N*/           rIn.ReadUniOrByteString(aLclName, rIn.GetStreamCharSet());
+/*N*/           aLclName = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/           aLclName = ConvertName( aLclName );
 /*N*/
 /*N*/           XPolygon* pXPoly = new XPolygon;
@@ -378,7 +378,7 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/           XIOCompat aIOC( rIn, STREAM_READ );
 /*N*/
 /*N*/           // UNICODE: rIn >> aLclName;
-/*N*/           rIn.ReadUniOrByteString(aLclName, rIn.GetStreamCharSet());
+/*N*/           aLclName = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/           aLclName = ConvertName( aLclName );
 /*N*/
 /*N*/           XPolygon aXPoly;

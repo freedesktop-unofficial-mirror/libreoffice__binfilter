@@ -578,11 +578,11 @@ IMPL_LINK_INLINE_START(SdrPaintView,ImpUserMarkerAnimatorHdl,AutoTimer*,EMPTYARG
 /*N*/           }
 /*N*/           case SDRIORECNAME_VIEWAKTLAYER:
 /*N*/           {
-/*N*/               rIn.ReadUniOrByteString(aAktLayer, rIn.GetStreamCharSet());
+/*N*/               aAktLayer = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/
 /*N*/               if(rSubHead.GetBytesLeft() > 0)
 /*N*/               {
-/*N*/                   rIn.ReadUniOrByteString(aMeasureLayer, rIn.GetStreamCharSet());
+/*N*/                   aMeasureLayer = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/               }
 /*N*/               break;
 /*N*/           }

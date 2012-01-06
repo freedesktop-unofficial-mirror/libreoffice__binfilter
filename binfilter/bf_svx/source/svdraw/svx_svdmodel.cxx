@@ -1350,7 +1350,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/           // Tabellen- und Listennamen lesen (Tabellen/Listen existieren schon) // SOH!!!
 /*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadUniOrByteString(aName, rIn.GetStreamCharSet());
+/*N*/           aName = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/
 /*N*/           if(!bExtColorTable)
 /*N*/           {
@@ -1362,31 +1362,31 @@ using namespace ::com::sun::star;
 /*N*/                   pColorTable->SetName(aName);
 /*N*/           }
 /*N*/
-/*N*/           rIn.ReadUniOrByteString(aName, rIn.GetStreamCharSet());
+/*N*/           aName = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/           if(!aName.Len())
 /*N*/               aName = pszStandard;
 /*N*/           if(pDashList)
 /*N*/               pDashList->SetName(aName);
 /*N*/
-/*N*/           rIn.ReadUniOrByteString(aName, rIn.GetStreamCharSet());
+/*N*/           aName = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/           if(!aName.Len())
 /*N*/               aName = pszStandard;
 /*N*/           if(pLineEndList)
 /*N*/               pLineEndList->SetName(aName);
 /*N*/
-/*N*/           rIn.ReadUniOrByteString(aName, rIn.GetStreamCharSet());
+/*N*/           aName = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/           if(!aName.Len())
 /*N*/               aName = pszStandard;
 /*N*/           if(pHatchList)
 /*N*/               pHatchList->SetName(aName);
 /*N*/
-/*N*/           rIn.ReadUniOrByteString(aName, rIn.GetStreamCharSet());
+/*N*/           aName = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/           if(!aName.Len())
 /*N*/               aName = pszStandard;
 /*N*/           if(pGradientList)
 /*N*/               pGradientList->SetName(aName);
 /*N*/
-/*N*/           rIn.ReadUniOrByteString(aName, rIn.GetStreamCharSet());
+/*N*/           aName = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/           if(!aName.Len())
 /*N*/               aName = pszStandard;
 /*N*/           if(pBitmapList)

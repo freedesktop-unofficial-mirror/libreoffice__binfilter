@@ -451,7 +451,7 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/       CharSet eSrcSet = rStream.GetStreamCharSet();
 /*N*/
 /*N*/       BOOL b;
-/*N*/       rStream.ReadUniOrByteString( aName, eSrcSet );
+/*N*/       aName = rStream.ReadUniOrByteString( eSrcSet );
 /*N*/          if( AUTOFORMAT_DATA_ID_552 <= nVer )
 /*N*/       {
 /*N*/           rStream >> nStrResId;
@@ -490,7 +490,7 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/   bRet = (rStream.GetError() == 0);
 /*N*/   if (bRet && (nVal == AUTOFORMAT_OLD_DATA_ID))
 /*N*/   {
-/*N*/       rStream.ReadUniOrByteString( aName, rStream.GetStreamCharSet() );
+/*N*/       aName = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/       BOOL b;
 /*N*/       rStream >> b; bIncludeFont = b;
 /*N*/       rStream >> b; bIncludeJustify = b;

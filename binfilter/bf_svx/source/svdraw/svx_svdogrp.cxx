@@ -116,7 +116,7 @@ namespace binfilter {
 /*N*/   UINT32 nTmp32;
 /*N*/   String aFileNameRel;
 /*N*/
-/*N*/   rIn.ReadUniOrByteString(aFileNameRel, rIn.GetStreamCharSet());
+/*N*/   aFileNameRel = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/
 /*N*/   if( aFileNameRel.Len() )
 /*N*/   {
@@ -128,7 +128,7 @@ namespace binfilter {
 /*N*/       aFileName.Erase();
 /*N*/
 /*N*/   // UNICODE: rIn >> aObjName;
-/*N*/   rIn.ReadUniOrByteString(aObjName, rIn.GetStreamCharSet());
+/*N*/   aObjName = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/
 /*N*/   rIn >> nTmp32; aFileDate0.SetDate(nTmp32);
 /*N*/   rIn >> nTmp32; aFileDate0.SetTime(nTmp32);
@@ -679,7 +679,7 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/
 /*N*/   // UNICODE: rIn >> aName;
-/*N*/   rIn.ReadUniOrByteString(aName, rIn.GetStreamCharSet());
+/*N*/   aName = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/
 /*N*/   UINT8 nTemp; rIn >> nTemp; bRefPoint = nTemp;
 /*N*/   rIn >> aRefPoint;

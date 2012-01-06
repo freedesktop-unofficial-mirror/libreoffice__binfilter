@@ -363,7 +363,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   BYTE b;
 /*N*/   long nVer = rStream.GetVersion();
 /*N*/   rStream.SetVersion( SOFFICE_FILEFORMAT_40 );
-/*N*/     rStream.ReadUniOrByteString( aHeader, rStream.GetStreamCharSet() ); //(dv??)
+/*N*/   aHeader = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() ); //(dv??)
 /*N*/   rStream >> nVersion >> b;
 /*N*/   rStream.SetVersion( nVer );
 /*N*/   bPasswd = (BOOL)b;
@@ -373,9 +373,9 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 
 /*N*/ BOOL SfxDocUserKey::Load(SvStream &rStream)
 /*N*/ {
-/*N*/     rStream.ReadUniOrByteString( aTitle, rStream.GetStreamCharSet() );
+/*N*/     aTitle = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/   Skip(rStream, SFXDOCUSERKEY_LENMAX - aTitle.Len());
-/*N*/     rStream.ReadUniOrByteString( aWord, rStream.GetStreamCharSet() );
+/*N*/     aWord = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/   Skip(rStream, SFXDOCUSERKEY_LENMAX - aWord.Len());
 /*N*/   return rStream.GetError() == SVSTREAM_OK;
 /*N*/ }
@@ -439,21 +439,21 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   aChanged.Load(rStream);
 /*N*/   aPrinted.Load(rStream);
 /*N*/
-/*N*/     rStream.ReadUniOrByteString( aTitle, rStream.GetStreamCharSet() );
+/*N*/   aTitle = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/   Skip(rStream, SFXDOCINFO_TITLELENMAX - aTitle.Len());
-/*N*/     rStream.ReadUniOrByteString( aTheme, rStream.GetStreamCharSet() );
+/*N*/   aTheme = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/   Skip(rStream, SFXDOCINFO_THEMELENMAX - aTheme.Len());
-/*N*/     rStream.ReadUniOrByteString( aComment, rStream.GetStreamCharSet() );
+/*N*/   aComment = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/   Skip(rStream, SFXDOCINFO_COMMENTLENMAX- aComment.Len());
-/*N*/     rStream.ReadUniOrByteString( aKeywords, rStream.GetStreamCharSet() );
+/*N*/   aKeywords = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/   Skip(rStream, SFXDOCINFO_KEYWORDLENMAX - aKeywords.Len());
 /*N*/
 /*N*/   USHORT i;
 /*N*/   for(i = 0; i < MAXDOCUSERKEYS; ++i)
 /*N*/       aUserKeys[i].Load(rStream);
 /*N*/
-/*N*/     rStream.ReadUniOrByteString( aTemplateName, rStream.GetStreamCharSet() );
-/*N*/     rStream.ReadUniOrByteString( aTemplateFileName, rStream.GetStreamCharSet() );
+/*N*/   aTemplateName = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
+/*N*/   aTemplateFileName = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/   rStream >> d >> t;
 /*N*/   aTemplateDate = DateTime(Date(d), Time(t));
 /*N*/
@@ -464,9 +464,8 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/       rStream >> nMailAddr;
 /*N*/       for( i = 0; i < nMailAddr; i++ )
 /*N*/       {
-/*N*/           String aDummyString;
 /*N*/           USHORT nDummyFlags;
-/*N*/             rStream.ReadUniOrByteString( aDummyString, rStream.GetStreamCharSet() );
+/*N*/           rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/           rStream >> nDummyFlags;
 /*N*/       }
 /*N*/   }
@@ -489,9 +488,9 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   if( aHeader.nVersion > 5 )
 /*N*/   {
 /*N*/       rStream >> bReloadEnabled;
-/*N*/         rStream.ReadUniOrByteString( aReloadURL, rStream.GetStreamCharSet() );
+/*N*/       aReloadURL = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/       rStream >> nReloadSecs;
-/*N*/         rStream.ReadUniOrByteString( aDefaultTarget, rStream.GetStreamCharSet() );
+/*N*/       aDefaultTarget = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/
 /*N*/       if ( !TestValidity_Impl( aReloadURL, sal_True ) )
 /*N*/       {
@@ -520,19 +519,19 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/       rStream >> nByte;
 /*N*/       bSaveVersionOnClose = nByte? 1: 0;
 /*N*/
-/*N*/         rStream.ReadUniOrByteString( pImp->aCopiesTo, rStream.GetStreamCharSet() );
-/*N*/         rStream.ReadUniOrByteString( pImp->aOriginal, rStream.GetStreamCharSet() );
-/*N*/         rStream.ReadUniOrByteString( pImp->aReferences, rStream.GetStreamCharSet() );
-/*N*/         rStream.ReadUniOrByteString( pImp->aRecipient, rStream.GetStreamCharSet() );
-/*N*/         rStream.ReadUniOrByteString( pImp->aReplyTo, rStream.GetStreamCharSet() );
-/*N*/         rStream.ReadUniOrByteString( pImp->aBlindCopies, rStream.GetStreamCharSet() );
-/*N*/         rStream.ReadUniOrByteString( pImp->aInReplyTo, rStream.GetStreamCharSet() );
-/*N*/         rStream.ReadUniOrByteString( pImp->aNewsgroups, rStream.GetStreamCharSet() );
+/*N*/       pImp->aCopiesTo = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
+/*N*/       pImp->aOriginal = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
+/*N*/       pImp->aReferences = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
+/*N*/       pImp->aRecipient = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
+/*N*/       pImp->aReplyTo = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
+/*N*/       pImp->aBlindCopies = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
+/*N*/       pImp->aInReplyTo = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
+/*N*/       pImp->aNewsgroups = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/       rStream >> pImp->nPriority;
 /*N*/   }
 /*N*/   if ( aHeader.nVersion > 9 )
 /*N*/   {
-/*N*/         rStream.ReadUniOrByteString( pImp->aSpecialMimeType, rStream.GetStreamCharSet() );
+/*N*/         pImp->aSpecialMimeType = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/   }
 /*N*/   if ( aHeader.nVersion > 10 )
 /*N*/   {

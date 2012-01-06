@@ -609,18 +609,15 @@ BasicLibInfo* BasicLibInfo::Create( SotStorageStream& rSStream )
         pInfo->bDoLoad = bDoLoad;
 
         // Den Namen der Lib...
-        String aName;
-        rSStream.ReadUniOrByteString(aName, rSStream.GetStreamCharSet());
+        String aName = rSStream.ReadUniOrByteString(rSStream.GetStreamCharSet());
         pInfo->SetLibName( aName );
 
         // Absoluter Pfad....
-        String aStorageName;
-        rSStream.ReadUniOrByteString(aStorageName, rSStream.GetStreamCharSet());
+        String aStorageName = rSStream.ReadUniOrByteString(rSStream.GetStreamCharSet());
         pInfo->SetStorageName( aStorageName );
 
         // Relativer Pfad...
-        String aRelStorageName;
-        rSStream.ReadUniOrByteString(aRelStorageName, rSStream.GetStreamCharSet());
+        String aRelStorageName = rSStream.ReadUniOrByteString(rSStream.GetStreamCharSet());
         pInfo->SetRelStorageName( aRelStorageName );
 
         if ( nVer >= 2 )
@@ -1039,8 +1036,7 @@ void BasicManager::LoadOldBasicManager( SotStorage& rStorage )
         // und es geht weiter...
     }
     xManagerStream->Seek( nBasicEndOff+1 ); // +1: 0x00 als Trenner
-    String aLibs;
-    xManagerStream->ReadUniOrByteString(aLibs, xManagerStream->GetStreamCharSet());
+    String aLibs = xManagerStream->ReadUniOrByteString(xManagerStream->GetStreamCharSet());
     xManagerStream->SetBufferSize( 0 );
     xManagerStream.Clear(); // Sream schliessen
 
@@ -1222,8 +1218,7 @@ BOOL BasicManager::ImpLoadLibary( BasicLibInfo* pLibInfo, SotStorage* pCurStorag
                 *xBasicStream >> nPasswordMarker;
                 if ( ( nPasswordMarker == PASSWORD_MARKER ) && !xBasicStream->IsEof() )
                 {
-                    String aPassword;
-                    xBasicStream->ReadUniOrByteString(aPassword, xBasicStream->GetStreamCharSet());
+                    String aPassword = xBasicStream->ReadUniOrByteString(xBasicStream->GetStreamCharSet());
                     pLibInfo->SetPassword( aPassword );
                 }
                 xBasicStream->SetCryptMaskKey(rtl::OString());

@@ -110,7 +110,7 @@ namespace binfilter {
 /*N*/   BYTE nDummy;
 /*N*/   rtl_TextEncoding eCharSet = rStream.GetStreamCharSet();
 /*N*/
-/*N*/   rStream.ReadUniOrByteString( aName, eCharSet );
+/*N*/   aName = rStream.ReadUniOrByteString( eCharSet );
 /*N*/   rStream >> nTable;
 /*N*/   rStream >> nStartCol;
 /*N*/   rStream >> nStartRow;
@@ -141,8 +141,8 @@ namespace binfilter {
 /*N*/   rStream >> bSubUserDef;
 /*N*/   rStream >> bDBImport;
 /*N*/
-/*N*/   rStream.ReadUniOrByteString( aDBName, eCharSet );
-/*N*/   rStream.ReadUniOrByteString( aDBStatement, eCharSet );
+/*N*/   aDBName = rStream.ReadUniOrByteString( eCharSet );
+/*N*/   aDBStatement = rStream.ReadUniOrByteString( eCharSet );
 /*N*/   rStream >> bDBNative;
 /*N*/
 /*N*/   for (i=0; i<MAXSORT; i++)
@@ -158,7 +158,7 @@ namespace binfilter {
 /*N*/       rStream >> nDummy; eQueryOp[i] = (ScQueryOp) nDummy;
 /*N*/       rStream >> bQueryByString[i];
 /*N*/       pQueryStr[i] = new String;
-/*N*/       rStream.ReadUniOrByteString( *pQueryStr[i], eCharSet );
+/*N*/       *pQueryStr[i] = rStream.ReadUniOrByteString( eCharSet );
 /*N*/       rStream >> nQueryVal[i];
 /*N*/       rStream >> nDummy; eQueryConnect[i] = (ScQueryConnect) nDummy;
 /*N*/   }

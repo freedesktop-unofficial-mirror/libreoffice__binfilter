@@ -125,7 +125,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       UINT32 nPos;
 /*N*/       BYTE nData;
-/*N*/       rStream.ReadUniOrByteString( aName, rStream.GetStreamCharSet() );
+/*N*/       aName = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/       rStream >> nPos >> eType >> nIndex >> nData;
 /*N*/       if( nData & 0x0F )
 /*?*/           rStream.SeekRel( nData & 0x0F );
@@ -135,7 +135,7 @@ namespace binfilter {
 /*N*/   else
 /*N*/   {
 /*N*/       UINT16 nTokLen, r, c, t;
-/*N*/       rStream.ReadUniOrByteString( aName, rStream.GetStreamCharSet() );
+/*N*/       aName = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/       rStream >> c >> r >> t >> eType >> nIndex >> nTokLen;
 /*N*/       aPos.Set( c, r, t );
 /*N*/       if( nTokLen )

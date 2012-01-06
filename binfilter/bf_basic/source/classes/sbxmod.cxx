@@ -607,9 +607,7 @@ BOOL SbJScriptModule::LoadData( SvStream& rStrm, USHORT nVer )
         return FALSE;
 
     // Source-String holen
-    String aTmp;
-    rStrm.ReadUniOrByteString( aTmp, osl_getThreadTextEncoding() );
-    aOUSource = aTmp;
+    aOUSource = rStrm.ReadUniOrByteString( osl_getThreadTextEncoding() );
     return TRUE;
 }
 

@@ -1370,15 +1370,15 @@ enum ChartStyleV0
 /*N*/   BOOL bShowZDescr;
 /*N*/
 /*N*/   rIn >> bShowMainTitle;
-/*N*/   rIn.ReadUniOrByteString( aMainTitle, rIn.GetStreamCharSet() );
+/*N*/   aMainTitle = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );
 /*N*/   rIn >> bShowSubTitle;
-/*N*/   rIn.ReadUniOrByteString( aSubTitle, rIn.GetStreamCharSet() );
+/*N*/   aSubTitle = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );
 /*N*/   rIn >> bShowXAxisTitle;
-/*N*/   rIn.ReadUniOrByteString( aXAxisTitle, rIn.GetStreamCharSet() );
+/*N*/   aXAxisTitle = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );
 /*N*/   rIn >> bShowYAxisTitle;
-/*N*/   rIn.ReadUniOrByteString( aYAxisTitle, rIn.GetStreamCharSet() );
+/*N*/   aYAxisTitle = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );
 /*N*/   rIn >> bShowZAxisTitle;
-/*N*/   rIn.ReadUniOrByteString( aZAxisTitle, rIn.GetStreamCharSet() );
+/*N*/   aZAxisTitle = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );
 /*N*/   rIn >> bShowXAxis;
 /*N*/   rIn >> bShowXGridMain;
 /*N*/   rIn >> bShowXGridHelp;
@@ -1658,10 +1658,10 @@ enum ChartStyleV0
 /*N*/       {
 /*N*/           ByteString aReadString;
 /*N*/
-/*N*/           rIn.ReadUniOrByteString( pChartData->SomeData1(), rIn.GetStreamCharSet() );
-/*N*/           rIn.ReadUniOrByteString( pChartData->SomeData2(), rIn.GetStreamCharSet() );
-/*N*/           rIn.ReadUniOrByteString( pChartData->SomeData3(), rIn.GetStreamCharSet() );
-/*N*/           rIn.ReadUniOrByteString( pChartData->SomeData4(), rIn.GetStreamCharSet() );
+/*N*/           pChartData->SomeData1() = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );
+/*N*/           pChartData->SomeData2() = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );
+/*N*/           pChartData->SomeData3() = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );
+/*N*/           pChartData->SomeData4() = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );
 /*N*/
 /*N*/           if (nMoreData >= 3) rIn >> fSpotIntensity;
 /*N*/           if (nMoreData <= 8) fAmbientIntensity = fSpotIntensity;

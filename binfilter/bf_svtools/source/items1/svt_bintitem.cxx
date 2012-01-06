@@ -58,8 +58,7 @@ SfxBigIntItem::SfxBigIntItem(USHORT which, SvStream &rStream)
     : SfxPoolItem(which)
 {
     DBG_CTOR(SfxBigIntItem, 0);
-    UniString sTmp;
-    rStream.ReadUniOrByteString(sTmp, rStream.GetStreamCharSet());
+    UniString sTmp = rStream.ReadUniOrByteString(rStream.GetStreamCharSet());
     BigInt aTmp(sTmp);
     aVal = aTmp;
 }

@@ -614,7 +614,7 @@ SvStream& operator >> (SvStream& rIn, SdDrawDocument& rDoc)
 
     if (rDoc.nFileFormatVersion >= 10)
     {
-        rIn.ReadUniOrByteString( rDoc.aPresPage, eSysSet );
+        rDoc.aPresPage = rIn.ReadUniOrByteString(eSysSet);
     }
 
     if (rDoc.nFileFormatVersion >= 11)

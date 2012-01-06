@@ -176,7 +176,7 @@ namespace binfilter {
 /*N*/   UINT16 nTmp16;
 /*N*/   String aFileNameRel;
 /*N*/
-/*N*/   rIn.ReadUniOrByteString(aFileNameRel, rIn.GetStreamCharSet());
+/*N*/   aFileNameRel = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/
 /*N*/   if( aFileNameRel.Len() )
 /*N*/   {
@@ -189,7 +189,7 @@ namespace binfilter {
 /*N*/       aFileName.Erase();
 /*N*/
 /*N*/   // UNICODE: rIn >> aFilterName;
-/*N*/   rIn.ReadUniOrByteString(aFilterName, rIn.GetStreamCharSet());
+/*N*/   aFilterName = rIn.ReadUniOrByteString(rIn.GetStreamCharSet());
 /*N*/
 /*N*/   // #90477# rIn >> nTmp16; eCharSet = rtl_TextEncoding(nTmp16);
 /*N*/   rIn >> nTmp16;

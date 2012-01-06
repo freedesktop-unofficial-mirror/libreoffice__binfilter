@@ -396,8 +396,8 @@ static const char pStorageName[] = "Configurations";
 /*N*/       // retrieve type of item and human readable name
 /*N*/       long lLength, lPos;             // dummies
 /*N*/         (*pStream) >> pItem->nType >> lPos >> lLength;
-/*N*/       pItem->bDefault = ( lPos == -1L );
-/*N*/         pStream->ReadUniOrByteString( pItem->aName, pStream->GetStreamCharSet() );
+/*N*/         pItem->bDefault = ( lPos == -1L );
+/*N*/         pItem->aName = pStream->ReadUniOrByteString( pStream->GetStreamCharSet() );
 /*N*/         if ( pStream->GetError() )
 /*N*/         {
 /*?*/             pItem->bDefault = TRUE;

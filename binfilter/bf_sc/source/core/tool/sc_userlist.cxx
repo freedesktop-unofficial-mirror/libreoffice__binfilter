@@ -84,7 +84,7 @@ namespace binfilter {
 
 /*N*/ ScUserListData::ScUserListData( SvStream& rStream )
 /*N*/ {
-/*N*/   rStream.ReadUniOrByteString( aStr, rStream.GetStreamCharSet() );
+/*N*/   aStr = rStream.ReadUniOrByteString( rStream.GetStreamCharSet() );
 /*N*/   InitTokens();
 /*N*/ }
 

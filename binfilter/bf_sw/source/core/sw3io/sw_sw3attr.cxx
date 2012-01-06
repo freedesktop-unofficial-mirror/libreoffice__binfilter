@@ -256,7 +256,7 @@ namespace binfilter {
 /*N*/   if( pIo )
 /*N*/       pNew->SetMap( pIo->InImageMap( sURL1, sTargetFrameName1, bServerMap ) );
 /*N*/   if( nIVer>=1 )
-/*N*/       rStrm.ReadUniOrByteString( sName1, rStrm.GetStreamCharSet() );
+/*N*/       sName1 = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
 /*N*/
 /*N*/   // fix #30592#: Boese Falle: Beim setzen einer URL wird eine Image-Map
 /*N*/   // wieder geloescht.
@@ -325,8 +325,8 @@ SfxPoolItem* SwFmtFtnEndAtTxtEnd::Create( SvStream &rStrm, USHORT nVer ) const
         String sPostfix, sSuffix1;
         rStrm >> nOffset1
               >> nFmtType;
-        rStrm.ReadUniOrByteString( sPostfix, rStrm.GetStreamCharSet() );
-        rStrm.ReadUniOrByteString( sSuffix1, rStrm.GetStreamCharSet() );
+        sPostfix = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
+        sSuffix1 = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
 
         pNew->SetNumType( (SvxExtNumType)nFmtType );
         pNew->SetOffset( nOffset1 );
@@ -640,10 +640,9 @@ SfxPoolItem* SwGammaGrf::Create(SvStream & rStrm, USHORT ) const
 /*N*/ SfxPoolItem* SwNumRuleItem::Create( SvStream& rStrm,
 /*N*/                                            USHORT nIVer ) const
 /*N*/ {
-/*N*/   String sTmp;
 /*N*/   UINT16 nPoolId;
 /*N*/
-/*N*/   rStrm.ReadUniOrByteString( sTmp, rStrm.GetStreamCharSet() );
+/*N*/   String sTmp = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
 /*N*/   if( nIVer>0 )
 /*N*/   {
 /*N*/       // Pool-NumRules muessen evtl. noch umbenannt werden.
