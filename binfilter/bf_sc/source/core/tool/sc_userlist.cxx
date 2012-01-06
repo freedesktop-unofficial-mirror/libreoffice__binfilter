@@ -56,8 +56,8 @@ namespace binfilter {
 /*N*/       pUpperSub   = new String[nTokenCount];
 /*N*/       for (USHORT i=0; i<nTokenCount; i++)
 /*N*/       {
-/*N*/           pUpperSub[i] = pSubStrings[i] = aStr.GetToken((xub_StrLen)i,cSep);
-/*N*/           ScGlobal::pCharClass->toUpper(pUpperSub[i]);
+/*N*/           pSubStrings[i] = aStr.GetToken((xub_StrLen)i,cSep);
+/*N*/           pUpperSub[i] = ScGlobal::pCharClass->uppercase(pSubStrings[i]);
 /*N*/       }
 /*N*/   }
 /*N*/   else
@@ -98,8 +98,7 @@ namespace binfilter {
 /*N*/           return TRUE;
 /*N*/       }
 /*N*/
-/*N*/   String aUpStr = rSubStr;
-/*N*/   ScGlobal::pCharClass->toUpper(aUpStr);
+/*N*/   String aUpStr = ScGlobal::pCharClass->uppercase(rSubStr);
 /*N*/   for (i=0; i<nTokenCount; i++)
 /*N*/       if (aUpStr == pUpperSub[i])
 /*N*/       {

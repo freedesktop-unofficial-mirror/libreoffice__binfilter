@@ -1465,7 +1465,7 @@ void SwDocUpdtFld::GetBodyNode( const SwSectionNode& rSectNd )
 /*N*/   {
 /*N*/       SetFieldsDirty( TRUE );
 /*N*/       // suchen und aus der HashTabelle entfernen
-/*N*/       GetAppCharClass().toLower( sFldName );
+/*N*/       sFldName = GetAppCharClass().lowercase(sFldName);
 /*N*/       USHORT n;
 /*N*/
 /*N*/       SwHash* pFnd = Find( sFldName, GetFldTypeTable(), TBLSZ, &n );

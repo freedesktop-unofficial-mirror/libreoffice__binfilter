@@ -1428,7 +1428,7 @@ BOOL ScInterpreter::DoubleRefToPosSingleRef( const ScRange& rRange, ScAddress& r
 /*N*/   USHORT nIndex;
 /*N*/   BYTE nParamCount = GetByte();
 /*N*/   String aUnoName;
-/*N*/   String aFuncName( ScGlobal::pCharClass->upper( pCur->GetExternal() ) );
+/*N*/   String aFuncName( ScGlobal::pCharClass->uppercase( pCur->GetExternal() ) );
 /*N*/   if (ScGlobal::GetFuncCollection()->SearchFunc(aFuncName, nIndex))
 /*N*/   {
 /*?*/       FuncData* pFuncData = (FuncData*)ScGlobal::GetFuncCollection()->At(nIndex);

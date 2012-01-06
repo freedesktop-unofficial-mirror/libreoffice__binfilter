@@ -96,13 +96,13 @@ namespace binfilter {
 /*N*/       case SVX_CASEMAP_KAPITAELCHEN:
 /*N*/       case SVX_CASEMAP_VERSALIEN:
 /*N*/       {
-/*N*/           aCharClass.toUpper( aTxt );
+/*N*/           aTxt = aCharClass.uppercase( aTxt );
 /*N*/           break;
 /*N*/       }
 /*N*/
 /*N*/       case SVX_CASEMAP_GEMEINE:
 /*N*/       {
-/*?*/           aCharClass.toLower( aTxt );
+/*?*/           aTxt = aCharClass.lowercase( aTxt );
 /*?*/           break;
 /*?*/       }
 /*?*/       case SVX_CASEMAP_TITEL:
@@ -121,7 +121,7 @@ namespace binfilter {
 /*?*/                   if( bBlank )
 /*?*/                   {
 /*?*/                       String aTemp( aTxt.GetChar( i ) );
-/*?*/                       aCharClass.toUpper( aTemp );
+/*?*/                       aTemp = aCharClass.uppercase( aTemp );
 /*?*/                       aTxt.Replace( i, 1, aTemp );
 /*?*/                   }
 /*?*/                   bBlank = FALSE;

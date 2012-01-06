@@ -1467,7 +1467,7 @@ namespace binfilter {
 /*N*/                 bMayBeFuncName = TRUE;      // operators and other opcodes
 /*N*/
 /*N*/             String aOrg( cSymbol ); // evtl. Dateinamen in IsReference erhalten
-/*N*/             String aUpper( ScGlobal::pCharClass->upper( aOrg ) );
+/*N*/             String aUpper( ScGlobal::pCharClass->uppercase( aOrg ) );
 /*N*/             // Spalte DM konnte nicht referiert werden, IsReference vor IsValue
 /*N*/             // #42016# italian ARCTAN.2 gab #REF! => IsOpCode vor IsReference
 /*N*/             if ( !(bMayBeFuncName && IsOpCode( aUpper ))
@@ -1482,7 +1482,7 @@ namespace binfilter {
 /*N*/                 SetError( errNoName );
 /*N*/                 if ( bAutoCorrect )
 /*N*/                 {   // provide single token information and continue
-/*?*/                     ScGlobal::pCharClass->toLower( aUpper );
+/*?*/                     aUpper = ScGlobal::pCharClass->lowercase( aUpper );
 /*?*/                     aToken.SetString( aUpper.GetBuffer() );
 /*?*/                     aToken.NewOpCode( ocBad );
 /*?*/                     pRawToken = aToken.Clone();

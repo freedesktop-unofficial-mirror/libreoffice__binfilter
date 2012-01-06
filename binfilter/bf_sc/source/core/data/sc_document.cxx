@@ -132,15 +132,14 @@ namespace binfilter {
 
 /*N*/ BOOL ScDocument::GetTable( const String& rName, USHORT& rTab ) const
 /*N*/ {
-/*N*/   String aUpperName = rName;
-/*N*/   ScGlobal::pCharClass->toUpper(aUpperName);
+/*N*/   String aUpperName = ScGlobal::pCharClass->uppercase(rName);
 /*N*/   String aCompName;
 /*N*/
 /*N*/   for (USHORT i=0; i<=MAXTAB; i++)
 /*N*/       if (pTab[i])
 /*N*/       {
 /*N*/           pTab[i]->GetName( aCompName );
-/*N*/           ScGlobal::pCharClass->toUpper(aCompName);
+/*N*/           aCompName = ScGlobal::pCharClass->uppercase(aCompName);
 /*N*/           if (aUpperName == aCompName)
 /*N*/           {
 /*N*/               rTab = i;

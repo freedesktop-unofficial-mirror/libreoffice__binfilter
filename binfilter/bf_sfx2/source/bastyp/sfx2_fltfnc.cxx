@@ -78,7 +78,7 @@ struct FlagMapping_Impl
 //----------------------------------------------------------------
 /*N*/ inline String ToUpper_Impl( const String &rStr )
 /*N*/ {
-/*N*/     return SvtSysLocale().GetCharClass().upper( rStr );
+/*N*/     return SvtSysLocale().GetCharClass().uppercase( rStr );
 /*N*/ }
 
 //----------------------------------------------------------------

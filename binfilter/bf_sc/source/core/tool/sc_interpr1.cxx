@@ -1657,8 +1657,7 @@ void ScInterpreter::ScTrim()
 
 void ScInterpreter::ScUpper()
 {
-    String aString = GetString();
-    ScGlobal::pCharClass->toUpper(aString);
+    String aString = ScGlobal::pCharClass->uppercase(GetString());
     PushString(aString);
 }
 
@@ -1672,8 +1671,8 @@ void ScInterpreter::ScPropper()
     // (would crash now that the empty string is const)
     if ( nLen > 0 )
     {
-        String aUpr( ScGlobal::pCharClass->upper( aStr ) );
-        String aLwr( ScGlobal::pCharClass->lower( aStr ) );
+        String aUpr( ScGlobal::pCharClass->uppercase( aStr ) );
+        String aLwr( ScGlobal::pCharClass->lowercase( aStr ) );
         register sal_Unicode* pStr = aStr.GetBufferAccess();
         const sal_Unicode* pUpr = aUpr.GetBuffer();
         const sal_Unicode* pLwr = aLwr.GetBuffer();
@@ -1697,8 +1696,7 @@ void ScInterpreter::ScPropper()
 
 void ScInterpreter::ScLower()
 {
-    String aString( GetString() );
-    ScGlobal::pCharClass->toLower(aString);
+    String aString = ScGlobal::pCharClass->lowercase(GetString());
     PushString(aString);
 }
 

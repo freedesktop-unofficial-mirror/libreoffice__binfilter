@@ -81,7 +81,7 @@ struct _FindItem
 /*N*/   SwSection* pSect = rpSectFmt->GetSection();
 /*N*/   if( pSect )
 /*N*/   {
-/*N*/       String sNm( GetAppCharClass().lower( pSect->GetName() ));
+/*N*/       String sNm( GetAppCharClass().lowercase( pSect->GetName() ));
 /*N*/       if( sNm.Equals( ((_FindItem*)pArgs)->rItem ))
 /*N*/       {
 /*N*/           // gefunden, als erfrage die Daten
@@ -102,7 +102,7 @@ struct _FindItem
 
 /*N*/ BOOL lcl_FindTable( const SwFrmFmtPtr& rpTableFmt, void* pArgs )
 /*N*/ {
-/*N*/   String sNm( GetAppCharClass().lower( rpTableFmt->GetName() ));
+/*N*/   String sNm( GetAppCharClass().lowercase( rpTableFmt->GetName() ));
 /*N*/   if( sNm.Equals( ((_FindItem*)pArgs)->rItem ))
 /*N*/   {
 /*?*/       SwTable* pTmpTbl;
@@ -128,7 +128,7 @@ struct _FindItem
 /*N*/ ::binfilter::SvLinkSource* SwDoc::CreateLinkSource( const String& rItem )
 /*N*/ {
 /*N*/   // haben wir ueberhaupt das Item vorraetig?
-/*N*/   String sItem( GetAppCharClass().lower( rItem ));
+/*N*/   String sItem( GetAppCharClass().lowercase( rItem ));
 /*N*/   _FindItem aPara( sItem );
 /*N*/
 /*N*/   SwServerObject* pObj;
@@ -180,7 +180,7 @@ struct _FindItem
 /*N*/   const CharClass& rCC = GetAppCharClass();
 /*N*/
 /*N*/   // alte "Mechanik"
-/*N*/   rCC.toLower( sItem );
+/*N*/   sItem = rCC.lowercase( sItem );
 /*N*/   _FindItem aPara( sItem );
 /*N*/   if( pBookmarkTbl->Count() )
 /*N*/   {

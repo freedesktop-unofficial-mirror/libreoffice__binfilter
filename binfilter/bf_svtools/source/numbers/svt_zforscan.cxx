@@ -140,7 +140,7 @@ void ImpSvNumberformatScan::InitSpecialKeyword( NfKeywordIndex eIdx ) const
     {
         case NF_KEY_TRUE :
             ((ImpSvNumberformatScan*)this)->sKeyword[NF_KEY_TRUE] =
-                pFormatter->GetCharClass()->upper(
+                pFormatter->GetCharClass()->uppercase(
                 pFormatter->GetLocaleData()->getTrueWord() );
             if ( !sKeyword[NF_KEY_TRUE].Len() )
             {
@@ -150,7 +150,7 @@ void ImpSvNumberformatScan::InitSpecialKeyword( NfKeywordIndex eIdx ) const
         break;
         case NF_KEY_FALSE :
             ((ImpSvNumberformatScan*)this)->sKeyword[NF_KEY_FALSE] =
-                pFormatter->GetCharClass()->upper(
+                pFormatter->GetCharClass()->uppercase(
                 pFormatter->GetLocaleData()->getFalseWord() );
             if ( !sKeyword[NF_KEY_FALSE].Len() )
             {
@@ -170,7 +170,7 @@ void ImpSvNumberformatScan::InitCompatCur() const
     // currency symbol for old style ("automatic") compatibility format codes
     pFormatter->GetCompatibilityCurrency( pThis->sCurSymbol, pThis->sCurAbbrev );
     // currency symbol upper case
-    pThis->sCurString = pFormatter->GetCharClass()->upper( sCurSymbol );
+    pThis->sCurString = pFormatter->GetCharClass()->uppercase( sCurSymbol );
     bCompatCurNeedInit = FALSE;
 }
 
@@ -199,7 +199,7 @@ void ImpSvNumberformatScan::SetDependentKeywords()
 
     i18n::NumberFormatCode aFormat = aNumberFormatCode.getFormatCode( NF_NUMBER_STANDARD );
     sNameStandardFormat = aFormat.Code;
-    sKeyword[NF_KEY_GENERAL] = pCharClass->upper( sNameStandardFormat );
+    sKeyword[NF_KEY_GENERAL] = pCharClass->uppercase( sNameStandardFormat );
 
     // preset new calendar keywords
     sKeyword[NF_KEY_AAA].AssignAscii( RTL_CONSTASCII_STRINGPARAM(   "AAA" ) );
@@ -427,7 +427,7 @@ void ImpSvNumberformatScan::ChangeStandardPrec(short nPrec)
 
 Color* ImpSvNumberformatScan::GetColor(String& sStr)
 {
-    String sString = pFormatter->GetCharClass()->upper(sStr);
+    String sString = pFormatter->GetCharClass()->uppercase(sStr);
     const String* pKeyword = GetKeywords();
     size_t i = 0;
     while (i < NF_MAX_DEFAULT_COLORS &&
@@ -497,7 +497,7 @@ Color* ImpSvNumberformatScan::GetColor(String& sStr)
 
 short ImpSvNumberformatScan::GetKeyWord( const String& sSymbol, xub_StrLen nPos )
 {
-    String sString = pFormatter->GetCharClass()->toUpper( sSymbol, nPos, sSymbol.Len() - nPos );
+    String sString = pFormatter->GetCharClass()->uppercase( sSymbol, nPos, sSymbol.Len() - nPos );
     const String* pKeyword = GetKeywords();
     // #77026# for the Xcl perverts: the GENERAL keyword is recognized anywhere
     if ( sString.Search( pKeyword[NF_KEY_GENERAL] ) == 0 )
@@ -618,7 +618,7 @@ short ImpSvNumberformatScan::Next_Symbol( const String& rStr,
                         !(nPos > 1 && rStr.GetChar( nPos-2 ) == '[') )
                 {
                     String aTest( rStr.Copy( nPos-1, sCurString.Len() ) );
-                    pChrCls->toUpper( aTest );
+                    aTest = pChrCls->uppercase( aTest );
                     if ( aTest == sCurString )
                     {
                         sSymbol = rStr.Copy( --nPos, sCurString.Len() );
@@ -716,7 +716,7 @@ short ImpSvNumberformatScan::Next_Symbol( const String& rStr,
                                     sCurString.Search( sKeyword[nTmpType] ) == 0 )
                                 {
                                     String aTest( rStr.Copy( nPos-1, sCurString.Len() ) );
-                                    pChrCls->toUpper( aTest );
+                                    aTest = pChrCls->uppercase( aTest );
                                     if ( aTest == sCurString )
                                         bCurrency = TRUE;
                                 }
@@ -856,7 +856,7 @@ xub_StrLen ImpSvNumberformatScan::Symbol_Division(const String& rString)
 {
     nCurrPos = STRING_NOTFOUND;
                                                     // Ist Waehrung im Spiel?
-    String sString = pFormatter->GetCharClass()->upper(rString);
+    String sString = pFormatter->GetCharClass()->uppercase(rString);
     xub_StrLen nCPos = 0;
     while (nCPos != STRING_NOTFOUND)
     {
@@ -1412,7 +1412,7 @@ xub_StrLen ImpSvNumberformatScan::FinalScan( String& rString, String& rComment )
     String sOldTimeSep      = pLoc->getTimeSep();
     String sOldTime100SecSep= pLoc->getTime100SecSep();
     String sOldCurSymbol    = GetCurSymbol();
-    String sOldCurString    = GetCurString();
+    rtl::OUString sOldCurString = GetCurString();
     sal_Unicode cOldKeyH    = sKeyword[NF_KEY_H].GetChar(0);
     sal_Unicode cOldKeyMI   = sKeyword[NF_KEY_MI].GetChar(0);
     sal_Unicode cOldKeyS    = sKeyword[NF_KEY_S].GetChar(0);
@@ -2224,7 +2224,7 @@ xub_StrLen ImpSvNumberformatScan::FinalScan( String& rString, String& rComment )
                                 if (bThousand)              // doppelt
                                     return nPos;
                                 bThousand = TRUE;           // bei Time frei
-                                sal_Unicode cChar = pChrCls->upper( NextChar(i) ).GetChar(0);
+                                sal_Unicode cChar = pChrCls->uppercase( rtl::OUString(NextChar(i)) )[0];
                                 if ( cChar == cOldKeyH )
                                     nThousand = 1;      // H
                                 else if ( cChar == cOldKeyMI )
@@ -2522,8 +2522,8 @@ xub_StrLen ImpSvNumberformatScan::FinalScan( String& rString, String& rComment )
                         continue;   // for
                     // DM might be splitted into D and M
                     if ( sStrArray[i].Len() < sOldCurSymbol.Len() &&
-                            pChrCls->toUpper( sStrArray[i], 0, 1 ).GetChar(0) ==
-                            sOldCurString.GetChar(0) )
+                            pChrCls->uppercase( sStrArray[i], 0, 1 )[0] ==
+                            sOldCurString[0] )
                     {
                         String aTmp( sStrArray[i] );
                         USHORT j = i + 1;
@@ -2533,7 +2533,7 @@ xub_StrLen ImpSvNumberformatScan::FinalScan( String& rString, String& rComment )
                         {
                             aTmp += sStrArray[j++];
                         }
-                        if ( pChrCls->upper( aTmp ) == sOldCurString )
+                        if ( pChrCls->uppercase( aTmp ) == sOldCurString )
                         {
                             sStrArray[i++] = aTmp;
                             for ( ; i<j; i++ )
@@ -2629,7 +2629,7 @@ xub_StrLen ImpSvNumberformatScan::FinalScan( String& rString, String& rComment )
                         {   // dM -> DM  or  DM -> $  in old automatic
                             // currency formats, oh my ..., why did we ever
                             // introduce them?
-                            String aTmp( pChrCls->toUpper(
+                            String aTmp( pChrCls->uppercase(
                                 sStrArray[iPos], nArrPos,
                                 sStrArray[iPos].Len()-nArrPos ) );
                             xub_StrLen nCPos = aTmp.Search( sOldCurString );
@@ -2639,9 +2639,9 @@ xub_StrLen ImpSvNumberformatScan::FinalScan( String& rString, String& rComment )
                                     bConvertMode && bConvertSystemToSystem ?
                                     GetCurSymbol() : sOldCurSymbol;
                                 sStrArray[iPos].Replace( nArrPos+nCPos,
-                                    sOldCurString.Len(), rCur );
+                                    sOldCurString.getLength(), rCur );
                                 rString.Replace( nStringPos+nCPos,
-                                    sOldCurString.Len(), rCur );
+                                    sOldCurString.getLength(), rCur );
                             }
                             nStringPos = rString.Len();
                             if ( iPos == i )
@@ -2662,7 +2662,7 @@ xub_StrLen ImpSvNumberformatScan::FinalScan( String& rString, String& rComment )
                     i--;    // enter switch on next symbol again
                 if ( eScannedType == NUMBERFORMAT_CURRENCY && nStringPos < rString.Len() )
                 {   // same as above, since last RemoveQuotes
-                    String aTmp( pChrCls->toUpper(
+                    String aTmp( pChrCls->uppercase(
                         sStrArray[iPos], nArrPos,
                         sStrArray[iPos].Len()-nArrPos ) );
                     xub_StrLen nCPos = aTmp.Search( sOldCurString );
@@ -2672,9 +2672,9 @@ xub_StrLen ImpSvNumberformatScan::FinalScan( String& rString, String& rComment )
                             bConvertMode && bConvertSystemToSystem ?
                             GetCurSymbol() : sOldCurSymbol;
                         sStrArray[iPos].Replace( nArrPos+nCPos,
-                            sOldCurString.Len(), rCur );
+                            sOldCurString.getLength(), rCur );
                         rString.Replace( nStringPos+nCPos,
-                            sOldCurString.Len(), rCur );
+                            sOldCurString.getLength(), rCur );
                     }
                 }
             }

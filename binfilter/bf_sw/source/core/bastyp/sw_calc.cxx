@@ -273,7 +273,7 @@ static int
 /*N*/
 /*N*/   sCurrSym = pLclData->getCurrSymbol();
 /*N*/   sCurrSym.EraseLeadingChars().EraseTrailingChars();
-/*N*/   pCharClass->toLower( sCurrSym );
+/*N*/   sCurrSym = pCharClass->lowercase( sCurrSym );
 /*N*/
 /*N*/ static sal_Char const
 /*N*/   sNType0[] = "false",
@@ -477,8 +477,7 @@ static int
 
 /*N*/ SwCalcExp* SwCalc::VarInsert( const String &rStr )
 /*N*/ {
-/*N*/   String aStr( rStr );
-/*N*/   pCharClass->toLower( aStr );
+/*N*/   String aStr(pCharClass->lowercase(rStr));
 /*N*/   return VarLook( aStr, 1 );
 /*N*/ }
 
@@ -490,10 +489,9 @@ static int
 /*N*/ SwCalcExp* SwCalc::VarLook( const String& rStr, USHORT ins )
 /*N*/ {
 /*N*/   USHORT ii = 0;
-/*N*/     String aStr( rStr );
-/*N*/   pCharClass->toLower( aStr );
+/*N*/   String aStr(pCharClass->lowercase(rStr));
 /*N*/
-/*N*/     SwHash* pFnd = Find( aStr, VarTable, TBLSZ, &ii );
+/*N*/   SwHash* pFnd = Find( aStr, VarTable, TBLSZ, &ii );
 /*N*/
 /*N*/   if( !pFnd )
 /*N*/   {
@@ -606,8 +604,7 @@ static int
 
 /*?*/ void SwCalc::VarChange( const String& rStr, const SwSbxValue& rValue )
 /*?*/ {
-/*?*/   String aStr( rStr );
-/*?*/   pCharClass->toLower( aStr );
+/*?*/   String aStr(pCharClass->lowercase(rStr));
 /*?*/
 /*?*/   USHORT nPos = 0;
 /*?*/   SwCalcExp* pFnd = (SwCalcExp*)Find( aStr, VarTable, TBLSZ, &nPos );
@@ -680,9 +677,8 @@ static int
 /*M*/           String aName( sCommand.Copy( nRealStt, aRes.EndPos - nRealStt ));
 /*M*/             //#101436#: the variable may contain a database name it must not be converted to lower case
 /*M*/             // instead all further comparisons must be done case-insensitive
-/*M*/             //pCharClass->toLower( aName );
-/*M*/             String sLowerCaseName(aName);
-/*M*/             pCharClass->toLower( sLowerCaseName );
+/*M*/             //pCharClass->lowercase( aName );
+/*M*/             String sLowerCaseName(pCharClass->lowercase(aName));
 /*M*/           // Currency-Symbol abfangen
 /*M*/             if( sLowerCaseName == sCurrSym )
 /*M*/           {

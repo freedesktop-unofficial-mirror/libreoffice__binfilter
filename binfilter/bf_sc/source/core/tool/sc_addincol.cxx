@@ -170,8 +170,8 @@ public:
 /*N*/     else
 /*N*/         pArgDescs = NULL;
 /*N*/
-/*N*/     ScGlobal::pCharClass->toUpper(aUpperName);
-/*N*/     ScGlobal::pCharClass->toUpper(aUpperLocal);
+/*N*/     aUpperName = ScGlobal::pCharClass->uppercase(aUpperName);
+/*N*/     aUpperLocal = ScGlobal::pCharClass->uppercase(aUpperLocal);
 /*N*/ }
 
 /*N*/ ScUnoAddInFuncData::~ScUnoAddInFuncData()

@@ -1432,7 +1432,7 @@ BOOL SvNumberFormatter::GetPreviewStringGuess( const String& sFormatString,
     eLnge = ActLnge;
     BOOL bEnglish = (eLnge == LANGUAGE_ENGLISH_US);
 
-    String aFormatStringUpper( pCharClass->upper( sFormatString ) );
+    String aFormatStringUpper( pCharClass->uppercase( sFormatString ) );
     sal_uInt32 nCLOffset = ImpGenerateCL( eLnge );
     sal_uInt32 nKey = ImpIsEntry( aFormatStringUpper, nCLOffset, eLnge );
     if ( nKey != NUMBERFORMAT_ENTRY_NOT_FOUND )
