@@ -29,6 +29,7 @@
 #define _IMPLDDE_HXX
 
 #include <bf_so3/linksrc.hxx>
+#include <tools/link.hxx>
 #include <tools/string.hxx>
 
 namespace binfilter

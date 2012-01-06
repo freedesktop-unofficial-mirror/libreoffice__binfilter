@@ -33,6 +33,7 @@
 
 #include "sbx.hxx"
 #include <bf_basic/sbxobj.hxx>
+#include <tools/link.hxx>
 #include <rtl/ustring.hxx>
 #include <osl/mutex.hxx>
 

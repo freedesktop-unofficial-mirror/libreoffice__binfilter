@@ -30,6 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
+#include <tools/link.hxx>
 #include <tools/string.hxx>
 
 #include <viewsh.hxx>           // fuer ViewShell

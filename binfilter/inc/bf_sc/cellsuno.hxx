@@ -89,6 +89,7 @@
 #include <cppuhelper/implbase2.hxx>
 #include <cppuhelper/implbase3.hxx>
 
+#include <tools/link.hxx>
 #include <vector>
 namespace binfilter {
 
