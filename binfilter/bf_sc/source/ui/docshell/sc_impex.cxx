@@ -472,13 +472,13 @@ enum DoubledQuoteMode
 /*N*/
 /*N*/   while(--nSkipLines>0)
 /*N*/   {
-/*?*/       rStrm.ReadUniOrByteStringLine( aLine );     // content is ignored
+/*?*/       rStrm.ReadUniOrByteStringLine( aLine, rStrm.GetStreamCharSet() );     // content is ignored
 /*?*/       if ( rStrm.IsEof() )
 /*?*/           break;
 /*N*/   }
 /*N*/   for( ;; )
 /*N*/   {
-/*N*/       rStrm.ReadUniOrByteStringLine( aLine );
+/*N*/       rStrm.ReadUniOrByteStringLine( aLine, rStrm.GetStreamCharSet() );
 /*N*/       if ( rStrm.IsEof() )
 /*N*/           break;
 /*N*/
