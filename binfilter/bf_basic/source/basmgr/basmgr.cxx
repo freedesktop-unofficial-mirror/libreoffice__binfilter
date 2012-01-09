@@ -977,7 +977,7 @@ void BasicManager::LoadBasicManager( SotStorage& rStorage, const String& rBaseUR
             if ( pLibs->aBasicLibPath.Len() )
             {
                 // Lib im Pfad suchen...
-                String aSearchFile = pInfo->GetRelStorageName();
+                rtl::OUString aSearchFile = pInfo->GetRelStorageName();
                 SvtPathOptions aPathCFG;
                 if( aPathCFG.SearchFile( aSearchFile, SvtPathOptions::PATH_BASIC ) )
                 {

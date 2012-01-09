@@ -1025,7 +1025,9 @@ void GraphicFilter::ImplInit()
     {
         rtl::OUString url(RTL_CONSTASCII_USTRINGPARAM("$BRAND_BASE_DIR/program"));
         rtl::Bootstrap::expandMacros(url); //TODO: detect failure
-        utl::LocalFileHelper::ConvertURLToPhysicalName(url, aFilterPath);
+        rtl::OUString sTmp;
+        utl::LocalFileHelper::ConvertURLToPhysicalName(url, sTmp);
+        aFilterPath = sTmp;
     }
 
     pErrorEx = new FilterErrorEx;

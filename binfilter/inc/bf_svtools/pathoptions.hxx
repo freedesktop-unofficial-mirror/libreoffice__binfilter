@@ -111,7 +111,7 @@ public:
 
     String          SubstituteVariable( const String& rVar );
     String          UseVariable( const String& rVar );
-    sal_Bool        SearchFile( String& rIniFile, Pathes ePath = PATH_USERCONFIG );
+    sal_Bool        SearchFile( rtl::OUString& rIniFile, Pathes ePath = PATH_USERCONFIG );
     sal_Bool        IsReadonly() const;
 };
 

@@ -312,7 +312,7 @@ sal_False           Das Objekt konnte nicht geladen werden
 
     SFX_ITEMSET_ARG( pSet, pBaseItem, SfxStringItem,
                     SID_BASEURL, sal_False);
-    String aBaseURL;
+    rtl::OUString aBaseURL;
     SFX_ITEMSET_ARG( pMedium->GetItemSet(), pSalvageItem, SfxStringItem, SID_DOC_SALVAGE, sal_False);
     if( pBaseItem )
         aBaseURL = pBaseItem->GetValue();
@@ -325,7 +325,7 @@ sal_False           Das Objekt konnte nicht geladen werden
         }
         else if ( pSalvageItem )
         {
-            String aLclName( pMed->GetPhysicalName() );
+            rtl::OUString aLclName( pMed->GetPhysicalName() );
             ::utl::LocalFileHelper::ConvertPhysicalNameToURL( aLclName, aBaseURL );
         }
         else
@@ -392,7 +392,7 @@ sal_False           Das Objekt konnte nicht geladen werden
             if ( !GetError() )
             {
                 const String aOldURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
-                if( aBaseURL.Len() ) ::binfilter::StaticBaseUrl::SetBaseURL( aBaseURL );
+                if( aBaseURL.getLength() ) ::binfilter::StaticBaseUrl::SetBaseURL( aBaseURL );
                 pImp->nLoadedFlags = 0;
                 bOk = xStor.Is() && LoadOwnFormat( *pMed );
                 ::binfilter::StaticBaseUrl::SetBaseURL( aOldURL );
@@ -414,7 +414,7 @@ sal_False           Das Objekt konnte nicht geladen werden
         bHasName = sal_True;
         // Importieren
         const String aOldURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
-        if( aBaseURL.Len() )
+        if( aBaseURL.getLength() )
             ::binfilter::StaticBaseUrl::SetBaseURL( aBaseURL );
         if( !pMedium->GetFilter()->UsesStorage() )
             pMedium->GetInStream();

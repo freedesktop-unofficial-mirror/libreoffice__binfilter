@@ -1599,7 +1599,7 @@ void SAL_CALL SvxGraphicObject::setPropertyValue( const OUString& aPropertyName,
 
                 if( aURLObj.GetProtocol() == INET_PROT_NOT_VALID )
                 {
-                    String aValidURL;
+                    rtl::OUString aValidURL;
 
                     if( ::utl::LocalFileHelper::ConvertPhysicalNameToURL( aURL, aValidURL ) )
                         aURLObj = INetURLObject( aValidURL );

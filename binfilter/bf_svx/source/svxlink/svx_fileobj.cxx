@@ -378,7 +378,7 @@ using namespace ::com::sun::star::uno;
 /*?*/       {
 /*?*/           DBG_WARNING3( "GrafikFehler [%d] - [%s] URL[%s]",
 /*?*/                           nRes,
-/*?*/                           xMed->GetPhysicalName().GetBuffer(),
+/*?*/                           xMed->GetPhysicalName().getStr(),
 /*?*/                           sFileNm.GetBuffer() );
 /*?*/       }
 /*?*/       else

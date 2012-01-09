@@ -466,12 +466,12 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           String aURL;
-/*N*/           if ( aName.Len() )
+/*N*/           rtl::OUString aURL;
+/*N*/           if ( !aName.isEmpty() )
 /*N*/               ::utl::LocalFileHelper::ConvertPhysicalNameToURL( aName, aURL );
 /*N*/           else if ( aLogicName.Len() )
 /*N*/               aURL = GetURLObject().GetMainURL( INetURLObject::NO_DECODE );
-/*N*/           if ( aURL.Len() )
+/*N*/           if ( !aURL.isEmpty() )
 /*N*/               ::ucbhelper::Content::create( aURL, xEnv, pImp->aContent );
 /*N*/       }
 /*N*/     }
@@ -609,9 +609,9 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*N*/ }
 
 //------------------------------------------------------------------
-/*N*/ const String& SfxMedium::GetPhysicalName() const
+/*N*/ const rtl::OUString& SfxMedium::GetPhysicalName() const
 /*N*/ {
-/*N*/     if ( !aName.Len() && aLogicName.Len() )
+/*N*/     if ( aName.isEmpty() && aLogicName.Len() )
 /*N*/         (( SfxMedium*)this)->CreateFileStream();
 /*N*/
 /*N*/     // return the name then
@@ -665,11 +665,11 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*N*/
 /*N*/     if ( pImp->pTempFile )
 /*N*/     {
-/*?*/       String aURL;
-#ifdef DBG_UTIL
-/*?*/       if ( !::utl::LocalFileHelper::ConvertPhysicalNameToURL( aName, aURL ) )
-/*?*/           OSL_FAIL("Physical name not convertable!");
-#endif
+/*?*/         rtl::OUString aURL;
+/*?*/         if ( !::utl::LocalFileHelper::ConvertPhysicalNameToURL( aName, aURL ) )
+/*?*/         {
+/*?*/             OSL_FAIL("Physical name not convertable!");
+/*?*/         }
 /*?*/         pImp->bIsStorage = SotStorage::IsStorageFile( aURL );
 /*?*/         if ( !pImp->bIsStorage )
 /*?*/             bTriedStorage = TRUE;
@@ -706,7 +706,7 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*N*/     if ( aStorage.Is() || bTriedStorage )
 /*N*/         return aStorage;
 /*N*/
-/*N*/     String aStorageName;
+/*N*/     rtl::OUString aStorageName;
 /*N*/     if ( pImp->pTempFile || pImp->pTempDir )
 /*N*/     {
 /*N*/         // open storage with the URL of the tempfile
@@ -719,12 +719,12 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*N*/     }
 /*N*/     else
 /*N*/     {
-/*N*/         if ( aName.Len() )
+/*N*/         if ( !aName.isEmpty() )
 /*N*/         {
 /*N*/             if ( !::utl::LocalFileHelper::ConvertPhysicalNameToURL( aName, aStorageName ) )
-/*N*/           {
+/*N*/             {
 /*?*/                 OSL_FAIL("Physical name not convertable!");
-/*N*/           }
+/*N*/             }
 /*N*/         }
 /*N*/         else
 /*N*/             aStorageName = GetURLObject().GetMainURL( INetURLObject::NO_DECODE );
@@ -763,7 +763,7 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*?*/                       INetURLObject aObj( aName );
 /*?*/                       if ( aObj.GetProtocol() == INET_PROT_NOT_VALID )
 /*?*/                       {
-/*?*/                           String aURL;
+/*?*/                           rtl::OUString aURL;
 /*?*/                           ::utl::LocalFileHelper::ConvertPhysicalNameToURL( aName, aURL );
 /*?*/                           aObj.SetURL( aURL );
 /*?*/                       }
@@ -872,7 +872,7 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*?*/                     nStorOpenMode = SFX_STREAM_READONLY;
 /*?*/                     aStorage = new SvStorage( aTmpName, nStorOpenMode );
 /*?*/
-/*?*/                     String aTemp;
+/*?*/                     rtl::OUString aTemp;
 /*?*/                     ::utl::LocalFileHelper::ConvertURLToPhysicalName( aTmpName, aTemp );
 /*?*/
 /*?*/                     pImp->bIsTemp = sal_True;
@@ -1001,11 +1001,11 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*N*/ {
 /*N*/   if( pImp->m_bRemoveBackup )
 /*N*/   {
-#ifdef DBG_UTIL
 /*?*/       if ( pImp->m_aBackupURL.getLength() )
 /*?*/           if ( !::utl::UCBContentHelper::Kill( pImp->m_aBackupURL ) )
+/*?*/           {
 /*?*/               OSL_FAIL("Couldn't remove backup file!");
-#endif
+/*?*/           }
 /*?*/       pImp->m_bRemoveBackup = sal_False;
 /*N*/   }
 /*N*/
@@ -1023,7 +1023,7 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*N*/
 /*N*/         ::utl::UcbLockBytesHandler* pHandler = pImp->aHandler;
 /*N*/         INetProtocol eProt = GetURLObject().GetProtocol();
-/*N*/         if ( (eProt != INET_PROT_HTTP && eProt != INET_PROT_FTP) || aName.Len() )
+/*N*/         if ( (eProt != INET_PROT_HTTP && eProt != INET_PROT_FTP) || !aName.isEmpty() )
 /*N*/             pHandler = NULL;
 /*N*/         BOOL bSynchron = pImp->bForceSynchron || ! pImp->aDoneLink.IsSet();
 /*N*/         SFX_ITEMSET_ARG( pSet, pStreamItem, SfxUnoAnyItem, SID_INPUTSTREAM, sal_False);
@@ -1237,7 +1237,7 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*N*/         {
 /*N*/             // try to convert the URL into a physical name - but never change a physical name
 /*N*/             // physical name may be set if the logical name is changed after construction
-/*N*/             if ( !aName.Len() )
+/*N*/             if ( !aName.getLength() )
 /*N*/                 ::utl::LocalFileHelper::ConvertURLToPhysicalName( GetURLObject().GetMainURL( INetURLObject::NO_DECODE ), aName );
 /*N*/             else
 /*?*/                 DBG_ASSERT( pSalvageItem, "Suspicious change of logical name!" );
@@ -1455,10 +1455,10 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*N*/     sal_uInt32 nFormat = pStorage->GetFormat();
 /*N*/     if( !nFormat )
 /*N*/     {
-/*N*/ #ifdef DBG_UTIL
 /*N*/         if( aLogicName.Len() )
+/*N*/         {
 /*N*/             OSL_FAIL( "Unbekanntes StorageFormat, versuche eigenes Format" );
-/*N*/ #endif
+/*N*/         }
 /*N*/         pFilter = SfxObjectFactory::GetDefaultFactory().GetFilterContainer()->
 /*N*/             GetFilter( 0 );
 /*N*/     }
@@ -1495,17 +1495,19 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*N*/
 /*N*/     delete pSet;
 /*N*/
-/*N*/     #ifdef  DBG_UTIL
-/*N*/     if( pImp->bIsTemp && aName.Len() )
+/*N*/     if( pImp->bIsTemp && aName.getLength() )
 /*N*/     {
-/*N*/         String aTemp;
+/*N*/         rtl::OUString aTemp;
 /*N*/         if ( !::utl::LocalFileHelper::ConvertPhysicalNameToURL( aName, aTemp ))
+/*N*/         {
 /*N*/           OSL_FAIL("Physical name not convertable!");
+/*N*/         }
 /*N*/
 /*N*/         if ( !::utl::UCBContentHelper::Kill( aTemp ) )
+/*N*/         {
 /*N*/           OSL_FAIL("Couldn't remove temporary file!");
+/*N*/         }
 /*N*/     }
-/*N*/     #endif
 /*N*/
 /*N*/     pFilter = 0;
 /*N*/
@@ -1711,7 +1713,7 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*N*/     pImp->pTempFile = new ::utl::TempFile();
 /*N*/     pImp->pTempFile->EnableKillingFile( sal_True );
 /*N*/     aName = pImp->pTempFile->GetFileName();
-/*N*/     if ( !aName.Len() )
+/*N*/     if ( !aName.getLength() )
 /*N*/     {
 /*N*/         SetError( ERRCODE_IO_CANTWRITE );
 /*N*/         return;
@@ -1755,7 +1757,7 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*N*/     pImp->pTempFile = new ::utl::TempFile();
 /*N*/     pImp->pTempFile->EnableKillingFile( sal_True );
 /*N*/     aName = pImp->pTempFile->GetFileName();
-/*N*/     if ( !aName.Len() )
+/*N*/     if ( !aName.getLength() )
 /*N*/     {
 /*?*/         SetError( ERRCODE_IO_CANTWRITE );
 /*?*/         return;

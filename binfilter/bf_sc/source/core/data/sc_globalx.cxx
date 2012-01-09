@@ -70,7 +70,7 @@ namespace binfilter {
 /*N*/           {
 /*N*/               //  use LocalFileHelper to convert the path to a URL that always points
 /*N*/               //  to the file on the server
-/*N*/               String aUrl;
+/*N*/               rtl::OUString aUrl;
 /*N*/               if ( ::utl::LocalFileHelper::ConvertPhysicalNameToURL( aPath, aUrl ) )
 /*N*/                   aPath = aUrl;
 /*N*/

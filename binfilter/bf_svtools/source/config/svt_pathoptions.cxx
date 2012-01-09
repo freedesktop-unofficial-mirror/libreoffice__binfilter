@@ -279,7 +279,7 @@ const String& SvtPathOptions_Impl::GetPath( SvtPathOptions::Pathes ePath )
     if ( ePath < SvtPathOptions::PATH_COUNT )
     {
         OUString    aPathValue;
-        String      aResult;
+        OUString    aResult;
         sal_Int32   nHandle = m_aMapEnumToPropHandle[ (sal_Int32)ePath ];
 
         // Substitution is done by the service itself using the substition service
@@ -313,7 +313,7 @@ void SvtPathOptions_Impl::SetPath( SvtPathOptions::Pathes ePath, const String& r
 
     if ( ePath < SvtPathOptions::PATH_COUNT )
     {
-        String      aResult;
+        OUString    aResult;
         OUString    aNewValue;
         Any         a;
 
@@ -430,7 +430,7 @@ OUString SvtPathOptions_Impl::SubstVar( const OUString& rVar )
     if ( bConvertLocal )
     {
         // Convert the URL to a system path for special path variables
-        String aReturn;
+        rtl::OUString aReturn;
         utl::LocalFileHelper::ConvertURLToPhysicalName( aWorkText, aReturn );
         return aReturn;
     }
@@ -744,10 +744,10 @@ String SvtPathOptions::UseVariable( const String& rPath )
 
 // -----------------------------------------------------------------------
 
-sal_Bool SvtPathOptions::SearchFile( String& rIniFile, Pathes ePath )
+sal_Bool SvtPathOptions::SearchFile( rtl::OUString& rIniFile, Pathes ePath )
 {
     // check parameter: empty inifile name?
-    if ( !rIniFile.Len() )
+    if ( rIniFile.isEmpty() )
     {
         DBG_ERRORFILE( "SvtPathOptions::SearchFile(): invalid parameter" );
         return sal_False;
@@ -824,7 +824,7 @@ sal_Bool SvtPathOptions::SearchFile( String& rIniFile, Pathes ePath )
                 if ( aObj.HasError() )
                 {
                     bIsURL = FALSE;
-                    String aURL;
+                    rtl::OUString aURL;
                     if ( LocalFileHelper::ConvertPhysicalNameToURL( aPathToken, aURL ) )
                         aObj.SetURL( aURL );
                 }

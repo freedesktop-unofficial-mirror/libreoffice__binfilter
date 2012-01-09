@@ -29,10 +29,7 @@
 #define _ANIMATION
 #define ITEMID_GRF_CROP 0
 
-#ifndef SVX_LIGHT
 #include <bf_so3/lnkbase.hxx>
-#else
-#endif
 
 #include <math.h>
 #include <vcl/salbtype.hxx>
@@ -66,8 +63,6 @@ namespace binfilter {
 // -----------
 
 #define GRAFSTREAMPOS_INVALID 0xffffffff
-
-#ifndef SVX_LIGHT
 
 // ------------------
 // - SdrGraphicLink -
@@ -157,26 +152,6 @@ namespace binfilter {
 /*N*/       DataChanged( aMimeType, aValue );
 /*N*/   }
 /*N*/ }
-
-#else
-
-/*?*/ GraphicFilter* SVX_LIGHT_pGrapicFilter = NULL;
-/*?*/
-/*?*/ GraphicFilter* GetGrfFilter()
-/*?*/ {
-/*?*/   if( !SVX_LIGHT_pGrapicFilter )
-/*?*/     {
-/*?*/       const SvtPathOptions aPathOptions;
-/*?*/
-/*?*/         SVX_LIGHT_pGrapicFilter = new GraphicFilter( FALSE );
-/*?*/         SVX_LIGHT_pGrapicFilter->SetFilterPath( aPathOptions.GetFilterPath() );
-/*?*/     }
-/*?*/
-/*?*/   return SVX_LIGHT_pGrapicFilter;
-/*?*/ }
-
-
-#endif // SVX_LIGHT
 
 // --------------
 // - SdrGrafObj -
@@ -326,8 +301,6 @@ namespace binfilter {
 
 /*N*/ void SdrGrafObj::ImpLinkAnmeldung()
 /*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/
 /*N*/   SvxLinkManager* pLinkManager = pModel != NULL ? pModel->GetLinkManager() : NULL;
 /*N*/
 /*N*/   if( pLinkManager != NULL && pGraphicLink == NULL )
@@ -339,16 +312,12 @@ namespace binfilter {
 /*N*/           pGraphicLink->Connect();
 /*N*/       }
 /*N*/   }
-/*N*/
-/*N*/ #endif // SVX_LIGHT
 /*N*/ }
 
 // -----------------------------------------------------------------------------
 
 /*N*/ void SdrGrafObj::ImpLinkAbmeldung()
 /*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/
 /*N*/   SvxLinkManager* pLinkManager = pModel != NULL ? pModel->GetLinkManager() : NULL;
 /*N*/
 /*N*/   if( pLinkManager != NULL && pGraphicLink!=NULL)
@@ -357,8 +326,6 @@ namespace binfilter {
 /*?*/       pLinkManager->Remove( pGraphicLink );
 /*?*/       pGraphicLink=NULL;
 /*N*/   }
-/*N*/
-/*N*/ #endif // SVX_LIGHT
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -400,7 +367,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/     sal_Bool  bRet = sal_False;
 /*N*/
-/*N*/ #ifndef SVX_LIGHT
 /*N*/     if( pGraphicLink )
 /*N*/     {
 /*N*/         BOOL bIsChanged = pModel->IsChanged();
@@ -409,26 +375,6 @@ namespace binfilter {
 /*N*/
 /*N*/         bRet = sal_True;
 /*N*/     }
-/*N*/ #else
-/*N*/     if( aFileName.Len() )
-/*N*/     {
-/*N*/         // #92205# Load linked graphics for player
-/*N*/         SvStream* pIStm = ::utl::UcbStreamHelper::CreateStream( aFileName, STREAM_READ | STREAM_SHARE_DENYNONE );
-/*N*/
-/*N*/         if( pIStm )
-/*N*/         {
-/*N*/             Graphic           aGraphic;
-/*N*/             GraphicFilter*    pFilter = GetGrfFilter();
-/*N*/             USHORT            nError = pFilter->ImportGraphic( aGraphic, aFileName, *pIStm );
-/*N*/
-/*N*/             pGraphic->SetGraphic( aGraphic );
-/*N*/
-/*N*/             delete pIStm;
-/*N*/         }
-/*N*/
-/*N*/         bRet = sal_True;
-/*N*/     }
-/*N*/ #endif
 /*N*/
 /*N*/     return bRet;
 /*N*/ }
@@ -773,9 +719,7 @@ namespace binfilter {
 /*N*/               }
 /*N*/           }
 /*N*/
-/*N*/ #ifndef SVX_LIGHT
 /*N*/           pBmp = new Bitmap( ResId ( BMAP_GrafikEi, *ImpGetResMgr() ) );
-/*N*/ #endif
 /*N*/       }
 /*N*/
 /*N*/       ImpPaintReplacement( pOutDev, aText, pBmp, bFill );
@@ -937,8 +881,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( aFileName.Len() )
 /*N*/   {
-/*?*/ #ifndef SVX_LIGHT
-/*?*/       String aFileURLStr;
+/*?*/       rtl::OUString aFileURLStr;
 /*?*/
 /*?*/       if( ::utl::LocalFileHelper::ConvertPhysicalNameToURL( aFileName, aFileURLStr ) )
 /*?*/       {
@@ -954,9 +897,6 @@ namespace binfilter {
 /*?*/               delete pIStm;
 /*?*/           }
 /*?*/       }
-/*?*/ #else
-/*?*/       OSL_FAIL("SdrGrafObj::ReadDataTilV10(): SVX_LIGHT kann keine Graphic-Links");
-/*?*/ #endif
 /*N*/   }
 /*N*/   else if( nError != 0 )
 /*?*/       rIn.SetError(nError);
@@ -1303,13 +1243,8 @@ namespace binfilter {
 /*N*/           {
 /*N*/               const ULONG nSwapMode = pModel->GetSwapGraphicsMode();
 /*N*/
-/*N*/ #ifndef SVX_LIGHT
 /*N*/               if( ( ( GRAFSTREAMPOS_INVALID != nGrafStreamPos ) || pGraphic->HasUserData() || pGraphicLink ) &&
 /*N*/                   ( nSwapMode & SDR_SWAPGRAPHICSMODE_PURGE ) )
-/*N*/ #else
-/*N*/               if( ( ( GRAFSTREAMPOS_INVALID != nGrafStreamPos ) || pGraphic->HasUserData() || aFileName.Len() ) &&
-/*N*/                   ( nSwapMode & SDR_SWAPGRAPHICSMODE_PURGE ) )
-/*N*/ #endif
 /*N*/               {
 /*N*/                   pRet = NULL;
 /*N*/               }

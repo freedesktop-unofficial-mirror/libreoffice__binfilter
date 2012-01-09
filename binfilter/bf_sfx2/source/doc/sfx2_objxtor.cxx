@@ -183,7 +183,7 @@ extern AsynchronLink* pPendingCloser;
 /*N*/     {
 /*?*/         if ( aPhysName == pImp->aTempName && !IsHandsOff() )
 /*?*/             HandsOff();
-/*?*/         String aTmp;
+/*?*/         rtl::OUString aTmp;
 /*?*/         ::utl::LocalFileHelper::ConvertPhysicalNameToURL( pImp->aTempName, aTmp );
 /*?*/         ::utl::UCBContentHelper::Kill( aTmp );
 /*N*/     }

@@ -4920,7 +4920,7 @@ BOOL Sw6Layout::InsertLine(SwDoc &rDoc,SwPaM &rPaM,String &rStg,BOOL bLast)
                             aNam = ::binfilter::StaticBaseUrl::SmartRelToAbs( aNam );
                             if( !::binfilter::IsDocument( aNam ) )
                             {
-                                String sFNm( INetURLObject( aNam ).getName() );
+                                rtl::OUString sFNm( INetURLObject( aNam ).getName() );
                                 INetURLObject aURL( *pMyName );
                                 aURL.setName( sFNm );
                                 String sSrchGrf( aURL.GetMainURL(

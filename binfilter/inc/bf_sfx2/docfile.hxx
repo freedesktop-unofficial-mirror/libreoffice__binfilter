@@ -161,7 +161,7 @@ class SfxMedium : public SvRefBase
                         bTriedStorage;
     StreamMode          nStorOpenMode;
     INetURLObject*      pURLObj;
-    String              aName;
+    rtl::OUString       aName;
     SvGlobalName        aFilterClass;
     SvStream*           pInStream;
     SvStream*           pOutStream;
@@ -209,7 +209,7 @@ public:
     const String&       GetName() const {return aLogicName;}
     const INetURLObject& GetURLObject() const;
     ::com::sun::star::uno::Reference< ::com::sun::star::ucb::XContent > GetContent() const;
-    const String&       GetPhysicalName() const;
+    const rtl::OUString& GetPhysicalName() const;
     sal_Bool            IsTemporary() const;
     sal_Bool            IsRemote();
     sal_Bool            IsOpen() const { return aStorage.Is() || pInStream; }
