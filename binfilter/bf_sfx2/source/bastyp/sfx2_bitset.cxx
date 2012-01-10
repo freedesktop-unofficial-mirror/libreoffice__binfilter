@@ -26,7 +26,6 @@
  *
  ************************************************************************/
 
-#include <tools/debug.hxx>
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -42,7 +41,6 @@ namespace binfilter {
 
 /*N*/ BitSet BitSet::operator<<( USHORT nOffset ) const
 /*N*/ {
-/*N*/   DBG_MEMTEST();
 /*N*/   // create a work-copy, return it if nothing to shift
 /*N*/   BitSet aSet(*this);
 /*N*/   if ( nOffset == 0 )
@@ -97,12 +95,10 @@ namespace binfilter {
 
 /*N*/ void BitSet::CopyFrom( const BitSet& rSet )
 /*N*/ {
-/*N*/   DBG_MEMTEST();
 /*N*/   nCount = rSet.nCount;
 /*N*/   nBlocks = rSet.nBlocks;
 /*N*/   if ( rSet.nBlocks )
 /*N*/   {
-/*N*/       DBG_MEMTEST();
 /*N*/       pBitmap = new ULONG[nBlocks];
 /*N*/       memcpy( pBitmap, rSet.pBitmap, 4 * nBlocks );
 /*N*/   }
@@ -116,7 +112,6 @@ namespace binfilter {
 
 /*N*/ BitSet::BitSet()
 /*N*/ {
-/*N*/   DBG_MEMTEST();
 /*N*/   nCount = 0;
 /*N*/   nBlocks = 0;
 /*N*/   pBitmap = 0;
@@ -128,7 +123,6 @@ namespace binfilter {
 
 /*N*/ BitSet::BitSet( const BitSet& rOrig )
 /*N*/ {
-/*N*/   DBG_MEMTEST();
 /*N*/   CopyFrom(rOrig);
 /*N*/ }
 
@@ -143,7 +137,6 @@ namespace binfilter {
 
 /*N*/ BitSet::~BitSet()
 /*N*/ {
-/*N*/   DBG_MEMTEST();
 /*N*/     delete [] pBitmap;
 /*N*/ }
 
@@ -168,7 +161,6 @@ namespace binfilter {
 
 /*N*/ BitSet& BitSet::operator-=(USHORT nBit)
 /*N*/ {
-/*N*/   DBG_MEMTEST();
 /*N*/   USHORT nBlock = nBit / 32;
 /*N*/   ULONG nBitVal = 1L << (nBit % 32);
 /*N*/
@@ -190,7 +182,6 @@ namespace binfilter {
 
 /*N*/ BitSet& BitSet::operator|=( const BitSet& rSet )
 /*N*/ {
-/*N*/   DBG_MEMTEST();
 /*N*/   USHORT nMax = Min(nBlocks, rSet.nBlocks);
 /*N*/
 /*N*/   // expand the bitmap
@@ -227,7 +218,6 @@ namespace binfilter {
 
 /*N*/ BitSet& BitSet::operator|=( USHORT nBit )
 /*N*/ {
-/*N*/   DBG_MEMTEST();
 /*N*/   USHORT nBlock = nBit / 32;
 /*N*/   ULONG nBitVal = 1L << (nBit % 32);
 /*N*/

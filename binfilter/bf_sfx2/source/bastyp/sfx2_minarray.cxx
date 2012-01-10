@@ -40,7 +40,6 @@ namespace binfilter {
 /*N*/   nGrow( nGrowSize ? nGrowSize : 1 ),
 /*N*/   nUnused( nInitSize )
 /*N*/ {
-/*N*/   DBG_MEMTEST();
 /*N*/   USHORT nMSCBug = nInitSize;
 /*N*/
 /*N*/   if ( nMSCBug > 0 )
@@ -53,7 +52,6 @@ namespace binfilter {
 
 /*N*/ SfxPtrArr::SfxPtrArr( const SfxPtrArr& rOrig )
 /*N*/ {
-/*N*/   DBG_MEMTEST();
 /*N*/   nUsed = rOrig.nUsed;
 /*N*/   nGrow = rOrig.nGrow;
 /*N*/   nUnused = rOrig.nUnused;
@@ -71,7 +69,6 @@ namespace binfilter {
 
 /*N*/ SfxPtrArr::~SfxPtrArr()
 /*N*/ {
-/*N*/   DBG_MEMTEST();
 /*N*/   delete [] pData;
 /*N*/ }
 
@@ -79,7 +76,6 @@ namespace binfilter {
 
 /*N*/ USHORT SfxPtrArr::Remove( USHORT nPos, USHORT nLen )
 /*N*/ {
-/*N*/   DBG_MEMTEST();
 /*N*/   // nLen adjustieren, damit nicht ueber das Ende hinaus geloescht wird
 /*N*/   nLen = Min( (USHORT)(nUsed-nPos), nLen );
 /*N*/
@@ -133,7 +129,6 @@ namespace binfilter {
 
 /*N*/ BOOL SfxPtrArr::Remove( void* aElem )
 /*N*/ {
-/*N*/   DBG_MEMTEST();
 /*N*/   // einfache Aufgaben ...
 /*N*/   if ( nUsed == 0 )
 /*N*/       return FALSE;
@@ -153,7 +148,6 @@ namespace binfilter {
 
 /*N*/ void SfxPtrArr::Insert( USHORT nPos, void* rElem )
 /*N*/ {
-/*N*/   DBG_MEMTEST();
 /*N*/   DBG_ASSERT( sal_Int32(nUsed+1) < sal_Int32( USHRT_MAX / sizeof(void*) ), "array too large" );
 /*N*/   // musz das Array umkopiert werden?
 /*N*/   if ( nUnused == 0 )
