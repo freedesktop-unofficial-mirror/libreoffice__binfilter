@@ -1644,7 +1644,7 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*N*/   if( pCrypter )
 /*N*/   {
 /*?*/       sal_Char buf[ 17 ];
-/*?*/       snprintf( buf, sizeof(buf), "%08"SAL_PRIxUINT32"%08"SAL_PRIxUINT32, nDate, nTime );
+/*?*/       snprintf( buf, sizeof(buf), "%08" SAL_PRIxUINT32 "%08" SAL_PRIxUINT32, nDate, nTime );
 /*?*/       rtl::OStringBuffer aTest( buf );
 /*?*/       pCrypter->Encrypt( aTest );
 /*?*/       return sal_Bool( !memcmp( cPasswd, aTest.getStr(), PASSWDLEN ) );
@@ -1662,7 +1662,7 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*N*/   {
 /*?*/       pCrypter = new Crypter( pRoot->GetKey() );
 /*?*/       sal_Char buf[ 17 ];
-/*?*/       snprintf( buf, sizeof(buf), "%08"SAL_PRIxUINT32"%08"SAL_PRIxUINT32, nDate, nTime );
+/*?*/       snprintf( buf, sizeof(buf), "%08" SAL_PRIxUINT32 "%08" SAL_PRIxUINT32, nDate, nTime );
 /*?*/       rtl::OStringBuffer aTest( buf );
 /*?*/       pCrypter->Encrypt( aTest );
 /*?*/       memcpy( cPasswd, aTest.getStr(), aTest.getLength() );
