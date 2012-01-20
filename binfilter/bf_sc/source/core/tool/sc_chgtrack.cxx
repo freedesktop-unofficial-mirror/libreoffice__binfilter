@@ -58,11 +58,9 @@ namespace binfilter {
 
 /*N*/ DECLARE_STACK( ScChangeActionStack, ScChangeAction* )
 
-const USHORT nMemPoolChangeActionCellListEntry = (0x2000 - 64) / sizeof(ScChangeActionCellListEntry);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeActionCellListEntry, nMemPoolChangeActionCellListEntry, nMemPoolChangeActionCellListEntry )
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeActionCellListEntry )
 
-const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActionLinkEntry);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeActionLinkEntry, nMemPoolChangeActionLinkEntry, nMemPoolChangeActionLinkEntry )
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeActionLinkEntry )
 
 // loaded MSB > eigenes => inkompatibel
 #define SC_CHGTRACK_FILEFORMAT_FIRST    0x0001
@@ -1340,8 +1338,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 
 // --- ScChangeActionContent -----------------------------------------------
 
-const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeActionContent);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeActionContent, nMemPoolChangeActionContent, nMemPoolChangeActionContent )
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeActionContent )
 
 
 /*N*/ ScChangeActionContent::ScChangeActionContent( SvStream& rStrm,
@@ -1999,7 +1996,7 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 
 // --- ScChangeTrack -------------------------------------------------------
 
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeTrackMsgInfo, 16, 16 )
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeTrackMsgInfo )
 
 const USHORT ScChangeTrack::nContentRowsPerSlot = InitContentRowsPerSlot();
 const USHORT ScChangeTrack::nContentSlots =

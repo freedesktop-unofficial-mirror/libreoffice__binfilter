@@ -53,8 +53,7 @@ namespace binfilter {
 #endif
 
 #ifdef USE_MEMPOOL
-const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScEditCell, nMemPoolEditCell, nMemPoolEditCell )
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScEditCell )
 #endif
 
 #ifdef _MSC_VER

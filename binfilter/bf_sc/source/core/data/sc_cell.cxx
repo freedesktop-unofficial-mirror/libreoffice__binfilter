@@ -79,14 +79,10 @@ namespace binfilter {
 
 #ifdef USE_MEMPOOL
 // MemPools auf 4k Boundaries  - 64 Bytes ausrichten
-/*N*/ const USHORT nMemPoolValueCell = (0x8000 - 64) / sizeof(ScValueCell);
-/*N*/ const USHORT nMemPoolFormulaCell = (0x8000 - 64) / sizeof(ScFormulaCell);
-/*N*/ const USHORT nMemPoolStringCell = (0x4000 - 64) / sizeof(ScStringCell);
-/*N*/ const USHORT nMemPoolNoteCell = (0x1000 - 64) / sizeof(ScNoteCell);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScValueCell,   nMemPoolValueCell, nMemPoolValueCell )
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScFormulaCell, nMemPoolFormulaCell, nMemPoolFormulaCell )
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScStringCell,  nMemPoolStringCell, nMemPoolStringCell )
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScNoteCell,  nMemPoolNoteCell, nMemPoolNoteCell )
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScValueCell )
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScFormulaCell )
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScStringCell )
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScNoteCell )
 #endif
 
 #ifdef _MSC_VER

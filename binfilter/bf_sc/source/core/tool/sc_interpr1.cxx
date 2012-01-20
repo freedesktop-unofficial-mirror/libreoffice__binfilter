@@ -73,9 +73,9 @@ namespace binfilter {
 /*N*/ #pragma code_seg("SCSTATICS")
 /*N*/ #endif
 
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScTokenStack, 8, 4 )
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScErrorStack, 8, 4 )
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScInterpreter, 32, 16 )
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScTokenStack )
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScErrorStack )
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScInterpreter )
 
 /*N*/ #ifdef _MSC_VER
 /*N*/ #pragma code_seg()

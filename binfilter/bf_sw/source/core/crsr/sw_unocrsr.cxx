@@ -43,7 +43,7 @@ namespace binfilter {
 
 /*N*/ SV_IMPL_PTRARR( SwUnoCrsrTbl, SwUnoCrsrPtr )
 
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( SwUnoCrsr, 10, 10 )
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( SwUnoCrsr )
 
 /*N*/ SwUnoCrsr::SwUnoCrsr( const SwPosition &rPos, SwPaM* pRing )
 /*N*/   : SwCursor( rPos, pRing ), SwModify( 0 ),

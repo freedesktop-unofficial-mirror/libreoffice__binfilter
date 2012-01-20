@@ -54,11 +54,11 @@ namespace binfilter {
 #endif
 #endif
 
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( SwTxtLine,    50,  50 )
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( SwParaPortion,  50,  50 )   //Absaetze
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( SwLineLayout,  150, 150 )   //Zeilen
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( SwHolePortion, 150, 150 )   //z.B. Blanks am Zeilenende
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( SwTxtPortion,  200, 100 )   //Attributwechsel
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( SwTxtLine )
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( SwParaPortion )   //Absaetze
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( SwLineLayout )   //Zeilen
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( SwHolePortion )   //z.B. Blanks am Zeilenende
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( SwTxtPortion )   //Attributwechsel
 
 #ifndef PROFILE
 #ifdef _MSC_VER
