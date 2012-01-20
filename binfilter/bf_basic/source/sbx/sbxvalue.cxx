@@ -1550,7 +1550,11 @@ BOOL SbxValue::LoadData( SvStream& r, USHORT )
             if( n > SAL_TYPES_SIZEOFINT )
                 r >> aData.nLong, aData.eType = SbxLONG;
             else
-                r >> aData.nInt;
+            {
+                sal_Int32 nInt;
+                r >> nInt;
+                aData.nInt = nInt;
+            }
             break;
         }
         case SbxUINT:
