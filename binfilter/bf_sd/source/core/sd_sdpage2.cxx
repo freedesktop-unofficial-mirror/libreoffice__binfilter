@@ -77,7 +77,7 @@ void SdPage::ReadData(const SdrIOHeader& rHead, SvStream& rIn)
 {
     FmFormPage::ReadData( rHead, rIn );
 
-    rIn.SetStreamCharSet(GetSOLoadTextEncoding(osl_getThreadTextEncoding(), (sal_uInt16)rIn.GetVersion()));
+    rIn.SetStreamCharSet(GetSOLoadTextEncoding(osl_getThreadTextEncoding()));
 
     if ( pModel->IsStreamingSdrModel() )
     {
@@ -152,7 +152,7 @@ void SdPage::ReadData(const SdrIOHeader& rHead, SvStream& rIn)
         rIn >> nCharSet;    // nur Einlesen, Konvertierung ab 303 durch Stream
 
         // #90477# eCharSet = (CharSet) nCharSet;
-        eCharSet = (CharSet)GetSOLoadTextEncoding((rtl_TextEncoding)nCharSet, (sal_uInt16)rIn.GetVersion());
+        eCharSet = (CharSet)GetSOLoadTextEncoding((rtl_TextEncoding)nCharSet);
 
         String aSoundFileRel = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );
         INetURLObject aURLObj(::binfilter::StaticBaseUrl::SmartRelToAbs(aSoundFileRel, FALSE,

@@ -190,7 +190,7 @@ using namespace ::com::sun::star;
 /*N*/       rIn >> nCharSet;
 /*N*/
 /*N*/       // #unicode# eTextEnc = (rtl_TextEncoding)nCharSet;
-/*N*/       eTextEnc = (rtl_TextEncoding)GetSOLoadTextEncoding((rtl_TextEncoding)nCharSet, (sal_uInt16)rIn.GetVersion());
+/*N*/       eTextEnc = (rtl_TextEncoding)GetSOLoadTextEncoding((rtl_TextEncoding)nCharSet);
 /*N*/
 /*N*/       String aSoundFileRel = rIn.ReadUniOrByteString( eTextEnc );
 /*N*/       if( aSoundFileRel.Len() )

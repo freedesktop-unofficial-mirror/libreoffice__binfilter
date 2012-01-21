@@ -57,7 +57,7 @@ namespace binfilter {
 /*N*/
 /*N*/   // #90477#
 /*N*/   rStream >> nTemp;
-/*N*/   nTemp = (sal_uInt16)GetSOLoadTextEncoding((rtl_TextEncoding)nTemp, (sal_uInt16)rStream.GetVersion());
+/*N*/   nTemp = (sal_uInt16)GetSOLoadTextEncoding((rtl_TextEncoding)nTemp);
 /*N*/   aFont.SetCharSet((rtl_TextEncoding)nTemp);
 /*N*/
 /*N*/   rStream >> nTemp; aFont.SetPitch((FontPitch)nTemp);

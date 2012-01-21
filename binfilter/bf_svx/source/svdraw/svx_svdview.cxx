@@ -147,7 +147,7 @@ namespace binfilter {
 /*N*/       rtl_TextEncoding eOutCharSet = osl_getThreadTextEncoding();
 /*N*/
 /*N*/       // #90477# rOut << UINT16( GetStoreCharSet( eOutCharSet ) );
-/*N*/       rOut << (UINT16)GetSOStoreTextEncoding(eOutCharSet, (sal_uInt16)rOut.GetVersion());
+/*N*/       rOut << (UINT16)GetSOStoreTextEncoding(eOutCharSet);
 /*N*/   }
 /*N*/   SdrCreateView::WriteRecords(rOut);
 /*N*/ }
@@ -165,7 +165,7 @@ namespace binfilter {
 /*N*/               // #90477# rIn>>nCharSet;
 /*N*/               // rIn.SetStreamCharSet(rtl_TextEncoding(nCharSet));
 /*N*/               rIn >> nCharSet;
-/*N*/               rIn.SetStreamCharSet(GetSOLoadTextEncoding((rtl_TextEncoding)nCharSet, (sal_uInt16)rIn.GetVersion()));
+/*N*/               rIn.SetStreamCharSet(GetSOLoadTextEncoding((rtl_TextEncoding)nCharSet));
 /*N*/           } break;
 /*N*/           default: bRet=FALSE;
 /*N*/       }

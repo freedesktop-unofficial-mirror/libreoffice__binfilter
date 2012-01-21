@@ -1150,7 +1150,7 @@ enum ChartStyleV0
 /*N*/
 /*N*/     // aInfo is a member of SdrModel
 /*N*/     // the SdrModel was read before this, so the value is set
-/*N*/     rtl_TextEncoding eSysSet = ::GetSOLoadTextEncoding( aInfo.eLastReadCharSet, rIn.GetVersion());
+/*N*/     rtl_TextEncoding eSysSet = ::GetSOLoadTextEncoding( aInfo.eLastReadCharSet );
 /*N*/   rIn.SetStreamCharSet( eSysSet );
 /*N*/     // Note: The CharSet is stored in the MemChart and later set again at the stream !
 /*N*/

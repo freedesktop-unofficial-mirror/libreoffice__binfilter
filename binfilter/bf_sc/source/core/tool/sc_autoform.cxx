@@ -653,7 +653,7 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/                   DBG_ERRORFILE( "Der Header enthaelt mehr/neuere Daten" );
 /*N*/                   rStream.Seek( nPos + nCnt );
 /*N*/               }
-/*N*/                 rStream.SetStreamCharSet( GetSOLoadTextEncoding( nChrSet, nFileVers ) );
+/*N*/                 rStream.SetStreamCharSet( GetSOLoadTextEncoding( nChrSet ) );
 /*N*/               rStream.SetVersion( nFileVers );
 /*N*/           }
 /*N*/

@@ -427,8 +427,7 @@ void lcl_sw3doc_ChgChartName( SwDoc* pDoc )
 /*N*/   }
 /*N*/   pStrm->Read( cPasswd, 16L );
 /*N*/   *pStrm >> cSet >> cGUI >> nDate >> nTime;
-/*N*/   eSrcSet = GetSOLoadTextEncoding( (rtl_TextEncoding) cSet,
-/*N*/                                    pStrm->GetVersion() );
+/*N*/   eSrcSet = GetSOLoadTextEncoding( (rtl_TextEncoding) cSet );
 /*N*/   pStrm->SetStreamCharSet( eSrcSet );
 /*N*/   if( nFileFlags & SWGF_BLOCKNAME )
 /*N*/   {

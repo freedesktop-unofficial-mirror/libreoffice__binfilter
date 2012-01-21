@@ -343,7 +343,7 @@ SdrPage* SdDrawDocument::AllocPage(bool bMasterPage)
 SvStream& operator << (SvStream& rOut, SdDrawDocument& rDoc)
 {
     // #90477# CharSet eSysSet = ::GetStoreCharSet( osl_getThreadTextEncoding());
-    CharSet eSysSet = GetSOStoreTextEncoding(osl_getThreadTextEncoding(), (sal_uInt16)rOut.GetVersion());
+    CharSet eSysSet = GetSOStoreTextEncoding(osl_getThreadTextEncoding());
 
     /**************************************************************************
     * Aktuelle FileFormat-Versionsnummer
@@ -463,7 +463,7 @@ SvStream& operator << (SvStream& rOut, SdDrawDocument& rDoc)
 SvStream& operator >> (SvStream& rIn, SdDrawDocument& rDoc)
 {
     // #90477# CharSet eSysSet = ::GetStoreCharSet( osl_getThreadTextEncoding());
-    CharSet eSysSet = GetSOLoadTextEncoding(osl_getThreadTextEncoding(), (sal_uInt16)rIn.GetVersion());
+    CharSet eSysSet = GetSOLoadTextEncoding(osl_getThreadTextEncoding());
 
     rIn >> (FmFormModel&) rDoc;
     rDoc.GetItemPool().LoadCompleted();

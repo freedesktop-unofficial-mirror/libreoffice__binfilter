@@ -529,7 +529,7 @@ void BinTextObject::CreateData( SvStream& rIStream )
     USHORT nCharSet;
     rIStream >> nCharSet;
 
-    rtl_TextEncoding eSrcEncoding = GetSOLoadTextEncoding( (rtl_TextEncoding)nCharSet, (USHORT)rIStream.GetVersion() );
+    rtl_TextEncoding eSrcEncoding = GetSOLoadTextEncoding( (rtl_TextEncoding)nCharSet );
 
     // Die Anzahl der Absaetze...
     USHORT nParagraphs;

@@ -178,8 +178,7 @@ namespace binfilter {
 /*?*/           ConvertFmtsToStarSymbol();
 /*N*/       }
 /*N*/       // TODO: unicode: is this required really?
-/*N*/       eSrcSet = GetSOLoadTextEncoding( osl_getThreadTextEncoding(),
-/*N*/                                        pStrm->GetVersion() );
+/*N*/       eSrcSet = GetSOLoadTextEncoding( osl_getThreadTextEncoding() );
 /*N*/   }
 /*N*/ }
 
@@ -258,7 +257,7 @@ void Sw3IoImp::SetDBName()
 
                 rtl::OString s8 = read_lenPrefixed_uInt8s_ToOString<sal_uInt16>(*pStrm);
                 rtl_TextEncoding eEnc = GetSOLoadTextEncoding(
-                                (rtl_TextEncoding)cSet, pStrm->GetVersion() );
+                                (rtl_TextEncoding)cSet );
                 sDBName = ConvertStringNoDbDelim( s8, eEnc );
                 SwDBData aData;
                 aData.sDataSource = sDBName.GetToken(0, DB_DELIM);

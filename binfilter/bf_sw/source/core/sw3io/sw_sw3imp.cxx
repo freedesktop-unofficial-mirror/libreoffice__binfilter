@@ -263,10 +263,8 @@ public:
 /*N*/   pCurPaM     =
 /*N*/   pCurNumRange= NULL;
 /*N*/   eSrcSet     = osl_getThreadTextEncoding();
-/*N*/   if( pStrm )
-/*N*/       eSrcSet = GetSOStoreTextEncoding( eSrcSet, pStrm->GetVersion() );
-/*N*/   else if( pRoot.Is() )
-/*N*/       eSrcSet = GetSOStoreTextEncoding( eSrcSet, pRoot->GetVersion() );
+/*N*/   if( pStrm || pRoot.Is() )
+/*N*/       eSrcSet = GetSOStoreTextEncoding( eSrcSet );
 /*N*/   nVersion    = SWG_VERSION;
 /*N*/
 /*N*/   aRecTypes.Remove( 0, aRecTypes.Count() );
@@ -1420,8 +1418,7 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*N*/   // MIB 8.4.97: Datenbank-Felder enthalten ein 0xff, das auf keinen
 /*N*/   // Fall mit konvertiert werden darf. Wir erkennen sie am Wert
 /*N*/   // IDX_NOCONV_FF.
-/*N*/   rtl_TextEncoding eSrcEnc =  GetSOLoadTextEncoding( (rtl_TextEncoding)cSet,
-/*N*/                                                      r.GetVersion() );
+/*N*/   rtl_TextEncoding eSrcEnc =  GetSOLoadTextEncoding( (rtl_TextEncoding)cSet );
 /*N*/   while( n-- )
 /*N*/   {
 /*N*/       sal_uInt16 nId;

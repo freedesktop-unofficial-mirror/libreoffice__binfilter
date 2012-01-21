@@ -96,17 +96,11 @@ SvInPlaceClient::~SvInPlaceClient()
 }
 
 //=========================================================================
-void SvInPlaceClient::TestMemberObjRef( BOOL bFree )
-{
-    (void)bFree;
-}
+void SvInPlaceClient::TestMemberObjRef() {}
 
 //=========================================================================
 #ifdef TEST_INVARIANT
-void SvInPlaceClient::TestMemberInvariant( BOOL bPrint )
-{
-    (void)bPrint;
-}
+void SvInPlaceClient::TestMemberInvariant() {}
 #endif
 
 //=========================================================================

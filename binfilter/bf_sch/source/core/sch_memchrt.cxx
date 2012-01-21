@@ -452,8 +452,7 @@ namespace binfilter {
 
 /*N*/ SvStream& operator << (SvStream& rOut, const SchMemChart& rMemChart)
 /*N*/ {
-/*N*/   CharSet aSysCharSet = static_cast< CharSet >( ::GetSOStoreTextEncoding( osl_getThreadTextEncoding(),
-/*N*/                                                                             (USHORT)rOut.GetVersion()) );
+/*N*/   CharSet aSysCharSet = static_cast< CharSet >( ::GetSOStoreTextEncoding( osl_getThreadTextEncoding() ) );
 /*N*/   rOut.SetStreamCharSet( aSysCharSet );
 /*N*/
 /*N*/   //Version 1: Abspeichern der pRow,pColTable (long-array)
@@ -525,8 +524,7 @@ namespace binfilter {
 /*N*/   INT16 nCharSet;
 /*N*/   rIn >> nCharSet;
 /*N*/
-/*N*/   rtl_TextEncoding aCharSet = ::GetSOLoadTextEncoding( static_cast< rtl_TextEncoding >( nCharSet ),
-/*N*/                                                          (USHORT)rIn.GetVersion());
+/*N*/   rtl_TextEncoding aCharSet = ::GetSOLoadTextEncoding( static_cast< rtl_TextEncoding >( nCharSet ) );
 /*N*/     rIn.SetStreamCharSet( aCharSet );
 /*N*/
 /*N*/   rMemChart.aMainTitle = rIn.ReadUniOrByteString( rIn.GetStreamCharSet() );

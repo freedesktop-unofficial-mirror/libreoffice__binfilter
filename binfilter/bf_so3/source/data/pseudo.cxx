@@ -157,24 +157,21 @@ SvPseudoObject::~SvPseudoObject()
 //=========================================================================
 #ifdef TEST_INVARIANT
 
-void SvPseudoObject::TestMemberObjRef( BOOL /*bFree*/ )
+void SvPseudoObject::TestMemberObjRef()
 /*  [Beschreibung]
 
     Siehe <So Debugging>.
 */
-{
-}
+{}
 
 //=========================================================================
 
-void SvPseudoObject::TestMemberInvariant( BOOL bPrint )
+void SvPseudoObject::TestMemberInvariant()
 /*  [Beschreibung]
 
     Siehe <So Debugging>.
 */
-{
-    (void)bPrint;
-}
+{}
 #endif
 
 

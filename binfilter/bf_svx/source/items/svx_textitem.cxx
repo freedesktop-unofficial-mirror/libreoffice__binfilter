@@ -333,7 +333,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/   aStyle = rStrm.ReadUniOrByteString(rStrm.GetStreamCharSet());
 /*N*/
 /*N*/   // Task 91008/90471: set the "correct" textencoding
-/*N*/   eFontTextEncoding = (BYTE)GetSOLoadTextEncoding( eFontTextEncoding, (USHORT)rStrm.GetVersion() );
+/*N*/   eFontTextEncoding = (BYTE)GetSOLoadTextEncoding( eFontTextEncoding );
 /*N*/
 /*N*/   // irgendwann wandelte sich der StarBats vom ANSI- zum SYMBOL-Font
 /*N*/   if ( RTL_TEXTENCODING_SYMBOL != eFontTextEncoding && aName.EqualsAscii("StarBats") )

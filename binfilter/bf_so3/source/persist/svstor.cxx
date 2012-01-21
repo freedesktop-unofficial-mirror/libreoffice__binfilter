@@ -64,14 +64,10 @@ SO2_IMPL_STANDARD_CLASS2_DLL(SvStorageStream,SvStorageStreamFactory,SvObject,Sot
     return NULL;
 }
 
-void SvStorageStream::TestMemberObjRef( BOOL /*bFree*/ )
-{
-}
+void SvStorageStream::TestMemberObjRef() {}
 
 #ifdef TEST_INVARIANT
-void SvStorageStream::TestMemberInvariant( BOOL /*bPrint*/ )
-{
-}
+void SvStorageStream::TestMemberInvariant() {}
 #endif
 
 
@@ -170,15 +166,10 @@ SO2_IMPL_STANDARD_CLASS2_DLL(SvStorage,SvStorageFactory,SvObject,SotStorage,
     return NULL;
 }
 
-void SvStorage::TestMemberObjRef( BOOL /*bFree*/ )
-{
-}
+void SvStorage::TestMemberObjRef() {}
 
 #ifdef TEST_INVARIANT
-void SvStorage::TestMemberInvariant( BOOL bPrint )
-{
-    (void)bPrint;
-}
+void SvStorage::TestMemberInvariant() {}
 #endif
 
 /************************************************************************

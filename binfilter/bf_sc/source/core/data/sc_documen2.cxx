@@ -580,7 +580,7 @@ IMPL_LINK( ScDocument, TrackTimeHdl, Timer*, EMPTYARG )
 /*N*/                       rStream >> cGUI >> cSet;
 /*N*/                       eSrcSet = (CharSet) cSet;
 /*N*/                         rStream.SetStreamCharSet( ::GetSOLoadTextEncoding(
-/*N*/                             eSrcSet, (USHORT)rStream.GetVersion() ) );
+/*N*/                             eSrcSet ) );
 /*N*/                   }
 /*N*/                   break;
 /*?*/               case SCID_LINKUPMODE: //    Link Update Mode

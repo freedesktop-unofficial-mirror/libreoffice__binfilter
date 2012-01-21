@@ -243,13 +243,9 @@ SO2_IMPL_STANDARD_CLASS1_DLL(SvObjectContainer,SvObjectContainerFactory,SvObject
 }
 
 #ifdef TEST_INVARIANT
-void SvObjectContainer::TestMemberObjRef( BOOL /*bFree*/ )
-{
-}
+void SvObjectContainer::TestMemberObjRef() {}
 
-void SvObjectContainer::TestMemberInvariant( BOOL /*bPrint*/ )
-{
-}
+void SvObjectContainer::TestMemberInvariant() {}
 #endif
 
 SvObjectContainer::SvObjectContainer()
@@ -287,7 +283,7 @@ SO2_IMPL_STANDARD_CLASS1_DLL(SvPersist,SvPersistFactory,SvObjectContainer,
 }
 
 #ifdef TEST_INVARIANT
-void SvPersist::TestMemberObjRef( BOOL /*bFree*/ )
+void SvPersist::TestMemberObjRef()
 {
     if( pChildList )
     {
@@ -313,7 +309,7 @@ void SvPersist::TestMemberObjRef( BOOL /*bFree*/ )
     }
 }
 
-void SvPersist::TestMemberInvariant( BOOL /*bPrint*/ )
+void SvPersist::TestMemberInvariant()
 {
 #ifdef DBG_UTIL
     DBG_ASSERT( !(bOpSave || bOpSaveAs), "bOpSave && bOpSaveAs" );

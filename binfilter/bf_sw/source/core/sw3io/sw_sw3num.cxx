@@ -115,8 +115,7 @@ namespace binfilter {
 /*N*/   if(RTL_TEXTENCODING_DONTKNOW== eCharSet)
 /*N*/       eCharSet = RTL_TEXTENCODING_SYMBOL;
 /*N*/   else if( RTL_TEXTENCODING_SYMBOL != eCharSet )
-/*N*/       eCharSet = GetSOLoadTextEncoding( rtl_TextEncoding( eCharSet ),
-/*?*/                                  pStrm->GetVersion() );
+/*N*/       eCharSet = GetSOLoadTextEncoding( rtl_TextEncoding( eCharSet ) );
 /*N*/   cFlags = OpenFlagRec();
 /*N*/   CloseFlagRec();
 /*N*/
@@ -236,8 +235,7 @@ namespace binfilter {
 /*?*/           aFont.SetPitch( FontPitch( ePitch ) );
 /*?*/           aFont.SetCharSet( rtl_TextEncoding( eCharSet ) );
 /*?*/           aFont.SetCharSet(
-/*?*/               GetSOLoadTextEncoding( rtl_TextEncoding( eCharSet ),
-/*?*/                                      pStrm->GetVersion() ) );
+/*?*/               GetSOLoadTextEncoding( rtl_TextEncoding( eCharSet ) ) );
 /*N*/       }
 /*N*/       // muss sein...
 /*N*/       aFont.SetTransparent( TRUE );

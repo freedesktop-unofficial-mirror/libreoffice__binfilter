@@ -808,8 +808,7 @@ BOOL SfxStyleSheetBasePool::Load( SvStream& rStream )
             return FALSE;
 
         rtl_TextEncoding eEnc = GetSOLoadTextEncoding(
-            (rtl_TextEncoding)nCharSet,
-            sal::static_int_cast< USHORT >(rStream.GetVersion()) );
+            (rtl_TextEncoding)nCharSet );
         rtl_TextEncoding eOldEnc = rStream.GetStreamCharSet();
         rStream.SetStreamCharSet( eEnc );
 
@@ -897,8 +896,7 @@ BOOL SfxStyleSheetBasePool::Load1_Impl( SvStream& rStream )
         rStream >> nCharSet;
 
     rtl_TextEncoding eEnc = GetSOLoadTextEncoding(
-        (rtl_TextEncoding)nCharSet,
-        sal::static_int_cast< USHORT >(rStream.GetVersion()) );
+        (rtl_TextEncoding)nCharSet );
     rtl_TextEncoding eOldEnc = rStream.GetStreamCharSet();
     rStream.SetStreamCharSet( eEnc );
 

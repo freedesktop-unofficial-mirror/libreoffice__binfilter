@@ -110,7 +110,7 @@ using namespace ::com::sun::star;
 /*N*/   rOut<<UINT32(rModInfo.aCreationDate.GetTime());
 /*N*/
 /*N*/   // #90477# rOut<<UINT8( GetStoreCharSet( rModInfo.eCreationCharSet ) );
-/*N*/   rOut << UINT8(GetSOStoreTextEncoding(rModInfo.eCreationCharSet, (sal_uInt16)rOut.GetVersion()));
+/*N*/   rOut << UINT8(GetSOStoreTextEncoding(rModInfo.eCreationCharSet));
 /*N*/
     /* Since we removed old SV-stuff there is no way to determine system-speciefic informations, yet.
        We just have to write anythink in the file for compatibility:
@@ -128,7 +128,7 @@ using namespace ::com::sun::star;
 /*N*/   rOut<<UINT32(rModInfo.aLastWriteDate.GetTime());
 /*N*/
 /*N*/   // #90477# rOut<<UINT8( GetStoreCharSet( rModInfo.eLastWriteCharSet ) );
-/*N*/   rOut << UINT8(GetSOStoreTextEncoding(rModInfo.eLastWriteCharSet, (sal_uInt16)rOut.GetVersion()));
+/*N*/   rOut << UINT8(GetSOStoreTextEncoding(rModInfo.eLastWriteCharSet));
 /*N*/
 /*N*/   // see comment above
 /*N*/   rOut<<UINT8(0);     //  rOut<<UINT8(rModInfo.eLastWriteGUI);
@@ -139,7 +139,7 @@ using namespace ::com::sun::star;
 /*N*/   rOut<<UINT32(rModInfo.aLastReadDate.GetTime());
 /*N*/
 /*N*/   // #90477# rOut<<UINT8( GetStoreCharSet( rModInfo.eLastReadCharSet ) );
-/*N*/   rOut << UINT8(GetSOStoreTextEncoding(rModInfo.eLastReadCharSet, (sal_uInt16)rOut.GetVersion()));
+/*N*/   rOut << UINT8(GetSOStoreTextEncoding(rModInfo.eLastReadCharSet));
 /*N*/
 /*N*/   // see comment above
 /*N*/   rOut<<UINT8(0);     //  rOut<<UINT8(rModInfo.eLastReadGUI);
@@ -165,7 +165,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   // #90477# rIn>>n8;  rModInfo.eCreationCharSet=rtl_TextEncoding(n8);
 /*N*/   rIn >> n8;
-/*N*/   n8 = (UINT8)GetSOLoadTextEncoding((rtl_TextEncoding)n8, (sal_uInt16)rIn.GetVersion());
+/*N*/   n8 = (UINT8)GetSOLoadTextEncoding((rtl_TextEncoding)n8);
 /*N*/   rModInfo.eCreationCharSet = rtl_TextEncoding(n8);
 /*N*/
     /* Since we removed old SV-stuff there is no way to determine system-speciefic informations, yet.
@@ -184,7 +184,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   // #90477# rIn>>n8;  rModInfo.eLastWriteCharSet=rtl_TextEncoding(n8);
 /*N*/   rIn >> n8;
-/*N*/   n8 = (UINT8)GetSOLoadTextEncoding((rtl_TextEncoding)n8, (sal_uInt16)rIn.GetVersion());
+/*N*/   n8 = (UINT8)GetSOLoadTextEncoding((rtl_TextEncoding)n8);
 /*N*/   rModInfo.eLastWriteCharSet = rtl_TextEncoding(n8);
 /*N*/
 /*N*/   // see comment above
@@ -197,7 +197,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   // #90477# rIn>>n8;  rModInfo.eLastReadCharSet=rtl_TextEncoding(n8);
 /*N*/   rIn >> n8;
-/*N*/   n8 = (UINT8)GetSOLoadTextEncoding((rtl_TextEncoding)n8, (sal_uInt16)rIn.GetVersion());
+/*N*/   n8 = (UINT8)GetSOLoadTextEncoding((rtl_TextEncoding)n8);
 /*N*/   rModInfo.eLastReadCharSet = rtl_TextEncoding(n8);
 /*N*/
 /*N*/   // see comment above
@@ -1340,12 +1340,12 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/               // #90477# rIn >> nCharSet;
 /*N*/               rIn >> nCharSet;
-/*N*/               nCharSet = (INT16)GetSOLoadTextEncoding((rtl_TextEncoding)nCharSet, (sal_uInt16)rIn.GetVersion());
+/*N*/               nCharSet = (INT16)GetSOLoadTextEncoding((rtl_TextEncoding)nCharSet);
 /*N*/
 /*N*/               // StreamCharSet setzen, damit Strings beim
 /*N*/               // Lesen automatisch konvertiert werden
 /*N*/               // #90477# rIn.SetStreamCharSet(rtl_TextEncoding(nCharSet));
-/*N*/               rIn.SetStreamCharSet(GetSOLoadTextEncoding(rtl_TextEncoding(nCharSet), (sal_uInt16)rIn.GetVersion()));
+/*N*/               rIn.SetStreamCharSet(GetSOLoadTextEncoding(rtl_TextEncoding(nCharSet)));
 /*N*/           }
 /*N*/
 /*N*/           // Tabellen- und Listennamen lesen (Tabellen/Listen existieren schon) // SOH!!!

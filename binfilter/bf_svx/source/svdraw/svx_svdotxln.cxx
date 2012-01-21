@@ -193,7 +193,7 @@ namespace binfilter {
 /*N*/
 /*N*/   // #90477# rIn >> nTmp16; eCharSet = rtl_TextEncoding(nTmp16);
 /*N*/   rIn >> nTmp16;
-/*N*/   eCharSet = (rtl_TextEncoding)GetSOLoadTextEncoding((rtl_TextEncoding)nTmp16, (sal_uInt16)rIn.GetVersion());
+/*N*/   eCharSet = (rtl_TextEncoding)GetSOLoadTextEncoding((rtl_TextEncoding)nTmp16);
 /*N*/
 /*N*/   rIn >> nTmp32; aFileDate0.SetDate(nTmp32);
 /*N*/   rIn >> nTmp32; aFileDate0.SetTime(nTmp32);

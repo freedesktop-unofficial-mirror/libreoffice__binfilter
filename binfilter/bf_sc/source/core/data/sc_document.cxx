@@ -2428,7 +2428,7 @@ namespace binfilter {
 /*N*/                       rStream >> cGUI >> cSet;
 /*N*/                       eSrcSet = (CharSet) cSet;
 /*N*/                         rStream.SetStreamCharSet( ::GetSOLoadTextEncoding(
-/*N*/                             eSrcSet, (USHORT)rStream.GetVersion() ) );
+/*N*/                             eSrcSet ) );
 /*N*/                   }
 /*N*/                   break;
 /*N*/               case SCID_DOCPOOL:
