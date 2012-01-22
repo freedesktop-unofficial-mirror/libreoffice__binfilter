@@ -505,7 +505,7 @@ using namespace ::com::sun::star;
 /*N*/                           // garbled with password?
 /*N*/                           if( ! bRet )
 /*N*/                           {
-/*?*/                               if( pStor->GetKey().Len() == 0 )
+/*?*/                               if( pStor->GetKey().isEmpty() )
 /*?*/                               {
 /*?*/                                   // no password set => cannot load
 /*?*/                                   SetError( ERRCODE_SFX_DOLOADFAILED );

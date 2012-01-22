@@ -603,7 +603,7 @@ BOOL SmDocShell::Load(SvStorage *pStor)
 /*N*/   if (!bRet)
 /*N*/   {
 /*N*/       // kein Passwort gesetzt --> Datei marode
-/*?*/       if (pStor->GetKey().Len() == 0)
+/*?*/       if (pStor->GetKey().isEmpty())
 /*?*/       {
 /*?*/           SetError(ERRCODE_SFX_DOLOADFAILED);
 /*?*/       }

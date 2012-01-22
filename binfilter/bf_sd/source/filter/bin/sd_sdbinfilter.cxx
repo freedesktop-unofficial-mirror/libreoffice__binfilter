@@ -406,7 +406,7 @@ sal_Bool SdBINFilter::Import()
 
                     if( !( bRet = ( xDocStm->GetError() == 0 ) ) )
                     {
-                        if( pStore->GetKey().Len() == 0 )
+                        if( pStore->GetKey().isEmpty() )
                             mrDocShell.SetError( ERRCODE_SFX_DOLOADFAILED );  // no password? --> file defect
                         else
                             mrDocShell.SetError( ERRCODE_SFX_WRONGPASSWORD ); // wrong password

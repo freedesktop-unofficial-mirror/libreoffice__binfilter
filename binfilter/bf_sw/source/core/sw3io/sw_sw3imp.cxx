@@ -1655,7 +1655,7 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*N*/ void Sw3IoImp::SetPasswd()
 /*N*/ {
 /*N*/   delete pCrypter; pCrypter = NULL;
-/*N*/   if( pRoot && pRoot->GetKey().Len() )
+/*N*/   if( pRoot && !pRoot->GetKey().isEmpty() )
 /*N*/   {
 /*?*/       pCrypter = new Crypter( pRoot->GetKey() );
 /*?*/       sal_Char buf[ 17 ];
