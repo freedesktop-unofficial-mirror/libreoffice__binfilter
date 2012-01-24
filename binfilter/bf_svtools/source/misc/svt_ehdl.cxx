@@ -365,7 +365,7 @@ BOOL SfxErrorHandler::GetErrorString(
     SolarMutexGuard aGuard;
 
     BOOL bRet = FALSE;
-    rStr=String(String(RTL_CONSTASCII_USTRINGPARAM("$(CLASS)$(ERROR)")));
+    rStr=rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("$(CLASS)$(ERROR)"));
     ResId *pResId = new ResId(nId, *pMgr);
 
     {
