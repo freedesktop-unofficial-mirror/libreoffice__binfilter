@@ -38,8 +38,6 @@
 
 ///////////////////////////////////////////////////////////////////////////
 
-class SvDispatch;
-
 namespace binfilter {
 
 class SbxProperty;
@@ -103,8 +101,6 @@ public:
     SbxArray* GetMethods()      { return pMethods;  }
     SbxArray* GetProperties()   { return pProps;    }
     SbxArray* GetObjects()      { return pObjs;     }
-    // Hooks
-    virtual SvDispatch* GetSvDispatch();
     // Debugging
     void Dump( SvStream&, BOOL bDumpAll=FALSE );
 };

@@ -839,11 +839,6 @@ void SbxObject::Dump( SvStream& rStrm, BOOL bFill )
     --nLevel;
 }
 
-SvDispatch* SbxObject::GetSvDispatch()
-{
-    return NULL;
-}
-
 SbxClassType SbxMethod::GetClass() const
 {
     return SbxCLASS_METHOD;

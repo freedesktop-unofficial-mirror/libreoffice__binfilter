@@ -63,7 +63,7 @@ private:
 #endif
 
 protected:
-    // Schnittstelle zum SbxObject/SvDispatch/SfxShell..Object
+    // Schnittstelle zum SbxObject/SfxShell..Object
     void                    SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,
                                     const SfxHint& rHint, const TypeId& rHintType );
     virtual ULONG           SetProperty( USHORT nSID, SbxVariable &rRet );
