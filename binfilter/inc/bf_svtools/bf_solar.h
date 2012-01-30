@@ -76,6 +76,9 @@ typedef sal_uInt32          UINT32; /* typedef unsigned int    UINT32; previousl
 #endif /* _SOLAR_NOUINT */
 #endif
 
+#define SWAPSHORT OSL_SWAPWORD
+#define SWAPLONG OSL_SWAPDWORD
+
 #endif  /* _BF_SOLAR_H */
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
