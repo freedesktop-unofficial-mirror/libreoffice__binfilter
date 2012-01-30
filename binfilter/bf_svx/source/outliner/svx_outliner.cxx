@@ -318,8 +318,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       XubString aText( rText );
-/*N*/       aText.ConvertLineEnd( LINEEND_LF );
+/*N*/       XubString aText( convertLineEnd(rText, LINEEND_LF) );
 /*N*/
 /*N*/       if( aText.GetChar( aText.Len()-1 ) == '\x0A' )
 /*?*/           aText.Erase( aText.Len()-1, 1 ); // letzten Umbruch loeschen

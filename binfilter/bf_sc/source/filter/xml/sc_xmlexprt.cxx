@@ -2327,8 +2327,7 @@ void ScXMLExport::WriteAnnotation(const ScMyCell& rMyCell)
         sal_Int32 i = 0;
         ::rtl::OUStringBuffer sTemp;
         sal_Bool bPrevCharWasSpace(sal_True);
-        String sText(rMyCell.sAnnotationText);
-        ::rtl::OUString sOUText2 (sText.ConvertLineEnd(LINEEND_LF));
+        ::rtl::OUString sOUText2(convertLineEnd(rMyCell.sAnnotationText, LINEEND_LF));
         while(i < sOUText2.getLength())
         {
             if (sOUText2[i] == '\n')

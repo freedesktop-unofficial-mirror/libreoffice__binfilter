@@ -652,8 +652,7 @@ using namespace ::com::sun::star;
 /*?*/       return FALSE;
 /*N*/   }
 /*N*/
-/*N*/   String aNewText = rText;
-/*N*/   aNewText.ConvertLineEnd();      //! ist das noetig ???
+/*N*/   String aNewText = convertLineEnd(rText, GetSystemLineEnd()); //! ist das noetig ???
 /*N*/
 /*N*/   ScPostIt aNote;
 /*N*/   pDoc->GetNote( rPos.Col(), rPos.Row(), rPos.Tab(), aNote );

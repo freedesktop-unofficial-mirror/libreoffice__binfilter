@@ -246,7 +246,7 @@ void ScAnnotationEditSource::UpdateData()
 {
     if ( pDocShell && pEditEngine )
     {
-        String aNewText = pEditEngine->GetText( LINEEND_LF );   // im SetNoteText passiert ConvertLineEnd
+        String aNewText = pEditEngine->GetText( LINEEND_LF );   // im SetNoteText passiert convertLineEnd
         ScDocFunc aFunc(*pDocShell);
         aFunc.SetNoteText( aCellPos, aNewText, TRUE );
 

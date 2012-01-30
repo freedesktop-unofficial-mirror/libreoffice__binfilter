@@ -218,8 +218,7 @@ int GetTextEncodingTabIndex( const String &rTxt, xub_StrLen nPos )
 /*N*/     if (aString.Len())
 /*N*/         aString = comphelper::string::stripEnd(aString, '\0');
 /*N*/
-/*N*/   aString.ConvertLineEnd();
-/*N*/     return aString;
+/*N*/     return convertLineEnd(aString, GetSystemLineEnd());
 /*N*/ }
 
 ////////////////////////////////////////////////////////////

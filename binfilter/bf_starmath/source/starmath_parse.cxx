@@ -2276,8 +2276,7 @@ const sal_Int32 coNumContFlags =
 
 /*N*/ SmNode *SmParser::Parse(const String &rBuffer)
 /*N*/ {
-/*N*/   BufferString = rBuffer;
-/*N*/   BufferString.ConvertLineEnd( LINEEND_LF );
+/*N*/   BufferString = convertLineEnd(rBuffer, LINEEND_LF);
 /*N*/   BufferIndex  =
 /*N*/   nTokenIndex  = 0;
 /*N*/   Row          = 1;

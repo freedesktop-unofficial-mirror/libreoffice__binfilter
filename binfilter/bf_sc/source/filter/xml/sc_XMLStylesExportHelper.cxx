@@ -318,8 +318,7 @@ void ScMyValidationsContainer::WriteMessage(ScXMLExport& rExport,
     {
         sal_Int32 i = 0;
         ::rtl::OUStringBuffer sTemp;
-        String sMessage(sOUMessage);
-        ::rtl::OUString sText (sMessage.ConvertLineEnd(LINEEND_LF));
+        ::rtl::OUString sText(convertLineEnd(sOUMessage, LINEEND_LF));
         sal_Bool bPrevCharWasSpace(sal_True);
         while(i < sText.getLength())
         {

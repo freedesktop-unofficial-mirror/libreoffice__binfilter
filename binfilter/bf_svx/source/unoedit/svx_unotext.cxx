@@ -348,8 +348,7 @@ void SAL_CALL SvxUnoTextRangeBase::setString(const OUString& aString)
     {
         CheckSelection( aSelection, pForwarder );
 
-        String aConverted( aString );
-        aConverted.ConvertLineEnd( LINEEND_LF );        // Zeilenenden nur einfach zaehlen
+        String aConverted(convertLineEnd(aString, LINEEND_LF)); // Zeilenenden nur einfach zaehlen
 
         pForwarder->QuickInsertText( aConverted, aSelection );
         pEditSource->UpdateData();

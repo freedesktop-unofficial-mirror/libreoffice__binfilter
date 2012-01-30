@@ -907,8 +907,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   EditPaM aCurPaM( aPaM );    // fuers Invalidieren
 /*N*/
-/*N*/   XubString aText( rStr );
-/*N*/   aText.ConvertLineEnd( LINEEND_LF );
+/*N*/   XubString aText( convertLineEnd(rStr, LINEEND_LF) );
 /*N*/   SfxVoidItem aTabItem( EE_FEATURE_TAB );
 /*N*/
 /*N*/   // Konvertiert nach LineSep = \n
