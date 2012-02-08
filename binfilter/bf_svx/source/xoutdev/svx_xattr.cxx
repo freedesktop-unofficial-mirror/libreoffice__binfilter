@@ -2369,14 +2369,9 @@ const XPolygon& XLineEndItem::GetValue() const
 |*
 *************************************************************************/
 
-const XGradient& XFillGradientItem::GetValue(
-//    const XGradientTable* pTable
-) const
+const XGradient& XFillGradientItem::GetValue() const
 {
-//    if (!IsIndex())
-        return aGradient;
-//    else
-//        return pTable->Get(GetIndex())->GetGradient();
+    return aGradient;
 }
 
 
@@ -2850,10 +2845,6 @@ const XGradient& XFillGradientItem::GetValue(
 
 const XHatch& XFillHatchItem::GetValue() const
 {
-    //if (!IsIndex())
-    //    return aHatch;
-    //else
-    //    return pTable->Get(GetIndex())->GetHatch();
     return aHatch;
 }
 
