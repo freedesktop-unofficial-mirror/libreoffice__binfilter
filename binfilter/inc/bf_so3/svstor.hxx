@@ -111,27 +111,6 @@ public:
                         SvStorage();
                         SO2_DECL_STANDARD_CLASS_DLL(SvStorage,SOAPP)
 
-    static BOOL         IsStorageFile( const String & rFileName );
-    virtual const ::String & GetName() const;
-
-                        // eigener Datenbereich
-    void                SetClass( const SvGlobalName & rClass,
-                                  ULONG bOriginalClipFormat,
-                                  const String & rUserTypeName );
-    void                SetConvertClass( const SvGlobalName & rConvertClass,
-                                         ULONG bOriginalClipFormat,
-                                         const String & rUserTypeName );
-    SvGlobalName        GetClassName();// Typ der Daten im Storage
-    ULONG               GetFormat();
-    virtual ::String    GetUserName();
-    BOOL                ShouldConvert();
-
-                        // Liste aller Elemente
-    void                FillInfoList( SvStorageInfoList * ) const;
-    BOOL                CopyTo( SotStorage * pDestStg );
-    BOOL                Commit();
-    BOOL                Revert();
-
                         /* Element Methoden     */
                         // Stream mit Verbindung zu Storage erzeugen,
                         // in etwa eine Parent-Child Beziehung
@@ -155,19 +134,6 @@ public:
     SvStorage *        OpenOLEStorage( const String & rEleName,
                                     StreamMode = STREAM_STD_READWRITE,
                                     StorageMode = STORAGE_TRANSACTED );
-                        // Abfrage auf Storage oder Stream
-    BOOL                IsStream( const String & rEleName ) const;
-    BOOL                IsStorage( const String & rEleName ) const;
-    BOOL                IsContained( const String & rEleName ) const;
-                        // Element loeschen
-    BOOL                Remove( const String & rEleName );
-                        // Elementnamen aendern
-    BOOL                Rename( const String & rEleName,
-                                const String & rNewName );
-    BOOL                CopyTo( const String & rEleName, SotStorage * pDest,
-                                const String & rNewName );
-    BOOL                MoveTo( const String & rEleName, SotStorage * pDest,
-                                const String & rNewName );
 };
 
 #ifndef SO2_DECL_SVSTORAGE_DEFINED

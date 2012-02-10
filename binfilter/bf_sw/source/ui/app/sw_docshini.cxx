@@ -636,7 +636,7 @@ using namespace ::rtl;
 /*?*/       else
 /*?*/       {
 /*?*/           // sollte es sich um eine 2. Vrolage handeln ??
-/*?*/           if( SvStorage::IsStorageFile( rNm ) )
+/*?*/           if( SotStorage::IsStorageFile( rNm ) )
 /*?*/               break;
 /*?*/
 /*?*/           const SfxFilter* pFltr = SwIoSystem::GetFileFilter(rNm);
