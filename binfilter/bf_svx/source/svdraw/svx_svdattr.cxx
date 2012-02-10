@@ -380,9 +380,9 @@ void SdrItemPool::Ctor(SfxItemPool* pInMaster, USHORT nAttrStart, USHORT nAttrEn
             ByteString aStr("PoolDefaultItem not set: ");
 
             aStr += "Num=";
-            aStr += ByteString_CreateFromInt32( nNum );
+            aStr += ByteString::CreateFromInt32( nNum );
             aStr += "Which=";
-            aStr += ByteString_CreateFromInt32( nNum + 1000 );
+            aStr += ByteString::CreateFromInt32( nNum + 1000 );
 
             OSL_FAIL(aStr.GetBuffer());
         }
@@ -391,9 +391,9 @@ void SdrItemPool::Ctor(SfxItemPool* pInMaster, USHORT nAttrStart, USHORT nAttrEn
             ByteString aStr("PoolDefaultItem has wrong WhichId: ");
 
             aStr += "Num=";
-            aStr += ByteString_CreateFromInt32( nNum );
+            aStr += ByteString::CreateFromInt32( nNum );
             aStr += " Which=";
-            aStr += ByteString_CreateFromInt32( pItem->Which() );
+            aStr += ByteString::CreateFromInt32( pItem->Which() );
 
             OSL_FAIL(aStr.GetBuffer());
         }

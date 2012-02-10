@@ -32,7 +32,7 @@
 
 #include <tools/resid.hxx>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 class Link;
 class ResMgr;
 namespace binfilter {

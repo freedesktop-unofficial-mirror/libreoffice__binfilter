@@ -34,7 +34,7 @@
 
 #include <tools/rtti.hxx>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <bf_svtools/svarray.hxx>
 

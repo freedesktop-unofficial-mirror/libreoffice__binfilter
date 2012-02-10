@@ -30,6 +30,7 @@
 #define _CTRLTOOL_HXX
 
 #include <bf_svtools/bf_solar.h>
+#include <bf_tools/string.hxx>
 
 #include <sal/types.h>
 #include <vcl/metric.hxx>

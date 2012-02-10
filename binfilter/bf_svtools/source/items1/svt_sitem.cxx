@@ -27,7 +27,7 @@
  ************************************************************************/
 
 // INCLUDE ---------------------------------------------------------------
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/stream.hxx>
 
 #include <bf_svtools/poolitem.hxx>

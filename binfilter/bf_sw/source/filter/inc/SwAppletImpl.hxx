@@ -36,7 +36,7 @@
 #define SWHTML_OPTTYPE_PARAM 2
 #define SWHTML_OPTTYPE_SIZE 3
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <bf_svtools/htmlkywd.hxx>
 #include <bf_sfx2/frameobj.hxx>

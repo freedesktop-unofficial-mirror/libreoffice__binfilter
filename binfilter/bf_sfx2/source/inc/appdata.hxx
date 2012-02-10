@@ -31,7 +31,7 @@
 #include <tools/link.hxx>
 #include <bf_svtools/lstner.hxx>
 #include <vcl/timer.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include "rtl/ref.hxx"
 
 #include "bitset.hxx"

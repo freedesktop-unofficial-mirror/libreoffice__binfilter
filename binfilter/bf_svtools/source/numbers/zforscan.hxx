@@ -30,7 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/date.hxx>
 #include <i18npool/lang.h>
 #include <tools/color.hxx>

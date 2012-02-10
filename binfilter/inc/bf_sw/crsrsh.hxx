@@ -31,7 +31,7 @@
 #include <bf_svtools/bf_solar.h>
 
 #include <tools/link.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <viewsh.hxx>           // fuer ViewShell
 #include <cshtyp.hxx>           // fuer die CursorShell Typen

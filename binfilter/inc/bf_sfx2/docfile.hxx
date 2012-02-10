@@ -39,7 +39,7 @@
 #include <com/sun/star/task/XInteractionHandler.hpp>
 #include <bf_so3/svstor.hxx>
 #include <tools/stream.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_svtools/lstner.hxx>
 
 #include <bf_svtools/cancel.hxx>

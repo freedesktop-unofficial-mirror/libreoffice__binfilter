@@ -30,7 +30,7 @@
 #define _URLBMK_HXX
 
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 namespace binfilter
 {

@@ -32,7 +32,7 @@
 #include <bf_svtools/bf_solar.h>
 
 #include <tools/gen.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/debug.hxx>
 #include <bf_svx/editdata.hxx>
 #include <i18npool/lang.h>

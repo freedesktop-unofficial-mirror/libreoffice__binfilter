@@ -42,6 +42,7 @@
 
 namespace binfilter {
 
+class UniString;
 class SvNumberFormatter;
 class SvXMLNumFmtHelper;
 

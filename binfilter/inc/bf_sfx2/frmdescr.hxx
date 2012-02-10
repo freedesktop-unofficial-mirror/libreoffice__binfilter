@@ -33,7 +33,7 @@
 
 #include <bf_svtools/poolitem.hxx>
 #include <tools/urlobj.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_svtools/svarray.hxx>
 #include <tools/gen.hxx>
 class SvStream;

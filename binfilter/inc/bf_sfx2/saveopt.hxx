@@ -33,7 +33,7 @@
 
 #include <tools/wintypes.hxx>
 #include <vcl/field.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_svtools/poolitem.hxx>
 // -----------------------------------------------------------------------
 #include "bf_sfx2/cfgitem.hxx"

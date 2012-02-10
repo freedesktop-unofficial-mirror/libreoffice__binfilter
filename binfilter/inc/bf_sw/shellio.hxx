@@ -29,6 +29,7 @@
 #define _SHELLIO_HXX
 
 #include <bf_svtools/bf_solar.h>
+#include <bf_tools/string.hxx>
 
 #include <tools/datetime.hxx>
 #include <tools/ref.hxx>

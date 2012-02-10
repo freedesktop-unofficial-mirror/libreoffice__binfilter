@@ -30,7 +30,7 @@
 #define _BUFFER_HXX
 
 #include <bf_svtools/bf_solar.h>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 namespace binfilter {
 

@@ -33,7 +33,7 @@
 
 #include <tools/contnr.hxx>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 class Rectangle;
 namespace binfilter {
 

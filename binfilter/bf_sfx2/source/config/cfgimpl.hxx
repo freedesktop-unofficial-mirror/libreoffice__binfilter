@@ -28,7 +28,7 @@
 
 // include ---------------------------------------------------------------
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_svtools/svarray.hxx>
 
 #include "cfgitem.hxx"

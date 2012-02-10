@@ -30,7 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_svtools/hint.hxx>
 
 #include <com/sun/star/uno/Sequence.hxx>

@@ -35,6 +35,9 @@
 namespace binfilter
 {
 
+class ByteString;
+class UniString;
+
 //============================================================================
 /** Definitions for frequently used media type names.
  */

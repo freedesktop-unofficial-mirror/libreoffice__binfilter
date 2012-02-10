@@ -33,7 +33,7 @@
 
 #include "bf_svtools/svtdllapi.h"
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/stream.hxx>
 
 class Point;

@@ -73,7 +73,7 @@
 #include <tools/errinf.hxx>
 #include <tools/inetmsg.hxx>
 #include <tools/stream.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/urlobj.hxx>
 #include <tools/wldcrd.hxx>
 

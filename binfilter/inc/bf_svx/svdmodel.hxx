@@ -39,7 +39,7 @@
 #include <tools/contnr.hxx>
 #include <vcl/mapmod.hxx>
 #include <bf_svtools/brdcst.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/datetime.hxx>
 #include <bf_svtools/hint.hxx>
 

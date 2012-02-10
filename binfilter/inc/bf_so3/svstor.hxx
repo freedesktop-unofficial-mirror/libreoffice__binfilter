@@ -112,7 +112,7 @@ public:
                         SO2_DECL_STANDARD_CLASS_DLL(SvStorage,SOAPP)
 
     static BOOL         IsStorageFile( const String & rFileName );
-    const String &      GetName() const;
+    virtual const ::String & GetName() const;
 
                         // eigener Datenbereich
     void                SetClass( const SvGlobalName & rClass,
@@ -123,7 +123,7 @@ public:
                                          const String & rUserTypeName );
     SvGlobalName        GetClassName();// Typ der Daten im Storage
     ULONG               GetFormat();
-    String              GetUserName();
+    virtual ::String    GetUserName();
     BOOL                ShouldConvert();
 
                         // Liste aller Elemente

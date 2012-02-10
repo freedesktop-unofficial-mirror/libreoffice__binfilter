@@ -47,7 +47,7 @@
 #include <tools/link.hxx>
 #include <tools/ref.hxx>
 #include <tools/stream.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/urlobj.hxx>
 
 #include <vcl/svapp.hxx>

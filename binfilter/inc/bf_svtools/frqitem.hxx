@@ -37,7 +37,7 @@
 
 #include <tools/datetime.hxx>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <bf_svtools/poolitem.hxx>
 

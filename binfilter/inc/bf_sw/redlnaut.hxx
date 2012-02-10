@@ -28,7 +28,7 @@
 #ifndef _REDLNAUT_HXX
 #define _REDLNAUT_HXX
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/color.hxx>
 
 #include "swtypes.hxx"

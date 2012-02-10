@@ -37,7 +37,7 @@
 #include <bf_svtools/svstdarr.hxx>
 #endif
 #include <tools/gen.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <osl/diagnose.h>
 #include <tools/fract.hxx>
 

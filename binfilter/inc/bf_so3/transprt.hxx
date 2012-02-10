@@ -35,7 +35,7 @@
 
 #include <tools/stream.hxx>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <bf_so3/binding.hxx>
 

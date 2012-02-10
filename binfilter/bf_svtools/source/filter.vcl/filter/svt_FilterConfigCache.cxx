@@ -29,7 +29,7 @@
 #include "FilterConfigCache.hxx"
 #include <bf_svtools/filter.hxx>
 #include <tools/debug.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <rtl/ustring.hxx>
 
 #include <com/sun/star/uno/Any.h>

@@ -29,7 +29,7 @@
 #include "PasswordHelper.hxx"
 
 #include <rtl/digest.h>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 using namespace com::sun::star;
 

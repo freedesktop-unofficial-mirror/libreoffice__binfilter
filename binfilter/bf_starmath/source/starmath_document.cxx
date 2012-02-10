@@ -716,27 +716,27 @@ BOOL SmDocShell::Try2x (SvStorage *pStor,
 /*N*/       *pClassName     = SvGlobalName(BF_SO3_SM_CLASSID_30);
 /*N*/       *pFormat        = SOT_FORMATSTR_ID_STARMATH;
 /*N*/       pAppName->AssignAscii( RTL_CONSTASCII_STRINGPARAM("Smath 3.1"));
-/*N*/       *pFullTypeName  = String(SmResId(STR_MATH_DOCUMENT_FULLTYPE_31));
-/*N*/       *pShortTypeName = String(SmResId(RID_DOCUMENTSTR));
+/*N*/       *pFullTypeName  = ResId::toString(SmResId(STR_MATH_DOCUMENT_FULLTYPE_31));
+/*N*/       *pShortTypeName = ResId::toString(SmResId(RID_DOCUMENTSTR));
 /*N*/   }
 /*N*/   else if (nFileFormat == SOFFICE_FILEFORMAT_40)
 /*N*/   {
 /*N*/       *pClassName     = SvGlobalName(BF_SO3_SM_CLASSID_40);
 /*N*/       *pFormat        = SOT_FORMATSTR_ID_STARMATH_40;
-/*N*/       *pFullTypeName  = String(SmResId(STR_MATH_DOCUMENT_FULLTYPE_40));
-/*N*/       *pShortTypeName = String(SmResId(RID_DOCUMENTSTR));
+/*N*/       *pFullTypeName  = ResId::toString(SmResId(STR_MATH_DOCUMENT_FULLTYPE_40));
+/*N*/       *pShortTypeName = ResId::toString(SmResId(RID_DOCUMENTSTR));
 /*N*/   }
 /*N*/   else if (nFileFormat == SOFFICE_FILEFORMAT_50)
 /*N*/   {
 /*N*/       *pClassName     = SvGlobalName(BF_SO3_SM_CLASSID_50);
 /*N*/       *pFormat        = SOT_FORMATSTR_ID_STARMATH_50;
-/*N*/       *pFullTypeName  = String(SmResId(STR_MATH_DOCUMENT_FULLTYPE_50));
-/*N*/       *pShortTypeName = String(SmResId(RID_DOCUMENTSTR));
+/*N*/       *pFullTypeName  = ResId::toString(SmResId(STR_MATH_DOCUMENT_FULLTYPE_50));
+/*N*/       *pShortTypeName = ResId::toString(SmResId(RID_DOCUMENTSTR));
 /*N*/   }
 /*N*/   else if (nFileFormat == SOFFICE_FILEFORMAT_60 )
 /*N*/   {
-/*N*/       *pFullTypeName  = String(SmResId(STR_MATH_DOCUMENT_FULLTYPE_60));
-/*N*/       *pShortTypeName = String(SmResId(RID_DOCUMENTSTR));
+/*N*/       *pFullTypeName  = ResId::toString(SmResId(STR_MATH_DOCUMENT_FULLTYPE_60));
+/*N*/       *pShortTypeName = ResId::toString(SmResId(RID_DOCUMENTSTR));
 
             // for binfilter, we need the FormatIDs to be set. Not setting them
             // has always been an error (!)

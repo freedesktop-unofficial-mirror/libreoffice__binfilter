@@ -34,7 +34,7 @@
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #include <com/sun/star/lang/XUnoTunnel.hpp>
 #include <cppuhelper/implbase3.hxx> // helper for implementations
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 namespace com{namespace sun{namespace star{namespace util{
     struct SearchOptions;
 }}}}

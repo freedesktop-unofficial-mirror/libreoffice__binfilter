@@ -30,7 +30,7 @@
 
 // include ---------------------------------------------------------------
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_svx/colritem.hxx>
 namespace binfilter {
 

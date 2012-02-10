@@ -32,7 +32,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <bf_svtools/svarray.hxx>
 namespace binfilter {

@@ -28,7 +28,7 @@
 #ifndef INCLUDED_SVTOOLS_OPTIONSDLG_HXX
 #define INCLUDED_SVTOOLS_OPTIONSDLG_HXX
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_svtools/options.hxx>
 
 namespace binfilter

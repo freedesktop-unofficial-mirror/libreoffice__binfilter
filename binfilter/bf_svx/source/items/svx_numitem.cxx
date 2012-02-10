@@ -254,7 +254,7 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/   SetShowSymbol((BOOL)nUSHORT);
 /*N*/
 /*N*/   if( nVersion < NUMITEM_VERSION_03 )
-/*N*/       cBullet = ByteString_ConvertToUnicode( cBullet,
+/*N*/       cBullet = ByteString::ConvertToUnicode( cBullet,
 /*N*/                           (pBulletFont&&pBulletFont->GetCharSet()) ?  pBulletFont->GetCharSet()
 /*N*/                                       : RTL_TEXTENCODING_SYMBOL );
 /*N*/     if(pBulletFont)

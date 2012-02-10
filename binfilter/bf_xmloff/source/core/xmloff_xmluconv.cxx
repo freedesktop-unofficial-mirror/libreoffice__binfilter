@@ -42,7 +42,7 @@
 #ifndef _TOOLS_DATE_HXX
 #include <tools/date.hxx>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #endif
 

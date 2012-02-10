@@ -35,7 +35,7 @@
 #include <bf_svtools/lstner.hxx>
 #include <swdll.hxx>
 #include "shellid.hxx"
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <com/sun/star/linguistic2/XLinguServiceEventListener.hpp>
 #include <tools/fldunit.hxx>
 namespace com{ namespace sun{ namespace star{ namespace scanner{

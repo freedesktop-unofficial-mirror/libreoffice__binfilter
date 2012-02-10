@@ -28,7 +28,7 @@
 
 #include <tools/date.hxx>
 #include <tools/time.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <ucbhelper/content.hxx>
 #include <com/sun/star/util/DateTime.hpp>
 

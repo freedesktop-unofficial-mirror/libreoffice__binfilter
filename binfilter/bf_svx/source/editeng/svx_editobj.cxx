@@ -575,7 +575,7 @@ void BinTextObject::CreateData( SvStream& rIStream )
             {
                 if ( pItem->Which() == EE_FEATURE_NOTCONV )
                 {
-                    pC->GetText().SetChar( nStart, ByteString_ConvertToUnicode( aByteString[nStart], ((SvxCharSetColorItem*)pItem)->GetCharSet() ) );
+                    pC->GetText().SetChar( nStart, ByteString::ConvertToUnicode( aByteString[nStart], ((SvxCharSetColorItem*)pItem)->GetCharSet() ) );
                 }
                 else
                 {

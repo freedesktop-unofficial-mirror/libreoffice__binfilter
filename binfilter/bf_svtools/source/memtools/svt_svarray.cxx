@@ -56,7 +56,7 @@
 
 #include <bf_svtools/svstdarr.hxx>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <tools/debug.hxx>
 

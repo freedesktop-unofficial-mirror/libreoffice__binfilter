@@ -34,6 +34,7 @@
 #ifndef __RSC
 
 #include "bf_svtools/svtdllapi.h"
+#include <bf_tools/string.hxx>
 
 #include <tools/errinf.hxx>
 
@@ -49,7 +50,7 @@ public:
     SfxErrorContext(
             USHORT nCtxIdP, const String &aArg1, Window *pWin=0,
             USHORT nResIdP=USHRT_MAX, ResMgr *pMgrP=0);
-    virtual BOOL GetString(ULONG nErrId, String &rStr);
+    virtual BOOL GetString(ULONG nErrId, ::String &rStr);
 
 private:
     USHORT nCtxId;
@@ -65,8 +66,8 @@ public:
     ~SfxErrorHandler();
 
 protected:
-    virtual BOOL     GetErrorString(ULONG lErrId, String &, USHORT&) const;
-    virtual BOOL     GetMessageString(ULONG lErrId, String &, USHORT&) const;
+    virtual BOOL     GetErrorString(ULONG lErrId, ::String &, USHORT&) const;
+    virtual BOOL     GetMessageString(ULONG lErrId, ::String &, USHORT&) const;
 
 private:
 
@@ -78,7 +79,7 @@ private:
 
     BOOL             GetClassString(ULONG lErrId, String &) const;
     virtual BOOL     CreateString(
-                         const ErrorInfo *, String &, USHORT &) const;
+                         const ErrorInfo *, ::String &, USHORT &) const;
 };
 
 

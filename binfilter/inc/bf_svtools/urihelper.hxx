@@ -40,7 +40,7 @@
 #include <tools/link.hxx>
 #include <bf_svtools/bf_solar.h>
 #include <tools/urlobj.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 
 //============================================================================

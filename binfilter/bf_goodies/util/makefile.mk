@@ -60,6 +60,7 @@ DEF1DES		=Bf_Goodies
 DEFLIB1NAME	=bf_go
 
 SHL1STDLIBS= \
+            $(BFSVTOOLLIB) \
             $(SVTOOLLIB)		\
             $(TOOLSLIB)			\
             $(SALLIB)

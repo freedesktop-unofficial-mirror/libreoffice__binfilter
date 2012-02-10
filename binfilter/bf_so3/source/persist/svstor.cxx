@@ -257,7 +257,7 @@ BOOL SvStorage::IsStorageFile( const String & rFileName )
     return SotStorage::IsStorageFile( rFileName );
 }
 
-const String & SvStorage::GetName() const
+const ::String & SvStorage::GetName() const
 {
     return SotStorage::GetName();
 }
@@ -286,7 +286,7 @@ ULONG SvStorage::GetFormat()
     return SotStorage::GetFormat();
 }
 
-String SvStorage::GetUserName()
+::String SvStorage::GetUserName()
 {
     return SotStorage::GetUserName();
 }

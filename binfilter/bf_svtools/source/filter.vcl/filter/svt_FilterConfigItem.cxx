@@ -26,7 +26,7 @@
  *
  ************************************************************************/
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_svtools/FilterConfigItem.hxx>
 #include <tools/debug.hxx>
 #include <unotools/configmgr.hxx>

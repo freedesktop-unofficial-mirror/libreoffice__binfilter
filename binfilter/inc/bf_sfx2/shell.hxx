@@ -32,7 +32,7 @@
 #include <tools/rtti.hxx>
 #include <bf_svtools/brdcst.hxx>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 namespace binfilter {
 

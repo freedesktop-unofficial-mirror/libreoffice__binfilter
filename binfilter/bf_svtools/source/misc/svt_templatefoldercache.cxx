@@ -27,7 +27,7 @@
  ************************************************************************/
 
 #include <tools/urlobj.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <unotools/ucbstreamhelper.hxx>
 #include <unotools/localfilehelper.hxx>
 #include <com/sun/star/beans/XPropertySet.hpp>

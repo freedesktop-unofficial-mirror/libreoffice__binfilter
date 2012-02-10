@@ -30,7 +30,7 @@
 #ifndef __EXCDOCUM_HXX__
 #define __EXCDOCUM_HXX__
 
-// auto strip #include <tools/string.hxx>
+// auto strip #include <bf_tools/string.hxx>
 namespace binfilter {
 
 

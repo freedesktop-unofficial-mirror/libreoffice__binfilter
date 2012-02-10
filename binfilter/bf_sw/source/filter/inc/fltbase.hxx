@@ -78,7 +78,7 @@ inline void SwFilterBase::ReadUnicode( sal_Unicode &rU )
     {
     sal_Char cC;
     *pIn >> cC;
-    rU = ByteString_ConvertToUnicode(cC, eQuellChar);
+    rU = ByteString::ConvertToUnicode(cC, eQuellChar);
     nBytesLeft--;
     }
 }

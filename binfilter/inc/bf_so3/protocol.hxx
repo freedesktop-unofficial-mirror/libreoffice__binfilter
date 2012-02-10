@@ -32,7 +32,7 @@
 #include <bf_svtools/bf_solar.h>
 
 #include <tools/errcode.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include "bf_so3/so3dllapi.h"
 

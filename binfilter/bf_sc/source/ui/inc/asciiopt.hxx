@@ -31,7 +31,7 @@
 #ifndef SC_ASCIIOPT_HXX
 #define SC_ASCIIOPT_HXX
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <vcl/dialog.hxx>
 #include <vcl/button.hxx>
 #include <vcl/fixed.hxx>

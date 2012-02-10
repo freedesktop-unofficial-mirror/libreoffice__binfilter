@@ -32,7 +32,7 @@
 
 #include "bf_svtools/svtdllapi.h"
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <com/sun/star/awt/Size.hpp>
 
 #include <com/sun/star/uno/Any.h>

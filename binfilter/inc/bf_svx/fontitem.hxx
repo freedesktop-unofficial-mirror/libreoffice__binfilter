@@ -33,7 +33,7 @@
 // include ---------------------------------------------------------------
 
 #include <bf_svtools/poolitem.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <vcl/font.hxx>
 
 namespace rtl

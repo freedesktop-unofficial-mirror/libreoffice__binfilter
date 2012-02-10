@@ -165,7 +165,7 @@ using namespace ::com::sun::star;
 /*?*/       else
 /*?*/       {
 /*?*/           aStr += "von ";
-/*?*/           aStr += ByteString_CreateFromInt32( nCloneErrCnt );
+/*?*/           aStr += ByteString::CreateFromInt32( nCloneErrCnt );
 /*?*/           aStr += " Zeichenobjekten.";
 /*?*/       }
 /*?*/
@@ -894,18 +894,18 @@ using namespace ::com::sun::star;
 /*?*/               UINT32 nPos(GetObjCount());
 /*?*/
 /*?*/               aStr += "Listenposition: ";
-/*?*/               aStr += ByteString_CreateFromInt32( nPos );
+/*?*/               aStr += ByteString::CreateFromInt32( nPos );
 /*?*/               aStr += "\n";
 /*?*/               aStr += "Inventor: ";
 /*?*/                 sal_Int32 nInv = SWAPLONG( aHead.nInventor );
-/*?*/                 aStr += ByteString_CreateFromInt32( nInv );
+/*?*/                 aStr += ByteString::CreateFromInt32( nInv );
 /*?*/               aStr += ", Identifier: ";
-/*?*/               aStr += ByteString_CreateFromInt32( aHead.nIdentifier );
+/*?*/               aStr += ByteString::CreateFromInt32( aHead.nIdentifier );
 /*?*/               aStr += "\n";
 /*?*/               aStr += "FilePos: ";
-/*?*/               aStr += ByteString_CreateFromInt32( aHead.GetFilePos() );
+/*?*/               aStr += ByteString::CreateFromInt32( aHead.GetFilePos() );
 /*?*/               aStr += ", BlockSize: ";
-/*?*/               aStr += ByteString_CreateFromInt32( aHead.GetBlockSize() );
+/*?*/               aStr += ByteString::CreateFromInt32( aHead.GetBlockSize() );
 /*?*/
 /*?*/               OSL_FAIL(aStr.GetBuffer());
 /*?*/ #endif

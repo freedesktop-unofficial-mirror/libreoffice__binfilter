@@ -1348,7 +1348,7 @@ BOOL ScFAPToken::operator==( const ScToken& ) const
 /*?*/                       rStream.Read( c, nOp );
 /*?*/                   CharSet eSrc = rStream.GetStreamCharSet();
 /*?*/                   for ( BYTE j=0; j<nOp; j++ )
-/*?*/                       cStr[j] = ByteString_ConvertToUnicode( c[j], eSrc );
+/*?*/                       cStr[j] = ByteString::ConvertToUnicode( c[j], eSrc );
 /*?*/                   cStr[ nOp ] = 0;
 /*?*/                   break;
 /*N*/               }
@@ -1414,7 +1414,7 @@ BOOL ScFAPToken::operator==( const ScToken& ) const
 /*?*/               rStream.Read( c, nOp );
 /*?*/           CharSet eSrc = rStream.GetStreamCharSet();
 /*?*/           for ( BYTE j=1; j<nOp; j++ )
-/*?*/               cStr[j] = ByteString_ConvertToUnicode( c[j-1], eSrc );
+/*?*/               cStr[j] = ByteString::ConvertToUnicode( c[j-1], eSrc );
 /*?*/           cStr[ 0 ] = 0;      //! parameter count is what?!?
 /*?*/           cStr[ nOp ] = 0;
 /*?*/           break;
@@ -1461,7 +1461,7 @@ BOOL ScFAPToken::operator==( const ScToken& ) const
 /*N*/             //! parameter count is in cByte (cStr[0] little endian)
 /*N*/           CharSet eSrc = rStream.GetStreamCharSet();
 /*N*/           for ( BYTE j=1; j<n+1; j++ )
-/*N*/               cStr[j] = ByteString_ConvertToUnicode( c[j], eSrc );
+/*N*/               cStr[j] = ByteString::ConvertToUnicode( c[j], eSrc );
 /*N*/           cStr[ n+1 ] = 0;
 /*N*/           break;
 /*N*/       }
@@ -1473,7 +1473,7 @@ BOOL ScFAPToken::operator==( const ScToken& ) const
 /*N*/           cStr[ n ] = 0;
 /*N*/           CharSet eSrc = rStream.GetStreamCharSet();
 /*N*/           for ( BYTE j=0; j<n; j++ )
-/*N*/               cStr[j] = ByteString_ConvertToUnicode( c[j], eSrc );
+/*N*/               cStr[j] = ByteString::ConvertToUnicode( c[j], eSrc );
 /*N*/           cStr[ n ] = 0;
 /*N*/           break;
 /*N*/       }

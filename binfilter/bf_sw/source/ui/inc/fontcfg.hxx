@@ -31,7 +31,7 @@
 #include <bf_svtools/bf_solar.h>
 
 #include <unotools/configitem.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <i18npool/lang.h>
 namespace binfilter {
 

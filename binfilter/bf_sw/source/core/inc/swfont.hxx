@@ -109,8 +109,8 @@ class SwSubFont : public SvxFont
     inline void SetProportion( const BYTE nNewPropr );
 
     inline void SetFamily( const FontFamily eFamily );
-    inline void SetName( const XubString& rName );
-    inline void SetStyleName( const XubString& rStyleName );
+    inline void SetName( const String& rName );
+    inline void SetStyleName( const String& rStyleName );
     inline void SetSize( const Size& rSize );
     inline void SetWeight( const FontWeight eWeight );
     inline void SetLanguage( LanguageType eNewLang );
@@ -216,8 +216,8 @@ public:
     inline void SetPropWidth( const USHORT nNew );
 
     inline void SetFamily( const FontFamily eFamily, const BYTE nWhich );
-    inline void SetName( const XubString& rName, const BYTE nWhich );
-    inline void SetStyleName( const XubString& rStyleName, const BYTE nWhich );
+    inline void SetName( const String& rName, const BYTE nWhich );
+    inline void SetStyleName( const String& rStyleName, const BYTE nWhich );
     inline void SetSize( const Size& rSize, const BYTE nWhich );
     inline void SetWeight( const FontWeight eWeight, const BYTE nWhich );
     inline void SetItalic( const FontItalic eItalic, const BYTE nWhich );
@@ -272,8 +272,8 @@ public:
     FontItalic GetItalic() const { return aSub[nActual].GetItalic(); }
     LanguageType GetLanguage() const { return aSub[nActual].GetLanguage(); }
     FontAlign GetAlign() const { return aSub[nActual].GetAlign(); }
-    const XubString& GetName() const { return aSub[nActual].GetName(); }
-    const XubString& GetStyleName() const {return aSub[nActual].GetStyleName();}
+    const ::String& GetName() const { return aSub[nActual].GetName(); }
+    const ::String& GetStyleName() const {return aSub[nActual].GetStyleName();}
     FontFamily GetFamily() const { return aSub[nActual].GetFamily(); }
     FontPitch GetPitch() const { return aSub[nActual].GetPitch(); }
     rtl_TextEncoding GetCharSet() const { return aSub[nActual].GetCharSet(); }
@@ -284,11 +284,11 @@ public:
     USHORT GetPropWidth() const { return aSub[nActual].GetPropWidth(); }
     USHORT GetOrientation( const BOOL nVertLayout = FALSE ) const;
 
-    inline const XubString& GetName( const BYTE nWhich ) const
+    inline const ::String& GetName( const BYTE nWhich ) const
         { return aSub[nWhich].GetName(); }
     inline LanguageType GetLanguage( const BYTE nWhich ) const
         { return aSub[nWhich].GetLanguage(); }
-    inline const XubString& GetStyleName( const BYTE nWhich ) const
+    inline const ::String& GetStyleName( const BYTE nWhich ) const
         { return aSub[nWhich].GetStyleName(); }
     inline FontFamily GetFamily( const BYTE nWhich ) const
         { return aSub[nWhich].GetFamily(); }
@@ -385,26 +385,26 @@ inline void SwFont::SetFamily( const FontFamily eFamily, const BYTE nWhich )
 }
 
 // gekapselte SV-Font-Methode
-inline void SwSubFont::SetName( const XubString& rName )
+inline void SwSubFont::SetName( const String& rName )
 {
     pMagic = 0;
     Font::SetName( rName );
 }
 
-inline void SwFont::SetName( const XubString& rName, const BYTE nWhich )
+inline void SwFont::SetName( const String& rName, const BYTE nWhich )
 {
     bFntChg = TRUE;
     aSub[nWhich].SetName( rName );
 }
 
 // gekapselte SV-Font-Methode
-inline void SwSubFont::SetStyleName( const XubString& rStyleName )
+inline void SwSubFont::SetStyleName( const String& rStyleName )
 {
     pMagic = 0;
     Font::SetStyleName( rStyleName );
 }
 
-inline void SwFont::SetStyleName( const XubString& rStyle, const BYTE nWhich )
+inline void SwFont::SetStyleName( const String& rStyle, const BYTE nWhich )
 {
     bFntChg = TRUE;
     aSub[nWhich].SetStyleName( rStyle );

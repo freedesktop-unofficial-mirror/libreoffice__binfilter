@@ -30,6 +30,7 @@
 #define _BINDDATA_HXX
 
 #include <bf_svtools/bf_solar.h>
+#include <bf_tools/string.hxx>
 #include <vector>
 
 namespace binfilter

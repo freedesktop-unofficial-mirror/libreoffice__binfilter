@@ -33,7 +33,7 @@
 // include ---------------------------------------------------------------
 
 #include <tools/link.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_svtools/poolitem.hxx>
 #include <bf_svx/svxenum.hxx>
 #include <tools/gen.hxx>

@@ -27,7 +27,7 @@
  ************************************************************************/
 
 #include <tools/debug.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/stream.hxx>
 
 #include <tools/vcompat.hxx>

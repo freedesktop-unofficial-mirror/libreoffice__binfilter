@@ -28,7 +28,7 @@
 #ifndef _PORLAY_HXX
 #define _PORLAY_HXX
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/fract.hxx>
 #include <drawfont.hxx>
 

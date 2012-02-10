@@ -34,7 +34,7 @@
 
 #include <rtl/ustring.hxx>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <com/sun/star/bridge/oleautomation/Decimal.hpp>
 

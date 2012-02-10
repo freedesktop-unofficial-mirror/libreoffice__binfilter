@@ -30,7 +30,7 @@
 #define SC_DPSAVE_HXX
 
 #include <bf_svtools/bf_solar.h>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <com/sun/star/sheet/XDimensionsSupplier.hpp>
 #include <vector>
 

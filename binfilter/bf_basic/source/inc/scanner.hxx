@@ -29,7 +29,7 @@
 #ifndef _SCANNER_HXX
 #define _SCANNER_HXX
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include "sberrors.hxx"
 
 namespace binfilter {

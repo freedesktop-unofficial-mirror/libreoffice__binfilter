@@ -57,6 +57,7 @@ SHL1STDLIBS=$(COMPHELPERLIB)			\
             $(SALLIB)			\
             $(BFSO3LIB)                       \
             $(ONELIB)			\
+            $(BFSVTOOLLIB)			\
             $(TOOLSLIB)			\
             $(LEGACYSMGRLIB)	\
             $(BFSVXLIB)

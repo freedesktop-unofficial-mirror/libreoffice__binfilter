@@ -30,7 +30,7 @@
 #endif
 
 #include <string.h>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <comphelper/string.hxx>
 
 #include <crypter.hxx>

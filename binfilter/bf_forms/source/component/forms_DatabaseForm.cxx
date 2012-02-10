@@ -59,6 +59,7 @@
 #include "property.hrc"
 #include "services.hxx"
 
+#include <bf_tools/string.hxx>
 #include <tools/fsys.hxx>
 #include <tools/inetmsg.hxx>
 #include <tools/inetstrm.hxx>

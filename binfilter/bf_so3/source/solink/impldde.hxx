@@ -30,7 +30,7 @@
 
 #include <bf_so3/linksrc.hxx>
 #include <tools/link.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 namespace binfilter
 {

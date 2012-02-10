@@ -34,7 +34,7 @@
 #include <com/sun/star/text/VertOrientation.hpp>
 #include <com/sun/star/text/SizeType.hpp>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include "XMLFontStylesContext.hxx"
 

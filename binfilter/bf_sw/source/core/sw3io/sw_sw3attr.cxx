@@ -530,7 +530,7 @@ SfxPoolItem* SwGammaGrf::Create(SvStream & rStrm, USHORT ) const
 /*N*/   sal_Char cChr = ' ';
 /*N*/   if( nV )
 /*N*/       rStrm >> cChr;
-/*N*/   sal_Unicode c = ByteString_ConvertToUnicode( cChr, rStrm.GetStreamCharSet() );
+/*N*/   sal_Unicode c = ByteString::ConvertToUnicode( cChr, rStrm.GetStreamCharSet() );
 /*N*/   return new SwFmtHardBlank( c, FALSE );
 /*N*/ }
 

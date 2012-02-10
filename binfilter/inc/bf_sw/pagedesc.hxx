@@ -33,7 +33,7 @@
 #include <tools/fract.hxx>
 
 #include <tools/color.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <swtypes.hxx>  //fuer SwTwips
 #include <frmfmt.hxx>
 #include <numrule.hxx>

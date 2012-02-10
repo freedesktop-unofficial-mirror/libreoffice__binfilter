@@ -34,7 +34,7 @@
 
 #include <i18npool/lang.h>
 #include <tools/debug.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <calbck.hxx>
 
 #include <com/sun/star/uno/Any.hxx>

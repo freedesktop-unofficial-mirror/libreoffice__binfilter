@@ -31,7 +31,7 @@
 #include <bf_svtools/bf_solar.h>
 
 #include <tools/mempool.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include "cntfrm.hxx"
 /*N*/ #include <tools/debug.hxx> //for stripping
 class OutputDevice;

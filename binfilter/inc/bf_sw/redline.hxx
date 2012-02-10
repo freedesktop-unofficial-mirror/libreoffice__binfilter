@@ -31,7 +31,7 @@
 #include <bf_svtools/bf_solar.h>
 
 #include <tools/datetime.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>

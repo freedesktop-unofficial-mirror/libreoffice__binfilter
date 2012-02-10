@@ -148,7 +148,7 @@ namespace binfilter {
 /*N*/
 /*N*/   char cTmpSymbol;
 /*N*/   rStrm >> cTmpSymbol;
-/*N*/   cSymbol = ByteString_ConvertToUnicode( cTmpSymbol, aFont.GetCharSet() );
+/*N*/   cSymbol = ByteString::ConvertToUnicode( cTmpSymbol, aFont.GetCharSet() );
 /*N*/
 /*N*/   rStrm >> nScale;
 /*N*/

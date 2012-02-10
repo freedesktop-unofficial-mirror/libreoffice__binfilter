@@ -42,7 +42,7 @@
 #include <cppuhelper/implbase2.hxx>
 #include <cppuhelper/implbase4.hxx>
 #include <cppuhelper/implbase5.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 namespace binfilter {
 struct SfxItemPropertyMap;
 

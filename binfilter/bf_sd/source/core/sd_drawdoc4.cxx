@@ -238,7 +238,7 @@ void SdDrawDocument::CreateLayoutTemplates()
     aArrow[1]=Point(0,30);                      //    \    /
     aArrow[2]=Point(20,30);                        //     \  /
     aArrow[3]=Point(10,0);                        //      \/1,0
-    pISet->Put(XLineStartItem(SdResId(STR_POOLSHEET_ARROW),aArrow));
+    pISet->Put(XLineStartItem(ResId::toString(SdResId(STR_POOLSHEET_ARROW)),aArrow));
 
     pISet->Put(XLineStartWidthItem(700));
     pISet->Put(XLineEndWidthItem(300));
@@ -246,7 +246,7 @@ void SdDrawDocument::CreateLayoutTemplates()
 
     // ---- Objekt mit Schatten -------------------------------------------
 
-    aName = String(SdResId(STR_POOLSHEET_OBJWITHSHADOW));
+    aName = ResId::toString(SdResId(STR_POOLSHEET_OBJWITHSHADOW));
     pSheet = &(pLclStyleSheetPool->Make(aName, SFX_STYLE_FAMILY_PARA, nMask));
     pSheet->SetParent(aStdName);
     pSheet->SetHelpId( aHelpFile, HID_POOLSHEET_OBJWITHSHADOW );

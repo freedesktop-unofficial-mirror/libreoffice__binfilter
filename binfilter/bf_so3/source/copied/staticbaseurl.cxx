@@ -40,7 +40,7 @@
 #include "rtl/ustring.hxx"
 #include "bf_svtools/urihelper.hxx"
 #include "tools/debug.hxx"
-#include "tools/string.hxx"
+#include "bf_tools/string.hxx"
 #include "tools/urlobj.hxx"
 #include "ucbhelper/content.hxx"
 

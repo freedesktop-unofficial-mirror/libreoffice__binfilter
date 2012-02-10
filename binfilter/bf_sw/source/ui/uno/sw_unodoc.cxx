@@ -28,7 +28,7 @@
 
 // System - Includes -----------------------------------------------------
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_sfx2/docfac.hxx>
 
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>

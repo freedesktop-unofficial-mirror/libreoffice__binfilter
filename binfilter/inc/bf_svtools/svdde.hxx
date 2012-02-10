@@ -35,7 +35,7 @@
 
 #include <sot/exchange.hxx>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/list.hxx>
 #include <tools/link.hxx>
 

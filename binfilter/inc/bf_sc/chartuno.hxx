@@ -32,7 +32,7 @@
 #include <bf_svtools/bf_solar.h>
 
 #include <bf_svtools/lstner.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <com/sun/star/table/XTableChart.hpp>
 #include <com/sun/star/table/XTableCharts.hpp>

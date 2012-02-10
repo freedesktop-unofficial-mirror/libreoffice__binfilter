@@ -35,7 +35,7 @@
 #include <bf_svtools/svstdarr.hxx>
 #endif
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include "swtypes.hxx"
 

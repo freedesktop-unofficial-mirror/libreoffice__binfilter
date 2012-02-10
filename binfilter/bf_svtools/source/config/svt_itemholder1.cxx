@@ -56,7 +56,7 @@
 #include <bf_svtools/options3d.hxx>
 #include <bf_svtools/pathoptions.hxx>
 #include <bf_svtools/printwarningoptions.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_svtools/optionsdlg.hxx>
 #include <bf_svtools/saveopt.hxx>
 #include <searchopt.hxx>

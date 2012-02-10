@@ -35,7 +35,7 @@
 #include <comphelper/processfactory.hxx>
 #include <com/sun/star/i18n/XExtendedIndexEntrySupplier.hpp>
 #include <rtl/strbuf.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/debug.hxx>
 
 #include <toxwrap.hxx>

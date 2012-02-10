@@ -32,7 +32,7 @@
 
 #include "bf_svtools/svtdllapi.h"
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <i18npool/mslangid.hxx>
 
 #include <bf_svtools/zforlist.hxx>

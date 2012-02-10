@@ -521,7 +521,7 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/       if( !rIo.bInsert ||
 /*N*/           nFldTypeCount != rIo.pDoc->GetFldTypes()->Count() )
 /*N*/       {
-/*N*/           pFldType->SetDelimiter( ByteString_ConvertToUnicode( cDelim,
+/*N*/           pFldType->SetDelimiter( ByteString::ConvertToUnicode( cDelim,
 /*N*/                                                                 rIo.eSrcSet));
 /*N*/           pFldType->SetOutlineLvl( nLevel );
 /*N*/       }
@@ -544,9 +544,9 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
     rIo.CloseFlagRec();
     if( 0 == pFldType->GetEntryCount() || (rIo.bNormal && !rIo.bInsert) )
     {
-        pFldType->SetPreSuffix( ByteString_ConvertToUnicode( cPrefix,
+        pFldType->SetPreSuffix( ByteString::ConvertToUnicode( cPrefix,
                                                               rIo.eSrcSet ),
-                                ByteString_ConvertToUnicode( cSuffix,
+                                ByteString::ConvertToUnicode( cSuffix,
                                                               rIo.eSrcSet ) );
         pFldType->SetSequence( (cFlags & 0x10) != 0 );
         pFldType->SetSortByDocument( (cFlags & 0x20) != 0);

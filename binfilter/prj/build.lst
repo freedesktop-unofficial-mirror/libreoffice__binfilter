@@ -160,5 +160,5 @@ bf  binfilter\bf_sw\source\core                         nmake   -   all bf_sw_co
 bf  binfilter\bf_sw\source\filter                       nmake   -   all bf_sw_flt bf_sw_ascii bf_sw_bsflt  bf_sw_wrtr bf_sw_xml bf_sw_lotus bf_sw_excel bf_sw_sw6 NULL
 bf  binfilter\bf_sw\util                                nmake   -   all bf_sw_util bf_sw_core bf_sw_flt bf_sw_ui bf_sd_util bf_sb_util bf_so3_util NULL
 bf  binfilter\filter\source\bf_offwrp                   nmake   -   all bf_offwrp bf_sf_detect bf_fm_util bf_sh_util bf_sw_util bf_sb_util bf_so3_util NULL
-bf	binfilter\filter\source\bf_migrate					nmake	-	all bf_migrate bf_sw_util bf_offwrp	bf_so3_util NULL
+bf	binfilter\filter\source\bf_migrate					nmake	-	all bf_migrate bf_sw_util bf_offwrp	bf_so3_util	bf_svt_util	NULL
 bf  binfilter\util										nmake   -   all bf_util bf_xo_util bf_sw_util bf_sc_util bf_sd_util bf_sm_util bf_sh_util bf_fm_util bf_sv_util bf_offwrp bf_migrate bf_svt_util NULL

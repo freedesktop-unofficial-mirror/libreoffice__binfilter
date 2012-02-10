@@ -37,7 +37,7 @@
 #include <vcl/vclenum.hxx>
 
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 namespace binfilter {
 
 using namespace ::rtl;

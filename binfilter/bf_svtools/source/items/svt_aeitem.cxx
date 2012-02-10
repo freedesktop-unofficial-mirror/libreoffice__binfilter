@@ -26,7 +26,7 @@
  *
  ************************************************************************/
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>

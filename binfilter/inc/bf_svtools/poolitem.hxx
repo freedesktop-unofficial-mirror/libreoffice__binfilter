@@ -37,7 +37,7 @@
 #include <limits.h>
 #include <bf_svtools/bf_solar.h>
 #include <tools/debug.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_svtools/svarray.hxx>
 #include <bf_svtools/hint.hxx>
 

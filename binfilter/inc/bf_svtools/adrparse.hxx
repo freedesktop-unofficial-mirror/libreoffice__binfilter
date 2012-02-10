@@ -29,7 +29,7 @@
 #ifndef _ADRPARSE_HXX
 #define _ADRPARSE_HXX
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <vector>
 
 namespace binfilter {

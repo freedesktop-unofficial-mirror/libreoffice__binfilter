@@ -30,7 +30,7 @@
 #define _BF_GOODIES_GRAPHICOBJECT_HXX
 
 #include <bf_svtools/bf_solar.h>
-
+#include <bf_tools/string.hxx>
 
 #include <svtools/grfmgr.hxx>
 
@@ -47,6 +47,7 @@ namespace binfilter {
 
 // wrapper for GraphicObject for binfilter
 namespace binfilter {
+
     class BfGraphicObject : public GraphicObject
     {
     protected:

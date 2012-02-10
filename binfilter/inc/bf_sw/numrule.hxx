@@ -33,7 +33,7 @@
 
 #include <tools/link.hxx>
 #include <tools/gen.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_svx/svxenum.hxx>
 
 #include <swtypes.hxx>

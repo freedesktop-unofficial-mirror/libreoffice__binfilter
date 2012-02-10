@@ -29,6 +29,7 @@
 #define _LNKBASE_HXX
 
 #include <bf_svtools/bf_solar.h>
+#include <bf_tools/string.hxx>
 
 #include <sot/exchange.hxx>
 #include <tools/ref.hxx>

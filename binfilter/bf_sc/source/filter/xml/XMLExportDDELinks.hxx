@@ -31,10 +31,9 @@
 
 #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
 
-class String;
-
 namespace binfilter {
 
+class String;
 class ScXMLExport;
 
 class ScXMLExportDDELinks

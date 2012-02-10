@@ -31,7 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 // Zur Zeit sind Ressources im SVTOOLS-Projekt nicht vorgesehen.
 // Da es sich um unkritische Ressourcen handelt (BASIC-Keywords),

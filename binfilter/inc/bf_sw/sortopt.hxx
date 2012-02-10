@@ -32,7 +32,7 @@
 
 
 #include <bf_svtools/svarray.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 namespace binfilter {
 
 enum SwSortOrder        { SRT_ASCENDING, SRT_DESCENDING };

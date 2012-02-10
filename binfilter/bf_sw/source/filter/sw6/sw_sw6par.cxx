@@ -3581,7 +3581,7 @@ size_t Sw6Layout::PutRest(String &rStr,sal_Char *pCtrl)
             }
             break;
         case ParaGraf:                           // Achtung: mit IBM_PC geht
-            rStr+=ByteString_ConvertToUnicode( '\xA7',  RTL_TEXTENCODING_MS_1252 );// nix: Zchn>=128 dann Conv
+            rStr+=ByteString::ConvertToUnicode( '\xA7',  RTL_TEXTENCODING_MS_1252 );// nix: Zchn>=128 dann Conv
         break;
         case TabZch:                             // Tab erst spaeter einfg.
         case InhKenn:                            // Dies Steuerzeichen werden
@@ -4182,7 +4182,7 @@ void Sw6Layout::InsertTab(USHORT nTab,TABU &rTab,SvxTabStopItem &rTabs,SwTwips n
     sal_Unicode eFill=cDfltFillChar;
     if ((BYTE)rTab.TabZch>' ')
     {
-        eFill= ByteString_ConvertToUnicode( rTab.TabZch, RTL_TEXTENCODING_IBM_850 );
+        eFill= ByteString::ConvertToUnicode( rTab.TabZch, RTL_TEXTENCODING_IBM_850 );
     }
 
     SvxTabAdjust eAdjust=SVX_TAB_ADJUST_LEFT;

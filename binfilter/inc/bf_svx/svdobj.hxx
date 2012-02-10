@@ -30,6 +30,7 @@
 #define _SVDOBJ_HXX
 
 #include <bf_svtools/bf_solar.h>
+#include <bf_tools/string.hxx>
 
 #include <memory>
 #include <cppuhelper/weakref.hxx>

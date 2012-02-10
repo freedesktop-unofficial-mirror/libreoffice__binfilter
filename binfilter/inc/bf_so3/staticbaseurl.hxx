@@ -32,12 +32,10 @@
 #include "sal/config.h"
 
 #include "rtl/textenc.h"
+#include "bf_tools/string.hxx"
 #include "tools/urlobj.hxx"
 
 #include "bf_so3/so3dllapi.h"
-
-class ByteString;
-class String;
 
 namespace binfilter {
 

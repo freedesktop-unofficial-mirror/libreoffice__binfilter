@@ -36,7 +36,7 @@
 
 #include <unotools/configitem.hxx>
 #include <rsc/rscsfx.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_svtools/poolitem.hxx>
 
 #include <bf_sfx2/srchdefs.hxx>

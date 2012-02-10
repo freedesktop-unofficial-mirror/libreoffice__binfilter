@@ -1457,7 +1457,7 @@ void SvNumberformat::LoadString( SvStream& rStream, String& rStr )
             if ( *p == cStream )
                 *pUni = cTarget;
             else
-                *pUni = ByteString_ConvertToUnicode( *p, eStream );
+                *pUni = ByteString::ConvertToUnicode( *p, eStream );
             p++;
             pUni++;
         }

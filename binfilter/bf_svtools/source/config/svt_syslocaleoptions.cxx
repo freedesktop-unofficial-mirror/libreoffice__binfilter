@@ -32,7 +32,7 @@
 #include <listener.hxx>
 #include <bf_svtools/smplhint.hxx>
 #include <i18npool/mslangid.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <rtl/ustrbuf.hxx>
 #include <rtl/instance.hxx>
 #include <unotools/configmgr.hxx>

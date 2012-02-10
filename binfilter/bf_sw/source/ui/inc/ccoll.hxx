@@ -29,7 +29,7 @@
 #define _CCOLL_HXX
 
 #include <bf_svtools/poolitem.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/resary.hxx>
 #include "cmdid.h"
 

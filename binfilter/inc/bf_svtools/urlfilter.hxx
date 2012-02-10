@@ -29,7 +29,7 @@
 #ifndef SVTOOLS_URL_FILTER_HXX
 #define SVTOOLS_URL_FILTER_HXX
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/wldcrd.hxx>
 #include <functional>
 #include <vector>

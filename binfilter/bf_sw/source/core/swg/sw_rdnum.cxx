@@ -116,7 +116,7 @@ void SwSwgReader::InNumFmt( SwNumFmt& rFmt )
     }
     if( RTL_TEXTENCODING_DONTKNOW == eCharSet )
         eCharSet = RTL_TEXTENCODING_SYMBOL;
-    sal_Unicode cBull = ByteString_ConvertToUnicode( cBullet, eCharSet );
+    sal_Unicode cBull = ByteString::ConvertToUnicode( cBullet, eCharSet );
     if( !cBull )
         cBull = cBulletChar;
     rFmt.SetNumberingType( eType );

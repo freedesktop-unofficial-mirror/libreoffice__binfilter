@@ -41,7 +41,7 @@
 // benotigt.
 
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 namespace binfilter {
 class SwPaM;
 

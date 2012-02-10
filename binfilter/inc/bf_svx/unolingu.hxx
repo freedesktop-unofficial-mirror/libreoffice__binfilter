@@ -32,7 +32,7 @@
 #include <bf_svtools/bf_solar.h>
 
 #include <i18npool/lang.h>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <com/sun/star/linguistic2/XLinguServiceManager.hpp>
 #include <com/sun/star/linguistic2/XSpellChecker1.hpp>

@@ -50,7 +50,7 @@
 #include <vcl/field.hxx>
 #include <tools/gen.hxx>
 #include <tools/color.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include "adjust.hxx"
 #include <bf_svx/svdobj.hxx>
 #include <bf_svtools/itemset.hxx>

@@ -32,7 +32,7 @@
 
 #include "bf_svtools/svtdllapi.h"
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/table.hxx>
 #include <i18npool/lang.h>
 #include <bf_svtools/svarray.hxx>

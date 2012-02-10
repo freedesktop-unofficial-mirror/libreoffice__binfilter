@@ -174,7 +174,7 @@ namespace binfilter {
 /*N*/       aRes.SetRT(RSC_STRING);
 /*N*/       if (IsAvailableRes(aRes))
 /*N*/         {
-/*N*/             pSymbolTable[i] = aRes;
+/*N*/             pSymbolTable[i] = String(aRes);
 /*N*/             rHashMap.insert( ScOpCodeHashMap::value_type( pSymbolTable[i], (OpCode) i ) );
 /*N*/         }
 /*N*/   }

@@ -32,7 +32,7 @@
 
 #include <stdlib.h>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <tools/stream.hxx>
 

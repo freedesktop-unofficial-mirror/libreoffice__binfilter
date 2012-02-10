@@ -58,7 +58,8 @@ SLOFILES=\
     $(SLO)$/svt_ownlist.obj             \
     $(SLO)$/svt_vcldata.obj             \
     $(SLO)$/svt_restrictedpaths.obj	\
-    $(SLO)$/tl_tstring.obj
+    $(SLO)$/tl_tstring.obj		\
+    $(SLO)$/tl_tustring.obj
 
 # --- Targets -------------------------------------------------------
 

@@ -31,10 +31,9 @@
 
 #include <com/sun/star/uno/Sequence.hxx>
 
-class String;
-
 namespace binfilter {
 
+class String;
 class ScDocShell;
 
 

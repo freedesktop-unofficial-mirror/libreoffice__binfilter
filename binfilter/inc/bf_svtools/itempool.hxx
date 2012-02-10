@@ -36,7 +36,7 @@
 #define INCLUDED_LIMITS_H
 #endif
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <bf_svtools/svarray.hxx>
 

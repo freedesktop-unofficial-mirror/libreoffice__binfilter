@@ -1400,7 +1400,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/ #ifdef DBG_UTIL
 /*?*/           ByteString aMsg("Das Format dieser Datei ist noch von April '95 (Version ");
-/*?*/           aMsg += ByteString_CreateFromInt32( rHead.GetVersion() );
+/*?*/           aMsg += ByteString::CreateFromInt32( rHead.GetVersion() );
 /*?*/           aMsg += "). Mit dieser Programmversion kann das nicht mehr gelesen werden";
 /*?*/
 /*?*/           OSL_FAIL(aMsg.GetBuffer());

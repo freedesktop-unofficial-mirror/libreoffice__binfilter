@@ -31,7 +31,7 @@
 
 #include "global.hxx"
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 class SvStream;
 namespace binfilter {
 

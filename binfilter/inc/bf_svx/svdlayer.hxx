@@ -31,7 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/stream.hxx>
 #include <bf_svx/svdsob.hxx>
 #include <bf_svx/svdtypes.hxx> // fuer typedef SdrLayerID

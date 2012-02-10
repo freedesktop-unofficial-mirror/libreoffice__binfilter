@@ -46,7 +46,6 @@ namespace com { namespace sun { namespace star { namespace uno
     //class Type;
 }}}}
 class Window;
-class String;
 
 #ifndef ADVISEMODE_NODATA
 // Muessen die gleichen Werte wie Ole2 ADVF_* sein
@@ -59,6 +58,7 @@ class String;
 namespace binfilter
 {
 
+class String;
 class SvBaseLink;
 struct SvLinkSource_Impl;
 

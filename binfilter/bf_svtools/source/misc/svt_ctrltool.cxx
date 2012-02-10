@@ -87,7 +87,7 @@ static StringCompare ImplCompareFontInfo( ImplFontListFontInfo* pInfo1,
     else if ( pInfo1->GetItalic() > pInfo2->GetItalic() )
         return COMPARE_GREATER;
 
-    return pInfo1->GetStyleName().CompareTo( pInfo2->GetStyleName() );
+    return static_cast<StringCompare>(pInfo1->GetStyleName().CompareTo( pInfo2->GetStyleName() ));
 }
 
 static void ImplMakeSearchString( XubString& rStr )

@@ -49,8 +49,8 @@ namespace binfilter
 static USHORT aWndFunc(
     Window *pWin,            // Parent des Dialoges
     USHORT nFlags,
-    const String &rErr,      // Fehlertext
-    const String &rAction)   // Actiontext
+    const ::String &rErr,      // Fehlertext
+    const ::String &rAction)   // Actiontext
 
 /*  [Beschreibung]
 
@@ -183,7 +183,7 @@ SfxErrorHandler::~SfxErrorHandler()
 //-------------------------------------------------------------------------
 
 BOOL SfxErrorHandler::CreateString(
-    const ErrorInfo *pErr, String &rStr, USHORT& nFlags) const
+    const ErrorInfo *pErr, ::String &rStr, USHORT& nFlags) const
 
 /*  [Beschreibung]
 
@@ -323,7 +323,7 @@ BOOL SfxErrorHandler::GetClassString(ULONG lClassId, String &rStr) const
 //-------------------------------------------------------------------------
 
 BOOL SfxErrorHandler::GetMessageString(
-    ULONG lErrId, String &rStr, USHORT &nFlags) const
+    ULONG lErrId, ::String &rStr, USHORT &nFlags) const
 
 /*  [Beschreibung]
 
@@ -342,7 +342,7 @@ BOOL SfxErrorHandler::GetMessageString(
         USHORT nResFlags = aErrorString.GetFlags();
         if( nResFlags )
             nFlags=aErrorString.GetFlags();
-        rStr = aErrorString.GetString();
+        rStr = rtl::OUString(aErrorString.GetString());
         bRet = TRUE;
     }
 
@@ -353,7 +353,7 @@ BOOL SfxErrorHandler::GetMessageString(
 //-------------------------------------------------------------------------
 
 BOOL SfxErrorHandler::GetErrorString(
-    ULONG lErrId, String &rStr, USHORT &nFlags) const
+    ULONG lErrId, ::String &rStr, USHORT &nFlags) const
 
 /*  [Beschreibung]
     Erzeugt den Fehlerstring fuer den eigentlichen Fehler ohne
@@ -413,7 +413,7 @@ SfxErrorContext::SfxErrorContext(
 
 //-------------------------------------------------------------------------
 
-BOOL SfxErrorContext::GetString(ULONG nErrId, String &rStr)
+BOOL SfxErrorContext::GetString(ULONG nErrId, ::String &rStr)
 
 /*  [Beschreibung]
 
@@ -437,7 +437,7 @@ BOOL SfxErrorContext::GetString(ULONG nErrId, String &rStr)
         ErrorResource_Impl aTestEr( aResId, nCtxId );
         if ( aTestEr )
         {
-            rStr = ( (ResString)aTestEr ).GetString();
+            rStr = rtl::OUString(( (ResString)aTestEr ).GetString());
             rStr.SearchAndReplace( String::CreateFromAscii( "$(ARG1)" ), aArg1 );
             bRet = true;
         }

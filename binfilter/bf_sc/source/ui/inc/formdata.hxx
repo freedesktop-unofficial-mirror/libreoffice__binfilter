@@ -29,7 +29,7 @@
 #ifndef SC_FORMDATA_HXX
 #define SC_FORMDATA_HXX
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <tools/gen.hxx>
 namespace binfilter {

@@ -28,7 +28,7 @@
 #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
 #define INCLUDED_SVTOOLS_PATHOPTIONS_HXX
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <com/sun/star/lang/Locale.hpp>
 #include <bf_svtools/options.hxx>
 

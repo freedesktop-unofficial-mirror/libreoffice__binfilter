@@ -35,7 +35,7 @@
 #include <bf_sfx2/module.hxx>
 #include <tools/color.hxx>
 #include <tools/link.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <rtl/ustrbuf.hxx>
 #include <bf_sch/cellranges.hxx>
 

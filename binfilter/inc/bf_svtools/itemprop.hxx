@@ -29,7 +29,7 @@
 #define _SFX_ITEMPROP_HXX
 
 #include <bf_svtools/bf_solar.h>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_svtools/itemset.hxx>
 #include <cppuhelper/implbase1.hxx>
 #include <com/sun/star/beans/XPropertySetInfo.hpp>

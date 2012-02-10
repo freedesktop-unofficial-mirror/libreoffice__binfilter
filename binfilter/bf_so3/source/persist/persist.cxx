@@ -294,9 +294,9 @@ void SvPersist::TestMemberObjRef()
             if( pEle->GetObj() )
             {
                 ByteString aTest( "\t\tpChildList[ " );
-                aTest += ByteString_CreateFromInt32( i );
+                aTest += ByteString::CreateFromInt32( i );
                 aTest += " ] == ";
-                aTest += ByteString_CreateFromInt32( (ULONG)pEle->GetObj() );
+                aTest += ByteString::CreateFromInt32( (ULONG)pEle->GetObj() );
                 OSL_TRACE( "%s", aTest.GetBuffer() );
             }
         }
@@ -304,7 +304,7 @@ void SvPersist::TestMemberObjRef()
     if( aStorage.Is() )
     {
         ByteString aTest( "\t\taStorage == " );
-        aTest += ByteString_CreateFromInt32( (ULONG)&aStorage );
+        aTest += ByteString::CreateFromInt32( (ULONG)&aStorage );
         OSL_TRACE( "%s", aTest.GetBuffer() );
     }
 }

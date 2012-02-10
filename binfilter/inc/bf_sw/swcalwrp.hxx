@@ -30,7 +30,7 @@
 #define _SWCALWRP_HXX
 
 #include <i18npool/lang.h>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <unotools/calendarwrapper.hxx>
 namespace binfilter {
 

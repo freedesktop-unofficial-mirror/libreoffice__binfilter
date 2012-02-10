@@ -30,7 +30,7 @@
 #define _PRODUCE_HXX
 
 #include <tools/link.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <com/sun/star/awt/ImageStatus.hpp>
 #include <com/sun/star/awt/XImageConsumer.hpp>

@@ -32,7 +32,7 @@
 #include <listener.hxx>
 #include <bf_svtools/smplhint.hxx>
 #include <vcl/svapp.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_svtools/syslocaleoptions.hxx>
 #include <unotools/localedatawrapper.hxx>
 #include <comphelper/processfactory.hxx>

@@ -31,9 +31,8 @@
 #include <bf_svtools/bf_solar.h>
 
 #include <tools/link.hxx>
-class String;
 namespace binfilter {
-
+class String;
 class SfxObjectShell;
 class SfxStatusBarManager;
 class INetHint;

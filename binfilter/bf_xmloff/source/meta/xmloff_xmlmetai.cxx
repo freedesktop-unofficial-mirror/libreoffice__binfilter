@@ -28,7 +28,7 @@
 
 #include <tools/debug.hxx>
 #include <tools/time.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <com/sun/star/util/DateTime.hpp>
 #include <com/sun/star/document/XDocumentInfoSupplier.hpp>

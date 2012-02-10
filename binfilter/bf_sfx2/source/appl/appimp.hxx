@@ -29,7 +29,7 @@
 #define _SFXAPPIMP_HXX
 
 #include <tools/time.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 class MenuBar;
 class BasicManager;
 class Timer;

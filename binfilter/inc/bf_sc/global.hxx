@@ -30,6 +30,7 @@
 #define SC_SCGLOB_HXX
 
 #include <bf_svtools/bf_solar.h>
+#include <bf_tools/string.hxx>
 
 #include <i18npool/lang.h>
 #include <tools/stream.hxx>

@@ -62,7 +62,7 @@
  */
 
 #ifdef DBG_UTIL
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #endif
 
 #ifndef _SVSTDARR_HXX

@@ -29,7 +29,7 @@
 #ifndef _ZFORAUTO_HXX_
 #define _ZFORAUTO_HXX_
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <i18npool/lang.h>
 namespace binfilter {

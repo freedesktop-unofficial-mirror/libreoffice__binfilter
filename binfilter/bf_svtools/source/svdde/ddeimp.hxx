@@ -62,7 +62,7 @@ extern "C"
 
 #endif
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/shl.hxx>
 
 namespace binfilter

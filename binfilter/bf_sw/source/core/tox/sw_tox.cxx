@@ -304,14 +304,14 @@ String lcl_GetAuthPattern(USHORT nTypeId)
 /*N*/           if(TOX_CONTENT == nType)
 /*N*/           {
 /*N*/               //the most right tab stop is "most_right_aligned"
-/*N*/               sTmp += ByteString_CreateFromInt32( SVX_TAB_ADJUST_END );
+/*N*/               sTmp += ByteString::CreateFromInt32( SVX_TAB_ADJUST_END );
 /*N*/               //and has a dot as FillChar
 /*N*/               sTmp.Append( RTL_CONSTASCII_STRINGPARAM( ",." ));
 /*N*/               sBStr.Insert(sTmp, sBStr.Len() - 1);
 /*N*/           }
 /*N*/           else
 /*N*/           {
-/*N*/               sTmp += ByteString_CreateFromInt32( SVX_TAB_ADJUST_LEFT );
+/*N*/               sTmp += ByteString::CreateFromInt32( SVX_TAB_ADJUST_LEFT );
 /*N*/               //and has a space as FillChar
 /*N*/               sTmp.Append( RTL_CONSTASCII_STRINGPARAM( ", " ));
 /*N*/           }

@@ -36,6 +36,8 @@
 #include <com/sun/star/frame/XModel.hpp>
 #include <com/sun/star/lang/XServiceInfo.hpp>
 
+#include <bf_tools/string.hxx>
+
 #include <vector>
 
 namespace com { namespace sun { namespace star {
@@ -55,7 +57,6 @@ class SdrIOHeader;
 class FmFormObj;
 class FmFormPage;
 class SdrObject;
-
 class SdrObjList;
 
 typedef ::std::vector< FmFormObj* > FmObjectList;

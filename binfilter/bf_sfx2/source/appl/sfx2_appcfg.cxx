@@ -39,7 +39,7 @@
 #include <vcl/sound.hxx>
 #include <vcl/msgbox.hxx>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <bf_svtools/itempool.hxx>
 #include <bf_svtools/aeitem.hxx>

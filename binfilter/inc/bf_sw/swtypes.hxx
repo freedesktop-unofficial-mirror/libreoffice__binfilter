@@ -58,8 +58,6 @@ namespace utl{
 class Size;
 class MapMode;
 class ResMgr;
-class UniString;
-class ByteString;
 class Graphic;
 class OutputDevice;
 class CharClass;
@@ -67,6 +65,8 @@ class LocaleDataWrapper;
 class CollatorWrapper;
 namespace binfilter {
 
+class UniString;
+class ByteString;
 
 class SwPathFinder;
 

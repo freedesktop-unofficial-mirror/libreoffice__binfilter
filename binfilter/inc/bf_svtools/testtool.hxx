@@ -30,7 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 #include <tools/link.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 class Application;
 class SvStream;

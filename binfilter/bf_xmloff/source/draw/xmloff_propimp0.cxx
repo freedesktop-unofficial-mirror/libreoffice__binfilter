@@ -30,7 +30,7 @@
 #pragma hdrstop
 #endif
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 #include <rtl/ustrbuf.hxx>
 

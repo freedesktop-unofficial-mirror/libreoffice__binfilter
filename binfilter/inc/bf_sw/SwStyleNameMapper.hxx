@@ -30,7 +30,7 @@
 
 #include <sal/types.h>
 #include <SwGetPoolIdFromName.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <boost/unordered_map.hpp>
 
 class String;

@@ -31,7 +31,7 @@
 #include <bf_svtools/bf_solar.h>
 
 #include <bf_so3/linksrc.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_svtools/svarray.hxx>
 
 #include "bf_so3/so3dllapi.h"

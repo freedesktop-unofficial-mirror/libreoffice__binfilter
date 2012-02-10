@@ -30,7 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <bf_svtools/svarray.hxx>
 #include <vcl/font.hxx>
 #include <bf_svx/swafopt.hxx>

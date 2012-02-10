@@ -38,7 +38,7 @@
 #include <osl/diagnose.h>
 #include "index.hxx"
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 
 namespace binfilter {
 

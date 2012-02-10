@@ -949,7 +949,7 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*N*/                                   sal_uInt8 cFillChar;
 /*N*/                                   *pStrm  >> cFillChar;
 /*N*/                                   aToken.cTabFillChar =
-/*N*/                                       ByteString_ConvertToUnicode( cFillChar,
+/*N*/                                       ByteString::ConvertToUnicode( cFillChar,
 /*N*/                                                                     eSrcSet );
 /*N*/                               }
 /*N*/                           }

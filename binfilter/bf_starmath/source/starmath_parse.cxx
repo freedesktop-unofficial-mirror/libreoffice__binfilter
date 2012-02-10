@@ -2325,7 +2325,7 @@ const sal_Int32 coNumContFlags =
 /*N*/       default:
 /*N*/           nRID = RID_ERR_UNKOWN;
 /*N*/   }
-/*N*/   pErrDesc->Text += SmResId(nRID);
+/*N*/   pErrDesc->Text += String(SmResId(nRID));
 /*N*/
 /*N*/   ErrDescList.push_back( pErrDesc );
 /*N*/ }

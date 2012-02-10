@@ -29,7 +29,7 @@
 #ifndef _FILTER_CONFIG_CACHE_HXX_
 #define _FILTER_CONFIG_CACHE_HXX_
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <rtl/ustring.hxx>
 #include "bf_svtools/svtdllapi.h"
 #include <com/sun/star/uno/Sequence.h>

@@ -37,10 +37,10 @@
 #include <rtl/ustrbuf.hxx>
 
 class DateTime;
-class String;
 
 namespace binfilter {
 
+class String;
 class ScChangeAction;
 class ScChangeTrack;
 class ScXMLExport;

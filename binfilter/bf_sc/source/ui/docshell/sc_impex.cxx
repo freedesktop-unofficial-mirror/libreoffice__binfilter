@@ -466,7 +466,8 @@ enum DoubledQuoteMode
 /*?*/           MsLangId::convertLanguageToLocale( LANGUAGE_ENGLISH_US ) );
 /*N*/   }
 /*N*/
-/*N*/   String aLine, aCell;
+/*N*/   String aCell;
+/*N*/   ::String aLine;
 /*N*/   USHORT i;
 /*N*/   USHORT nRow = nStartRow;
 /*N*/

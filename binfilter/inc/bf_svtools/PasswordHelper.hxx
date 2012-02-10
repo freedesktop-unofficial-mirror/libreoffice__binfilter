@@ -37,11 +37,9 @@
 
 #include "com/sun/star/uno/Sequence.hxx"
 
-class String;
-
 namespace binfilter
 {
-
+class String;
 class SvPasswordHelper
 {
     static void     GetHashPassword(com::sun::star::uno::Sequence <sal_Int8>& rPassHash, const sal_Char* pPass, sal_uInt32 nLen);

@@ -1802,7 +1802,7 @@ sal_Int32 SvNumberFormatter::ImpAdjustFormatCodeDefault(
             {
                 aMsg.Insert( "SvNumberFormatter::ImpAdjustFormatCodeDefault: ", 0 );
                 aMsg += "\nXML locale data FormatElement formatindex: ";
-                aMsg += ByteString_CreateFromInt32( pFormatArr[nElem].Index );
+                aMsg += ByteString::CreateFromInt32( pFormatArr[nElem].Index );
                 String aUMsg( aMsg, RTL_TEXTENCODING_ASCII_US);
                 LocaleDataWrapper::outputCheckMessage(
                         xLocaleData->appendLocaleInfo( aUMsg));

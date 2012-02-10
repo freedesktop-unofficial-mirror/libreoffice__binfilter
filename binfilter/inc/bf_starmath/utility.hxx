@@ -29,16 +29,16 @@
 #define UTILITY_HXX
 
 #include <bf_svtools/bf_solar.h>
-
+#include <bf_tools/string.hxx>
 #include <bf_sfx2/minarray.hxx>
 #include <vcl/font.hxx>
 #include <vcl/fixed.hxx>
 #include <vcl/combobox.hxx>
 #include <vcl/lstbox.hxx>
 #include <tools/fract.hxx>
-class String;
 namespace binfilter {
 
+class String;
 
 class SmRect;
 

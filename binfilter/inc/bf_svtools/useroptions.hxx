@@ -31,7 +31,7 @@
 #include "bf_svtools/svtdllapi.h"
 
 #include <unotools/configitem.hxx>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <osl/mutex.hxx>
 #include <bf_svtools/brdcst.hxx>
 #include <bf_svtools/lstner.hxx>

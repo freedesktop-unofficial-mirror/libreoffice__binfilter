@@ -29,7 +29,7 @@
 #define _GUESS_HXX
 
 #include <bf_svtools/bf_solar.h>
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <com/sun/star/linguistic2/XHyphenatedWord.hpp>
 
 #include "txttypes.hxx"

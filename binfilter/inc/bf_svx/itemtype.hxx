@@ -36,7 +36,7 @@
 
 // forward ---------------------------------------------------------------
 
-#include <tools/string.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/resid.hxx>
 #include <tools/bigint.hxx>
 #include <bf_svx/dialmgr.hxx>
