@@ -110,11 +110,11 @@ public:
     // Mit dem Lookahead kann die Suche eingeschraenkt werden. 0 oder
     // USHRT_MAX suchen im gesamten Array.
 
-    _SwRedlineTbl::Count;
-    _SwRedlineTbl::operator[];
-    _SwRedlineTbl::GetObject;
-    _SwRedlineTbl::Seek_Entry;
-    _SwRedlineTbl::GetPos;
+    using _SwRedlineTbl::Count;
+    using _SwRedlineTbl::operator[];
+    using _SwRedlineTbl::GetObject;
+    using _SwRedlineTbl::Seek_Entry;
+    using _SwRedlineTbl::GetPos;
 };
 
 typedef SwUnoCrsr* SwUnoCrsrPtr;

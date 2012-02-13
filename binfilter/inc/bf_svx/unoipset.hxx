@@ -34,8 +34,8 @@
 
 namespace binfilter {
 struct SfxItemPropertyMap;
+struct SvxIDPropertyCombine;
 class SfxItemSet;
-class SvxIDPropertyCombine;
 class SdrItemPool;
 
 typedef ::std::vector< SvxIDPropertyCombine* > SvxIDPropertyCombineList;
