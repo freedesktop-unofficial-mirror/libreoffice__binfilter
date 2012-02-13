@@ -35,7 +35,6 @@
 #include <rtl/textcvt.h>
 #include <rtl/string.hxx>
 #include <rtl/ustring.hxx>
-#include <tools/toolsdllapi.h>
 #include <tools/string.hxx>
 
 // -----------
@@ -107,15 +106,15 @@ typedef struct _ByteStringData
 // - ByteString -
 // --------------
 
-class TOOLS_DLLPUBLIC ByteString
+class ByteString
 {
     friend              class UniString;
 
 private:
     ByteStringData*     mpData;
 
-    TOOLS_DLLPRIVATE inline void ImplCopyData();
-    TOOLS_DLLPRIVATE inline char * ImplCopyStringData(char *);
+    inline void ImplCopyData();
+    inline char * ImplCopyStringData(char *);
 
                         ByteString( const int* pDummy ); // not implemented: to prevent ByteString( NULL )
                         ByteString(int); // not implemented; to detect misuses
@@ -350,15 +349,15 @@ typedef struct _UniStringData
 // - UniString -
 // -------------
 
-class TOOLS_DLLPUBLIC UniString
+class UniString
 {
     friend              class ByteString;
 
 private:
     UniStringData*      mpData;
 
-    TOOLS_DLLPRIVATE inline void ImplCopyData();
-    TOOLS_DLLPRIVATE inline sal_Unicode * ImplCopyStringData(sal_Unicode *);
+    inline void ImplCopyData();
+    inline sal_Unicode * ImplCopyStringData(sal_Unicode *);
 
                         UniString( const int* pDummy );    // not implemented: to prevent UniString( NULL )
                         UniString(int); // not implemented; to detect misuses of
@@ -373,7 +372,7 @@ private:
                                           // of operator +=(sal_Unicode)
 
     //detect and reject use of RTL_CONSTASCII_STRINGPARAM instead of RTL_CONSTASCII_USTRINGPARAM
-    TOOLS_DLLPRIVATE UniString( const sal_Char*, sal_Int32 );
+    UniString( const sal_Char*, sal_Int32 );
 public:
                         UniString();
                         UniString( const UniString& rStr );
