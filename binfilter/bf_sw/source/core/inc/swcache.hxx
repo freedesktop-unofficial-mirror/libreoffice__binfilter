@@ -220,7 +220,7 @@ protected:
     inline SwCacheAccess( SwCache &rCache, const void *pOwner, const USHORT nIndex );
 
 public:
-    ~SwCacheAccess() { if ( pObj ) pObj->Unlock(); }
+    virtual ~SwCacheAccess() { if ( pObj ) pObj->Unlock(); }
 
 
     //Abkuerzung fuer diejenigen, die wissen, das die Ableitung das IsAvailable
