@@ -108,7 +108,7 @@ HDDEDATA CALLBACK _export DdeInternal::SvrCallback(
                             USHORT n = 0;
                             while( STRING_NOTFOUND != n )
                             {
-                                String s( sTopics.GetToken( 0, '\t', n ));
+                                rtl::OUString s( sTopics.GetToken( 0, '\t', n ));
                                 if( s == reinterpret_cast<const sal_Unicode*>(chTopicBuf) )
                                     ++nTopics;
                             }
@@ -138,7 +138,7 @@ HDDEDATA CALLBACK _export DdeInternal::SvrCallback(
                         String s( sTopics.GetToken( 0, '\t', n ));
                         s = comphelper::string::remove(s, '\n');
                         s = comphelper::string::remove(s, '\r');
-                        if( !hText1 || s == reinterpret_cast<const sal_Unicode*>(chTopicBuf) )
+                        if( !hText1 || s == String(reinterpret_cast<const sal_Unicode*>(chTopicBuf)) )
                         {
                             DdeString aDStr( pInst->hDdeInstSvr, s );
                             pTopic = FindTopic( *pService, (HSZ)aDStr );
@@ -238,15 +238,15 @@ found:
             String aRes;          // darf erst am Ende freigegeben werden!!
             if ( pTopic->IsSystemTopic() )
             {
-                if ( pTopic->aItem == reinterpret_cast<const sal_Unicode*>(SZDDESYS_ITEM_TOPICS) )
+                if ( pTopic->aItem == String(reinterpret_cast<const sal_Unicode*>(SZDDESYS_ITEM_TOPICS)) )
                     aRes = pService->Topics();
-                else if ( pTopic->aItem == reinterpret_cast<const sal_Unicode*>(SZDDESYS_ITEM_SYSITEMS) )
+                else if ( pTopic->aItem == String(reinterpret_cast<const sal_Unicode*>(SZDDESYS_ITEM_SYSITEMS)) )
                     aRes = pService->SysItems();
-                else if ( pTopic->aItem == reinterpret_cast<const sal_Unicode*>(SZDDESYS_ITEM_STATUS) )
+                else if ( pTopic->aItem == String(reinterpret_cast<const sal_Unicode*>(SZDDESYS_ITEM_STATUS)) )
                     aRes = pService->Status();
-                else if ( pTopic->aItem == reinterpret_cast<const sal_Unicode*>(SZDDESYS_ITEM_FORMATS) )
+                else if ( pTopic->aItem == String(reinterpret_cast<const sal_Unicode*>(SZDDESYS_ITEM_FORMATS)) )
                     aRes = pService->Formats();
-                else if ( pTopic->aItem ==  reinterpret_cast<const sal_Unicode*>(SZDDESYS_ITEM_HELP) )
+                else if ( pTopic->aItem ==  String(reinterpret_cast<const sal_Unicode*>(SZDDESYS_ITEM_HELP)) )
                     aRes = pService->GetHelp();
                 else
                     aRes = pService->SysTopicGet( pTopic->aItem );
@@ -619,7 +619,7 @@ const String& DdeTopic::GetName() const
 
 BOOL DdeTopic::IsSystemTopic()
 {
-    return BOOL (GetName() == reinterpret_cast<const sal_Unicode*>(SZDDESYS_TOPIC));
+    return BOOL (GetName() == String(reinterpret_cast<const sal_Unicode*>(SZDDESYS_TOPIC)));
 }
 
 // --- DdeTopic::AddItem() -----------------------------------------
@@ -913,7 +913,7 @@ String DdeService::SysItems()
     DdeTopic* t;
     for ( t = aTopics.First(); t; t = aTopics.Next() )
     {
-        if ( t->GetName() == reinterpret_cast<const sal_Unicode*>(SZDDESYS_TOPIC) )
+        if ( t->GetName() == String(reinterpret_cast<const sal_Unicode*>(SZDDESYS_TOPIC)) )
         {
             short n = 0;
             DdeItem* pi;
