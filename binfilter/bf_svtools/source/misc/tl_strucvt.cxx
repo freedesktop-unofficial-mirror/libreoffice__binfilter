@@ -31,22 +31,6 @@ namespace binfilter
 
 // =======================================================================
 
-void UniString::InitStringRes( const char* pUTF8Str, sal_Int32 nLen )
-{
-    DBG_CTOR( UniString, DbgCheckUniString );
-    OSL_ENSURE(nLen <= STRING_MAXLEN, "Overflowing UniString");
-
-    mpData = NULL;
-    rtl_string2UString( (rtl_uString **)(&mpData),
-                        pUTF8Str, nLen,
-                        RTL_TEXTENCODING_UTF8,
-                        RTL_TEXTTOUNICODE_FLAGS_UNDEFINED_MAPTOPRIVATE |
-                        RTL_TEXTTOUNICODE_FLAGS_MBUNDEFINED_DEFAULT |
-                        RTL_TEXTTOUNICODE_FLAGS_INVALID_DEFAULT );
-}
-
-// =======================================================================
-
 UniString::UniString( const ByteString& rByteStr, rtl_TextEncoding eTextEncoding, sal_uInt32 nCvtFlags )
 {
     DBG_CTOR( UniString, DbgCheckUniString );

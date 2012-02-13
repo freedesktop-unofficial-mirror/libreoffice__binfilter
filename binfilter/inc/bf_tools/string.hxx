@@ -354,8 +354,6 @@ class TOOLS_DLLPUBLIC UniString
 {
     friend              class ByteString;
 
-    TOOLS_DLLPRIVATE void InitStringRes( const sal_Char* pUTF8Str, sal_Int32 nLen );
-
 private:
     UniStringData*      mpData;
 
