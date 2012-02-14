@@ -141,10 +141,7 @@ private:
 public:
                         ByteString();
                         ByteString( const ByteString& rStr );
-                        ByteString( const ::ByteString& rStr )
-                        {
-                            Assign(rStr);
-                        }
+                        ByteString( const ::ByteString& rStr );
                         ByteString( const ByteString& rStr, xub_StrLen nPos, xub_StrLen nLen );
                         ByteString( const rtl::OString& rStr );
                         ByteString( const sal_Char* pCharStr );
@@ -376,10 +373,7 @@ private:
 public:
                         UniString();
                         UniString( const UniString& rStr );
-                        UniString( const ::UniString& rStr )
-                        {
-                            Assign(rStr);
-                        }
+                        UniString( const ::UniString& rStr );
                         UniString( const UniString& rStr, xub_StrLen nPos, xub_StrLen nLen );
                         UniString( const rtl::OUString& rStr );
                         UniString( const sal_Unicode* pCharStr );
