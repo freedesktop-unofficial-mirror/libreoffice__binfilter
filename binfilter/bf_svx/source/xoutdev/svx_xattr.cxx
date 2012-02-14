@@ -354,8 +354,10 @@ XubString aNameOrIndexEmptyString;
 /*N*/ {
 /*N*/   if (!IsIndex())
 /*N*/       return aColor;
-/*N*/   else
+/*N*/   else if (pTable)
 /*?*/       return pTable->Get(GetIndex())->GetColor();
+        else
+            return Color(); // whatever
 /*N*/
 /*N*/ }
 
