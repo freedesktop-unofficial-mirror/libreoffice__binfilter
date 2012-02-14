@@ -486,13 +486,17 @@ void SAL_CALL OInterfaceContainer::disposing(const EventObject& _rSource) throw(
                 "OInterfaceContainer::disposing: map element not normalized!" );
 
             if ( i->second.get() == _rSource.Source.get() )
+            {
                 // found it
+                m_aMap.erase(i);
                 break;
+            }
 
             ++i;
+
+            DBG_ASSERT( i != m_aMap.end(), "OInterfaceContainer::disposing: inconsistency: the element was in m_aItems, but not in m_aMap!" );
         }
 
-        m_aMap.erase(i);
         m_aItems.erase(j);
     }
 }
