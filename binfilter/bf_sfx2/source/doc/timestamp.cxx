@@ -223,8 +223,8 @@ BOOL TimeStamp::Load ( SvStream& rStream )
     impl_adjustName ( m_sModifiedByName ) ;
 
     // Load date and time from stream.
-    long nDate ;
-    long nTime ;
+    sal_Int32 nDate ;
+    sal_Int32 nTime ;
 
     rStream >> nDate >> nTime ;
 
