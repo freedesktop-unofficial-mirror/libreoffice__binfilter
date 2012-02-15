@@ -261,8 +261,6 @@ public:
 
     const sal_Char*     GetBuffer() const { return mpData->maStr; }
 
-    friend sal_Bool         operator == ( const ::ByteString& rStr1,  const ByteString& rStr2 )
-                            { return rStr1.Equals( rStr2 ); }
     friend sal_Bool         operator == ( const ByteString& rStr1,  const ::ByteString& rStr2 )
                             { return rStr1.Equals( rStr2 ); }
     friend sal_Bool         operator == ( const ByteString& rStr1,  const ByteString& rStr2 )
@@ -271,10 +269,6 @@ public:
                             { return rStr.Equals( pCharStr ); }
     friend sal_Bool         operator == ( const sal_Char* pCharStr, const ByteString& rStr )
                             { return rStr.Equals( pCharStr ); }
-    friend sal_Bool         operator != ( const ::ByteString& rStr1,  const ByteString& rStr2 )
-                            { return !(operator == ( rStr1, rStr2 )); }
-    friend sal_Bool         operator != ( const ByteString& rStr1,  const ::ByteString& rStr2 )
-                            { return !(operator == ( rStr1, rStr2 )); }
     friend sal_Bool         operator != ( const ByteString& rStr1,  const ByteString& rStr2 )
                             { return !(operator == ( rStr1, rStr2 )); }
     friend sal_Bool         operator != ( const ByteString& rStr,   const sal_Char* pCharStr )
