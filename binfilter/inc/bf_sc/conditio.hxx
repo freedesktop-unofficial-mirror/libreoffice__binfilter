@@ -114,7 +114,7 @@ public:
             ScConditionEntry( const ScConditionEntry& r );  // flache Kopie der Formeln
             // echte Kopie der Formeln (fuer Ref-Undo):
             ScConditionEntry( ScDocument* pDocument, const ScConditionEntry& r );
-            ~ScConditionEntry();
+            virtual ~ScConditionEntry();
 
     int             operator== ( const ScConditionEntry& r ) const;
 

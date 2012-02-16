@@ -141,7 +141,6 @@ private:
 public:
                         ByteString();
                         ByteString( const ByteString& rStr );
-                        ByteString( const ::ByteString& rStr );
                         ByteString( const ByteString& rStr, xub_StrLen nPos, xub_StrLen nLen );
                         ByteString( const rtl::OString& rStr );
                         ByteString( const sal_Char* pCharStr );

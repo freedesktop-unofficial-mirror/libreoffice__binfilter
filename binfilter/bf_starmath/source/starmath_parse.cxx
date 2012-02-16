@@ -1847,7 +1847,7 @@ const sal_Int32 coNumContFlags =
 /*N*/   }
 /*N*/
 /*N*/   // get number argument
-/*N*/   double    fTmp;
+/*N*/   double    fTmp(0.0);
 /*N*/   Fraction  aValue;
 /*N*/   if(lcl_IsNumber(CurToken.aText) &&
 /*N*/       sscanf(rtl::OUStringToOString(CurToken.aText, RTL_TEXTENCODING_ASCII_US).getStr(), "%lf", &fTmp) == 1)

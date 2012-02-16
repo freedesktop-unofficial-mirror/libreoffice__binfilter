@@ -262,7 +262,7 @@ protected:
 public:
     // Als Modus muss STREAM_READ oder STREAM_WRITE angegeben werden.
     SdrDownCompat(SvStream& rNewStream, UINT16 nNewMode, BOOL bAutoOpen = TRUE);
-    ~SdrDownCompat();
+    virtual ~SdrDownCompat();
 
 #ifdef DBG_UTIL
     // fuer etwas aussagekraeftigere Assertions

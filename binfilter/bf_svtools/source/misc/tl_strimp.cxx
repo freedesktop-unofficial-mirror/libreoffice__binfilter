@@ -219,19 +219,6 @@ STRING::STRING( const STRING& rStr )
     mpData = rStr.mpData;
 }
 
-STRING::STRING( const ::STRING& rStr )
-{
-    DBG_CTOR( STRING, DBGCHECKSTRING );
-    DBG_CHKOBJ( &rStr, STRING, DBGCHECKSTRING );
-
-    // this is good enough for binfilter...
-    STRING temp;
-    temp.Assign(rStr);
-
-    STRING_ACQUIRE((STRING_TYPE *)temp.mpData);
-    mpData = temp.mpData;
-}
-
 // -----------------------------------------------------------------------
 
 STRING::STRING( const STRING& rStr, xub_StrLen nPos, xub_StrLen nLen )
