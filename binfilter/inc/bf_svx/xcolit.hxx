@@ -58,7 +58,7 @@ public:
     virtual SfxPoolItem*    Create(SvStream& rIn, USHORT nVer) const;
     virtual SvStream&       Store(SvStream& rOut, USHORT) const { return rOut; }
 
-    const Color&    GetValue(const XColorTable* pTable = 0) const;
+    const Color&    GetValue() const;
     void            SetValue(const Color& rNew) { aColor = rNew; Detach(); }
 };
 

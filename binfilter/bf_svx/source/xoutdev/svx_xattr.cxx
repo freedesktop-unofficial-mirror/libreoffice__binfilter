@@ -350,15 +350,9 @@ XubString aNameOrIndexEmptyString;
 |*
 \************************************************************************/
 
-/*N*/ const Color& XColorItem::GetValue(const XColorTable* pTable) const
+/*N*/ const Color& XColorItem::GetValue() const
 /*N*/ {
-/*N*/   if (!IsIndex())
-/*N*/       return aColor;
-/*N*/   else if (pTable)
-/*?*/       return pTable->Get(GetIndex())->GetColor();
-        else
-            return Color(); // whatever
-/*N*/
+/*N*/   return aColor;
 /*N*/ }
 
 /*N*/ bool XColorItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ ) const
