@@ -627,6 +627,52 @@ STRING::STRING( const ::STRING& rStr )
     mpData = temp.mpData;
 }
 
+// -----------------------------------------------------------------------
+
+STRING& STRING::Assign( const STRCODE* pCharStr, xub_StrLen nLen )
+{
+    DBG_CHKTHIS( STRING, DBGCHECKSTRING );
+    DBG_ASSERT( pCharStr, "String::Assign() - pCharStr is NULL" );
+
+    if ( nLen == STRING_LEN )
+        nLen = ImplStringLen( pCharStr );
+
+#ifdef DBG_UTIL
+    if ( DbgIsAssert() )
+    {
+        for ( xub_StrLen i = 0; i < nLen; i++ )
+        {
+            if ( !pCharStr[i] )
+            {
+                OSL_FAIL( "String::Assign() : nLen is wrong" );
+            }
+        }
+    }
+#endif
+
+    if ( !nLen )
+    {
+        STRING_NEW((STRING_TYPE **)&mpData);
+    }
+    else
+    {
+        // Wenn String genauso lang ist, wie der String, dann direkt kopieren
+        if ( (nLen == mpData->mnLen) && (mpData->mnRefCount == 1) )
+            memcpy( mpData->maStr, pCharStr, nLen*sizeof( STRCODE ) );
+        else
+        {
+            // Alte Daten loeschen
+            STRING_RELEASE((STRING_TYPE *)mpData);
+
+            // Daten initialisieren und String kopieren
+            mpData = ImplAllocData( nLen );
+            memcpy( mpData->maStr, pCharStr, nLen*sizeof( STRCODE ) );
+        }
+    }
+
+    return *this;
+}
+
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
