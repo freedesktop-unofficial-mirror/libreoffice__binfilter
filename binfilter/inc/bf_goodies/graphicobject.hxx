@@ -52,7 +52,6 @@ namespace binfilter {
     {
     protected:
         virtual void GraphicManagerDestroyed();
-        virtual ULONG GetReleaseFromCache() const;
         virtual SvStream* GetSwapStream() const;
         virtual void Load( SvStream& );
         virtual void Save( SvStream& ) {};
