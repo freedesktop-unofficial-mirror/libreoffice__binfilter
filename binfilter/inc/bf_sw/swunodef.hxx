@@ -29,10 +29,9 @@
 #define _SWUNODEF_HXX
 namespace binfilter {
 
-#define UNO_NMSPC               ::com::sun::star::uno
 #define CLIP_NMSPC              ::com::sun::star::datatransfer::clipboard
 
-#define STAR_REFERENCE(aType)   UNO_NMSPC::Reference< ::com::sun::star::aType >
+#define STAR_REFERENCE(aType)   ::com::sun::star::uno::Reference< ::com::sun::star::aType >
 
 } //namespace binfilter
 #endif

@@ -53,12 +53,12 @@ namespace binfilter {
             rxMSF->createInstance( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.i18n.IndexEntrySupplier" )) );
         if( xI.is() )
         {
-            UNO_NMSPC::Any x = xI->queryInterface( ::getCppuType(
+            ::com::sun::star::uno::Any x = xI->queryInterface( ::getCppuType(
                      (const ::com::sun::star::uno::Reference< ::com::sun::star::i18n::XExtendedIndexEntrySupplier>*)0) );
             x >>= xIES;
         }
     }
-    catch ( const UNO_NMSPC::Exception& e )
+    catch ( const ::com::sun::star::uno::Exception& e )
     {
  #ifdef DBG_UTIL
         rtl::OStringBuffer aMsg("IndexEntrySupplierWrapper: Exception caught\n");
@@ -80,7 +80,7 @@ namespace binfilter {
     try {
          sRet = xIES->getAlgorithmList( rLcl );
     }
-    catch ( const UNO_NMSPC::Exception& e )
+    catch ( const ::com::sun::star::uno::Exception& e )
     {
  #ifdef DBG_UTIL
         rtl::OStringBuffer aMsg("getAlgorithmList: Exception caught\n");
@@ -99,7 +99,7 @@ namespace binfilter {
     try {
          bRet = xIES->loadAlgorithm( rLcl, sSortAlgorithm, nOptions );
     }
-    catch (const UNO_NMSPC::Exception& e)
+    catch (const ::com::sun::star::uno::Exception& e)
     {
  #ifdef DBG_UTIL
         rtl::OStringBuffer aMsg("loadAlgorithm: Exception caught\n");
@@ -121,7 +121,7 @@ namespace binfilter {
          nRet = xIES->compareIndexEntry( rTxt1, rTxtReading1, rLocale1,
                                          rTxt2, rTxtReading2, rLocale2 );
     }
-    catch (const UNO_NMSPC::Exception& e)
+    catch (const ::com::sun::star::uno::Exception& e)
     {
  #ifdef DBG_UTIL
         rtl::OStringBuffer aMsg( "compareIndexEntry: Exception caught\n" );

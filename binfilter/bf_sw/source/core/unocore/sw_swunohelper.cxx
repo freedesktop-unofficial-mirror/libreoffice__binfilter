@@ -61,14 +61,14 @@
 namespace binfilter {
 namespace SWUnoHelper {
 
-sal_Int32 GetEnumAsInt32( const UNO_NMSPC::Any& rVal )
+sal_Int32 GetEnumAsInt32( const ::com::sun::star::uno::Any& rVal )
 {
     sal_Int32 eVal;
     try
     {
         eVal = comphelper::getEnumAsINT32( rVal );
     }
-    catch( UNO_NMSPC::Exception & )
+    catch( ::com::sun::star::uno::Exception & )
     {
         eVal = 0;
         OSL_ENSURE( FALSE, "can't get EnumAsInt32" );
