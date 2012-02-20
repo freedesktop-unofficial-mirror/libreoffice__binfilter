@@ -29,8 +29,6 @@
 #define _SWUNODEF_HXX
 namespace binfilter {
 
-#define CLIP_NMSPC              ::com::sun::star::datatransfer::clipboard
-
 #define STAR_REFERENCE(aType)   ::com::sun::star::uno::Reference< ::com::sun::star::aType >
 
 } //namespace binfilter
