@@ -64,7 +64,6 @@
 #include <usrfld.hxx>
 #include <dbmgr.hxx>
 #include <docfld.hxx>
-#include <swunodef.hxx>
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 namespace binfilter {

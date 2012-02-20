@@ -58,7 +58,6 @@
 #include <bf_so3/svstor.hxx>
 #include <comphelper/classids.hxx>
 
-#include <swunodef.hxx>
 
 #include <osl/diagnose.h>
 

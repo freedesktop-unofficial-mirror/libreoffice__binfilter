@@ -55,7 +55,6 @@
 #include <bf_svtools/svstdarr.hxx>
 
 #include <swunohelper.hxx>
-#include <swunodef.hxx>
 #include <osl/diagnose.h>
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
