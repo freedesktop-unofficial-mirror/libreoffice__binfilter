@@ -264,7 +264,7 @@ static int
 /*N*/     if( eLang != SvxLocaleToLanguage( pLclData->getLocale() ) ||
 /*N*/         eLang != SvxLocaleToLanguage( pCharClass->getLocale() ) )
 /*N*/   {
-/*N*/       STAR_NMSPC::lang::Locale aLocale( SvxCreateLocale( eLang ));
+/*N*/       ::com::sun::star::lang::Locale aLocale( SvxCreateLocale( eLang ));
 /*N*/       STAR_REFERENCE( lang::XMultiServiceFactory ) xMSF(
 /*N*/                             ::legacy_binfilters::getLegacyProcessServiceFactory() );
 /*N*/       pCharClass = new CharClass( xMSF, aLocale );
