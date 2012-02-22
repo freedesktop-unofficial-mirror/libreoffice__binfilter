@@ -621,8 +621,8 @@ namespace SfxContainer_Impl
 /*N*/         INetURLObject aUserBasic60InetObj_1( aUserBasicInetObj );
 /*N*/         aUserBasic60InetObj_1.removeSegment();
 /*N*/       INetURLObject aUserBasic60InetObj_2 = aUserBasic60InetObj_1;
-/*N*/       aUserBasic60InetObj_1.Append( str60FolderName_1 );
-/*N*/       aUserBasic60InetObj_2.Append( str60FolderName_2 );
+/*N*/       aUserBasic60InetObj_1.Append(rtl::OString(str60FolderName_1));
+/*N*/       aUserBasic60InetObj_2.Append(rtl::OString(str60FolderName_2));
 /*N*/
 /*N*/       INetURLObject aUserBasic60InetObj = aUserBasic60InetObj_1;
 /*N*/         String aFolder60 = aUserBasic60InetObj.GetMainURL( INetURLObject::NO_DECODE );
