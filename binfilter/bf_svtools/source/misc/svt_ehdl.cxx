@@ -168,7 +168,7 @@ SfxErrorHandler::SfxErrorHandler(USHORT nIdP, ULONG lStartP, ULONG lEndP, ResMgr
     if( ! pMgr )
     {
         com::sun::star::lang::Locale aLocale = Application::GetSettings().GetUILocale();
-        pFreeMgr = pMgr = ResMgr::CreateResMgr(CREATEVERSIONRESMGR_NAME(ofa), aLocale );
+        pFreeMgr = pMgr = ResMgr::CreateResMgr("ofa", aLocale );
     }
 }
 
@@ -426,7 +426,7 @@ BOOL SfxErrorContext::GetString(ULONG nErrId, ::String &rStr)
     if( ! pMgr )
     {
         com::sun::star::lang::Locale aLocale = Application::GetSettings().GetUILocale();
-        pFreeMgr = pMgr = ResMgr::CreateResMgr(CREATEVERSIONRESMGR_NAME(ofa), aLocale );
+        pFreeMgr = pMgr = ResMgr::CreateResMgr("ofa", aLocale );
     }
     if( pMgr )
     {

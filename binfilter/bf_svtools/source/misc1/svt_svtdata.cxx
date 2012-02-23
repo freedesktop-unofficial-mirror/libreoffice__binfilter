@@ -44,7 +44,7 @@ ImpSvtData::~ImpSvtData()
 ResMgr * ImpSvtData::GetResMgr(const ::com::sun::star::lang::Locale aLocale)
 {
     if (!pResMgr)
-        pResMgr = ResMgr::CreateResMgr(CREATEVERSIONRESMGR_NAME(bf_svt), aLocale );
+        pResMgr = ResMgr::CreateResMgr("bf_svt", aLocale );
     return pResMgr;
 }
 
