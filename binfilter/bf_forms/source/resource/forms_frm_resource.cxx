@@ -58,9 +58,7 @@ namespace frm
         if (m_pImpl)
             return;
 
-        ByteString sFileName("bf_frm");
-
-        m_pImpl = SimpleResMgr::Create(sFileName.GetBuffer(), Application::GetSettings().GetUILocale());
+        m_pImpl = SimpleResMgr::Create("bf_frm", Application::GetSettings().GetUILocale());
 
         if (m_pImpl)
         {
