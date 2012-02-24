@@ -155,29 +155,6 @@ SvPseudoObject::~SvPseudoObject()
 }
 
 //=========================================================================
-#ifdef TEST_INVARIANT
-
-void SvPseudoObject::TestMemberObjRef()
-/*  [Beschreibung]
-
-    Siehe <So Debugging>.
-*/
-{}
-
-//=========================================================================
-
-void SvPseudoObject::TestMemberInvariant()
-/*  [Beschreibung]
-
-    Siehe <So Debugging>.
-*/
-{}
-#endif
-
-
-
-
-//=========================================================================
 void SvPseudoObject::FillClass
 (
     SvGlobalName * pClassName,  /* Der Typ der Klasse */

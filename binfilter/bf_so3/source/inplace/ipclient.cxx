@@ -96,14 +96,6 @@ SvInPlaceClient::~SvInPlaceClient()
 }
 
 //=========================================================================
-void SvInPlaceClient::TestMemberObjRef() {}
-
-//=========================================================================
-#ifdef TEST_INVARIANT
-void SvInPlaceClient::TestMemberInvariant() {}
-#endif
-
-//=========================================================================
 BOOL SvInPlaceClient::CanInPlaceActivate() const
 /*  [Beschreibung]
 

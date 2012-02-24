@@ -198,12 +198,6 @@ SO2_IMPL_CLASS2_DLL(SvEmbeddedObject,SvFactory,SvPersist,SvPseudoObject,
     return NULL;
 }
 
-void SvEmbeddedObject::TestMemberObjRef() {}
-
-#ifdef TEST_INVARIANT
-void SvEmbeddedObject::TestMemberInvariant() {}
-#endif
-
 /************************************************************************
 |*    SvEmbeddedObject::SvEmbeddedObject()
 |*

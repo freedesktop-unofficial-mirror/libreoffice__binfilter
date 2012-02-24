@@ -62,13 +62,11 @@ class  SvSoIPCService;
 
 #define SO2_DECL_STANDARD_CLASS_DLL(ClassName,FacName)                    \
     SO2_DECL_BASIC_CLASS_DLL(ClassName,FacName)                           \
-    SO2_DECL_INTERFACE()                                                  \
-    SO2_DECL_INVARIANT()
+    SO2_DECL_INTERFACE()
 
 #define SO2_DECL_STANDARD_CLASS(ClassName)                                \
     SO2_DECL_BASIC_CLASS(ClassName)                                       \
-    SO2_DECL_INTERFACE()                                                  \
-    SO2_DECL_INVARIANT()
+    SO2_DECL_INTERFACE()
 
 /**************************************************************************
 **************************************************************************/
@@ -82,8 +80,7 @@ class  SvSoIPCService;
 
 #define SO2_IMPL_CLASS_DLL(ClassName,FactoryName,GlobalName)              \
 SO2_IMPL_BASIC_CLASS_DLL(ClassName,FactoryName,GlobalName)                \
-SO2_IMPL_INTERFACE(ClassName)                                             \
-SO2_IMPL_INVARIANT(ClassName)
+SO2_IMPL_INTERFACE(ClassName)
 
 #define SO2_IMPL_CLASS(ClassName,FactoryName,GlobalName)                  \
 SotFactory * ClassName::pFactory = NULL;                                   \
@@ -102,8 +99,7 @@ SotFactory * ClassName::pFactory = NULL;                                   \
 
 #define SO2_IMPL_CLASS1_DLL(ClassName,FactoryName,Super1,GlobalName)      \
 SO2_IMPL_BASIC_CLASS1_DLL(ClassName,FactoryName,Super1,GlobalName)        \
-SO2_IMPL_INTERFACE1(ClassName,Super1)                                     \
-SO2_IMPL_INVARIANT1(ClassName,Super1)
+SO2_IMPL_INTERFACE1(ClassName,Super1)
 
 #define SO2_IMPL_CLASS1(ClassName,FactoryName,Super1,GlobalName)          \
 SotFactory * ClassName::pFactory = NULL;                                   \
@@ -132,8 +128,7 @@ SO2_IMPL_CLASS1_DLL(ClassName,FactoryName,Super1,                     \
 
 #define SO2_IMPL_CLASS2_DLL(ClassName,FactoryName,Super1,Super2,GlobalName)  \
 SO2_IMPL_BASIC_CLASS2_DLL(ClassName,FactoryName,Super1,Super2,GlobalName)  \
-SO2_IMPL_INTERFACE2(ClassName,Super1,Super2)                              \
-SO2_IMPL_INVARIANT2(ClassName,Super1,Super2)
+SO2_IMPL_INTERFACE2(ClassName,Super1,Super2)
 
 #define SO2_IMPL_CLASS2(ClassName,FactoryName,Super1,Super2,GlobalName)   \
 SotFactory * ClassName::pFactory = NULL;                                   \
@@ -164,8 +159,7 @@ SotFactory * ClassName::pFactory = NULL;                                   \
 
 #define SO2_IMPL_CLASS3_DLL(ClassName,FactoryName,Super1,Super2,Super3,GlobalName)    \
 SO2_IMPL_BASIC_CLASS3_DLL(ClassName,FactoryName,Super1,Super2,Super3,GlobalName)  \
-SO2_IMPL_INTERFACE3(ClassName,Super1,Super2,Super3)                       \
-SO2_IMPL_INVARIANT3(ClassName,Super1,Super2,Super3)
+SO2_IMPL_INTERFACE3(ClassName,Super1,Super2,Super3)
 
 #define SO2_IMPL_CLASS3(ClassName,FactoryName,Super1,Super2,Super3,GlobalName)  \
 SotFactory * ClassName::pFactory = NULL;                                   \
@@ -198,8 +192,7 @@ SotFactory * ClassName::pFactory = NULL;                                   \
 
 #define SO2_IMPL_CLASS4_DLL(ClassName,FactoryName,Super1,Super2,Super3,Super4,GlobalName )  \
 SO2_IMPL_BASIC_CLASS4_DLL(ClassName,FactoryName,Super1,Super2,Super3,Super4,GlobalName )  \
-SO2_IMPL_INTERFACE4(ClassName,Super1,Super2,Super3,Super4)                \
-SO2_IMPL_INVARIANT4(ClassName,Super1,Super2,Super3,Super4)
+SO2_IMPL_INTERFACE4(ClassName,Super1,Super2,Super3,Super4)
 
 #define SO2_IMPL_CLASS4(ClassName,FactoryName,Super1,Super2,Super3,Super4,GlobalName)  \
 SotFactory * ClassName::pFactory = NULL;                                   \

@@ -56,12 +56,6 @@ SO2_IMPL_STANDARD_CLASS1_DLL(SvInPlaceObject,SvInPlaceObjectFactory,SvEmbeddedOb
     return NULL;
 }
 
-void SvInPlaceObject::TestMemberObjRef() {}
-
-#ifdef TEST_INVARIANT
-void SvInPlaceObject::TestMemberInvariant() {}
-#endif
-
 /************************************************************************
 |*    SvInPlaceObject::SvInPlaceObject()
 |*

@@ -242,12 +242,6 @@ SO2_IMPL_STANDARD_CLASS1_DLL(SvObjectContainer,SvObjectContainerFactory,SvObject
     return NULL;
 }
 
-#ifdef TEST_INVARIANT
-void SvObjectContainer::TestMemberObjRef() {}
-
-void SvObjectContainer::TestMemberInvariant() {}
-#endif
-
 SvObjectContainer::SvObjectContainer()
 /*  [Beschreibung]
 
@@ -281,49 +275,6 @@ SO2_IMPL_STANDARD_CLASS1_DLL(SvPersist,SvPersistFactory,SvObjectContainer,
 {
     return NULL;
 }
-
-#ifdef TEST_INVARIANT
-void SvPersist::TestMemberObjRef()
-{
-    if( pChildList )
-    {
-        ULONG nCount = pChildList->Count();
-        for( ULONG i = 0; i < nCount; i++ )
-        {
-            SvInfoObject * pEle = pChildList->GetObject( i );
-            if( pEle->GetObj() )
-            {
-                ByteString aTest( "\t\tpChildList[ " );
-                aTest += ByteString::CreateFromInt32( i );
-                aTest += " ] == ";
-                aTest += ByteString::CreateFromInt32( (ULONG)pEle->GetObj() );
-                OSL_TRACE( "%s", aTest.GetBuffer() );
-            }
-        }
-    }
-    if( aStorage.Is() )
-    {
-        ByteString aTest( "\t\taStorage == " );
-        aTest += ByteString::CreateFromInt32( (ULONG)&aStorage );
-        OSL_TRACE( "%s", aTest.GetBuffer() );
-    }
-}
-
-void SvPersist::TestMemberInvariant()
-{
-#ifdef DBG_UTIL
-    DBG_ASSERT( !(bOpSave || bOpSaveAs), "bOpSave && bOpSaveAs" );
-    if( !bIsInit )
-    {
-        if ( !bCreateTempStor )
-        {
-            DBG_ASSERT( bOpHandsOff && !aStorage.Is(), "failed: bOpHandsOff && !aStorage.Is()" );
-            DBG_ASSERT( !bOpHandsOff && aStorage.Is(), "failed: !bOpHandsOff && aStorage.Is()" );
-        }
-    }
-#endif
-}
-#endif
 
 SvPersist::SvPersist()
     : bIsModified     ( FALSE )

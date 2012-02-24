@@ -62,23 +62,6 @@ SO2_IMPL_CLASS1_DLL(SvObject,SvObjectFactory,SotObject,
 }
 
 /*************************************************************************
-|*  SvObject::TestMemberObjRef()
-|*
-|*  Beschreibung:
-*************************************************************************/
-void SvObject::TestMemberObjRef() {}
-
-/*************************************************************************
-|*  SvObject::TestMemberObjRef()
-|*
-|*  Beschreibung:
-*************************************************************************/
-
-#ifdef TEST_INVARIANT
-void SvObject::TestMemberInvariant() {}
-#endif
-
-/*************************************************************************
 |*    SvObject::SvObject()
 |*
 |*    Beschreibung

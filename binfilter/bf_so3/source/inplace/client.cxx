@@ -243,14 +243,6 @@ SO2_IMPL_STANDARD_CLASS1_DLL(SvEmbeddedClient,SvEmbeddedClientFactory,SvObject,
     return NULL;
 }
 
-void SvEmbeddedClient::TestMemberObjRef() {}
-
-#ifdef TEST_INVARIANT
-void SvEmbeddedClient::TestMemberInvariant()
-{
-}
-#endif
-
 /************************************************************************
 |*    SvEmbeddedClient::SvEmbeddedClient()
 *************************************************************************/
