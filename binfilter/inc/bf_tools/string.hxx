@@ -153,21 +153,10 @@ public:
         return rtl::OString (reinterpret_cast<rtl_String*>(mpData));
     }
 
-    operator ::ByteString () const
-    {
-        return *(reinterpret_cast< const ::ByteString* >(this));
-    }
-
     ByteString&         Assign( const ByteString& rStr );
     ByteString&         Assign( const rtl::OString& rStr );
     ByteString&         Assign( const sal_Char* pCharStr );
-    ByteString&         Assign( const ::ByteString& rStr )
-    {
-        return Assign(rStr.GetBuffer(), rStr.Len());
-    }
     ByteString&         Assign( sal_Char c );
-    ByteString&         operator =( const ::ByteString& rStr )
-                            { return Assign( rStr ); }
     ByteString&         operator =( const ByteString& rStr )
                             { return Assign( rStr ); }
     ByteString&         operator =( const rtl::OString& rStr )
@@ -180,13 +169,7 @@ public:
     ByteString&         Append( const ByteString& rStr );
     ByteString&         Append( const sal_Char* pCharStr );
     ByteString&         Append( const sal_Char* pCharStr, xub_StrLen nLen );
-    ByteString&         Append( const ::ByteString& rStr )
-    {
-        return Append(rStr.GetBuffer(), rStr.Len());
-    }
     ByteString&         Append( char c );
-    ByteString&         operator +=( const ::ByteString& rStr )
-                            { return Append( rStr ); }
     ByteString&         operator +=( const ByteString& rStr )
                             { return Append( rStr ); }
     ByteString&         operator +=( const sal_Char* pCharStr )
@@ -232,10 +215,6 @@ public:
                                 xub_StrLen nIndex, xub_StrLen nLen ) const;
     sal_Bool                Equals( const sal_Char* pCharStr,
                                 xub_StrLen nIndex, xub_StrLen nLen ) const;
-    sal_Bool                Equals( const ::ByteString& rStr ) const
-    {
-        return Equals(rStr.GetBuffer(), 0, rStr.Len());
-    }
 
     xub_StrLen          Match( const ByteString& rStr ) const;
 
@@ -260,8 +239,6 @@ public:
 
     const sal_Char*     GetBuffer() const { return mpData->maStr; }
 
-    friend sal_Bool         operator == ( const ByteString& rStr1,  const ::ByteString& rStr2 )
-                            { return rStr1.Equals( rStr2 ); }
     friend sal_Bool         operator == ( const ByteString& rStr1,  const ByteString& rStr2 )
                             { return rStr1.Equals( rStr2 ); }
     friend sal_Bool         operator == ( const ByteString& rStr,   const sal_Char* pCharStr )

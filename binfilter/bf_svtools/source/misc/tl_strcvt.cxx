@@ -29,8 +29,6 @@
 namespace binfilter
 {
 
-// =======================================================================
-
 ByteString::ByteString( const rtl::OString& rStr )
     : mpData(NULL)
 {
@@ -49,8 +47,6 @@ ByteString::ByteString( const rtl::OString& rStr )
         STRING_NEW((STRING_TYPE **)&mpData);
     }
 }
-
-// -----------------------------------------------------------------------
 
 ByteString& ByteString::Assign( const rtl::OString& rStr )
 {

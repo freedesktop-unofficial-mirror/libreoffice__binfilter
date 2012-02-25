@@ -276,6 +276,7 @@ struct OUStringLess
 /*?*/               aIter->second = 0;
 /*?*/           }
 /*N*/       }
+/*N*/       delete mpStreamMap;
 /*N*/   }
 /*N*/ }
 

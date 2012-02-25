@@ -30,6 +30,7 @@
 #define _XBMREAD_HXX
 
 #include <bf_svtools/bf_solar.h>
+#include <bf_tools/string.hxx>
 
 #include <vcl/graph.hxx>
 #include <vcl/bmpacc.hxx>
