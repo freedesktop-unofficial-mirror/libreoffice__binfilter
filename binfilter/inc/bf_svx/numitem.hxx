@@ -140,13 +140,11 @@ class SvxNumberFormat : public SvxNumberType
 
     BitmapEx*           pScaledImageCache;  // Image scaled to aGraphicSize, only cached for WINDOW/VDEV
 
-//  void GetCharStr( ULONG nNo, String& rStr ) const;
-//  void GetCharStrN( ULONG nNo, String& rStr ) const;
 public:
     SvxNumberFormat(sal_Int16 nNumberingType);
     SvxNumberFormat(const SvxNumberFormat& rFormat);
     SvxNumberFormat(SvStream &rStream);
-    ~SvxNumberFormat();
+    virtual ~SvxNumberFormat();
 
     SvStream&   Store(SvStream &rStream, FontToSubsFontConverter) { return rStream; }
 
