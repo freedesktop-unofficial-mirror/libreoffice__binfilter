@@ -320,7 +320,6 @@ sal_Int32 SAL_CALL ScNameToIndexAccess::getCount(  ) throw(::com::sun::star::uno
         return xNameAccess->getByName( aNames.getConstArray()[nIndex] );
 
     throw lang::IndexOutOfBoundsException();
-    return uno::Any();
 }
 
 // XElementAccess

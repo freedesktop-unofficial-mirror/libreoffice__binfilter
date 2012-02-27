@@ -170,7 +170,7 @@ void SwExcelParser::Label25()
 // ------------------------------------------------------------------ 0x06
 void SwExcelParser::Formula25()
     {
-    UINT16 nRow, nCol, nXF, nFormLen;
+    UINT16 nRow, nCol, nXF(0), nFormLen;
     double fCurVal;
     BYTE nAttr0, nFlag0;
 

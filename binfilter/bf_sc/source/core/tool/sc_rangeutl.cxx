@@ -107,7 +107,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   BOOL bResult=FALSE;
 /*N*/   ScRangeUtil     aRangeUtil;
-/*N*/   USHORT          nTab, nColStart, nColEnd, nRowStart, nRowEnd;
+/*N*/   USHORT          nTab(0), nColStart(0), nColEnd(0), nRowStart(0), nRowEnd(0);
 /*N*/
 /*N*/   if( eScope==RUTL_NAMES )
 /*N*/   {

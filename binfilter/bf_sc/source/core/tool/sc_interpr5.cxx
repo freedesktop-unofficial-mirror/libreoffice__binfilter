@@ -2443,7 +2443,7 @@ void ScInterpreter::ScRGP()
         return;
     }
     BYTE nCase;                         // 1 = normal, 2,3 = mehrfach
-    USHORT nCX, nRX, nCY, nRY, M, N;
+    USHORT nCX, nRX, nCY, nRY, M(0), N(0);
     pMatY->GetDimensions(nCY, nRY);
     ULONG nCountY = (ULONG) nCY * nRY;
     for ( ULONG i = 0; i < nCountY; i++ )
