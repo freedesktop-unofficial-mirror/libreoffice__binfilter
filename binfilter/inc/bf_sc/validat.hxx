@@ -88,8 +88,6 @@ public:
                                 ScDocument* pDocument );
             ~ScValidationData();
 
-    void Store(SvStream&, ScMultipleWriteHeader&) const {}
-
     ScValidationData* Clone() const     // echte Kopie
                     { return new ScValidationData( GetDocument(), *this ); }
     ScValidationData* Clone(ScDocument* pNew) const

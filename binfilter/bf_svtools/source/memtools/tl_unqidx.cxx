@@ -98,31 +98,6 @@ sal_uIntPtr UniqueIndex::Insert( void* p )
 
 /*************************************************************************
 |*
-|*    UniqueIndex::Insert()
-|*
-*************************************************************************/
-
-sal_uIntPtr UniqueIndex::Insert( sal_uIntPtr nIndex, void* p )
-{
-    // NULL-Pointer ist nicht erlaubt
-    if ( !p )
-        return UNIQUEINDEX_ENTRY_NOTFOUND;
-
-    sal_uIntPtr nContIndex = nIndex - nStartIndex;
-    // Ist Array voll, dann expandieren
-    if ( nContIndex >= Container::GetSize() )
-        SetSize( nContIndex + nReSize );
-
-    // Object im Array speichern
-    Container::Replace( p, nContIndex );
-
-    // Anzahl der Eintraege erhoehen und Index zurueckgeben
-    nCount++;
-    return nIndex;
-}
-
-/*************************************************************************
-|*
 |*    UniqueIndex::Remove()
 |*
 *************************************************************************/
@@ -140,22 +115,6 @@ void* UniqueIndex::Remove( sal_uIntPtr nIndex )
             nCount--;
         return p;
     }
-    else
-        return NULL;
-}
-
-/*************************************************************************
-|*
-|*    UniqueIndex::Get()
-|*
-*************************************************************************/
-
-void* UniqueIndex::Get( sal_uIntPtr nIndex ) const
-{
-    // Ist Index zulaessig
-    if ( (nIndex >= nStartIndex) &&
-         (nIndex < (Container::GetSize()+nStartIndex)) )
-        return Container::ImpGetObject( nIndex-nStartIndex );
     else
         return NULL;
 }
@@ -229,27 +188,6 @@ void* UniqueIndex::Seek( sal_uIntPtr nIndex )
 {
     // Index-Eintrag als aktuellen setzten, wenn er gueltig ist
     if ( IsIndexValid( nIndex ) )
-        return Container::Seek( nIndex-nStartIndex );
-    else
-        return NULL;
-}
-
-/*************************************************************************
-|*
-|*    UniqueIndex::Seek()
-|*
-*************************************************************************/
-
-void* UniqueIndex::Seek( void* p )
-{
-    // Wird ein NULL-Pointer uebergeben, dann wurde Pointer nicht gefunden
-    if ( !p )
-        return NULL;
-
-    sal_uIntPtr nIndex = GetIndex( p );
-
-    // Ist Index vorhanden, dann als aktuellen Eintrag setzen
-    if ( nIndex != UNIQUEINDEX_ENTRY_NOTFOUND )
         return Container::Seek( nIndex-nStartIndex );
     else
         return NULL;

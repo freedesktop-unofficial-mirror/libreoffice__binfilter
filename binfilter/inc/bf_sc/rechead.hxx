@@ -179,20 +179,6 @@ public:
     ULONG   BytesLeft() const;
 };
 
-class ScMultipleWriteHeader
-{
-private:
-    SvStream&       rStream;
-    SvMemoryStream  aMemStream;
-    ULONG           nDataPos;
-    sal_uInt32      nDataSize;
-    ULONG           nEntryStart;
-
-public:
-    ScMultipleWriteHeader(SvStream& rNewStream, sal_uInt32 nDefault = 0);
-    ~ScMultipleWriteHeader();
-};
-
 } //namespace binfilter
 #endif
 

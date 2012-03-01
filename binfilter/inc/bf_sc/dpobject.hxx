@@ -48,7 +48,6 @@ class ScDPSaveData;
 class ScDPOutput;
 struct ScDPPositionData;
 class ScMultipleReadHeader;
-class ScMultipleWriteHeader;
 class ScPivot;
 class ScPivotCollection;
 struct ScPivotParam;

@@ -221,7 +221,6 @@ public:
     xub_StrLen          Search( sal_Char c, xub_StrLen nIndex = 0 ) const;
     xub_StrLen          Search( const ByteString& rStr, xub_StrLen nIndex = 0 ) const;
     xub_StrLen          Search( const sal_Char* pCharStr, xub_StrLen nIndex = 0 ) const;
-    xub_StrLen          SearchBackward( sal_Char c, xub_StrLen nIndex = STRING_LEN ) const;
 
     xub_StrLen          SearchAndReplace( const ByteString& rStr, const ByteString& rRepStr,
                                           xub_StrLen nIndex = 0 );

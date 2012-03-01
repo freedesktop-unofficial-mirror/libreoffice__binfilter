@@ -40,8 +40,6 @@ namespace binfilter {
 #define SC_OL_MAXDEPTH      7
 
 class ScMultipleReadHeader;
-class ScMultipleWriteHeader;
-
 
 class ScOutlineEntry : public DataObject
 {
@@ -56,7 +54,6 @@ public:
                             ScOutlineEntry( const ScOutlineEntry& rEntry );
                             ScOutlineEntry( SvStream& rStream, ScMultipleReadHeader& rHdr );
 
-    void   Store( SvStream&, ScMultipleWriteHeader& ) {}
     virtual DataObject*     Clone() const;
     USHORT                  GetStart() const    { return nStart; }
 /*N*/   USHORT                  GetSize() const     { return nSize; }

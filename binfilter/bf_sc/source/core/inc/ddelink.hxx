@@ -36,7 +36,6 @@ namespace binfilter {
 class ScDocument;
 class ScMatrix;
 class ScMultipleReadHeader;
-class ScMultipleWriteHeader;
 
 class ScDdeLink : public ::binfilter::SvBaseLink, public SfxBroadcaster
 {
@@ -62,8 +61,6 @@ public:
                         BYTE nM );
             ScDdeLink( ScDocument* pD, SvStream& rStream, ScMultipleReadHeader& rHdr );
     virtual ~ScDdeLink();
-
-    void Store( SvStream&, ScMultipleWriteHeader& ) const {}
 
                                             // von SvBaseLink ueberladen:
     virtual void    DataChanged( const String& rMimeType,

@@ -70,7 +70,6 @@ class SubTotal;
 class ScDocument;
 class ScUserListData;
 class ScMultipleReadHeader;
-class ScMultipleWriteHeader;
 class ScProgress;
 
 struct PivotColRef
@@ -176,7 +175,6 @@ public:
 
 
     BOOL        Load(SvStream& rStream, ScMultipleReadHeader& rHdr );
-    BOOL Store(SvStream&, ScMultipleWriteHeader&) const {return FALSE;}
 
     void        SetQuery(const ScQueryParam& rQuery);
     void        GetQuery(ScQueryParam& rQuery) const;

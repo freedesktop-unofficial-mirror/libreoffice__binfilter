@@ -181,37 +181,6 @@ namespace binfilter {
 /*N*/   return 0;
 /*N*/ }
 
-// -----------------------------------------------------------------------
-
-/*N*/ ScMultipleWriteHeader::ScMultipleWriteHeader(SvStream& rNewStream, sal_uInt32 nDefault) :
-/*N*/   rStream( rNewStream ),
-/*N*/   aMemStream( 4096, 4096 )
-/*N*/ {
-/*N*/   nDataSize = nDefault;
-/*N*/   rStream << nDataSize;
-/*N*/
-/*N*/   nDataPos = rStream.Tell();
-/*N*/   nEntryStart = nDataPos;
-/*N*/ }
-
-/*N*/ ScMultipleWriteHeader::~ScMultipleWriteHeader()
-/*N*/ {
-/*N*/   ULONG nDataEnd = rStream.Tell();
-/*N*/
-/*N*/   rStream << (USHORT) SCID_SIZES;
-/*N*/   rStream << static_cast<sal_uInt32>(aMemStream.Tell());
-/*N*/   rStream.Write( aMemStream.GetData(), aMemStream.Tell() );
-/*N*/
-/*N*/   if ( nDataEnd - nDataPos != nDataSize )                 // Default getroffen?
-/*N*/   {
-/*N*/       nDataSize = nDataEnd - nDataPos;
-/*N*/       ULONG nPos = rStream.Tell();
-/*N*/       rStream.Seek(nDataPos-sizeof(sal_uInt32));
-/*N*/       rStream << nDataSize;                               // Groesse am Anfang eintragen
-/*N*/       rStream.Seek(nPos);
-/*N*/   }
-/*N*/ }
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -42,7 +42,6 @@ namespace binfilter {
 
 class ScDocument;
 class ScMultipleReadHeader;
-class ScMultipleWriteHeader;
 
 
 
@@ -101,9 +100,6 @@ public:
 
 
     virtual DataObject* Clone() const;
-
-    BOOL Store( SvStream&, ScMultipleWriteHeader& ) const {return FALSE;}
-
 
     void            GetName( String& rName ) const  { rName = aName; }
     const String&   GetName( void ) const           { return aName; }

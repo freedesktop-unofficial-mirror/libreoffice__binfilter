@@ -89,7 +89,6 @@ enum ScChangeActionClipMode
 };
 
 class ScMultipleReadHeader;
-class ScMultipleWriteHeader;
 
 // --- ScChangeActionLinkEntry ---------------------------------------------
 
@@ -361,7 +360,6 @@ protected:
 /*N*/                               // used in Reject() instead of IsRejectable()
 /*N*/           BOOL                IsInternalRejectable() const;
 /*N*/
-/*N*/   virtual BOOL    Store( SvStream&, ScMultipleWriteHeader& ) const {return FALSE;}
 /*N*/   virtual BOOL                StoreLinks( SvStream& ) const;
 /*N*/   virtual BOOL                LoadLinks( SvStream&, ScChangeTrack* );
 /*N*/
@@ -467,8 +465,6 @@ class ScChangeActionIns : public ScChangeAction
 /*N*/
 /*N*/   virtual BOOL                Reject( ScDocument* );
 /*N*/
-/*N*/   virtual BOOL    Store( SvStream&, ScMultipleWriteHeader& ) const {return FALSE;}
-/*N*/
 public:
                                 ScChangeActionIns(const ULONG nActionNumber,
                                         const ScChangeActionState eState,
@@ -570,7 +566,6 @@ class ScChangeActionDel : public ScChangeAction
 /*N*/
 /*N*/   virtual BOOL                Reject( ScDocument* );
 /*N*/
-/*N*/   virtual BOOL    Store( SvStream&, ScMultipleWriteHeader& ) const {return FALSE;}
 /*N*/   virtual BOOL                StoreLinks( SvStream& ) const;
 /*N*/   virtual BOOL                LoadLinks( SvStream&, ScChangeTrack* );
 /*N*/
@@ -669,7 +664,6 @@ class ScChangeActionMove : public ScChangeAction
 /*N*/
 /*N*/   virtual BOOL                Reject( ScDocument* );
 /*N*/
-/*N*/   virtual BOOL Store( SvStream&, ScMultipleWriteHeader& ) const {return FALSE;}
 /*N*/   virtual BOOL                StoreLinks( SvStream& ) const;
 /*N*/   virtual BOOL                LoadLinks( SvStream&, ScChangeTrack* );
 /*N*/
@@ -783,7 +777,6 @@ class ScChangeActionContent : public ScChangeAction
 /*N*/           void                PutValueToDoc( ScBaseCell*, const String&,
 /*N*/                                   ScDocument*, short nDx, short nDy ) const;
 /*N*/
-/*N*/   virtual BOOL    Store( SvStream&, ScMultipleWriteHeader& ) const {return FALSE;}
 /*N*/   virtual BOOL                StoreLinks( SvStream& ) const;
 /*N*/   virtual BOOL                LoadLinks( SvStream&, ScChangeTrack* );
 /*N*/
@@ -903,8 +896,6 @@ class ScChangeActionReject : public ScChangeAction
 /*N*/   virtual void                DeleteCellEntries() {}
 /*N*/
 /*N*/   virtual BOOL                Reject( ScDocument* /*p*/ ) { return FALSE; }
-/*N*/
-/*N*/   virtual BOOL    Store( SvStream&, ScMultipleWriteHeader& ) const {return FALSE;}
 /*N*/
 public:
                                 ScChangeActionReject(const ULONG nActionNumber,

@@ -64,7 +64,6 @@ class ScTokenArray;
 class ScProgress;
 
 class ScMultipleReadHeader;
-class ScMultipleWriteHeader;
 
 class ScBaseCell
 {
@@ -284,8 +283,6 @@ public:
     void            GetFormula( String& rFormula ) const;
     void            GetEnglishFormula( String& rFormula, BOOL bCompileXML = FALSE ) const;
     void            GetEnglishFormula( ::rtl::OUStringBuffer& rBuffer, BOOL bCompileXML = FALSE ) const;
-
-    void            Save( SvStream&, ScMultipleWriteHeader& ) const {}
 
     void            SetDirty();
     inline void     SetDirtyVar() { bDirty = TRUE; }

@@ -1014,29 +1014,6 @@ xub_StrLen STRING::Search( const STRCODE* pCharStr, xub_StrLen nIndex ) const
 
 // -----------------------------------------------------------------------
 
-xub_StrLen STRING::SearchBackward( STRCODE c, xub_StrLen nIndex ) const
-{
-    DBG_CHKTHIS( STRING, DBGCHECKSTRING );
-
-    if ( nIndex > mpData->mnLen )
-        nIndex = (xub_StrLen)mpData->mnLen;
-
-    const STRCODE* pStr = mpData->maStr;
-    pStr += nIndex;
-
-    while ( nIndex )
-    {
-        nIndex--;
-        pStr--;
-        if ( *pStr == c )
-            return nIndex;
-    }
-
-    return STRING_NOTFOUND;
-}
-
-// -----------------------------------------------------------------------
-
 xub_StrLen STRING::SearchAndReplace( const STRING& rStr, const STRING& rRepStr,
                                      xub_StrLen nIndex )
 {

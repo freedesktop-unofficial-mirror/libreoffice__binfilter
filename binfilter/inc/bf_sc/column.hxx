@@ -57,7 +57,6 @@ class ScDocument;
 class ScFormulaCell;
 class ScMarkData;
 class ScMultipleReadHeader;
-class ScMultipleWriteHeader;
 class ScPatternAttr;
 class ScStyleSheet;
 class ScBroadcasterList;
@@ -287,7 +286,6 @@ public:
     void        LoadNotes( SvStream& rStream );
 
     BOOL        Load( SvStream& rStream, ScMultipleReadHeader& rHdr );
-    BOOL        Save( SvStream&, ScMultipleWriteHeader& ) const {return false; }
     BOOL        TestTabRefAbs(USHORT nTable);
 
 
