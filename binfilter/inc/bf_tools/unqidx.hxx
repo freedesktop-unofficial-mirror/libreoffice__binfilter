@@ -65,7 +65,6 @@ public:
     sal_uIntPtr           Count() const { return nCount; }
 
     sal_uIntPtr           GetCurIndex() const;
-    sal_uIntPtr           GetIndex( const void* p ) const;
     sal_Bool            IsIndexValid( sal_uIntPtr nIndex ) const;
 
     void*           Seek( sal_uIntPtr nIndex );

@@ -138,26 +138,6 @@ sal_uIntPtr UniqueIndex::GetCurIndex() const
 
 /*************************************************************************
 |*
-|*    UniqueIndex::GetIndex()
-|*
-*************************************************************************/
-
-sal_uIntPtr UniqueIndex::GetIndex( const void* p ) const
-{
-    // Wird ein NULL-Pointer uebergeben, dann wurde Pointer nicht gefunden
-    if ( !p )
-        return UNIQUEINDEX_ENTRY_NOTFOUND;
-
-    sal_uIntPtr nIndex = Container::GetPos( p );
-
-    if ( nIndex != CONTAINER_ENTRY_NOTFOUND )
-        return nIndex+nStartIndex;
-    else
-        return UNIQUEINDEX_ENTRY_NOTFOUND;
-}
-
-/*************************************************************************
-|*
 |*    UniqueIndex::IsIndexValid()
 |*
 *************************************************************************/
