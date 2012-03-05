@@ -57,9 +57,7 @@ public:
     void     Clear()                                           { aArr.Clear(); bSorted=TRUE; }
     void     Remove(ULONG nPos)                                { aArr.Remove(nPos); }
     USHORT   GetObject(ULONG nPos) const                       { return USHORT(ULONG(aArr.GetObject(nPos))); }
-    ULONG    GetPos(USHORT nElem) const                        { return aArr.GetPos((void*)(ULONG)nElem); }
     ULONG    GetCount() const                                  { return aArr.Count(); }
-    bool Exist(USHORT nElem) const                         { return aArr.GetPos((void*)(ULONG)nElem)!=CONTAINER_ENTRY_NOTFOUND; }
 };
 
 class SdrMark { // Alles was eine View ueber ein markiertes Objekt wissen muss

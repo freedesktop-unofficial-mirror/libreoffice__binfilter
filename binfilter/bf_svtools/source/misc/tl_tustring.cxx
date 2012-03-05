@@ -696,6 +696,32 @@ xub_StrLen STRING::SearchBackward( STRCODE c, xub_StrLen nIndex ) const
     return STRING_NOTFOUND;
 }
 
+// -----------------------------------------------------------------------
+
+STRING& STRING::ToUpperAscii()
+{
+    DBG_CHKTHIS( STRING, DBGCHECKSTRING );
+
+    sal_Int32 nIndex = 0;
+    sal_Int32 nLen = mpData->mnLen;
+    STRCODE*    pStr = mpData->maStr;
+    while ( nIndex < nLen )
+    {
+        // Ist das Zeichen zwischen 'a' und 'z' dann umwandeln
+        if ( (*pStr >= 97) && (*pStr <= 122) )
+        {
+            // Daten kopieren, wenn noetig
+            pStr = ImplCopyStringData( pStr );
+            *pStr -= 32;
+        }
+
+        ++pStr,
+        ++nIndex;
+    }
+
+    return *this;
+}
+
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

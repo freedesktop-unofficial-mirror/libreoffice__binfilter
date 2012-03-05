@@ -141,7 +141,6 @@ public:
     void   Remove(ULONG nPos)                                { aArr.Remove(nPos); }
     void   Replace(USHORT nElem, ULONG nPos)                 { aArr.Replace((void*)ULONG(nElem),nPos); }
     USHORT GetObject(ULONG nPos)                       const { return USHORT(ULONG(aArr.GetObject(nPos))); }
-    ULONG  GetPos(USHORT nElem)                        const { return aArr.GetPos((void*)(ULONG)nElem); }
     ULONG  GetCount()                                  const { return aArr.Count(); }
     void   Sort();
 };

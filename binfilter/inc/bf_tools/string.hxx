@@ -199,7 +199,6 @@ public:
                             { return ConvertLineEnd( GetSystemLineEnd() ); }
 
     ByteString&         ToLowerAscii();
-    ByteString&         ToUpperAscii();
 
     StringCompare       CompareTo( const ByteString& rStr,
                                    xub_StrLen nLen = STRING_LEN ) const;

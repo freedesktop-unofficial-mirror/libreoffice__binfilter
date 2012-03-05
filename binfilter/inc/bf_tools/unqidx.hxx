@@ -51,8 +51,6 @@ private:
     void*           Seek( void* p );
 
 public:
-                    using Container::GetCurObject;
-
                     UniqueIndex( sal_uIntPtr nStartIndex = 0,
                                  sal_uIntPtr nInitSize = 16,
                                  sal_uIntPtr nReSize = 16 );

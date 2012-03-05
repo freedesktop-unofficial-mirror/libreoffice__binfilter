@@ -127,7 +127,6 @@ public:
     void               ClearLayer();
     // Neuer Layer wird angelegt und eingefuegt
     SdrLayer*          NewLayer(const String& rName, USHORT nPos=0xFFFF);
-    void               DeleteLayer(SdrLayer* pLayer)                                 { aLayer.Remove(pLayer); delete pLayer; Broadcast(FALSE); }
     // Neuer Layer, Name wird aus der Resource geholt
 
     // Iterieren ueber alle Layer
@@ -145,8 +144,6 @@ public:
     void               InsertLayerSet(SdrLayerSet* pSet, USHORT nPos=0xFFFF)         { aLSets.Insert(pSet,nPos); pSet->SetModel(pModel); Broadcast(TRUE); }
     // Alle LayerSets loeschen
     void               ClearLayerSets();
-    // Neuer Layerset wird angelegt und eingefuegt
-    void               DeleteLayerSet(SdrLayerSet* pSet)                             { aLSets.Remove(pSet); delete pSet; Broadcast(TRUE); }
     // Iterieren ueber alle LayerSets
     USHORT             GetLayerSetCount() const                                      { return USHORT(aLSets.Count()); }
     SdrLayerSet*       GetLayerSet(USHORT i)                                         { return (SdrLayerSet*)(aLSets.GetObject(i)); }

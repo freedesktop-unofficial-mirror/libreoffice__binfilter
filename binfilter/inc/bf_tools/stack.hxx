@@ -45,7 +45,6 @@ public:
             using Container::Clear;
             using Container::Count;
             using Container::GetObject;
-            using Container::GetPos;
 
             Stack( sal_uInt16 _nInitSize = 16, sal_uInt16 _nReSize = 16 ) :
                 Container( CONTAINER_MAXBLOCKSIZE, _nInitSize, _nReSize ) {}
@@ -87,8 +86,6 @@ public:                                                             \
                                                                     \
     Type        GetObject( sal_uIntPtr nIndex ) const                     \
                     { return (Type)Stack::GetObject( nIndex ); }    \
-    sal_uIntPtr       GetPos( const Type p ) const                        \
-                    { return Stack::GetPos( (const void*)p ); }     \
                                                                     \
     ClassName&  operator =( const ClassName& rClassName )           \
                     { Stack::operator =( rClassName );              \
