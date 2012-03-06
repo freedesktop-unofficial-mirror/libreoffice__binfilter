@@ -1,0 +1,10 @@
+Obsolete legacy binary filters
+
+This module contains (substantially) a cut/paste job of the entire
+code-base from an ancient time. This was done to facilitate internal
+re-factoring, by allowing the old code structure (as codified in the
+legacy binary file formats) to remain the same.
+
+The basic idea is that this code runs and spits out big chunks of XML
+which are then imported by the more modern code-base, thus providing
+legacy filter support to LibreOffice.
