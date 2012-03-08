@@ -43,11 +43,12 @@
 #include <vcl/timer.hxx>
 #endif
 #include <bf_svtools/poolitem.hxx>
-#include <bf_so3/so2defs.hxx>
 #include <bf_so3/persist.hxx>
+#include <bf_so3/so2defs.hxx>
+#include <bf_so3/svstor.hxx>
+#include <tools/table.hxx>
 #include <vcl/timer.hxx>
 #include <vcl/bitmap.hxx>
-#include <bf_so3/svstor.hxx>
 
 #include <rsc/rscsfx.hxx>
 
@@ -118,7 +119,6 @@ typedef sal_uInt32 SfxObjectShellFlags;
 #define SFX_LOADED_MAINDOCUMENT 1
 #define SFX_LOADED_IMAGES       2
 #define SFX_LOADED_ALL          3
-
 
 //--------------------------------------------------------------------
 

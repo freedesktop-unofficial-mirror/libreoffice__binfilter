@@ -35,6 +35,8 @@
 
 #include <cppuhelper/factory.hxx>
 
+#include <tools/table.hxx>
+
 namespace binfilter {
 
 using namespace ::rtl;
