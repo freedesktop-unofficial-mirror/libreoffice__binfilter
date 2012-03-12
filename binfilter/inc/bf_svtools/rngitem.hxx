@@ -38,16 +38,6 @@
 #undef SfxXRangeItem
 #undef SfxXRangesItem
 
-#ifndef _SFXITEMS_HXX
-#define NUMTYPE ULONG
-#define SfxXRangeItem SfxULongRangeItem
-#define SfxXRangesItem SfxULongRangesItem
-#include <bf_svtools/rngitem.hxx>
-#undef NUMTYPE
-#undef SfxXRangeItem
-#undef SfxXRangesItem
-#endif
-
 #define _SFXRNGITEM_HXX
 
 #else

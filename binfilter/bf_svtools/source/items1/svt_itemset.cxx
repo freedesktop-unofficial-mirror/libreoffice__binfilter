@@ -66,14 +66,6 @@ DBG_NAME(SfxItemSet)
 #undef SvNums
 #undef SfxNumRanges
 
-#define NUMTYPE         ULONG
-#define SvNums          SvULongs
-#define SfxNumRanges    SfxULongRanges
-#include "svt_nranges.cxx"
-#undef NUMTYPE
-#undef SvNums
-#undef SfxNumRanges
-
 //========================================================================
 
 #ifdef DBG_UTIL

@@ -39,11 +39,7 @@
 #define NUMTYPE USHORT
 #define SfxNumRanges SfxUShortRanges
 #include <bf_svtools/nranges.hxx>
-
 #undef NUMTYPE
-#define NUMTYPE ULONG
-#define SfxNumRanges SfxULongRanges
-#include <bf_svtools/nranges.hxx>
 
 #define _SFXNRANGES_HXX
 

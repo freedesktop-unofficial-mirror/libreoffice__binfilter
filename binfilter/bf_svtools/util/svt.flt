@@ -53,9 +53,6 @@ Sdbyy_scan
 SfxListUndoAction
 SfxPointerEntry
 SfxUINT32s
-SfxULongRangeItem
-SfxULongRanges
-SfxULongRangesItem
 SgfFontLst
 SgfFontOne
 SqlInternalNode
