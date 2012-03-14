@@ -105,8 +105,10 @@ namespace utl {
 }
 
 #ifdef DBG_UTIL
+class Writer;
 class SwUndo;
-#define OUT_UNDOBJ( name )
+#define OUT_UNDOBJ( name )  \
+    friend Writer& OutUndo_ ## name( Writer&, const SwUndo& );
 #else
 #define OUT_UNDOBJ( name )
 #endif
@@ -535,6 +537,12 @@ public:
  --------------------------------------------------------------------*/
 
 
+
+
+
+
+//--------------------------------------------------------------------
+
 class SwUndoFlyBase : public SwUndo, private SwUndoSaveSection
 {
 protected:
@@ -589,8 +597,15 @@ public:
 
 };
 
+//--------------------------------------------------------------------
+
 class _UnReplaceData;
 SV_DECL_PTRARR_DEL( _UnReplaceDatas, _UnReplaceData*, 10, 25 )
+
+
+
+//--------------------------------------------------------------------
+
 
 
 
@@ -647,6 +662,8 @@ public:
 //------------ Undo von verschieben/stufen von Gliederung ----------------
 
 
+//--------------------------------------------------------------------
+
 class SwUndoDefaultAttr : public SwUndo
 {
     SfxItemSet* pOldSet;            // die alten Attribute
@@ -658,6 +675,7 @@ public:
     OUT_UNDOBJ( DefaultAttr )
 };
 
+//--------------------------------------------------------------------
 // ---------- Undo fuer Numerierung ----------------------------------
 
 class SwUndoInsNum : public SwUndo, private SwUndRng
@@ -677,6 +695,7 @@ public:
 
     OUT_UNDOBJ( InsNum )
 };
+
 
 
 class SwUndoNumUpDown : public SwUndo, private SwUndRng
@@ -699,6 +718,20 @@ public:
     OUT_UNDOBJ( NumRuleStart )
 };
 
+//--------------------------------------------------------------------
+// ---------- Undo fuer DrawObjecte ----------------------------------
+
+
+
+
+
+//--------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------
 
 class SwUndoChgFtn : public SwUndo, private SwUndRng
 {
@@ -714,6 +747,31 @@ public:
 
     SwHistory* GetHistory() { return pHistory; }
 };
+
+
+
+
+//--------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------
+
+
+
+
+
+
+//--------------------------------------------------------------------
+
+
+
+//--------------------------------------------------------------------
+
+// Object der als Iterator durch die Undo-Liste laeuft, bis die
+// letze oder die angegebene Klammerung/Id erreicht ist.
+
+
+
 
 
 }
