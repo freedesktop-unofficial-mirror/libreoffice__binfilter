@@ -149,6 +149,7 @@ public:
 class ContainerSorter {
 protected:
     Container& rCont;
+    ~ContainerSorter() {}
 private:
 #if _SOLAR__PRIVATE
     void ImpSubSort(long nL, long nR) const;

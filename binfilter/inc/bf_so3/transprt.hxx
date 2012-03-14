@@ -123,6 +123,9 @@ public:
         ULONG nNow, ULONG nEnd, SvBindStatus eStatus) = 0;
 
     virtual void OnRedirect (const String &rUrl) = 0;
+
+protected:
+    ~SvBindingTransportCallback() {}
 };
 
 /*========================================================================

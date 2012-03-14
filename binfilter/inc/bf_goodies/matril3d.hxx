@@ -85,6 +85,8 @@ private:
 public:
     B3dMaterial();
 
+    virtual ~B3dMaterial() {}
+
     // Laden/Speichern in StarView
     virtual void ReadData(SvStream& rIn);
 

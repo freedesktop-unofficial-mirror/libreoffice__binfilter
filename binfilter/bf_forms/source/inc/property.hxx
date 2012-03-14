@@ -103,6 +103,8 @@ private:
 class ConcretInfoService : public ::comphelper::IPropertyInfoService
 {
 public:
+    virtual ~ConcretInfoService() {}
+
     virtual sal_Int32 getPreferedPropertyId(const ::rtl::OUString& _rName);
 };
 

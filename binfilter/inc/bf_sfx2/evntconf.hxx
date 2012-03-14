@@ -152,6 +152,8 @@ public:
                                 SfxEventConfiguration*,
                                 SfxObjectShell* pObjSh = NULL );
 
+    virtual ~SfxEventConfigItem_Impl() {}
+
     void                    Init( SfxConfigManager* );
     virtual int             Load(SotStorage&);
     virtual BOOL            Store(SotStorage&) {return FALSE;}

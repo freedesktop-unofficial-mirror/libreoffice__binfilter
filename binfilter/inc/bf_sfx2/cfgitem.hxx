@@ -68,6 +68,10 @@ class SfxConfigItem
     BOOL                m_bModified : 1;
     BOOL                m_bInitialized : 1;
 
+protected:
+                        SfxConfigItem( USHORT nType, SfxConfigManager* pCfgMgr );
+                        ~SfxConfigItem();
+
 public:
 
     static String       GetStreamName( USHORT nType );
@@ -76,9 +80,6 @@ public:
                             WARNING_VERSION,
                             ERR_READ
                         };
-
-                        SfxConfigItem( USHORT nType, SfxConfigManager* pCfgMgr );
-                        ~SfxConfigItem();
 
             BOOL        Initialize();
             BOOL        StoreConfig();

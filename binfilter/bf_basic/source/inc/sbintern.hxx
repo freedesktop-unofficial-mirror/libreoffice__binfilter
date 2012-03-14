@@ -49,6 +49,7 @@ class SbModule;
 class SbiFactory : public SbxFactory
 {
 public:
+    virtual ~SbiFactory() {}
     virtual SbxBase* Create( UINT16 nSbxId, UINT32 = SBXCR_SBX );
     virtual SbxObject* CreateObject( const String& );
 };

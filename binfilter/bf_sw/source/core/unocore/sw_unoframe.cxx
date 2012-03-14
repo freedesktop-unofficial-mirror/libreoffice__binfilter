@@ -145,7 +145,7 @@ public:
 
     BaseFrameProperties_Impl ( const SfxItemPropertyMap* pMap ) :
         _pMap(pMap) {}
-    ~BaseFrameProperties_Impl();
+    virtual ~BaseFrameProperties_Impl();
 
     void            SetProperty(USHORT nWID, BYTE nMemberId, uno::Any aVal);
     sal_Bool        GetProperty(USHORT nWID, BYTE nMemberId, uno::Any*& pAny );
@@ -523,7 +523,7 @@ protected:
         BaseFrameProperties_Impl(pMap){}
 public:
     SwFrameProperties_Impl();
-    ~SwFrameProperties_Impl(){}
+    virtual ~SwFrameProperties_Impl(){}
 
     virtual sal_Bool        AnyToItemSet( SwDoc* pDoc, SfxItemSet& rFrmSet, SfxItemSet& rSet, sal_Bool& rSizeFound);
 };
@@ -589,7 +589,7 @@ class SwGraphicProperties_Impl : public BaseFrameProperties_Impl
 {
 public:
     SwGraphicProperties_Impl();
-    ~SwGraphicProperties_Impl(){}
+    virtual ~SwGraphicProperties_Impl(){}
 
     virtual sal_Bool                AnyToItemSet( SwDoc* pDoc, SfxItemSet& rFrmSet, SfxItemSet& rSet, sal_Bool& rSizeFound);
 };
@@ -691,7 +691,7 @@ class SwOLEProperties_Impl : public SwFrameProperties_Impl
 public:
     SwOLEProperties_Impl() :
         SwFrameProperties_Impl(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_EMBEDDED_OBJECT) ){}
-    ~SwOLEProperties_Impl(){}
+    virtual ~SwOLEProperties_Impl(){}
 
     virtual sal_Bool        AnyToItemSet( SwDoc* pDoc, SfxItemSet& rFrmSet, SfxItemSet& rSet, sal_Bool& rSizeFound);
 };

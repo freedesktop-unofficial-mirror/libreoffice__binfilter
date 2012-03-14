@@ -308,6 +308,9 @@ enum PlugInMode
 struct PlugJavaRequester
 {
     virtual void *  GetJavaPeer( Window * pPlugWin ) = 0;
+
+protected:
+    ~PlugJavaRequester() {}
 };
 
 class SvPlugInObject;

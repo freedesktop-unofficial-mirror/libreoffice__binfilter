@@ -47,6 +47,7 @@ class SbxFactory
     BOOL bHandleLast;   // TRUE: Factory soll zuletzt gefragt werden, da teuer
 public:
     SbxFactory( BOOL bLast=FALSE )  { bHandleLast = bLast; }
+    virtual ~SbxFactory() {}
     BOOL IsHandleLast( void )       { return bHandleLast; }
     virtual SbxBase* Create( UINT16 nSbxId, UINT32 = SBXCR_SBX );
     virtual SbxObject* CreateObject( const String& );

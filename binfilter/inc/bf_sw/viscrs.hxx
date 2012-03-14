@@ -88,7 +88,7 @@ class SwSelPaintRects : public SwRects
     virtual void FillRects() = 0;
 
 public:
-    ~SwSelPaintRects();
+    virtual ~SwSelPaintRects();
 
     void Hide();
 

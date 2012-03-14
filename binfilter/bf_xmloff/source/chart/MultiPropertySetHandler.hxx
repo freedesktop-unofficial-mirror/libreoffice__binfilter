@@ -61,6 +61,8 @@ public:
         :   msName (rName)
     {}
 
+    virtual ~PropertyWrapperBase() {}
+
     /** @descr  Abstract interface of a method for setting a variables
             value to that of the property.
     */
@@ -84,6 +86,8 @@ public:
         :   PropertyWrapperBase (rName),
             mrValue (rValue)
     {}
+
+    virtual ~PropertyWrapper() {}
 
     /** descr   Set the given value inside an Any to the variable referenced
         by the data member.

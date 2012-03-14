@@ -64,6 +64,9 @@ namespace xmloff
 
         virtual ::rtl::OUString                             getObjectStyleName(
             const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rxObject ) = 0;
+
+    protected:
+        ~IFormsExportContext() {}
     };
 
     //=====================================================================
@@ -93,6 +96,9 @@ namespace xmloff
         virtual void    registerControlReferences(
             const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rxControl,
             const ::rtl::OUString& _rReferringControls) = 0;
+
+    protected:
+        ~IControlIdMap() {}
     };
 
     //=====================================================================
@@ -132,6 +138,9 @@ namespace xmloff
             const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rxControlModel,
             const ::rtl::OUString& _rCellRangeAddress
         ) = 0;
+
+    protected:
+        ~IFormsImportContext() {}
     };
 
     //=====================================================================
@@ -144,6 +153,9 @@ namespace xmloff
             const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rxElement,
             const ::com::sun::star::uno::Sequence< ::com::sun::star::script::ScriptEventDescriptor >& _rEvents
             ) = 0;
+
+    protected:
+        ~IEventAttacherManager() {}
     };
 
     //=====================================================================
@@ -155,6 +167,9 @@ namespace xmloff
         virtual void registerEvents(
             const ::com::sun::star::uno::Sequence< ::com::sun::star::script::ScriptEventDescriptor >& _rEvents
             ) = 0;
+
+    protected:
+        ~IEventAttacher() {}
     };
 
 //.........................................................................

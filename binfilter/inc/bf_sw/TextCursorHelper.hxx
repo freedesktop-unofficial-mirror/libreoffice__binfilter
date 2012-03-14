@@ -37,9 +37,12 @@ class SwUnoCrsr;
 class SwPaM;
 class OTextCursorHelper : public ::cppu::ImplHelper1< ::com::sun::star::lang::XUnoTunnel>
 {
-public:
-
+protected:
     OTextCursorHelper(){}
+
+    ~OTextCursorHelper() {}
+
+public:
     static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId();
 
     //XUnoTunnel

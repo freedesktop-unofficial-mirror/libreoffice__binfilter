@@ -75,6 +75,8 @@ namespace xmloff
         MapPropertySet2ScriptSequence   m_aEvents;
 
     public:
+        virtual ~ODefaultEventAttacherManager() {}
+
         // IEventAttacherManager
         virtual void registerEvents(
             const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rxElement,

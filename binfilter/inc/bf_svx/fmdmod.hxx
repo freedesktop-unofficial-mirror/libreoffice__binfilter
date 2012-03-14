@@ -37,6 +37,8 @@ class SvxFmMSFactory : public SvxUnoDrawMSFactory
 public:
     SvxFmMSFactory() {};
 
+    virtual ~SvxFmMSFactory() {}
+
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SAL_CALL createInstance(const ::rtl::OUString& ServiceSpecifier) throw( ::com::sun::star::uno::Exception, ::com::sun::star::uno::RuntimeException );
 };
 

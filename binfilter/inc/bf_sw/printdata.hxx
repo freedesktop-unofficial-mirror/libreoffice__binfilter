@@ -62,6 +62,8 @@ struct SwPrintData
         nPrintPostIts           = 0;
     }
 
+    virtual ~SwPrintData() {}
+
     sal_Bool operator==(const SwPrintData& rData)const
     {
         return

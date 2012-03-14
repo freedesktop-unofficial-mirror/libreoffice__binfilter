@@ -96,6 +96,8 @@ private:
 public:
     B3dLight();
 
+    virtual ~B3dLight() {}
+
     // Zugriffsfunktionen
     void SetIntensity(const Color rNew,
         Base3DMaterialValue=Base3DMaterialAmbient);
@@ -181,6 +183,8 @@ private:
 public:
     // Konstruktor
     B3dLightGroup();
+
+    virtual ~B3dLightGroup() {}
 
     // lokale Parameter des LightModels
     virtual void SetGlobalAmbientLight(const Color rNew);

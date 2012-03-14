@@ -98,6 +98,8 @@ protected:
 
     SwTableFormula( const String& rFormel );
 
+    ~SwTableFormula() {}
+
     String MakeFormel( SwTblCalcPara& rCalcPara ) const
     {
         return ScanString( &SwTableFormula::_MakeFormel,

@@ -206,11 +206,10 @@ protected:
     void        InsertPtr(USHORT nPos, void *pItem) { SfxPtrArr::Insert(nPos, pItem); }
     void        RemovePtr(USHORT nPos, USHORT nCount = 1) { SfxPtrArr::Remove(nPos, nCount); }
 
-public:
     SmPickList(USHORT nInitSize = 0, USHORT nMaxSize = 5);
     ~SmPickList();
 
-
+public:
     void       *Get(USHORT nPos = 0) const { return GetPtr(nPos); }
 
     void       *operator [] (USHORT nPos) const { return GetPtr(nPos); }
@@ -256,7 +255,7 @@ public:
         : SmPickList(nInitSize, nMaxSize) {}
     SmFontPickList(const SmPickList& rOrig )
         : SmPickList(rOrig) {}
-    ~SmFontPickList() { Clear(); }
+    virtual ~SmFontPickList() { Clear(); }
 
 
     inline BOOL     Contains(const Font &rFont) const;
