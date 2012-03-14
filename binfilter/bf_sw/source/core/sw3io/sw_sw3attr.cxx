@@ -112,8 +112,8 @@ namespace binfilter {
 
 /*N*/ SfxPoolItem* SwFmtVertOrient::Create( SvStream& rStrm, USHORT nIVer ) const
 /*N*/ {
-/*N*/   long nPos;
-/*N*/   BYTE nOrient, nRelation;
+/*N*/   sal_Int32 nPos(0);
+/*N*/   BYTE nOrient(0), nRelation(0);
 /*N*/   rStrm >> nPos >> nOrient >> nRelation;
 /*N*/
 /*N*/   // fix #48690#: In 4.0-Doks wurde bei VERT_NONE die Relation nicht
@@ -137,8 +137,8 @@ namespace binfilter {
 
 /*N*/ SfxPoolItem* SwFmtHoriOrient::Create( SvStream& rStrm, USHORT nIVer ) const
 /*N*/ {
-/*N*/   long nPos;
-/*N*/   BYTE nOrient, nRelation, bToggle = 0;
+/*N*/   sal_Int32 nPos(0);
+/*N*/   BYTE nOrient(0), nRelation(0), bToggle(0);
 /*N*/   rStrm >> nPos >> nOrient >> nRelation;
 /*N*/
 /*N*/   if( nIVer >= IVER_HORIORIENT_TOGGLE )
