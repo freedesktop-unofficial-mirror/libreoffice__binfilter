@@ -255,7 +255,7 @@ void SwXTextCursor::SelectPam(SwPaM& rCrsr, sal_Bool bExpand)
 
 }
 
-void SwXTextCursor::getTextFromPam(SwPaM& aCrsr, OUString&)
+void SwXTextCursor::getTextFromPam(SwPaM& aCrsr, OUString& rBuffer)
 {
     if(!aCrsr.HasMark())
         return;
@@ -265,22 +265,40 @@ void SwXTextCursor::getTextFromPam(SwPaM& aCrsr, OUString&)
 #else
     aStream.SetNumberFormatInt( NUMBERFORMAT_INT_LITTLEENDIAN );
 #endif
-/* this part is commented out since is not more executable due to the
-   deletion of the Writer class.
-   Investigation needs to be done in order to know if the function can be
-   removed too, or needs to be adapted
-*/
-/*    WriterRef xWrt;
-    SwIoSystem::GetWriter( C2S(FILTER_TEXT_DLG), xWrt );
+    WriterRef xWrt = GetASCWriter(C2S(FILTER_TEXT_DLG));
     if( xWrt.Is() )
     {
+        SwWriter aWriter( aStream, aCrsr );
         xWrt->bASCII_NoLastLineEnd = sal_True;
         SwAsciiOptions aOpt = xWrt->GetAsciiOptions();
         aOpt.SetCharSet( RTL_TEXTENCODING_UNICODE );
         xWrt->SetAsciiOptions( aOpt );
         xWrt->bUCS2_WithStartChar = FALSE;
+
+        long lLen;
+        if( !IsError( aWriter.Write( xWrt ) ) &&
+                STRING_MAXLEN > (( lLen  = aStream.GetSize() )
+                / sizeof( sal_Unicode )) + 1 )
+        {
+            aStream << (sal_Unicode)'\0';
+
+            String sBuf;
+            const sal_Unicode *p = (sal_Unicode*)aStream.GetBuffer();
+            if( p )
+                sBuf = p;
+            else
+            {
+                long lUniLen = (lLen / sizeof( sal_Unicode ));
+                sal_Unicode* pStrBuf = sBuf.AllocBuffer( xub_StrLen(
+                lUniLen + 1));
+                aStream.Seek( 0 );
+                aStream.ResetError();
+                aStream.Read( pStrBuf, lLen );
+                pStrBuf[ lUniLen ] = '\0';
+            }
+            rBuffer = OUString( sBuf );
+        }
     }
-*/
 }
 
 void lcl_setCharStyle(SwDoc* pDoc, const uno::Any aValue, SfxItemSet& rSet)
