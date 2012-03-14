@@ -115,14 +115,10 @@ struct SwTOXSortTabBase
      USHORT nType;
     static USHORT nOpt;
 
-    SwTOXSortTabBase( TOXSortType nType,
-                      const SwCntntNode* pTOXSrc,
-                      const SwTxtTOXMark* pTxtMark,
-                      const SwTOXInternational* pIntl,
-                      const ::com::sun::star::lang::Locale* pLocale = NULL );
-
     USHORT  GetType() const         { return nType; }
     USHORT  GetOptions() const      { return nOpt; }
+
+    virtual ~SwTOXSortTabBase() {}
 
     virtual void    FillText( SwTxtNode& rNd, const SwIndex& rInsPos, USHORT nAuthField = 0) const;
     virtual USHORT  GetLevel()  const = 0;
@@ -133,6 +129,13 @@ struct SwTOXSortTabBase
 
      inline void GetTxt( String&, String& ) const;
      inline const ::com::sun::star::lang::Locale& GetLocale() const;
+
+protected:
+    SwTOXSortTabBase( TOXSortType nType,
+                      const SwCntntNode* pTOXSrc,
+                      const SwTxtTOXMark* pTxtMark,
+                      const SwTOXInternational* pIntl,
+                      const ::com::sun::star::lang::Locale* pLocale = NULL );
 
 private:
     BOOL bValidTxt;
@@ -183,6 +186,7 @@ private:
 
 public:
     SwTOXAuthority( const SwCntntNode& rNd, SwFmtFld& rField, const SwTOXInternational& rIntl );
+    virtual ~SwTOXAuthority() {}
     SwFmtFld& GetFldFmt() {return m_rField;}
 
     virtual BOOL    operator==( const SwTOXSortTabBase& );

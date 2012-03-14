@@ -95,6 +95,8 @@ public:
         sal_Bool bValue,                        /// process value (Prep.Field)
         sal_Bool bFormula);                     /// process formula (Prep.F.)
 
+    virtual ~XMLValueImportHelper() {}
+
     /// process attribute values
     virtual void ProcessAttribute( sal_uInt16 nAttrToken,
                                    const ::rtl::OUString& sAttrValue );

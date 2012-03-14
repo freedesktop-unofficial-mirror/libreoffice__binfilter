@@ -144,6 +144,8 @@ private:
 public:
     B3dTransformationSet();
 
+    virtual ~B3dTransformationSet() {}
+
     // Zurueck auf Standard
     void Reset();
 
@@ -235,6 +237,8 @@ private:
 public:
     B3dViewport();
 
+    virtual ~B3dViewport() {}
+
     void SetVUV(const Vector3D& rNewVUV);
     void SetViewportValues(
         const Vector3D& rNewVRP,
@@ -271,6 +275,8 @@ public:
         const Vector3D& rLkAt = Vector3D(0.0, 0.0, 0.0),
         double fFocLen = 35.0, double fBnkAng = 0.0,
         BOOL bUseFocLen = FALSE);
+
+    virtual ~B3dCamera() {}
 
     // Positionen
     const Vector3D& GetPosition() const { return aPosition; }

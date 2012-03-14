@@ -59,6 +59,9 @@ struct SwFindParas
 {
     virtual int Find( SwPaM*, SwMoveFn, const SwPaM*, bool ) = 0;
     virtual int IsReplaceMode() const = 0;
+
+protected:
+    ~SwFindParas() {}
 };
 
 enum SwCursorSelOverFlags

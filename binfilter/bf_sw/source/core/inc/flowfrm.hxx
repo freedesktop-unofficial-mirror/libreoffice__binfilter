@@ -124,6 +124,8 @@ protected:
 public:
     SwFlowFrm( SwFrm &rFrm );
 
+    virtual ~SwFlowFrm() {}
+
     const SwFrm *GetFrm() const            { return &rThis; }
           SwFrm *GetFrm()                  { return &rThis; }
 

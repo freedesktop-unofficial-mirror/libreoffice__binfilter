@@ -127,7 +127,7 @@ protected:
 public:
     SwIndexReg();
 #ifdef DBG_UTIL
-    ~SwIndexReg();
+    virtual ~SwIndexReg();
 #endif
 
     // rtti, abgeleitete moegens gleichtun oder nicht. Wenn sie es gleichtun

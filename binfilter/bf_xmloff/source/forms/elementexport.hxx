@@ -59,7 +59,7 @@ namespace xmloff
         OElementExport(IFormsExportContext& _rContext,
             const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rxProps,
             const ::com::sun::star::uno::Sequence< ::com::sun::star::script::ScriptEventDescriptor >& _rEvents);
-        ~OElementExport();
+        virtual ~OElementExport();
 
         void doExport();
 
@@ -131,7 +131,7 @@ namespace xmloff
             const ::rtl::OUString& _rControlId,
             const ::rtl::OUString& _rReferringControls,
             const ::com::sun::star::uno::Sequence< ::com::sun::star::script::ScriptEventDescriptor >& _rxEvents);
-        ~OControlExport();
+        virtual ~OControlExport();
 
     protected:
         /// start the XML element
@@ -242,7 +242,7 @@ namespace xmloff
             const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rxControl,
             const ::com::sun::star::uno::Sequence< ::com::sun::star::script::ScriptEventDescriptor >& _rxEvents);
 
-        ~OColumnExport();
+        virtual ~OColumnExport();
 
     protected:
         // OControlExport overridables
@@ -273,6 +273,8 @@ namespace xmloff
             const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rxForm,
             const ::com::sun::star::uno::Sequence< ::com::sun::star::script::ScriptEventDescriptor >& _rxEvents
             );
+
+        virtual ~OFormExport() {}
 
     protected:
         virtual const sal_Char* getXMLElementName() const;

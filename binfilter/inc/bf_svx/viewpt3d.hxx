@@ -87,6 +87,8 @@ class Viewport3D
  public:
     Viewport3D();
 
+    virtual ~Viewport3D() {}
+
     void SetVRP(const Vector3D& rNewVRP);
     void SetVPN(const Vector3D& rNewVPN);
     void SetVUV(const Vector3D& rNewVUV);

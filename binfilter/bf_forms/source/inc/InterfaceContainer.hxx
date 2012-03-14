@@ -105,11 +105,12 @@ protected:
     // EventManager
     ::com::sun::star::uno::Reference< ::com::sun::star::script::XEventAttacherManager>  m_xEventAttacher;
 
-public:
     OInterfaceContainer(
         const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory>& _rxFactory,
         ::osl::Mutex& _rMutex,
         const ::com::sun::star::uno::Type& _rElementType);
+
+    ~OInterfaceContainer() {}
 
 public:
 // ::com::sun::star::io::XPersistObject

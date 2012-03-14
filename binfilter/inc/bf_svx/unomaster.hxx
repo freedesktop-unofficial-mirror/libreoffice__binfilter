@@ -59,6 +59,9 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw(::com::sun::star::uno::RuntimeException) = 0;
 
     virtual void dispose() = 0;
+
+protected:
+    ~SvxShapeMaster() {}
 };
 
 }//end of namespace binfilter

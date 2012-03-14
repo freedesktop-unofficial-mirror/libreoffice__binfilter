@@ -443,7 +443,7 @@ public:
         size_t nBufSize,             // Lesepuffer-Groesse, mu?>0 sein
         size_t nCtrSize,             // Maximale L„nge Ctrl-Zeichenkette
         ULONG *pErrno );             // Optionale Fehlernummer
-   ~Sw6File(void);                   // dtor
+    virtual ~Sw6File(void);                   // dtor
 };
 
 

@@ -68,6 +68,8 @@ public:
                             SfxItemPropertySet( const SfxItemPropertyMap *pMap ) :
                                 _pMap(pMap) {}
 
+    virtual ~SfxItemPropertySet() {}
+
     void getPropertyValue( const SfxItemPropertyMap& rMap,
                                             const SfxItemSet& rSet,
                                             ::com::sun::star::uno::Any& rAny) const

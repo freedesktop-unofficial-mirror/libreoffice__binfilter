@@ -128,6 +128,9 @@ public:
     // helper
     static void addToSequence( ::com::sun::star::uno::Sequence< ::rtl::OUString >& rSeq,UINT16 nServices, /* sal_Char* */... ) throw();
     static sal_Bool SAL_CALL supportsService( const ::rtl::OUString& ServiceName, const ::com::sun::star::uno::Sequence< ::rtl::OUString >& SupportedServices ) throw();
+
+protected:
+    ~SvxServiceInfoHelper() {}
 };
 
 /***********************************************************************

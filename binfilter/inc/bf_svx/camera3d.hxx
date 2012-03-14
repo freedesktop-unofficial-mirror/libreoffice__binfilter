@@ -60,6 +60,8 @@ class Camera3D : public Viewport3D
              double fFocalLen = 35.0, double fBankAng = 0);
     Camera3D();
 
+    virtual ~Camera3D() {}
+
     // Anfangswerte wieder herstellen
     void Reset();
 

@@ -243,7 +243,7 @@ class ScColumnRowStylesBase
 
 public:
     ScColumnRowStylesBase();
-    ~ScColumnRowStylesBase();
+    virtual ~ScColumnRowStylesBase();
 
     virtual void AddNewTable(const sal_Int16 nTable, const sal_Int32 nFields) = 0;
     sal_Int32 AddStyleName(::rtl::OUString* pString);
@@ -270,7 +270,7 @@ class ScColumnStyles : public ScColumnRowStylesBase
 
 public:
     ScColumnStyles();
-    ~ScColumnStyles();
+    virtual ~ScColumnStyles();
 
     virtual void AddNewTable(const sal_Int16 nTable, const sal_Int32 nFields);
     sal_Int32 GetStyleNameIndex(const sal_Int16 nTable, const sal_Int32 nField,
@@ -288,7 +288,7 @@ class ScRowStyles : public ScColumnRowStylesBase
 
 public:
     ScRowStyles();
-    ~ScRowStyles();
+    virtual ~ScRowStyles();
 
     virtual void AddNewTable(const sal_Int16 nTable, const sal_Int32 nFields);
     sal_Int32 GetStyleNameIndex(const sal_Int16 nTable, const sal_Int32 nField);
