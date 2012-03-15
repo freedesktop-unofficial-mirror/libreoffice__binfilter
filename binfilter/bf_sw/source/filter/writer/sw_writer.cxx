@@ -53,10 +53,6 @@
 #include <swerror.h>
 namespace binfilter {
 
-// Stringbuffer fuer die umgewandelten Zahlen
-static sal_Char aNToABuf[] = "0000000000000000000000000";
-#define NTOABUFLEN (sizeof(aNToABuf))
-
 /*N*/ DECLARE_TABLE( SwBookmarkNodeTable, SvPtrarr* )
 
 /*N*/ struct Writer_Impl
@@ -166,28 +162,6 @@ static sal_Char aNToABuf[] = "0000000000000000000000000";
 /*?*/   return TRUE;
 /*N*/ }
 
-// suche die naechste Bookmark-Position aus der Bookmark-Tabelle
-
- SwPaM* Writer::NewSwPaM( SwDoc & rDoc, ULONG nStartIdx, ULONG nEndIdx ) const
- {
-    SwNodes* pNds = &rDoc.GetNodes();
-
-    SwNodeIndex aStt( *pNds, nStartIdx );
-    SwCntntNode* pCNode = aStt.GetNode().GetCntntNode();
-    if( !pCNode && 0 == ( pCNode = pNds->GoNext( &aStt )) )
-        OSL_ENSURE( !this, "An StartPos kein ContentNode mehr" );
-
-    SwPaM* pNew = new SwPaM( aStt );
-    pNew->SetMark();
-    aStt = nEndIdx;
-    if( 0 == (pCNode = aStt.GetNode().GetCntntNode()) &&
-        0 == (pCNode = pNds->GoPrevious( &aStt )) )
-        OSL_ENSURE( !this, "An StartPos kein ContentNode mehr" );
-    pCNode->MakeEndIndex( &pNew->GetPoint()->nContent );
-    pNew->GetPoint()->nNode = aStt;
-    return pNew;
- }
-
 // Stream-spezifisches
 /*N*/ #ifdef DBG_UTIL
 /*N*/ SvStream& Writer::Strm()
@@ -197,53 +171,6 @@ static sal_Char aNToABuf[] = "0000000000000000000000000";
 /*N*/ }
 /*N*/ #endif
 
-
-SvStream& Writer::OutHex( SvStream& rStrm, ULONG nHex, BYTE nLen )
-{                                                  // in einen Stream aus
-    // Pointer an das Bufferende setzen
-    sal_Char* pStr = aNToABuf + (NTOABUFLEN-1);
-    for( BYTE n = 0; n < nLen; ++n )
-    {
-        *(--pStr) = (sal_Char)(nHex & 0xf ) + 48;
-        if( *pStr > '9' )
-            *pStr += 39;
-        nHex >>= 4;
-    }
-    return rStrm << pStr;
-}
-
-SvStream& Writer::OutLong( SvStream& rStrm, long nVal )
-{
-    // Pointer an das Bufferende setzen
-    sal_Char* pStr = aNToABuf + (NTOABUFLEN-1);
-
-    int bNeg = nVal < 0;
-    if( bNeg )
-        nVal = -nVal;
-
-    do {
-        *(--pStr) = (sal_Char)(nVal % 10 ) + 48;
-        nVal /= 10;
-    } while( nVal );
-
-    // Ist Zahl negativ, dann noch -
-    if( bNeg )
-        *(--pStr) = '-';
-
-    return rStrm << pStr;
-}
-
-SvStream& Writer::OutULong( SvStream& rStrm, ULONG nVal )
-{
-    // Pointer an das Bufferende setzen
-    sal_Char* pStr = aNToABuf + (NTOABUFLEN-1);
-
-    do {
-        *(--pStr) = (sal_Char)(nVal % 10 ) + 48;
-        nVal /= 10;
-    } while ( nVal );
-    return rStrm << pStr;
-}
 
 /*N*/ ULONG Writer::Write( SwPaM& rPaM, SvStream& rStrm )
 /*N*/ {
@@ -261,61 +188,6 @@ SvStream& Writer::OutULong( SvStream& rStrm, ULONG nVal )
 /*N*/ 	ResetWriter();
 /*N*/
 /*N*/ 	return nRet;
-/*N*/ }
-
-/*N*/ void Writer::PutNumFmtFontsInAttrPool()
-/*N*/ {
-/*N*/   if( !pImpl )
-/*?*/       pImpl = new Writer_Impl;
-/*N*/
-/*N*/   // dann gibt es noch in den NumRules ein paar Fonts
-/*N*/   // Diese in den Pool putten. Haben sie danach einen RefCount > 1
-/*N*/   // kann es wieder entfernt werden - ist schon im Pool
-/*N*/   SfxItemPool& rPool = pDoc->GetAttrPool();
-/*N*/   const SwNumRuleTbl& rListTbl = pDoc->GetNumRuleTbl();
-/*N*/   const SwNumRule* pRule;
-/*N*/   const SwNumFmt* pFmt;
-/*N*/   const Font *pFont, *pDefFont = &SwNumRule::GetDefBulletFont();
-/*N*/   BOOL bCheck = FALSE;
-/*N*/
-/*N*/   for( USHORT nGet = rListTbl.Count(); nGet; )
-/*N*/       if( pDoc->IsUsed( *(pRule = rListTbl[ --nGet ] )))
-/*?*/           for( BYTE nLvl = 0; nLvl < MAXLEVEL; ++nLvl )
-/*?*/               if( SVX_NUM_CHAR_SPECIAL == (pFmt = &pRule->Get( nLvl ))->GetNumberingType() ||
-/*?*/                   SVX_NUM_BITMAP == pFmt->GetNumberingType() )
-/*?*/               {
-/*?*/                   if( 0 == ( pFont = pFmt->GetBulletFont() ) )
-/*?*/                       pFont = pDefFont;
-/*?*/
-/*?*/                   if( bCheck )
-/*?*/                   {
-/*?*/                       if( *pFont == *pDefFont )
-/*?*/                           continue;
-/*?*/                   }
-/*?*/                   else if( *pFont == *pDefFont )
-/*?*/                       bCheck = TRUE;
-/*?*/
-/*?*/                   _AddFontItem( rPool, SvxFontItem( pFont->GetFamily(),
-/*?*/                               pFont->GetName(), pFont->GetStyleName(),
-/*?*/                               pFont->GetPitch(), pFont->GetCharSet() ));
-/*N*/               }
-/*N*/ }
-
-/*N*/ void Writer::PutEditEngFontsInAttrPool( BOOL bIncl_CJK_CTL )
-/*N*/ {
-/*N*/   if( !pImpl )
-/*?*/       pImpl = new Writer_Impl;
-/*N*/
-/*N*/   SfxItemPool& rPool = pDoc->GetAttrPool();
-/*N*/   if( rPool.GetSecondaryPool() )
-/*N*/   {
-/*N*/       _AddFontItems( rPool, EE_CHAR_FONTINFO );
-/*N*/       if( bIncl_CJK_CTL )
-/*N*/       {
-/*N*/           _AddFontItems( rPool, EE_CHAR_FONTINFO_CJK );
-/*N*/           _AddFontItems( rPool, EE_CHAR_FONTINFO_CTL );
-/*N*/       }
-/*N*/   }
 /*N*/ }
 
 /*N*/ void Writer::_AddFontItems( SfxItemPool& rPool, USHORT nW )

@@ -121,9 +121,6 @@ protected:
     void ResetWriter();
     BOOL CopyNextPam( SwPaM ** );
 
-    void PutNumFmtFontsInAttrPool();
-    void PutEditEngFontsInAttrPool( BOOL bIncl_CJK_CTL = TRUE );
-
     virtual ULONG WriteStream() = 0;
 
 public:
@@ -151,31 +148,6 @@ public:
 
     const SwAsciiOptions& GetAsciiOptions() const { return aAscOpts; }
     void SetAsciiOptions( const SwAsciiOptions& rOpt ) { aAscOpts = rOpt; }
-
-    // suche die naechste Bookmark-Position aus der Bookmark-Tabelle
-    // build a bookmark table, which is sort by the node position. The
-    // OtherPos of the bookmarks also inserted.
-    // search alle Bookmarks in the range and return it in the Array
-    // lege einen neuen PaM an der Position an
-    SwPaM* NewSwPaM( SwDoc & rDoc, ULONG nStartIdx, ULONG nEndIdx ) const;
-
-    // kopiere ggfs. eine lokale Datei ins Internet
-
-    // Stream-spezifische Routinen, im Storage-Writer NICHT VERWENDEN!
-
-    // Optimierung der Ausgabe auf den Stream.
-SvStream& OutLong( SvStream& rStrm, long nVal );
-SvStream& OutULong( SvStream& rStrm, ULONG nVal );
-
-    // Hex-Zahl ausgeben, default ist 2.stellige Zahl
-SvStream& OutHex( SvStream& rStrm, ULONG nHex, BYTE nLen = 2 );
-    // 4-st. Hex-Zahl ausgeben
-    // 8-st. Hex-Zahl ausgeben
-
-inline SvStream& OutHex( USHORT nHex, BYTE nLen = 2 )      { return OutHex( Strm(), nHex, nLen ); }
-inline SvStream& OutHex4( USHORT nHex )     { return OutHex( Strm(), nHex, 4 ); }
-inline SvStream& OutLong( long nVal )       { return OutLong( Strm(), nVal ); }
-inline SvStream& OutULong( ULONG nVal )     { return OutULong( Strm(), nVal ); }
 
     void SetStrm( SvStream& rStrm ) { pStrm = &rStrm; }
 #ifndef DBG_UTIL

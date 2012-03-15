@@ -46,11 +46,6 @@ class Writer;
 typedef Writer& (*FnAttrOut)( Writer&, const SfxPoolItem& );
 typedef FnAttrOut SwAttrFnTab[ POOLATTR_END - POOLATTR_BEGIN ];
 
-Writer& Out( const SwAttrFnTab, const SfxPoolItem&, Writer& );
-Writer& Out_SfxItemSet( const SwAttrFnTab, Writer&, const SfxItemSet&,
-                         BOOL bDeep, BOOL bTstForDefault = TRUE );
-
-
 /* Funktionspointer auf die Node-Write-Funktionen */
 
 enum RES_NODE
