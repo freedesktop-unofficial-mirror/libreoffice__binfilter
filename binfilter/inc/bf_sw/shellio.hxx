@@ -109,9 +109,6 @@ class Writer : public SvRefBase
 {
     SwAsciiOptions aAscOpts;
 
-    void _AddFontItem( SfxItemPool& rPool, const SvxFontItem& rFont );
-    void _AddFontItems( SfxItemPool& rPool, USHORT nWhichId );
-
 protected:
     Writer_Impl* pImpl;
 

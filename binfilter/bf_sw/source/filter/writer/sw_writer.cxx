@@ -190,44 +190,6 @@ namespace binfilter {
 /*N*/ 	return nRet;
 /*N*/ }
 
-/*N*/ void Writer::_AddFontItems( SfxItemPool& rPool, USHORT nW )
-/*N*/ {
-/*N*/   const SvxFontItem* pFont = (const SvxFontItem*)&rPool.GetDefaultItem( nW );
-/*N*/   _AddFontItem( rPool, *pFont );
-/*N*/
-/*N*/   if( 0 != ( pFont = (const SvxFontItem*)rPool.GetPoolDefaultItem( nW )) )
-/*N*/       _AddFontItem( rPool, *pFont );
-/*N*/
-/*N*/   USHORT nMaxItem = rPool.GetItemCount( nW );
-/*N*/   for( USHORT nGet = 0; nGet < nMaxItem; ++nGet )
-/*N*/       if( 0 != (pFont = (const SvxFontItem*)rPool.GetItem( nW, nGet )) )
-/*N*/           _AddFontItem( rPool, *pFont );
-/*N*/ }
-
-/*N*/ void Writer::_AddFontItem( SfxItemPool& rPool, const SvxFontItem& rFont )
-/*N*/ {
-/*N*/   const SvxFontItem* pItem;
-/*N*/   if( RES_CHRATR_FONT != rFont.Which() )
-/*N*/   {
-/*N*/       SvxFontItem aFont( rFont );
-/*N*/       aFont.SetWhich( RES_CHRATR_FONT );
-/*N*/       pItem = (SvxFontItem*)&rPool.Put( aFont );
-/*N*/   }
-/*N*/   else
-/*?*/       pItem = (SvxFontItem*)&rPool.Put( rFont );
-/*N*/
-/*N*/   if( 1 < pItem->GetRefCount() )
-/*N*/       rPool.Remove( *pItem );
-/*N*/   else
-/*N*/   {
-/*N*/       if( !pImpl->pFontRemoveLst )
-/*N*/           pImpl->pFontRemoveLst = new SvPtrarr( 0, 10 );
-/*N*/
-/*N*/       void* p = (void*)pItem;
-/*N*/       pImpl->pFontRemoveLst->Insert( p, pImpl->pFontRemoveLst->Count() );
-/*N*/   }
-/*N*/ }
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
