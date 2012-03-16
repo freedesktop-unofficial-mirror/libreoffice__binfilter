@@ -37,9 +37,7 @@
 #include <com/sun/star/frame/XDispatchResultListener.hpp>
 #include <com/sun/star/util/URL.hpp>
 #include <com/sun/star/util/XURLTransformer.hpp>
-#include <com/sun/star/system/XSystemShellExecute.hpp>
 #include <com/sun/star/document/XTypeDetection.hpp>
-#include <com/sun/star/system/SystemShellExecuteFlags.hpp>
 #include <com/sun/star/document/MacroExecMode.hpp>
 #include <com/sun/star/document/UpdateDocMode.hpp>
 #include <com/sun/star/task/XInteractionRequest.hpp>
@@ -99,7 +97,6 @@ using namespace ::com::sun::star::frame;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::util;
-using namespace ::com::sun::star::system;
 using namespace ::com::sun::star::task;
 using namespace ::cppu;
 
