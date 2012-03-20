@@ -125,15 +125,6 @@ sal_Int64 UniString::ToInt64() const
 
 // -----------------------------------------------------------------------
 
-float UniString::ToFloat() const
-{
-    DBG_CHKTHIS( UniString, DbgCheckUniString );
-
-    return rtl_ustr_toFloat( mpData->maStr );
-}
-
-// -----------------------------------------------------------------------
-
 double UniString::ToDouble() const
 {
     DBG_CHKTHIS( UniString, DbgCheckUniString );

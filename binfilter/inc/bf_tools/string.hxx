@@ -372,8 +372,6 @@ public:
         return *(reinterpret_cast< const ::UniString* >(this));
     }
 
-    UniString           intern() const;
-
     static UniString    CreateFromAscii( const sal_Char* pAsciiStr );
     static UniString    CreateFromAscii( const sal_Char* pAsciiStr, xub_StrLen nLen );
 
@@ -382,7 +380,6 @@ public:
     static const UniString& EmptyString();
     sal_Int32           ToInt32() const;
     sal_Int64           ToInt64() const;
-    float               ToFloat() const;
     double              ToDouble() const;
 
     UniString&          Assign( const UniString& rStr );
