@@ -99,7 +99,7 @@ static SwFmt* _GetUserPoolFmt( USHORT nId, const SvPtrarr* pFmtArr );
 USHORT SwSwgReader::InAttrSet( SwAttrSet& rSet )
 {
     // Format einlesen
-    USHORT nFmtId, nDerived;
+    USHORT nFmtId(IDX_NO_VALUE), nDerived(IDX_NO_VALUE);
     if( aHdr.nVersion >= SWG_VER_COMPAT )
     {
         if( r.next() != SWG_DATA ) Error();
@@ -205,7 +205,7 @@ SwFmt* SwSwgReader::InFormat( SwFmt* pFmt, USHORT* pParentId )
     nFmtLvl++;
 
     String aName( String::CreateFromAscii("dummy") );
-    USHORT nDerived, nPoolId = IDX_NO_VALUE;
+    USHORT nDerived(IDX_NO_VALUE), nPoolId(IDX_NO_VALUE);
     if( aHdr.nVersion >= SWG_VER_COMPAT )
     {
         if( r.next() != SWG_DATA ) Error();
