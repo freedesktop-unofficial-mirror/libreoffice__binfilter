@@ -126,9 +126,7 @@ protected:
 
 public:
     SwIndexReg();
-#ifdef DBG_UTIL
     virtual ~SwIndexReg();
-#endif
 
     // rtti, abgeleitete moegens gleichtun oder nicht. Wenn sie es gleichtun
     // kann ueber das SwIndexReg typsicher gecastet werden.

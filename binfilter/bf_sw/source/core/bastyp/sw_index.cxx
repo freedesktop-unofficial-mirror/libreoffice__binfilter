@@ -309,16 +309,12 @@ int SwIndex::nSerial = 0;
 /*N*/ {
 /*N*/ }
 
-#ifdef DBG_UTIL
-
-
 /*N*/ SwIndexReg::~SwIndexReg()
 /*N*/ {
+#ifdef DBG_UTIL
 /*N*/   OSL_ENSURE( !pFirst || !pLast, "Es sind noch Indizies angemeldet" );
-/*N*/ }
-
 #endif
-
+/*N*/ }
 
 /*N*/ void SwIndexReg::Update( const SwIndex& rIdx, xub_StrLen nDiff, BOOL bNeg )
 /*N*/ {
