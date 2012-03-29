@@ -96,7 +96,7 @@ public:
                                 ScMyShapesContainer();
     virtual                     ~ScMyShapesContainer();
 
-                                ScMyIteratorBase::UpdateAddress;
+                                using ScMyIteratorBase::UpdateAddress;
     void                        AddNewShape(const ScMyShape& aShape);
     sal_Bool                    HasShapes() { return !aShapeList.empty(); }
     const ScMyShapeList*        GetShapes() { return &aShapeList; }
@@ -127,7 +127,7 @@ public:
     virtual                     ~ScMyMergedRangesContainer();
     void                        AddRange(const ::com::sun::star::table::CellRangeAddress aMergedRange);
 
-                                ScMyIteratorBase::UpdateAddress;
+                                using ScMyIteratorBase::UpdateAddress;
     virtual void                SetCellData( ScMyCell& rMyCell );
     virtual void                Sort(); // + remove doublets
 };
@@ -167,7 +167,7 @@ public:
     inline void                 AddNewAreaLink( const ScMyAreaLink& rAreaLink )
                                     { aAreaLinkList.push_back( rAreaLink ); }
 
-                                ScMyIteratorBase::UpdateAddress;
+                                using ScMyIteratorBase::UpdateAddress;
     virtual void                SetCellData( ScMyCell& rMyCell );
     virtual void                Sort();
 };
@@ -193,7 +193,7 @@ public:
     virtual                     ~ScMyEmptyDatabaseRangesContainer();
     void                        AddNewEmptyDatabaseRange(const ::com::sun::star::table::CellRangeAddress& aCellRangeAddress);
 
-                                ScMyIteratorBase::UpdateAddress;
+                                using ScMyIteratorBase::UpdateAddress;
     virtual void                SetCellData( ScMyCell& rMyCell );
     virtual void                Sort();
 };
@@ -228,7 +228,7 @@ public:
                                     const ScRange& rSourceRange,
                                     sal_Bool bHasError );
 
-                                ScMyIteratorBase::UpdateAddress;
+                                using ScMyIteratorBase::UpdateAddress;
     virtual void                SetCellData( ScMyCell& rMyCell );
     virtual void                Sort();
 };
@@ -258,7 +258,7 @@ public:
 
     void                        AddOperation( ScDetOpType eOpType, const ScAddress& rPosition, sal_uInt32 nIndex );
 
-                                ScMyIteratorBase::UpdateAddress;
+                                using ScMyIteratorBase::UpdateAddress;
     virtual void                SetCellData( ScMyCell& rMyCell );
     virtual void                Sort();
 };

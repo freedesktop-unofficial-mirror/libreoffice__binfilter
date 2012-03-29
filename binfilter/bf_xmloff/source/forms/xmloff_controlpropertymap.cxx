@@ -47,7 +47,7 @@ namespace xmloff
 //.........................................................................
 
 #define MAP_ASCII( name, prefix, token, type, context )  { name, sizeof(name)-1, prefix, token, type, context }
-#define MAP_CONST( name, prefix, token, type, context )  { name.ascii, name.length, prefix, token, type, context }
+#define MAP_CONST( name, prefix, token, type, context )  { name.ascii, name.length, prefix, token, sal::static_int_cast< sal_Int32 >(type), context }
 #define MAP_END()   { NULL, 0, 0, XML_TOKEN_INVALID, 0, 0 }
 
     XMLPropertyMapEntry* getControlStylePropertyMap_Access( )
