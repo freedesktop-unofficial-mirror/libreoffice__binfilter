@@ -33,7 +33,7 @@ namespace binfilter {
 
 using namespace ::binfilter::xmloff::token;
 
-#define MAP(name,prefix,token,type,context)  { name, sizeof(name)-1, prefix, token, type, context }
+#define MAP(name,prefix,token,type,context)  { name, sizeof(name)-1, prefix, token, sal::static_int_cast< sal_Int32 >(type), context }
 #define MAP_ENTRY_END { 0,0,0,xmloff::token::XML_TOKEN_INVALID,0,0 }
 //______________________________________________________________________________
 

@@ -38,10 +38,10 @@ using namespace ::com::sun::star::uno;
 using namespace ::binfilter::xmloff::token;
 
 #define M_E( a, p, l, t, c ) \
-    { a, sizeof(a)-1, XML_NAMESPACE_##p, XML_##l, t, c }
+    { a, sizeof(a)-1, XML_NAMESPACE_##p, XML_##l, sal::static_int_cast< sal_Int32 >(t), c }
 
 #define M_ED( a, p, l, t, c ) \
-    { a, sizeof(a)-1, XML_NAMESPACE_##p, XML_##l, (t) | MID_FLAG_DEFAULT_ITEM_EXPORT, c }
+    { a, sizeof(a)-1, XML_NAMESPACE_##p, XML_##l, sal::static_int_cast< sal_Int32 >((t) | MID_FLAG_DEFAULT_ITEM_EXPORT), c }
 
 #define M_END() \
     { NULL, 0, 0, XML_TOKEN_INVALID, 0, 0 }

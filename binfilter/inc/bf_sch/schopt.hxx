@@ -56,7 +56,7 @@ public:
 
 
     // make public
-    Table::Count;
+    using Table::Count;
 
     // specialized methods from Table
     void            ClearAndDestroy();

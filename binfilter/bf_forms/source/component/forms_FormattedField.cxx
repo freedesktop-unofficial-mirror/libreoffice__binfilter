@@ -97,8 +97,8 @@ public:
     StandardFormatsSupplier(const Reference<XMultiServiceFactory>& _rxFactory,LanguageType _eSysLanguage);
 
     operator Reference<XNumberFormatsSupplier> ();
-    SvNumberFormatsSupplierObj::operator new;
-    SvNumberFormatsSupplierObj::operator delete;
+    using SvNumberFormatsSupplierObj::operator new;
+    using SvNumberFormatsSupplierObj::operator delete;
 
 protected:
     ~StandardFormatsSupplier() { if (m_pMyPrivateFormatter) delete m_pMyPrivateFormatter; }

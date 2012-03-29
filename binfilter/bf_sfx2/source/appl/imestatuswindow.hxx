@@ -71,11 +71,8 @@ public:
      */
     void init();
 
-    // At least the Solaris "CC: Forte Developer 7 C++ 5.4 2002/03/09" compiler
-    // does not accept the following using-declarations for virtual functions,
-    // so use (deprecated) access declarations instead:
-    /*using*/ ImeStatusWindow_Impl::acquire;
-    /*using*/ ImeStatusWindow_Impl::release;
+    using ImeStatusWindow_Impl::acquire;
+    using ImeStatusWindow_Impl::release;
     using ImeStatusWindow_Impl::operator new;
     using ImeStatusWindow_Impl::operator delete;
 

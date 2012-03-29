@@ -116,9 +116,9 @@ sal_Char SW5HEADER[] = "SW5HDR";        // 5.0 Header
 class Sw3RecordSizeTable: private Table
 {
 public:
-    Table::Count;
-    Table::SearchKey;
-    Table::GetObjectKey;
+    using Table::Count;
+    using Table::SearchKey;
+    using Table::GetObjectKey;
 
     Sw3RecordSizeTable() :
         Table()
