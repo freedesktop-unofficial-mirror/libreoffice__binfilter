@@ -54,7 +54,6 @@
 #include "filter.hxx"
 #include "scmod.hxx"
 #include "docfunc.hxx"
-#include "impex.hxx"
 #include "scresid.hxx"
 #include "bf_sc.hrc"
 #include "globstr.hrc"
@@ -536,96 +535,6 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*?*/           else
 /*?*/               OSL_FAIL("Calc3/4: kein Storage");
 /*N*/       }
-/*N*/       else if (aFltName.EqualsAscii(pFilterAscii))
-/*N*/       {
-/*N*/           SfxItemSet*  pSet = rMedium.GetItemSet();
-/*N*/           const SfxPoolItem* pItem;
-/*N*/           ScAsciiOptions aOptions;
-/*N*/           BOOL bOptInit = FALSE;
-/*N*/
-/*N*/           if ( pSet && SFX_ITEM_SET ==
-/*N*/                pSet->GetItemState( SID_FILE_FILTEROPTIONS, TRUE, &pItem ) )
-/*N*/           {
-/*N*/               aOptions.ReadFromString( ((const SfxStringItem*)pItem)->GetValue() );
-/*N*/               bOptInit = TRUE;
-/*N*/           }
-/*N*/
-/*N*/           if ( !bOptInit )
-/*N*/           {
-/*?*/               //  default for ascii import (from API without options):
-/*?*/               //  ISO8859-1/MS_1252 encoding, comma, double quotes
-/*?*/
-/*?*/               aOptions.SetCharSet( RTL_TEXTENCODING_MS_1252 );
-/*?*/               aOptions.SetFieldSeps( (sal_Unicode) ',' );
-/*?*/               aOptions.SetTextSep( (sal_Unicode) '"' );
-/*N*/           }
-/*N*/
-/*N*/           FltError eError = eERR_OK;
-/*N*/           BOOL bOverflow = FALSE;
-/*N*/
-/*N*/           if( ! rMedium.IsStorage() )
-/*N*/           {
-/*N*/               ScImportExport  aImpEx( &aDocument );
-/*N*/               aImpEx.SetExtOptions( aOptions );
-/*N*/
-/*N*/               SvStream* pInStream = rMedium.GetInStream();
-/*N*/               if (pInStream)
-/*N*/               {
-/*N*/                   pInStream->SetStreamCharSet( aOptions.GetCharSet() );
-/*N*/                   pInStream->Seek( 0 );
-/*N*/                   bRet = aImpEx.ImportStream( *pInStream );
-/*N*/                   eError = bRet ? eERR_OK : SCERR_IMPORT_CONNECT;
-/*N*/                   aDocument.StartAllListeners();
-/*N*/                   aDocument.SetDirty();
-/*N*/                   bOverflow = aImpEx.IsOverflow();
-/*N*/               }
-/*N*/               else
-/*N*/                   OSL_FAIL( "No Stream" );
-/*N*/           }
-/*N*/
-/*N*/           if (eError != eERR_OK)
-/*N*/           {
-/*N*/               if (!GetError())
-/*N*/                   SetError(eError);
-/*N*/           }
-/*N*/           else if ( bOverflow )
-/*N*/           {
-/*N*/               if (!GetError())
-/*N*/                   SetError(SCWARN_IMPORT_RANGE_OVERFLOW);
-/*N*/           }
-/*N*/           bSetColWidths = TRUE;
-/*N*/           bSetSimpleTextColWidths = TRUE;
-/*N*/       }
-/*N*/       else if (aFltName.EqualsAscii(pFilterDif))
-/*N*/       {
-/*?*/           bSetColWidths = TRUE;
-/*?*/           bSetSimpleTextColWidths = TRUE;
-/*N*/       }
-/*N*/       else if (aFltName.EqualsAscii(pFilterSylk))
-/*N*/       {
-/*?*/           FltError eError = SCERR_IMPORT_UNKNOWN;
-/*?*/           if( !rMedium.IsStorage() )
-/*?*/           {
-/*?*/               ScImportExport aImpEx( &aDocument );
-/*?*/
-/*?*/               SvStream* pInStream = rMedium.GetInStream();
-/*?*/               if (pInStream)
-/*?*/               {
-/*?*/                   pInStream->Seek( 0 );
-/*?*/                   bRet = aImpEx.ImportStream( *pInStream, SOT_FORMATSTR_ID_SYLK );
-/*?*/                   eError = bRet ? eERR_OK : SCERR_IMPORT_UNKNOWN;
-/*?*/                   aDocument.StartAllListeners();
-/*?*/                   aDocument.SetDirty();
-/*?*/               }
-/*?*/               else
-/*?*/                   OSL_FAIL( "No Stream" );
-/*?*/           }
-/*?*/
-/*?*/           if ( eError != eERR_OK && !GetError() )
-/*?*/               SetError(eError);
-/*?*/           bSetColWidths = TRUE;
-/*?*/           bSetSimpleTextColWidths = TRUE;
-/*N*/       }
             else if (
                        aFltName.EqualsAscii(pFilterExcel4)
                     || aFltName.EqualsAscii(pFilterExcel5)
@@ -642,6 +551,9 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
                     || aFltName.EqualsAscii(pFilterRtf)
                     || aFltName.EqualsAscii(pFilterHtml)
                     || aFltName.EqualsAscii(pFilterHtmlWebQ)
+                    || aFltName.EqualsAscii(pFilterDif)
+                    || aFltName.EqualsAscii(pFilterAscii)
+                    || aFltName.EqualsAscii(pFilterSylk)
                     )
             {
                 // Ignore these filters; Don't let the else generate an error

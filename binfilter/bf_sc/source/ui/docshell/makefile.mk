@@ -51,7 +51,6 @@ SLOFILES =  \
         $(SLO)$/sc_arealink.obj   	\
         $(SLO)$/sc_dbdocfun.obj 	\
         $(SLO)$/sc_dbdocimp.obj 	\
-        $(SLO)$/sc_impex.obj	\
         $(SLO)$/sc_docfunc.obj	\
         $(SLO)$/sc_pntlock.obj \
         $(SLO)$/sc_sizedev.obj \
