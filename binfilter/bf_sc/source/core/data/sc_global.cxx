@@ -545,33 +545,6 @@ void global_InitAppOptions();
 //------------------------------------------------------------------------
 
 // static
-/*N*/ CharSet ScGlobal::GetCharsetValue( const String& rCharSet )
-/*N*/ {
-/*N*/   // new TextEncoding values
-/*N*/   if ( CharClass::isAsciiNumeric( rCharSet ) )
-/*N*/   {
-/*?*/       sal_Int32 nVal = rCharSet.ToInt32();
-/*?*/       if ( !nVal || nVal == RTL_TEXTENCODING_DONTKNOW )
-/*?*/           return osl_getThreadTextEncoding();
-/*?*/       return (CharSet) nVal;
-/*N*/   }
-/*N*/   // old CharSet values for compatibility
-/*N*/   else if (rCharSet.EqualsIgnoreCaseAscii("ANSI")     ) return RTL_TEXTENCODING_MS_1252;
-/*N*/   else if (rCharSet.EqualsIgnoreCaseAscii("MAC")      ) return RTL_TEXTENCODING_APPLE_ROMAN;
-/*N*/   else if (rCharSet.EqualsIgnoreCaseAscii("IBMPC")    ) return RTL_TEXTENCODING_IBM_850;
-/*N*/   else if (rCharSet.EqualsIgnoreCaseAscii("IBMPC_437")) return RTL_TEXTENCODING_IBM_437;
-/*N*/   else if (rCharSet.EqualsIgnoreCaseAscii("IBMPC_850")) return RTL_TEXTENCODING_IBM_850;
-/*N*/   else if (rCharSet.EqualsIgnoreCaseAscii("IBMPC_860")) return RTL_TEXTENCODING_IBM_860;
-/*N*/   else if (rCharSet.EqualsIgnoreCaseAscii("IBMPC_861")) return RTL_TEXTENCODING_IBM_861;
-/*N*/   else if (rCharSet.EqualsIgnoreCaseAscii("IBMPC_863")) return RTL_TEXTENCODING_IBM_863;
-/*N*/   else if (rCharSet.EqualsIgnoreCaseAscii("IBMPC_865")) return RTL_TEXTENCODING_IBM_865;
-/*N*/ //    else if (rCharSet.EqualsIgnoreCaseAscii("SYSTEM")   ) return osl_getThreadTextEncoding();
-/*N*/   else return osl_getThreadTextEncoding();
-/*N*/ }
-
-//------------------------------------------------------------------------
-
-// static
 /*N*/ String ScGlobal::GetCharsetString( CharSet eVal )
 /*N*/ {
 /*N*/   const sal_Char* pChar;

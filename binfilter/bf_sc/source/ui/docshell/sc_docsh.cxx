@@ -60,7 +60,6 @@
 #include "scerrors.hxx"
 #include "stlpool.hxx"
 #include "autostyl.hxx"
-#include "asciiopt.hxx"
 #include "docpool.hxx"      // LoadCompleted
 #include "progress.hxx"
 #include "pntlock.hxx"
@@ -77,6 +76,7 @@
 #include "ViewSettingsSequenceDefines.hxx"
 
 #include <rtl/logfile.hxx>
+#include <vcl/virdev.hxx>
 namespace binfilter {
 using namespace ::com::sun::star;
 

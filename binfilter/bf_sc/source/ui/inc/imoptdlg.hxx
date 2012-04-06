@@ -59,10 +59,6 @@ public:
             : nFieldSepCode(0),nTextSepCode(0),eCharSet(RTL_TEXTENCODING_DONTKNOW),bFixedWidth(FALSE)
         {}
 
-        ScImportOptions( sal_Unicode nFieldSep, sal_Unicode nTextSep, const String& rStr )
-            : nFieldSepCode(nFieldSep),nTextSepCode(nTextSep),aStrFont(rStr),bFixedWidth(FALSE)
-        { eCharSet = ScGlobal::GetCharsetValue(aStrFont); }
-
         ScImportOptions( sal_Unicode nFieldSep, sal_Unicode nTextSep, rtl_TextEncoding nEnc )
             : nFieldSepCode(nFieldSep),nTextSepCode(nTextSep),bFixedWidth(FALSE)
         { SetTextEncoding( nEnc ); }

@@ -43,13 +43,11 @@ INC+= -I$(PRJ)$/inc$/bf_sc
 
 SLOFILES =	\
     $(SLO)$/sc_imoptdlg.obj	\
-    $(SLO)$/sc_asciiopt.obj
 
 SRS1NAME=$(TARGET)
 SRC1FILES =  \
         sc_pivot.src		\
         sc_imoptdlg.src    \
-        sc_asciiopt.src    \
         sc_outline.src
 
 # --- Tagets -------------------------------------------------------

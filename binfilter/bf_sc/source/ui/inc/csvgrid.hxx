@@ -48,7 +48,6 @@ class ColorConfig;
 
 class EditEngine;
 class ScEditEngineDefaulter;
-class ScAsciiOptions;
 class ScAccessibleCsvControl;
 
 

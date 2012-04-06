@@ -617,7 +617,6 @@ public:
     static inline sal_Unicode ToUpperAlpha( sal_Unicode c )
         { return ( c >= 'a' && c <= 'z' ) ? ( c-'a'+'A' ) : c; }
 
-    static  CharSet         GetCharsetValue( const String& rCharSet );
     static  String          GetCharsetString( CharSet eVal );
 
     /// a "ReadOnly" formatter for UNO/XML export
