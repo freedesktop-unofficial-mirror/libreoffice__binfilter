@@ -345,7 +345,7 @@ namespace SfxContainer_Impl
 /*N*/     }
 /*N*/     else
 /*N*/     {
-/*N*/         // Default pathes
+/*N*/         // Default paths
 /*N*/         maLibraryPath = SvtPathOptions().GetBasicPath();
 /*N*/     }
 /*N*/

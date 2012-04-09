@@ -1525,7 +1525,7 @@ USHORT GraphicFilter::ImportGraphic( Graphic& rGraphic, const String& rPath, SvS
     {
         ImpFilterLibCacheEntry* pFilter = NULL;
 
-        // find first filter in filter pathes
+        // find first filter in filter paths
         xub_StrLen i, nTokenCount = aFilterPath.GetTokenCount( ';' );
         ImpFilterLibCache &rCache = Cache::get();
         for( i = 0; ( i < nTokenCount ) && ( pFilter == NULL ); i++ )
