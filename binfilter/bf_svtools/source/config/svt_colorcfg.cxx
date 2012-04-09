@@ -34,7 +34,7 @@
 #include <tools/color.hxx>
 #include <tools/debug.hxx>
 #include <unotools/configitem.hxx>
-#include <unotools/configpathes.hxx>
+#include <unotools/configpaths.hxx>
 #include <com/sun/star/uno/Sequence.h>
 #include <bf_svtools/poolitem.hxx> //Any2Bool
 #include <bf_svtools/smplhint.hxx>
