@@ -49,6 +49,8 @@
 
 #include "SettingsExportHelper.hxx"
 
+#include "XMLChartPropertySetMapper.hxx"
+
 #include <com/sun/star/document/XEventsSupplier.hpp>
 #include <com/sun/star/document/XViewDataSupplier.hpp>
 
