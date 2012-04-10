@@ -129,23 +129,24 @@ private:
                         ByteString( const UniString& rUniStr,
                                     rtl_TextEncoding eTextEncoding,
                                     sal_uInt32 nCvtFlags = UNISTRING_TO_BYTESTRING_CVTFLAGS ); //not implemented, to detect use of removed methods without compiler making something to fit
+                        ByteString( const sal_Char* pCharStr, xub_StrLen nLen ); //not implemented
     ByteString&         Assign( const sal_Char* pCharStr, xub_StrLen nLen ); //not implemented, to detect use of removed methods without compiler making something to fit
     void                Assign(int); // not implemented; to detect misuses of
                                      // Assign(sal_Char)
+    ByteString&         Assign( sal_Char c ); //not implemented
     void                operator =(int); // not implemented; to detect misuses
                                          // of operator =(sal_Char)
     void                Append(int); // not implemented; to detect misuses of
                                      // Append(char)
+    ByteString&         Append( char c ); //not implemented
     void                operator +=(int); // not implemented; to detect misuses
                                           // of operator +=(sal_Char)
-
 public:
                         ByteString();
                         ByteString( const ByteString& rStr );
                         ByteString( const ByteString& rStr, xub_StrLen nPos, xub_StrLen nLen );
                         ByteString( const rtl::OString& rStr );
                         ByteString( const sal_Char* pCharStr );
-                        ByteString( const sal_Char* pCharStr, xub_StrLen nLen );
                         ~ByteString();
 
     operator rtl::OString () const
@@ -156,7 +157,6 @@ public:
     ByteString&         Assign( const ByteString& rStr );
     ByteString&         Assign( const rtl::OString& rStr );
     ByteString&         Assign( const sal_Char* pCharStr );
-    ByteString&         Assign( sal_Char c );
     ByteString&         operator =( const ByteString& rStr )
                             { return Assign( rStr ); }
     ByteString&         operator =( const rtl::OString& rStr )
@@ -169,7 +169,6 @@ public:
     ByteString&         Append( const ByteString& rStr );
     ByteString&         Append( const sal_Char* pCharStr );
     ByteString&         Append( const sal_Char* pCharStr, xub_StrLen nLen );
-    ByteString&         Append( char c );
     ByteString&         operator +=( const ByteString& rStr )
                             { return Append( rStr ); }
     ByteString&         operator +=( const sal_Char* pCharStr )
@@ -177,7 +176,6 @@ public:
     ByteString&         operator +=( sal_Char c )
                             { return Append( c ); }
 
-    void                SetChar( xub_StrLen nIndex, sal_Char c );
     sal_Char            GetChar( xub_StrLen nIndex ) const
                             { return mpData->maStr[nIndex]; }
 
@@ -200,40 +198,14 @@ public:
 
     ByteString&         ToLowerAscii();
 
-    StringCompare       CompareTo( const ByteString& rStr,
-                                   xub_StrLen nLen = STRING_LEN ) const;
-    StringCompare       CompareTo( const sal_Char* pCharStr,
-                                   xub_StrLen nLen = STRING_LEN ) const;
-    StringCompare       CompareIgnoreCaseToAscii( const sal_Char* pCharStr,
-                                                  xub_StrLen nLen = STRING_LEN ) const;
     sal_Bool                Equals( const ByteString& rStr ) const;
     sal_Bool                Equals( const sal_Char* pCharStr ) const;
-    sal_Bool                EqualsIgnoreCaseAscii( const ByteString& rStr ) const;
-    sal_Bool                EqualsIgnoreCaseAscii( const sal_Char* pCharStr ) const;
-    sal_Bool                Equals( const ByteString& rStr,
-                                xub_StrLen nIndex, xub_StrLen nLen ) const;
-    sal_Bool                Equals( const sal_Char* pCharStr,
-                                xub_StrLen nIndex, xub_StrLen nLen ) const;
-
-    xub_StrLen          Match( const ByteString& rStr ) const;
 
     xub_StrLen          Search( sal_Char c, xub_StrLen nIndex = 0 ) const;
     xub_StrLen          Search( const ByteString& rStr, xub_StrLen nIndex = 0 ) const;
     xub_StrLen          Search( const sal_Char* pCharStr, xub_StrLen nIndex = 0 ) const;
 
-    xub_StrLen          SearchAndReplace( const ByteString& rStr, const ByteString& rRepStr,
-                                          xub_StrLen nIndex = 0 );
-    xub_StrLen          SearchAndReplace( const sal_Char* pCharStr, const ByteString& rRepStr,
-                                          xub_StrLen nIndex = 0 );
-    void                SearchAndReplaceAll( sal_Char c, sal_Char cRep );
-    void                SearchAndReplaceAll( const ByteString& rStr, const ByteString& rRepStr );
-    void                SearchAndReplaceAll( const sal_Char* pCharStr, const ByteString& rRepStr );
-
     xub_StrLen          GetTokenCount( sal_Char cTok = ';' ) const;
-    void                SetToken( xub_StrLen nToken, sal_Char cTok, const ByteString& rStr,
-                                  xub_StrLen nIndex = 0 );
-    ByteString          GetToken( xub_StrLen nToken, sal_Char cTok, xub_StrLen& rIndex ) const;
-    ByteString          GetToken( xub_StrLen nToken, sal_Char cTok = ';' ) const;
 
     const sal_Char*     GetBuffer() const { return mpData->maStr; }
 
@@ -249,41 +221,11 @@ public:
                             { return !(operator == ( rStr, pCharStr )); }
     friend sal_Bool         operator != ( const sal_Char* pCharStr, const ByteString& rStr )
                             { return !(operator == ( pCharStr, rStr )); }
-    friend sal_Bool         operator <  ( const ByteString& rStr1,  const ByteString& rStr2 )
-                            { return (rStr1.CompareTo( rStr2 ) == COMPARE_LESS); }
-    friend sal_Bool         operator <  ( const ByteString& rStr,   const sal_Char* pCharStr )
-                            { return (rStr.CompareTo( pCharStr ) == COMPARE_LESS); }
-    friend sal_Bool         operator <  ( const sal_Char* pCharStr, const ByteString& rStr )
-                            { return (rStr.CompareTo( pCharStr ) >= COMPARE_EQUAL); }
-    friend sal_Bool         operator >  ( const ByteString& rStr1,  const ByteString& rStr2 )
-                            { return (rStr1.CompareTo( rStr2 ) == COMPARE_GREATER); }
-    friend sal_Bool         operator >  ( const ByteString& rStr,   const sal_Char* pCharStr )
-                            { return (rStr.CompareTo( pCharStr ) == COMPARE_GREATER); }
-    friend sal_Bool         operator >  ( const sal_Char* pCharStr, const ByteString& rStr )
-                            { return (rStr.CompareTo( pCharStr ) <= COMPARE_EQUAL); }
-    friend sal_Bool         operator <= ( const ByteString& rStr1,  const ByteString& rStr2 )
-                            { return !(operator > ( rStr1, rStr2 )); }
-    friend sal_Bool         operator <= ( const ByteString& rStr,   const sal_Char* pCharStr )
-                            { return !(operator > ( rStr, pCharStr )); }
-    friend sal_Bool         operator <= ( const sal_Char* pCharStr,     const ByteString& rStr )
-                            { return !(operator > ( pCharStr, rStr )); }
-    friend sal_Bool         operator >= ( const ByteString& rStr1,  const ByteString& rStr2 )
-                            { return !(operator < ( rStr1, rStr2 )); }
-    friend sal_Bool         operator >= ( const ByteString& rStr,   const sal_Char* pCharStr )
-                            { return !(operator < ( rStr, pCharStr )); }
-    friend sal_Bool         operator >= ( const sal_Char* pCharStr,     const ByteString& rStr )
-                            { return !(operator < ( pCharStr, rStr )); }
 };
 
 inline ByteString ByteString::Copy( xub_StrLen nIndex, xub_StrLen nCount ) const
 {
     return ByteString( *this, nIndex, nCount );
-}
-
-inline ByteString ByteString::GetToken( xub_StrLen nToken, sal_Char cTok ) const
-{
-    xub_StrLen nTempPos = 0;
-    return GetToken( nToken, cTok, nTempPos );
 }
 
 // -----------------------------------------------------------------------

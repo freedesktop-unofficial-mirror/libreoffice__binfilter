@@ -91,14 +91,15 @@ using namespace ::com::sun::star;
 /*N*/         }
 /*N*/         mbInitialized = sal_True;
 /*N*/     }
-/*N*/     catch( const uno::Exception& aEx )
+/*N*/     catch( const uno::Exception& rEx )
 /*N*/     {
 /*N*/         OSL_FAIL( ::rtl::OUStringToOString(
 /*N*/                         ::rtl::OUString(
 /*N*/                             RTL_CONSTASCII_USTRINGPARAM(
 /*N*/                                 "Couldn't initialize add-in collection: " )) +
-/*N*/                         aEx.Message,
+/*N*/                         rEx.Message,
 /*N*/                         RTL_TEXTENCODING_ASCII_US ).getStr() );
+/*N*/         (void)rEx;
 /*N*/     }
 /*N*/ }
 
