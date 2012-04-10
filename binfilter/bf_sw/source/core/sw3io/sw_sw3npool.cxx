@@ -379,7 +379,7 @@ namespace binfilter {
 
 /*N*/ SfxPoolItem* SwFmtFtn::Create( SvStream& rStrm, USHORT nIVer ) const
 /*N*/ {
-/*N*/   UINT16 nNumber1;
+/*N*/   UINT16 nNumber1 = 0;
 /*N*/   rStrm >> nNumber1;
 /*N*/   String aNumber1 = rStrm.ReadUniOrByteString( rStrm.GetStreamCharSet() );
 /*N*/
@@ -406,7 +406,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   // die Seq-Nummer einlesen - fuer die Querverweise auf Fussnoten
-/*N*/   USHORT nSeqNo;
+/*N*/   USHORT nSeqNo = 0;
 /*N*/   BOOL bEndNote1 = FALSE;
 /*N*/   if( 1 <= nIVer )
 /*N*/   {
@@ -414,7 +414,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if( 2 <= nIVer )
 /*N*/   {
-/*N*/       BYTE nFlags;
+/*N*/       BYTE nFlags = 0;
 /*N*/       rStrm >> nFlags;
 /*N*/       bEndNote1 = (nFlags & 0x01) != 0;
 /*N*/   }
@@ -463,8 +463,8 @@ namespace binfilter {
 
 /*N*/ SfxPoolItem* SwTOXMark::Create( SvStream& rStrm, USHORT nIVer ) const
 /*N*/ {
-/*N*/   BYTE cType;
-/*N*/   UINT16 nLevel1, nStrIdx = IDX_NO_VALUE;
+/*N*/   BYTE cType = 0;
+/*N*/   UINT16 nLevel1 = 0, nStrIdx = IDX_NO_VALUE;
 /*N*/   String aTypeName, aAltText1, aPrimKey, aSecKey;
 /*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
 /*N*/   rStrm >> cType
@@ -566,7 +566,7 @@ SfxPoolItem* SwFmtRuby::Create(SvStream & rStrm, USHORT /*nVer*/) const
     String sRubyTxt1;
     SwFmtRuby* pRet = new SwFmtRuby( sRubyTxt1 );
 
-    BOOL bVal;
+    BOOL bVal = FALSE;
     rStrm >> bVal;
 
     return pRet;

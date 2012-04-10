@@ -1180,7 +1180,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/       pType = lcl_sw3io_InSetExpFieldType( rIo );
 /*N*/   else
 /*N*/   {
-/*N*/       USHORT nPoolId;
+/*N*/       USHORT nPoolId=0;
 /*N*/       *rIo.pStrm >> nPoolId;
 /*N*/
 /*N*/       // fix #26064#: Namen der 3 Label-Numernkreise: Hier wird die
@@ -1196,8 +1196,8 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   UINT16 nSeqNo;
-/*N*/   BYTE cFlags;
+/*N*/   UINT16 nSeqNo=0;
+/*N*/   BYTE cFlags=0;
 /*N*/   String aFormula, aExpand, aPrompt;
 /*N*/   *rIo.pStrm >> cFlags;
 /*N*/   rIo.InString( *rIo.pStrm, aFormula );
@@ -1256,8 +1256,8 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/ {
 /*N*/   pType = 0;
 /*N*/
-/*N*/   BYTE cFlags;
-/*N*/   UINT16 nPoolId, nSeqNo=0, nSeqVal=0;
+/*N*/   BYTE cFlags=0;
+/*N*/   UINT16 nPoolId=0, nSeqNo=0, nSeqVal=0;
 /*N*/   String aFormula, aPrompt, aExpand;
 /*N*/   *rIo.pStrm  >> cFlags >> nPoolId;
 /*N*/   rIo.InString( *rIo.pStrm, aFormula );
@@ -1314,9 +1314,9 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/ SwField* lcl_sw3io_InHiddenParaField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                     USHORT, UINT32& )
 /*N*/ {
-/*N*/   BYTE bHidden;
-/*N*/   String aCond;
+/*N*/   BYTE bHidden=FALSE;
 /*N*/   *rIo.pStrm >> bHidden;
+/*N*/   String aCond;
 /*N*/   rIo.InString( *rIo.pStrm, aCond );
 /*N*/   SwHiddenParaField* pFld = new SwHiddenParaField( (SwHiddenParaFieldType*)pType, aCond );
 /*N*/   pFld->SetHidden( (BOOL) bHidden );
@@ -1326,7 +1326,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/ SwField* lcl_sw3io_InDocInfoField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                    USHORT nSubType, UINT32& rFmt )
 /*N*/ {
-/*N*/   UINT16 nSub;
+/*N*/   UINT16 nSub=0;
 /*N*/   *rIo.pStrm >> nSub;
 /*N*/   nSubType |= nSub;
 /*N*/
@@ -1338,12 +1338,12 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/ SwField* lcl_sw3io_InDocInfoField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                  USHORT nSubType, UINT32& rFmt )
 /*N*/ {
-/*N*/   BYTE cFlags;
 /*N*/   SwDocInfoField *pFld = new SwDocInfoField( (SwDocInfoFieldType*)pType,
 /*N*/                                              nSubType, rFmt );
 /*N*/
-/*N*/   String aContent;
+/*N*/   BYTE cFlags=FALSE;
 /*N*/   *rIo.pStrm >> cFlags;
+/*N*/   String aContent;
 /*N*/   rIo.InString( *rIo.pStrm, aContent );
 /*N*/   pFld->SetExpansion(aContent);
 /*N*/   if( cFlags & 0x01 )
@@ -1415,9 +1415,9 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/ SwField* lcl_sw3io_InDBSetNumberField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                      USHORT, UINT32& )
 /*N*/ {
-/*N*/   String aDBName;
-/*N*/   INT32 n;
+/*N*/   INT32 n=0;
 /*N*/   *rIo.pStrm >> n;
+/*N*/   String aDBName;
 /*N*/   if( rIo.IsVersion( SWG_MULTIDB, SWG_EXPORT31, SWG_DESKTOP40 ) )
 /*N*/   {
 /*N*/       USHORT nPoolId;
@@ -1436,8 +1436,8 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/                                    USHORT, UINT32& )
 /*N*/ {
 /*N*/   String aData;
-/*N*/   UINT16 nSubType;
 /*N*/   rIo.InString( *rIo.pStrm, aData );
+/*N*/   UINT16 nSubType=0;
 /*N*/   *rIo.pStrm >> nSubType;
 /*N*/   SwExtUserField* pFld = new SwExtUserField( (SwExtUserFieldType*)pType, nSubType );
 /*N*/   ((SwExtUserFieldType*)pType)->SetData( aData );
@@ -1466,8 +1466,8 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/ SwField* lcl_sw3io_InRefPageSetField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                     USHORT, UINT32& )
 /*N*/ {
-            INT16 nOffset;
-            BYTE cIsOn;
+            INT16 nOffset=0;
+            BYTE cIsOn=FALSE;
             *rIo.pStrm >> nOffset >> cIsOn;
             return new SwRefPageSetField( (SwRefPageSetFieldType*)pType, nOffset, cIsOn!=0 );
 /*N*/ }

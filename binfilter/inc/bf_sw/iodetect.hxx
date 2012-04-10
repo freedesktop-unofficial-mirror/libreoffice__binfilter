@@ -451,7 +451,7 @@ const SfxFilter* SwIoSystem::GetFileFilter( const String& rFileName,         \
     /* nie erkannt und es wird auch der ASCII-Filter returnt.             */ \
     /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/ \
     {                                                                        \
-        const SfxFilter* pLclFilter;                                         \
+        const SfxFilter* pLclFilter=NULL;                                    \
         const sal_Char* pNm;                                                 \
         for( USHORT n = 0; n < MAXFILTER; ++n )                              \
             if( 0 != ( pNm = aReaderWriter[n].IsReader(aBuffer, nBytesRead)) &&        \
