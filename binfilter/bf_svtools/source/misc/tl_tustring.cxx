@@ -1139,6 +1139,110 @@ xub_StrLen STRING::SearchAndReplace( const STRING& rStr, const STRING& rRepStr,
     return nSPos;
 }
 
+STRING& STRING::Replace( xub_StrLen nIndex, xub_StrLen nCount, const STRING& rStr )
+{
+    DBG_CHKTHIS( STRING, DBGCHECKSTRING );
+    DBG_CHKOBJ( &rStr, STRING, DBGCHECKSTRING );
+
+    // Wenn Index groessergleich Laenge ist, dann ist es ein Append
+    if ( nIndex >= mpData->mnLen )
+    {
+        Append( rStr );
+        return *this;
+    }
+
+    // Ist es eine Zuweisung
+    if ( (nIndex == 0) && (nCount >= mpData->mnLen) )
+    {
+        Assign( rStr );
+        return *this;
+    }
+
+    // Reicht ein Erase
+    sal_Int32 nStrLen = rStr.mpData->mnLen;
+    if ( !nStrLen )
+        return Erase( nIndex, nCount );
+
+    // nCount darf nicht ueber das Stringende hinnausgehen
+    if ( nCount > mpData->mnLen - nIndex )
+        nCount = static_cast< xub_StrLen >(mpData->mnLen-nIndex);
+
+    // Reicht ein Insert
+    if ( !nCount )
+        return Insert( rStr, nIndex );
+
+    // Reicht eine zeichenweise Zuweisung
+    if ( nCount == nStrLen )
+    {
+        ImplCopyData();
+        memcpy( mpData->maStr+nIndex, rStr.mpData->maStr, nCount*sizeof( STRCODE ) );
+        return *this;
+    }
+
+    // Ueberlauf abfangen
+    nStrLen = ImplGetCopyLen( mpData->mnLen-nCount, nStrLen );
+
+    // Neue Daten anlegen
+    STRINGDATA* pNewData = ImplAllocData( mpData->mnLen-nCount+nStrLen );
+
+    // String kopieren
+    memcpy( pNewData->maStr, mpData->maStr, nIndex*sizeof( STRCODE ) );
+    memcpy( pNewData->maStr+nIndex, rStr.mpData->maStr, nStrLen*sizeof( STRCODE ) );
+    memcpy( pNewData->maStr+nIndex+nStrLen, mpData->maStr+nIndex+nCount,
+            (mpData->mnLen-nIndex-nCount+1)*sizeof( STRCODE ) );
+
+    // Alte Daten loeschen und Neue zuweisen
+    STRING_RELEASE((STRING_TYPE *)mpData);
+    mpData = pNewData;
+
+    return *this;
+}
+
+xub_StrLen STRING::Search( const STRING& rStr, xub_StrLen nIndex ) const
+{
+    DBG_CHKTHIS( STRING, DBGCHECKSTRING );
+    DBG_CHKOBJ( &rStr, STRING, DBGCHECKSTRING );
+
+    sal_Int32 nLen = mpData->mnLen;
+    sal_Int32 nStrLen = rStr.mpData->mnLen;
+
+    // Falls die Laenge des uebergebenen Strings 0 ist oder der Index
+    // hinter dem String liegt, dann wurde der String nicht gefunden
+    if ( !nStrLen || (nIndex >= nLen) )
+        return STRING_NOTFOUND;
+
+    const STRCODE* pStr1 = mpData->maStr;
+    pStr1 += nIndex;
+
+    if ( nStrLen == 1 )
+    {
+        STRCODE cSearch = rStr.mpData->maStr[0];
+        while ( nIndex < nLen )
+        {
+            if ( *pStr1 == cSearch )
+                return nIndex;
+            ++pStr1,
+            ++nIndex;
+        }
+    }
+    else
+    {
+        const STRCODE* pStr2 = rStr.mpData->maStr;
+
+        // Nur innerhalb des Strings suchen
+        while ( nLen - nIndex >= nStrLen )
+        {
+            // Stimmt der String ueberein
+            if ( ImplStringCompareWithoutZero( pStr1, pStr2, nStrLen ) == 0 )
+                return nIndex;
+            ++pStr1,
+            ++nIndex;
+        }
+    }
+
+    return STRING_NOTFOUND;
+}
+
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

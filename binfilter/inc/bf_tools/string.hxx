@@ -184,7 +184,6 @@ public:
     ByteString&         Insert( const ByteString& rStr, xub_StrLen nIndex = STRING_LEN );
     ByteString&         Insert( const sal_Char* pCharStr, xub_StrLen nIndex = STRING_LEN );
     ByteString&         Insert( sal_Char c, xub_StrLen nIndex = STRING_LEN );
-    ByteString&         Replace( xub_StrLen nIndex, xub_StrLen nCount, const ByteString& rStr );
     ByteString&         Erase( xub_StrLen nIndex = 0, xub_StrLen nCount = STRING_LEN );
     ByteString          Copy( xub_StrLen nIndex = 0, xub_StrLen nCount = STRING_LEN ) const;
 
@@ -202,7 +201,6 @@ public:
     sal_Bool                Equals( const sal_Char* pCharStr ) const;
 
     xub_StrLen          Search( sal_Char c, xub_StrLen nIndex = 0 ) const;
-    xub_StrLen          Search( const ByteString& rStr, xub_StrLen nIndex = 0 ) const;
     xub_StrLen          Search( const sal_Char* pCharStr, xub_StrLen nIndex = 0 ) const;
 
     xub_StrLen          GetTokenCount( sal_Char cTok = ';' ) const;
