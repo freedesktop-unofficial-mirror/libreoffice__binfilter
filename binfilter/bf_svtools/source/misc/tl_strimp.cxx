@@ -225,19 +225,6 @@ STRING::~STRING()
 
 // -----------------------------------------------------------------------
 
-STRING& STRING::Assign( const STRING& rStr )
-{
-    DBG_CHKTHIS( STRING, DBGCHECKSTRING );
-    DBG_CHKOBJ( &rStr, STRING, DBGCHECKSTRING );
-
-    STRING_ACQUIRE((STRING_TYPE *)rStr.mpData);
-    STRING_RELEASE((STRING_TYPE *)mpData);
-    mpData = rStr.mpData;
-    return *this;
-}
-
-// -----------------------------------------------------------------------
-
 STRING& STRING::Assign( const STRCODE* pCharStr )
 {
     DBG_CHKTHIS( STRING, DBGCHECKSTRING );

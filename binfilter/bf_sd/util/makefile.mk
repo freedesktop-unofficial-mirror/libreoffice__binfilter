@@ -102,7 +102,6 @@ LIB3FILES=      \
             $(SLB)$/sd_app.lib			\
             $(SLB)$/sd_docshell.lib    \
             $(SLB)$/sd_core.lib		\
-            $(SLB)$/sd_xml.lib			\
             $(SLB)$/sd_bin.lib			\
             $(SLB)$/sd_filter.lib		\
             $(SLB)$/sd_unoidl.lib

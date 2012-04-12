@@ -113,8 +113,7 @@ bf	binfilter\bf_sd\source\ui\docshell					nmake	-	all	bf_sd_docsh NULL
 bf	binfilter\bf_sd\source\ui\unoidl					nmake	-	all	bf_sd_unid NULL
 bf	binfilter\bf_sd\source\filter						nmake	-	all	bf_sd_filt NULL
 bf	binfilter\bf_sd\source\filter\bin					nmake	-	all	bf_sd_bin NULL
-bf	binfilter\bf_sd\source\filter\xml					nmake	-	all	bf_sd_xml NULL
-bf	binfilter\bf_sd\util								nmake	-	all	bf_sd_util bf_svt_util bf_sd_app bf_sd_bin bf_sd_core bf_sd_docsh bf_sd_filt bf_sd_unid bf_sd_view bf_sd_xml bf_sc_util bf_sm_util bf_sb_util bf_so3_util NULL
+bf	binfilter\bf_sd\util								nmake	-	all	bf_sd_util bf_svt_util bf_sd_app bf_sd_bin bf_sd_core bf_sd_docsh bf_sd_filt bf_sd_unid bf_sd_view bf_sc_util bf_sm_util bf_sb_util bf_so3_util NULL
 bf	binfilter\bf_sw\source\ui\inc						get		-	all	bf_sw_uinc NULL
 bf	binfilter\bf_sw\source\core\inc						get		-	all	bf_sw_cinc NULL
 bf	binfilter\bf_sw\source\filter\inc					get		-	all	bf_sw_finc NULL

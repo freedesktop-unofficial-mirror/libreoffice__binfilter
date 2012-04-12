@@ -134,6 +134,8 @@ private:
     void                Assign(int); // not implemented; to detect misuses of
                                      // Assign(sal_Char)
     ByteString&         Assign( sal_Char c ); //not implemented
+    ByteString&         Assign( const ByteString& rStr );
+    ByteString&         operator =( const ByteString& rStr );
     void                operator =(int); // not implemented; to detect misuses
                                          // of operator =(sal_Char)
     void                Append(int); // not implemented; to detect misuses of
@@ -154,11 +156,8 @@ public:
         return rtl::OString (reinterpret_cast<rtl_String*>(mpData));
     }
 
-    ByteString&         Assign( const ByteString& rStr );
     ByteString&         Assign( const rtl::OString& rStr );
     ByteString&         Assign( const sal_Char* pCharStr );
-    ByteString&         operator =( const ByteString& rStr )
-                            { return Assign( rStr ); }
     ByteString&         operator =( const rtl::OString& rStr )
                             { return Assign( rStr ); }
     ByteString&         operator =( const sal_Char* pCharStr )

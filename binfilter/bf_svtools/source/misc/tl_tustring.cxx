@@ -1243,6 +1243,19 @@ xub_StrLen STRING::Search( const STRING& rStr, xub_StrLen nIndex ) const
     return STRING_NOTFOUND;
 }
 
+// -----------------------------------------------------------------------
+
+STRING& STRING::Assign( const STRING& rStr )
+{
+    DBG_CHKTHIS( STRING, DBGCHECKSTRING );
+    DBG_CHKOBJ( &rStr, STRING, DBGCHECKSTRING );
+
+    STRING_ACQUIRE((STRING_TYPE *)rStr.mpData);
+    STRING_RELEASE((STRING_TYPE *)mpData);
+    mpData = rStr.mpData;
+    return *this;
+}
+
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -61,8 +61,8 @@
 #include "bf_sd/docshell.hxx"
 #include "drawdoc.hxx"
 #include "unomodel.hxx"
+#include "sdfilter.hxx"
 #include "sdpage.hxx"
-#include "sdxmlwrp.hxx"
 #include "sdbinfilter.hxx"
 #include "sdoutl.hxx"
 
