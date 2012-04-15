@@ -49,7 +49,6 @@ class SdFilter
 protected:
 
     ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel >             mxModel;
-    ::com::sun::star::uno::Reference< ::com::sun::star::task::XStatusIndicator >    mxStatusIndicator;
 
 protected:
 
@@ -60,7 +59,6 @@ protected:
     sal_Bool                    mbIsDraw : 1;
     sal_Bool                    mbShowProgress : 1;
 
-    void                        CreateStatusIndicator();
     void                        CreateProgress();
 
 public:

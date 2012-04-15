@@ -71,8 +71,6 @@ public:
     sal_Bool                IsSaveUnpacked() const;
 
     sal_Bool                IsLoadUserSettings() const;
-
-    sal_Bool                IsPrettyPrinting( ) const;
 };
 
 }

@@ -77,34 +77,6 @@ SdFilter::~SdFilter()
 
 // -----------------------------------------------------------------------------
 
-void SdFilter::CreateStatusIndicator()
-{
-    try
-    {
-        if (mxModel.is())
-        {
-            Reference< XController > xController( mxModel->getCurrentController());
-            if( xController.is())
-            {
-                Reference< XFrame > xFrame( xController->getFrame());
-                if( xFrame.is())
-                {
-                    Reference< XStatusIndicatorFactory > xFactory( xFrame, UNO_QUERY );
-                    if( xFactory.is())
-                    {
-                        mxStatusIndicator = xFactory->createStatusIndicator();
-                    }
-                }
-            }
-        }
-    }
-    catch( Exception& )
-    {
-    }
-}
-
-// -----------------------------------------------------------------------------
-
 void SdFilter::CreateProgress()
 {
     mpProgress = new SfxProgress( &mrDocShell, String( SdResId( STR_LOAD_DOC ) ), 100 );

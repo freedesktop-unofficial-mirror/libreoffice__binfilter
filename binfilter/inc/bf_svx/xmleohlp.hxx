@@ -116,11 +116,6 @@ public:
                                     SvXMLEmbeddedObjectHelperMode eCreateMode );
 
     static SvXMLEmbeddedObjectHelper*   Create(
-                                    SvStorage& rRootStorage,
-                                    SvPersist& rDocPersist,
-                                    SvXMLEmbeddedObjectHelperMode eCreateMode,
-                                    sal_Bool bDirect = sal_True );
-    static SvXMLEmbeddedObjectHelper*   Create(
                                     SvPersist& rDocPersist,
                                     SvXMLEmbeddedObjectHelperMode eCreateMode );
     static void                 Destroy( SvXMLEmbeddedObjectHelper* pSvXMLEmbeddedObjectHelper );

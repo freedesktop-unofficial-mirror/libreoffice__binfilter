@@ -600,22 +600,6 @@ struct OUStringLess
 /*N*/   meCreateMode = eCreateMode;
 /*N*/ }
 
-// -----------------------------------------------------------------------------
-
-/*N*/ SvXMLEmbeddedObjectHelper* SvXMLEmbeddedObjectHelper::Create(
-/*N*/       SvStorage& rRootStorage,
-/*N*/       SvPersist& rDocPersist,
-/*N*/       SvXMLEmbeddedObjectHelperMode eCreateMode,
-/*N*/       sal_Bool /*bDirect*/ )
-/*N*/ {
-/*N*/   SvXMLEmbeddedObjectHelper* pThis = new SvXMLEmbeddedObjectHelper;
-/*N*/
-/*N*/   pThis->acquire();
-/*N*/   pThis->Init( &rRootStorage, rDocPersist, eCreateMode );
-/*N*/
-/*N*/   return pThis;
-/*N*/ }
-
 /*N*/ SvXMLEmbeddedObjectHelper* SvXMLEmbeddedObjectHelper::Create(
 /*N*/       SvPersist& rDocPersist,
 /*N*/       SvXMLEmbeddedObjectHelperMode eCreateMode )

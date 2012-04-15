@@ -115,7 +115,6 @@ public:
     BOOL                    IsSaveRelINet() const               { return bSaveRelINet; }
     BOOL                    IsSaveRelFSys() const               { return bSaveRelFSys; }
     BOOL                    IsSaveUnpacked() const              { return bSaveUnpacked; }
-    sal_Bool                IsPrettyPrintingEnabled( ) const    { return bDoPrettyPrinting; }
     sal_Bool                IsWarnAlienFormat() const           { return bWarnAlienFormat; }
     sal_Bool                IsLoadDocPrinter() const            { return bLoadDocPrinter; }
 };
@@ -617,11 +616,6 @@ sal_Bool SvtSaveOptions::IsSaveUnpacked() const
 sal_Bool   SvtSaveOptions::IsLoadUserSettings() const
 {
     return pImp->pLoadOpt->IsLoadUserSettings();
-}
-
-sal_Bool SvtSaveOptions::IsPrettyPrinting() const
-{
-    return pImp->pSaveOpt->IsPrettyPrintingEnabled();
 }
 
 }
