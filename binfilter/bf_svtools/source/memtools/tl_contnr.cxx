@@ -788,6 +788,17 @@ void Container::ImpInsert( void* p, CBlock* pBlock, sal_uInt16 nIndex )
 |*
 *************************************************************************/
 
+void Container::Insert( void* p )
+{
+    ImpInsert( p, pCurBlock, nCurIndex );
+}
+
+/*************************************************************************
+|*
+|*    Container::Insert()
+|*
+*************************************************************************/
+
 void Container::Insert( void* p, sal_uIntPtr nIndex )
 {
     if ( nCount <= nIndex )
@@ -884,6 +895,21 @@ void* Container::ImpRemove( CBlock* pBlock, sal_uInt16 nIndex )
 
     // Und den Pointer zurueckgeben, der entfernt wurde
     return pOld;
+}
+
+/*************************************************************************
+|*
+|*    Container::Remove()
+|*
+*************************************************************************/
+
+void* Container::Remove()
+{
+    // Wenn kein Item vorhanden ist, NULL zurueckgeben
+    if ( !nCount )
+        return NULL;
+    else
+        return ImpRemove( pCurBlock, nCurIndex );
 }
 
 /*************************************************************************
@@ -1107,6 +1133,23 @@ void Container::Clear()
 
 /*************************************************************************
 |*
+|*    Container::GetCurObject()
+|*
+*************************************************************************/
+
+void* Container::GetCurObject() const
+{
+    DBG_CHKTHIS( Container, DbgCheckContainer );
+
+    // NULL, wenn Container leer
+    if ( !nCount )
+        return NULL;
+    else
+        return pCurBlock->GetObject( nCurIndex );
+}
+
+/*************************************************************************
+|*
 |*    Container::GetCurPos()
 |*
 *************************************************************************/
@@ -1159,6 +1202,44 @@ void* Container::GetObject( sal_uIntPtr nIndex ) const
         // Item innerhalb des gefundenen Blocks zurueckgeben
         return pTemp->GetObject( (sal_uInt16)nIndex );
     }
+}
+
+/*************************************************************************
+|*
+|*    Container::GetPos()
+|*
+*************************************************************************/
+
+sal_uIntPtr Container::GetPos( const void* p ) const
+{
+    DBG_CHKTHIS( Container, DbgCheckContainer );
+
+    void**  pNodes;
+    CBlock* pTemp;
+    sal_uIntPtr nTemp;
+    sal_uInt16  nBlockCount;
+    sal_uInt16  i;
+
+    // Block suchen
+    pTemp = pFirstBlock;
+    nTemp = 0;
+    while ( pTemp )
+    {
+        pNodes = pTemp->GetNodes();
+        i = 0;
+        nBlockCount = pTemp->Count();
+        while ( i < nBlockCount )
+        {
+            if ( p == *pNodes )
+                return nTemp+i;
+            pNodes++;
+            i++;
+        }
+        nTemp += nBlockCount;
+        pTemp  = pTemp->GetNextBlock();
+    }
+
+    return CONTAINER_ENTRY_NOTFOUND;
 }
 
 /*************************************************************************
