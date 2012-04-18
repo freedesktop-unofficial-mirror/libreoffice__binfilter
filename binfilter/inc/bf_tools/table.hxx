@@ -28,7 +28,6 @@
 #ifndef _TOOLS_TABLE_HXX
 #define _TOOLS_TABLE_HXX
 
-#include "tools/toolsdllapi.h"
 #include <tools/solar.h>
 #include <bf_tools/contnr.hxx>
 
@@ -41,11 +40,11 @@ namespace binfilter
 
 #define TABLE_ENTRY_NOTFOUND   CONTAINER_ENTRY_NOTFOUND
 
-class TOOLS_DLLPUBLIC Table : private Container
+class Table : private Container
 {
 private:
     sal_uIntPtr nCount;
-    TOOLS_DLLPRIVATE sal_uIntPtr    ImplGetIndex( sal_uIntPtr nKey, sal_uIntPtr* pIndex = NULL ) const;
+    SAL_DLLPRIVATE sal_uIntPtr    ImplGetIndex( sal_uIntPtr nKey, sal_uIntPtr* pIndex = NULL ) const;
 public:
             Table( sal_uInt16 nInitSize = 16, sal_uInt16 nReSize = 16 );
             Table( const Table& rTable ) : Container( rTable )
