@@ -27,7 +27,6 @@
  ************************************************************************/
 
 #include <tools/stream.hxx>
-#include <tools/table.hxx>
 
 #include <bf_svtools/macitem.hxx>
 

@@ -44,7 +44,6 @@
 #include <cppuhelper/weakagg.hxx>
 #include <cppuhelper/implbase3.hxx>
 
-#include <tools/table.hxx>
 #include <list>
 
 #include <rtl/uuid.h>

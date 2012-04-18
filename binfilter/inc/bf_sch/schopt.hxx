@@ -40,7 +40,7 @@
 // header for Color
 #include <tools/color.hxx>
 // header for Table
-#include <tools/table.hxx>
+#include <bf_tools/table.hxx>
 // header for XColorEntry
 #include <bf_svx/xtable.hxx>
 namespace binfilter {

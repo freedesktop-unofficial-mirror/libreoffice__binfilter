@@ -26,7 +26,6 @@
  *
  ************************************************************************/
 
-#include <tools/table.hxx>
 #include <bf_tools/string.hxx>
 #include <com/sun/star/beans/PropertyValue.hpp>
 #include <rtl/ustrbuf.hxx>

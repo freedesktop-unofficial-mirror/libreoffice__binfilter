@@ -31,7 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#include <tools/table.hxx>
+#include <bf_tools/table.hxx>
 
 #include <salhelper/simplereferenceobject.hxx>
 

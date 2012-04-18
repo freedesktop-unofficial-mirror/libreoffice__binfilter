@@ -27,7 +27,6 @@
  ************************************************************************/
 
 #include <tools/urlobj.hxx>
-#include <tools/table.hxx>
 #include <urihelper.hxx>
 #include <com/sun/star/beans/XPropertySet.hpp>
 #include "com/sun/star/lang/WrappedTargetRuntimeException.hpp"

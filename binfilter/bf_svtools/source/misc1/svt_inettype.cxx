@@ -26,7 +26,7 @@
  *
  ************************************************************************/
 
-#include <tools/table.hxx>
+#include <bf_tools/table.hxx>
 #include <tools/wldcrd.hxx>
 
 #include <bf_svtools/inettype.hxx>

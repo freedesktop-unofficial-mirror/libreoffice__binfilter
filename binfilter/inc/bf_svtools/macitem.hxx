@@ -42,7 +42,7 @@
 
 #include <bf_tools/string.hxx>
 
-#include <tools/table.hxx>
+#include <bf_tools/table.hxx>
 
 class SvStream;
 

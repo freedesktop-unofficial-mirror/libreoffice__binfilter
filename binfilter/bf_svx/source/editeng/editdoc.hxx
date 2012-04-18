@@ -38,7 +38,6 @@
 
 #include <bf_svtools/itempool.hxx>
 
-#include <tools/table.hxx>
 namespace binfilter {
 
 class ImpEditEngine;

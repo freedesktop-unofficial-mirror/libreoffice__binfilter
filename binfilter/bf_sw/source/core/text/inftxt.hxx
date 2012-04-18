@@ -32,7 +32,7 @@
 
 #include <com/sun/star/linguistic2/XHyphenatedWord.hpp>
 #include <com/sun/star/beans/PropertyValues.hpp>
-#include <tools/table.hxx>
+#include <bf_tools/table.hxx>
 
 #include "swtypes.hxx"
 #include "txttypes.hxx"

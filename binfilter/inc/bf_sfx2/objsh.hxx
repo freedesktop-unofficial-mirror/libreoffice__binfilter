@@ -46,7 +46,7 @@
 #include <bf_so3/persist.hxx>
 #include <bf_so3/so2defs.hxx>
 #include <bf_so3/svstor.hxx>
-#include <tools/table.hxx>
+#include <bf_tools/table.hxx>
 #include <vcl/timer.hxx>
 #include <vcl/bitmap.hxx>
 

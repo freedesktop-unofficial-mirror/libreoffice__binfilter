@@ -26,7 +26,6 @@
  *
  ************************************************************************/
 
-#include <tools/table.hxx>
 #include <string.h>
 #include <math.h>
 #include <tools/urlobj.hxx>

@@ -33,7 +33,7 @@
 #include "bf_svtools/svtdllapi.h"
 
 #include <bf_tools/string.hxx>
-#include <tools/table.hxx>
+#include <bf_tools/table.hxx>
 #include <i18npool/lang.h>
 #include <bf_svtools/svarray.hxx>
 #include <com/sun/star/uno/Reference.hxx>

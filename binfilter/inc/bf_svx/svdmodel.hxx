@@ -36,7 +36,7 @@
 #include <bf_so3/svstor.hxx>
 
 #include <tools/link.hxx>
-#include <tools/contnr.hxx>
+#include <bf_tools/contnr.hxx>
 #include <vcl/mapmod.hxx>
 #include <bf_svtools/brdcst.hxx>
 #include <bf_tools/string.hxx>

@@ -44,7 +44,6 @@
 
 #include <bf_tools/string.hxx>
 
-#include <tools/table.hxx>
 class Color;
 class Bitmap;
 class VirtualDevice;
