@@ -79,10 +79,8 @@ public:
                 Container( const Container& rContainer );
                 ~Container();
 
-    void        Insert( void* p );
     void        Insert( void* p, sal_uIntPtr nIndex );
 
-    void*       Remove();
     void*       Remove( sal_uIntPtr nIndex );
     void*       Remove( void* p )
                     { return Remove( GetPos( p ) ); }
