@@ -213,7 +213,7 @@ const SfxItemPropertyMap* GetLineNumberingMap()
 SwCharFmt* lcl_getCharFmt(SwDoc* pDoc, const uno::Any& aValue)
 {
     SwCharFmt* pRet = 0;
-    String sStandard(SW_RES(STR_POOLCOLL_STANDARD));
+    String sStandard(SW_RESSTR(STR_POOLCOLL_STANDARD));
     OUString uTmp;
     aValue >>= uTmp;
     String sCharFmt;
@@ -1454,7 +1454,7 @@ uno::Sequence<beans::PropertyValue> SwXNumberingRules::getNumberingRuleByIndex(
     else
     {
         //Vorlagenname
-        String sValue(SW_RES(STR_POOLCOLL_HEADLINE1 + nIndex));
+        String sValue(SW_RESSTR(STR_POOLCOLL_HEADLINE1 + nIndex));
         const SwTxtFmtColls* pColls = pDocShell->GetDoc()->GetTxtFmtColls();
         const sal_uInt16 nCount = pColls->Count();
         for(sal_uInt16 i = 0; i < nCount;++i)

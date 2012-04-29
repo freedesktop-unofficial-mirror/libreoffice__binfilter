@@ -63,8 +63,7 @@ USHORT GetMetricId( SfxMapUnit eUnit );
 
 inline String GetBoolString( BOOL bVal )
 {
-    return String( ResId( bVal ? RID_SVXITEMS_TRUE
-                               : RID_SVXITEMS_FALSE, DIALOG_MGR() ) );
+    return ResId(bVal ? RID_SVXITEMS_TRUE : RID_SVXITEMS_FALSE, DIALOG_MGR()).toString();
 }
 
 // -----------------------------------------------------------------------

@@ -1404,7 +1404,7 @@ OUString SdDrawPage::getPageApiNameFromUiName( const String& rUIName )
 {
     OUString aApiName;
 
-    String aDefPageName(SdResId(STR_PAGE));
+    String aDefPageName(SdResId(STR_PAGE).toString());
     aDefPageName += sal_Unicode( ' ' );
 
     if( rUIName.Equals( aDefPageName, 0, aDefPageName.Len() ) )
@@ -1448,7 +1448,7 @@ String SdDrawPage::getUiNameFromPageApiName( const ::rtl::OUString& rApiName )
         if( nPageNumber != -1)
         {
             OUStringBuffer sBuffer;
-            sBuffer.append( String(SdResId(STR_PAGE)) );
+            sBuffer.append( SdResId(STR_PAGE).toString() );
             sBuffer.append( sal_Unicode( ' ' ) );
             sBuffer.append( aNumber );
             return sBuffer.makeStringAndClear();
@@ -2042,7 +2042,7 @@ void SdMasterPage::setBackground( const uno::Any& rValue )
         SfxStyleSheetBase* pStyleSheet = NULL;
         if(pSSPool)
         {
-            String aStr(SdResId(STR_PSEUDOSHEET_BACKGROUND));
+            String aStr(SdResId(STR_PSEUDOSHEET_BACKGROUND).toString());
             pStyleSheet = pSSPool->Find( aStr, SFX_STYLE_FAMILY_PSEUDO);
 
             if( pStyleSheet )
@@ -2098,7 +2098,7 @@ void SdMasterPage::getBackground( uno::Any& rValue ) throw()
         SfxStyleSheetBase* pStyleSheet = NULL;
         if(pSSPool)
         {
-            String aStr(SdResId(STR_PSEUDOSHEET_BACKGROUND));
+            String aStr(SdResId(STR_PSEUDOSHEET_BACKGROUND).toString());
             pStyleSheet = pSSPool->Find( aStr, SFX_STYLE_FAMILY_PSEUDO);
 
             if( pStyleSheet )

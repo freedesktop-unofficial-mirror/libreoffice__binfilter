@@ -131,7 +131,7 @@ using namespace ::com::sun::star;
 /*N*/       Color aCol;
 /*N*/
 /*N*/       // create strings for entry names
-/*N*/       String aResName( SchResId( STR_DIAGRAM_ROW ));
+/*N*/       String aResName( SchResId( STR_DIAGRAM_ROW ).toString() );
 /*N*/       String aPrefix, aPostfix, aName;
 /*N*/       xub_StrLen nPos = aResName.SearchAscii( "$(ROW)" );
 /*N*/       if( nPos != STRING_NOTFOUND )

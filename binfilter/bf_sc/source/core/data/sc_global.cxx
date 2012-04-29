@@ -434,7 +434,7 @@ void global_InitAppOptions();
 /*N*/
 /*N*/   InitAddIns();
 /*N*/
-/*N*/   pStrClipDocName = new String( ScResId( SCSTR_NONAME ) );
+/*N*/   pStrClipDocName = new String( ScResId( SCSTR_NONAME ).toString() );
 /*N*/   *pStrClipDocName += '1';
 /*N*/
 /*N*/   //  ScDocumentPool::InitVersionMaps() ist schon vorher gerufen worden

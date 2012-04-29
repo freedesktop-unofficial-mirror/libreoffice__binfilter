@@ -303,14 +303,14 @@ FontList::FontList( OutputDevice* pDevice, OutputDevice* pDevice2, BOOL bAll )
     mpSizeAry = NULL;
 
     // Stylenamen festlegen
-    maLight         = XubString( SvtResId( STR_SVT_STYLE_LIGHT ) );
-    maLightItalic   = XubString( SvtResId( STR_SVT_STYLE_LIGHT_ITALIC ) );
-    maNormal        = XubString( SvtResId( STR_SVT_STYLE_NORMAL ) );
-    maNormalItalic  = XubString( SvtResId( STR_SVT_STYLE_NORMAL_ITALIC ) );
-    maBold          = XubString( SvtResId( STR_SVT_STYLE_BOLD ) );
-    maBoldItalic    = XubString( SvtResId( STR_SVT_STYLE_BOLD_ITALIC ) );
-    maBlack         = XubString( SvtResId( STR_SVT_STYLE_BLACK ) );
-    maBlackItalic   = XubString( SvtResId( STR_SVT_STYLE_BLACK_ITALIC ) );
+    maLight         = SvtResId( STR_SVT_STYLE_LIGHT ).toString();
+    maLightItalic   = SvtResId( STR_SVT_STYLE_LIGHT_ITALIC ).toString();
+    maNormal        = SvtResId( STR_SVT_STYLE_NORMAL ).toString();
+    maNormalItalic  = SvtResId( STR_SVT_STYLE_NORMAL_ITALIC ).toString();
+    maBold          = SvtResId( STR_SVT_STYLE_BOLD ).toString();
+    maBoldItalic    = SvtResId( STR_SVT_STYLE_BOLD_ITALIC ).toString();
+    maBlack         = SvtResId( STR_SVT_STYLE_BLACK ).toString();
+    maBlackItalic   = SvtResId( STR_SVT_STYLE_BLACK_ITALIC ).toString();
 
     ImplInsertFonts( pDevice, bAll, TRUE );
 

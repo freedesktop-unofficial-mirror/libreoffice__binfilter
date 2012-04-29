@@ -275,9 +275,9 @@ SvAppletObject::SvAppletObject()
         pSoApp->pAppletVerbList = new SvVerbList();
         // Alle unterstuetzten Verben anlegen
         pSoApp->pAppletVerbList->Append(
-                SvVerb( 0, String( SoResId( STR_VERB_OPEN ) ) ) );
+                SvVerb( 0, SoResId( STR_VERB_OPEN ).toString() ) );
         pSoApp->pAppletVerbList->Append(
-                SvVerb( SVVERB_PROPS, String( SoResId( STR_VERB_PROPS ) ) ) );
+                SvVerb( SVVERB_PROPS, SoResId( STR_VERB_PROPS ).toString() ) );
         pSoApp->nAppletDocFormat = SOT_FORMATSTR_ID_APPLETOBJECT;
     }
     // Verben der Superklasse bekanntgeben, um GetVerbs nicht

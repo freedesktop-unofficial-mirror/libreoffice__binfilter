@@ -365,7 +365,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/                                   eCoreMetric, ePresMetric );
 /*N*/
 /*N*/   ResId aResId( nResId + nId, *pSwResMgr );
-/*N*/   String aNm( aResId );
+/*N*/   String aNm( aResId.toString() );
 /*N*/
 /*N*/   // ein Set fuer alle zusetzenden Attribute
 /*N*/   SwAttrSet aSet( GetAttrPool(), aTxtFmtCollSetRange );
@@ -1151,7 +1151,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*M*/           }
 /*M*/
 /*M*/   ResId aResId( nRCId + nId, *pSwResMgr );
-/*M*/   String aNm( aResId );
+/*M*/   String aNm( aResId.toString() );
 /*M*/   SwAttrSet aSet( GetAttrPool(), pWhichRange );
 /*M*/
 /*M*/   if( pDesc )
@@ -1408,7 +1408,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/   }
 /*N*/
 /*N*/   ResId aResId( sal_uInt32(RC_POOLPAGEDESC_BEGIN + nId - RES_POOLPAGE_BEGIN), *pSwResMgr );
-/*N*/   String aNm( aResId );
+/*N*/   String aNm( aResId.toString() );
 /*N*/   if( pDesc )
 /*N*/   {
 /*?*/       pNewPgDsc = 0;
@@ -1570,7 +1570,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/   }
 
 /*N*/   ResId aResId( sal_uInt32(RC_POOLNUMRULE_BEGIN + nId - RES_POOLNUMRULE_BEGIN), *pSwResMgr );
-/*N*/   String aNm( aResId );
+/*N*/   String aNm( aResId.toString() );
 /*N*/
 /*N*/   SwCharFmt *pNumCFmt = 0, *pBullCFmt = 0;
 /*N*/

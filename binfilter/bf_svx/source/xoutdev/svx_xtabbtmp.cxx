@@ -171,7 +171,7 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /*N*/   // 48 49 50 51 52 53 54 55
 /*N*/   // 56 57 58 59 60 61 62 63
 /*N*/
-/*N*/   String  aStr( SVX_RES( RID_SVXSTR_BITMAP ) );
+/*N*/   String  aStr( SVX_RES( RID_SVXSTR_BITMAP ).toString() );
 /*N*/   Color   aColWhite( RGB_Color( COL_WHITE ) );
 /*N*/   xub_StrLen nLen;
 /*N*/   USHORT  aArray[64];

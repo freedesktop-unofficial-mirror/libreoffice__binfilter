@@ -1008,12 +1008,12 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/       case EDITUNDO_DELCONTENT:
 /*N*/       case EDITUNDO_DELETE:
 /*N*/       case EDITUNDO_CUT:
-/*?*/           aComment = XubString( EditResId( RID_EDITUNDO_DEL ) );
+/*?*/           aComment = EditResId( RID_EDITUNDO_DEL ).toString();
 /*N*/       break;
 /*N*/       case EDITUNDO_MOVEPARAGRAPHS:
 /*N*/       case EDITUNDO_MOVEPARAS:
 /*N*/       case EDITUNDO_DRAGANDDROP:
-/*?*/           aComment = XubString( EditResId( RID_EDITUNDO_MOVE ) );
+/*?*/           aComment = EditResId( RID_EDITUNDO_MOVE ).toString();
 /*N*/       break;
 /*N*/       case EDITUNDO_INSERTFEATURE:
 /*N*/       case EDITUNDO_SPLITPARA:
@@ -1021,29 +1021,29 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/       case EDITUNDO_PASTE:
 /*N*/       case EDITUNDO_INSERT:
 /*N*/       case EDITUNDO_READ:
-/*N*/           aComment = XubString( EditResId( RID_EDITUNDO_INSERT ) );
+/*N*/           aComment = EditResId( RID_EDITUNDO_INSERT ).toString();
 /*N*/       break;
 /*N*/       case EDITUNDO_SRCHANDREPL:
 /*N*/       case EDITUNDO_REPLACEALL:
-/*?*/           aComment = XubString( EditResId( RID_EDITUNDO_REPLACE ) );
+/*?*/           aComment = EditResId( RID_EDITUNDO_REPLACE ).toString();
 /*N*/       break;
 /*N*/       case EDITUNDO_ATTRIBS:
 /*N*/       case EDITUNDO_PARAATTRIBS:
 /*N*/       case EDITUNDO_STRETCH:
-/*?*/           aComment = XubString( EditResId( RID_EDITUNDO_SETATTRIBS ) );
+/*?*/           aComment = EditResId( RID_EDITUNDO_SETATTRIBS ).toString();
 /*N*/       break;
 /*N*/       case EDITUNDO_RESETATTRIBS:
-/*?*/           aComment = XubString( EditResId( RID_EDITUNDO_RESETATTRIBS ) );
+/*?*/           aComment = EditResId( RID_EDITUNDO_RESETATTRIBS ).toString();
 /*N*/       break;
 /*N*/       case EDITUNDO_STYLESHEET:
-/*?*/           aComment = XubString( EditResId( RID_EDITUNDO_SETSTYLE ) );
+/*?*/           aComment = EditResId( RID_EDITUNDO_SETSTYLE ).toString();
 /*N*/       break;
 /*N*/       case EDITUNDO_TRANSLITERATE:
-/*?*/           aComment = XubString( EditResId( RID_EDITUNDO_TRANSLITERATE ) );
+/*?*/           aComment = EditResId( RID_EDITUNDO_TRANSLITERATE ).toString();
 /*N*/       break;
 /*N*/       case EDITUNDO_INDENTBLOCK:
 /*N*/       case EDITUNDO_UNINDENTBLOCK:
-/*?*/           aComment = XubString( EditResId( RID_EDITUNDO_INDENT ) );
+/*?*/           aComment = EditResId( RID_EDITUNDO_INDENT ).toString();
 /*N*/       break;
 /*N*/   }
 /*N*/   return aComment;

@@ -2303,7 +2303,7 @@ const sal_Int32 coNumContFlags =
 /*N*/
 /*N*/   pErrDesc->Type  = Type;
 /*N*/   pErrDesc->pNode = pNode;
-/*N*/   pErrDesc->Text  = String(SmResId(RID_ERR_IDENT));
+/*N*/   pErrDesc->Text  = SmResId(RID_ERR_IDENT).toString();
 /*N*/
 /*N*/   USHORT  nRID;
 /*N*/   switch (Type)
@@ -2325,7 +2325,7 @@ const sal_Int32 coNumContFlags =
 /*N*/       default:
 /*N*/           nRID = RID_ERR_UNKOWN;
 /*N*/   }
-/*N*/   pErrDesc->Text += String(SmResId(nRID));
+/*N*/   pErrDesc->Text += SmResId(nRID).toString();
 /*N*/
 /*N*/   ErrDescList.push_back( pErrDesc );
 /*N*/ }

@@ -113,11 +113,11 @@ namespace binfilter {
 /*N*/                   *pFilter = sLNm.Copy( nPos );
 /*N*/
 /*N*/               if( pType )
-/*?*/                   *pType = String( ResId(
+/*?*/                   *pType = ResId(
 /*?*/                               OBJECT_CLIENT_FILE == pBaseLink->GetObjType()
 /*?*/                                       ? RID_SVXSTR_FILELINK
 /*?*/                                       : RID_SVXSTR_GRAFIKLINK
-/*?*/                                       , DIALOG_MGR() ));
+/*?*/                                       , DIALOG_MGR() ).toString();
 /*N*/
 /*N*/               bRet = TRUE;
 /*N*/           }

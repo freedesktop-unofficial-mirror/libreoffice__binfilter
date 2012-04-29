@@ -1655,7 +1655,7 @@ uno::Reference< drawing::XDrawPage > SAL_CALL SdMasterPagesAccess::insertNewByIn
             nInsertPos = nMPageCount;
 
         // now generate a unique name for the new masterpage
-        const String aStdPrefix( SdResId(STR_LAYOUT_DEFAULT_NAME) );
+        const String aStdPrefix( SdResId(STR_LAYOUT_DEFAULT_NAME).toString() );
         String aPrefix( aStdPrefix );
 
         sal_Bool bUnique = sal_True;
@@ -1685,7 +1685,7 @@ uno::Reference< drawing::XDrawPage > SAL_CALL SdMasterPagesAccess::insertNewByIn
 
         String aLayoutName( aPrefix );
         aLayoutName.AppendAscii( RTL_CONSTASCII_STRINGPARAM( SD_LT_SEPARATOR ));
-        aLayoutName += String(SdResId(STR_LAYOUT_OUTLINE));
+        aLayoutName += SdResId(STR_LAYOUT_OUTLINE).toString();
 
         // create styles
         ((SdStyleSheetPool*)pDoc->GetStyleSheetPool())->CreateLayoutStyleSheets( aPrefix );

@@ -1956,13 +1956,13 @@ void SAL_CALL SwXTextDocument::operator delete( void * p) throw()
 SwXLinkTargetSupplier::SwXLinkTargetSupplier(SwXTextDocument& rxDoc) :
     pxDoc(&rxDoc)
 {
-    sTables     = String(SW_RES(STR_CONTENT_TYPE_TABLE));
-    sFrames     = String(SW_RES(STR_CONTENT_TYPE_FRAME));
-    sGraphics   = String(SW_RES(STR_CONTENT_TYPE_GRAPHIC));
-    sOLEs       = String(SW_RES(STR_CONTENT_TYPE_OLE));
-    sSections   = String(SW_RES(STR_CONTENT_TYPE_REGION));
-    sOutlines   = String(SW_RES(STR_CONTENT_TYPE_OUTLINE));
-    sBookmarks  = String(SW_RES(STR_CONTENT_TYPE_BOOKMARK));
+    sTables     = SW_RESSTR(STR_CONTENT_TYPE_TABLE);
+    sFrames     = SW_RESSTR(STR_CONTENT_TYPE_FRAME);
+    sGraphics   = SW_RESSTR(STR_CONTENT_TYPE_GRAPHIC);
+    sOLEs       = SW_RESSTR(STR_CONTENT_TYPE_OLE);
+    sSections   = SW_RESSTR(STR_CONTENT_TYPE_REGION);
+    sOutlines   = SW_RESSTR(STR_CONTENT_TYPE_OUTLINE);
+    sBookmarks  = SW_RESSTR(STR_CONTENT_TYPE_BOOKMARK);
 }
 
 SwXLinkTargetSupplier::~SwXLinkTargetSupplier()

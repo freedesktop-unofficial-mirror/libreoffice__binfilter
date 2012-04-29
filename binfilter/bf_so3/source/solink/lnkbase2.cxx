@@ -332,7 +332,7 @@ BOOL SvBaseLink::Edit( Window* pParent )
             pLinkMgr->GetDisplayNames( this, &sApp, &sTopic, &sItem );
             if( nObjType == OBJECT_CLIENT_DDE )
             {
-                sError = String( ResId( STR_ERROR_DDE, *SOAPP->GetResMgr()));
+                sError = ResId(STR_ERROR_DDE, *SOAPP->GetResMgr()).toString();
                 USHORT nFndPos = sError.Search( '%' );
                 if( STRING_NOTFOUND != nFndPos )
                 {

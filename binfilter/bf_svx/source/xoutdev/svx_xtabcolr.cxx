@@ -221,7 +221,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/   {
 /*N*/       Insert( new XColorEntry(
                         Color( aColTab[n] ),
-                        String( ResId( aResId[ n ], rRes ) )
+                        String( ResId( aResId[ n ], rRes ).toString() )
                     ),
                     n
             );

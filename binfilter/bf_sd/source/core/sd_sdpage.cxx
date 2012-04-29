@@ -83,9 +83,9 @@ SdPage::SdPage(SdDrawDocument& rNewDoc, StarBASIC* pInBasic, BOOL bMasterPage) :
     nPaperBin(PAPERBIN_PRINTER_SETTINGS),
     mpItems(NULL)
 {
-    aLayoutName  = String(SdResId(STR_LAYOUT_DEFAULT_NAME));
+    aLayoutName  = SdResId(STR_LAYOUT_DEFAULT_NAME).toString();
     aLayoutName.AppendAscii( RTL_CONSTASCII_STRINGPARAM( SD_LT_SEPARATOR ));
-    aLayoutName += String(SdResId(STR_LAYOUT_OUTLINE));
+    aLayoutName += SdResId(STR_LAYOUT_OUTLINE).toString();
 
     eCharSet = osl_getThreadTextEncoding();
 
@@ -366,20 +366,20 @@ SfxStyleSheet* SdPage::GetStyleSheetForPresObj(PresObjKind eObjKind)
         break;
 
         case PRESOBJ_TITLE:
-            aName += String(SdResId(STR_LAYOUT_TITLE));
+            aName += SdResId(STR_LAYOUT_TITLE).toString();
             break;
 
         case PRESOBJ_BACKGROUND:
-            aName += String(SdResId(STR_LAYOUT_BACKGROUND));
+            aName += SdResId(STR_LAYOUT_BACKGROUND).toString();
             break;
 
         case PRESOBJ_NOTES:
-            aName += String(SdResId(STR_LAYOUT_NOTES));
+            aName += SdResId(STR_LAYOUT_NOTES).toString();
             break;
 
         case PRESOBJ_TEXT:
         {
-            aName += String(SdResId(STR_LAYOUT_SUBTITLE));
+            aName += SdResId(STR_LAYOUT_SUBTITLE).toString();
         }
         break;
 
@@ -1891,28 +1891,28 @@ void SdPage::SetObjText(SdrTextObj* pObj, SdrOutliner* pOutliner, PresObjKind eO
              {
                  pOutl->SetStyleSheet( 0, GetStyleSheetForPresObj(eObjKind) );
                  aString += String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "\n\t\t" ));
-                 aString += String ( SdResId( STR_PRESOBJ_MPOUTLLAYER2 ) );
+                 aString += SdResId( STR_PRESOBJ_MPOUTLLAYER2 ).toString();
 
                  aString += String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "\n\t\t\t" ));
-                 aString += String ( SdResId( STR_PRESOBJ_MPOUTLLAYER3 ) );
+                 aString += SdResId( STR_PRESOBJ_MPOUTLLAYER3 ).toString();
 
                  aString += String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "\n\t\t\t\t" ));
-                 aString += String ( SdResId( STR_PRESOBJ_MPOUTLLAYER4 ) );
+                 aString += SdResId( STR_PRESOBJ_MPOUTLLAYER4 ).toString();
 
                  aString += String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "\n\t\t\t\t\t" ));
-                 aString += String ( SdResId( STR_PRESOBJ_MPOUTLLAYER5 ) );
+                 aString += SdResId( STR_PRESOBJ_MPOUTLLAYER5 ).toString();
 
                  aString += String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "\n\t\t\t\t\t\t" ));
-                 aString += String ( SdResId( STR_PRESOBJ_MPOUTLLAYER6 ) );
+                 aString += SdResId( STR_PRESOBJ_MPOUTLLAYER6 ).toString();
 
                  aString += String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "\n\t\t\t\t\t\t\t" ));
-                 aString += String ( SdResId( STR_PRESOBJ_MPOUTLLAYER7 ) );
+                 aString += SdResId( STR_PRESOBJ_MPOUTLLAYER7 ).toString();
 
                  aString += String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "\n\t\t\t\t\t\t\t\t" ));
-                 aString += String ( SdResId( STR_PRESOBJ_MPOUTLLAYER8 ) );
+                 aString += SdResId( STR_PRESOBJ_MPOUTLLAYER8 ).toString();
 
                  aString += String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "\n\t\t\t\t\t\t\t\t\t" ));
-                 aString += String ( SdResId( STR_PRESOBJ_MPOUTLLAYER9 ) );
+                 aString += SdResId( STR_PRESOBJ_MPOUTLLAYER9 ).toString();
              }
         }
         else if (eObjKind == PRESOBJ_TITLE)
@@ -1975,13 +1975,13 @@ const String& SdPage::GetName()
             !bMaster)
         {
             USHORT  nNum = (GetPageNum() + 1) / 2;
-            aCreatedPageName = String(SdResId(STR_PAGE));
+            aCreatedPageName = SdResId(STR_PAGE).toString();
             aCreatedPageName += sal_Unicode( ' ' );
             aCreatedPageName += ((SdDrawDocument*) GetModel())->CreatePageNumValue(nNum);
         }
          else
          {
-             aCreatedPageName = String(SdResId(STR_LAYOUT_DEFAULT_NAME));
+             aCreatedPageName = SdResId(STR_LAYOUT_DEFAULT_NAME).toString();
          }
      }
      else
@@ -1992,12 +1992,12 @@ const String& SdPage::GetName()
      if (ePageKind == PK_NOTES)
      {
          aCreatedPageName += sal_Unicode( ' ' );
-         aCreatedPageName += String(SdResId(STR_NOTES));
+         aCreatedPageName += SdResId(STR_NOTES).toString();
      }
     else if (ePageKind == PK_HANDOUT && bMaster)
     {
          aCreatedPageName += String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( " (" ));
-         aCreatedPageName += String(SdResId(STR_HANDOUT));
+         aCreatedPageName += SdResId(STR_HANDOUT).toString();
          aCreatedPageName += sal_Unicode( ')' );
     }
 
@@ -2051,63 +2051,63 @@ String SdPage::GetPresObjText(PresObjKind eObjKind)
         {
             if (ePageKind != PK_NOTES)
             {
-                aString = String ( SdResId( STR_PRESOBJ_MPTITLE ) );
+                aString = SdResId( STR_PRESOBJ_MPTITLE ).toString();
             }
             else
             {
-                aString = String ( SdResId( STR_PRESOBJ_MPNOTESTITLE ) );
+                aString = SdResId( STR_PRESOBJ_MPNOTESTITLE ).toString();
             }
         }
         else
         {
-            aString = String ( SdResId( STR_PRESOBJ_TITLE ) );
+            aString = SdResId( STR_PRESOBJ_TITLE ).toString();
         }
     }
     else if (eObjKind == PRESOBJ_OUTLINE)
     {
         if (bMaster)
         {
-            aString = String ( SdResId( STR_PRESOBJ_MPOUTLINE ) );
+            aString = SdResId( STR_PRESOBJ_MPOUTLINE ).toString();
         }
         else
         {
-            aString = String ( SdResId( STR_PRESOBJ_OUTLINE ) );
+            aString = SdResId( STR_PRESOBJ_OUTLINE ).toString();
         }
     }
     else if (eObjKind == PRESOBJ_NOTES)
     {
         if (bMaster)
         {
-            aString = String ( SdResId( STR_PRESOBJ_MPNOTESTEXT ) );
+            aString = SdResId( STR_PRESOBJ_MPNOTESTEXT ).toString();
         }
         else
         {
-            aString = String ( SdResId( STR_PRESOBJ_NOTESTEXT ) );
+            aString = SdResId( STR_PRESOBJ_NOTESTEXT ).toString();
         }
     }
     else if (eObjKind == PRESOBJ_TEXT)
     {
-        aString = String ( SdResId( STR_PRESOBJ_TEXT ) );
+        aString = SdResId( STR_PRESOBJ_TEXT ).toString();
     }
     else if (eObjKind == PRESOBJ_GRAPHIC)
     {
-        aString = String ( SdResId( STR_PRESOBJ_GRAPHIC ) );
+        aString = SdResId( STR_PRESOBJ_GRAPHIC ).toString();
     }
     else if (eObjKind == PRESOBJ_OBJECT)
     {
-        aString = String ( SdResId( STR_PRESOBJ_OBJECT ) );
+        aString = SdResId( STR_PRESOBJ_OBJECT ).toString();
     }
     else if (eObjKind == PRESOBJ_CHART)
     {
-        aString = String ( SdResId( STR_PRESOBJ_CHART ) );
+        aString = SdResId( STR_PRESOBJ_CHART ).toString();
     }
     else if (eObjKind == PRESOBJ_ORGCHART)
     {
-        aString = String ( SdResId( STR_PRESOBJ_ORGCHART ) );
+        aString = SdResId( STR_PRESOBJ_ORGCHART ).toString();
     }
     else if (eObjKind == PRESOBJ_TABLE)
     {
-        aString = String ( SdResId( STR_PRESOBJ_TABLE ) );
+        aString = SdResId( STR_PRESOBJ_TABLE ).toString();
     }
 
     return(aString);

@@ -101,7 +101,7 @@ void SdDrawDocument::CreateLayoutTemplates()
     SdStyleSheetPool*       pLclStyleSheetPool = (SdStyleSheetPool*)GetStyleSheetPool();
     SfxStyleSheetBase*      pSheet = NULL;
     String                  aHelpFile;
-    String                  aStdName = String(SdResId(STR_STANDARD_STYLESHEET_NAME));
+    String                  aStdName = SdResId(STR_STANDARD_STYLESHEET_NAME).toString();
 
     // ---- Standardvorlage -----------------------------------------------
 
@@ -223,7 +223,7 @@ void SdDrawDocument::CreateLayoutTemplates()
 
     // ---- Objekt mit Pfeilspitze ----------------------------------------
 
-    aName = String(SdResId(STR_POOLSHEET_OBJWITHARROW));
+    aName = SdResId(STR_POOLSHEET_OBJWITHARROW).toString();
     pSheet = &(pLclStyleSheetPool->Make(aName, SFX_STYLE_FAMILY_PARA, nMask));
     pSheet->SetParent(aStdName);
     pSheet->SetHelpId( aHelpFile, HID_POOLSHEET_OBJWITHARROW );
@@ -238,7 +238,7 @@ void SdDrawDocument::CreateLayoutTemplates()
     aArrow[1]=Point(0,30);                      //    \    /
     aArrow[2]=Point(20,30);                        //     \  /
     aArrow[3]=Point(10,0);                        //      \/1,0
-    pISet->Put(XLineStartItem(ResId::toString(SdResId(STR_POOLSHEET_ARROW)),aArrow));
+    pISet->Put(XLineStartItem(SdResId(STR_POOLSHEET_ARROW).toString(),aArrow));
 
     pISet->Put(XLineStartWidthItem(700));
     pISet->Put(XLineEndWidthItem(300));
@@ -246,7 +246,7 @@ void SdDrawDocument::CreateLayoutTemplates()
 
     // ---- Objekt mit Schatten -------------------------------------------
 
-    aName = ResId::toString(SdResId(STR_POOLSHEET_OBJWITHSHADOW));
+    aName = SdResId(STR_POOLSHEET_OBJWITHSHADOW).toString();
     pSheet = &(pLclStyleSheetPool->Make(aName, SFX_STYLE_FAMILY_PARA, nMask));
     pSheet->SetParent(aStdName);
     pSheet->SetHelpId( aHelpFile, HID_POOLSHEET_OBJWITHSHADOW );
@@ -259,7 +259,7 @@ void SdDrawDocument::CreateLayoutTemplates()
 
     // ---- Objekt ohne Fllung -------------------------------------------
 
-    aName = String(SdResId(STR_POOLSHEET_OBJWITHOUTFILL));
+    aName = SdResId(STR_POOLSHEET_OBJWITHOUTFILL).toString();
     pSheet = &(pLclStyleSheetPool->Make(aName, SFX_STYLE_FAMILY_PARA, nMask));
     pSheet->SetParent(aStdName);
     pSheet->SetHelpId( aHelpFile, HID_POOLSHEET_OBJWITHOUTFILL );
@@ -269,7 +269,7 @@ void SdDrawDocument::CreateLayoutTemplates()
 
     // ---- Text ----------------------------------------------------------
 
-    aName = String(SdResId(STR_POOLSHEET_TEXT));
+    aName = SdResId(STR_POOLSHEET_TEXT).toString();
     pSheet = &(pLclStyleSheetPool->Make(aName, SFX_STYLE_FAMILY_PARA, nMask));
     pSheet->SetParent(aStdName);
     pSheet->SetHelpId( aHelpFile, HID_POOLSHEET_TEXT );
@@ -280,7 +280,7 @@ void SdDrawDocument::CreateLayoutTemplates()
 
     // ---- Textk”rper ----------------------------------------------------
 
-    aName = String(SdResId(STR_POOLSHEET_TEXTBODY));
+    aName = SdResId(STR_POOLSHEET_TEXTBODY).toString();
     pSheet = &(pLclStyleSheetPool->Make(aName, SFX_STYLE_FAMILY_PARA, nMask));
     pSheet->SetParent(aStdName);
     pSheet->SetHelpId( aHelpFile, HID_POOLSHEET_TEXTBODY );
@@ -293,7 +293,7 @@ void SdDrawDocument::CreateLayoutTemplates()
 
     // ---- Textk”rper mit Blocksatz --------------------------------------
 
-    aName = String(SdResId(STR_POOLSHEET_TEXTBODY_JUSTIFY));
+    aName = SdResId(STR_POOLSHEET_TEXTBODY_JUSTIFY).toString();
     pSheet = &(pLclStyleSheetPool->Make(aName, SFX_STYLE_FAMILY_PARA, nMask));
     pSheet->SetParent(aStdName);
     pSheet->SetHelpId( aHelpFile, HID_POOLSHEET_TEXTBODY_JUSTIFY );
@@ -306,7 +306,7 @@ void SdDrawDocument::CreateLayoutTemplates()
 
     // ---- Textkoerper mit Einzug -----------------------------------------
 
-    aName = String(SdResId(STR_POOLSHEET_TEXTBODY_INDENT));
+    aName = SdResId(STR_POOLSHEET_TEXTBODY_INDENT).toString();
     pSheet = &(pLclStyleSheetPool->Make(aName, SFX_STYLE_FAMILY_PARA, nMask));
     pSheet->SetParent(aStdName);
     pSheet->SetHelpId( aHelpFile, HID_POOLSHEET_TEXTBODY_INDENT );
@@ -326,7 +326,7 @@ void SdDrawDocument::CreateLayoutTemplates()
 
     // ---- Titel ---------------------------------------------------------
 
-    aName = String(SdResId(STR_POOLSHEET_TITLE));
+    aName = SdResId(STR_POOLSHEET_TITLE).toString();
     pSheet = &(pLclStyleSheetPool->Make(aName, SFX_STYLE_FAMILY_PARA, nMask));
     pSheet->SetParent(aStdName);
     pSheet->SetHelpId( aHelpFile, HID_POOLSHEET_TITLE );
@@ -339,7 +339,7 @@ void SdDrawDocument::CreateLayoutTemplates()
 
     // ---- Titel1 --------------------------------------------------------
 
-    aName = String(SdResId(STR_POOLSHEET_TITLE1));
+    aName = SdResId(STR_POOLSHEET_TITLE1).toString();
     pSheet = &(pLclStyleSheetPool->Make(aName, SFX_STYLE_FAMILY_PARA, nMask));
     pSheet->SetParent(aStdName);
     pSheet->SetHelpId( aHelpFile, HID_POOLSHEET_TITLE1 );
@@ -360,7 +360,7 @@ void SdDrawDocument::CreateLayoutTemplates()
 
     // ---- Titel2 --------------------------------------------------------
 
-    aName = String(SdResId(STR_POOLSHEET_TITLE2));
+    aName = SdResId(STR_POOLSHEET_TITLE2).toString();
     pSheet = &(pLclStyleSheetPool->Make(aName, SFX_STYLE_FAMILY_PARA, nMask));
     pSheet->SetParent(aStdName);
     pSheet->SetHelpId( aHelpFile, HID_POOLSHEET_TITLE2 );
@@ -393,7 +393,7 @@ void SdDrawDocument::CreateLayoutTemplates()
 
     // ---- Ueberschrift ---------------------------------------------------
 
-    aName = String(SdResId(STR_POOLSHEET_HEADLINE));
+    aName = SdResId(STR_POOLSHEET_HEADLINE).toString();
     pSheet = &(pLclStyleSheetPool->Make(aName, SFX_STYLE_FAMILY_PARA, nMask));
     pSheet->SetParent(aStdName);
     pSheet->SetHelpId( aHelpFile, HID_POOLSHEET_HEADLINE );
@@ -409,7 +409,7 @@ void SdDrawDocument::CreateLayoutTemplates()
 
     // ---- Ueberschrift1 --------------------------------------------------
 
-    aName = String(SdResId(STR_POOLSHEET_HEADLINE1));
+    aName = SdResId(STR_POOLSHEET_HEADLINE1).toString();
     pSheet = &(pLclStyleSheetPool->Make(aName, SFX_STYLE_FAMILY_PARA, nMask));
     pSheet->SetParent(aStdName);
     pSheet->SetHelpId( aHelpFile, HID_POOLSHEET_HEADLINE1 );
@@ -427,7 +427,7 @@ void SdDrawDocument::CreateLayoutTemplates()
 
     // ---- Ueberschrift2 --------------------------------------------------
 
-    aName = String(SdResId(STR_POOLSHEET_HEADLINE2));
+    aName = SdResId(STR_POOLSHEET_HEADLINE2).toString();
     pSheet = &(pLclStyleSheetPool->Make(aName, SFX_STYLE_FAMILY_PARA, nMask));
     pSheet->SetParent(aStdName);
     pSheet->SetHelpId( aHelpFile, HID_POOLSHEET_HEADLINE2 );
@@ -446,7 +446,7 @@ void SdDrawDocument::CreateLayoutTemplates()
 
     // ---- Bemassung --------------------------------------------------
 
-    aName = String(SdResId(STR_POOLSHEET_MEASURE));
+    aName = SdResId(STR_POOLSHEET_MEASURE).toString();
     pSheet = &(pLclStyleSheetPool->Make(aName, SFX_STYLE_FAMILY_PARA, nMask));
     pSheet->SetParent(aStdName);
     pSheet->SetHelpId( aHelpFile, HID_POOLSHEET_MEASURE );
@@ -462,7 +462,7 @@ void SdDrawDocument::CreateLayoutTemplates()
     pISet->Put(XLineStyleItem(XLINE_SOLID));
 
     // Praesentationsvorlagen fuer das Standardlayout erzeugen
-    String aPrefix = String(SdResId(STR_LAYOUT_DEFAULT_NAME));
+    String aPrefix = SdResId(STR_LAYOUT_DEFAULT_NAME).toString();
     pLclStyleSheetPool->CreateLayoutStyleSheets(aPrefix);
 }
 
@@ -603,7 +603,7 @@ void SdDrawDocument::RenameLayoutTemplate(const String& rOldLayoutName, const St
     // sowie ihrer Masterpages setzen
     String aPageLayoutName(rNewName);
     aPageLayoutName.AppendAscii( RTL_CONSTASCII_STRINGPARAM( SD_LT_SEPARATOR ));
-    aPageLayoutName += String(SdResId(STR_LAYOUT_OUTLINE));
+    aPageLayoutName += SdResId(STR_LAYOUT_OUTLINE).toString();
 
     // an allen Seiten, die das jetzt umbeannte Layout benutzen, die
     // Textobjekte von der Aenderung unterrichten und Layoutnamen setzen

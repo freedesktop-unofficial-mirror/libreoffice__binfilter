@@ -676,7 +676,7 @@ SwFmtColl* SwXTextCursor::GetCurTxtFmtColl(SwPaM& rPam, BOOL bConditional)
     {
         for(i = RC_POOLPAGEDESC_BEGIN; i <= STR_POOLPAGE_ENDNOTE; ++i)
         {
-            const String aFmtName(SW_RES(i));
+            const String aFmtName(SW_RESSTR(i));
             if(aFmtName == rName)
             {
                 pRet = rDoc.GetPageDescFromPool( RES_POOLPAGE_BEGIN + i - RC_POOLPAGEDESC_BEGIN );

@@ -810,7 +810,7 @@ namespace binfilter {
 /*N*/ String SwDoc::GetUniqueSectionName( const String* pChkStr ) const
 /*N*/ {
 /*N*/   ResId aId( STR_REGION_DEFNAME, *pSwResMgr );
-/*N*/   String aName( aId );
+/*N*/   String aName( aId.toString() );
 /*N*/   xub_StrLen nNmLen = aName.Len();
 /*N*/
 /*N*/   USHORT nNum(0), nTmp, nFlagSize = ( pSectionFmtTbl->Count() / 8 ) +2;

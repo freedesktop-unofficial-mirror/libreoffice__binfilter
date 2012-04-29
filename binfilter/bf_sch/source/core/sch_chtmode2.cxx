@@ -244,11 +244,11 @@ enum ChartStyleV0
 /*N*/               if( nStringID )
 /*N*/               {
 /*?*/                   SchResId aRegId = SchResId( nStringID );
-/*?*/                   String aRegressStr( aRegId );
+/*?*/                   String aRegressStr( aRegId.toString() );
 /*?*/                   String aSeriesName( bRowLegend
 /*?*/                                       ? RowText( i )
 /*?*/                                       : ColText( i ));
-/*?*/                   String aLegendText( SchResId( STR_STATISTICS_IN_LEGEND ));
+/*?*/                   String aLegendText( SchResId( STR_STATISTICS_IN_LEGEND ).toString() );
 /*?*/
 /*?*/                   aLegendText.SearchAndReplaceAscii( "$(STATTYP)", aRegressStr );
 /*?*/                   aLegendText.SearchAndReplaceAscii( "$(ROWNAME)", aSeriesName );

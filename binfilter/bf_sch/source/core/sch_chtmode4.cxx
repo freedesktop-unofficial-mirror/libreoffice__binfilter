@@ -1048,7 +1048,7 @@ namespace binfilter {
 /*?*/           // FG: Falls ein Pointer auf ein Fenster uebergeben wird ist die Dialogbox nicht-modal
 /*?*/           //     Nutzt man dies fuer Veraenderungen am Chart aus, stuertzt das Programm ab.
 /*?*/           // InfoBox aInfoBox(SFX_APP()->GetAppWindow(), String(SchResId(STR_ONLY_ABS_VALUES)));
-/*?*/           InfoBox aInfoBox(NULL, String(SchResId(STR_ONLY_ABS_VALUES)));
+/*?*/           InfoBox aInfoBox(NULL, SchResId(STR_ONLY_ABS_VALUES).toString());
 /*?*/           aInfoBox.Execute();
 /*?*/           eOldChartStyle = eChartStyle;
 /*?*/           bOK=FALSE;
@@ -1058,7 +1058,7 @@ namespace binfilter {
 /*N*/               // FG: Falls ein Pointer auf ein Fenster uebergeben wird ist die Dialogbox nicht-modal
 /*N*/               //     Nutzt man dies fuer Veraenderungen am Chart aus, stuertzt das Programm ab.
 /*N*/               // InfoBox aInfoBox(SFX_APP()->GetAppWindow(), String(SchResId(STR_NO_MIN_VALUES)));
-/*?*/               InfoBox aInfoBox(NULL, String(SchResId(STR_NO_MIN_VALUES)));
+/*?*/               InfoBox aInfoBox(NULL, SchResId(STR_NO_MIN_VALUES).toString());
 /*?*/               aInfoBox.Execute();
 /*?*/               eOldChartStyle = eChartStyle;
 /*?*/               bOK=FALSE;

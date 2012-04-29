@@ -174,7 +174,7 @@ enum RndStdIds
 
 extern ResMgr* pSwResMgr;           // steht in swapp0.cxx
 #define SW_RES(i)       ResId(i,*pSwResMgr)
-#define SW_RESSTR(i)    UniString(ResId(i,*pSwResMgr))
+#define SW_RESSTR(i)    SW_RES(i).toString()
 
 com::sun::star::lang::Locale    CreateLocale( LanguageType eLanguage );
 

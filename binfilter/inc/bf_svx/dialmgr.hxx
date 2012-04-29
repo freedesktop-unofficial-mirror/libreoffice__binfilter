@@ -56,8 +56,7 @@ private:
 
 #define DIALOG_MGR()    *(*(DialogsResMgr**)GetAppData(BF_SHL_SVX))->pResMgr
 #define SVX_RES(i)      ResId(i,DIALOG_MGR())
-#define SVX_RESSTR(i)   UniString(ResId(i,DIALOG_MGR()))
-#define SVX_RESSSTR(i)  String(ResId(i,DIALOG_MGR()))
+#define SVX_RESSTR(i)   SVX_RES(i).toString()
 
 }//end of namespace binfilter
 #endif

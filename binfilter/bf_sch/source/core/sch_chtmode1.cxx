@@ -752,11 +752,11 @@ namespace binfilter {
 /*N*/   {
 /*N*/       SchMemChart* pMemChart = new SchMemChart(DEFAULT_COLCNT, DEFAULT_ROWCNT);
 /*N*/
-/*N*/       pMemChart->SetMainTitle(String(SchResId(STR_TITLE_MAIN)));
-/*N*/       pMemChart->SetSubTitle(String(SchResId(STR_TITLE_SUB)));
-/*N*/       pMemChart->SetXAxisTitle(String(SchResId(STR_DIAGRAM_TITLE_X_AXIS)));
-/*N*/       pMemChart->SetYAxisTitle(String(SchResId(STR_DIAGRAM_TITLE_Y_AXIS)));
-/*N*/       pMemChart->SetZAxisTitle(String(SchResId(STR_DIAGRAM_TITLE_Z_AXIS)));
+/*N*/       pMemChart->SetMainTitle(SchResId(STR_TITLE_MAIN).toString());
+/*N*/       pMemChart->SetSubTitle(SchResId(STR_TITLE_SUB).toString());
+/*N*/       pMemChart->SetXAxisTitle(SchResId(STR_DIAGRAM_TITLE_X_AXIS).toString());
+/*N*/       pMemChart->SetYAxisTitle(SchResId(STR_DIAGRAM_TITLE_Y_AXIS).toString());
+/*N*/       pMemChart->SetZAxisTitle(SchResId(STR_DIAGRAM_TITLE_Z_AXIS).toString());
 /*N*/
 /*N*/       for( short nCol = 0; nCol < DEFAULT_COLCNT; nCol++ )
 /*N*/       {

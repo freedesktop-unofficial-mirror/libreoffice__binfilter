@@ -143,25 +143,25 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/   {
 /*N*/       *pClassName     = SvGlobalName( BF_SO3_SC_CLASSID_30 );
 /*N*/       *pFormat        = SOT_FORMATSTR_ID_STARCALC_30;
-/*N*/       *pAppName       = String( ScResId( SCSTR_30_APPLICATION ) );
-/*N*/       *pFullTypeName  = String( ScResId( SCSTR_30_LONG_DOCNAME ) );
-/*N*/       *pShortTypeName = String( ScResId( SCSTR_SHORT_SCDOC_NAME ) );
+/*N*/       *pAppName       = ScResId( SCSTR_30_APPLICATION ).toString();
+/*N*/       *pFullTypeName  = ScResId( SCSTR_30_LONG_DOCNAME ).toString();
+/*N*/       *pShortTypeName = ScResId( SCSTR_SHORT_SCDOC_NAME ).toString();
 /*N*/   }
 /*N*/   else if ( nFileFormat == SOFFICE_FILEFORMAT_40 )
 /*N*/   {
 /*N*/       *pClassName     = SvGlobalName( BF_SO3_SC_CLASSID_40 );
 /*N*/       *pFormat        = SOT_FORMATSTR_ID_STARCALC_40;
-/*N*/       *pAppName       = String( ScResId( SCSTR_40_APPLICATION ) );
-/*N*/       *pFullTypeName  = String( ScResId( SCSTR_40_LONG_DOCNAME ) );
-/*N*/       *pShortTypeName = String( ScResId( SCSTR_SHORT_SCDOC_NAME ) );
+/*N*/       *pAppName       = ScResId( SCSTR_40_APPLICATION ).toString();
+/*N*/       *pFullTypeName  = ScResId( SCSTR_40_LONG_DOCNAME ).toString();
+/*N*/       *pShortTypeName = ScResId( SCSTR_SHORT_SCDOC_NAME ).toString();
 /*N*/   }
 /*N*/   else if ( nFileFormat == SOFFICE_FILEFORMAT_50 )
 /*N*/   {
 /*N*/       *pClassName     = SvGlobalName( BF_SO3_SC_CLASSID_50 );
 /*N*/       *pFormat        = SOT_FORMATSTR_ID_STARCALC_50;
-/*N*/       *pAppName       = String( ScResId( SCSTR_50_APPLICATION ) );
-/*N*/       *pFullTypeName  = String( ScResId( SCSTR_50_LONG_DOCNAME ) );
-/*N*/       *pShortTypeName = String( ScResId( SCSTR_SHORT_SCDOC_NAME ) );
+/*N*/       *pAppName       = ScResId( SCSTR_50_APPLICATION ).toString();
+/*N*/       *pFullTypeName  = ScResId( SCSTR_50_LONG_DOCNAME ).toString();
+/*N*/       *pShortTypeName = ScResId( SCSTR_SHORT_SCDOC_NAME ).toString();
 /*N*/   }
 /*N*/   else if ( nFileFormat == SOFFICE_FILEFORMAT_60 ||
                   nFileFormat == SOFFICE_FILEFORMAT_CURRENT )   // #i41083# also allow CURRENT
@@ -170,10 +170,10 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
             // has always been an error (!)
 /*N*/       *pClassName     = SvGlobalName( BF_SO3_SC_CLASSID_60 );
 /*N*/       *pFormat        = SOT_FORMATSTR_ID_STARCALC_60;
-/*N*/       *pAppName       = String( ScResId( SCSTR_APPLICATION ) );
+/*N*/       *pAppName       = ScResId( SCSTR_APPLICATION ).toString();
 /*N*/
-/*N*/       *pFullTypeName  = String( ScResId( SCSTR_LONG_SCDOC_NAME ) );
-/*N*/       *pShortTypeName = String( ScResId( SCSTR_SHORT_SCDOC_NAME ) );
+/*N*/       *pFullTypeName  = ScResId(SCSTR_LONG_SCDOC_NAME).toString();
+/*N*/       *pShortTypeName = ScResId(SCSTR_SHORT_SCDOC_NAME).toString();
 
 /*N*/   }
 /*N*/   else

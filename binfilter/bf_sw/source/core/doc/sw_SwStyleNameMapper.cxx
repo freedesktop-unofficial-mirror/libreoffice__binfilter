@@ -736,7 +736,7 @@ const struct SwTableEntry NumRuleProgNameTable [] =
 /*N*/       while( nStt < nEnd )
 /*N*/       {
 /*N*/           const ResId rRId( nStt, *pSwResMgr );
-/*N*/           String* pStr = new String( rRId );
+/*N*/           String* pStr = new String( rRId.toString() );
 /*N*/           pNameArray->Insert( pStr, pNameArray->Count() );
 /*N*/           ++nStt;
 /*N*/       }

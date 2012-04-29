@@ -64,40 +64,40 @@ SvStringsDtor*  pAuthFieldTypeList = 0;
 
 /*N*/ ShellResource::ShellResource()
 /*N*/   : Resource( SW_RES(RID_SW_SHELLRES) ),
-/*N*/   aPostItAuthor( SW_RES( STR_POSTIT_AUTHOR ) ),
-/*N*/   aPostItPage( SW_RES( STR_POSTIT_PAGE ) ),
-/*N*/   aPostItLine( SW_RES( STR_POSTIT_LINE ) ),
-/*N*/   aCalc_Syntax( SW_RES( STR_CALC_SYNTAX ) ),
-/*N*/   aCalc_ZeroDiv( SW_RES( STR_CALC_ZERODIV ) ),
-/*N*/   aCalc_Brack( SW_RES( STR_CALC_BRACK ) ),
-/*N*/   aCalc_Pow( SW_RES( STR_CALC_POW ) ),
-/*N*/   aCalc_VarNFnd( SW_RES( STR_CALC_VARNFND ) ),
-/*N*/   aCalc_Overflow( SW_RES( STR_CALC_OVERFLOW ) ),
-/*N*/   aCalc_WrongTime( SW_RES( STR_CALC_WRONGTIME ) ),
-/*N*/   aCalc_Default( SW_RES( STR_CALC_DEFAULT ) ),
-/*N*/   aCalc_Error( SW_RES( STR_CALC_ERROR ) ),
-/*N*/   aGetRefFld_Up( SW_RES( STR_GETREFFLD_UP ) ),
-/*N*/   aGetRefFld_Down( SW_RES( STR_GETREFFLD_DOWN ) ),
-/*N*/   aStrAllPageHeadFoot( SW_RES( STR_ALLPAGE_HEADFOOT ) ),
-/*N*/   aStrNone( SW_RES( STR_TEMPLATE_NONE )),
-/*N*/   aFixedStr( SW_RES( STR_FIELD_FIXED )),
-/*N*/   aTOXIndexName(          SW_RES(STR_TOI)),
-/*N*/   aTOXUserName(           SW_RES(STR_TOU)),
-/*N*/   aTOXContentName(        SW_RES(STR_TOC)),
-/*N*/   aTOXIllustrationsName(  SW_RES(STR_TOX_ILL)),
-/*N*/   aTOXObjectsName(        SW_RES(STR_TOX_OBJ)),
-/*N*/   aTOXTablesName(         SW_RES(STR_TOX_TBL)),
-/*N*/   aTOXAuthoritiesName(    SW_RES(STR_TOX_AUTH)),
+/*N*/   aPostItAuthor( SW_RESSTR( STR_POSTIT_AUTHOR ) ),
+/*N*/   aPostItPage( SW_RESSTR( STR_POSTIT_PAGE ) ),
+/*N*/   aPostItLine( SW_RESSTR( STR_POSTIT_LINE ) ),
+/*N*/   aCalc_Syntax( SW_RESSTR( STR_CALC_SYNTAX ) ),
+/*N*/   aCalc_ZeroDiv( SW_RESSTR( STR_CALC_ZERODIV ) ),
+/*N*/   aCalc_Brack( SW_RESSTR( STR_CALC_BRACK ) ),
+/*N*/   aCalc_Pow( SW_RESSTR( STR_CALC_POW ) ),
+/*N*/   aCalc_VarNFnd( SW_RESSTR( STR_CALC_VARNFND ) ),
+/*N*/   aCalc_Overflow( SW_RESSTR( STR_CALC_OVERFLOW ) ),
+/*N*/   aCalc_WrongTime( SW_RESSTR( STR_CALC_WRONGTIME ) ),
+/*N*/   aCalc_Default( SW_RESSTR( STR_CALC_DEFAULT ) ),
+/*N*/   aCalc_Error( SW_RESSTR( STR_CALC_ERROR ) ),
+/*N*/   aGetRefFld_Up( SW_RESSTR( STR_GETREFFLD_UP ) ),
+/*N*/   aGetRefFld_Down( SW_RESSTR( STR_GETREFFLD_DOWN ) ),
+/*N*/   aStrAllPageHeadFoot( SW_RESSTR( STR_ALLPAGE_HEADFOOT ) ),
+/*N*/   aStrNone( SW_RESSTR( STR_TEMPLATE_NONE )),
+/*N*/   aFixedStr( SW_RESSTR( STR_FIELD_FIXED )),
+/*N*/   aTOXIndexName(          SW_RESSTR(STR_TOI)),
+/*N*/   aTOXUserName(           SW_RESSTR(STR_TOU)),
+/*N*/   aTOXContentName(        SW_RESSTR(STR_TOC)),
+/*N*/   aTOXIllustrationsName(  SW_RESSTR(STR_TOX_ILL)),
+/*N*/   aTOXObjectsName(        SW_RESSTR(STR_TOX_OBJ)),
+/*N*/   aTOXTablesName(         SW_RESSTR(STR_TOX_TBL)),
+/*N*/   aTOXAuthoritiesName(    SW_RESSTR(STR_TOX_AUTH)),
 /*N*/   pAutoFmtNameLst( 0 ),
-/*N*/   sPageDescFirstName(     SW_RES(STR_PAGEDESC_FIRSTNAME)),
-/*N*/   sPageDescFollowName(    SW_RES(STR_PAGEDESC_FOLLOWNAME)),
-/*N*/   sPageDescName(          SW_RES(STR_PAGEDESC_NAME))
+/*N*/   sPageDescFirstName(     SW_RESSTR(STR_PAGEDESC_FIRSTNAME)),
+/*N*/   sPageDescFollowName(    SW_RESSTR(STR_PAGEDESC_FOLLOWNAME)),
+/*N*/   sPageDescName(          SW_RESSTR(STR_PAGEDESC_NAME))
 /*N*/ {
 /*N*/   const USHORT nCount = FLD_DOCINFO_END - FLD_DOCINFO_BEGIN;
 /*N*/
 /*N*/   for(USHORT i = 0; i < nCount; ++i)
 /*N*/   {
-/*N*/       String* pNew = new SW_RESSTR(FLD_DOCINFO_BEGIN + i);
+/*N*/       String* pNew = new String(SW_RESSTR(FLD_DOCINFO_BEGIN + i));
 /*N*/       aDocInfoLst.Insert(pNew, aDocInfoLst.Count());
 /*N*/   }
 /*N*/
@@ -117,7 +117,7 @@ SvStringsDtor*  pAuthFieldTypeList = 0;
         pAuthFieldTypeList = new SvStringsDtor(AUTH_TYPE_END, 1);
         for(USHORT i = 0; i < AUTH_TYPE_END; i++)
             pAuthFieldTypeList->Insert(
-                new String(SW_RES(STR_AUTH_TYPE_START + i)),
+                new String(SW_RESSTR(STR_AUTH_TYPE_START + i)),
                                     pAuthFieldTypeList->Count());
     }
     return *pAuthFieldTypeList->GetObject(eType);

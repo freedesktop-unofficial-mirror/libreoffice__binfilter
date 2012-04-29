@@ -128,7 +128,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   String aName(rLayoutName);
 /*N*/   aName.AppendAscii( RTL_CONSTASCII_STRINGPARAM( SD_LT_SEPARATOR ));
-/*N*/   aName += String(SdResId(STR_LAYOUT_TITLE));
+/*N*/   aName += SdResId(STR_LAYOUT_TITLE).toString();
 /*N*/   SfxStyleSheetBase* pResult = Find(aName, SD_LT_FAMILY);
 /*N*/   return pResult;
 /*N*/ }
@@ -151,7 +151,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   String aName(rLayoutName);
 /*N*/   aName.AppendAscii( RTL_CONSTASCII_STRINGPARAM( SD_LT_SEPARATOR ));
-/*N*/   aName += String(SdResId(STR_LAYOUT_OUTLINE));
+/*N*/   aName += SdResId(STR_LAYOUT_OUTLINE).toString();
 /*N*/   List* pList = new List;
 /*N*/   for (USHORT nSheet = 1; nSheet < 10; nSheet++)
 /*N*/   {
@@ -199,7 +199,7 @@ namespace binfilter {
     /**************************************************************************
     * Gliederungsebenen
     **************************************************************************/
-/*N*/   String aName(SdResId(STR_LAYOUT_OUTLINE));
+/*N*/   String aName(SdResId(STR_LAYOUT_OUTLINE).toString());
 /*N*/   String aHelpFile;
 /*N*/
 /*N*/   SfxStyleSheetBase* pParent = NULL;
@@ -352,7 +352,7 @@ namespace binfilter {
     /**************************************************************************
     * Titel
     **************************************************************************/
-/*N*/   aName = String(SdResId(STR_LAYOUT_TITLE));
+/*N*/   aName = SdResId(STR_LAYOUT_TITLE).toString();
 /*N*/   aName.Insert(aPrefix, 0);
 /*N*/
 /*N*/   if (!Find(aName, SD_LT_FAMILY))
@@ -395,7 +395,7 @@ namespace binfilter {
     * Untertitel
     * Aenderugen auch in AdjustLRSpaceItems() vornehmen!
     **************************************************************************/
-/*N*/   aName = String(SdResId(STR_LAYOUT_SUBTITLE));
+/*N*/   aName = SdResId(STR_LAYOUT_SUBTITLE).toString();
 /*N*/   aName.Insert(aPrefix, 0);
 /*N*/
 /*N*/   if (!Find(aName, SD_LT_FAMILY))
@@ -440,7 +440,7 @@ namespace binfilter {
     /**************************************************************************
     * Notizen
     **************************************************************************/
-/*N*/   aName = String(SdResId(STR_LAYOUT_NOTES));
+/*N*/   aName = SdResId(STR_LAYOUT_NOTES).toString();
 /*N*/   aName.Insert(aPrefix, 0);
 /*N*/
 /*N*/   if (!Find(aName, SD_LT_FAMILY))
@@ -487,7 +487,7 @@ namespace binfilter {
     /**************************************************************************
     * Hintergrundobjekte
     **************************************************************************/
-/*N*/   aName = String(SdResId(STR_LAYOUT_BACKGROUNDOBJECTS));
+/*N*/   aName = SdResId(STR_LAYOUT_BACKGROUNDOBJECTS).toString();
 /*N*/   aName.Insert(aPrefix, 0);
 /*N*/
 /*N*/   if (!Find(aName, SD_LT_FAMILY))
@@ -507,7 +507,7 @@ namespace binfilter {
     /**************************************************************************
     * Hintergrund
     **************************************************************************/
-/*N*/   aName = String(SdResId(STR_LAYOUT_BACKGROUND));
+/*N*/   aName = SdResId(STR_LAYOUT_BACKGROUND).toString();
 /*N*/   aName.Insert(aPrefix, 0);
 /*N*/
 /*N*/   if (!Find(aName, SD_LT_FAMILY))
@@ -588,7 +588,7 @@ namespace binfilter {
 /*N*/
 /*N*/   USHORT nLclMask = SFXSTYLEBIT_USED;
 /*N*/
-/*N*/   aName = String(SdResId(STR_PSEUDOSHEET_TITLE));
+/*N*/   aName = SdResId(STR_PSEUDOSHEET_TITLE).toString();
 /*N*/   if (!(pSheet = Find(aName, SFX_STYLE_FAMILY_PSEUDO)))
 /*N*/   {
 /*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nLclMask);
@@ -597,7 +597,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   pSheet->SetHelpId( aHelpFile, HID_PSEUDOSHEET_TITLE );
 /*N*/
-/*N*/   aName = String(SdResId(STR_PSEUDOSHEET_SUBTITLE));
+/*N*/   aName = SdResId(STR_PSEUDOSHEET_SUBTITLE).toString();
 /*N*/   if (!(pSheet = Find(aName, SFX_STYLE_FAMILY_PSEUDO)))
 /*N*/   {
 /*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nLclMask);
@@ -606,7 +606,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   pSheet->SetHelpId( aHelpFile, HID_PSEUDOSHEET_SUBTITLE );
 /*N*/
-/*N*/   aName = String(SdResId(STR_PSEUDOSHEET_BACKGROUNDOBJECTS));
+/*N*/   aName = SdResId(STR_PSEUDOSHEET_BACKGROUNDOBJECTS).toString();
 /*N*/   if (!(pSheet = Find(aName, SFX_STYLE_FAMILY_PSEUDO)))
 /*N*/   {
 /*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nLclMask);
@@ -615,7 +615,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   pSheet->SetHelpId( aHelpFile, HID_PSEUDOSHEET_BACKGROUNDOBJECTS );
 /*N*/
-/*N*/   aName = String(SdResId(STR_PSEUDOSHEET_BACKGROUND));
+/*N*/   aName = SdResId(STR_PSEUDOSHEET_BACKGROUND).toString();
 /*N*/   if (!(pSheet = Find(aName, SFX_STYLE_FAMILY_PSEUDO)))
 /*N*/   {
 /*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nLclMask);
@@ -624,7 +624,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   pSheet->SetHelpId( aHelpFile, HID_PSEUDOSHEET_BACKGROUND );
 /*N*/
-/*N*/   aName = String(SdResId(STR_PSEUDOSHEET_NOTES));
+/*N*/   aName = SdResId(STR_PSEUDOSHEET_NOTES).toString();
 /*N*/   if (!(pSheet = Find(aName, SFX_STYLE_FAMILY_PSEUDO)))
 /*N*/   {
 /*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nLclMask);
@@ -635,7 +635,7 @@ namespace binfilter {
 /*N*/
 /*N*/   pParent = NULL;
 /*N*/   SetSearchMask(SFX_STYLE_FAMILY_PSEUDO);
-/*N*/   aName = String(SdResId(STR_PSEUDOSHEET_OUTLINE));
+/*N*/   aName = SdResId(STR_PSEUDOSHEET_OUTLINE).toString();
 /*N*/   for (USHORT nLevel = 1; nLevel < 10; nLevel++)
 /*N*/   {
 /*N*/       String aLevelName(aName);
@@ -726,7 +726,7 @@ namespace binfilter {
 /*N*/           {
 /*N*/               if( nNameId )
 /*N*/               {
-/*N*/                   aNewName = String( SdResId( nNameId ) );
+/*N*/                   aNewName = SdResId( nNameId ).toString();
 /*N*/                   if( nNameId == STR_PSEUDOSHEET_OUTLINE )
 /*N*/                   {
 /*N*/                       aNewName.Append( sal_Unicode( ' ' ));
@@ -769,79 +769,79 @@ namespace binfilter {
 /*N*/               USHORT nNewId = 0;
 /*N*/               if( eFam == SFX_STYLE_FAMILY_PARA )
 /*N*/               {
-/*N*/                   if( aOldName == String( SdResId( STR_STANDARD_STYLESHEET_NAME ) ) ||
+/*N*/                   if( aOldName == String( SdResId( STR_STANDARD_STYLESHEET_NAME ).toString() ) ||
 /*N*/                       aOldName.EqualsAscii( "Standard", 0, RTL_CONSTASCII_LENGTH( "Standard" )) )
 /*N*/                       nNewId = HID_STANDARD_STYLESHEET_NAME;
-/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_OBJWITHARROW ) ) ||
+/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_OBJWITHARROW ).toString() ) ||
 /*N*/                       aOldName.EqualsAscii( "Objekt mit Pfeilspitze", 0, RTL_CONSTASCII_LENGTH( "Objekt mit Pfeilspitze" )) )
 /*N*/                       nNewId = HID_POOLSHEET_OBJWITHARROW;
-/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_OBJWITHSHADOW ) ) ||
+/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_OBJWITHSHADOW ).toString() ) ||
 /*N*/                       aOldName.EqualsAscii( "Objekt mit Schatten", 0, RTL_CONSTASCII_LENGTH( "Objekt mit Schatten" )) )
 /*N*/                       nNewId = HID_POOLSHEET_OBJWITHSHADOW;
-/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_OBJWITHOUTFILL ) ) ||
-/*N*/                       aOldName == String( SdResId( STR_POOLSHEET_OBJWITHOUTFILL_NT ) ) )
+/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_OBJWITHOUTFILL ).toString() ) ||
+/*N*/                       aOldName == String( SdResId( STR_POOLSHEET_OBJWITHOUTFILL_NT ).toString() ) )
 /*N*/                       //aOldName.EqualsAscii( "Objekt ohne Füllung", 0, RTL_CONSTASCII_LENGTH( "Objekt ohne Füllung" )) )
 /*N*/                       nNewId = HID_POOLSHEET_OBJWITHOUTFILL;
-/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_TEXT ) ) ||
+/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_TEXT ).toString() ) ||
 /*N*/                       aOldName.EqualsAscii( "Text", 0, RTL_CONSTASCII_LENGTH( "Text" )) )
 /*N*/                       nNewId = HID_POOLSHEET_TEXT;
-/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_TEXTBODY ) ) ||
-/*N*/                       aOldName == String( SdResId( STR_POOLSHEET_TEXTBODY_NT ) ) )
+/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_TEXTBODY ).toString() ) ||
+/*N*/                       aOldName == String(SdResId( STR_POOLSHEET_TEXTBODY_NT ).toString())  )
 /*N*/                       //aOldName.EqualsAscii( "Textkörper", 0, RTL_CONSTASCII_LENGTH( "Textkörper" )) )
 /*N*/                       nNewId = HID_POOLSHEET_TEXTBODY;
-/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_TEXTBODY_JUSTIFY ) ) ||
-/*N*/                       aOldName == String( SdResId( STR_POOLSHEET_TEXTBODY_JUSTIFY_NT ) ) )
+/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_TEXTBODY_JUSTIFY ).toString() ) ||
+/*N*/                       aOldName == String( SdResId( STR_POOLSHEET_TEXTBODY_JUSTIFY_NT ).toString() ) )
 /*N*/                       //aOldName.EqualsAscii( "Textkörper Blocksatz", 0, RTL_CONSTASCII_LENGTH( "Textkörper Blocksatz" )) )
 /*N*/                       nNewId = HID_POOLSHEET_TEXTBODY_JUSTIFY;
-/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_TEXTBODY_INDENT ) ) ||
-/*N*/                       aOldName == String( SdResId( STR_POOLSHEET_TEXTBODY_INDENT_NT ) ) )
+/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_TEXTBODY_INDENT ).toString() ) ||
+/*N*/                       aOldName == String( SdResId( STR_POOLSHEET_TEXTBODY_INDENT_NT ).toString() ) )
 /*N*/                       //aOldName.EqualsAscii( "Textkörper Einzug", 0, RTL_CONSTASCII_LENGTH( "Textkörper Einzug" )) )
 /*N*/                       nNewId = HID_POOLSHEET_TEXTBODY_INDENT;
-/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_TITLE ) ) ||
+/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_TITLE ).toString() ) ||
 /*N*/                       aOldName.EqualsAscii( "Titel", 0, RTL_CONSTASCII_LENGTH( "Titel" )) )
 /*N*/                       nNewId = HID_POOLSHEET_TITLE;
-/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_TITLE1 ) ) ||
+/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_TITLE1 ).toString() ) ||
 /*N*/                       aOldName.EqualsAscii( "Titel1", 0, RTL_CONSTASCII_LENGTH( "Titel1" )) )
 /*N*/                       nNewId = HID_POOLSHEET_TITLE1;
-/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_TITLE2 ) ) ||
+/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_TITLE2 ).toString() ) ||
 /*N*/                       aOldName.EqualsAscii( "Titel2", 0, RTL_CONSTASCII_LENGTH( "Titel2" )) )
 /*N*/                       nNewId = HID_POOLSHEET_TITLE2;
-/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_HEADLINE ) ) ||
-/*N*/                       aOldName == String( SdResId( STR_POOLSHEET_HEADLINE_NT ) ) )
+/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_HEADLINE ).toString() ) ||
+/*N*/                       aOldName == String( SdResId( STR_POOLSHEET_HEADLINE_NT ).toString() ) )
 /*N*/                       //aOldName.EqualsAscii( "Überschrift", 0, RTL_CONSTASCII_LENGTH( "Überschrift" )) )
 /*N*/                       nNewId = HID_POOLSHEET_HEADLINE;
-/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_HEADLINE1 ) ) ||
-/*N*/                       aOldName == String( SdResId( STR_POOLSHEET_HEADLINE1_NT ) ) )
+/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_HEADLINE1 ).toString() ) ||
+/*N*/                       aOldName == String( SdResId( STR_POOLSHEET_HEADLINE1_NT ).toString() ) )
 /*N*/                       //aOldName.EqualsAscii( "Überschrift1", 0, RTL_CONSTASCII_LENGTH( "Überschrift1" )) )
 /*N*/                       nNewId = HID_POOLSHEET_HEADLINE1;
-/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_HEADLINE2 ) ) ||
-/*N*/                       aOldName == String( SdResId( STR_POOLSHEET_HEADLINE2_NT ) ) )
+/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_HEADLINE2 ).toString() ) ||
+/*N*/                       aOldName == String( SdResId( STR_POOLSHEET_HEADLINE2_NT ).toString() ) )
 /*N*/                       //aOldName.EqualsAscii( "Überschrift2", 0, RTL_CONSTASCII_LENGTH( "Überschrift2" )) )
 /*N*/                       nNewId = HID_POOLSHEET_HEADLINE2;
-/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_MEASURE ) ) ||
-/*N*/                       aOldName == String( SdResId( STR_POOLSHEET_MEASURE_NT ) ) )
+/*N*/                   else if( aOldName == String( SdResId( STR_POOLSHEET_MEASURE ).toString() ) ||
+/*N*/                       aOldName == String( SdResId( STR_POOLSHEET_MEASURE_NT ).toString() ) )
 /*N*/                       //aOldName.EqualsAscii( "Maßlinie", 0, RTL_CONSTASCII_LENGTH( "Maßlinie" )) )
 /*N*/                       nNewId = HID_POOLSHEET_MEASURE;
 /*N*/               }
 /*N*/               else if( eFam == SFX_STYLE_FAMILY_PSEUDO )
 /*N*/               {
-/*N*/                   String aStr( SdResId( STR_PSEUDOSHEET_OUTLINE ) );
+/*N*/                   String aStr( SdResId( STR_PSEUDOSHEET_OUTLINE ).toString() );
 /*N*/                   aStr.Append( sal_Unicode( ' ' ));
 /*N*/                   String aStr2( RTL_CONSTASCII_USTRINGPARAM( "Gliederung " ));
 /*N*/
-/*N*/                   if( aOldName == String( SdResId( STR_PSEUDOSHEET_TITLE ) ) ||
+/*N*/                   if( aOldName == String( SdResId( STR_PSEUDOSHEET_TITLE ).toString() ) ||
 /*N*/                       aOldName.EqualsAscii( "Titel", 0, RTL_CONSTASCII_LENGTH( "Titel" )))
 /*N*/                       nNewId = HID_PSEUDOSHEET_TITLE;
-/*N*/                   else if( aOldName == String( SdResId( STR_PSEUDOSHEET_SUBTITLE ) ) ||
+/*N*/                   else if( aOldName == String( SdResId( STR_PSEUDOSHEET_SUBTITLE ).toString() ) ||
 /*N*/                       aOldName.EqualsAscii( "Untertitel", 0, RTL_CONSTASCII_LENGTH( "Untertitel" )) )
 /*N*/                       nNewId = HID_PSEUDOSHEET_SUBTITLE;
-/*N*/                   else if( aOldName == String( SdResId( STR_PSEUDOSHEET_BACKGROUNDOBJECTS ) ) ||
+/*N*/                   else if( aOldName == String( SdResId( STR_PSEUDOSHEET_BACKGROUNDOBJECTS ).toString() ) ||
 /*N*/                       aOldName.EqualsAscii( "Hintergrundobjekte", 0, RTL_CONSTASCII_LENGTH( "Hintergrundobjekte" )) )
 /*N*/                       nNewId = HID_PSEUDOSHEET_BACKGROUNDOBJECTS;
-/*N*/                   else if( aOldName == String( SdResId( STR_PSEUDOSHEET_BACKGROUND ) ) ||
+/*N*/                   else if( aOldName == String( SdResId( STR_PSEUDOSHEET_BACKGROUND ).toString() ) ||
 /*N*/                       aOldName.EqualsAscii( "Hintergrund", 0, RTL_CONSTASCII_LENGTH( "Hintergrund" )) )
 /*N*/                       nNewId = HID_PSEUDOSHEET_BACKGROUND;
-/*N*/                   else if( aOldName == String( SdResId( STR_PSEUDOSHEET_NOTES ) ) ||
+/*N*/                   else if( aOldName == String( SdResId( STR_PSEUDOSHEET_NOTES ).toString() ) ||
 /*N*/                       aOldName.EqualsAscii( "Notizen", 0, RTL_CONSTASCII_LENGTH( "Notizen" )) )
 /*N*/                       nNewId = HID_PSEUDOSHEET_NOTES;
 /*N*/                   else if( aOldName.Equals( String( String( aStr ).Append( String( UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "1" ) ) ) ) ) ) ||
@@ -933,12 +933,12 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   String aOutlineName( RTL_CONSTASCII_USTRINGPARAM( SD_LT_SEPARATOR ));
-/*N*/   aOutlineName += String(SdResId(STR_PSEUDOSHEET_OUTLINE));
+/*N*/   aOutlineName += SdResId(STR_PSEUDOSHEET_OUTLINE).toString();
 /*N*/   String aTitleName( RTL_CONSTASCII_USTRINGPARAM( SD_LT_SEPARATOR ));
-/*N*/   aTitleName += String(SdResId(STR_PSEUDOSHEET_TITLE));
+/*N*/   aTitleName += SdResId(STR_PSEUDOSHEET_TITLE).toString();
 /*N*/   String aSubtitleName( RTL_CONSTASCII_USTRINGPARAM( SD_LT_SEPARATOR ));
-/*N*/   aSubtitleName += String(SdResId(STR_PSEUDOSHEET_SUBTITLE));
-/*N*/   String aStandardName(SdResId(STR_STANDARD_STYLESHEET_NAME));
+/*N*/   aSubtitleName += SdResId(STR_PSEUDOSHEET_SUBTITLE).toString();
+/*N*/   String aStandardName(SdResId(STR_STANDARD_STYLESHEET_NAME).toString());
 /*N*/   SfxStyleSheet* pSheetOutlineLevelOne = NULL;
 /*N*/
 /*N*/   for (size_t n = 0; n < nCount; n++)

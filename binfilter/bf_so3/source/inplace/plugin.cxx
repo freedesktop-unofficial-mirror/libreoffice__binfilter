@@ -220,7 +220,7 @@ SvPlugInObject::SvPlugInObject()
         pSoApp->pPlugInVerbList = new SvVerbList();
         // Alle unterstuetzten Verben anlegen
         pSoApp->pPlugInVerbList->Append(
-                SvVerb( 0, String( SoResId( STR_VERB_OPEN ) ) ) );
+                SvVerb( 0, SoResId( STR_VERB_OPEN ).toString() ) );
         pSoApp->nPlugInDocFormat =
                 SotExchange::RegisterFormatName( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "PlugIn Object" ) ) );
     }

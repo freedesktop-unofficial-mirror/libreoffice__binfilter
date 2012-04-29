@@ -79,7 +79,7 @@ SdFilter::~SdFilter()
 
 void SdFilter::CreateProgress()
 {
-    mpProgress = new SfxProgress( &mrDocShell, String( SdResId( STR_LOAD_DOC ) ), 100 );
+    mpProgress = new SfxProgress( &mrDocShell, SdResId( STR_LOAD_DOC ).toString(), 100 );
     mpProgress->SetState( 0, 100 );
 }
 

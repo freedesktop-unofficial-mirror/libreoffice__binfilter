@@ -2011,7 +2011,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/ {
 /*N*/   DBG_ASSERT( RID_SVXITEMS_RELIEF_ENGRAVED - RID_SVXITEMS_RELIEF_NONE,
 /*N*/                   "enum overflow" );
-/*N*/   return String( SVX_RES( RID_SVXITEMS_RELIEF_BEGIN + nPos ));
+/*N*/   return SVX_RESSTR(RID_SVXITEMS_RELIEF_BEGIN + nPos);
 /*N*/ }
 
 /*N*/ USHORT SvxCharReliefItem::GetValueCount() const

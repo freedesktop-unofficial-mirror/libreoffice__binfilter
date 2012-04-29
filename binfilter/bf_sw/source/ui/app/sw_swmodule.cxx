@@ -130,9 +130,9 @@ using namespace ::rtl;
 /*N*/                                    ERRCODE_AREA_SW_END,
 /*N*/                                    pSwResMgr );
 /*N*/
-/*N*/   SfxEventConfiguration::RegisterEvent(SW_EVENT_MAIL_MERGE, ResId::toString(SW_RES(STR_PRINT_MERGE_MACRO)), String::CreateFromAscii("OnMailMerge"));
-/*N*/   SfxEventConfiguration::RegisterEvent(SW_EVENT_MAIL_MERGE_END, ResId::toString(SW_RES(STR_PRINT_MERGE_MACRO)), String::CreateFromAscii("OnMailMergeFinished"));
-/*N*/   SfxEventConfiguration::RegisterEvent(SW_EVENT_PAGE_COUNT, ResId::toString(SW_RES(STR_PAGE_COUNT_MACRO)), String::CreateFromAscii("OnPageCountChange"));
+/*N*/   SfxEventConfiguration::RegisterEvent(SW_EVENT_MAIL_MERGE, SW_RESSTR(STR_PRINT_MERGE_MACRO), String::CreateFromAscii("OnMailMerge"));
+/*N*/   SfxEventConfiguration::RegisterEvent(SW_EVENT_MAIL_MERGE_END, SW_RESSTR(STR_PRINT_MERGE_MACRO), String::CreateFromAscii("OnMailMergeFinished"));
+/*N*/   SfxEventConfiguration::RegisterEvent(SW_EVENT_PAGE_COUNT, SW_RESSTR(STR_PAGE_COUNT_MACRO), String::CreateFromAscii("OnPageCountChange"));
 /*N*/   pModuleConfig = new SwModuleOptions;
 /*N*/
 /*N*/   pStdFontConfig = new SwStdFontConfig;

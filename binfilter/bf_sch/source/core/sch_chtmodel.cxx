@@ -480,8 +480,8 @@ using namespace ::com::sun::star;
 /*N*/   // Layer anlegen
 /*N*/
 /*N*/   SdrLayerAdmin& rLayerAdmin = GetLayerAdmin();
-/*N*/   rLayerAdmin.NewLayer( String( SchResId( STR_LAYOUT )));
-/*N*/   rLayerAdmin.NewLayer( String( SchResId( STR_CONTROLS )));
+/*N*/   rLayerAdmin.NewLayer( SchResId( STR_LAYOUT ).toString() );
+/*N*/   rLayerAdmin.NewLayer( SchResId( STR_CONTROLS ).toString() );
 /*N*/
 /*N*/
 /*N*/   //Wichtig! die Achsen muessen jetzt erstellt werden, dies darf erst nach dem

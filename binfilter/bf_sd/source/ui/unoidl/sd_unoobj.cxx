@@ -1387,7 +1387,7 @@ void SAL_CALL SdUnoEventsAccess::replaceByName( const OUString& aName, const uno
                             {
                                 sal_Int32 nPageNumber = aStrBookmark.copy( aApiPageName.getLength() ).toInt32();
                                 OUStringBuffer sBuffer;
-                                String aPageName( SdResId(STR_PAGE) );
+                                String aPageName( SdResId(STR_PAGE).toString() );
                                 sBuffer.append( aPageName );
                                 sBuffer.append( sal_Unicode( ' ' ) );
                                 sBuffer.append( nPageNumber );
@@ -1604,7 +1604,7 @@ uno::Any SAL_CALL SdUnoEventsAccess::getByName( const OUString& aName )
             break;
         case presentation::ClickAction_BOOKMARK:
             {
-                String aPageName( SdResId(STR_PAGE) );
+                String aPageName( SdResId(STR_PAGE).toString() );
                 aPageName += sal_Unicode( ' ' );
 
                 const OUString aStrBookmark( pInfo->aBookmark );

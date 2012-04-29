@@ -254,7 +254,7 @@ void SdDrawDocument::CreateFirstPages()
 
         pHandoutPage->SetBorder(2000, 2000, 2000, 2000);
         pHandoutPage->SetPageKind(PK_HANDOUT);
-        pHandoutPage->SetName( String (SdResId(STR_HANDOUT) ) );
+        pHandoutPage->SetName( SdResId(STR_HANDOUT).toString() );
         InsertPage(pHandoutPage, 0);
 
         SdPage* pHandoutMPage = (SdPage*) AllocPage((bMasterPage=TRUE));

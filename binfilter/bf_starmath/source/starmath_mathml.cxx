@@ -271,7 +271,7 @@ ULONG SmXMLWrapper::Import(SfxMedium &rMedium)
     sal_Int32 nProgressRange(nSteps);
     if (xStatusIndicator.is())
     {
-        xStatusIndicator->start(ResId::toString(SmResId(STR_STATSTR_READING)),
+        xStatusIndicator->start(SmResId(STR_STATSTR_READING).toString(),
             nProgressRange);
     }
 

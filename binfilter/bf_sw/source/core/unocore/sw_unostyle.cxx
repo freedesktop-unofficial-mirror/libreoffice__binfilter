@@ -1553,7 +1553,7 @@ const SwPageDesc& SwStyleBase_Impl::GetOldPageDesc()
         {
             for(i = RC_POOLPAGEDESC_BEGIN; i <= STR_POOLPAGE_ENDNOTE; ++i)
             {
-                const String aFmtName(SW_RES(i));
+                const String aFmtName(SW_RESSTR(i));
                 if(aFmtName == rStyleName)
                 {
                     pOldPageDesc = rDoc.GetPageDescFromPool( RES_POOLPAGE_BEGIN + i - RC_POOLPAGEDESC_BEGIN );

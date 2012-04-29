@@ -433,7 +433,7 @@ using namespace ::com::sun::star;
 /*N*/           )
 /*N*/       {
 /*N*/           if( GetCreateMode() != SFX_CREATE_MODE_EMBEDDED )
-/*N*/               pProgress = new SfxProgress( this, String( SchResId( STR_OPEN_DOCUMENT )), 100 );
+/*N*/               pProgress = new SfxProgress( this, SchResId( STR_OPEN_DOCUMENT ).toString(), 100 );
 /*N*/
 /*N*/           if( pProgress )
 /*N*/               pProgress->SetState( 0, 100 );
@@ -641,15 +641,15 @@ using namespace ::com::sun::star;
 /*N*/       *pClassName     = SvGlobalName(BF_SO3_SCH_CLASSID_30);
 /*N*/       *pFormat        = SOT_FORMATSTR_ID_STARCHART;
 /*N*/       (*pAppName).AssignAscii( RTL_CONSTASCII_STRINGPARAM( "Schart 3.1" ));
-/*N*/       *pFullTypeName  = String(SchResId(STR_CHART_DOCUMENT_FULLTYPE_31));
-/*N*/       *pShortTypeName = String(SchResId(STR_CHART_DOCUMENT));
+/*N*/       *pFullTypeName  = SchResId(STR_CHART_DOCUMENT_FULLTYPE_31).toString();
+/*N*/       *pShortTypeName = SchResId(STR_CHART_DOCUMENT).toString();
 /*N*/   }
 /*N*/   else if (nFileFormat == SOFFICE_FILEFORMAT_40)
 /*N*/   {
 /*N*/       *pClassName     = SvGlobalName(BF_SO3_SCH_CLASSID_40);
 /*N*/       *pFormat        = SOT_FORMATSTR_ID_STARCHART_40;
-/*N*/       *pFullTypeName  = String(SchResId(STR_CHART_DOCUMENT_FULLTYPE_40));
-/*N*/       *pShortTypeName = String(SchResId(STR_CHART_DOCUMENT));
+/*N*/       *pFullTypeName  = SchResId(STR_CHART_DOCUMENT_FULLTYPE_40).toString();
+/*N*/       *pShortTypeName = SchResId(STR_CHART_DOCUMENT).toString();
 /*N*/   }
 /*N*/   else if (nFileFormat == SOFFICE_FILEFORMAT_50)
 /*N*/   {
@@ -659,8 +659,8 @@ using namespace ::com::sun::star;
             // has always been an error (!)
             *pFormat        = SOT_FORMATSTR_ID_STARCHART_50;
 
-/*N*/       *pFullTypeName  = String(SchResId(STR_CHART_DOCUMENT_FULLTYPE_50));
-/*N*/       *pShortTypeName = String(SchResId(STR_CHART_DOCUMENT));
+/*N*/       *pFullTypeName  = SchResId(STR_CHART_DOCUMENT_FULLTYPE_50).toString();
+/*N*/       *pShortTypeName = SchResId(STR_CHART_DOCUMENT).toString();
 /*N*/   }
 /*N*/   else if (nFileFormat == SOFFICE_FILEFORMAT_60)
 /*N*/   {
@@ -670,8 +670,8 @@ using namespace ::com::sun::star;
             // has always been an error (!)
             *pFormat        = SOT_FORMATSTR_ID_STARCHART_60;
 
-/*N*/       *pFullTypeName  = String(SchResId(STR_CHART_DOCUMENT_FULLTYPE_60));
-/*N*/       *pShortTypeName = String(SchResId(STR_CHART_DOCUMENT));
+/*N*/       *pFullTypeName  = SchResId(STR_CHART_DOCUMENT_FULLTYPE_60).toString();
+/*N*/       *pShortTypeName = SchResId(STR_CHART_DOCUMENT).toString();
 /*N*/   }
 /*N*/ }
 

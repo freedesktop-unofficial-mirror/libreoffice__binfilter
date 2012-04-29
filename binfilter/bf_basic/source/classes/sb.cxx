@@ -942,7 +942,7 @@ struct BasicStringList_Impl : private Resource
         : Resource( rErrIdP ),aResId(nId,*rErrIdP.GetResMgr()){}
     ~BasicStringList_Impl() { FreeResource(); }
 
-    String GetString(){ return String( aResId ); }
+    String GetString(){ return aResId.toString(); }
     BOOL IsErrorTextAvailable( void )
         { return IsAvailableRes(aResId.SetRT(RSC_STRING)); }
 };

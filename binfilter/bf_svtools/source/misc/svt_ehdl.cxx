@@ -272,7 +272,7 @@ class ResString: public String
 //-------------------------------------------------------------------------
 
 ResString::ResString(ResId & rId):
-    String(rId.SetAutoRelease(FALSE)),
+    String(rId.SetAutoRelease(FALSE).toString()),
     nFlags(0)
 {
     ResMgr * pResMgr = rId.GetResMgr();

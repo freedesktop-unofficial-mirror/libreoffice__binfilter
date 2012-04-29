@@ -172,7 +172,7 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /*N*/ BOOL XGradientList::Create()
 /*N*/ {
-/*N*/   XubString aStr( SVX_RES( RID_SVXSTR_GRADIENT ) );
+/*N*/   XubString aStr( SVX_RES( RID_SVXSTR_GRADIENT ).toString() );
 /*N*/   xub_StrLen nLen;
 /*N*/
 /*N*/   aStr.AppendAscii(" 1");

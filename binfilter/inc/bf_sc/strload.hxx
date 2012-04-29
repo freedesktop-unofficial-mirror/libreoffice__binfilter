@@ -38,7 +38,7 @@ class ScRscStrLoader : public Resource
 {
 public:
     ScRscStrLoader( USHORT nRsc, USHORT nStrId ) :
-        Resource( ScResId( nRsc ) ), theStr( ScResId( nStrId ) )
+        Resource( ScResId( nRsc ) ), theStr( ScResId( nStrId ).toString() )
     {
         FreeResource();
     }

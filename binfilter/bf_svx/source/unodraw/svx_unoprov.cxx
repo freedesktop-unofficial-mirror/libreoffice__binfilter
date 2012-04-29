@@ -1030,19 +1030,19 @@ bool SvxUnoConvertResourceString( int nSourceResIds, int nDestResIds, int nCount
     {
         USHORT nResId = (USHORT)(nSourceResIds + i);
         const ResId aRes( SVX_RES(nResId));
-        const String aCompare( aRes );
+        const String aCompare( aRes.toString() );
         if( aShortString == aCompare )
         {
             USHORT nNewResId = (USHORT)(nDestResIds + i);
             ResId aNewRes( SVX_RES( nNewResId ));
-            rString.Replace( 0, aShortString.Len(), String( aNewRes ) );
+            rString.Replace( 0, aShortString.Len(), aNewRes.toString() );
             return TRUE;
         }
         else if( rString == aCompare )
         {
             USHORT nNewResId = (USHORT)(nDestResIds + i);
             ResId aNewRes( SVX_RES( nNewResId ));
-            rString = String( aNewRes );
+            rString = aNewRes.toString();
             return TRUE;
         }
     }

@@ -714,7 +714,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/ String lcl_GetUniqueFlyName( const SwDoc* pDoc, sal_uInt16 nDefStrId )
 /*N*/ {
 /*N*/   ResId aId( nDefStrId, *pSwResMgr );
-/*N*/   String aName( aId );
+/*N*/   String aName( aId.toString() );
 /*N*/   xub_StrLen nNmLen = aName.Len();
 /*N*/
 /*N*/   const SwSpzFrmFmts& rFmts = *pDoc->GetSpzFrmFmts();
@@ -820,9 +820,9 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   ResId nFrmId( STR_FRAME_DEFNAME, *pSwResMgr ),
 /*N*/         nGrfId( STR_GRAPHIC_DEFNAME, *pSwResMgr ),
 /*N*/         nOLEId( STR_OBJECT_DEFNAME, *pSwResMgr );
-/*N*/   String sFlyNm( nFrmId );
-/*N*/   String sGrfNm( nGrfId );
-/*N*/   String sOLENm( nOLEId );
+/*N*/   String sFlyNm( nFrmId.toString() );
+/*N*/   String sGrfNm( nGrfId.toString() );
+/*N*/   String sOLENm( nOLEId.toString() );
 /*N*/
 /*N*/   if( 255 < ( n = GetSpzFrmFmts()->Count() ))
 /*N*/       n = 255;

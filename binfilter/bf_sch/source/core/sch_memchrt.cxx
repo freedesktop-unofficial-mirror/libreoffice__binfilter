@@ -610,7 +610,7 @@ namespace binfilter {
 /*N*/       // initialize resource string
 /*N*/       mpColNameBuffer = new String[ 2 ];
 /*N*/       DBG_ASSERT( mpColNameBuffer, "couldn't create two strings!" );
-/*N*/       String aResStr( SchResId( STR_COLUMN ));
+/*N*/       String aResStr( SchResId( STR_COLUMN ).toString() );
 /*N*/       xub_StrLen nPos = aResStr.SearchAscii( "$(N)" );
 /*N*/       if( nPos != STRING_NOTFOUND )
 /*N*/       {
@@ -639,7 +639,7 @@ namespace binfilter {
 /*N*/       // initialize resource string
 /*N*/       mpRowNameBuffer = new String[ 2 ];
 /*N*/       DBG_ASSERT( mpRowNameBuffer, "couldn't create two strings!" );
-/*N*/       String aResStr( SchResId( STR_ROW ));
+/*N*/       String aResStr( SchResId( STR_ROW ).toString() );
 /*N*/       xub_StrLen nPos = aResStr.SearchAscii( "$(N)" );
 /*N*/       if( nPos != STRING_NOTFOUND )
 /*N*/       {

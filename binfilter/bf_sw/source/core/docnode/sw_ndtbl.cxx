@@ -613,7 +613,7 @@ USHORT aTableSplitBoxSetRange[] = {
 /*N*/ String SwDoc::GetUniqueTblName() const
 /*N*/ {
 /*N*/   ResId aId( STR_TABLE_DEFNAME, *pSwResMgr );
-/*N*/   String aName( aId );
+/*N*/   String aName( aId.toString() );
 /*N*/   xub_StrLen nNmLen = aName.Len();
 /*N*/
 /*N*/   USHORT nNum, nTmp, nFlagSize = ( pTblFrmFmtTbl->Count() / 8 ) +2;

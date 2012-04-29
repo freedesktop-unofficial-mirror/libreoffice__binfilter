@@ -181,7 +181,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/   {
 /*N*/       sal_Int32 nUserIndex = 1;
 /*N*/       const ResId aRes(SVX_RES(nPrefixResId));
-/*N*/       String aUser( aRes );
+/*N*/       String aUser( aRes.toString() );
 /*N*/       aUser += sal_Unicode( ' ' );
 /*N*/
 /*N*/       if( pDefaults )
@@ -1261,7 +1261,7 @@ const XPolygon& XLineStartItem::GetValue() const
 /*N*/
 /*N*/           sal_Int32 nUserIndex = 1;
 /*N*/           const ResId aRes(SVX_RES(RID_SVXSTR_LINEEND));
-/*N*/           const String aUser( aRes );
+/*N*/           const String aUser( aRes.toString() );
 /*N*/
 /*N*/           if( pPool1 )
 /*N*/           {
@@ -1603,7 +1603,7 @@ const XPolygon& XLineEndItem::GetValue() const
 /*N*/
 /*N*/           sal_Int32 nUserIndex = 1;
 /*N*/           const ResId aRes(SVX_RES(RID_SVXSTR_LINEEND));
-/*N*/           const String aUser( aRes );
+/*N*/           const String aUser( aRes.toString() );
 /*N*/
 /*N*/           if( pPool1 )
 /*N*/           {

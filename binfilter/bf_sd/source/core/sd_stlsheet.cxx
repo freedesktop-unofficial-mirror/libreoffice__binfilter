@@ -289,34 +289,34 @@ namespace binfilter {
 /*N*/   // Namen (unabhaengig von der Landessprache) mappen
 /*N*/   String aInternalName;
 /*N*/
-/*N*/   if (aName == String(SdResId(STR_PSEUDOSHEET_TITLE)))
+/*N*/   if (aName.Equals(String(SdResId(STR_PSEUDOSHEET_TITLE).toString())))
 /*N*/   {
-/*N*/       aInternalName = String(SdResId(STR_LAYOUT_TITLE));
+/*N*/       aInternalName = SdResId(STR_LAYOUT_TITLE).toString();
 /*N*/   }
-/*N*/   else if (aName == String(SdResId(STR_PSEUDOSHEET_SUBTITLE)))
+/*N*/   else if (aName.Equals(String(SdResId(STR_PSEUDOSHEET_SUBTITLE).toString())))
 /*N*/   {
-/*N*/       aInternalName = String(SdResId(STR_LAYOUT_SUBTITLE));
+/*N*/       aInternalName = SdResId(STR_LAYOUT_SUBTITLE).toString();
 /*N*/   }
-/*N*/   else if (aName == String(SdResId(STR_PSEUDOSHEET_BACKGROUND)))
+/*N*/   else if (aName.Equals(String(SdResId(STR_PSEUDOSHEET_BACKGROUND).toString())))
 /*N*/   {
-/*N*/       aInternalName = String(SdResId(STR_LAYOUT_BACKGROUND));
+/*N*/       aInternalName = SdResId(STR_LAYOUT_BACKGROUND).toString();
 /*N*/   }
-/*N*/   else if (aName == String(SdResId(STR_PSEUDOSHEET_BACKGROUNDOBJECTS)))
+/*N*/   else if (aName.Equals(String(SdResId(STR_PSEUDOSHEET_BACKGROUNDOBJECTS).toString())))
 /*N*/   {
-/*N*/       aInternalName = String(SdResId(STR_LAYOUT_BACKGROUNDOBJECTS));
+/*N*/       aInternalName = SdResId(STR_LAYOUT_BACKGROUNDOBJECTS).toString();
 /*N*/   }
-/*N*/   else if (aName == String(SdResId(STR_PSEUDOSHEET_NOTES)))
+/*N*/   else if (aName.Equals(String(SdResId(STR_PSEUDOSHEET_NOTES).toString())))
 /*N*/   {
-/*N*/       aInternalName = String(SdResId(STR_LAYOUT_NOTES));
+/*N*/       aInternalName = SdResId(STR_LAYOUT_NOTES).toString();
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       String aOutlineStr(SdResId(STR_PSEUDOSHEET_OUTLINE));
+/*N*/       String aOutlineStr(SdResId(STR_PSEUDOSHEET_OUTLINE).toString());
 /*N*/       USHORT nPos = aName.Search(aOutlineStr);
 /*N*/       if (nPos != STRING_NOTFOUND)
 /*N*/       {
 /*N*/           String aNumStr(aName.Copy(aOutlineStr.Len()));
-/*N*/           aInternalName = String(SdResId(STR_LAYOUT_OUTLINE));
+/*N*/           aInternalName = SdResId(STR_LAYOUT_OUTLINE).toString();
 /*N*/           aInternalName += aNumStr;
 /*N*/       }
 /*N*/   }

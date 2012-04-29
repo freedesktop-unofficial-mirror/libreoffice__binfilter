@@ -587,10 +587,10 @@ void SwXFieldMaster::setPropertyValue( const OUString& rPropertyName,
         String sTypeName(uTmp);
         SwFieldType* pLclType = m_pDoc->GetFldType(nResTypeId, sTypeName);
 
-        String sTable(SW_RES(STR_POOLCOLL_LABEL_TABLE));
-        String sDrawing(SW_RES(STR_POOLCOLL_LABEL_DRAWING));
-        String sFrame(SW_RES(STR_POOLCOLL_LABEL_FRAME));
-        String sIllustration(SW_RES(STR_POOLCOLL_LABEL_ABB));
+        String sTable(SW_RESSTR(STR_POOLCOLL_LABEL_TABLE));
+        String sDrawing(SW_RESSTR(STR_POOLCOLL_LABEL_DRAWING));
+        String sFrame(SW_RESSTR(STR_POOLCOLL_LABEL_FRAME));
+        String sIllustration(SW_RESSTR(STR_POOLCOLL_LABEL_ABB));
 
         if(pLclType ||
             (RES_SETEXPFLD == nResTypeId &&

@@ -99,7 +99,7 @@ String SdUnoGraphicStyleFamily::getInternalStyleName( const OUString& rName ) th
     {
         if( rName.compareToAscii( pMap->mpName ) == 0 )
         {
-            String aStr( SdResId(pMap->mnResId) );
+            String aStr( SdResId(pMap->mnResId).toString() );
             return aStr;
         }
 
@@ -132,7 +132,7 @@ OUString SdUnoGraphicStyleFamily::getExternalStyleName( const String& rName ) th
     struct SdUnoGStyleNameMapper_s* pMap = SdUnoGStyleNameMapper;
     while( pMap->mpName )
     {
-        String aCompare( SdResId(pMap->mnResId) );
+        String aCompare( SdResId(pMap->mnResId).toString() );
         if( rName == aCompare )
             return OUString::createFromAscii( pMap->mpName );
 

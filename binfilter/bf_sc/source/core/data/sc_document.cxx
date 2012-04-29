@@ -186,7 +186,7 @@ namespace binfilter {
 /*N*/   {
 /*?*/       // neu erzeugen
 /*?*/
-/*?*/       const String aStrTable( ScResId(SCSTR_TABLE) );
+/*?*/       const String aStrTable( ScResId(SCSTR_TABLE).toString() );
 /*?*/       BOOL         bOk   = FALSE;
 /*?*/
 /*?*/       //  vorneweg testen, ob der Prefix als gueltig erkannt wird

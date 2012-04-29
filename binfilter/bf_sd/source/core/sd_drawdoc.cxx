@@ -882,7 +882,7 @@ void SdDrawDocument::NewOrLoadCompleted(DocCreationMode eMode)
     }
 
     // Standardvorlage an der Drawing Engine setzen
-    String aName( SdResId(STR_STANDARD_STYLESHEET_NAME));
+    String aName( SdResId(STR_STANDARD_STYLESHEET_NAME).toString() );
     SfxStyleSheet* pSheet = (SfxStyleSheet*)pStyleSheetPool->
                                     Find(aName, SFX_STYLE_FAMILY_PARA);
     SetDefaultStyleSheet(pSheet);

@@ -107,7 +107,7 @@ OUString SdUnoPseudoStyleFamily::getExternalStyleName( const String& rStyleName 
     for( nIndex = 0; nIndex < nPseudoStyleCount; nIndex++ )
     {
         SdResId aRID(StyleNameMapping[nIndex].mnRID);
-        String aCompareString(aRID);
+        String aCompareString(aRID.toString());
 
         if( StyleNameMapping[nIndex].mnRID == STR_LAYOUT_OUTLINE )
         {
@@ -280,7 +280,7 @@ void SdUnoPseudoStyleFamily::createStyle( sal_uInt16 nIndex, uno::Any& rAny ) th
 
     sal_uInt16 nRID = StyleNameMapping[nIndex].mnRID;
     SdResId aRID(nRID);
-    aLayoutName += String(aRID);
+    aLayoutName += aRID.toString();
 
     if( STR_LAYOUT_OUTLINE == nRID )
     {

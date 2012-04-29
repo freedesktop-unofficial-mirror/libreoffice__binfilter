@@ -1075,7 +1075,7 @@ using namespace ::com::sun::star;
 /*N*/   else if (!bApi)
 /*N*/   {
 /*N*/       //  different password was set before
-/*N*/       InfoBox aBox( rDocShell.GetDialogParent(), String( ScResId( SCSTR_WRONGPASSWORD ) ) );
+/*N*/       InfoBox aBox( rDocShell.GetDialogParent(), ScResId( SCSTR_WRONGPASSWORD ).toString() );
 /*N*/       aBox.Execute();
 /*N*/   }
 /*N*/
@@ -1103,7 +1103,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   else if (!bApi)
 /*N*/   {
-/*N*/       InfoBox aBox( rDocShell.GetDialogParent(), String( ScResId( SCSTR_WRONGPASSWORD ) ) );
+/*N*/       InfoBox aBox( rDocShell.GetDialogParent(), ScResId( SCSTR_WRONGPASSWORD ).toString() );
 /*N*/       aBox.Execute();
 /*N*/   }
 /*N*/

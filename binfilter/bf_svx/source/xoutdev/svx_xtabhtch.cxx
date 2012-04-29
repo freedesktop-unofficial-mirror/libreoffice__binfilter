@@ -168,7 +168,7 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 
 /*N*/ BOOL XHatchList::Create()
 /*N*/ {
-/*N*/   XubString aStr( SVX_RES( RID_SVXSTR_HATCH ) );
+/*N*/   XubString aStr( SVX_RES( RID_SVXSTR_HATCH ).toString() );
 /*N*/   xub_StrLen nLen;
 /*N*/
 /*N*/   aStr.AppendAscii(" 1");

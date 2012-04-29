@@ -298,70 +298,70 @@ namespace binfilter {
 /*N*/                              aFont.GetCharSet(), EE_CHAR_FONTINFO );
 /*N*/
 /*N*/       SfxStyleSheetBase* pSheet =
-/*N*/           &pStyleSheetPool->Make(String(SchResId(STR_STLSHEET_TITLE_MAIN)),
+/*N*/           &pStyleSheetPool->Make(SchResId(STR_STLSHEET_TITLE_MAIN).toString(),
 /*N*/                                         SFX_STYLE_FAMILY_PARA);
 /*N*/       pSheet->GetItemSet().Put(aFontItem);
 /*N*/       pSheet->GetItemSet().Put(SvxColorItem( Color( COL_AUTO ) ));
 /*N*/       pSheet->GetItemSet().Put(SvxFontHeightItem(493));
 /*N*/
 /*N*/       pSheet = &pStyleSheetPool->
-/*N*/                   Make(String(SchResId(STR_STLSHEET_TITLE_SUB)),
+/*N*/                   Make(SchResId(STR_STLSHEET_TITLE_SUB).toString(),
 /*N*/                        SFX_STYLE_FAMILY_PARA);
 /*N*/       pSheet->GetItemSet().Put(aFontItem);
 /*N*/       pSheet->GetItemSet().Put(SvxColorItem( Color( COL_AUTO ) ));
 /*N*/       pSheet->GetItemSet().Put(SvxFontHeightItem(423));
 /*N*/
 /*N*/       pSheet = &pStyleSheetPool->
-/*N*/                   Make(String(SchResId(STR_STLSHEET_TITLE_X_AXIS)),
+/*N*/                   Make(SchResId(STR_STLSHEET_TITLE_X_AXIS).toString(),
 /*N*/                        SFX_STYLE_FAMILY_PARA);
 /*N*/       pSheet->GetItemSet().Put(aFontItem);
 /*N*/       pSheet->GetItemSet().Put(SvxColorItem( Color( COL_AUTO ) ));
 /*N*/       pSheet->GetItemSet().Put(SvxFontHeightItem(352));
 /*N*/
 /*N*/       pSheet = &pStyleSheetPool->
-/*N*/                   Make(String(SchResId(STR_STLSHEET_TITLE_Y_AXIS)),
+/*N*/                   Make(SchResId(STR_STLSHEET_TITLE_Y_AXIS).toString(),
 /*N*/                        SFX_STYLE_FAMILY_PARA);
 /*N*/       pSheet->GetItemSet().Put(aFontItem);
 /*N*/       pSheet->GetItemSet().Put(SvxColorItem( Color( COL_AUTO ) ));
 /*N*/       pSheet->GetItemSet().Put(SvxFontHeightItem(352));
 /*N*/
 /*N*/       pSheet = &pStyleSheetPool->
-/*N*/                   Make(String(SchResId(STR_STLSHEET_TITLE_Z_AXIS)),
+/*N*/                   Make(SchResId(STR_STLSHEET_TITLE_Z_AXIS).toString(),
 /*N*/                        SFX_STYLE_FAMILY_PARA);
 /*N*/       pSheet->GetItemSet().Put(aFontItem);
 /*N*/       pSheet->GetItemSet().Put(SvxColorItem( Color( COL_AUTO ) ));
 /*N*/       pSheet->GetItemSet().Put(SvxFontHeightItem(352));
 /*N*/
 /*N*/       pSheet = &pStyleSheetPool->
-/*N*/                   Make(String(SchResId(STR_STLSHEET_DATAROWS)),
+/*N*/                   Make(SchResId(STR_STLSHEET_DATAROWS).toString(),
 /*N*/                        SFX_STYLE_FAMILY_PARA);
 /*N*/       pSheet->GetItemSet().Put(aFontItem);
 /*N*/       pSheet->GetItemSet().Put(SvxColorItem( Color( COL_AUTO ) ));
 /*N*/       pSheet->GetItemSet().Put(SvxFontHeightItem(282));
 /*N*/
 /*N*/       pSheet = &pStyleSheetPool->
-/*N*/                   Make(String(SchResId(STR_STLSHEET_DATACOLS)),
+/*N*/                   Make(SchResId(STR_STLSHEET_DATACOLS).toString(),
 /*N*/                        SFX_STYLE_FAMILY_PARA);
 /*N*/       pSheet->GetItemSet().Put(aFontItem);
 /*N*/       pSheet->GetItemSet().Put(SvxColorItem( Color( COL_AUTO ) ));
 /*N*/       pSheet->GetItemSet().Put(SvxFontHeightItem(282));
 /*N*/
 /*N*/       pSheet = &pStyleSheetPool->
-/*N*/                   Make(String(SchResId(STR_STLSHEET_DATAVALUES)),
+/*N*/                   Make(SchResId(STR_STLSHEET_DATAVALUES).toString(),
 /*N*/                        SFX_STYLE_FAMILY_PARA);
 /*N*/       pSheet->GetItemSet().Put(aFontItem);
 /*N*/       pSheet->GetItemSet().Put(SvxColorItem( Color( COL_AUTO ) ));
 /*N*/       pSheet->GetItemSet().Put(SvxFontHeightItem(282));
 /*N*/
 /*N*/       pSheet = &pStyleSheetPool->
-/*N*/                   Make(String(SchResId(STR_STLSHEET_DATADESCR)),
+/*N*/                   Make(SchResId(STR_STLSHEET_DATADESCR).toString(),
 /*N*/                        SFX_STYLE_FAMILY_PARA);
 /*N*/       pSheet->GetItemSet().Put(aFontItem);
 /*N*/       pSheet->GetItemSet().Put(SvxColorItem( Color( COL_AUTO ) ));
 /*N*/       pSheet->GetItemSet().Put(SvxFontHeightItem(282));
 /*N*/
 /*N*/       pSheet = &pStyleSheetPool->
-/*N*/                   Make(String(SchResId(STR_STLSHEET_LEGEND)),
+/*N*/                   Make(SchResId(STR_STLSHEET_LEGEND).toString(),
 /*N*/                        SFX_STYLE_FAMILY_PARA);
 /*N*/       pSheet->GetItemSet().Put(aFontItem);
 /*N*/       pSheet->GetItemSet().Put(SvxColorItem( Color( COL_AUTO )));

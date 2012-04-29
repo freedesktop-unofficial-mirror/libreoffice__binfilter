@@ -92,19 +92,19 @@ namespace binfilter {
 /*N*/   switch( nUndoId )
 /*N*/   {
 /*N*/       case OLUNDO_DEPTH:
-/*?*/           return XubString( EditResId( RID_OUTLUNDO_DEPTH ));
+/*?*/           return EditResId( RID_OUTLUNDO_DEPTH ).toString();
 /*N*/
 /*N*/       case OLUNDO_EXPAND:
-/*?*/           return XubString( EditResId( RID_OUTLUNDO_EXPAND ));
+/*?*/           return EditResId( RID_OUTLUNDO_EXPAND ).toString();
 /*N*/
 /*N*/       case OLUNDO_COLLAPSE:
-/*?*/           return XubString( EditResId( RID_OUTLUNDO_COLLAPSE ));
+/*?*/           return EditResId( RID_OUTLUNDO_COLLAPSE ).toString();
 /*N*/
 /*N*/       case OLUNDO_ATTR:
-/*N*/           return XubString( EditResId( RID_OUTLUNDO_ATTR ));
+/*N*/           return EditResId( RID_OUTLUNDO_ATTR ).toString();
 /*N*/
 /*N*/       case OLUNDO_INSERT:
-/*?*/           return XubString( EditResId( RID_OUTLUNDO_INSERT ));
+/*?*/           return EditResId( RID_OUTLUNDO_INSERT ).toString();
 /*N*/
 /*N*/       default:
 /*N*/           return EditEngine::GetUndoComment( nUndoId );

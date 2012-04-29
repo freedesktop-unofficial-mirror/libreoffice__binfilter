@@ -381,15 +381,15 @@ void SdDrawDocShell::FillClass(SvGlobalName* pClassName,ULONG*  pFormat, String*
         *pClassName = SvGlobalName(BF_SO3_SIMPRESS_CLASSID_30);
         *pFormat = SOT_FORMATSTR_ID_STARDRAW;
         *pAppName = String(RTL_CONSTASCII_USTRINGPARAM("Sdraw 3.1"));
-        *pFullTypeName = String(SdResId(STR_IMPRESS_DOCUMENT_FULLTYPE_31));;
-        *pShortTypeName = String(SdResId(STR_IMPRESS_DOCUMENT));
+        *pFullTypeName = SdResId(STR_IMPRESS_DOCUMENT_FULLTYPE_31).toString();;
+        *pShortTypeName = SdResId(STR_IMPRESS_DOCUMENT).toString();
     }
     else if (nFileFormat == SOFFICE_FILEFORMAT_40)
     {
         *pClassName = SvGlobalName(BF_SO3_SIMPRESS_CLASSID_40);
         *pFormat = SOT_FORMATSTR_ID_STARDRAW_40;
-        *pFullTypeName = String(SdResId(STR_IMPRESS_DOCUMENT_FULLTYPE_40));
-        *pShortTypeName = String(SdResId(STR_IMPRESS_DOCUMENT));
+        *pFullTypeName = SdResId(STR_IMPRESS_DOCUMENT_FULLTYPE_40).toString();
+        *pShortTypeName = SdResId(STR_IMPRESS_DOCUMENT).toString();
     }
     else
     {
@@ -399,19 +399,19 @@ void SdDrawDocShell::FillClass(SvGlobalName* pClassName,ULONG*  pFormat, String*
             {
                 *pClassName = SvGlobalName(BF_SO3_SDRAW_CLASSID_50);
                 *pFormat = SOT_FORMATSTR_ID_STARDRAW_50;
-                *pFullTypeName = String(SdResId(STR_GRAPHIC_DOCUMENT_FULLTYPE_50));
+                *pFullTypeName = SdResId(STR_GRAPHIC_DOCUMENT_FULLTYPE_50).toString();
             }
             else
             {
                 *pClassName = SvGlobalName(BF_SO3_SIMPRESS_CLASSID_50);
                 *pFormat = SOT_FORMATSTR_ID_STARIMPRESS_50;
-                *pFullTypeName = String(SdResId(STR_IMPRESS_DOCUMENT_FULLTYPE_50));
+                *pFullTypeName = SdResId(STR_IMPRESS_DOCUMENT_FULLTYPE_50).toString();
             }
         }
         else if (nFileFormat == SOFFICE_FILEFORMAT_CURRENT)
         {
-            *pFullTypeName = String(SdResId( (eDocType == DOCUMENT_TYPE_DRAW) ?
-                                              STR_GRAPHIC_DOCUMENT_FULLTYPE_60 : STR_IMPRESS_DOCUMENT_FULLTYPE_60 ));
+            *pFullTypeName = SdResId( (eDocType == DOCUMENT_TYPE_DRAW) ?
+                                              STR_GRAPHIC_DOCUMENT_FULLTYPE_60 : STR_IMPRESS_DOCUMENT_FULLTYPE_60 ).toString();
 
                 if(eDocType == DOCUMENT_TYPE_DRAW)
                 {
@@ -426,8 +426,8 @@ void SdDrawDocShell::FillClass(SvGlobalName* pClassName,ULONG*  pFormat, String*
 
         }
 
-        *pShortTypeName = String(SdResId( (eDocType == DOCUMENT_TYPE_DRAW) ?
-                                          STR_GRAPHIC_DOCUMENT : STR_IMPRESS_DOCUMENT ));
+        *pShortTypeName = SdResId( (eDocType == DOCUMENT_TYPE_DRAW) ?
+                                          STR_GRAPHIC_DOCUMENT : STR_IMPRESS_DOCUMENT ).toString();
     }
 }
 
