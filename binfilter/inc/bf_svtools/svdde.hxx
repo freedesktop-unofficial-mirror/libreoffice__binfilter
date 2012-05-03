@@ -55,6 +55,8 @@ struct DdeDataImp;
 struct DdeImp;
 
 DECLARE_LIST( DdeConnections, DdeConnection* )
+DECLARE_LIST( DdeTransactions, DdeTransaction* )
+DECLARE_LIST( DdeFormats, long )
 
 #ifdef WNT
 class DdeService;
@@ -234,6 +236,7 @@ class  DdeConnection
 {
     friend class    DdeInternal;
     friend class    DdeTransaction;
+    DdeTransactions aTransactions;
     DdeString*      pService;
     DdeString*      pTopic;
     DdeImp*         pImp;
@@ -394,6 +397,7 @@ protected:
     const DdeTopic* GetSysTopic() const { return pSysTopic; }
 private:
     DdeTopics       aTopics;
+    DdeFormats      aFormats;
     DdeTopic*       pSysTopic;
     DdeString*      pName;
     ConvList*       pConv;
