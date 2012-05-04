@@ -57,7 +57,7 @@ public:
     ::com::sun::star::uno::Sequence < sal_Int32 > GetSequence()
     { return m_aList; }
     ::com::sun::star::uno::Sequence < sal_Int32 > GetConstSequence() const
-    { return SAL_CONST_CAST(SfxIntegerListItem *, this)->GetSequence(); }
+    { return (const_cast< SfxIntegerListItem * >(this))->GetSequence(); }
 
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;

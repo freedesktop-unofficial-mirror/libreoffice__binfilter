@@ -111,7 +111,7 @@ namespace binfilter {
 /*N*/         long nEndRow = GetRowCount();
 /*N*/         for( long nRow = 0; nRow < nEndRow; nRow++ )
 /*N*/         {
-/*N*/             SfxItemSet &rAttr = SAL_CONST_CAST( SfxItemSet&, GetDataRowAttr( (short)nRow ));
+/*N*/             SfxItemSet &rAttr = (const_cast< SfxItemSet& >( GetDataRowAttr( (short)nRow )));
 /*N*/
 /*N*/             rAttr.Put( SvxChartDataDescrItem( eDescr ));
 /*N*/             rAttr.Put( SfxBoolItem( SCHATTR_DATADESCR_SHOW_SYM, bSym ));
@@ -119,7 +119,7 @@ namespace binfilter {
 /*N*/     }
 /*N*/     else
 /*N*/     {
-/*N*/         SfxItemSet &rAttr = SAL_CONST_CAST( SfxItemSet&, GetDataRowAttr( (short)nRowToChange ));
+/*N*/         SfxItemSet &rAttr = (const_cast< SfxItemSet& >( GetDataRowAttr( (short)nRowToChange )));
 /*N*/
 /*N*/       rAttr.Put( SvxChartDataDescrItem( eDescr ));
 /*N*/       rAttr.Put( SfxBoolItem( SCHATTR_DATADESCR_SHOW_SYM, bSym ));

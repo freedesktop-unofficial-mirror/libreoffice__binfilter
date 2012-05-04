@@ -567,7 +567,7 @@ ErrCode UcbTransportLockBytes::ReadAt (
         *pRead = ULONG(nSize);
 
     sal_uInt32 nRead = SAL_MAX(m_nRead, nPos + nSize);
-    SAL_CONST_CAST(UcbTransportLockBytes*, this)->m_nRead = nRead;
+    (const_cast< UcbTransportLockBytes* >(this))->m_nRead = nRead;
 
     return ERRCODE_NONE;
 }
