@@ -1111,8 +1111,8 @@ uno::Reference< chart::XChartData > SAL_CALL ChXChartDocument::getData() throw( 
     {
         uno::Reference< lang::XComponent > xComp( (static_cast< SfxBaseModel* >(this)));
         // XChartData is inherited twice
-        m_xChartData = SAL_STATIC_CAST( chart::XChartDataArray*,
-                                        new ChXChartDataArray( xComp, m_pModel ));
+        m_xChartData = (static_cast< chart::XChartDataArray* >(
+                                        new ChXChartDataArray( xComp, m_pModel )));
     }
 
     return m_xChartData;

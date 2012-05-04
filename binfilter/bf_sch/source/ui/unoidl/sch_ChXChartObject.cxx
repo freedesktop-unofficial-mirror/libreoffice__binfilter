@@ -330,7 +330,7 @@ void SAL_CALL ChXChartObject::setPropertyValue( const ::rtl::OUString& aProperty
                         mpModel->SetLegendHasBeenMoved( FALSE );
                         // note: SetShowLegend sets pos to CHLEGEND_RIGHT
                         pSet->Put( SvxChartLegendPosItem(
-                            SAL_STATIC_CAST( SvxChartLegendPos, (static_cast< int >(ePos)))));
+                            (static_cast< SvxChartLegendPos >( (static_cast< int >(ePos))))));
                     }
                     break;
 
@@ -735,8 +735,8 @@ void SAL_CALL ChXChartObject::setPropertyValues (
                     mpModel->SetLegendHasBeenMoved (FALSE);
                     // note: SetShowLegend sets pos to CHLEGEND_RIGHT
                     aModifications.Put (SvxChartLegendPosItem (
-                        SAL_STATIC_CAST (SvxChartLegendPos,
-                            (static_cast< int >(ePos)))));
+                        (static_cast< SvxChartLegendPos >(
+                            (static_cast< int >(ePos))))));
                 }
                 break;
 

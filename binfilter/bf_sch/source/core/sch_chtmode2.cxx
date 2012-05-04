@@ -401,7 +401,7 @@ enum ChartStyleV0
 /*N*/                   if( bForceSolidLine )
 /*N*/                   {
 /*N*/                       XLineStyle eLineStyle =
-/*N*/                           SAL_STATIC_CAST( const XLineStyleItem *, &(pSymbolAttr->Get( XATTR_LINESTYLE )) )->GetValue(); // bug in Win-C++ compiler: casting to pointer
+/*N*/                           (static_cast< const XLineStyleItem * >( &(pSymbolAttr->Get( XATTR_LINESTYLE )) ))->GetValue(); // bug in Win-C++ compiler: casting to pointer
 /*N*/
 /*N*/                       if( eLineStyle == XLINE_NONE )
 /*N*/                       {

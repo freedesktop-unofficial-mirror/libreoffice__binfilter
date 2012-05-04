@@ -27,9 +27,6 @@
  ************************************************************************/
 
 #include <com/sun/star/uno/Sequence.hxx>
-// header for SvStream
-// header for SAL_STATIC_CAST
-#include <sal/types.h>
 
 #include "schopt.hxx"
 
@@ -66,7 +63,7 @@ using namespace ::com::sun::star;
 
 /*N*/ XColorEntry* SchColorTable::Get( ULONG nKey ) const
 /*N*/ {
-/*N*/   return SAL_STATIC_CAST( XColorEntry*, Table::Get( nKey ) );
+/*N*/   return (static_cast< XColorEntry* >(Table::Get( nKey )) );
 /*N*/ }
 
 /*N*/ Color SchColorTable::GetColor( ULONG nKey ) const
@@ -145,7 +142,7 @@ using namespace ::com::sun::star;
 /*N*/       // set color values
 /*N*/       for( sal_Int32 i=0; i < nCount; i++ )
 /*N*/       {
-/*N*/           aCol.SetColor( SAL_STATIC_CAST( ColorData, aColorSeq[ i ] ));
+/*N*/           aCol.SetColor( (static_cast< ColorData >( aColorSeq[ i ] ) ));
 /*N*/
 /*N*/           aName = aPrefix;
 /*N*/           aName.Append( String::CreateFromInt32( i + 1 ));

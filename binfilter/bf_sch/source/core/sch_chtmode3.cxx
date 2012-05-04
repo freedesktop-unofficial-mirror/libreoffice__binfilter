@@ -62,8 +62,6 @@
 #define ITEMID_SIZE 0
 #include <bf_svx/sizeitem.hxx>
 #endif
-// header for SAL_STATIC_CAST
-#include <sal/types.h>
 
 #include <bf_svx/xlnedit.hxx>
 #include <bf_svx/xlnstit.hxx>
@@ -654,7 +652,7 @@ namespace binfilter {
 /*?*/           else        // rectangle with border, if linesytle is NONE
 /*?*/           {
 /*?*/               XLineStyle eLineStyle =
-/*?*/                   SAL_STATIC_CAST( const XLineStyleItem *, &(rSymbolAttr.Get( XATTR_LINESTYLE )) )->GetValue(); // bug in Win-C++ compiler: casting to pointer
+/*?*/                   (static_cast< const XLineStyleItem * >( &(rSymbolAttr.Get( XATTR_LINESTYLE )) ))->GetValue(); // bug in Win-C++ compiler: casting to pointer
 /*?*/
 /*?*/               if( eLineStyle == XLINE_NONE )            // clear items for defaults to take effect
 /*?*/               {

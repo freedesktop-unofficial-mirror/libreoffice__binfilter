@@ -252,7 +252,7 @@ uno::Any ChXDiagram::GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* p
     {
         case CHATTR_DATA_SWITCH:    // BM: SwitchData is enum now
             {
-                sal_Bool bIsOn = SAL_STATIC_CAST( const SfxBoolItem&, aSet.Get( CHATTR_DATA_SWITCH ) ).GetValue();
+                sal_Bool bIsOn = (static_cast< const SfxBoolItem& >( aSet.Get( CHATTR_DATA_SWITCH ) )).GetValue();
                 chart::ChartDataRowSource eRowSource =
                     bIsOn ? chart::ChartDataRowSource_COLUMNS : chart::ChartDataRowSource_ROWS;
                 aAny <<= eRowSource;
