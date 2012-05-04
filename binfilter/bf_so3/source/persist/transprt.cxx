@@ -725,8 +725,8 @@ Any SAL_CALL UcbTransportDataSink_Impl::queryInterface (
 {
     Any aRet (cppu::queryInterface (
         rType,
-        // SAL_STATIC_CAST(XActiveDataControl*, this),
-        SAL_STATIC_CAST(XActiveDataSink*, this)));
+        // (static_cast< XActiveDataControl* >(this)),
+        (static_cast< XActiveDataSink* >(this))));
        return aRet.hasValue() ? aRet : OWeakObject::queryInterface (rType);
 }
 
@@ -893,8 +893,8 @@ Any SAL_CALL UcbTransportInputStream_Impl::queryInterface (
 {
     Any aRet (cppu::queryInterface (
         rType,
-        SAL_STATIC_CAST (XInputStream*, this),
-        SAL_STATIC_CAST (XSeekable*, this)));
+        (static_cast< XInputStream* >(this)),
+        (static_cast< XSeekable* >(this))));
     return aRet.hasValue() ? aRet : OWeakObject::queryInterface (rType);
 }
 
@@ -1372,7 +1372,7 @@ void UcbTransport_Impl::start (void)
         aArgument.Priority = m_rCtx.GetPriority();
 
         m_xSink = new UcbTransportDataSink_Impl();
-        aArgument.Sink = SAL_STATIC_CAST(OWeakObject*, m_xSink.get());
+        aArgument.Sink = (static_cast< OWeakObject* >(m_xSink.get()));
 
         if (m_rCtx.GetBindMode() & SVBIND_NEWESTVERSION)
             m_aCommand.Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "synchronize" ));
@@ -1434,10 +1434,10 @@ Any SAL_CALL UcbTransport_Impl::queryInterface ( const Type &rType) throw(Runtim
 {
     Any aRet (cppu::queryInterface (
         rType,
-        SAL_STATIC_CAST(XCommandEnvironment*, this),
-        SAL_STATIC_CAST(XInteractionHandler*, this),
-        SAL_STATIC_CAST(XProgressHandler*, this),
-        SAL_STATIC_CAST(XPropertiesChangeListener*, this)));
+        (static_cast< XCommandEnvironment* >(this)),
+        (static_cast< XInteractionHandler* >(this)),
+        (static_cast< XProgressHandler* >(this)),
+        (static_cast< XPropertiesChangeListener* >(this))));
     return aRet.hasValue() ? aRet : OWeakObject::queryInterface (rType);
 }
 
@@ -1798,7 +1798,7 @@ void UcbHTTPTransport_Impl::start (void)
         OpenCommandArgument2 aArgument;
         aArgument.Mode = OpenMode::DOCUMENT;
         aArgument.Priority = m_rCtx.GetPriority();
-        aArgument.Sink = SAL_STATIC_CAST(OWeakObject*, m_xSink.get());
+        aArgument.Sink = (static_cast< OWeakObject* >(m_xSink.get()));
         m_aCommand.Argument <<= aArgument;
 
         m_nCommandId = xProcessor->createCommandIdentifier();

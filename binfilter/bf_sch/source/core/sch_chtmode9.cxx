@@ -1456,7 +1456,7 @@ namespace binfilter {
 /*N*/         // return true if item is not set (default) or it is set to TRUE
 /*N*/         return ( ( SFX_ITEM_SET !=
 /*N*/                    pItemSet->GetItemState( SID_ATTR_NUMBERFORMAT_SOURCE, FALSE, &pPoolItem )) ||
-/*N*/                  ( SAL_STATIC_CAST( const SfxBoolItem*, pPoolItem )->GetValue() == TRUE ));
+/*N*/                  ( (static_cast< const SfxBoolItem* >(pPoolItem))->GetValue() == TRUE ));
 /*N*/     }
 /*N*/
 /*N*/     return false;
@@ -1523,7 +1523,7 @@ namespace binfilter {
 /*N*/             if( ! bBAxisFound &&
 /*N*/                 SFX_ITEM_SET ==
 /*N*/                 GetDataRowAttr( nRow ).GetItemState( SCHATTR_AXIS, FALSE, &pPoolItem ) &&
-/*N*/                 SAL_STATIC_CAST( const SfxInt32Item*, pPoolItem )->GetValue() == CHART_AXIS_SECONDARY_Y )
+/*N*/                 (static_cast< const SfxInt32Item* >(pPoolItem))->GetValue() == CHART_AXIS_SECONDARY_Y )
 /*N*/             {
 /*N*/                 if( UsesSourceFormat( CHAXIS_AXIS_B, &pItemSet ) &&
 /*N*/                     pItemSet )

@@ -53,7 +53,7 @@ int CntByteItem::operator ==(const SfxPoolItem & rItem) const
     DBG_CHKTHIS(CntByteItem, 0);
     DBG_ASSERT(rItem.ISA(CntByteItem),
                "CntByteItem::operator ==(): Bad type");
-    return m_nValue == SAL_STATIC_CAST(const CntByteItem *, &rItem)->m_nValue;
+    return m_nValue == (static_cast< const CntByteItem * >(&rItem))->m_nValue;
 }
 
 //============================================================================
@@ -62,9 +62,9 @@ int CntByteItem::Compare(const SfxPoolItem & rWith) const
 {
     DBG_CHKTHIS(CntByteItem, 0);
     DBG_ASSERT(rWith.ISA(CntByteItem), "CntByteItem::Compare(): Bad type");
-    return SAL_STATIC_CAST(const CntByteItem *, &rWith)->m_nValue < m_nValue ?
+    return (static_cast< const CntByteItem * >(&rWith))->m_nValue < m_nValue ?
             -1 :
-           SAL_STATIC_CAST(const CntByteItem *, &rWith)->m_nValue
+           (static_cast< const CntByteItem * >(&rWith))->m_nValue
              == m_nValue ?
             0 : 1;
 }
@@ -175,7 +175,7 @@ int CntUInt16Item::operator ==(const SfxPoolItem & rItem) const
     DBG_CHKTHIS(CntUInt16Item, 0);
     DBG_ASSERT(rItem.ISA(CntUInt16Item),
                "CntUInt16Item::operator ==(): Bad type");
-    return m_nValue == SAL_STATIC_CAST(const CntUInt16Item *, &rItem)->
+    return m_nValue == (static_cast< const CntUInt16Item * >(&rItem))->
                         m_nValue;
 }
 
@@ -186,10 +186,10 @@ int CntUInt16Item::Compare(const SfxPoolItem & rWith) const
     DBG_CHKTHIS(CntUInt16Item, 0);
     DBG_ASSERT(rWith.ISA(CntUInt16Item),
                "CntUInt16Item::Compare(): Bad type");
-    return SAL_STATIC_CAST(const CntUInt16Item *, &rWith)->m_nValue
+    return (static_cast< const CntUInt16Item * >(&rWith))->m_nValue
              < m_nValue ?
             -1 :
-           SAL_STATIC_CAST(const CntUInt16Item *, &rWith)->m_nValue
+           (static_cast< const CntUInt16Item * >(&rWith))->m_nValue
              == m_nValue ?
             0 : 1;
 }
@@ -300,7 +300,7 @@ int CntInt32Item::operator ==(const SfxPoolItem & rItem) const
     DBG_CHKTHIS(CntInt32Item, 0);
     DBG_ASSERT(rItem.ISA(CntInt32Item),
                "CntInt32Item::operator ==(): Bad type");
-    return m_nValue == SAL_STATIC_CAST(const CntInt32Item *, &rItem)->
+    return m_nValue == (static_cast< const CntInt32Item * >(&rItem))->
                         m_nValue;
 }
 
@@ -310,10 +310,10 @@ int CntInt32Item::Compare(const SfxPoolItem & rWith) const
 {
     DBG_CHKTHIS(CntInt32Item, 0);
     DBG_ASSERT(rWith.ISA(CntInt32Item), "CntInt32Item::Compare(): Bad type");
-    return SAL_STATIC_CAST(const CntInt32Item *, &rWith)->m_nValue
+    return (static_cast< const CntInt32Item * >(&rWith))->m_nValue
              < m_nValue ?
             -1 :
-           SAL_STATIC_CAST(const CntInt32Item *, &rWith)->m_nValue
+           (static_cast< const CntInt32Item * >(&rWith))->m_nValue
              == m_nValue ?
             0 : 1;
 }
@@ -422,7 +422,7 @@ int CntUInt32Item::operator ==(const SfxPoolItem & rItem) const
     DBG_CHKTHIS(CntUInt32Item, 0);
     DBG_ASSERT(rItem.ISA(CntUInt32Item),
                "CntUInt32Item::operator ==(): Bad type");
-    return m_nValue == SAL_STATIC_CAST(const CntUInt32Item *, &rItem)->
+    return m_nValue == (static_cast< const CntUInt32Item * >(&rItem))->
                         m_nValue;
 }
 
@@ -433,10 +433,10 @@ int CntUInt32Item::Compare(const SfxPoolItem & rWith) const
     DBG_CHKTHIS(CntUInt32Item, 0);
     DBG_ASSERT(rWith.ISA(CntUInt32Item),
                "CntUInt32Item::operator ==(): Bad type");
-    return SAL_STATIC_CAST(const CntUInt32Item *, &rWith)->m_nValue
+    return (static_cast< const CntUInt32Item * >(&rWith))->m_nValue
              < m_nValue ?
             -1 :
-           SAL_STATIC_CAST(const CntUInt32Item *, &rWith)->m_nValue
+           (static_cast< const CntUInt32Item * >(&rWith))->m_nValue
              == m_nValue ?
             0 : 1;
 }

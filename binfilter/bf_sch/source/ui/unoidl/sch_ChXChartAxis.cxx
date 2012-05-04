@@ -387,7 +387,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                             sal_Int32 nIntVal = 0;
                             if( aValue >>= nIntVal )
                             {
-                                eArrOrder = SAL_STATIC_CAST( chart::ChartAxisArrangeOrderType, nIntVal );
+                                eArrOrder = (static_cast< chart::ChartAxisArrangeOrderType >(nIntVal));
                             }
                         }
                         switch( eArrOrder )
@@ -623,7 +623,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
                         // basic might give us an int instead of the enum type
                         sal_Int32 nIntVal = 0;
                         if( *pValue >>= nIntVal )
-                            eArrOrder = SAL_STATIC_CAST (chart::ChartAxisArrangeOrderType, nIntVal);
+                            eArrOrder = (static_cast< chart::ChartAxisArrangeOrderType >(nIntVal));
                     }
                     switch( eArrOrder )
                         {

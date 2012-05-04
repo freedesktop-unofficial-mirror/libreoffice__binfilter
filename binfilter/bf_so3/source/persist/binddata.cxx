@@ -360,8 +360,8 @@ Any SAL_CALL SvBindingData_Impl::queryInterface (
 {
     Any aRet (cppu::queryInterface (
         rType,
-        SAL_STATIC_CAST(XEventListener*, this),
-        SAL_STATIC_CAST(XPropertyChangeListener*, this)));
+        (static_cast< XEventListener* >(this)),
+        (static_cast< XPropertyChangeListener* >(this))));
        return aRet.hasValue() ? aRet : OWeakObject::queryInterface (rType);
 }
 

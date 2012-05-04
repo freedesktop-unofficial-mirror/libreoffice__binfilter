@@ -141,7 +141,7 @@ using namespace ::com::sun::star::linguistic2;
 using namespace ::com::sun::star;
 
 /*N*/ ChartModel::ChartModel( const String& rPalettePath, SfxObjectShell* pDocSh ) :
-/*N*/   SdrModel( rPalettePath, NULL, SAL_STATIC_CAST( SvPersist*, pDocSh )),
+/*N*/   SdrModel( rPalettePath, NULL, (static_cast< SvPersist* >(pDocSh))),
 /*N*/   bClearDepth(FALSE),
 /*N*/   bNewOrLoadCompleted(FALSE),//aus SchChartDocument::
 /*N*/   pDocShell(pDocSh), //aus SchChartDocument::
@@ -677,7 +677,7 @@ void ChartModel::ClearItemSetLists()
 /*N*/           aEvent.EndColumn = 0;
 /*N*/           aEvent.StartRow = 0;
 /*N*/           aEvent.EndRow = 0;
-/*N*/           SAL_STATIC_CAST( SchChartDocShell*, pDocShell )->DataModified( aEvent );
+/*N*/           (static_cast< SchChartDocShell* >(pDocShell))->DataModified( aEvent );
 /*N*/       }
 /*N*/
 /*N*/       if(!bDontBuild)

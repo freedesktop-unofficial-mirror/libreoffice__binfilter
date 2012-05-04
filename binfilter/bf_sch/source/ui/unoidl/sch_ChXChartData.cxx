@@ -73,7 +73,7 @@ void ChXChartData::DataModified( chart::ChartDataChangeEvent& aEvent )
 {
     if( !maListeners.getLength() ) return;
 
-    uno::Reference< uno::XInterface > xSrc( SAL_STATIC_CAST( cppu::OWeakObject*, this ), uno::UNO_QUERY );
+    uno::Reference< uno::XInterface > xSrc( (static_cast< cppu::OWeakObject* >(this)), uno::UNO_QUERY );
     if( xSrc.is() )
         aEvent.Source = xSrc;
 

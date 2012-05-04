@@ -184,7 +184,7 @@ sal_Bool ChXDiagram::SetDocShell( SchChartDocShell* pDocShell, sal_Bool bKeepMod
         if( bKeepModel && mpModel )
         {
             // copy current model
-            ChartModel* pModel = SAL_STATIC_CAST( ChartModel*, mpModel->AllocModel());
+            ChartModel* pModel = (static_cast< ChartModel* >(mpModel->AllocModel()));
             if( pModel )
             {
                 pDocShell->SetModelPtr( pModel );
@@ -260,7 +260,7 @@ uno::Any ChXDiagram::GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* p
             break;
 
         case SCHATTR_STYLE_SHAPE:
-            aAny <<= SAL_STATIC_CAST( sal_Int32, mpModel->GetChartShapeType() );
+            aAny <<= (static_cast< sal_Int32 >(mpModel->GetChartShapeType()) );
             break;
 
         case SCHATTR_DATADESCR_DESCR:
@@ -409,7 +409,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDataRowProperties(
              Row < mpModel->GetRowCount() )
         {
             ChXDataRow* pRet = new ChXDataRow( Row, mpModel );
-            return uno::Reference< beans::XPropertySet >( SAL_STATIC_CAST( beans::XPropertySet*, pRet ));
+            return uno::Reference< beans::XPropertySet >( (static_cast< beans::XPropertySet* >(pRet)));
         }
         else
         {
@@ -439,7 +439,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDataPointPropertie
              (Column < mpModel->GetColCount()) )
         {
             ChXDataPoint* pRet = new ChXDataPoint( Column, Row, mpModel );
-            return uno::Reference< beans::XPropertySet >( SAL_STATIC_CAST( beans::XPropertySet*, pRet ));
+            return uno::Reference< beans::XPropertySet >( (static_cast< beans::XPropertySet* >(pRet)));
         }
         else
         {
@@ -940,21 +940,21 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
                         {
                             chart::ChartErrorCategory eCat;
                             cppu::any2enum< chart::ChartErrorCategory >( eCat, aValue );
-                            pSet->Put( SfxInt32Item( nWID, SAL_STATIC_CAST( sal_Int32, eCat )));
+                            pSet->Put( SfxInt32Item( nWID, (static_cast< sal_Int32 >(eCat))));
                             break;
                         }
                     case SCHATTR_STAT_INDICATE:
                         {
                             chart::ChartErrorIndicatorType eInd;
                             cppu::any2enum< chart::ChartErrorIndicatorType >( eInd, aValue );
-                            pSet->Put( SfxInt32Item( nWID, SAL_STATIC_CAST( sal_Int32, eInd )));
+                            pSet->Put( SfxInt32Item( nWID, (static_cast< sal_Int32 >(eInd))));
                             break;
                         }
                     case SCHATTR_STAT_REGRESSTYPE:
                         {
                             chart::ChartRegressionCurveType eRegType;
                             cppu::any2enum< chart::ChartRegressionCurveType >( eRegType, aValue );
-                            pSet->Put( SfxInt32Item( nWID, SAL_STATIC_CAST( sal_Int32, eRegType )));
+                            pSet->Put( SfxInt32Item( nWID, (static_cast< sal_Int32 >(eRegType))));
                             break;
                         }
                     case CHATTR_DATA_SWITCH:
@@ -1127,7 +1127,7 @@ uno::Any SAL_CALL ChXDiagram::getPropertyValue( const ::rtl::OUString& PropertyN
             switch( nWID )
             {
                 case CHATTR_NUM_OF_LINES_FOR_BAR:
-                    aAny <<= SAL_STATIC_CAST( sal_Int32, mpModel->GetNumLinesColChart() );
+                    aAny <<= (static_cast< sal_Int32 >(mpModel->GetNumLinesColChart()) );
                     return aAny;              // RETURN
 
                 case SCHATTR_DATADESCR_DESCR:

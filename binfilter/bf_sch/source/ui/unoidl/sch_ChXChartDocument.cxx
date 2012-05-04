@@ -224,7 +224,7 @@ void ChXChartDocument::RefreshData( const chart::ChartDataChangeEvent& /*aEvent*
         if( xDataArray.is() )
         {
             // new data object using own doc shell
-            uno::Reference< lang::XComponent > xComp( SAL_STATIC_CAST( SfxBaseModel*, this ));
+            uno::Reference< lang::XComponent > xComp( (static_cast< SfxBaseModel* >(this)));
             ChXChartDataArray* pNewDataArray = new ChXChartDataArray( xComp, m_pModel );
             chart::XChartDataArray* pSrcArray = xDataArray.get();
 
@@ -234,7 +234,7 @@ void ChXChartDocument::RefreshData( const chart::ChartDataChangeEvent& /*aEvent*
             pNewDataArray->setColumnDescriptions( pSrcArray->getColumnDescriptions() );
 
             // remember the new data as member
-            m_xChartData = SAL_STATIC_CAST( ChXChartData*, pNewDataArray );
+            m_xChartData = (static_cast< ChXChartData* >(pNewDataArray));
         }
     }
 }
@@ -1109,7 +1109,7 @@ uno::Reference< chart::XChartData > SAL_CALL ChXChartDocument::getData() throw( 
     osl::Guard< osl::Mutex > aGuard( GetMutex());
     if( ! m_xChartData.is())
     {
-        uno::Reference< lang::XComponent > xComp( SAL_STATIC_CAST( SfxBaseModel*, this ));
+        uno::Reference< lang::XComponent > xComp( (static_cast< SfxBaseModel* >(this)));
         // XChartData is inherited twice
         m_xChartData = SAL_STATIC_CAST( chart::XChartDataArray*,
                                         new ChXChartDataArray( xComp, m_pModel ));
