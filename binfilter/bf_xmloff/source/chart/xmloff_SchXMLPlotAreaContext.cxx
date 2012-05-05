@@ -409,7 +409,7 @@ void SchXMLPlotAreaContext::EndElement()
     {
         ::std::list< chartxml::DataRowPointStyle >::iterator iStyle;
         // iterate over series attributes first ...
-        for( iStyle = maSeriesStyleList.begin(); iStyle != maSeriesStyleList.end(); iStyle++ )
+        for( iStyle = maSeriesStyleList.begin(); iStyle != maSeriesStyleList.end(); ++iStyle )
         {
             if( iStyle->meType != chartxml::DataRowPointStyle::DATA_POINT )
             {
@@ -487,7 +487,7 @@ void SchXMLPlotAreaContext::EndElement()
         }
 
         // ... then iterate over data-point attributes, so the latter are not overwritten
-        for( iStyle = maSeriesStyleList.begin(); iStyle != maSeriesStyleList.end(); iStyle++ )
+        for( iStyle = maSeriesStyleList.begin(); iStyle != maSeriesStyleList.end(); ++iStyle )
         {
             if( iStyle->mnIndex != -1 )
             {

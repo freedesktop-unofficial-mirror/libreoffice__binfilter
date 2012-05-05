@@ -307,7 +307,7 @@ void SwXMLAutoStylePoolP::exportStyleAttributes(
         for( ::std::vector< XMLPropertyState >::const_iterator
                     aProperty = rProperties.begin();
              aProperty != rProperties.end();
-              aProperty++ )
+              ++aProperty )
         {
             switch( rPropExp.getPropertySetMapper()->
                         GetEntryContextId( aProperty->mnIndex ) )

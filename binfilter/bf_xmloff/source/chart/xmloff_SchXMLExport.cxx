@@ -1238,7 +1238,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
             {
                 aPropertyStates = mxExpPropMapper->Filter( xStatProp );
 
-                if( aPropertyStates.size() > 0 )
+                if( !aPropertyStates.empty() )
                 {
                     // write element
                     if( bExportContent )
@@ -1567,7 +1567,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
         {
             aPropertyStates = mxExpPropMapper->Filter( xWallPropSet );
 
-            if( !aPropertyStates.size() )
+            if( aPropertyStates.empty() )
             {
                 // write element
                 if( bExportContent )
@@ -1595,7 +1595,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
         {
             aPropertyStates = mxExpPropMapper->Filter( xFloorPropSet );
 
-            if( !aPropertyStates.size() )
+            if( aPropertyStates.empty() )
             {
                 // write element
                 if( bExportContent )

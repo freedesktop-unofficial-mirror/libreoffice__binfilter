@@ -376,7 +376,7 @@ void XMLTableStyleContext::GetConditionalFormat(uno::Any& aAny,
                 SetBaseCellAddress(aProps, sBaseCell);
             SetStyle(aProps, sApplyStyle);
             sal_Int32 i = 0;
-            while (sCondition[i] != '(' && i < sCondition.getLength())
+            while (i < sCondition.getLength() && sCondition[i] != '(')
                 i++;
             if (sCondition[i] == '(')
             {

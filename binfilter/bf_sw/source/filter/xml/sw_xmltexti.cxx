@@ -679,7 +679,7 @@ void SwXMLTextImportHelper::endAppletOrPlugin(
     while (aIter != aEnd )
     {
         aCommandList.Append( (*aIter).first, (*aIter).second);
-        aIter++;
+        ++aIter;
     }
 
     if (xApplet.Is())

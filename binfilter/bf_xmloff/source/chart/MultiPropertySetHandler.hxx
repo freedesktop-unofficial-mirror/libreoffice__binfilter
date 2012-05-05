@@ -213,7 +213,7 @@ MultiPropertySetHandler::MultiPropertySetHandler (::com::sun::star::uno::Referen
 MultiPropertySetHandler::~MultiPropertySetHandler (void)
 {
     ::std::map< ::rtl::OUString, PropertyWrapperBase*, OUStringComparison>::iterator I;
-    for (I=aPropertyList.begin(); I!=aPropertyList.end(); I++)
+    for (I=aPropertyList.begin(); I!=aPropertyList.end(); ++I)
         delete I->second;
 }
 
@@ -232,7 +232,7 @@ BOOL    MultiPropertySetHandler::GetProperties  (void)
     ::std::map< ::rtl::OUString, PropertyWrapperBase*, OUStringComparison>::iterator I;
     ::com::sun::star::uno::Sequence< ::rtl::OUString> aNameList (aPropertyList.size());
     int i;
-    for (I=aPropertyList.begin(),i=0; I!=aPropertyList.end(); I++)
+    for (I=aPropertyList.begin(),i=0; I!=aPropertyList.end(); ++I)
         aNameList[i++] = I->second->msName;
     if ( ! MultiGet(aNameList))
         if ( ! SingleGet(aNameList))
@@ -255,7 +255,7 @@ BOOL    MultiPropertySetHandler::MultiGet   (const ::com::sun::star::uno::Sequen
             int i;
             ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any> aValueList =
                 xMultiSet->getPropertyValues (rNameList);
-            for (I=aPropertyList.begin(),i=0; I!=aPropertyList.end(); I++)
+            for (I=aPropertyList.begin(),i=0; I!=aPropertyList.end(); ++I)
                 I->second->SetValue (aValueList[i++]);
         }
         catch (::com::sun::star::beans::UnknownPropertyException e)
@@ -281,7 +281,7 @@ BOOL    MultiPropertySetHandler::SingleGet  (const ::com::sun::star::uno::Sequen
         {
             ::std::map< ::rtl::OUString, PropertyWrapperBase*, OUStringComparison>::iterator I;
             int i;
-            for (I=aPropertyList.begin(),i=0; I!=aPropertyList.end(); I++)
+            for (I=aPropertyList.begin(),i=0; I!=aPropertyList.end(); ++I)
                 I->second->SetValue (xSingleSet->getPropertyValue (rNameList[i++]));
         }
         catch (::com::sun::star::beans::UnknownPropertyException e)

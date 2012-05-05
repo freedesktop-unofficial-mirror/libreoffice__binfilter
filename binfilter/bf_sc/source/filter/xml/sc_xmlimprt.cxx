@@ -744,7 +744,6 @@ SvXMLImportContext *ScXMLDocContext_Impl::CreateChildContext( USHORT nInPrefix,
         if (GetScImport().getImportFlags() & IMPORT_AUTOSTYLES)
             pContext = GetScImport().CreateStylesContext( rLocalName, xAttrList, sal_True);
         break;
-        break;
     case XML_TOK_DOC_MASTERSTYLES:
         if (GetScImport().getImportFlags() & IMPORT_MASTERSTYLES)
             pContext = new ScXMLMasterStylesContext( GetImport(), nInPrefix, rLocalName,

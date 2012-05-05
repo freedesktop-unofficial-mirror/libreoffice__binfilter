@@ -594,7 +594,6 @@ void SwXViewSettings::_setSingleValue( const comphelper::PropertyInfo & rInfo, c
         case  HANDLE_VIEWSET_TEXT_BOUNDARIES       :   break;
         case  HANDLE_VIEWSET_SMOOTH_SCROLLING      :   mpViewOption->SetSmoothScroll(bVal); break;
         case  HANDLE_VIEWSET_PREVENT_TIPS :            mpViewOption->SetPreventTips(bVal); break;
-        break;
         case  HANDLE_VIEWSET_ZOOM                   :
         {
             sal_Int16 nZoom(0);

@@ -375,7 +375,7 @@ void ScXMLAutoStylePoolP::exportStyleAttributes(
     if (nFamily == XML_STYLE_FAMILY_TABLE_CELL)
     {
         ::std::vector< XMLPropertyState >::const_iterator i = rProperties.begin();
-        for (; (i != rProperties.end()); i++)
+        for (; (i != rProperties.end()); ++i)
         {
             UniReference< XMLPropertySetMapper > aPropMapper =
                 rScXMLExport.GetCellStylesPropertySetMapper();
@@ -404,7 +404,7 @@ void ScXMLAutoStylePoolP::exportStyleAttributes(
     else if (nFamily == XML_STYLE_FAMILY_TABLE_TABLE)
     {
         ::std::vector< XMLPropertyState >::const_iterator i = rProperties.begin();
-        for (; (i != rProperties.end()); i++)
+        for (; (i != rProperties.end()); ++i)
         {
             UniReference< XMLPropertySetMapper > aPropMapper =
                 rScXMLExport.GetTableStylesPropertySetMapper();
@@ -442,7 +442,7 @@ void ScXMLAutoStylePoolP::exportStyleContent(
     {
         sal_Bool bNotFound = sal_True;
         ::std::vector< XMLPropertyState >::const_iterator i = rProperties.begin();
-        for (; (i != rProperties.end()) && bNotFound; i++)
+        for (; (i != rProperties.end()) && bNotFound; ++i)
         {
             sal_Int16 nContextID = rScXMLExport.GetCellStylesPropertySetMapper()->GetEntryContextId(i->mnIndex);
             switch (nContextID)

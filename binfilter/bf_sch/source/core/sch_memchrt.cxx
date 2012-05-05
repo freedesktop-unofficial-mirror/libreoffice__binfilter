@@ -671,7 +671,7 @@ using namespace ::com::sun::star;
 /*N*/     ::std::vector< SchSingleCell >::const_iterator aIter;
 /*N*/     const ::std::vector< SchSingleCell >::const_iterator aEndIter = rCell.maCells.end();
 /*N*/
-/*N*/     for( aIter = rCell.maCells.begin(); aIter != aEndIter; aIter++ )
+/*N*/     for( aIter = rCell.maCells.begin(); aIter != aEndIter; ++aIter )
 /*N*/     {
 /*N*/         sal_Int32 nCol = aIter->mnColumn;
 /*N*/         output->append( (sal_Unicode)'.' );
@@ -905,7 +905,7 @@ using namespace ::com::sun::star;
 /*?*/             getXMLStringForCellAddress( aIter->maLowerRight, &aBuffer );
 /*?*/         }
 /*?*/
-/*?*/         aIter++;
+/*?*/         ++aIter;
 /*?*/         // separator for more than one range
 /*?*/         if( aIter != aEndIter )
 /*?*/             aBuffer.append( sal_Unicode( ' ' ));
@@ -1022,7 +1022,7 @@ using namespace ::com::sun::star;
 /*N*/     const ::std::vector< SchCellRangeAddress >::iterator aEndIter = maChartRange.maRanges.end();
 /*N*/     sal_Bool bStarted = sal_False;
 /*N*/
-/*N*/     for( aIter = maChartRange.maRanges.begin(); aIter != aEndIter; aIter++ )
+/*N*/     for( aIter = maChartRange.maRanges.begin(); aIter != aEndIter; ++aIter )
 /*N*/     {
 /*N*/         if( aIter->mnTableNumber != -1 )
 /*N*/         {
@@ -1134,7 +1134,7 @@ using namespace ::com::sun::star;
 /*N*/     ::std::vector< SchSingleCell >::const_iterator aIter = rCell.maCells.begin();
 /*N*/     const ::std::vector< SchSingleCell >::const_iterator aEnd = rCell.maCells.end();
 /*N*/   BOOL bFirst = TRUE;
-/*N*/   for( ; aIter != aEnd; aIter++ )
+/*N*/   for( ; aIter != aEnd; ++aIter )
 /*N*/   {
 /*N*/       String sTmp( String::CreateFromInt32( aIter->mnRow ));
 /*N*/       if( sNm.Len() )
