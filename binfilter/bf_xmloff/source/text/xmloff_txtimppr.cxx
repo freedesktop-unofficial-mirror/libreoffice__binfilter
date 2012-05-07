@@ -307,7 +307,7 @@ void XMLTextImportPropertyMapper::finished(
 
     for( ::std::vector< XMLPropertyState >::iterator property = rProperties.begin();
          property != rProperties.end();
-         property++ )
+         ++property )
     {
         switch( getPropertySetMapper()->GetEntryContextId( property->mnIndex ) )
         {

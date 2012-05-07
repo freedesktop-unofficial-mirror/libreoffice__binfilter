@@ -59,7 +59,7 @@ using rtl::OUString;
 sal_Bool XMLPageExport::findPageMasterName( const OUString& rStyleName, OUString& rPMName ) const
 {
     for( ::std::vector< XMLPageExportNameEntry >::const_iterator pEntry = aNameVector.begin();
-            pEntry != aNameVector.end(); pEntry++ )
+            pEntry != aNameVector.end(); ++pEntry )
     {
         if( pEntry->sStyleName == rStyleName )
         {

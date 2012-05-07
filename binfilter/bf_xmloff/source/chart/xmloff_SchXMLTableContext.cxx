@@ -445,7 +445,7 @@ void SchXMLTableHelper::applyTableSimple(
 
             double fVal;
             const sal_Bool bConstConvertNan = bConvertNaN;
-            for( ++iRow, nRow = 0; iRow != rTable.aData.end(); iRow++, nRow++ )
+            for( ++iRow, nRow = 0; iRow != rTable.aData.end(); ++iRow, nRow++ )
             {
                 aCategories[ nRow ] = (*iRow)[ 0 ].aString;
                 for( nCol = 1; nCol < nColumnCount; nCol++ )

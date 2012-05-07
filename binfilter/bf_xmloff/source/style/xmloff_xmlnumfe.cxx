@@ -160,7 +160,7 @@ void SvXMLNumUsedList_Impl::Export()
         std::pair<SvXMLuInt32Set::iterator, bool> aPair = aWasUsed.insert( *aItr );
         if (aPair.second)
             nWasUsedCount++;
-        aItr++;
+        ++aItr;
     }
     aUsed.clear();
     nUsedCount = 0;
@@ -184,7 +184,7 @@ sal_Bool SvXMLNumUsedList_Impl::GetNextUsed(sal_uInt32& nKey)
     sal_Bool bRet(sal_False);
     if (aCurrentUsedPos != aUsed.end())
     {
-        aCurrentUsedPos++;
+        ++aCurrentUsedPos;
         if (aCurrentUsedPos != aUsed.end())
         {
             nKey = *aCurrentUsedPos;
@@ -204,7 +204,7 @@ void SvXMLNumUsedList_Impl::GetWasUsed(uno::Sequence<sal_Int32>& rWasUsed)
         while (aItr != aWasUsed.end())
         {
             *pWasUsed = *aItr;
-            aItr++;
+            ++aItr;
             pWasUsed++;
         }
     }

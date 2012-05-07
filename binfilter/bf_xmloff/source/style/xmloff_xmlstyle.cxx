@@ -340,7 +340,7 @@ const SvXMLStyleContext *SvXMLStylesContext_Impl::FindStyleChildContext(
 {
     const SvXMLStyleContext *pStyle = 0;
 
-    if( !pIndices && bCreateIndex && aStyles.size() > 0 )
+    if( !pIndices && bCreateIndex && !aStyles.empty() )
     {
 #ifdef DBG_UTIL
         DBG_ASSERT( 0==nIndexCreated,

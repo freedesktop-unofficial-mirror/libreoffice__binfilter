@@ -413,7 +413,7 @@ void XMLTextExportPropertySetMapper::ContextFilter(
 
     for( ::std::vector< XMLPropertyState >::iterator propertie = rProperties.begin();
          propertie != rProperties.end();
-         propertie++ )
+         ++propertie )
     {
         switch( getPropertySetMapper()->GetEntryContextId( propertie->mnIndex ) )
         {

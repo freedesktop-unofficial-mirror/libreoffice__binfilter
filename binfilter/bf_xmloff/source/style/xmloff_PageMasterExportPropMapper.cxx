@@ -321,7 +321,7 @@ void XMLPageMasterExportPropMapper::ContextFilter(
 
     UniReference < XMLPropertySetMapper > aPropMapper(getPropertySetMapper());
 
-    for( ::std::vector< XMLPropertyState >::iterator pProp = rPropState.begin(); pProp != rPropState.end(); pProp++ )
+    for( ::std::vector< XMLPropertyState >::iterator pProp = rPropState.begin(); pProp != rPropState.end(); ++pProp )
     {
         sal_Int16 nContextId    = aPropMapper->GetEntryContextId( pProp->mnIndex );
         sal_Int16 nFlag         = nContextId & CTF_PM_FLAGMASK;

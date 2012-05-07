@@ -261,7 +261,7 @@ void XMLTextParagraphExport::Add( sal_uInt16 nFamily,
                 for( ::std::vector< XMLPropertyState >::iterator i
                            = xPropStates.begin();
                       nIgnoreProps < 2 && i != xPropStates.end();
-                      i++ )
+                      ++i )
                 {
                     switch( xPM->GetEntryContextId(i->mnIndex) )
                     {
@@ -451,7 +451,7 @@ OUString XMLTextParagraphExport::FindTextStyleAndHyperlink(
     for( ::std::vector< XMLPropertyState >::iterator
             i = xPropStates.begin();
          nIgnoreProps < 2 && i != xPropStates.end();
-         i++ )
+         ++i )
     {
         switch( xPM->GetEntryContextId(i->mnIndex) )
         {
