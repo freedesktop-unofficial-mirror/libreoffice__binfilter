@@ -1561,7 +1561,7 @@ short ScInterpreter::IsEven()
 {
     nFuncFmtType = NUMBERFORMAT_LOGICAL;
     short nRes = 0;
-    double fVal;
+    double fVal = 0;
     switch ( GetStackType() )
     {
         case svDoubleRef :
