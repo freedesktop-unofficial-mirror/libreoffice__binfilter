@@ -2216,7 +2216,7 @@ const sal_Int32 coNumContFlags =
 /*M*/             USHORT nCount = pFrom->Count();
 /*M*/             for (USHORT i = 0;  i < nCount;  ++i)
 /*M*/             {
-/*M*/                 if (pFrom->GetString(i) == rName)
+/*M*/                 if (pFrom->GetString(i).equals(rName))
 /*M*/                 {
 /*M*/                     aNewName = pTo->GetString(i);
 /*M*/                     bReplace = TRUE;

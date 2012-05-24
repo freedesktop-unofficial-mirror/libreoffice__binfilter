@@ -76,10 +76,10 @@ namespace binfilter {
 /*N*/     const ResStringArray &rExportNames = rData.GetExportSymbolNamesArray();
 /*N*/     USHORT nCount = rExportNames.Count();
 /*N*/     for (USHORT i = 0;  i < nCount  &&  !aRes.Len();  ++i)
-/*N*/   {
-/*N*/         if (rExportName == rExportNames.GetString(i))
+/*N*/     {
+/*N*/       if (rExportNames.GetString(i).equals(rExportName))
 /*N*/       {
-/*N*/             aRes = rUiNames.GetString(i);
+/*N*/           aRes = rUiNames.GetString(i);
 /*N*/           break;
 /*N*/       }
 /*N*/   }
@@ -90,43 +90,43 @@ namespace binfilter {
 
 /*N*/ const String SmLocalizedSymbolData::GetExportSymbolName( const String &rUiName ) const
 /*N*/ {
-/*N*/   String aRes;
+/*N*/     String aRes;
 /*N*/
 /*N*/     const SmLocalizedSymbolData &rData = SM_MOD1()->GetLocSymbolData();
 /*N*/     const ResStringArray &rUiNames = rData.GetUiSymbolNamesArray();
 /*N*/     const ResStringArray &rExportNames = rData.GetExportSymbolNamesArray();
-/*N*/   USHORT nCount = rUiNames.Count();
+/*N*/     USHORT nCount = rUiNames.Count();
 /*N*/     for (USHORT i = 0;  i < nCount  &&  !aRes.Len();  ++i)
-/*N*/   {
-/*N*/         if (rUiName == rUiNames.GetString(i))
-/*N*/       {
+/*N*/     {
+/*N*/         if (rUiNames.GetString(i).equals(rUiName))
+/*N*/         {
 /*N*/           aRes = rExportNames.GetString(i);
 /*N*/           break;
-/*N*/       }
-/*N*/   }
+/*N*/         }
+/*N*/     }
 /*N*/
-/*N*/   return aRes;
+/*N*/     return aRes;
 /*N*/ }
 
 
 /*N*/ const String SmLocalizedSymbolData::GetUiSymbolSetName( const String &rExportName ) const
 /*N*/ {
-/*N*/   String aRes;
+/*N*/     String aRes;
 /*N*/
 /*N*/     const SmLocalizedSymbolData &rData = SM_MOD1()->GetLocSymbolData();
 /*N*/     const ResStringArray &rUiNames = rData.GetUiSymbolSetNamesArray();
 /*N*/     const ResStringArray &rExportNames = rData.GetExportSymbolSetNamesArray();
 /*N*/     USHORT nCount = rExportNames.Count();
 /*N*/     for (USHORT i = 0;  i < nCount  &&  !aRes.Len();  ++i)
-/*N*/   {
-/*N*/         if (rExportName == rExportNames.GetString(i))
+/*N*/     {
+/*N*/       if (rExportNames.GetString(i).equals(rExportName))
 /*N*/       {
-/*N*/             aRes = rUiNames.GetString(i);
+/*N*/           aRes = rUiNames.GetString(i);
 /*N*/           break;
 /*N*/       }
-/*N*/   }
+/*N*/     }
 /*N*/
-/*N*/   return aRes;
+/*N*/     return aRes;
 /*N*/ }
 
 
