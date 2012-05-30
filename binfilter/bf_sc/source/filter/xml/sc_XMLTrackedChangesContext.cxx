@@ -47,6 +47,9 @@
 #include <bf_svtools/zforlist.hxx>
 
 #include <com/sun/star/text/ControlCharacter.hpp>
+
+#include <sax/tools/converter.hxx>
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -562,7 +565,7 @@ ScXMLTrackedChangesContext::ScXMLTrackedChangesContext( ScXMLImport& rInImport,
                 if (sValue.getLength())
                 {
                     uno::Sequence<sal_Int8> aPass;
-                    SvXMLUnitConverter::decodeBase64(aPass, sValue);
+                    ::sax::Converter::decodeBase64(aPass, sValue);
                     pChangeTrackingImportHelper->SetProtection(aPass);
                 }
             }

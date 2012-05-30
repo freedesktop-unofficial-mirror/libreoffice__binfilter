@@ -40,6 +40,8 @@
 #include <com/sun/star/text/XTextContent.hpp>
 #include <com/sun/star/text/ControlCharacter.hpp>
 
+#include <sax/tools/converter.hxx>
+
 namespace binfilter {
 
 
@@ -308,7 +310,7 @@ void XMLSectionImportContext::ProcessAttributes(
                 }
                 break;
             case XML_TOK_SECTION_PROTECTION_KEY:
-                SvXMLUnitConverter::decodeBase64(aSequence, sAttr);
+                ::sax::Converter::decodeBase64(aSequence, sAttr);
                 bSequenceOK = sal_True;
                 break;
             case XML_TOK_SECTION_PROTECT:

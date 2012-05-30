@@ -39,6 +39,8 @@
 #include <com/sun/star/text/XTextFieldsSupplier.hpp>
 #include <com/sun/star/text/XChapterNumberingSupplier.hpp>
 
+#include <sax/tools/converter.hxx>
+
 #include "xmlkywd.hxx"
 #include "xmluconv.hxx"
 #include "xmlexp.hxx"
@@ -452,7 +454,7 @@ void XMLSectionExport::ExportRegularSectionStart(
     if (aPassword.getLength() > 0)
     {
         OUStringBuffer aBuffer;
-        SvXMLUnitConverter::encodeBase64(aBuffer, aPassword);
+        ::sax::Converter::encodeBase64(aBuffer, aPassword);
         GetExport().AddAttribute(XML_NAMESPACE_TEXT, XML_PROTECTION_KEY,
                                  aBuffer.makeStringAndClear());
     }

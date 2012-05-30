@@ -45,6 +45,8 @@
 #include <com/sun/star/sheet/XCellRangeAddressable.hpp>
 #include <com/sun/star/sheet/XCellRangeMovement.hpp>
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
+
+#include <sax/tools/converter.hxx>
 namespace binfilter {
 
 //------------------------------------------------------------------
@@ -593,7 +595,7 @@ void ScMyTables::DeleteTable()
     if (rImport.GetDocument() && bProtection)
     {
         uno::Sequence<sal_Int8> aPass;
-        SvXMLUnitConverter::decodeBase64(aPass, sPassword);
+        ::sax::Converter::decodeBase64SomeChars(aPass, sPassword);
         rImport.GetDocument()->SetTabProtection(nCurrentSheet, bProtection, aPass);
         /*uno::Reference <util::XProtectable> xProtectable(xCurrentSheet, uno::UNO_QUERY);
         if (xProtectable.is())

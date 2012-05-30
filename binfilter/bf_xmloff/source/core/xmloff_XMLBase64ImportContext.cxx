@@ -31,6 +31,8 @@
 
 #include <com/sun/star/io/XOutputStream.hpp>
 
+#include <sax/tools/converter.hxx>
+
 #include "XMLBase64ImportContext.hxx"
 namespace binfilter {
 
@@ -82,8 +84,7 @@ void XMLBase64ImportContext::Characters( const ::rtl::OUString& rChars )
         }
         Sequence< sal_Int8 > aBuffer( (sChars.getLength() / 4) * 3 );
         sal_Int32 nCharsDecoded =
-            GetImport().GetMM100UnitConverter().
-                decodeBase64SomeChars( aBuffer, sChars );
+            ::sax::Converter::decodeBase64SomeChars(aBuffer, sChars);
         xOut->writeBytes( aBuffer );
         if( nCharsDecoded != sChars.getLength() )
             sBase64CharsLeft = sChars.copy( nCharsDecoded );

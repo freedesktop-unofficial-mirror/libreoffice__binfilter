@@ -28,6 +28,7 @@
 
 
 #include <com/sun/star/io/XInputStream.hpp>
+#include <sax/tools/converter.hxx>
 
 #include "xmluconv.hxx"
 #include "xmlexp.hxx"
@@ -62,8 +63,7 @@ sal_Bool XMLBase64Export::exportXML( const Reference < XInputStream> & rIn )
             nRead = rIn->readBytes( aInBuff, INPUT_BUFFER_SIZE );
             if( nRead > 0 )
             {
-                GetExport().GetMM100UnitConverter().encodeBase64( aOutBuff,
-                                                                  aInBuff );
+                ::sax::Converter::encodeBase64(aOutBuff, aInBuff);
                 GetExport().Characters( aOutBuff.makeStringAndClear() );
                 if( nRead == INPUT_BUFFER_SIZE )
                     GetExport().IgnorableWhitespace();

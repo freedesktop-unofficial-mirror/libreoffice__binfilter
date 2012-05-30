@@ -71,6 +71,7 @@ SHL1STDLIBS+=       \
     $(BFSVXLIB)		\
     $(BFOFALIB)		\
     $(VCLLIB)		\
+    $(SAXLIB)		\
     $(CPPULIB)		\
     $(CPPUHELPERLIB)	\
     $(COMPHELPERLIB)	\

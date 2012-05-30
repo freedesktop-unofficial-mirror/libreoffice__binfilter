@@ -56,6 +56,9 @@
 #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
 
 #include <sal/types.h>
+
+#include <sax/tools/converter.hxx>
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -193,7 +196,7 @@ void ScXMLBodyContext::EndElement()
         {
             uno::Sequence<sal_Int8> aPass;
             if (sPassword.getLength())
-                SvXMLUnitConverter::decodeBase64(aPass, sPassword);
+                ::sax::Converter::decodeBase64(aPass, sPassword);
             pDoc->SetDocProtection(bProtected, aPass);
         }
         uno::Reference <sheet::XSpreadsheetDocument> xSpreadDoc( GetScImport().GetModel(), uno::UNO_QUERY );

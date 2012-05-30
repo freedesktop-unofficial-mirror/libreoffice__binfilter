@@ -69,6 +69,7 @@ SHL1IMPLIB= _ibf_xo
 
 SHL1STDLIBS= \
         $(BFSVTOOLLIB)	\
+        $(SAXLIB)		\
         $(TOOLSLIB)		\
         $(I18NISOLANGLIB) \
         $(CPPULIB)		\

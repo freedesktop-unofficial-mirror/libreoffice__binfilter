@@ -39,6 +39,9 @@
 #include <bf_xmloff/xmluconv.hxx>
 
 #include <bf_svtools/zforlist.hxx>
+
+#include <sax/tools/converter.hxx>
+
 namespace binfilter {
 
 #define SC_CHANGE_ID_PREFIX "ct"
@@ -758,7 +761,7 @@ void ScChangeTrackingExportHelper::CollectAndWriteChanges()
         if (pChangeTrack->IsProtected())
         {
             ::rtl::OUStringBuffer aBuffer;
-            SvXMLUnitConverter::encodeBase64(aBuffer, pChangeTrack->GetProtection());
+            ::sax::Converter::encodeBase64(aBuffer, pChangeTrack->GetProtection());
             if (aBuffer.getLength())
                 rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_PROTECTION_KEY, aBuffer.makeStringAndClear());
         }

@@ -45,6 +45,7 @@
 
 #include <com/sun/star/util/DateTime.hpp>
 
+#include <sax/tools/converter.hxx>
 
 #include "xmlnmspe.hxx"
 
@@ -238,7 +239,7 @@ void XMLRedlineExport::ExportChangesListElements()
         if ( aKey.getLength() > 0 )
         {
             OUStringBuffer aBuffer;
-            SvXMLUnitConverter::encodeBase64( aBuffer, aKey );
+            ::sax::Converter::encodeBase64(aBuffer, aKey);
             rExport.AddAttribute( XML_NAMESPACE_TEXT, XML_PROTECTION_KEY,
                                   aBuffer.makeStringAndClear() );
         }

@@ -86,6 +86,7 @@
 #include <com/sun/star/sheet/NamedRangeFlag.hpp>
 #include <com/sun/star/form/XFormsSupplier.hpp>
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
+#include <sax/tools/converter.hxx>
 namespace binfilter {
 //! not found in unonames.hxx
 #define SC_STANDARDFORMAT "StandardFormat"
@@ -1213,7 +1214,7 @@ void ScXMLExport::SetBodyAttributes()
     {
         AddAttribute(XML_NAMESPACE_TABLE, XML_STRUCTURE_PROTECTED, XML_TRUE);
         ::rtl::OUStringBuffer aBuffer;
-        SvXMLUnitConverter::encodeBase64(aBuffer, pDoc->GetDocPassword());
+        ::sax::Converter::encodeBase64(aBuffer, pDoc->GetDocPassword());
         if (aBuffer.getLength())
             AddAttribute(XML_NAMESPACE_TABLE, XML_PROTECTION_KEY, aBuffer.makeStringAndClear());
     }
@@ -1285,7 +1286,7 @@ void ScXMLExport::_ExportContent()
                                     AddAttribute(XML_NAMESPACE_TABLE, XML_PROTECTED, XML_TRUE);
                                     ::rtl::OUStringBuffer aBuffer;
                                     if (pDoc)
-                                        SvXMLUnitConverter::encodeBase64(aBuffer, pDoc->GetTabPassword(nTable));
+                                        ::sax::Converter::encodeBase64(aBuffer, pDoc->GetTabPassword(nTable));
                                     if (aBuffer.getLength())
                                         AddAttribute(XML_NAMESPACE_TABLE, XML_PROTECTION_KEY, aBuffer.makeStringAndClear());
                                 }

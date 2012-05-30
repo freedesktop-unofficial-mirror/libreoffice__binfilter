@@ -35,6 +35,7 @@
 #include <com/sun/star/io/XOutputStream.hpp>
 #include <com/sun/star/text/HoriOrientation.hpp>
 #include <com/sun/star/text/VertOrientation.hpp>
+#include <sax/tools/converter.hxx>
 #include "xmlimp.hxx"
 #include "xmlnmspe.hxx"
 #include "xmlkywd.hxx"
@@ -1111,8 +1112,7 @@ void XMLTextFrameContext::Characters( const OUString& rChars )
                 }
                 Sequence< sal_Int8 > aBuffer( (sChars.getLength() / 4) * 3 );
                 sal_Int32 nCharsDecoded =
-                    GetImport().GetMM100UnitConverter().
-                        decodeBase64SomeChars( aBuffer, sChars );
+                    ::sax::Converter::decodeBase64SomeChars(aBuffer, sChars);
                 xBase64Stream->writeBytes( aBuffer );
                 if( nCharsDecoded != sChars.getLength() )
                     sBase64CharsLeft = sChars.copy( nCharsDecoded );

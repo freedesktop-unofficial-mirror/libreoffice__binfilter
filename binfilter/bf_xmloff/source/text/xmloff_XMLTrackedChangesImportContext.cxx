@@ -30,6 +30,7 @@
 #include "XMLChangedRegionImportContext.hxx"
 #include <com/sun/star/uno/Reference.h>
 #include <com/sun/star/uno/Sequence.h>
+#include <sax/tools/converter.hxx>
 #include "xmlimp.hxx"
 #include "xmlnmspe.hxx"
 #include "nmspmap.hxx"
@@ -84,7 +85,7 @@ void XMLTrackedChangesImportContext::StartElement(
             }
             else if ( IsXMLToken( sLocalName, XML_PROTECTION_KEY ) )            {
                 Sequence<sal_Int8> aSequence;
-                SvXMLUnitConverter::decodeBase64(
+                ::sax::Converter::decodeBase64(
                     aSequence, xAttrList->getValueByIndex(i));
                 if ( aSequence.getLength() > 0 )
                 {

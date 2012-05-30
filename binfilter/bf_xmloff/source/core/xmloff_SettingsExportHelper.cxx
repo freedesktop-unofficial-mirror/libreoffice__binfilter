@@ -39,6 +39,7 @@
 #include <com/sun/star/util/DateTime.hpp>
 #include <com/sun/star/container/XIndexContainer.hpp>
 #include <com/sun/star/document/PrinterIndependentLayout.hpp>
+#include <sax/tools/converter.hxx>
 #include <xmlenums.hxx>
 namespace binfilter {
 
@@ -355,7 +356,7 @@ void XMLSettingsExportHelper::exportbase64Binary(
     if(nLength)
     {
         ::rtl::OUStringBuffer sBuffer;
-        SvXMLUnitConverter::encodeBase64(sBuffer, aProps);
+        ::sax::Converter::encodeBase64(sBuffer, aProps);
         rExport.GetDocHandler()->characters(sBuffer.makeStringAndClear());
     }
 }

@@ -37,9 +37,7 @@
 #include "xmluconv.hxx"
 #include <tools/debug.hxx>
 
-#ifndef __SGI_STL_LIST
 #include <list>
-#endif
 
 #include <com/sun/star/i18n/XForbiddenCharacters.hpp>
 #include <com/sun/star/container/XIndexContainer.hpp>
@@ -48,6 +46,7 @@
 #include <com/sun/star/util/DateTime.hpp>
 #include <com/sun/star/document/XViewDataSupplier.hpp>
 #include <com/sun/star/document/PrinterIndependentLayout.hpp>
+#include <sax/tools/converter.hxx>
 #include <xmlenums.hxx>
 namespace binfilter {
 
@@ -516,8 +515,7 @@ void XMLConfigItemContext::Characters( const ::rtl::OUString& rChars )
             }
             uno::Sequence<sal_Int8> aBuffer((sChars.getLength() / 4) * 3 );
             sal_Int32 nCharsDecoded =
-                GetImport().GetMM100UnitConverter().
-                    decodeBase64SomeChars( aBuffer, sChars );
+                ::sax::Converter::decodeBase64SomeChars(aBuffer, sChars);
             sal_uInt32 nStartPos(aDecoded.getLength());
             sal_uInt32 nCount(aBuffer.getLength());
             aDecoded.realloc(nStartPos + nCount);
