@@ -102,11 +102,6 @@ USHORT SvStorageStream::IsA() const
     return ID_STORAGESTREAM;
 }
 
-void SvStorageStream::SyncSvStream()
-{
-    SotStorageStream::SyncSvStream();
-}
-
 ULONG SvStorageStream::GetData( void* pData, ULONG nSize )
 {
     return SotStorageStream::GetData( pData, nSize );

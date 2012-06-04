@@ -71,8 +71,6 @@ public:
                         SO2_DECL_STANDARD_CLASS_DLL(SvStorageStream,SOAPP)
 
     virtual USHORT      IsA() const;
-                        using SvStream::SyncSvStream;
-    virtual void        SyncSvStream();
 
     virtual void        SetSize( ULONG nNewSize );
     virtual BOOL        Commit();
