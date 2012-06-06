@@ -579,8 +579,6 @@ struct ParaRstFmt
 /*N*/   const SfxPoolItem* pChrFmtItem = 0;
 /*N*/   aCharSet.GetItemState( RES_TXTATR_CHARFMT, FALSE, &pChrFmtItem );
 /*N*/ #endif
-/*N*/       SFX_ITEM_SET == aCharSet.GetItemState( RES_TXTATR_CHARFMT, FALSE ) ||
-/*N*/       SFX_ITEM_SET == aCharSet.GetItemState( RES_TXTATR_INETFMT, FALSE );
 /*N*/
 /*N*/   for(; aSt < aEnd; ++aSt )
 /*N*/   {

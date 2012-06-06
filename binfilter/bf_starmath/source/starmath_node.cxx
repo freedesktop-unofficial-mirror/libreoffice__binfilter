@@ -2217,7 +2217,6 @@ void SmRectangleNode::Draw(OutputDevice &rDev, const Point &rPosition) const
 /*N*/   SmNode::Prepare(rFormat, rDocShell);
 /*N*/
 /*N*/   const SmSym   *pSym;
-/*N*/   /*SmModule  *pp =*/ SM_MOD1();
 /*N*/
 /*N*/   Size  aOldSize = GetFont().GetSize();
 /*N*/   if ((pSym = rDocShell.GetSymSetManager().GetSymbolByName(GetToken().aText)))

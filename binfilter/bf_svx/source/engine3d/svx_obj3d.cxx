@@ -89,7 +89,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   // Owner holen
 /*N*/   DBG_ASSERT(GetOwnerObj()->ISA(E3dObject), "AW: Entfernen 3DObject aus Parent != 3DObject");
-/*N*/   /*E3dObject* pOwner =*/ (E3dObject*)GetOwnerObj();
 /*N*/
 /*N*/   // call parent
 /*N*/   SdrObject* pRetval = SdrObjList::RemoveObject(nObjNum);

@@ -62,12 +62,7 @@ BOOL SmDLL::bInitialized = FALSE;
 /*N*/     delete (*ppShlPtr);
 /*N*/     (*ppShlPtr) = new SmModule(pFact);
 /*N*/     (*ppShlPtr)->pSmDocShellFactory = pFact;
-/*N*/
-/*N*/   String aResDll(C2S("sm"));
-/*N*/
-/*N*/   /*SfxModule *p =*/ SM_MOD1();
-/*N*/
-}
+/*N*/ }
 
 /*************************************************************************
 |*

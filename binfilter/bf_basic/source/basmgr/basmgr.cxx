@@ -2075,7 +2075,7 @@ Any LibraryContainer_Impl::getByName( const OUString& aName )
     Reference< XNameContainer > xModuleContainer =
         (XNameContainer*)new ModuleContainer_Impl( pLib );
 
-    Reference< XNameContainer > xDialogContainer;
+    Reference< XNameContainer > xDialogContainer =
         (XNameContainer*)new DialogContainer_Impl( pLib );
 
     BasicLibInfo* pLibInfo = mpMgr->FindLibInfo( pLib );

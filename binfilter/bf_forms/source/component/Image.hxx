@@ -170,6 +170,7 @@ public:
 
 // OComponentHelper
     virtual void SAL_CALL disposing();
+    using OImageControl_BASE::disposing;
 
 // ::com::sun::star::form::XApproveActionBroadcaster
     virtual void SAL_CALL addApproveActionListener(const ::com::sun::star::uno::Reference< ::com::sun::star::form::XApproveActionListener>& _rxListener)

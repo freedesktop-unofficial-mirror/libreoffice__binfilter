@@ -34,13 +34,12 @@
 
 #include "sbxdef.hxx"
 
-class String;
-class UniString;
-
 namespace binfilter {
 
 class SbxBase;
 class SbxObject;
+class String;
+class UniString;
 
 class SbxFactory
 {

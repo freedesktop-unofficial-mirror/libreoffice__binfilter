@@ -2203,7 +2203,6 @@ namespace binfilter {
 /*N*/       const SwFmtFrmSize &rSz = GetFmt()->GetFrmSize();
 /*N*/         SwTwips nMinHeight = rSz.GetSizeType() == ATT_MIN_SIZE ?
 /*N*/                              rSz.GetHeight() : 0;
-/*N*/       (SwLayoutFrm*)Lower();
 /*N*/       if( nMinHeight < (Frm().*fnRect->fnGetHeight)() )
 /*N*/       {
 /*N*/           SwLayoutFrm *pCell = (SwLayoutFrm*)Lower();

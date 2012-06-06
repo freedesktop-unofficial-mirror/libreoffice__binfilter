@@ -976,9 +976,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       if ( eMode != SC_SIZE_ORIGINAL )
 /*N*/       {
-/*N*/           if (bWidth)
-/*N*/               bOutline = bOutline;
-/*N*/           else
+/*N*/           if (!bWidth)
 /*N*/               bOutline = bOutline || pDoc->UpdateOutlineRow( nStartNo, nEndNo, nTab, bShow );
 /*N*/       }
 /*N*/   }

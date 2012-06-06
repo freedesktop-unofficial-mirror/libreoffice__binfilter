@@ -153,7 +153,7 @@ struct TabInfo
 /*N*/           // in Fensterkoordinaten umwandeln....
 /*N*/           aClipRec = pView->pImpEditView->GetWindowPos( aClipRec );
 /*N*/
-/*N*/           if ( ( pView == pCurView )  )
+/*N*/           if ( pView == pCurView )
 /*N*/               Paint( pView->pImpEditView, aClipRec, sal_True );
 /*N*/           else
 /*N*/               pView->GetWindow()->Invalidate( aClipRec );

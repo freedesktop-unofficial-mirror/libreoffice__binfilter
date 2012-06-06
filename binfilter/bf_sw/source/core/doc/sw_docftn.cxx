@@ -261,13 +261,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       const SwFtnInfo &rOld = GetFtnInfo();
 /*N*/
-/*N*/       rOld.ePos == FTNPOS_CHAPTER &&
-/*N*/           rInfo.GetPageDesc( *this ) != rOld.GetPageDesc( *this );
-/*N*/       rInfo.aQuoVadis != rOld.aQuoVadis ||
-/*N*/           rInfo.aErgoSum != rOld.aErgoSum ||
-/*N*/           rInfo.aFmt.GetNumberingType() != rOld.aFmt.GetNumberingType() ||
-/*N*/           rInfo.GetPrefix() != rOld.GetPrefix() ||
-/*N*/           rInfo.GetSuffix() != rOld.GetSuffix();
 /*N*/       SwCharFmt *pOldChrFmt = rOld.GetCharFmt( *this ),
 /*N*/                 *pNewChrFmt = rInfo.GetCharFmt( *this );
 /*N*/       bool bFtnChrFmts = pOldChrFmt != pNewChrFmt;

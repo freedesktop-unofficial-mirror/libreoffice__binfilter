@@ -396,8 +396,6 @@ LanguageType SdDrawDocument::GetLanguage( const USHORT nId ) const
 
 void SdDrawDocument::WorkStartupHdl()
 {
-    BOOL bLclChanged = IsChanged();
-
     SdPage* pHandoutMPage = GetMasterSdPage(0, PK_HANDOUT);
 
     if (pHandoutMPage->GetAutoLayout() == AUTOLAYOUT_NONE)
@@ -413,7 +411,7 @@ void SdDrawDocument::WorkStartupHdl()
     if (pNotesPage->GetAutoLayout() == AUTOLAYOUT_NONE)
         pNotesPage->SetAutoLayout(AUTOLAYOUT_NOTES, TRUE);
 
-    SetChanged(bLclChanged || FALSE);
+    SetChanged(FALSE);
 }
 
 SdAnimationInfo* SdDrawDocument::GetAnimationInfo(SdrObject* pObject) const

@@ -356,24 +356,6 @@ SbMethod* SbModule::GetFunctionForLine( USHORT nLine )
     return NULL;
 }
 
-// Ausstrahlen eines Hints an alle Basics
-
-static void _SendHint( SbxObject* pObj, ULONG nId, SbMethod* p )
-{
-    // Selbst ein BASIC?
-    if( pObj->IsA( TYPE(StarBASIC) ) && pObj->IsBroadcaster() )
-        pObj->GetBroadcaster().Broadcast( SbxHint( nId, p ) );
-    // Dann die Unterobjekte fragen
-    SbxArray* pObjs = pObj->GetObjects();
-    for( USHORT i = 0; i < pObjs->Count(); i++ )
-    {
-        SbxVariable* pVar = pObjs->Get( i );
-        if( pVar->IsA( TYPE(SbxObject) ) )
-            _SendHint( PTR_CAST(SbxObject,pVar), nId, p );
-    }
-}
-
-
 // #57841 Uno-Objekte, die in RTL-Funktionen gehalten werden,
 // beim Programm-Ende freigeben, damit nichts gehalten wird.
 void ClearUnoObjectsInRTL_Impl_Rek( StarBASIC* pBasic )

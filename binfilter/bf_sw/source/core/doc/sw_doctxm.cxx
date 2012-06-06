@@ -348,7 +348,7 @@ typedef LinkStruct* LinkStructPtr;
 /*N*/       return ;
 
     // die aktuellen Seitennummern ins Verzeichnis eintragen
-/*?*/   (SwDoc*)GetFmt()->GetDoc();
+/*?*/   GetFmt()->GetDoc();
 /*?*/
 /*?*/   // nach dem Setzen der richtigen Seitennummer, das Mapping-Array
 /*?*/   // wieder loeschen !!
