@@ -185,8 +185,6 @@ public:
 // ::com::sun::star::beans::XPropertyChangeListener
     virtual void SAL_CALL propertyChange( const ::com::sun::star::beans::PropertyChangeEvent& ) throw(::com::sun::star::uno::RuntimeException);
 
-    using OControl::disposing;
-
 protected:
     ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel >  getXModel(const InterfaceRef& xIface) const;
 
