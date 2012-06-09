@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-// include ---------------------------------------------------------------
-
 #ifndef SVX_LIGHT
 #include "XPropertyTable.hxx"
 #include <unotools/ucbstreamhelper.hxx>
