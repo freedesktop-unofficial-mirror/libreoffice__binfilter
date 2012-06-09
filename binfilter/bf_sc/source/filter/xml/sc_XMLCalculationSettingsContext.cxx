@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include "XMLCalculationSettingsContext.hxx"
 #include "xmlimprt.hxx"

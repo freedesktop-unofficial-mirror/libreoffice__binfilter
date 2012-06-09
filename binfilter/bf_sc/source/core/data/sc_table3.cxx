@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include <rtl/math.hxx>
 #include <unotools/textsearch.hxx>

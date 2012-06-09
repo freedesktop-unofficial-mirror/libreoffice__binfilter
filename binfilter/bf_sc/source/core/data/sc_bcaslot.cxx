@@ -33,7 +33,6 @@
 #include <bf_sfx2/objsh.hxx>
 #include <bf_svtools/lstner.hxx>
 
-// INCLUDE ---------------------------------------------------------------
 
 #include "document.hxx"
 #include "bcaslot.hxx"

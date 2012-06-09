@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include "document.hxx"
 #include "xmlimprt.hxx"

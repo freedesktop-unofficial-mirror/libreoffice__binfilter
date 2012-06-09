@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include <bf_xmloff/nmspmap.hxx>
 #include <bf_xmloff/xmlnmspe.hxx>

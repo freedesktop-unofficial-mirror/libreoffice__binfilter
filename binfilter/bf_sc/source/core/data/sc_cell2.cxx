@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include <rtl/strbuf.hxx>
 #include <vcl/mapmod.hxx>

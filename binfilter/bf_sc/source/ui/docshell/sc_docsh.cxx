@@ -48,7 +48,6 @@
 #include <sot/formats.hxx>
 #define SOT_FORMATSTR_ID_STARCALC_30 SOT_FORMATSTR_ID_STARCALC
 
-// INCLUDE ---------------------------------------------------------------
 
 #include "viewdata.hxx"
 #include "filter.hxx"

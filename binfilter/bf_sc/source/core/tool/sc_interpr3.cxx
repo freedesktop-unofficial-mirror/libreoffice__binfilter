@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include <bf_svtools/bf_solar.h>
 #include <stdlib.h>

@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 #include "XMLExportSharedData.hxx"
 #include "XMLExportIterator.hxx"
 

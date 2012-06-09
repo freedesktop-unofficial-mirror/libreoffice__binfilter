@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------
 
 #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/docfile.hxx>

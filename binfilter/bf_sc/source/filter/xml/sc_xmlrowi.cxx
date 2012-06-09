@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include "xmlrowi.hxx"
 #include "xmlcelli.hxx"

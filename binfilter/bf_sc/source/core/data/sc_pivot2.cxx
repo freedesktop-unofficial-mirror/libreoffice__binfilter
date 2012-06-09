@@ -37,7 +37,6 @@
 #pragma optimize("q",off) // p-code off
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
 #include <unotools/transliterationwrapper.hxx>

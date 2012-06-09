@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
 #define ITEMID_FIELD EE_FEATURE_FIELD

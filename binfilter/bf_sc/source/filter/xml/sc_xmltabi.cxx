@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include "xmltabi.hxx"
 #include "xmlimprt.hxx"

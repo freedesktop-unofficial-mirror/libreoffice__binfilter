@@ -76,7 +76,6 @@
 
 #endif  //WIN
 
-// INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
 #include <bf_svx/langitem.hxx>

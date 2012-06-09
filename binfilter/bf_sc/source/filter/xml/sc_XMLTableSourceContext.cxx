@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include "XMLTableSourceContext.hxx"
 #include "xmlimprt.hxx"

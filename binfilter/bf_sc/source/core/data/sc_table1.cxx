@@ -84,7 +84,6 @@
 
 #endif  //WIN
 
-// INCLUDE ---------------------------------------------------------------
 
 #include <unotools/textsearch.hxx>
 #include <bf_sfx2/objsh.hxx>

@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include "xmlfilti.hxx"
 #include "xmlimprt.hxx"

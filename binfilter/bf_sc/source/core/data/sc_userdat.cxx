@@ -282,7 +282,6 @@
 #define _SVX_THESDLG_HXX
 
 
-// INCLUDE ---------------------------------------------------------------
 #include "drwlayer.hxx"
 #include "rechead.hxx"
 #include "userdat.hxx"

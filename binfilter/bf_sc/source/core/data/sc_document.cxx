@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #define _ZFORLIST_DECLARE_TABLE
 #include "scitems.hxx"

@@ -29,7 +29,6 @@
 #include <com/sun/star/ui/dialogs/XExecutableDialog.hpp>
 #include <comphelper/processfactory.hxx>
 
-// INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
 

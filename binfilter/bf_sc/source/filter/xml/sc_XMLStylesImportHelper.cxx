@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include "XMLStylesImportHelper.hxx"
 #include "xmlimprt.hxx"

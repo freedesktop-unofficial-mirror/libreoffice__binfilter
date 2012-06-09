@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include "PageHeaderFooterContext.hxx"
 #include "xmlnmspe.hxx"

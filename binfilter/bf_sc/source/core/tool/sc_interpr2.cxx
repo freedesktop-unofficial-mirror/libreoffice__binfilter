@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include <bf_svx/linkmgr.hxx>
 #include <bf_svtools/zforlist.hxx>

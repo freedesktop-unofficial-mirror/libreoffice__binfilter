@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
 #include <bf_svx/editobj.hxx>

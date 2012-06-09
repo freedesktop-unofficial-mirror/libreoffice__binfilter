@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include <bf_svtools/intitem.hxx>
 #include <vcl/sound.hxx>

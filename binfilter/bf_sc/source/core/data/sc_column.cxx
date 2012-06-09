@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include <bf_svtools/poolcach.hxx>
 #include <bf_svx/scripttypeitem.hxx>

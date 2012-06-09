@@ -167,7 +167,6 @@
 #define _SVX_THESDLG_HXX
 
 
-// INCLUDE ---------------------------------------------------------------
 
 #define _ZFORLIST_DECLARE_TABLE
 #include "scitems.hxx"
