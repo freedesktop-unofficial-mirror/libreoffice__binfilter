@@ -519,11 +519,6 @@ sal_False           Das Objekt konnte nicht geladen werden
         Broadcast( SfxSimpleHint(SFX_HINT_NAMECHANGED) );
     }
 
-    if ( SFX_CREATE_MODE_EMBEDDED != eCreateMode )
-    {
-        GetpApp()->HideStatusText();
-    }
-
     return bOk;
 }
 

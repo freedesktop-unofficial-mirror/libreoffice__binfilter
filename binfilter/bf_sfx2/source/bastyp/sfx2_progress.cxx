@@ -68,7 +68,6 @@ struct SfxProgress_Impl : public SfxCancellable
     BOOL                    bWaitMode;
     BOOL                    bAllowRescheduling;
     BOOL                    bRunning;
-    BOOL                    bIsStatusText;
 
     SfxProgress*            pActiveProgress;
     SfxObjectShellRef       xObjSh;
@@ -150,7 +149,6 @@ inline ULONG Get10ThSec()
 /*N*/   pImp->nMax = nRange;
 /*N*/   pImp->bLocked = FALSE;
 /*N*/   pImp->bWaitMode = bWait;
-/*N*/   pImp->bIsStatusText = FALSE;
 /*N*/   pImp->nCreate = Get10ThSec();
 /*N*/   pImp->nNextReschedule = pImp->nCreate;
 /*N*/   DBG( DbgOutf( "SfxProgress: created for '%s' at %luds",
@@ -178,9 +176,6 @@ inline ULONG Get10ThSec()
 /*N*/   Stop();
 /*N*/     if ( pImp->xStatusInd.is() )
 /*?*/         pImp->xStatusInd->end();
-/*N*/
-/*N*/   if( pImp->bIsStatusText == TRUE )
-/*?*/       GetpApp()->HideStatusText( );
 /*N*/   delete pImp;
 /*N*/ }
 
