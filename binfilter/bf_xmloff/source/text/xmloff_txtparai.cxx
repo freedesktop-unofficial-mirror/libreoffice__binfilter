@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-
-
-
 #include <bf_svtools/svarray.hxx>
 
 #include <com/sun/star/text/ControlCharacter.hpp>

@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-
-
 #include "nmspmap.hxx"
 #include "xmlnmspe.hxx"
 #include "xmlimp.hxx"

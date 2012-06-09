@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-
-
-
 #include "XMLBitmapLogicalSizePropertyHandler.hxx"
 
 #include <comphelper/extract.hxx>

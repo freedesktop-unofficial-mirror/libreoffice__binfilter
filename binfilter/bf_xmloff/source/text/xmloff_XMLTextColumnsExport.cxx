@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-
-
-
 #include <com/sun/star/text/XTextColumns.hpp>
 #include <com/sun/star/style/VerticalAlignment.hpp>
 

@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-
-
 #include <rtl/ustrbuf.hxx>
 
 #include "XMLPercentOrMeasurePropertyHandler.hxx"

@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-
-
 #include "svdotext.hxx"
 #include "svdmodel.hxx"
 #include "svdio.hxx"

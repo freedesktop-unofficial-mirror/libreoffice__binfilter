@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-
-
 #include "unoviwou.hxx"
 #include "outliner.hxx"
 #include "svdotext.hxx"

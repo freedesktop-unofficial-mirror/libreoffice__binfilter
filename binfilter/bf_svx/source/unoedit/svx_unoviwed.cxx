@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-
-
 #include "unoviwed.hxx"
 #include "editview.hxx"
 #include "editeng.hxx"
