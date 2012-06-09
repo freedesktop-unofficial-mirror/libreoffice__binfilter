@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-// include ---------------------------------------------------------------
-
 #include <stdio.h>
 
 #include <com/sun/star/ucb/InteractiveAugmentedIOException.hpp>
