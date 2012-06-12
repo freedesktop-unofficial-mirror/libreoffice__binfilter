@@ -1640,7 +1640,7 @@ SAL_WNODEPRECATED_DECLARATIONS_POP
 /*?*/           // to be shown line has transparence, output via MetaFile
 /*?*/           UINT8 nScaledTrans((UINT8)((nTransparence * 255)/100));
 /*?*/           Color aTransColor(nScaledTrans, nScaledTrans, nScaledTrans);
-/*?*/           Gradient aGradient(GRADIENT_LINEAR, aTransColor, aTransColor);
+/*?*/           Gradient aGradient(GradientStyle_LINEAR, aTransColor, aTransColor);
 /*?*/           GDIMetaFile aMetaFile;
 /*?*/           VirtualDevice aVDev;
 /*?*/           Volume3D aVolume;

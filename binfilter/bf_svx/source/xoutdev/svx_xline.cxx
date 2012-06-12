@@ -460,7 +460,7 @@ namespace binfilter {
 /*?*/       MapMode         aMap( pOldOut->GetMapMode() );
 /*?*/       const BYTE      cTrans = nLineTransparence * 255 / 100;
 /*?*/       const Color     aTrans( cTrans, cTrans, cTrans );
-/*?*/       Gradient        aTransGradient( GRADIENT_LINEAR, aTrans, aTrans );
+/*?*/       Gradient        aTransGradient( GradientStyle_LINEAR, aTrans, aTrans );
 /*?*/
 /*?*/       pOut = &aVDev;
 /*?*/       aVDev.EnableOutput( FALSE );
