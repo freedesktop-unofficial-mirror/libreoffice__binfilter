@@ -38,10 +38,6 @@ NO_HIDS=TRUE
 .INCLUDE :	settings.mk
 alllangiso=en-US
 
-.IF "$(prjpch)" != ""
-CDEFS+=-DPRECOMPILED
-.ENDIF
-
 RSCLOCINC!:=$(RSCLOCINC);$(PRJ)$/RES
 SOLARLIB+=-L$(LB)
 

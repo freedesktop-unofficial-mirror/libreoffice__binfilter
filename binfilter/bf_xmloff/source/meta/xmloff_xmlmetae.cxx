@@ -26,7 +26,6 @@
  *
  ************************************************************************/
 
-#include <tools/inetdef.hxx>
 #include <tools/urlobj.hxx>
 #include <unotools/configmgr.hxx>
 

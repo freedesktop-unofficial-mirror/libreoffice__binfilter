@@ -39,10 +39,6 @@ NO_HIDS=TRUE
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_offmgr
 
-.IF "$(prjpch)" != ""
-CDEFS=$(CDEFS) -DPRECOMPILED
-.ENDIF
-
 .IF "$(GUI)"=="UNX"
     CDEFS+=-DDLL_NAME=libbf_ofa$(DLLPOSTFIX)$(DLLPOST)
 .ELSE
