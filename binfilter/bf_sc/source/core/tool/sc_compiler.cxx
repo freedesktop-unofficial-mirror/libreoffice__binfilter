@@ -867,7 +867,7 @@ namespace binfilter {
 /*N*/     // Has to be called before IsValue
 /*N*/   sal_Unicode ch1 = rName.GetChar(0);
 /*N*/   sal_Unicode cDecSep = ( pSymbolTable == pSymbolTableEnglish ? '.' :
-/*N*/         ScGlobal::pLocaleData->getNumDecimalSep().GetChar(0) );
+/*N*/         ScGlobal::pLocaleData->getNumDecimalSep()[0] );
 /*N*/   if ( ch1 == cDecSep )
 /*N*/       return FALSE;
 /*N*/     // Who was that imbecile introducing '.' as the sheet name separator!?!
@@ -3049,7 +3049,7 @@ namespace binfilter {
 /*N*/                 ::rtl::math::doubleToUStringBuffer( rBuffer, t->GetDouble(),
 /*N*/                         rtl_math_StringFormat_Automatic,
 /*N*/                         rtl_math_DecimalPlaces_Max,
-/*N*/                         ScGlobal::pLocaleData->getNumDecimalSep().GetChar(0),
+/*N*/                         ScGlobal::pLocaleData->getNumDecimalSep()[0],
 /*N*/                         TRUE );
 /*N*/             }
 /*N*/       }

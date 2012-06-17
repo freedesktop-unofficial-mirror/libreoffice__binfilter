@@ -678,13 +678,13 @@ BOOL ImpSvNumberInputScan::GetTimeAmPm( const String& rString, xub_StrLen& nPos 
         if ( StringContains( pChr->uppercase( pLoc->getTimeAM() ), rString, nPos ) )
         {
             nAmPm = 1;
-            nPos = nPos + pLoc->getTimeAM().Len();
+            nPos = nPos + pLoc->getTimeAM().getLength();
             return TRUE;
         }
         else if ( StringContains( pChr->uppercase( pLoc->getTimePM() ), rString, nPos ) )
         {
             nAmPm = -1;
-            nPos = nPos + pLoc->getTimePM().Len();
+            nPos = nPos + pLoc->getTimePM().getLength();
             return TRUE;
         }
     }

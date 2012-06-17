@@ -1056,7 +1056,7 @@ using namespace ::com::sun::star;
 /*?*/           rStr.Insert(sal_Unicode('0'), 0);
 /*?*/   }
 /*?*/
-/*?*/     sal_Unicode cDec( rLoc.getNumDecimalSep().GetChar(0) );
+/*?*/   sal_Unicode cDec( rLoc.getNumDecimalSep()[0] );
 /*?*/
 /*?*/   // KommaChar einfuegen
 /*?*/   sal_Int32 nVorKomma(rStr.Len() - nKomma);

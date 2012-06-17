@@ -146,7 +146,7 @@ namespace binfilter {
 /*?*/                   rStr += sal_Unicode('?');
 /*?*/               }
 /*?*/
-/*?*/                 sal_Unicode cDec(SvtSysLocale().GetLocaleData().getNumDecimalSep().GetChar(0));
+/*?*/               sal_Unicode cDec(SvtSysLocale().GetLocaleData().getNumDecimalSep()[0]);
 /*?*/
 /*?*/               if(rStr.Search(cDec) != STRING_NOTFOUND)
 /*?*/               {

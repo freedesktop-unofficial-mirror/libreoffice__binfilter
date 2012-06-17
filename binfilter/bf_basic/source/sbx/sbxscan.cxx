@@ -51,8 +51,8 @@ void ImpGetIntntlSep( sal_Unicode& rcDecimalSep, sal_Unicode& rcThousandSep )
 {
     SvtSysLocale aSysLocale;
     const LocaleDataWrapper& rData = aSysLocale.GetLocaleData();
-    rcDecimalSep = rData.getNumDecimalSep().GetBuffer()[0];
-    rcThousandSep = rData.getNumThousandSep().GetBuffer()[0];
+    rcDecimalSep = rData.getNumDecimalSep()[0];
+    rcThousandSep = rData.getNumThousandSep()[0];
 }
 
 // Scannen eines Strings nach BASIC-Konventionen

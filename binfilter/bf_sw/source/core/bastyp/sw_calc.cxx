@@ -462,7 +462,7 @@ static int
 /*N*/   String  aRetStr( ::rtl::math::doubleToUString( nValue,
 /*N*/                 rtl_math_StringFormat_Automatic,
 /*N*/                 nDec,
-/*N*/                 pLclData->getNumDecimalSep().GetChar(0),
+/*N*/                 pLclData->getNumDecimalSep()[0],
 /*N*/                 true ));
 /*N*/
 /*N*/   return aRetStr;
@@ -1239,8 +1239,8 @@ static int
 /*N*/     const sal_Unicode* pEnd;
 /*N*/     rVal = rtl_math_uStringToDouble( rCommand.GetBuffer() + rCommandPos,
 /*N*/             rCommand.GetBuffer() + rCommand.Len(),
-/*N*/             pLclD->getNumDecimalSep().GetChar(0),
-/*N*/             pLclD->getNumThousandSep().GetChar(0),
+/*N*/             pLclD->getNumDecimalSep()[0],
+/*N*/             pLclD->getNumThousandSep()[0],
 /*N*/             &eStatus, &pEnd );
 /*N*/   rCommandPos = pEnd - rCommand.GetBuffer();
 /*N*/
@@ -1269,8 +1269,8 @@ static int
 /*N*/     const sal_Unicode* pEnd;
 /*N*/     rVal = rtl_math_uStringToDouble( rCommand.GetBuffer() + rCommandPos,
 /*N*/             rCommand.GetBuffer() + rCommand.Len(),
-/*N*/             pLclD->getNumDecimalSep().GetChar(0),
-/*N*/             pLclD->getNumThousandSep().GetChar(0),
+/*N*/             pLclD->getNumDecimalSep()[0],
+/*N*/             pLclD->getNumThousandSep()[0],
 /*N*/             &eStatus, &pEnd );
 /*N*/   rCommandPos = pEnd - rCommand.GetBuffer();
 /*N*/

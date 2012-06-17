@@ -584,7 +584,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   nTabPos = 0;
 /*N*/   eAdjustment = SVX_TAB_ADJUST_LEFT;
-/*N*/   cDecimal = SvtSysLocale().GetLocaleData().getNumDecimalSep().GetChar(0);
+/*N*/   cDecimal = SvtSysLocale().GetLocaleData().getNumDecimalSep()[0];
 /*N*/   cFill = cDfltFillChar;
 /*N*/ }
 
@@ -595,7 +595,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   nTabPos = nPos;
 /*N*/   eAdjustment = eAdjst;
-/*N*/   cDecimal = ( cDfltDecimalChar == cDec ) ? SvtSysLocale().GetLocaleData().getNumDecimalSep().GetChar(0) : cDec;
+/*N*/   cDecimal = ( cDfltDecimalChar == cDec ) ? SvtSysLocale().GetLocaleData().getNumDecimalSep()[0] : cDec;
 /*N*/   cFill = cFil;
 /*N*/ }
 
