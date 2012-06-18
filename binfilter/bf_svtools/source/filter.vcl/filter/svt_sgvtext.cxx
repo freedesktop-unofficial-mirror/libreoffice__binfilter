@@ -1178,7 +1178,7 @@ void SgfFontOne::ReadOne( const rtl::OString& rID, ByteString& Dsc )
         i--;
         j++;
     }
-    SVFName=String(Dsc,i+1,j);                       // SV-Fontname rausholen
+    SVFName=String(Dsc,i+1,j,RTL_TEXTENCODING_IBM_437); // SV-Fontname rausholen
     Dsc.Erase(i,j);
 
     IFID = (UINT32)rID.toInt32();

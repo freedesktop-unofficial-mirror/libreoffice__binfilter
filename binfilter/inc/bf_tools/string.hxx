@@ -277,6 +277,11 @@ private:
 
     //detect and reject use of RTL_CONSTASCII_STRINGPARAM instead of RTL_CONSTASCII_USTRINGPARAM
     UniString( const sal_Char*, sal_Int32 );
+
+    //detect and reject wrong way to attempt to create a UniString from a substring of
+    //a ByteString
+    UniString( const ByteString& rByteStr, xub_StrLen nPos, xub_StrLen nLen,
+               sal_uInt32 nCvtFlags = BYTESTRING_TO_UNISTRING_CVTFLAGS );
 public:
                         UniString();
                         UniString( const UniString& rStr );
