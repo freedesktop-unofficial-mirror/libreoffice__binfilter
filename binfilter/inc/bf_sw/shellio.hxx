@@ -288,7 +288,6 @@ public:
     SwgReaderOption& GetReaderOpt() { return aOpt; }
 
     virtual void SetFltName( const String& rFltNm );
-    static void SetNoOutlineNum( SwDoc& rDoc );
 
     // Die Filter-Vorlage laden, setzen und wieder freigeben
     SwDoc* GetTemplateDoc();

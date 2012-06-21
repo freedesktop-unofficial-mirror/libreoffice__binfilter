@@ -5501,12 +5501,6 @@ ULONG Sw6Reader::Read( SwDoc &rDoc,SwPaM &rPam,const String &rFileName)
 
     if( pStrm )
     {
-        //JP 18.01.96: Alle Ueberschriften sind normalerweise ohne
-        //              Kapitelnummer. Darum hier explizit abschalten
-        //              weil das Default jetzt wieder auf AN ist.
-        if( !bInsertMode )
-            SetNoOutlineNum( rDoc );
-
         SwSw6Parser *pSw6Parser = new SwSw6Parser( &rDoc, rPam, pStrm,
                                         !bInsertMode, &nRet, &rFileName );
         pSw6Parser->CallParser();

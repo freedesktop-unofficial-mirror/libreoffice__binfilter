@@ -422,10 +422,6 @@ int Reader::SetStrmStgPtr()
  }
 
 
-void Reader::SetNoOutlineNum( SwDoc& /*rDoc*/ )
-{
-}
-
 /*N*/ SwWriter::SwWriter( SvStream& rStrm, SwPaM& rPam, BOOL bInWriteAll )
 /*N*/ 	: pStrm( &rStrm ),
 /*N*/ 	pOutPam( &rPam ),
