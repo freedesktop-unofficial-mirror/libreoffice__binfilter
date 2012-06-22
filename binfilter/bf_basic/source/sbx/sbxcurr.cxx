@@ -336,7 +336,7 @@ static String ImpCurrencyToString( const SbxINT64 &r )
         aString = '-';
     aString += aInt.GetString();
     aString += '.';
-    aString += aFrac.GetString().GetBuffer()+1;
+    aString += aFrac.GetString().getStr()+1;
     return aString;
 }
 
