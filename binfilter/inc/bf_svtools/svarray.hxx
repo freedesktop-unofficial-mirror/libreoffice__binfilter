@@ -822,15 +822,6 @@ _SORT_CLASS_DEF(nm, AE, IS, GS, vis) \
         return nm##_SAR::GetObject( nP );\
     }\
     BOOL Seek_Entry( const AE & aE, USHORT* pP = 0 ) const;\
-    void ForEach( CONCAT( FnForEach_, nm ) fnForEach, void* pArgs = 0 )\
-    {\
-        _ForEach( 0, nA, (FnForEach_##nm##_SAR)fnForEach, pArgs );\
-    }\
-    void ForEach( USHORT nS, USHORT nE, \
-                    CONCAT( FnForEach_, nm ) fnForEach, void* pArgs = 0 )\
-    {\
-        _ForEach( nS, nE, (FnForEach_##nm##_SAR)fnForEach, pArgs );\
-    }\
 private:\
     nm( const nm& );\
     nm& operator=( const nm& );\
