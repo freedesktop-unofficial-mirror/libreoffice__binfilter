@@ -37,8 +37,6 @@
 namespace rtl { class OUString; }
 namespace binfilter {
 
-extern const XMLPropertyMapEntry aXMLChartPropMap[];
-
 class SvXMLExport;
 
 // ----------------------------------------
