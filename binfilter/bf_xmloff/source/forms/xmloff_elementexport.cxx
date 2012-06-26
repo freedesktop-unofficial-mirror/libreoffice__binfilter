@@ -43,8 +43,6 @@
 #endif
 
 #include <com/sun/star/form/binding/XValueBinding.hpp>
-
-//#include <drafts/com/sun/star/form/XListEntrySink.hpp>
 #include <com/sun/star/form/binding/XListEntrySink.hpp>
 
 #include <algorithm>
