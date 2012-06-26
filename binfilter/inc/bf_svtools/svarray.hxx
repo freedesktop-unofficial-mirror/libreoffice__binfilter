@@ -129,9 +129,6 @@ public:\
             CONCAT( FnForEach_, nm ) fnCall, void* pArgs = 0 );\
 \
 
-#define _SV_DECL_VARARR(nm, AE, IS, GS ) \
-_SV_DECL_VARARR_GEN(nm, AE, IS, GS, AE & )
-
 #define SV_DECL_VARARR_GEN(nm, AE, IS, GS, AERef, vis )\
 _SV_DECL_VARARR_GEN(nm, AE, IS, GS, AERef, vis )\
 private:\
