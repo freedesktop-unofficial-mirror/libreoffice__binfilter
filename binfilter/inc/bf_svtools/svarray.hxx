@@ -428,13 +428,10 @@ void nm::_ForEach( USHORT nStt, USHORT nE, \
 \
 _SVOBJARR_IMPL_GET_OP_INLINE(nm, AE)\
 
-#define _SV_DECL_PTRARR_DEF_GEN( nm, AE, IS, GS, AERef, vis )\
-_SV_DECL_VARARR_GEN( nm, AE, IS, GS, AERef, vis)\
-USHORT GetPos( const AERef aE ) const;\
-};
-
 #define _SV_DECL_PTRARR_DEF( nm, AE, IS, GS, vis )\
-_SV_DECL_PTRARR_DEF_GEN( nm, AE, IS, GS, AE &, vis )
+_SV_DECL_VARARR_GEN( nm, AE, IS, GS, AE &, vis)\
+USHORT GetPos( const AE & aE ) const;\
+};
 
 #define SV_DECL_PTRARR_GEN(nm, AE, IS, GS, Base, AERef, VPRef, vis )\
 typedef BOOL (*FnForEach_##nm)( const AERef, void* );\
