@@ -334,10 +334,3 @@ String RID_STR_SVT_SQL_INTERNATIONAL
     Text[ ar ] = "LIKE;NOT;EMPTY;TRUE;FALSE;IS;BETWEEN;OR;AND;Average;Count;Maximum;Minimum;Sum";
     Text[ he ] = "‮כמו;לא;ריק;אמת;שקר;;בין;או;ו;ממוצע;מספר;מירבי;מזערי;סיכום‬";
 };
-
-
-
-
-
-
-

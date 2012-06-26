@@ -79,5 +79,3 @@
 #define ST_RENAME                       (ST_GLOBAL_CONTEXT_FIRST +32)
 #define ST_READONLY_IDX                 (ST_GLOBAL_CONTEXT_FIRST +33)
 #define ST_INVISIBLE                    (ST_GLOBAL_CONTEXT_FIRST +34)
-
-

@@ -53,5 +53,3 @@ String RID_DRAW_TOOLBOX
     Text[ ar ] = "شريط الأدوات";
     Text[ he ] = "‮סרגל ראשי‬";
 };
-
-

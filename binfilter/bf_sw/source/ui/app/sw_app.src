@@ -825,5 +825,3 @@ String RID_MODULE_TOOLBOX
     Text[ ar ] = "شريط المهام";
     Text[ he ] = "‮סרגל פעולות נפוצות‬";
 };
-
-

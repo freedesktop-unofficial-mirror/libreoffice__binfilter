@@ -83,5 +83,3 @@ String STR_WRITER_GLOBALDOC_FULLTYPE
     Text[ ar ] = "مستند شامل%PRODUCTNAME %PRODUCTVERSION ";
     Text[ he ] = "%PRODUCTNAME 6.0 Global Dokument";
 };
-
-

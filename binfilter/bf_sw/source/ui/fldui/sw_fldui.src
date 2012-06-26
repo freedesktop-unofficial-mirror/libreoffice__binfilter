@@ -1559,8 +1559,3 @@ String STR_TEXT
     Text[ ar ] = "ثم، غير ذلك";
     Text[ he ] = "Dann, Sonst";
 };
-
-
-
-
-
