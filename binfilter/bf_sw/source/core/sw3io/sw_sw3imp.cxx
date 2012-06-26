@@ -1249,35 +1249,6 @@ const int RES_POOLCOLL_HTML_DT_40 = 0x3007;
 /*N*/   return nId;
 /*N*/ }
 
-/*N*/ sal_uInt16 Sw3StringPool::ConvertToOldPoolId( sal_uInt16 nId, sal_uInt32 nFFVersion )
-/*N*/ {
-/*N*/   if( nFFVersion <= SOFFICE_FILEFORMAT_40 )
-/*N*/   {
-/*N*/       // H6, LISTUNG undx XMP wurden entfernt.
-/*N*/       // HR, DT und DD sind nach vorne gerueckt.
-/*N*/       switch( nId )
-/*N*/       {
-/*?*/       case RES_POOLCOLL_HTML_HR:  nId = RES_POOLCOLL_HTML_HR_40; break;
-/*?*/       case RES_POOLCOLL_HEADLINE6:nId = RES_POOLCOLL_HTML_H6_40; break;
-/*?*/       case RES_POOLCOLL_HTML_DD:  nId = RES_POOLCOLL_HTML_DD_40; break;
-/*?*/       case RES_POOLCOLL_HTML_DT:  nId = RES_POOLCOLL_HTML_DT_40; break;
-/*N*/
-/*N*/       //JP 05.05.98: im 3.1/4.0 war ein Bug im sw3style bei der Abfrage
-/*N*/       //              ob die PoolID einer Zeichenvorlage eine Benutzer-
-/*N*/       //              definierte ID ist. Alles zwischen
-/*N*/       //              RES_POOLCHR_NORMAL_END und RES_POOLCHR_HTML_BEGIN
-/*N*/       //              werden als gueltig erkannt, was falsch ist.
-/*N*/       default:
-/*N*/           if( ( RES_POOLCHR_TOXJUMP < nId && nId < RES_POOLCHR_NORMAL_END )
-/*N*/             ||( RES_POOLFRM_WATERSIGN < nId && nId < RES_POOLFRM_END )
-/*N*/             ||( RES_POOLPAGE_HTML < nId && nId < RES_POOLPAGE_END ) )
-/*N*/             nId = USHRT_MAX;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return nId;
-/*N*/ }
-
 // Entfernen der Autoformat-Extension nach dem Laden/Speichern
 // Dies ist ein Hash und eine Zahl, mit der Autoformate im
 // FrmFmt-Array des Docs erweitert wurden.

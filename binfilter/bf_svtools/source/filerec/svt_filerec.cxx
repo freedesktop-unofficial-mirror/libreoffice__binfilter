@@ -34,10 +34,6 @@ namespace binfilter
 
 //========================================================================
 
-SV_IMPL_VARARR( SfxUINT32s, UINT32 );
-
-//========================================================================
-
 /*  Die folgenden Makros extrahieren Teilbereiche aus einem UINT32 Wert.
     Diese UINT32-Werte werden anstelle der einzelnen Werte gestreamt,
     um Calls zu sparen.

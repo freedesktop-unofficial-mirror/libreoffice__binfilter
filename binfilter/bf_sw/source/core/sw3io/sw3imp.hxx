@@ -283,7 +283,6 @@ public:
     void   Store( SvStream& ) {}
 
     static USHORT ConvertFromOldPoolId( USHORT nId, USHORT nVersion );
-    static USHORT ConvertToOldPoolId( USHORT nId, sal_uInt32 nFFVersion );
 };
 
 // Informationen, die nur beim Export eines Doks benoetigt werden

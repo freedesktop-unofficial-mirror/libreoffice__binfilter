@@ -152,7 +152,6 @@ class SwStyleSheetPool : public SfxStyleSheetBasePool {
     long         nExpFFVersion; // FF-Version fuer Export
     using SfxStyleSheetBasePool::Create;
     virtual SfxStyleSheetBase* Create( const String&, SfxStyleFamily, USHORT nMask);
-    void Add( const SwFmt& rFmt, SfxStyleFamily eFam );
     void CopyToDoc( BOOL bOverwrite, USHORT eMask );
     void Rename( const String&, const String&, SfxStyleFamily );
     SwStyleSheet *FindByPoolId( USHORT nPoolId );
@@ -435,126 +434,6 @@ public:
 
 const int RES_POOLCOLL_HTML_LISTING_40_USER = 0x3002 | USER_FMT;
 const int RES_POOLCOLL_HTML_XMP_40_USER = 0x3003 | USER_FMT;
-
-// Hinzufuegen eines neuen StyleSheets.
-// Es muss mind. ein Bit in der Maske gesetzt werden, da die Suchroutinen
-// der Basisklasse ein AND auf die Maske machen!
-// Der Set wird auch temporaer kopiert.
-
-#define DUMMYBITS   0x0001
-
-/*N*/ void SwStyleSheetPool::Add( const SwFmt& rFmt, SfxStyleFamily eFam )
-/*N*/ {
-/*N*/   SwStyleSheet& r = (SwStyleSheet&) Make( rFmt.GetName(), eFam, DUMMYBITS );
-/*N*/
-/*N*/   // SW31-Export oder nicht
-/*N*/   r.nVersion = nExpFFVersion;
-/*N*/
-/*N*/   // ItemSet
-/*N*/   r.GetItemSet().Put( rFmt.GetAttrSet() );
-/*N*/
-/*N*/   // es muss natuerlich der Pointer vom kopierten geschrieben werden !!!
-/*N*/   r.pSet = &r.GetItemSet();
-/*N*/   r.bMySet = FALSE;
-/*N*/
-/*N*/   // Members setzen
-/*N*/   OSL_ENSURE( nExpFFVersion, "SwStylePool::Add: FF-Version ist nicht gesetzt" );
-/*N*/   if( nExpFFVersion <= SOFFICE_FILEFORMAT_40 )
-/*N*/       r.nId = Sw3StringPool::ConvertToOldPoolId( rFmt.GetPoolFmtId(),
-/*N*/                                                  nExpFFVersion );
-/*N*/   else
-/*N*/       r.nId  = rFmt.GetPoolFmtId();
-/*N*/   r.pFmt = (SwFmt*) &rFmt;
-/*N*/   if( r.nId & USER_FMT )
-/*N*/       r.nMask |= SFXSTYLEBIT_USERDEF;
-/*N*/   if( rDoc.IsUsed( rFmt ) )
-/*N*/       r.nMask |= SFXSTYLEBIT_USED;
-/*N*/   if( rFmt.GetPoolHlpFileId() != UCHAR_MAX )
-/*?*/       r.aHelpFile = *rDoc.GetDocPattern( rFmt.GetPoolHlpFileId() );
-/*N*/   r.nHelpId = rFmt.GetPoolHelpId();
-/*N*/   if( rFmt.IsAutoUpdateFmt() )
-/*N*/       r.cFlags |= 0x01;
-/*N*/
-/*N*/   // Parent und Follow
-/*N*/   SwFmt* pFmt = rFmt.DerivedFrom();
-/*N*/   // Parent-Namen nur uebernehmen, wenn kein Default
-/*N*/   if( pFmt && !pFmt->IsDefault() )
-/*N*/       r.aParent = rFmt.DerivedFrom()->GetName();
-/*N*/   if( r.nFamily & SFX_STYLE_FAMILY_PARA )
-/*N*/   {
-/*N*/       r.nLevel = r.GetColl()->GetOutlineLevel();
-/*N*/ #ifdef NUM_RELSPACE
-/*N*/       if( NO_NUMBERING != r.nLevel )
-/*N*/       {
-/*N*/           // Beim Export in das 3.1- oder 4.0-Format wird die Vorlage noch
-/*N*/           // an die Outline Numerierung angepasst. Der linke Einzug wird
-/*N*/           // aber nur veraendert, wenn er nicht relativ ist.
-/*N*/           // Beim Schreiben des 5.0/5.1-Formats werden die Einzuege immer
-/*N*/           // veraendert und das Original-Item gemerkt.
-/*N*/           // Beim 3.1- und 4.0-Export werden auch Vorlagen angepasst, deren
-/*N*/           // Outline-Level >= 5 ist.
-/*N*/           const SwNumRule *pOutline = rDoc.GetOutlineNumRule();
-/*N*/           BYTE nLevel = GetRealLevel( r.nLevel );
-/*N*/           if( pOutline )
-/*N*/           {
-/*N*/               const SwNumFmt& rNumFmt = pOutline->Get( nLevel );
-/*N*/               const SvxLRSpaceItem& rLRSpace = rFmt.GetLRSpace();
-/*N*/               USHORT nOldLSpace = rLRSpace.GetTxtLeft();
-/*N*/               USHORT nLSpace = rLRSpace.GetTxtLeft();
-/*N*/               BOOL bNonProp = FALSE;
-/*N*/               if( rLRSpace.GetPropLeft() == 100U ||
-/*N*/                   nExpFFVersion > SOFFICE_FILEFORMAT_40 )
-/*N*/               {
-/*N*/                   if( pOutline->IsAbsSpaces() )
-/*?*/                       nLSpace = rNumFmt.GetAbsLSpace();
-/*N*/                   else
-/*N*/                       nLSpace += rNumFmt.GetAbsLSpace();
-/*N*/                   bNonProp = TRUE;
-/*N*/               }
-/*N*/               if( nLSpace != rLRSpace.GetTxtLeft() ||
-/*N*/                   rNumFmt.GetFirstLineOffset() !=
-/*N*/                               rLRSpace.GetTxtFirstLineOfst() )
-/*N*/               {
-/*N*/                   if( nExpFFVersion > SOFFICE_FILEFORMAT_40 )
-/*N*/                   {
-/*N*/                       r.cFlags |= 0x02;
-/*N*/                       if( SFX_ITEM_SET == r.GetItemSet().
-/*N*/                                   GetItemState( RES_LR_SPACE, FALSE ) )
-/*N*/                       {
-/*?*/                           r.pNumLRSpace = new SvxLRSpaceItem( rLRSpace );
-/*N*/                       }
-/*N*/                   }
-/*N*/                   SvxLRSpaceItem aLRSpace( rLRSpace );
-/*N*/                   aLRSpace.SetTxtFirstLineOfst(
-/*N*/                           rNumFmt.GetFirstLineOffset() );
-/*N*/                   if( bNonProp )
-/*N*/                       aLRSpace.SetTxtLeft( nLSpace );
-/*N*/                   r.GetItemSet().Put( aLRSpace );
-/*N*/
-/*N*/                   if( nExpFFVersion <= SOFFICE_FILEFORMAT_40 &&
-/*N*/                       nLSpace != nOldLSpace )
-/*N*/                   {
-/*N*/                       const SfxPoolItem* pItem;
-/*N*/                       if( SFX_ITEM_SET == rFmt.GetAttrSet().GetItemState(
-/*N*/                                       RES_PARATR_TABSTOP, TRUE, &pItem ))
-/*N*/                       {
-/*N*/                           SvxTabStopItem aTStop( *(SvxTabStopItem*)pItem );
-/*N*/                           lcl_sw3io__ConvertNumTabStop( aTStop,
-/*N*/                                           (long)nOldLSpace - (long)nLSpace );
-/*N*/                           r.GetItemSet().Put( aTStop );
-/*N*/                       }
-/*N*/                   }
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/ #endif
-/*N*/
-/*N*/       const SwTxtFmtColl& rFollow = r.GetColl()->GetNextTxtFmtColl();
-/*N*/       if( !rFollow.IsDefault() )
-/*N*/           r.aFollow = rFollow.GetName();
-/*N*/   }
-/*N*/
-/*N*/ }
 
 // Kopieren aller StyleSheets in das Doc
 // Ggf. werden die StyleSheets neu erzeugt

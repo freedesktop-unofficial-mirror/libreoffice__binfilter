@@ -1042,7 +1042,6 @@ class ScChangeTrack : public SfxListener
 /*N*/           void                LookUpContents( const ScRange& rOrgRange,
 /*N*/                                   ScDocument* pRefDoc,
 /*N*/                                   short nDx, short nDy, short nDz );
-/*N*/           void                Remove( ScChangeAction* );
 /*N*/           void                MasterLinks( ScChangeAction* );
 /*N*/                                                          // Content on top an Position
 /*N*/          ScChangeActionContent*  SearchContentAt( const ScBigAddress&,

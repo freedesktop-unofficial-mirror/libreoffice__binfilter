@@ -25,7 +25,7 @@
 
 namespace binfilter {
 
-#define DECLARE_CONTAINER_SORT_COMMON( ClassName, Type )                        \
+#define DECLARE_CONTAINER_SORT_COMMON( ClassName, Type )                    \
     ClassName( const ClassName& );                                          \
     ClassName& operator =( const ClassName& );                              \
 public:                                                                     \
@@ -34,20 +34,34 @@ public:                                                                     \
     ClassName( USHORT  InitSize, USHORT  ReSize ) :                         \
         Container( CONTAINER_MAXBLOCKSIZE, InitSize, ReSize )   {}          \
                                                                             \
-    BOOL Insert( Type* pObj );                                              \
-                                                                               \
+    BOOL Insert( Type* pObj )                                               \
+    {                                                                       \
+        ULONG nPos;                                                         \
+        BOOL bExist = Seek_Entry( pObj, &nPos );                            \
+        if( !bExist )                                                       \
+            Container::Insert( pObj, nPos );                                \
+        return !bExist;                                                     \
+    }                                                                       \
+                                                                            \
     Type *Remove( ULONG nPos )                                              \
         { return (Type *)Container::Remove( nPos ); }                       \
                                                                             \
-    Type *Remove( Type* pObj );                                             \
-                                                                               \
+    Type *Remove( Type* pObj )                                              \
+    {                                                                       \
+        ULONG nPos;                                                         \
+        if( Seek_Entry( pObj, &nPos ) )                                     \
+            return Remove( nPos );                                          \
+        else                                                                \
+            return 0;                                                       \
+    }                                                                       \
+                                                                            \
     void DeleteAndDestroy( ULONG nPos )                                     \
     {                                                                       \
         Type *pObj = Remove( nPos );                                        \
         if( pObj )                                                          \
             delete pObj;                                                    \
     }                                                                       \
-                                                                               \
+                                                                            \
     void DeleteAndDestroy()                                                 \
         { while( Count() ) DeleteAndDestroy( 0 ); }                         \
                                                                             \
@@ -59,7 +73,14 @@ public:                                                                     \
                                                                             \
     BOOL Seek_Entry( const Type *pObj, ULONG* pPos ) const;                 \
                                                                             \
-    ULONG GetPos( const Type* pObj ) const;                                 \
+    ULONG GetPos( const Type* pObj ) const                                  \
+    {                                                                       \
+        ULONG nPos;                                                         \
+        if( Seek_Entry( pObj, &nPos ) )                                     \
+            return nPos;                                                    \
+        else                                                                \
+            return CONTAINER_ENTRY_NOTFOUND;                                \
+    }                                                                       \
 
 
 #define DECLARE_CONTAINER_SORT( ClassName, Type )                           \
@@ -70,42 +91,15 @@ class ClassName : private Container                                         \
 };                                                                          \
 
 
-#define DECLARE_CONTAINER_SORT_DEL( ClassName, Type )                           \
+#define DECLARE_CONTAINER_SORT_DEL( ClassName, Type )                       \
 class ClassName : private Container                                         \
 {                                                                           \
-    DECLARE_CONTAINER_SORT_COMMON( ClassName, Type )                            \
+    DECLARE_CONTAINER_SORT_COMMON( ClassName, Type )                        \
     ~ClassName() { DeleteAndDestroy(); }                                    \
 };                                                                          \
 
 
 #define IMPL_CONTAINER_SORT( ClassName, Type, SortFunc )                    \
-BOOL ClassName::Insert( Type *pObj )                                        \
-{                                                                           \
-    ULONG nPos;                                                             \
-    BOOL bExist = Seek_Entry( pObj, &nPos );                                \
-    if( !bExist )                                                           \
-        Container::Insert( pObj, nPos );                                    \
-    return !bExist;                                                         \
-}                                                                           \
-                                                                            \
-Type *ClassName::Remove( Type* pObj )                                       \
-{                                                                           \
-    ULONG nPos;                                                             \
-    if( Seek_Entry( pObj, &nPos ) )                                         \
-        return Remove( nPos );                                              \
-    else                                                                    \
-        return 0;                                                           \
-}                                                                           \
-                                                                            \
-ULONG ClassName::GetPos( const Type* pObj ) const                           \
-{                                                                           \
-    ULONG nPos;                                                             \
-    if( Seek_Entry( pObj, &nPos ) )                                         \
-        return nPos;                                                        \
-    else                                                                    \
-        return CONTAINER_ENTRY_NOTFOUND;                                    \
-}                                                                           \
-                                                                            \
 BOOL ClassName::Seek_Entry( const Type* pObj, ULONG* pPos ) const           \
 {                                                                           \
     register ULONG nO  = Count(),                                           \

@@ -319,8 +319,6 @@ public:
     ~SfxPtrArr();
     void* GetObject( USHORT nPos ) const { return operator[](nPos); }
     void*& GetObject( USHORT nPos ) { return operator[](nPos); }
-    void Insert( USHORT nPos, void* rElem );
-    BOOL Remove( void* rElem );
     USHORT Remove( USHORT nPos, USHORT nLen );
     USHORT Count() const { return nUsed; }
     inline void** operator*();
@@ -358,12 +356,6 @@ public:\
    {}\
    T GetObject( USHORT nPos ) const { return operator[](nPos); } \
    T& GetObject( USHORT nPos ) { return operator[](nPos); } \
-   void Insert( USHORT nPos, T aElement ) {\
-       SfxPtrArr::Insert(nPos,(void *)aElement);\
-   }\
-   void Remove( T aElement ) {\
-       SfxPtrArr::Remove((void*)aElement);\
-   }\
    void Remove( USHORT nPos, USHORT nLen = 1 ) {\
        SfxPtrArr::Remove( nPos, nLen ); \
    }\

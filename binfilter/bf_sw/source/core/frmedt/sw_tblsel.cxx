@@ -110,9 +110,6 @@ namespace binfilter {
 /*N*/         : pFrm( &rCFrm ) {}
 /*N*/ };
 
-/*N*/ SV_DECL_VARARR( _Sort_CellFrms, _Sort_CellFrm, 16, 16 )
-/*N*/ SV_IMPL_VARARR( _Sort_CellFrms, _Sort_CellFrm )
-
 /*N*/ SV_IMPL_PTRARR( SwChartBoxes, SwTableBoxPtr );
 /*N*/ SV_IMPL_PTRARR( SwChartLines, SwChartBoxes* );
 

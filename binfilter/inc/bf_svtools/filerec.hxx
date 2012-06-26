@@ -31,8 +31,6 @@
 namespace binfilter
 {
 
-SV_DECL_VARARR( SfxUINT32s, UINT32, 8, 8 )
-
 //------------------------------------------------------------------------
 
 #define SFX_REC_PRETAG_EXT              BYTE(0x00)  // Pre-Tag f"ur Extended-Records

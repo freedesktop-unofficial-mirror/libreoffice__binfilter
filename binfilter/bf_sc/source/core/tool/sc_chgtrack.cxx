@@ -2918,59 +2918,6 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/   }
 /*N*/ }
 
-
-/*N*/ void ScChangeTrack::Remove( ScChangeAction* pRemove )
-/*N*/ {
-/*N*/   // aus Track ausklinken
-/*N*/   ULONG nAct = pRemove->GetActionNumber();
-/*N*/   aTable.Remove( nAct );
-/*N*/   if ( nAct == nActionMax )
-/*N*/       --nActionMax;
-/*N*/   if ( pRemove == pLast )
-/*N*/       pLast = pRemove->pPrev;
-/*N*/   if ( pRemove == pFirst )
-/*N*/       pFirst = pRemove->pNext;
-/*N*/   if ( nAct == nMarkLastSaved )
-/*N*/       nMarkLastSaved =
-/*N*/           ( pRemove->pPrev ? pRemove->pPrev->GetActionNumber() : 0 );
-/*N*/
-/*N*/   // aus der globalen Kette ausklinken
-/*N*/   if ( pRemove->pNext )
-/*N*/       pRemove->pNext->pPrev = pRemove->pPrev;
-/*N*/   if ( pRemove->pPrev )
-/*N*/       pRemove->pPrev->pNext = pRemove->pNext;
-/*N*/
-/*N*/   // Dependencies nicht loeschen, passiert on delete automatisch durch
-/*N*/   // LinkEntry, ohne Listen abzuklappern
-/*N*/
-/*N*/   if ( aModifiedLink.IsSet() )
-/*N*/   {
-/*N*/       NotifyModified( SC_CTM_REMOVE, nAct, nAct );
-/*N*/       if ( pRemove->GetType() == SC_CAT_CONTENT )
-/*N*/       {
-/*N*/           ScChangeActionContent* pContent = (ScChangeActionContent*) pRemove;
-/*N*/           if (( pContent = pContent->GetPrevContent() ))
-/*N*/           {
-/*N*/               ULONG nMod = pContent->GetActionNumber();
-/*N*/               NotifyModified( SC_CTM_CHANGE, nMod, nMod );
-/*N*/           }
-/*N*/       }
-/*N*/       else if ( pLast )
-/*N*/           NotifyModified( SC_CTM_CHANGE, pFirst->GetActionNumber(),
-/*N*/               pLast->GetActionNumber() );
-/*N*/   }
-/*N*/
-/*N*/   if ( IsInPasteCut() && pRemove->GetType() == SC_CAT_CONTENT )
-/*N*/   {   //! Content wird wiederverwertet
-/*N*/       ScChangeActionContent* pContent = (ScChangeActionContent*) pRemove;
-/*N*/       pContent->RemoveAllLinks();
-/*N*/       pContent->ClearTrack();
-/*N*/       pContent->pNext = pContent->pPrev = NULL;
-/*N*/       pContent->pNextContent = pContent->pPrevContent = NULL;
-/*N*/   }
-/*N*/ }
-
-
 /*N*/ void ScChangeTrack::UpdateReference( ScChangeAction* pAct, BOOL bUndo )
 /*N*/ {
 /*N*/   ScChangeActionType eActType = pAct->GetType();

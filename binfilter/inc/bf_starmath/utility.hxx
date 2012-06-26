@@ -194,7 +194,6 @@ protected:
 
     void       *GetPtr(USHORT nPos) const { return SfxPtrArr::GetObject(nPos); }
     void      *&GetPtr(USHORT nPos) { return SfxPtrArr::GetObject(nPos); }
-    void        InsertPtr(USHORT nPos, void *pItem) { SfxPtrArr::Insert(nPos, pItem); }
     void        RemovePtr(USHORT nPos, USHORT nCount = 1) { SfxPtrArr::Remove(nPos, nCount); }
 
     SmPickList(USHORT nInitSize = 0, USHORT nMaxSize = 5);

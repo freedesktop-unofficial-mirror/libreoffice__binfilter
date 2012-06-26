@@ -116,56 +116,6 @@ namespace binfilter {
 /*N*/   return nLen;
 /*N*/ }
 
-// -----------------------------------------------------------------------
-
-/*N*/ BOOL SfxPtrArr::Remove( void* aElem )
-/*N*/ {
-/*N*/   // einfache Aufgaben ...
-/*N*/   if ( nUsed == 0 )
-/*N*/       return FALSE;
-/*N*/
-/*N*/   // rueckwaerts, da meist der letzte zuerst wieder entfernt wird
-/*N*/   void* *pIter = pData + nUsed - 1;
-/*N*/   for ( USHORT n = 0; n < nUsed; ++n, --pIter )
-/*N*/       if ( *pIter == aElem )
-/*N*/       {
-/*N*/           Remove(nUsed-n-1, 1);
-/*N*/           return TRUE;
-/*N*/       }
-/*N*/   return FALSE;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ void SfxPtrArr::Insert( USHORT nPos, void* rElem )
-/*N*/ {
-/*N*/   DBG_ASSERT( sal_Int32(nUsed+1) < sal_Int32( USHRT_MAX / sizeof(void*) ), "array too large" );
-/*N*/   // musz das Array umkopiert werden?
-/*N*/   if ( nUnused == 0 )
-/*N*/   {
-/*N*/       // auf die naechste Grow-Grenze aufgerundet vergroeszern
-/*N*/       USHORT nNewSize = nUsed+nGrow;
-/*N*/       void** pNewData = new void*[nNewSize];
-/*N*/
-/*N*/       if ( pData )
-/*N*/       {
-/*N*/           DBG_ASSERT( nUsed < nNewSize, "" );
-/*N*/           memmove( pNewData, pData, sizeof(void*)*nUsed );
-/*N*/           delete [] pData;
-/*N*/       }
-/*N*/       nUnused = nNewSize-nUsed;
-/*N*/       pData = pNewData;
-/*N*/   }
-/*N*/
-/*N*/   // jetzt den hinteren Teil verschieben
-/*N*/   if ( nPos < nUsed )
-/*N*/       memmove( pData+nPos+1, pData+nPos, (nUsed-nPos)*sizeof(void*) );
-/*N*/
-/*N*/   // jetzt in den freien Raum schreiben
-/*N*/   memmove( pData+nPos, &rElem, sizeof(void*) );
-/*N*/   nUsed += 1;
-/*N*/   nUnused -= 1;
-/*N*/ }
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

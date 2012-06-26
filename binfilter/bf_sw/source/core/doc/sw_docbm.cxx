@@ -68,7 +68,7 @@ namespace binfilter {
 /*N*/                               const String& rName, const String& rShortName,
 /*N*/                               BOOKMARK_TYPE eMark )
 /*N*/ {
-/*N*/   SwBookmark *pBM;
+/*N*/   SwBookmark *pBM = NULL;
 /*N*/   if( MARK != eMark )
         {
             if( BOOKMARK == eMark )

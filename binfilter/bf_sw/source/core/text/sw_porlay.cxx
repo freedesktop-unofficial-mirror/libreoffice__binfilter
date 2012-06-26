@@ -455,7 +455,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/     // counter for kashida array
 /*N*/     USHORT nCntKash = 0;
 /*N*/ #endif
-/*N*/     BYTE nScript;
+/*N*/     BYTE nScript = 0;
 /*N*/
 /*N*/     const String& rTxt = rNode.GetTxt();
 /*N*/

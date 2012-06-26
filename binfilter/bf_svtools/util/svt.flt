@@ -52,7 +52,6 @@ SdbSqlScanner
 Sdbyy_scan
 SfxListUndoAction
 SfxPointerEntry
-SfxUINT32s
 SgfFontLst
 SgfFontOne
 SqlInternalNode

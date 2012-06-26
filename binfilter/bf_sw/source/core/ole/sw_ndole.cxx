@@ -65,7 +65,6 @@ public:
     virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 
     void Insert( SwOLEObj& rObj );
-    void Remove( SwOLEObj& rObj );
 
     void RemovePtr( SwOLEObj* pObj )
     {
@@ -417,18 +416,6 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*?*/   }
 /*N*/ #endif
 /*N*/ }
-
-/*N*/ void SwOLELRUCache::Remove( SwOLEObj& rObj )
-/*N*/ {
-/*N*/   if( !bInUnload )
-/*N*/   {
-/*N*/       USHORT nPos = SvPtrarr::GetPos( &rObj );
-/*N*/       if( USHRT_MAX != nPos && rObj.RemovedFromLRU() )
-/*N*/           SvPtrarr::Remove( nPos );
-/*N*/   }
-/*N*/ }
-
-
 
 }
 

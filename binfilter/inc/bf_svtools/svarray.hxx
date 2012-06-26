@@ -20,15 +20,8 @@
 #ifndef _SVARRAY_HXX
 #define _SVARRAY_HXX
 
-#ifndef INCLUDED_STRING_H
 #include <string.h>     // memmove()
-#define INCLUDED_STRING_H
-#endif
-
-#ifndef INCLUDED_LIMITS_H
 #include <limits.h>     // USHRT_MAX
-#define INCLUDED_LIMITS_H
-#endif
 
 #include <rtl/alloc.h>
 
@@ -76,11 +69,66 @@ public:\
     }\
     AERef GetObject(USHORT nP) const { return (*this)[nP]; } \
 \
-    void Insert( const AERef aE, USHORT nP );\
-    void Insert( const AE *pE, USHORT nL, USHORT nP );\
-    void Remove( USHORT nP, USHORT nL = 1 );\
-    void Replace( const AERef aE, USHORT nP );\
-    void Replace( const AE *pE, USHORT nL, USHORT nP );\
+    void Insert( const AERef aE, USHORT nP )\
+    {\
+        if (nFree < 1)\
+            _resize (nA + ((nA > 1) ? nA : 1));\
+        if( pData && nP < nA )\
+            memmove( pData+nP+1, pData+nP, (nA-nP) * sizeof( AE ));\
+        *(pData+nP) = (AE&)aE;\
+        ++nA; --nFree;\
+    }\
+    void Insert( const AE *pE, USHORT nL, USHORT nP )\
+    {\
+        if (nFree < nL)\
+            _resize (nA + ((nA > nL) ? nA : nL));\
+        if( pData && nP < nA )\
+            memmove( pData+nP+nL, pData+nP, (nA-nP) * sizeof( AE ));\
+        if( pE )\
+            memcpy( pData+nP, pE, nL * sizeof( AE ));\
+        nA = nA + nL; nFree = nFree - nL;\
+    }\
+\
+    void Remove( USHORT nP, USHORT nL = 1 )\
+    {\
+        if( !nL )\
+            return;\
+        if( pData && nP+1 < nA )\
+            memmove( pData+nP, pData+nP+nL, (nA-nP-nL) * sizeof( AE ));\
+        nA = nA - nL; nFree = nFree + nL;\
+        if (nFree > nA)\
+            _resize (nA);\
+    }\
+\
+    void Replace( const AERef aE, USHORT nP )\
+    {\
+        if( nP < nA )\
+            *(pData+nP) = (AE&)aE;\
+    }\
+\
+    void Replace( const AE *pE, USHORT nL, USHORT nP )\
+    {\
+        if( pE && nP < nA )\
+        {\
+            if( nP + nL < nA )\
+                memcpy( pData + nP, pE, nL * sizeof( AE ));\
+            else if( nP + nL < nA + nFree )\
+            {\
+                memcpy( pData + nP, pE, nL * sizeof( AE ));\
+                nP = nP + (nL - nA); \
+                nFree = nP;\
+            }\
+            else \
+            {\
+                USHORT nTmpLen = nA + nFree - nP; \
+                memcpy( pData + nP, pE, nTmpLen * sizeof( AE ));\
+                nA = nA + nFree; \
+                nFree = 0; \
+                Insert( pE + nTmpLen, nL - nTmpLen, nA );\
+            }\
+        }\
+    }\
+\
     USHORT Count() const { return nA; }\
     const AE* GetData() const { return (const AE*)pData; }\
 \
@@ -142,69 +190,6 @@ void nm::_resize (size_t n)\
     }\
 }\
 \
-void nm::Insert( const AERef aE, USHORT nP )\
-{\
-    DBG_ASSERT(nP <= nA && nA < USHRT_MAX, "Ins 1");\
-    if (nFree < 1)\
-        _resize (nA + ((nA > 1) ? nA : 1));\
-    if( pData && nP < nA )\
-        memmove( pData+nP+1, pData+nP, (nA-nP) * sizeof( AE ));\
-    *(pData+nP) = (AE&)aE;\
-    ++nA; --nFree;\
-}\
-\
-void nm::Insert( const AE* pE, USHORT nL, USHORT nP )\
-{\
-    DBG_ASSERT(nP<=nA && ((long)nA+nL)<USHRT_MAX,"Ins n");\
-    if (nFree < nL)\
-        _resize (nA + ((nA > nL) ? nA : nL));\
-    if( pData && nP < nA )\
-        memmove( pData+nP+nL, pData+nP, (nA-nP) * sizeof( AE ));\
-    if( pE )\
-        memcpy( pData+nP, pE, nL * sizeof( AE ));\
-    nA = nA + nL; nFree = nFree - nL;\
-}\
-\
-void nm::Replace( const AERef aE, USHORT nP )\
-{\
-    if( nP < nA )\
-        *(pData+nP) = (AE&)aE;\
-}\
-\
-void nm::Replace( const AE *pE, USHORT nL, USHORT nP )\
-{\
-    if( pE && nP < nA )\
-    {\
-        if( nP + nL < nA )\
-            memcpy( pData + nP, pE, nL * sizeof( AE ));\
-        else if( nP + nL < nA + nFree )\
-        {\
-            memcpy( pData + nP, pE, nL * sizeof( AE ));\
-            nP = nP + (nL - nA); \
-            nFree = nP;\
-        }\
-        else \
-        {\
-            USHORT nTmpLen = nA + nFree - nP; \
-            memcpy( pData + nP, pE, nTmpLen * sizeof( AE ));\
-            nA = nA + nFree; \
-            nFree = 0; \
-            Insert( pE + nTmpLen, nL - nTmpLen, nA );\
-        }\
-    }\
-}\
-\
-void nm::Remove( USHORT nP, USHORT nL )\
-{\
-    if( !nL )\
-        return;\
-    DBG_ASSERT( nP < nA && nP + nL <= nA,"Del");\
-    if( pData && nP+1 < nA )\
-        memmove( pData+nP, pData+nP+nL, (nA-nP-nL) * sizeof( AE ));\
-    nA = nA - nL; nFree = nFree + nL;\
-    if (nFree > nA)\
-        _resize (nA);\
-}\
 
 #define SV_IMPL_VARARR( nm, AE ) \
 SV_IMPL_VARARR_GEN( nm, AE, AE & )
@@ -237,9 +222,52 @@ public:\
     } \
     AE& GetObject(USHORT nP) const { return (*this)[nP]; } \
 \
-    void Insert( const AE &aE, USHORT nP );\
-    void Insert( const AE *pE, USHORT nL, USHORT nP );\
-    void Remove( USHORT nP, USHORT nL = 1 );\
+    void Insert( const AE &aE, USHORT nP )\
+    {\
+        if (nFree < 1)\
+            _resize (nA + ((nA > 1) ? nA : 1));\
+        if( pData && nP < nA )\
+            memmove( pData+nP+1, pData+nP, (nA-nP) * sizeof( AE ));\
+        AE* pTmp = pData+nP;\
+        new( (DummyType*) pTmp ) AE( (AE&)aE );\
+        ++nA; --nFree;\
+    }\
+\
+    void Insert( const AE *pE, USHORT nL, USHORT nP )\
+    {\
+        if (nFree < nL)\
+            _resize (nA + ((nA > nL) ? nA : nL));\
+        if( pData && nP < nA )\
+            memmove( pData+nP+nL, pData+nP, (nA-nP) * sizeof( AE ));\
+        if( pE )\
+        {\
+            AE* pTmp = pData+nP;\
+            for( USHORT n = 0; n < nL; n++, pTmp++, pE++)\
+            {\
+                new( (DummyType*) pTmp ) AE( (AE&)*pE );\
+            }\
+        }\
+        nA = nA + nL; nFree = nFree - nL;\
+    }\
+\
+    void Remove( USHORT nP, USHORT nL = 1 )\
+    {\
+        if( !nL )\
+            return;\
+        AE* pTmp=pData+nP;\
+        USHORT nCtr = nP;\
+        for(USHORT n=0; n < nL; n++,pTmp++,nCtr++)\
+        {\
+            if( nCtr < nA )\
+                pTmp->~AE();\
+        }\
+        if( pData && nP+1 < nA )\
+            memmove( pData+nP, pData+nP+nL, (nA-nP-nL) * sizeof( AE ));\
+        nA = nA - nL; nFree = nFree + nL;\
+        if (nFree > nA) \
+            _resize (nA);\
+    }\
+\
     USHORT Count() const { return nA; }\
     const AE* GetData() const { return (const AE*)pData; }\
 \
@@ -306,55 +334,6 @@ void nm::_resize (size_t n)\
         pData = pE;\
         nFree = nL - nA;\
     }\
-}\
-\
-void nm::Insert( const AE &aE, USHORT nP )\
-{\
-    DBG_ASSERT( nP <= nA && nA < USHRT_MAX,"Ins 1");\
-    if (nFree < 1)\
-        _resize (nA + ((nA > 1) ? nA : 1));\
-    if( pData && nP < nA )\
-        memmove( pData+nP+1, pData+nP, (nA-nP) * sizeof( AE ));\
-    AE* pTmp = pData+nP;\
-    new( (DummyType*) pTmp ) AE( (AE&)aE );\
-    ++nA; --nFree;\
-}\
-\
-void nm::Insert( const AE* pE, USHORT nL, USHORT nP )\
-{\
-    DBG_ASSERT(nP<=nA && ((long)nA+nL) < USHRT_MAX, "Ins n");\
-    if (nFree < nL)\
-        _resize (nA + ((nA > nL) ? nA : nL));\
-    if( pData && nP < nA )\
-        memmove( pData+nP+nL, pData+nP, (nA-nP) * sizeof( AE ));\
-    if( pE )\
-    {\
-        AE* pTmp = pData+nP;\
-        for( USHORT n = 0; n < nL; n++, pTmp++, pE++)\
-        {\
-             new( (DummyType*) pTmp ) AE( (AE&)*pE );\
-        }\
-    }\
-    nA = nA + nL; nFree = nFree - nL;\
-}\
-\
-void nm::Remove( USHORT nP, USHORT nL )\
-{\
-    if( !nL )\
-        return;\
-    DBG_ASSERT( nP < nA && nP + nL <= nA,"Del");\
-    AE* pTmp=pData+nP;\
-    USHORT nCtr = nP;\
-    for(USHORT n=0; n < nL; n++,pTmp++,nCtr++)\
-    {\
-        if( nCtr < nA )\
-            pTmp->~AE();\
-    }\
-    if( pData && nP+1 < nA )\
-        memmove( pData+nP, pData+nP+nL, (nA-nP-nL) * sizeof( AE ));\
-    nA = nA - nL; nFree = nFree + nL;\
-    if (nFree > nA) \
-        _resize (nA);\
 }\
 
 #define SV_DECL_PTRARR_GEN(nm, AE, IS, GS, Base, AERef, VPRef, vis )\
@@ -503,12 +482,62 @@ class vis nm : private nm##_SAR \
 public:\
     nm(USHORT nSize = IS, BYTE nG = GS)\
         : nm##_SAR(nSize,nG) {}\
-    void Insert( const nm *pI, USHORT nS=0, USHORT nE=USHRT_MAX );\
-    BOOL Insert( const AE& aE );\
-    BOOL Insert( const AE& aE, USHORT& rP );\
-    void Insert( const AE *pE, USHORT nL );\
-    void Remove( USHORT nP, USHORT nL = 1 );\
-    void Remove( const AE& aE, USHORT nL = 1 );\
+    void Insert( const nm *pI, USHORT nS=0, USHORT nE=USHRT_MAX )\
+    {\
+        if( USHRT_MAX == nE )\
+            nE = pI->Count();\
+        USHORT nP;\
+        const AE * pIArr = pI->GetData();\
+        for( ; nS < nE; ++nS )\
+        {\
+            if( ! Seek_Entry( *(pIArr+nS), &nP) )\
+                    nm##_SAR::Insert( *(pIArr+nS), nP );\
+            if( ++nP >= Count() )\
+            {\
+                nm##_SAR::Insert( pI, nP, nS+1, nE );\
+                nS = nE;\
+            }\
+        }\
+    }\
+\
+    BOOL Insert( const AE& aE )\
+    {\
+        USHORT nP;\
+        BOOL bExist;\
+        bExist = Seek_Entry( aE, &nP );\
+        if( ! bExist )\
+            nm##_SAR::Insert( aE, nP );\
+        return !bExist;\
+    }\
+\
+    BOOL Insert( const AE& aE, USHORT& rP )\
+    {\
+        BOOL bExist;\
+        bExist = Seek_Entry( aE, &rP );\
+        if( ! bExist )\
+            nm##_SAR::Insert( aE, rP );\
+        return !bExist;\
+    }\
+\
+    void Insert( const AE *pE, USHORT nL )\
+    {\
+        USHORT nP;\
+        for( USHORT n = 0; n < nL; ++n )\
+            if( ! Seek_Entry( *(pE+n), &nP ))\
+                nm##_SAR::Insert( *(pE+n), nP );\
+    }\
+\
+    void Remove( USHORT nP, USHORT nL = 1 )\
+    {\
+        if( nL )\
+            nm##_SAR::Remove( nP, nL);\
+    }\
+    void Remove( const AE& aE, USHORT nL = 1 )\
+    {\
+        USHORT nP;\
+        if( nL && Seek_Entry( aE, &nP ) )   \
+            nm##_SAR::Remove( nP, nL);\
+    }\
     USHORT Count() const  {   return nm##_SAR::Count(); }\
     const AE* GetData() const { return (const AE*)pData; }\
 \
@@ -611,61 +640,7 @@ BOOL nm::Seek_Entry( const AE & aE, USHORT* pP ) const\
     return FALSE;\
 }
 
-#define _SV_IMPL_SORTAR_ALG(nm, AE)\
-void nm::Insert( const nm * pI, USHORT nS, USHORT nE )\
-{\
-    if( USHRT_MAX == nE )\
-        nE = pI->Count();\
-    USHORT nP;\
-    const AE * pIArr = pI->GetData();\
-    for( ; nS < nE; ++nS )\
-    {\
-        if( ! Seek_Entry( *(pIArr+nS), &nP) )\
-                nm##_SAR::Insert( *(pIArr+nS), nP );\
-        if( ++nP >= Count() )\
-        {\
-            nm##_SAR::Insert( pI, nP, nS+1, nE );\
-            nS = nE;\
-        }\
-    }\
-}\
-\
-BOOL nm::Insert( const AE & aE )\
-{\
-    USHORT nP;\
-    BOOL bExist;\
-    bExist = Seek_Entry( aE, &nP );\
-    if( ! bExist )\
-        nm##_SAR::Insert( aE, nP );\
-    return !bExist;\
-}\
-BOOL nm::Insert( const AE & aE, USHORT& rP )\
-{\
-    BOOL bExist;\
-    bExist = Seek_Entry( aE, &rP );\
-    if( ! bExist )\
-        nm##_SAR::Insert( aE, rP );\
-    return !bExist;\
-}\
-void nm::Insert( const AE* pE, USHORT nL)\
-{\
-    USHORT nP;\
-    for( USHORT n = 0; n < nL; ++n )\
-        if( ! Seek_Entry( *(pE+n), &nP ))\
-            nm##_SAR::Insert( *(pE+n), nP );\
-}\
-void nm::Remove( USHORT nP, USHORT nL )\
-{\
-    if( nL )\
-        nm##_SAR::Remove( nP, nL);\
-}\
-\
-void nm::Remove( const AE &aE, USHORT nL )\
-{\
-    USHORT nP;\
-    if( nL && Seek_Entry( aE, &nP ) )   \
-        nm##_SAR::Remove( nP, nL);\
-}\
+#define _SV_IMPL_SORTAR_ALG(nm, AE)
 
 #define _SORTARR_BLC_CASTS(nm, AE )\
     USHORT GetPos( const AE& aE ) const { \

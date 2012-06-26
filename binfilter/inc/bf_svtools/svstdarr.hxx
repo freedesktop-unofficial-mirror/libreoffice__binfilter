@@ -53,12 +53,7 @@ public:
     SvUShortsSort(BYTE nSize = 1, BYTE nG = 1)
         : SvUShorts(nSize,nG) {}
 
-    void Insert( const SvUShortsSort *pI, USHORT nS=0, USHORT nE=USHRT_MAX );
     BOOL Insert( const USHORT aE );
-    BOOL Insert( const USHORT aE, USHORT& rP );
-    void Insert( const USHORT *pE, USHORT nL );
-    // remove ab dem Eintrag
-    void Remove( const USHORT nP, USHORT nL = 1 );
     BOOL Seek_Entry( const USHORT aE, USHORT* pP = 0 ) const;
 
     USHORT Count() const  {   return SvUShorts::Count();    }

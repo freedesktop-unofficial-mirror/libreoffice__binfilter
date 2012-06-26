@@ -204,24 +204,6 @@ BOOL SvUShortsSort::Seek_Entry( const USHORT aE, USHORT* pP ) const
     return FALSE;
 }
 
-void SvUShortsSort::Insert( const SvUShortsSort * pI, USHORT nS, USHORT nE )
-{
-    if( USHRT_MAX == nE )
-        nE = pI->Count();
-    USHORT nP;
-    const USHORT * pIArr = pI->GetData();
-    for( ; nS < nE; ++nS )
-    {
-        if( ! Seek_Entry( *(pIArr+nS), &nP) )
-                SvUShorts::Insert( *(pIArr+nS), nP );
-        if( ++nP >= Count() )
-        {
-            SvUShorts::Insert( pI, nP, nS+1, nE );
-            nS = nE;
-        }
-    }
-}
-
 BOOL SvUShortsSort::Insert( const USHORT aE )
 {
     USHORT nP;
@@ -229,30 +211,6 @@ BOOL SvUShortsSort::Insert( const USHORT aE )
     if( !bExist )
         SvUShorts::Insert( aE, nP );
     return !bExist;
-}
-
-BOOL SvUShortsSort::Insert( const USHORT aE, USHORT& rP )
-{
-    BOOL bExist = Seek_Entry( aE, &rP );
-    if( !bExist )
-        SvUShorts::Insert( aE, rP );
-    return !bExist;
-}
-
-void SvUShortsSort::Insert( const USHORT* pE, USHORT nL)
-{
-    USHORT nP;
-    for( USHORT n = 0; n < nL; ++n )
-        if( ! Seek_Entry( *(pE+n), &nP ))
-            SvUShorts::Insert( *(pE+n), nP );
-}
-
-// remove ab dem Eintrag
-void SvUShortsSort::Remove( const USHORT aE, USHORT nL )
-{
-    USHORT nP;
-    if( nL && Seek_Entry( aE, &nP ) )
-        SvUShorts::Remove( nP, nL);
 }
 
 }
