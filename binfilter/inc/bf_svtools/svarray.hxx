@@ -428,11 +428,6 @@ void nm::_ForEach( USHORT nStt, USHORT nE, \
 \
 _SVOBJARR_IMPL_GET_OP_INLINE(nm, AE)\
 
-#define _SV_DECL_PTRARR_DEF( nm, AE, IS, GS, vis )\
-_SV_DECL_VARARR_GEN( nm, AE, IS, GS, AE &, vis)\
-USHORT GetPos( const AE & aE ) const;\
-};
-
 #define SV_DECL_PTRARR_GEN(nm, AE, IS, GS, Base, AERef, VPRef, vis )\
 typedef BOOL (*FnForEach_##nm)( const AERef, void* );\
 class vis nm: public Base \
@@ -565,7 +560,10 @@ void nm::DeleteAndDestroy( USHORT nP, USHORT nL )\
 SV_IMPL_PTRARR_GEN(nm, AE, SvPtrarr )
 
 typedef void* VoidPtr;
-_SV_DECL_PTRARR_DEF( SvPtrarr, VoidPtr, 0, 1,  )
+_SV_DECL_VARARR_GEN( SvPtrarr, VoidPtr, 0, 1, VoidPtr &, )
+USHORT GetPos( const VoidPtr & aE ) const;
+};
+
 
 // SORTARR - Begin
 
