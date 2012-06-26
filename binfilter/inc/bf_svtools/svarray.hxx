@@ -119,6 +119,7 @@ public:\
     {\
         _ForEach( 0, nA, fnForEach, pArgs );\
     }\
+\
     void ForEach( USHORT nS, USHORT nE, \
                     CONCAT( FnForEach_, nm ) fnForEach, void* pArgs = 0 )\
     {\
@@ -126,7 +127,13 @@ public:\
     }\
 \
     void _ForEach( USHORT nStt, USHORT nE, \
-            CONCAT( FnForEach_, nm ) fnCall, void* pArgs = 0 );\
+            CONCAT( FnForEach_, nm ) fnCall, void* pArgs = 0 )\
+    {\
+        if( nStt >= nE || nE > nA )\
+            return;\
+        for( ; nStt < nE && (*fnCall)( *(const AE*)(pData+nStt), pArgs ); nStt++)\
+            ;\
+    }\
 \
 
 #define SV_DECL_VARARR_GEN(nm, AE, IS, GS, AERef, vis )\
@@ -230,15 +237,6 @@ void nm::Remove( USHORT nP, USHORT nL )\
         _resize (nA);\
 }\
 \
-void nm::_ForEach( USHORT nStt, USHORT nE, \
-            CONCAT( FnForEach_, nm ) fnCall, void* pArgs )\
-{\
-    if( nStt >= nE || nE > nA )\
-        return;\
-    for( ; nStt < nE && (*fnCall)( *(const AE*)(pData+nStt), pArgs ); nStt++)\
-        ;\
-}\
-\
 _SVVARARR_IMPL_GET_OP_INLINE(nm, AE )\
 
 #define SV_IMPL_VARARR( nm, AE ) \
@@ -320,7 +318,13 @@ public:\
     }\
 \
     void _ForEach( USHORT nStt, USHORT nE, \
-            CONCAT( FnForEach_, nm ) fnCall, void* pArgs = 0 );\
+            CONCAT( FnForEach_, nm ) fnCall, void* pArgs = 0 )\
+    {\
+        if( nStt >= nE || nE > nA )\
+            return;\
+        for( ; nStt < nE && (*fnCall)( *(pData+nStt), pArgs ); nStt++)\
+            ;\
+    }\
 \
 
 #define SV_DECL_OBJARR(nm, AE, IS, GS)\
@@ -415,15 +419,6 @@ void nm::Remove( USHORT nP, USHORT nL )\
     nA = nA - nL; nFree = nFree + nL;\
     if (nFree > nA) \
         _resize (nA);\
-}\
-\
-void nm::_ForEach( USHORT nStt, USHORT nE, \
-            CONCAT( FnForEach_, nm ) fnCall, void* pArgs )\
-{\
-    if( nStt >= nE || nE > nA )\
-        return;\
-    for( ; nStt < nE && (*fnCall)( *(pData+nStt), pArgs ); nStt++)\
-        ;\
 }\
 \
 _SVOBJARR_IMPL_GET_OP_INLINE(nm, AE)\
