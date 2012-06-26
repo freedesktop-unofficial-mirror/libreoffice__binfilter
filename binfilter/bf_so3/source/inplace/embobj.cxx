@@ -29,7 +29,7 @@
 #include <vcl/svapp.hxx>
 #include <vcl/virdev.hxx>
 #include <sot/storinfo.hxx>
-#include <sot/absdev.hxx>
+#include <absdev.hxx>
 #include <tools/debug.hxx>
 #include <sot/exchange.hxx>
 

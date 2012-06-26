@@ -17,28 +17,24 @@
  *   the License at http://www.apache.org/licenses/LICENSE-2.0 .
  */
 
-#ifndef _SOIMPL_HXX
-#define _SOIMPL_HXX
+#ifndef _SOT_ABSDEV_HXX
+#define _SOT_ABSDEV_HXX
 
-#include "absdev.hxx"
-#include <vcl/jobset.hxx>
+#include <tools/solar.h>
 
-namespace binfilter
+class JobSetup;
+class AbstractDeviceData
 {
-
-/********************** JobSetupWrapper *********************************/
-class JobSetupWrapper : public AbstractDeviceData
-{
+protected:
+    JobSetup * pJobSetup;
 public:
-    JobSetup aJobSetup;
+    virtual ~AbstractDeviceData() {}
+    virtual AbstractDeviceData *    Copy() const = 0;
+    virtual sal_Bool                    Equals( const AbstractDeviceData & ) const = 0;
 
-    JobSetupWrapper( const JobSetup & rJS );
-    virtual AbstractDeviceData *    Copy() const;
-    virtual BOOL Equals( const AbstractDeviceData & rAD ) const;
+    JobSetup * GetJobSetup() const { return pJobSetup; }
 };
 
-}
-
-#endif // _SOIMPL_HXX
+#endif // _SOT_ABSDEV_HXX
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
