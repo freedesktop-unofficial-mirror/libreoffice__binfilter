@@ -49,46 +49,6 @@ inline void operator delete( void*, DummyType* ) {}
 
 namespace binfilter {
 
-#if !defined(DBG_UTIL)
-
-#define _SVVARARR_DEF_GET_OP_INLINE( nm, ArrElem ) \
-ArrElem& operator[](USHORT nP) const { return *(pData+nP); }\
-\
-void Insert( const nm * pI, USHORT nP,\
-             USHORT nS = 0, USHORT nE = USHRT_MAX )\
-{\
-    if( USHRT_MAX == nE ) \
-        nE = pI->nA; \
-    if( nS < nE ) \
-        Insert( (const ArrElem*)pI->pData+nS, (USHORT)nE-nS, nP );\
-}
-
-#define _SVVARARR_IMPL_GET_OP_INLINE( nm, ArrElem )
-
-#else
-
-#define _SVVARARR_DEF_GET_OP_INLINE( nm,ArrElem )\
-ArrElem& operator[](USHORT nP) const;\
-void Insert( const nm *pI, USHORT nP,\
-                USHORT nS = 0, USHORT nE = USHRT_MAX );
-
-#define _SVVARARR_IMPL_GET_OP_INLINE( nm, ArrElem )\
-ArrElem& nm::operator[](USHORT nP) const\
-{\
-    DBG_ASSERT( pData && nP < nA,"Op[]");\
-    return *(pData+nP);\
-}\
-void nm::Insert( const nm *pI, USHORT nP, USHORT nStt, USHORT nE)\
-{\
-    DBG_ASSERT(nP<=nA,"Ins,Ar[Start.End]");\
-    if( USHRT_MAX == nE ) \
-        nE = pI->nA; \
-    if( nStt < nE ) \
-        Insert( (const ArrElem*)pI->pData+nStt, (USHORT)nE-nStt, nP );\
-}
-
-#endif
-
 #define _SV_DECL_VARARR_GEN(nm, AE, IS, GS, AERef, vis )\
 typedef BOOL (*FnForEach_##nm)( const AERef, void* );\
 class vis nm\
@@ -104,7 +64,16 @@ public:\
     nm( USHORT= IS, BYTE= GS );\
     ~nm() { rtl_freeMemory( pData ); }\
 \
-    _SVVARARR_DEF_GET_OP_INLINE(nm, AE )\
+    AE& operator[](USHORT nP) const { return *(pData+nP); }\
+\
+    void Insert( const nm * pI, USHORT nP,\
+             USHORT nS = 0, USHORT nE = USHRT_MAX )\
+    {\
+        if( USHRT_MAX == nE ) \
+            nE = pI->nA; \
+        if( nS < nE ) \
+            Insert( (const AE*)pI->pData+nS, (USHORT)nE-nS, nP );\
+    }\
     AERef GetObject(USHORT nP) const { return (*this)[nP]; } \
 \
     void Insert( const AERef aE, USHORT nP );\
@@ -236,51 +205,9 @@ void nm::Remove( USHORT nP, USHORT nL )\
     if (nFree > nA)\
         _resize (nA);\
 }\
-\
-_SVVARARR_IMPL_GET_OP_INLINE(nm, AE )\
 
 #define SV_IMPL_VARARR( nm, AE ) \
 SV_IMPL_VARARR_GEN( nm, AE, AE & )
-
-#if !defined(DBG_UTIL)
-
-#define _SVOBJARR_DEF_GET_OP_INLINE( nm,ArrElem )\
-ArrElem& operator[](USHORT nP) const { return *(pData+nP); }\
-\
-void Insert( const nm *pI, USHORT nP,\
-                USHORT nS = 0, USHORT nE = USHRT_MAX )\
-{\
-    if( USHRT_MAX == nE ) \
-        nE = pI->nA; \
-    if( nS < nE ) \
-        Insert( (const ArrElem*)pI->pData+nS, (USHORT)nE-nS, nP );\
-}
-
-#define _SVOBJARR_IMPL_GET_OP_INLINE( nm, ArrElem )
-
-#else
-
-#define _SVOBJARR_DEF_GET_OP_INLINE( nm,ArrElem ) \
-ArrElem& operator[](USHORT nP) const;\
-void Insert( const nm *pI, USHORT nP,\
-                USHORT nS = 0, USHORT nE = USHRT_MAX );
-
-#define _SVOBJARR_IMPL_GET_OP_INLINE( nm, ArrElem )\
-ArrElem& nm::operator[](USHORT nP) const\
-{\
-    DBG_ASSERT( pData && nP < nA,"Op[]");\
-    return *(pData+nP);\
-}\
-void nm::Insert( const nm *pI, USHORT nP, USHORT nStt, USHORT nE )\
-{\
-    DBG_ASSERT( nP <= nA,"Ins,Ar[Start.End]");\
-    if( USHRT_MAX == nE ) \
-        nE = pI->nA; \
-    if( nStt < nE ) \
-        Insert( (const ArrElem*)pI->pData+nStt, (USHORT)nE-nStt, nP );\
-}
-
-#endif
 
 #define _SV_DECL_OBJARR(nm, AE, IS, GS)\
 typedef BOOL (*FnForEach_##nm)( const AE&, void* );\
@@ -298,7 +225,16 @@ public:\
     nm( USHORT= IS, BYTE= GS );\
     ~nm() { _destroy(); }\
 \
-    _SVOBJARR_DEF_GET_OP_INLINE(nm,AE)\
+    AE& operator[](USHORT nP) const { return *(pData+nP); }\
+\
+    void Insert( const nm *pI, USHORT nP,\
+                USHORT nS = 0, USHORT nE = USHRT_MAX )\
+    {\
+        if( USHRT_MAX == nE ) \
+            nE = pI->nA; \
+        if( nS < nE ) \
+            Insert( (const AE*)pI->pData+nS, (USHORT)nE-nS, nP );\
+    } \
     AE& GetObject(USHORT nP) const { return (*this)[nP]; } \
 \
     void Insert( const AE &aE, USHORT nP );\
@@ -420,8 +356,6 @@ void nm::Remove( USHORT nP, USHORT nL )\
     if (nFree > nA) \
         _resize (nA);\
 }\
-\
-_SVOBJARR_IMPL_GET_OP_INLINE(nm, AE)\
 
 #define SV_DECL_PTRARR_GEN(nm, AE, IS, GS, Base, AERef, VPRef, vis )\
 typedef BOOL (*FnForEach_##nm)( const AERef, void* );\
