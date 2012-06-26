@@ -89,19 +89,6 @@ namespace binfilter {
 /*M*/ #else
 /*M*/   Frm().Pos( rPoint + rRelPos );
 /*M*/ #endif
-/*
-    //Kein InvalidatePos hier, denn das wuerde dem Cntnt ein Prepare
-    //senden - dieser hat uns aber gerade gerufen.
-    //Da der Frm aber durchaus sein Position wechseln kann, muss hier
-     //der von ihm abdeckte Window-Bereich invalidiert werden damit keine
-     //Reste stehenbleiben.
-     //Fix: Nicht fuer PreView-Shells, dort ist es nicht notwendig und
-     //fuehrt zu fiesen Problemen (Der Absatz wird nur formatiert weil
-    //er gepaintet wird und der Cache uebergelaufen ist, beim Paint durch
-    //das Invalidate wird der Absatz formatiert weil...)
-     if ( Frm().HasArea() && GetShell()->ISA(SwCrsrShell) )
-        GetShell()->InvalidateWindows( Frm() );
-*/
 /*M*/     if( pNotify )
 /*M*/     {
 /*M*/         InvalidatePage();

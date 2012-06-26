@@ -1050,12 +1050,6 @@ SfxStyleSheetBase* SfxStyleSheetPool::Create( const SfxStyleSheet& r )
 {
     return new SfxStyleSheet( r );
 }
-/*
-BOOL SfxStyleSheetPool::CopyTo(SfxStyleSheetPool &, const String &)
-{
-    return FALSE;
-}
-*/
 
 }
 

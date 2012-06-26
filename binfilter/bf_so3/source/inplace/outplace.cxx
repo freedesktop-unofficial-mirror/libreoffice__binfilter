@@ -937,22 +937,7 @@ ErrCode SvOutPlaceObject::Verb
     (void)pWin;
     (void)nVerb;
 #endif
-/*
-    switch( nVerb )
-    {
-        case SVVERB_SHOW:
-        case SVVERB_OPEN:
-        case 0L:
-            nRet = GetProtocol().EmbedProtocol();
-            break;
-        case SVVERB_HIDE:
-            nRet = ERRCODE_NONE;
-            break;
-        default:
-            ErrCode nErr = ERRCODE_SO_GENERALERROR;
-            break;
-    }
-*/
+
     return nRet;
 }
 

@@ -306,12 +306,6 @@ namespace binfilter {
 /*N*/               pSheet->GetItemSet().Put(aBulletStateItem);
 /*N*/           }
 /*N*/
-/*
-            // Gliederungsvorlagen haben die naechsthoehere Ebene als Parent
-            if (pParent)
-                pSheet->SetParent(pParent->GetName());
-            pParent = pSheet;
-*/
 /*N*/       }
 /*N*/   }
 /*N*/

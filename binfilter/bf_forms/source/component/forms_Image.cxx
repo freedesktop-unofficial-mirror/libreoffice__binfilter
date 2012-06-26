@@ -201,18 +201,7 @@ void SAL_CALL OImageControl::createPeer(const Reference<XToolkit>& _rxToolkit, c
     // This holds since our model is an XImageProducer itself, and thus hiding the XImageProducer of the aggregated
     // model. Before, we had two ImageProducers working in parallel.
 
-/*
-    // dem ImageProducer einen neuen Consumer bekannt geben
-    Reference<XImageProducerSupplier>  xImgSrc(getModel(), UNO_QUERY);
-    if (!xImgSrc.is())
-        return;
 
-    Reference<XImageProducer>  xImgProd = xImgSrc->getImageProducer();
-    Reference<XImageConsumer>  xImgCons(xPeer, UNO_QUERY);
-
-    xImgProd->addConsumer(xImgCons);
-    xImgProd->startProduction();
-*/
 }
 
 //------------------------------------------------------------------------------

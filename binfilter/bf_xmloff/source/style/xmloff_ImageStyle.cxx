@@ -27,20 +27,10 @@
  ************************************************************************/
 
 #include "ImageStyle.hxx"
-
-
-
 #include "nmspmap.hxx"
-
-
-#include"xmlnmspe.hxx"
-
-
+#include "xmlnmspe.hxx"
 #include "xmlexp.hxx"
-
 #include "xmlimp.hxx"
-
-
 #include "rtl/ustring.hxx"
 
 #include <tools/debug.hxx>
@@ -115,18 +105,7 @@ sal_Bool XMLImageStyle::ImpExportXML( const OUString& rStrName, const uno::Any& 
                 rExport.AddAttribute( XML_NAMESPACE_XLINK, XML_SHOW, XML_EMBED );
                 rExport.AddAttribute( XML_NAMESPACE_XLINK, XML_ACTUATE, XML_ONLOAD );
             }
-/*
-            // size
-            awt::Size aSize = xBitmap->getSize();
 
-            rUnitConverter.convertNumber( aOut, aSize.Width );
-            aStrValue = aOut.makeStringAndClear();
-            AddAttribute( XML_NAMESPACE_SVG, XML_WIDTH, aStrValue );
-
-            rUnitConverter.convertNumber( aOut, aSize.Height );
-            aStrValue = aOut.makeStringAndClear();
-            AddAttribute( XML_NAMESPACE_SVG, XML_HEIGHT, aStrValue );
-*/
             // Do Write
             SvXMLElementExport aElem( rExport, XML_NAMESPACE_DRAW, XML_FILL_IMAGE, sal_True, sal_True );
 

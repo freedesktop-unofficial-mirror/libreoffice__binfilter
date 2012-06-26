@@ -356,21 +356,6 @@ Color Sgv2SvFarbe(BYTE nFrb1, BYTE nFrb2, BYTE nInts)
 
 void SetLine(ObjLineType& rLine, OutputDevice& rOut)
 {
-/* !!!
-    PenStyle aStyle=PEN_SOLID;
-    switch(rLine.LMuster & 0x07) {
-        case 0: aStyle=PEN_NULL;    break;
-        case 1: aStyle=PEN_SOLID;   break;
-        case 2: aStyle=PEN_DOT;     break;    // . . . . . . . . . . . . . .
-        case 3: aStyle=PEN_DASH;    break;    // __ __ __ __ __ __ __ __ __
-        case 4: aStyle=PEN_DASH;    break;    // ___ ___ ___ ___ ___ ___ ___
-        case 5: aStyle=PEN_DASHDOT; break;    // __ . __ . __ . __ . __ . __
-        case 6: aStyle=PEN_DASHDOT; break;    // __ _ __ _ __ _ __ _ __ _ __
-        case 7: aStyle=PEN_DASHDOT; break;    // ___ _ _ ___ _ _ ___ _ _ ___
-    }
-    Pen aPen(Sgv2SvFarbe(rLine.LFarbe,rLine.LBFarbe,rLine.LIntens),rLine.LDicke,aStyle);
-    SetPen(aPen,rOut);
-*/
     if( 0 == ( rLine.LMuster & 0x07 ) )
         rOut.SetLineColor();
     else
@@ -379,31 +364,6 @@ void SetLine(ObjLineType& rLine, OutputDevice& rOut)
 
 void SetArea(ObjAreaType& rArea, OutputDevice& rOut)
 {
-/*
-    BrushStyle aStyle=BRUSH_SOLID;
-    switch(rArea.FMuster & 0x00FF) {
-        case  0: aStyle=BRUSH_NULL;      break;
-        case  1: aStyle=BRUSH_SOLID;     break;
-        case  2: case  4: case  6: case  8:
-        case 10: case 12: case 14: case 16:
-        case 43: case 45:                   aStyle=BRUSH_VERT;      break;
-        case  3: case  5: case  7: case  9:
-        case 11: case 13: case 15: case 17:
-        case 42: case 44:                   aStyle=BRUSH_HORZ;      break;
-        case 18: case 20: case 22: case 24:
-        case 26: case 28: case 30: case 32:
-        case 46: case 48:                   aStyle=BRUSH_UPDIAG;    break;
-        case 19: case 21: case 23: case 25:
-        case 27: case 29: case 31: case 33:
-        case 47: case 49:                   aStyle=BRUSH_DOWNDIAG;  break;
-        case 34: case 35: case 36: case 37: aStyle=BRUSH_CROSS;     break;
-        case 38: case 39: case 40: case 41: aStyle=BRUSH_DIAGCROSS; break;
-        default: aStyle=BRUSH_DIAGCROSS; break;
-    }
-    Brush aBrush(Sgv2SvFarbe(rArea.FFarbe,rArea.FBFarbe,rArea.FIntens),aStyle);
-    aBrush.SetTransparent((rArea.FMuster & 0x80) !=0L);
-    SetBrush(aBrush,rOut);
-*/
     if( 0 == ( rArea.FMuster & 0x00FF ) )
         rOut.SetFillColor();
     else
@@ -417,7 +377,6 @@ void SetArea(ObjAreaType& rArea, OutputDevice& rOut)
 *************************************************************************/
 void ObjkType::Draw(OutputDevice&)
 {
-//    ShowSDObjk(*this);
 }
 
 void Obj0Type::Draw(OutputDevice&) {}
@@ -1027,49 +986,7 @@ BOOL SgfSDrwFilter(SvStream& rInp, GDIMetaFile& rMtf, INetURLObject aIniPath )
     return(bRet);
 }
 
-/*
-Bitmap Dither(BYTE Intens)
-{
-    Bitmap aBmp;
-    BmpInfoHeader Info;
 
-
-const dmatrix: array[0..7,0..7] of byte =
-        ((  0, 48, 12, 60,  3, 51, 15, 63 ),
-         ( 32, 16, 44, 28, 35, 19, 47, 31 ),
-         (  8, 56,  4, 52, 11, 59,  7, 55 ),
-         ( 40, 24, 36, 20, 43, 27, 39, 23 ),
-         (  2, 50, 14, 62,  1, 49, 13, 61 ),
-         ( 34, 18, 46, 30, 33, 17, 45, 29 ),
-         ( 10, 58,  6, 54,  9, 57,  5, 53 ),
-         ( 42, 26, 38, 22, 41, 25, 37, 21 ));
-
-
-    cmatrix: array[0..7,0..7] of byte;
-    dmatrixn,dmatrixi: array[0..7] of byte;
-
-
-procedure SetColorIntens(col0,col1,bal: integer);
-var cmatrix0: array[0..63] of byte absolute cmatrix;
-    dmatrix0: array[0..63] of byte absolute dmatrix;
-    n,i: integer;
-    b,bit: byte;
-begin
-if col0=col1 then bal:=0;
-if bal<=32 then
-  begin
-  plotcolor0:=col0 and $1F; plotcolor1:=col1 and $1F;
-  plotbal:=bal;
-  end
-else
-  begin
-  plotcolor0:=col1 and $1F; plotcolor1:=col0 and $1F;
-  plotbal:=64-bal;
-  end;
-for n:=0 to 63 do
- if plotbal<=dmatrix0[n] then cmatrix0[n]:=col0 else cmatrix0[n]:=col1;
-end;
-*/
 
 #if defined( WIN ) && defined( MSC )
 #pragma code_seg( "svtools", "AUTO_CODE" )

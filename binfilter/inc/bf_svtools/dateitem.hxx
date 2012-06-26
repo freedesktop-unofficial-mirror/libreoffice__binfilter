@@ -76,24 +76,7 @@ public:
     virtual bool QueryValue( ::com::sun::star::uno::Any& rVal,
                              BYTE nMemberId = 0 ) const;
 };
-/*
-class SfxColumnDateTimeItem : public SfxDateTimeItem
-{
-public:
-                            TYPEINFO();
 
-                            ~SfxColumnDateTimeItem() {}
-
-    virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
-
-    virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-                                    SfxMapUnit eCoreMetric,
-                                    SfxMapUnit ePresMetric,
-                                    XubString &rText,
-                                    const ::IntlWrapper * pIntlWrapper = 0 )
-        const;
-};
-*/
 }
 
 #endif

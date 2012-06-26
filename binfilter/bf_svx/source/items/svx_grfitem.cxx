@@ -62,24 +62,6 @@ using namespace ::com::sun::star;
 /*N*/          nBottom  == ((const SvxGrfCrop&)rAttr).GetBottom();
 /*N*/ }
 
-/*
-SfxPoolItem* SvxGrfCrop::Clone( SfxItemPool* ) const
-{
-    return new SvxGrfCrop( *this );
-}
-*/
-
-/*
-USHORT SvxGrfCrop::GetVersion( USHORT nFFVer ) const
-{
-    DBG_ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
-                SOFFICE_FILEFORMAT_40==nFFVer ||
-                SOFFICE_FILEFORMAT_NOW==nFFVer,
-                "SvxGrfCrop: exist a new fileformat?" );
-    return GRFCROP_VERSION_SWDEFAULT;
-}
-*/
-
 /*N*/ SfxPoolItem* SvxGrfCrop::Create( SvStream& rStrm, USHORT nVersion ) const
 /*N*/ {
 /*N*/   INT32 top, left, right, bottom;

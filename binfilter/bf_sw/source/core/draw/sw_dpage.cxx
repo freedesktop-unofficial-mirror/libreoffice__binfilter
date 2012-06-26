@@ -64,19 +64,6 @@ using namespace ::com::sun::star::frame;
 /*N*/   return FmFormPage::ReplaceObject( pNewObj, nObjNum );
 /*N*/ }
 
-
-/*
-Bug 29593: QuickHelp immer an der MausPosition anzeigen (besonders unter OS/2)
-
-                    Rectangle aRect( pObj->GetSnapRect() );
-                    Point aPt( pWindow->OutputToScreenPixel( pWindow->LogicToPixel( aRect.TopLeft() )));
-                    aRect.Left()   = aPt.X();
-                    aRect.Top()    = aPt.Y();
-                    aPt = pWindow->OutputToScreenPixel( pWindow->LogicToPixel( aRect.BottomRight() ));
-                    aRect.Right()  = aPt.X();
-                    aRect.Bottom() = aPt.Y();
-*/
-
 /*N*/ Reference< XInterface > SwDPage::createUnoPage()
 /*N*/ {
 /*N*/   Reference<XModel> xModel = rDoc.GetDocShell()->GetBaseModel();

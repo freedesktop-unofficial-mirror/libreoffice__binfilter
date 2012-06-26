@@ -111,31 +111,6 @@
 
 // Item-Id's f"ur die Zeichen-Tabpages
 #define SID_CHAR_DLG                        (SID_SVX_START + 296)
-/*
-#define SID_ATTR_CHAR                       (SID_SVX_START +   6)
-#define SID_ATTR_CHAR_FONT                  (SID_SVX_START +   7)
-#define SID_ATTR_CHAR_POSTURE               (SID_SVX_START +   8)
-#define SID_ATTR_CHAR_WEIGHT                (SID_SVX_START +   9)
-#define SID_ATTR_CHAR_SHADOWED              (SID_SVX_START +  10)
-#define SID_ATTR_CHAR_WORDLINEMODE          (SID_SVX_START +  11)
-#define SID_ATTR_CHAR_CONTOUR               (SID_SVX_START +  12)
-#define SID_ATTR_CHAR_STRIKEOUT             (SID_SVX_START +  13)
-#define SID_ATTR_CHAR_UNDERLINE             (SID_SVX_START +  14)
-#define SID_ATTR_CHAR_FONTHEIGHT            (SID_SVX_START +  15)
-#define SID_ATTR_CHAR_FONTWIDTH             (SID_SVX_START + 303)
-#define SID_ATTR_CHAR_PROPSIZE              (SID_SVX_START +  16)
-#define SID_ATTR_CHAR_COLOR                 (SID_SVX_START +  17)
-#define SID_ATTR_CHAR_COLOR_EXT             (SID_SVX_START + 488)
-#define SID_ATTR_CHAR_COLOR2                (SID_SVX_START + 537)
-#define SID_ATTR_CHAR_COLOR_BACKGROUND      (SID_SVX_START + 489)
-#define SID_ATTR_CHAR_COLOR_BACKGROUND_EXT  (SID_SVX_START + 490)
-#define SID_ATTR_CHAR_KERNING               (SID_SVX_START +  18)
-#define SID_ATTR_CHAR_CASEMAP               (SID_SVX_START +  19)
-#define SID_ATTR_CHAR_LANGUAGE              (SID_SVX_START +  20)
-#define SID_ATTR_CHAR_ESCAPEMENT            (SID_SVX_START +  21)
-#define SID_ATTR_CHAR_FONTLIST              (SID_SVX_START +  22)
-// weiter bei + 67
-*/
 
 // Item-Id's f"ur die Umrahmungs-Tabpage
 #define SID_ATTR_BORDER_INNER               (SID_SVX_START +  23)
@@ -223,11 +198,6 @@
 #define SID_ATTR_HDFT_DYNAMIC_SPACING       (SID_SVX_START +  953)
 
 #define SID_ATTR_PAGE_BSP                   (SID_SVX_START +  63)
-
-/*
-// Temp-Id f"ur FontMapType
-#define SID_ATTR_CHAR_MAPTYPE               (SID_SVX_START +  64)
-*/
 
 // zusaetzlich f"ur die Ext-Absatz-TabPage
 #define SID_ATTR_PARA_MODEL                 (SID_SVX_START +  65)
@@ -825,11 +795,6 @@
 #define SID_SHOW_HIDDEN                     (SID_SVX_START + 375)
 #define SID_SHOW_FORMS                      (SID_SVX_START + 376)
 // continue at SID_INSERT_IMAGECONTROL
-
-// SlotIds f"ur Beleuchtungsdialog ------------------------------------------
-
-// raus ab 537 (AW)
-//#define   SID_LIGHTING                        (SID_SVX_START + 405)
 
 // Slots for graphic filters ------------------------------------------------
 #define SID_GRFFILTER                       (SID_SVX_START+469)

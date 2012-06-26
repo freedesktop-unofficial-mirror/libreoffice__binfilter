@@ -121,14 +121,6 @@ using namespace ::rtl;
 /*N*/       else if( ISA( SwGlobalDocShell ) )
 /*?*/           GetDoc()->SetGlobalDoc();       // Globaldokument
 /*N*/
-/*N*/
-/*
-        //JP 12.07.95: so einfach waere es fuer die neu Mimik
-        pDoc->SetDefault( SvxTabStopItem( 1,
-                    GetStar Writer App()->GetUsrPref()->GetDefTabDist(),
-                    SVX_TAB_ADJUST_DEFAULT,
-                    RES_PARATR_TABSTOP));
-*/
 /*N*/       if ( GetCreateMode() ==  SFX_CREATE_MODE_EMBEDDED )
 /*N*/       {
                 SvEmbeddedObject* pLclObj = this;

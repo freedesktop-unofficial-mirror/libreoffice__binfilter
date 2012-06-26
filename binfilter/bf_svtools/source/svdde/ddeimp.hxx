@@ -50,16 +50,6 @@
 #include <bf_svtools/svdde.hxx>
 #include "ddewrap.hxx"
 
-/*
-extern "C"
-{
-#define BOOL WIN_BOOL
-#define BYTE WIN_BYTE
-#undef BOOL
-#undef BYTE
-};
-*/
-
 #endif
 
 #include <bf_tools/string.hxx>

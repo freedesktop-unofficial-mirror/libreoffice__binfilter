@@ -27,25 +27,13 @@
  ************************************************************************/
 
 #include <tools/debug.hxx>
-
-
 #include <list>
 
-
-
 #include "xmlnmspe.hxx"
-
-
 #include "ximpstyl.hxx"
-
-
 #include "sdpropls.hxx"
-
-
 #include "ximp3dscene.hxx"
-
 #include "ximp3dobject.hxx"
-
 #include "ximpgrp.hxx"
 
 #include <map>
@@ -222,16 +210,6 @@ XMLShapeImportHelper::~XMLShapeImportHelper()
     }
 
     if(mpGroupShapeElemTokenMap) delete mpGroupShapeElemTokenMap;
-/*
-    if(mpShapeAttrTokenMap) delete mpShapeAttrTokenMap;
-    if(mpRectShapeAttrTokenMap) delete mpRectShapeAttrTokenMap;
-    if(mpLineShapeAttrTokenMap) delete mpLineShapeAttrTokenMap;
-    if(mpEllipseShapeAttrTokenMap) delete mpEllipseShapeAttrTokenMap;
-    if(mpTextBoxShapeAttrTokenMap) delete mpTextBoxShapeAttrTokenMap;
-    if(mpControlShapeAttrTokenMap) delete mpControlShapeAttrTokenMap;
-    if(mpPageShapeAttrTokenMap) delete mpPageShapeAttrTokenMap;
-    if(mpGraphicObjectShapeAttrTokenMap) delete mpGraphicObjectShapeAttrTokenMap;
-*/
     if(mpPolygonShapeAttrTokenMap) delete mpPolygonShapeAttrTokenMap;
     if(mpPathShapeAttrTokenMap) delete mpPathShapeAttrTokenMap;
     if(mp3DSceneShapeElemTokenMap) delete mp3DSceneShapeElemTokenMap;
