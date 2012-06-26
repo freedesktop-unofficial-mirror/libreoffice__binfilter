@@ -35,8 +35,7 @@ INC+= -I$(PRJ)$/inc$/bf_sw
 
 SRS1NAME=$(TARGET)
 SRC1FILES =  \
-        sw_shells.src \
-        sw_pseudo.src
+        sw_shells.src
 
 # --- Tagets -------------------------------------------------------
 

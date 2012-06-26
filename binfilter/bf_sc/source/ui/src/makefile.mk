@@ -38,7 +38,6 @@ RSCUPDVER=$(RSCREVISION)(SV$(UPD)$(UPDMINOR))
 SRS1NAME=$(TARGET)
 SRC1FILES = \
     sc_sc.src		 \
-    sc_pseudo.src	 \
     sc_scstring.src \
     sc_globstr.src  \
     sc_scerrors.src
