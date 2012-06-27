@@ -76,7 +76,6 @@
 #include <swwait.hxx>
 
 #include <cmdid.h>
-#include <globals.h>
 #include <helpid.h>
 #include <app.hrc>
 #include <poolfmt.hrc>

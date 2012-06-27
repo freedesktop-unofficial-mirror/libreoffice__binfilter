@@ -41,7 +41,6 @@
 #include <swmodule.hxx>
 #include <wdocsh.hxx>
 #include <doc.hxx>
-#include <globals.h>        // globale Konstanten z.B.
 #include <app.hrc>
 #include <usrpref.hxx>
 #include <prtopt.hxx>
