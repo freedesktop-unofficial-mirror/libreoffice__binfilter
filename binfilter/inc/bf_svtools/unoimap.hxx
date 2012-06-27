@@ -20,7 +20,6 @@
 #ifndef _SVTOOLS_UNOIMAP_HXX
 #define _SVTOOLS_UNOIMAP_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <com/sun/star/uno/XInterface.hpp>
 

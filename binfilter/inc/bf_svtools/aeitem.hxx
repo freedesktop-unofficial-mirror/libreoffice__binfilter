@@ -21,7 +21,6 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <bf_svtools/poolitem.hxx>
 #include <bf_svtools/eitem.hxx>

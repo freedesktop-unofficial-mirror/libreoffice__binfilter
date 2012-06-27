@@ -22,7 +22,6 @@
 
 #include <bf_tools/string.hxx>
 #include <rtl/ustring.hxx>
-#include "bf_svtools/svtdllapi.h"
 #include <com/sun/star/uno/Sequence.h>
 #include <com/sun/star/uno/Reference.h>
 #include <com/sun/star/beans/PropertyValue.hpp>

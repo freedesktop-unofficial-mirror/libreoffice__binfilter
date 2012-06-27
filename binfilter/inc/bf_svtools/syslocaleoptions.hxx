@@ -20,7 +20,6 @@
 #ifndef INCLUDED_SVTOOLS_SYSLOCALEOPTIONS_HXX
 #define INCLUDED_SVTOOLS_SYSLOCALEOPTIONS_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <sal/types.h>
 #include <rtl/ustring.hxx>

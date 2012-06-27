@@ -19,7 +19,6 @@
 #ifndef _NUMUNO_HXX
 #define _NUMUNO_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
 #include <com/sun/star/lang/XUnoTunnel.hpp>

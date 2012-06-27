@@ -21,7 +21,6 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <bf_tools/string.hxx>
 #include <i18npool/mslangid.hxx>

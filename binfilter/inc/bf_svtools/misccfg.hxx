@@ -19,7 +19,6 @@
 #ifndef _SFX_MISCCFG_HXX
 #define _SFX_MISCCFG_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <bf_svtools/bf_solar.h>
 

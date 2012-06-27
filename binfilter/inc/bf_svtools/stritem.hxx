@@ -20,7 +20,6 @@
 #ifndef _SFXSTRITEM_HXX
 #define _SFXSTRITEM_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <bf_svtools/custritm.hxx>
 

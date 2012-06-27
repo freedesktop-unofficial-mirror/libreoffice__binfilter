@@ -19,7 +19,6 @@
 #ifndef INCLUDED_SVTOOLS_HELPOPT_HXX
 #define INCLUDED_SVTOOLS_HELPOPT_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #ifndef INCLUDED_LIST
 #include <list>

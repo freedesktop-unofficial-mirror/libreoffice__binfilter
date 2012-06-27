@@ -19,7 +19,6 @@
 #ifndef _SVTOOLS_CJKOPTIONS_HXX
 #define _SVTOOLS_CJKOPTIONS_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <sal/types.h>
 #include <bf_svtools/options.hxx>

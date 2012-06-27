@@ -20,7 +20,6 @@
 #ifndef _HTMLKYWD_HXX
 #define _HTMLKYWD_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include "sal/types.h"
 

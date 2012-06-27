@@ -19,7 +19,6 @@
 #ifndef _SVTOOLS_UNOEVENT_HXX_
 #define _SVTOOLS_UNOEVENT_HXX_
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <com/sun/star/container/XNameReplace.hpp>
 

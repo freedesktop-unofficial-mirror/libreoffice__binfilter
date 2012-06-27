@@ -19,7 +19,6 @@
 #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
 #define INCLUDED_SVTOOLS_COLORCFG_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <rtl/ustring.hxx>
 #include <tools/color.hxx>

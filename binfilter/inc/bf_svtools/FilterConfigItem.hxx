@@ -21,7 +21,6 @@
 #ifndef _FILTER_CONFIG_ITEM_HXX_
 #define _FILTER_CONFIG_ITEM_HXX_
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <bf_tools/string.hxx>
 #include <com/sun/star/awt/Size.hpp>

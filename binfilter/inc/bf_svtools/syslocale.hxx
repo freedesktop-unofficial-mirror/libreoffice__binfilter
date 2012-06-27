@@ -20,7 +20,6 @@
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #define INCLUDED_SVTOOLS_SYSLOCALE_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <unotools/localedatawrapper.hxx>
 #include <unotools/charclass.hxx>

@@ -19,7 +19,6 @@
 #ifndef _SFXMETRICITEM_HXX
 #define _SFXMETRICITEM_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <bf_svtools/intitem.hxx>
 

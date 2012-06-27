@@ -20,7 +20,6 @@
 #ifndef _OWNLIST_HXX
 #define _OWNLIST_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <tools/stream.hxx>
 #include <bf_tools/ownlist.hxx>

@@ -19,7 +19,6 @@
 #ifndef _SVTOOLS_CTLOPTIONS_HXX
 #define _SVTOOLS_CTLOPTIONS_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <sal/types.h>
 

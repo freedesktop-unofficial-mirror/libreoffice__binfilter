@@ -19,7 +19,6 @@
 #ifndef _SFXPOOLCACH_HXX
 #define _SFXPOOLCACH_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <bf_svtools/bf_solar.h>
 

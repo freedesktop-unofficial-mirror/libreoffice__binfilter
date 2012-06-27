@@ -19,7 +19,6 @@
 #ifndef _SFXFLAGITEM_HXX
 #define _SFXFLAGITEM_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <bf_svtools/bf_solar.h>
 #include <tools/rtti.hxx>

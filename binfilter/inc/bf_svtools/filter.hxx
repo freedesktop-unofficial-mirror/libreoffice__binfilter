@@ -24,7 +24,6 @@
 
 #include <bf_svtools/fltcall.hxx>
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <tools/stream.hxx>
 #include <vcl/graph.hxx>

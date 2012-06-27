@@ -19,7 +19,6 @@
 #ifndef _SVT_APEARCFG_HXX
 #define _SVT_APEARCFG_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <bf_svtools/bf_solar.h>
 #include <unotools/configitem.hxx>

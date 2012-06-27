@@ -24,7 +24,6 @@
 
 #ifndef __RSC
 
-#include "bf_svtools/svtdllapi.h"
 #include <bf_tools/string.hxx>
 
 #include <tools/errinf.hxx>

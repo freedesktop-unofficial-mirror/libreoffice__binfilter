@@ -19,7 +19,6 @@
 #ifndef _SVTOOLS_TEMPLDLG_HXX
 #define _SVTOOLS_TEMPLDLG_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <vcl/button.hxx>
 #include <vcl/dialog.hxx>

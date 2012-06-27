@@ -20,7 +20,6 @@
 #ifndef SVTOOLS_INC_IMAGERESOURCEACCESS_HXX
 #define SVTOOLS_INC_IMAGERESOURCEACCESS_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 /** === begin UNO includes === **/
 #include <com/sun/star/io/XInputStream.hpp>

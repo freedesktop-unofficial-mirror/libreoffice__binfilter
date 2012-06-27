@@ -19,7 +19,6 @@
 #ifndef INCLUDED_SVTOOLS_USEROPTIONS_HXX
 #define INCLUDED_SVTOOLS_USEROPTIONS_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <unotools/configitem.hxx>
 #include <bf_tools/string.hxx>

@@ -23,7 +23,6 @@
 
 // class SvxMacroItem ----------------------------------------------------
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <bf_svtools/poolitem.hxx>
 

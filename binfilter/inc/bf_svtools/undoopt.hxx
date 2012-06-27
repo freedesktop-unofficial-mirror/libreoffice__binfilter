@@ -19,7 +19,6 @@
 #ifndef INCLUDED_SVTOOLS_UNDOOPT_HXX
 #define INCLUDED_SVTOOLS_UNDOOPT_HXX
 
-#include "bf_svtools/svtdllapi.h"
 
 #include <sal/types.h>
 #include <bf_svtools/brdcst.hxx>
