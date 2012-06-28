@@ -49,7 +49,7 @@ GIFReader::GIFReader( SvStream& rStm ) :
             bGCTransparent  ( FALSE ),
             bImGraphicReady ( FALSE )
 {
-    maUpperName = UniString::CreateFromAscii( "SVIGIF", 6 );
+    maUpperName = rtl::OUString("SVIGIF");
     pSrcBuf = new BYTE[ 256 ];
     ClearImageExtensions();
 }
