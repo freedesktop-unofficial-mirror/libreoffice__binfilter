@@ -34,9 +34,11 @@ INC+= -I$(PRJ)$/inc$/bf_sch
 
 # --- Files --------------------------------------------------------
 
-CXXFILES = $(BFPRJ)$/util$/sch_docshel1.cxx
+CXXFILES = $(BFPRJ)$/util$/sch_docshell.cxx \
+        sch_docshel1.cxx
 
 SLOFILES =	\
+        $(SLO)$/sch_docshell.obj       \
         $(SLO)$/sch_docshel1.obj
 
 
