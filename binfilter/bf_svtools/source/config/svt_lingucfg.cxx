@@ -163,7 +163,7 @@ public:
 
 
 SvtLinguConfigItem::SvtLinguConfigItem() :
-    utl::ConfigItem( String::CreateFromAscii( "Office.Linguistic" ) )
+    utl::ConfigItem( rtl::OUString( "Office.Linguistic" ) )
 {
     LoadOptions( GetPropertyNames() );
     ClearModified();
