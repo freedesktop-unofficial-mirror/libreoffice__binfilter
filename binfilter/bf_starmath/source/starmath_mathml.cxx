@@ -77,6 +77,7 @@ one go*/
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #include <comphelper/genericpropertyset.hxx>
 #include <comphelper/string.hxx>
+#include <rtl/uuid.h>
 
 #include <bf_svtools/itemprop.hxx>
 
