@@ -50,7 +50,7 @@
 
 #include <vcl/stdtext.hxx>
 
-
+#include <comphelper/types.hxx>
 #include <unotools/streamwrap.hxx>
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
 

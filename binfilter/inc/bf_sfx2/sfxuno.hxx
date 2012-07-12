@@ -35,6 +35,7 @@
 #include <com/sun/star/uno/Reference.h>
 
 #include <cppuhelper/factory.hxx>
+#include <cppuhelper/typeprovider.hxx>
 
 namespace binfilter {
 
