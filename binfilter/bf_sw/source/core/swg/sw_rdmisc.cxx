@@ -240,7 +240,6 @@ namespace binfilter {
     r >> cStyle >> cTransparent;
 
     Color aCol(InColor());
-    Color aTmpFillColor(InColor());
 
     return aCol;
 

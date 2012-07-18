@@ -341,7 +341,6 @@ public:
 /*N*/   const void *pMagic2 = NULL;
 /*N*/   USHORT nIndex2 = 0;
 /*N*/   SwSubFont aFont( *this );
-/*N*/   Point aStartPos( rDo.GetInf().GetPos() );
 /*N*/
 /*N*/   const BOOL bUnderStriked = aFont.GetUnderline() != UNDERLINE_NONE
 /*N*/                           || aFont.GetStrikeout() != STRIKEOUT_NONE;

@@ -209,9 +209,6 @@ namespace binfilter {
 /*?*/           }
 /*N*/       }
 /*N*/   }
-/*N*/   if (bFrmHdl) {
-/*N*/       Rectangle aRect(GetMarkedObjRect());
-/*N*/   }
 
     // Drehpunkt/Spiegelachse
 /*N*/   AddDragModeHdl(eDragMode);

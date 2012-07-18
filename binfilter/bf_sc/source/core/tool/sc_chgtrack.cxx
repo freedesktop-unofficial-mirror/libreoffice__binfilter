@@ -1935,7 +1935,6 @@ namespace binfilter {
 /*N*/           default :
 /*N*/           break;
 /*N*/       }
-/*N*/       ScRange aRange( aTmpRange.MakeRange() );
 /*N*/       if ( !aBigRange.aStart.IsValid( pTrack->GetDocument() ) )
 /*N*/       {   //! HACK!
 /*N*/           //! UpdateReference kann nicht mit Positionen ausserhalb des

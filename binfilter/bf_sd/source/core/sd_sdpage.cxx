@@ -776,8 +776,6 @@ void SdPage::SetAutoLayout(AutoLayout eLayout, BOOL bInit, BOOL bAPICall )
     Rectangle   aRect2( aLayoutRect );
     Rectangle   aRect3( aLayoutRect );
     Rectangle   aRect4( aLayoutRect );
-    Size        aTitleSize( aTitleRect.GetSize() );
-    Point       aTitlePos( aTitleRect.TopLeft() );
     Size        aLayoutSize( aLayoutRect.GetSize() );
     Point       aLayoutPos( aLayoutRect.TopLeft() );
     Size        aTempSize;

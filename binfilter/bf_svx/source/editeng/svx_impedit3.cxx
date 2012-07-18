@@ -2173,7 +2173,6 @@ struct TabInfo
 /*N*/   // Informationen fehlen, und sowieso das ganze Object ungescrollt
 /*N*/   // dargestellt wird.
 /*N*/   // Das Rechteck ist unendlich gross.
-/*N*/   Point aOrigin( aStartPos );
 /*N*/
 /*N*/   // --------------------------------------------------
 /*N*/   // Ueber alle Absaetze...
@@ -2203,8 +2202,6 @@ struct TabInfo
 /*N*/               aStartPos.Y() += pPortion->GetFirstLineOffset();
 /*N*/           else
 /*?*/               aStartPos.X() -= pPortion->GetFirstLineOffset();
-/*N*/
-/*N*/             Point aParaStart( aStartPos );
 /*N*/
 /*N*/             const SvxLineSpacingItem& rLSItem = ((const SvxLineSpacingItem&)pPortion->GetNode()->GetContentAttribs().GetItem( EE_PARA_SBL ));
 /*N*/           sal_uInt16 nSBL = ( rLSItem.GetInterLineSpaceRule() == SVX_INTER_LINE_SPACE_FIX )

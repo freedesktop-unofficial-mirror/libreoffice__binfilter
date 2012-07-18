@@ -713,7 +713,6 @@ namespace binfilter {
     // calculated lowers, not only if there space left in its upper.
 /*N*/     if( (Frm().*fnRect->fnBottomDist)( nDeadLine ) > 0 )
 /*N*/   {
-/*N*/       const Size aOldSz( Prt().SSize() );
 /*N*/         (Frm().*fnRect->fnSetBottom)( nDeadLine );
 /*N*/         long nHeight = (Frm().*fnRect->fnGetHeight)();
 /*N*/         long nTop = CalcUpperSpace();

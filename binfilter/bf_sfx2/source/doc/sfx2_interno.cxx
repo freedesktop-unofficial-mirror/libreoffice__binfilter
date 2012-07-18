@@ -154,7 +154,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( GetVisArea() != rRect )
 /*N*/   {
-/*N*/       Size aSize (GetVisArea().GetSize());
 /*N*/       // Groesse des Objects setzen
 /*N*/       SvInPlaceObject::SetVisArea( rRect );
 /*N*/

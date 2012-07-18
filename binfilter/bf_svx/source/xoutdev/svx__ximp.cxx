@@ -154,7 +154,6 @@ namespace binfilter {
 /*?*/           }
 /*?*/           else
 /*?*/           {
-/*?*/               Rectangle       aPolyRect( rPolyPoly.GetBoundRect() );
 /*?*/               /*GDIMetaFile*    pMtf = */ pOut->GetConnectMetaFile();
 /*?*/
 /*?*/               pOut->Push();
