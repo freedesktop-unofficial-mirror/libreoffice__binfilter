@@ -241,8 +241,6 @@ public:
     // Der Zweck ist, unnoetiges Flackern zu vermeiden. -> Funkt noch nich, deshalb TRUE!
     void AdjustMarkHdl(BOOL bRestraintPaint=TRUE);
 
-    const Rectangle& GetMarkedObjRect() const; // SnapRects der Objekte, ohne Strichstaerke
-
     // Wird immer dann gerufen, wenn sich die Liste der markierten Objekte
     // moeglicherweise geaendert hat. Wer ueberlaed muss unbedingt auch die
     // Methode der Basisklasse rufen!

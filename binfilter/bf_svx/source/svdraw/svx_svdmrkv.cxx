@@ -381,24 +381,6 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ const Rectangle& SdrMarkView::GetMarkedObjRect() const
-/*N*/ {
-/*N*/   if (bMarkedObjRectDirty) {
-/*N*/       ((SdrMarkView*)this)->bMarkedObjRectDirty=FALSE;
-/*N*/       Rectangle aRect;
-/*N*/       for (ULONG nm=0; nm<aMark.GetMarkCount(); nm++) {
-/*?*/           SdrMark* pM=aMark.GetMark(nm);
-/*?*/           SdrObject* pO=pM->GetObj();
-/*?*/           Rectangle aR1(pO->GetSnapRect());
-/*?*/           aR1+=pM->GetPageView()->GetOffset();
-/*?*/           if (aRect.IsEmpty()) aRect=aR1;
-/*?*/           else aRect.Union(aR1);
-/*N*/       }
-/*N*/       ((SdrMarkView*)this)->aMarkedObjRect=aRect;
-/*N*/   }
-/*N*/   return aMarkedObjRect;
-/*N*/ }
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ void SdrMarkView::MarkListHasChanged()
