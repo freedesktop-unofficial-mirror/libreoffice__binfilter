@@ -108,7 +108,6 @@ class SwFlyFrm;
 class Sw3RecordSizeTable;
 class SvxTabStopItem;
 class Sw3TOXBase;
-class SwInsHardBlankSoftHyph;
 class SvxFontItem;
 class SdrObject;
 
@@ -331,11 +330,11 @@ class Sw3IoImp
                     xub_StrLen nOffset, const SwTxtNode& rNd,
                     rtl_TextEncoding eEnc,
                     const SvxFontItem& rFontItem,
-                    SwInsHardBlankSoftHyph* pHBSH, BOOL bTo8 );
+                    BOOL bTo8 );
     void ConvertText( ByteString& rText8, String& rText,
                       xub_StrLen nOffset, SwTxtNode& rNd,
                       rtl_TextEncoding eEnc, const SvxFontItem& rFontItem,
-                      SwInsHardBlankSoftHyph* pHBSH, BOOL bTo8 );
+                      BOOL bTo8 );
 
 public:
     const String N_DOC;             // Name des Dokument-Streams

@@ -109,16 +109,6 @@ namespace binfilter {
 
 SV_DECL_PTRARR(SfxPoolItems,SfxPoolItem * ,16,16)
 
-class SwInsHardBlankSoftHyph
-{
-    SvXub_StrLens   aItemStarts;    // Start-Pos der Hints
-    SfxPoolItems    aItems;         // Items der Hints
-public:
-    SwInsHardBlankSoftHyph() {}
-    ~SwInsHardBlankSoftHyph();
-    void AddItem( xub_StrLen nPos, sal_Unicode c );
-};
-
 /*N*/ sal_Char Sw3IoImp::ConvStarSymbolCharToStarBats( sal_Unicode c )
 /*N*/ {
 /*N*/   if( !hBatsFontConv )
@@ -267,7 +257,7 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
 /*N*/                           xub_StrLen nOffset, const SwTxtNode& rNd,
 /*N*/                           rtl_TextEncoding eEnc,
 /*N*/                           const SvxFontItem& rFontItem,
-/*N*/                           SwInsHardBlankSoftHyph* pHBSH, BOOL bTo8 )
+/*N*/                           BOOL bTo8 )
 /*N*/ {
 /*N*/   rtl::OStringBuffer aText8(rText8);
 /*N*/   sal_Bool bRet = sal_False;
@@ -286,11 +276,6 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
 /*N*/               case CHAR_HARDBLANK:
 /*N*/               case CHAR_HARDHYPHEN:
 /*?*/               case CHAR_SOFTHYPHEN:
-/*?*/                   if( pHBSH )
-/*?*/                   {
-/*?*/                       pHBSH->AddItem( nPos, c );
-/*?*/                       c = '\xff';
-/*?*/                   }
 /*?*/                   break;
 /*N*/
 /*N*/               case CH_TXTATR_BREAKWORD:
@@ -317,11 +302,6 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
 /*N*/               case CHAR_HARDBLANK:
 /*N*/               case CHAR_HARDHYPHEN:
 /*N*/               case CHAR_SOFTHYPHEN:
-/*N*/                   if( pHBSH )
-/*N*/                   {
-/*N*/                       pHBSH->AddItem( nPos, c );
-/*N*/                       bToFF = TRUE;
-/*N*/                   }
 /*N*/                   break;
 /*N*/
 /*N*/               case CH_TXTATR_BREAKWORD:
@@ -431,7 +411,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/ void Sw3IoImp::ConvertText( ByteString& rText8, String& rText,
 /*N*/                           xub_StrLen nOffset, SwTxtNode& rNd,
 /*N*/                           rtl_TextEncoding eEnc, const SvxFontItem& rFontItem,
-/*N*/                           SwInsHardBlankSoftHyph* pHBSH, BOOL bTo8 )
+/*N*/                           BOOL bTo8 )
 /*N*/
 /*N*/ {
 /*N*/   SvxFontItems aFontItemStack;
@@ -470,7 +450,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/           {
 /*N*/               sal_Bool bSymConv = ConvertText( rText8, rText, nCopy, nPos,
 /*N*/                                                nOffset, rNd, eEnc,
-/*N*/                                                *pFontItem, pHBSH, bTo8 );
+/*N*/                                                *pFontItem, bTo8 );
 /*N*/               if( bSymConv && !bTo8 )
 /*N*/               {
 /*N*/                   aInsertSymbolFontStartPoss.Insert( nCopy,
@@ -490,7 +470,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/           {
 /*N*/               sal_Bool bSymConv = ConvertText( rText8, rText, nCopy, nPos,
 /*N*/                                                nOffset, rNd,eEnc, *pFontItem,
-/*N*/                                                pHBSH, bTo8 );
+/*N*/                                                bTo8 );
 /*N*/               if( bSymConv && !bTo8 )
 /*N*/               {
 /*?*/                   aInsertSymbolFontStartPoss.Insert( nCopy,
@@ -514,7 +494,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/   if( nLen > nCopy )
 /*N*/   {
 /*N*/       sal_Bool bSymConv = ConvertText( rText8, rText, nCopy, nLen, nOffset,
-/*N*/                              rNd, eEnc, *pFontItem, pHBSH, bTo8 );
+/*N*/                              rNd, eEnc, *pFontItem, bTo8 );
 /*N*/       if( bSymConv && !bTo8 )
 /*N*/       {
 /*N*/           aInsertSymbolFontStartPoss.Insert( nCopy,
@@ -574,7 +554,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*?*/           }
 /*N*/       }
 /*N*/       ConvertText( aText8, aText, nOffset, rNd,
-/*N*/                              eSrcSet, aFontItem1, 0, FALSE );
+/*N*/                              eSrcSet, aFontItem1, FALSE );
 /*N*/       rNdText.Replace( nOffset, aText.Len(), aText );
 /*N*/       if( bNdSym &&
 /*N*/           SFX_ITEM_SET == rNd.GetSwAttrSet().GetItemState( RES_CHRATR_FONT,
@@ -1118,28 +1098,6 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/ #endif
 /*N*/
 /*N*/   rPos++;
-/*N*/ }
-
-/*N*/ SwInsHardBlankSoftHyph::~SwInsHardBlankSoftHyph()
-/*N*/ {
-/*N*/   for( USHORT n = 0, nCnt = aItems.Count(); n < nCnt; ++n )
-/*N*/       delete aItems[ n ];
-/*N*/ }
-/*N*/ void SwInsHardBlankSoftHyph::AddItem( xub_StrLen nPos, sal_Unicode c )
-/*N*/ {
-/*N*/   SfxPoolItem* pItem = 0;
-/*N*/   switch ( c )
-/*N*/   {
-/*N*/   case CHAR_HARDBLANK:    pItem = new SwFmtHardBlank( ' ', FALSE ); break;
-/*?*/   case CHAR_HARDHYPHEN:   pItem = new SwFmtHardBlank( '-', FALSE ); break;
-/*N*/   case CHAR_SOFTHYPHEN:   pItem = new SwFmtSoftHyph; break;
-/*N*/   }
-/*N*/   if( pItem )
-/*N*/   {
-/*N*/       USHORT nInsPos = aItemStarts.Count();
-/*N*/       aItemStarts.Insert( nPos, nInsPos );
-/*N*/       aItems.C40_INSERT( SfxPoolItem, pItem, nInsPos );
-/*N*/   }
 /*N*/ }
 
 // nOffset ist ungleich Null, wenn innerhalb eines Nodes eingefuegt werden
