@@ -27,13 +27,6 @@
 // for performance measurement
 #include <rtl/logfile.hxx>
 
-// Note: Enable the following to skip points in the resulting spline
-// poly-polygon, if they have equal x-values rather than identical points.
-// Unitl now, I think there are situations where the output might differ, if you
-// do so, so it's not enabled by default.
-
-// #define SPLINE_OPTIMIZE_POINTS
-
 #include "calculat.hxx"
 
 #include <algorithm>
@@ -186,11 +179,6 @@ using namespace ::std;
 
 
 // --------------------------------------------------------------------------------
-
-// Calculation of Splines
-
-
-// ----------------------------------------
 
 }
 
