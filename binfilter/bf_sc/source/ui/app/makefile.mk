@@ -36,7 +36,6 @@ SLOFILES =  \
     $(SLO)$/sc_scmod.obj  \
     $(SLO)$/sc_scmod2.obj  \
     $(SLO)$/sc_scdll.obj  \
-    $(SLO)$/sc_rfindlst.obj \
     $(SLO)$/sc_uiitems.obj  \
     $(SLO)$/sc_msgpool.obj
 
