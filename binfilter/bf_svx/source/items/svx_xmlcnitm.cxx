@@ -17,6 +17,8 @@
  *   the License at http://www.apache.org/licenses/LICENSE-2.0 .
  */
 
+#include <memory>
+
 #include <com/sun/star/xml/AttributeData.hpp>
 #include <com/sun/star/lang/XUnoTunnel.hpp>
 
@@ -97,7 +99,7 @@ using rtl::OUString;
 /*NBFF*/    }
 /*NBFF*/    else
 /*NBFF*/    {
-/*NBFF*/        SvXMLAttrContainerData* pNewImpl = new SvXMLAttrContainerData;
+/*NBFF*/ 		::std::auto_ptr<SvXMLAttrContainerData> pNewImpl(new SvXMLAttrContainerData);
 /*NBFF*/
 /*NBFF*/        try
 /*NBFF*/        {
@@ -147,17 +149,15 @@ using rtl::OUString;
 /*NBFF*/            if( nAttr == nCount )
 /*NBFF*/            {
 /*NBFF*/                delete pImpl;
-/*NBFF*/                pImpl = pNewImpl;
-/*NBFF*/                return false;
+/*NBFF*/ 				pImpl = pNewImpl.release();
 /*NBFF*/            }
 /*NBFF*/            else
 /*NBFF*/            {
-/*NBFF*/                delete pNewImpl;
+/*NBFF*/ 				return false;
 /*NBFF*/            }
 /*NBFF*/        }
 /*NBFF*/        catch(...)
 /*NBFF*/        {
-/*NBFF*/            delete pNewImpl;
 /*NBFF*/            return false;
 /*NBFF*/        }
 /*NBFF*/    }

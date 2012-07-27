@@ -692,7 +692,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*?*/           DBG_ASSERT(nIndex < PIVOT_MAXFIELD, "no data field (GPF in old versions!)");
 /*?*/           if ( nIndex < PIVOT_MAXFIELD )
 /*?*/           {
-/*?*/               memcpy(&aColArr[nIndex], &aColArr[nIndex+1], (PIVOT_MAXFIELD - nIndex - 1) * sizeof(PivotField));
+/*?*/ 				memmove(&aColArr[nIndex], &aColArr[nIndex+1], (PIVOT_MAXFIELD - nIndex - 1) * sizeof(PivotField));
 /*?*/               aColArr[nColCount-1] = aField;
 /*?*/               pDataList = pColList[nColCount-1];
 /*?*/           }
@@ -712,7 +712,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*?*/           DBG_ASSERT(nIndex < PIVOT_MAXFIELD, "no data field (GPF in old versions!)");
 /*?*/           if ( nIndex < PIVOT_MAXFIELD )
 /*?*/           {
-/*?*/               memcpy(&aRowArr[nIndex], &aRowArr[nIndex+1], (PIVOT_MAXFIELD - nIndex - 1) * sizeof(PivotField));
+/*?*/ 				memmove(&aRowArr[nIndex], &aRowArr[nIndex+1], (PIVOT_MAXFIELD - nIndex - 1) * sizeof(PivotField));
 /*?*/               aRowArr[nRowCount-1] = aField;
 /*?*/               pDataList = pRowList[nRowCount-1];
 /*?*/           }
