@@ -18,7 +18,6 @@
  */
 
 #include <tools/stream.hxx>
-#include <vcl/sound.hxx>
 #include "sbx.hxx"
 #include "sbxres.hxx"
 

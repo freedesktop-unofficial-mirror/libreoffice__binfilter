@@ -27,7 +27,6 @@
 #include <stdlib.h>
 
 #include <tools/config.hxx>
-#include <vcl/sound.hxx>
 #include <vcl/msgbox.hxx>
 
 #include <bf_tools/string.hxx>

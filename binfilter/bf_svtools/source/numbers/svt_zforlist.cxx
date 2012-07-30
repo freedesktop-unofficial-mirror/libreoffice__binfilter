@@ -27,7 +27,6 @@
  ************************************************************************/
 
 #include <tools/debug.hxx>
-#include <vcl/sound.hxx>
 #include <vcl/svapp.hxx>
 #include <vcl/settings.hxx>
 #include <unotools/charclass.hxx>
@@ -515,7 +514,6 @@ BOOL SvNumberFormatter::PutEntry(String& rString,
             sal_uInt32 nPos = CLOffset + pStdFormat->GetLastInsertKey();
             if (nPos - CLOffset >= SV_COUNTRY_LANGUAGE_OFFSET)
             {
-                Sound::Beep();
                 OSL_FAIL("SvNumberFormatter:: Zu viele Formate pro CL");
                 delete p_Entry;
             }
@@ -2591,7 +2589,6 @@ SvNumberFormatterIndexTable* SvNumberFormatter::MergeFormatter(SvNumberFormatter
                 nNewKey = nPos+1;
                 if (nPos - nCLOffset >= SV_COUNTRY_LANGUAGE_OFFSET)
                 {
-                    Sound::Beep();
                     OSL_FAIL(
                         "SvNumberFormatter:: Zu viele Formate pro CL");
                     delete pNewEntry;

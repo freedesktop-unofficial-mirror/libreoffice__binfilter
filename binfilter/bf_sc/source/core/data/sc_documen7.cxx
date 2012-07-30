@@ -21,15 +21,6 @@
 #pragma hdrstop
 #endif
 
-
-
-#if defined( WNT ) && defined( erBEEP )
-#include <svwin.h>
-#define erBEEPER() Beep( 666, 66 )
-#else
-#define erBEEPER()
-#endif
-
 #include "document.hxx"
 #include "bcaslot.hxx"
 #include "cell.hxx"
@@ -313,7 +304,6 @@ extern const ScFormulaCell* pLastFormulaTreeTop;    // cellform.cxx Err527 WorkA
 ///*N*/         BOOL bWasWaiting = Application::IsWait();
 ///*N*/         if ( !bWasWaiting )
 ///*N*/             Application::EnterWait();
-/*N*/       erBEEPER();
 /*N*/       ScBroadcasterList* pBC;
 /*N*/       ScFormulaCell* pTrack;
 /*N*/       ScFormulaCell* pNext;

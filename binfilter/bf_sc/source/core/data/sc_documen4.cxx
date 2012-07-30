@@ -23,7 +23,6 @@
 
 
 #include <bf_svtools/intitem.hxx>
-#include <vcl/sound.hxx>
 
 #include "globstr.hrc"
 #include "subtotal.hxx"
@@ -114,7 +113,6 @@ namespace binfilter {
 /*N*/   nTab1 = i;
 /*N*/   if (i == MAXTAB + 1)
 /*N*/   {
-/*N*/       Sound::Beep();
 /*N*/       OSL_FAIL("ScDocument::InsertMatrixFormula Keine Tabelle markiert");
 /*N*/       return;
 /*N*/   }
