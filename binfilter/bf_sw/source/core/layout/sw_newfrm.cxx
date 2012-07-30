@@ -37,7 +37,6 @@
 #include <dflyobj.hxx>
 #include <frmtool.hxx>
 #include <virtoutp.hxx>
-#include <blink.hxx>
 #include <ndindex.hxx>
 #include <sectfrm.hxx>
 #include <notxtfrm.hxx>

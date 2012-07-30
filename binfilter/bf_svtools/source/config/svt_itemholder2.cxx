@@ -26,7 +26,6 @@
 
 #include <com/sun/star/lang/XComponent.hpp>
 
-#include <apearcfg.hxx>
 #include <bf_svtools/cjkoptions.hxx>
 #include <bf_svtools/colorcfg.hxx>
 #include <bf_svtools/ctloptions.hxx>

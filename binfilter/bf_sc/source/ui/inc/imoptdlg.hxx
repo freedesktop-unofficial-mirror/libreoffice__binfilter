@@ -30,8 +30,6 @@
 
 #include <vcl/button.hxx>
 
-#include <bf_svx/txencbox.hxx>
-
 #include "global.hxx"
 namespace binfilter {
 

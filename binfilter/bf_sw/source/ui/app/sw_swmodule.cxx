@@ -58,8 +58,6 @@
 // OD 14.02.2003 #107424#
 #include <bf_svtools/colorcfg.hxx>
 
-#include "glshell.hxx"
-
 #include <bf_svtools/moduleoptions.hxx>
 
 #include <app.hrc>
