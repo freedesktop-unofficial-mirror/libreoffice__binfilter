@@ -76,7 +76,6 @@
 #include "module.hxx"
 #include "app.hxx"
 #include "openflag.hxx"
-#include "helper.hxx"
 #include "dlgcont.hxx"
 #include "appuno.hxx"
 

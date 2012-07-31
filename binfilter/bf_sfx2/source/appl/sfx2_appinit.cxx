@@ -67,7 +67,6 @@
 
 #include "nochaos.hxx"
 #include "fcontnr.hxx"
-#include "helper.hxx"   // SfxContentHelper::Kill()
 
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
 

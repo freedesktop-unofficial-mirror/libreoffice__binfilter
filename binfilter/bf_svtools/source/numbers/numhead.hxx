@@ -26,39 +26,6 @@
 
 namespace binfilter
 {
-
-// -----------------------------------------------------------------------
-
-        //  "Automatischer" Record-Header mit Groessenangabe
-
-/*                      wird fuer SvNumberFormatter nicht gebraucht
-class SvNumReadHeader
-{
-private:
-    SvStream&   rStream;
-    ULONG       nDataEnd;
-
-public:
-    SvNumReadHeader(SvStream& rNewStream);
-    ~SvNumReadHeader();
-
-    ULONG   BytesLeft() const;
-};
-
-class SvNumWriteHeader
-{
-private:
-    SvStream&   rStream;
-    ULONG       nDataPos;
-    ULONG       nDataSize;
-
-public:
-    SvNumWriteHeader(SvStream& rNewStream, ULONG nDefault = 0);
-    ~SvNumWriteHeader();
-};
-
-*/
-
         //  Header mit Groessenangaben fuer mehrere Objekte
 
 class ImpSvNumMultipleReadHeader

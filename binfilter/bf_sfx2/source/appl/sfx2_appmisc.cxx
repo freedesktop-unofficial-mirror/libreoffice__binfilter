@@ -65,7 +65,6 @@
 #include "module.hxx"
 #include "openflag.hxx"
 #include "appimp.hxx"
-#include "helper.hxx"   // SfxContentHelper::Kill()
 
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
 

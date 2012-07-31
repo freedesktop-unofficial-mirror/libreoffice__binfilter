@@ -109,22 +109,6 @@ public:
 
 };
 
-// class to represent application container service
-class SfxApplicationScriptLibraryContainer
-{
-public:
-    // Service
-    static ::com::sun::star::uno::Sequence< ::rtl::OUString > impl_getStaticSupportedServiceNames();
-    static ::rtl::OUString impl_getStaticImplementationName();
-    static ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SAL_CALL impl_createInstance
-        ( const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceManager )
-            throw( ::com::sun::star::uno::Exception );
-    static ::com::sun::star::uno::Reference< ::com::sun::star::lang::XSingleServiceFactory > impl_createFactory
-        ( const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceManager );
-
-};
-
-
 //============================================================================
 
 class SfxScriptLibrary : public SfxLibrary_Impl

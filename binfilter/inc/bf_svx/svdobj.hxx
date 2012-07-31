@@ -155,30 +155,6 @@ public:
 };
 
 //************************************************************
-//   Hilfsklasse SdrObjMacroHitRec
-//************************************************************
-class SdrObjMacroHitRec
-{
-public:
-    Point                       aPos;
-    Point                       aDownPos;
-    OutputDevice*               pOut;
-    const SetOfByte*            pVisiLayer;
-    const SdrPageView*          pPageView;
-    USHORT                      nTol;
-    bool                    bDown;
-
-public:
-    SdrObjMacroHitRec()
-    :   pOut(NULL),
-        pVisiLayer(NULL),
-        pPageView(NULL),
-        nTol(0),
-        bDown(FALSE)
-    {}
-};
-
-//************************************************************
 //   Hilfsklasse SdrObjUserData
 //
 // Anwenderdaten an einem Zeichenobjekt, z.B. applikationsspezifische Daten.

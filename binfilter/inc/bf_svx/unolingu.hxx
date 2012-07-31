@@ -46,24 +46,6 @@ class LinguMgrExitLstnr;
 //#define DIC_ERR_ENTRY_NOTEXISTS   6
 
 ///////////////////////////////////////////////////////////////////////////
-// SvxLinguConfigUpdate
-// class to update configuration items when (before!) the linguistic is used.
-//
-// This class is called by all the dummy implementations to update all of the
-// configuration (list of used/available services) when the linguistic is
-// accessed for the first time.
-
-class SvxLinguConfigUpdate
-{
-    static BOOL bUpdated;
-
-public:
-
-    static BOOL IsUpdated() { return bUpdated; }
-    static void UpdateAll();
-};
-
-///////////////////////////////////////////////////////////////////////////
 
 class LinguMgr
 {

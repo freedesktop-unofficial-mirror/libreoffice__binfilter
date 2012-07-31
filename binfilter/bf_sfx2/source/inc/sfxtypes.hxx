@@ -135,21 +135,6 @@ String SfxStringDecode( const String &rSource,
                 DELETEX(pArr);                                  \
             }
 
-class SfxBoolResetter
-{
-    BOOL&               _rVar;
-    BOOL                _bOld;
-
-public:
-                        SfxBoolResetter( BOOL &rVar )
-                        :   _rVar( rVar ),
-                            _bOld( rVar )
-                        {}
-
-                        ~SfxBoolResetter()
-                        { _rVar = _bOld; }
-};
-
 #define GPF() *(int*)0 = 0
 
 }//end of namespace binfilter

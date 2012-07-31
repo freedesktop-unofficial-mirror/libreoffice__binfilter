@@ -70,7 +70,6 @@
 #include <usrpref.hxx>
 #include <wdocsh.hxx>
 #include <unotxdoc.hxx>
-#include <acmplwrd.hxx>
 #include <swmodule.hxx>
 #include <unoobj.hxx>
 #include <swwait.hxx>

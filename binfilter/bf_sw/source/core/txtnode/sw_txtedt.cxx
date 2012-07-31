@@ -39,8 +39,6 @@
 #include <com/sun/star/i18n/WordType.hdl>
 #include <com/sun/star/i18n/ScriptType.hdl>
 
-#include <acmplwrd.hxx>
-
 #include <horiornt.hxx>
 
 #include <doc.hxx>      // GetDoc()

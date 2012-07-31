@@ -25,7 +25,6 @@ namespace binfilter {
 
 class SwFlyFrm;
 class SwFrmFmt;
-class SdrObjMacroHitRec;
 
 const UINT32 SWGInventor =  UINT32('S')*0x00000001+
                             UINT32('W')*0x00000100+

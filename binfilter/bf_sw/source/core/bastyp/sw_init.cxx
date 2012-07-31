@@ -119,7 +119,6 @@
 #include <viscrs.hxx>
 #include <fntcache.hxx>
 #include <doc.hxx>
-#include <acmplwrd.hxx>
 #include <fmtclbl.hxx>
 #include <cmdid.h>
 #include <breakit.hxx>

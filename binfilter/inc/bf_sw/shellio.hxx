@@ -366,20 +366,6 @@ public:
 
 class SwImpBlocks;
 
-class SwTextBlocks
-{
-    friend class Sw2TextBlocks;
-    friend class Sw3IoImp;
-    SwImpBlocks* pImp;
-    ULONG        nErr;
-
-public:
-    void Flush(){}
-
-    ULONG GetError() const { return nErr; }
-};
-
-
 extern void _InitFilter();
 extern void _FinitFilter();
 extern SwRead ReadRtf, ReadAscii, ReadSwg, ReadSw3, ReadHTML;

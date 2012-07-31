@@ -93,7 +93,6 @@ using namespace ::com::sun::star::io;
 #include <ucbhelper/content.hxx>
 #include <sot/stg.hxx>
 
-#include "helper.hxx"
 #include "request.hxx"      // SFX_ITEMSET_SET
 #include "app.hxx"          // GetFilterMatcher
 #include "appuno.hxx"        // LoadTargetFrame

@@ -62,7 +62,6 @@ struct SwDocStat;
 class SfxDocumentInfo;
 
 class SvStringsSort;
-class SwAutoCompleteWord;
 
 class SwFmtRefMark;
 class SwFmtCol;
@@ -83,7 +82,6 @@ class SwTxtNode;        // fuer IsNotMakeTxtNode
 class SwFmtINetFmt;     // InsertURL
 
 class SwTable;
-class SwTextBlocks;     // fuer GlossaryRW
 class SwBlockExceptList;
 class SwFmtFtn;
 class SpellCheck;

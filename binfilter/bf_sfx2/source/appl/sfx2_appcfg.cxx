@@ -79,7 +79,6 @@
 #include "appdata.hxx"
 #include "misccfg.hxx"
 #include "appimp.hxx"
-#include "helper.hxx"   // SfxContentHelper::...
 #include "app.hxx"
 
 #include <legacysmgr/legacy_binfilters_smgr.hxx>

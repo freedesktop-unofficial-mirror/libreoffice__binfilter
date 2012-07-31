@@ -26,31 +26,7 @@
 
 #include <rtl/tencinfo.h>
 
-static const sal_Char pStrFix[] = "FIX";
-
 namespace binfilter {
-
-class ScDelimiterTable
-{
-public:
-        ScDelimiterTable( const String& rDelTab )
-            :   theDelTab ( rDelTab ),
-                cSep      ( '\t' ),
-                nCount    ( rDelTab.GetTokenCount('\t') ),
-                nIter     ( 0 )
-            {}
-
-    String  FirstDel()  { nIter = 0; return theDelTab.GetToken( nIter, cSep ); }
-    String  NextDel()   { nIter +=2; return theDelTab.GetToken( nIter, cSep ); }
-
-private:
-    const String        theDelTab;
-    const sal_Unicode   cSep;
-    const xub_StrLen    nCount;
-    xub_StrLen          nIter;
-};
-
-//------------------------------------------------------------------------
 
 /*N*/ void ScImportOptions::SetTextEncoding( rtl_TextEncoding nEnc )
 /*N*/ {
