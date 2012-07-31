@@ -51,12 +51,6 @@ public:
             BOOL  IsOwner() const { return bIsOwner; } \
         }
 
-#define IMPL_PTRHINT_AUTODELETE(Name, Type) \
-        TYPEINIT1(Name, SfxHint);   \
-        Name::Name( Type* pObject, BOOL bOwnedByHint ) \
-            { pObj = pObject; bIsOwner = bOwnedByHint; } \
-        Name::~Name() { if ( bIsOwner ) delete pObj; }
-
 #define IMPL_PTRHINT(Name, Type) \
         TYPEINIT1(Name, SfxHint);   \
         Name::Name( Type* pObject, BOOL bOwnedByHint ) \

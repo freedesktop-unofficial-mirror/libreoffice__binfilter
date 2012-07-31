@@ -127,16 +127,6 @@ String SearchAndReplace( const String &rSource,
 String SfxStringDecode( const String &rSource,
                         const char *pKey = SFX_PASSWORD_CODE );
 
-
-#define SFX_DEL_PTRARR(pArr)                                    \
-            {                                                   \
-                for ( USHORT n = (pArr)->Count(); n--; )        \
-                    delete (pArr)->GetObject(n);                \
-                DELETEX(pArr);                                  \
-            }
-
-#define GPF() *(int*)0 = 0
-
 }//end of namespace binfilter
 #endif // #ifndef _SFX_SFXTYPES_HXX
 

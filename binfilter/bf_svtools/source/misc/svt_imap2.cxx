@@ -35,8 +35,6 @@
 #include <bf_svtools/imapcirc.hxx>
 #include <bf_svtools/imappoly.hxx>
 
-#define NOTEOL(c) ((c)!='\0')
-
 namespace binfilter
 {
 

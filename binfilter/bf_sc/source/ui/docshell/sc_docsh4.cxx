@@ -61,19 +61,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------
 
-#define IS_SHARE_HEADER(set) \
-    ((SfxBoolItem&) \
-        ((SvxSetItem&)(set).Get(ATTR_PAGE_HEADERSET)).GetItemSet(). \
-            Get(ATTR_PAGE_SHARED)).GetValue()
-
-#define IS_SHARE_FOOTER(set) \
-    ((SfxBoolItem&) \
-        ((SvxSetItem&)(set).Get(ATTR_PAGE_FOOTERSET)).GetItemSet(). \
-            Get(ATTR_PAGE_SHARED)).GetValue()
-
-#define IS_AVAILABLE(WhichId,ppItem) \
-    (pReqArgs->GetItemState((WhichId), TRUE, ppItem ) == SFX_ITEM_SET)
-
 #define SC_PREVIEW_SIZE_X   10000
 #define SC_PREVIEW_SIZE_Y   12400
 

@@ -51,17 +51,6 @@ namespace binfilter {
         } while( (_pCurrCrsr=(SwPaM *)_pCurrCrsr->GetNext()) != _pStartCrsr ); \
     }
 #define PCURSH ((SwCrsrShell*)_pStartShell)
-#define FOREACHSHELL_START( pEShell ) \
-    {\
-        register ViewShell *_pStartShell = pEShell; \
-        do { \
-            if( _pStartShell->IsA( TYPE( SwCrsrShell )) ) \
-            {
-
-#define FOREACHSHELL_END( pEShell ) \
-            } \
-        } while((_pStartShell=(ViewShell*)_pStartShell->GetNext())!= pEShell ); \
-    }
 
 
 /*N*/ SwBookmark* SwDoc::MakeBookmark( const SwPaM& rPaM, const KeyCode& rCode,

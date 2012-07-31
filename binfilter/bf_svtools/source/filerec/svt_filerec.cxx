@@ -48,18 +48,6 @@ namespace binfilter
 #define SFX_REC_CONTENT_VER(n) ( ((n) & 0x000000FF) )
 #define SFX_REC_CONTENT_OFS(n) ( ((n) & 0xFFFFFF00) >> 8 )
 
-//-------------------------------------------------------------------------
-
-/*  Die folgenden Makros setzen Teilbereiche zu einem UINT32 Wert zusammen.
-    Diese UINT32-Werte werden anstelle der einzelnen Werte gestreamt,
-    um Calls zu sparen.
-*/
-
-#define SFX_REC_HEADER(nRecType,nContentTag,nContentVer) \
-                    ( UINT32(nRecType) | \
-                      ( UINT32(nContentVer) << 8 ) | \
-                      ( UINT32(nContentTag) << 16 ) )
-
 //=========================================================================
 
 bool SfxMiniRecordReader::SetHeader_Impl( UINT32 nHeader )

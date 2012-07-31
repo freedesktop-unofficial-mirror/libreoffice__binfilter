@@ -725,9 +725,6 @@ inline const SwPropNameLen& GetPropName( USHORT nId )
 #define SW_PROP_NAME(nId) \
     GetPropName( nId ).pName, GetPropName( nId ).nNameLen
 
-#define SW_PRPNM_EQLASCI(nId) \
-    GetPropName( nId ).pName, 0, GetPropName( nId ).nNameLen
-
 #define SW_PROP_NAME_STR(nId) \
     GetPropName( nId ).pName
 

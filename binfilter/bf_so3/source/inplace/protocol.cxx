@@ -143,20 +143,14 @@ ImplSvEditObjectProtocol::~ImplSvEditObjectProtocol()
     (bOpen && bCliOpen && bSvrOpen )
 #define IS_EMBED()          \
     (bEmbed || bCliEmbed || bSvrEmbed )
-#define IS_ALL_EMBED()      \
-    (bEmbed && bCliEmbed && bSvrEmbed )
 #define IS_PLUGIN()         \
     (bPlugIn || bCliPlugIn || bSvrPlugIn )
-#define IS_ALL_PLUGIN()     \
-    (bPlugIn && bCliPlugIn && bSvrPlugIn )
 #define IS_IPACTIVE()       \
     (bIPActive || bCliIPActive || bSvrIPActive )
 #define IS_ALL_IPACTIVE()   \
     (bIPActive && bCliIPActive && bSvrIPActive )
 #define IS_UIACTIVE()       \
     (bUIActive || bCliUIActive || bSvrUIActive )
-#define IS_ALL_UIACTIVE()       \
-    (bUIActive && bCliUIActive && bSvrUIActive )
 
 #ifdef DBG_UTIL
 void ImplSvEditObjectProtocol::ClassInvariant() const

@@ -717,9 +717,6 @@ private:\
 #define SV_DECL_VARARR_SORT(nm, AE, IS, GS)\
 _SV_DECL_VARARR_SORT(nm, AE, IS, GS,)
 
-#define SV_DECL_VARARR_SORT_VISIBILITY(nm, AE, IS, GS, vis)\
-_SV_DECL_VARARR_SORT(nm, AE, IS, GS, vis)
-
 #define SV_IMPL_PTRARR_SORT( nm,AE )\
 _SV_IMPL_SORTAR_ALG( nm,AE )\
     void nm::DeleteAndDestroy( USHORT nP, USHORT nL ) { \
@@ -748,45 +745,6 @@ _SV_SEEK_PTR_TO_OBJECT( nm,AE )
 SV_IMPL_VARARR(nm##_SAR, AE)\
 _SV_IMPL_SORTAR_ALG( nm,AE )\
 _SV_SEEK_OBJECT( nm,AE )
-
-#define SV_DECL_PTRARR_STACK(nm, AE, IS, GS)\
-class nm: private SvPtrarr \
-{\
-public:\
-    nm( USHORT nIni=IS, BYTE nG=GS )\
-        : SvPtrarr(nIni,nG) {}\
-    void Insert( const nm *pI, USHORT nP,\
-                USHORT nS = 0, USHORT nE = USHRT_MAX ) {\
-        SvPtrarr::Insert( pI, nP, nS, nE ); \
-    }\
-    void Remove( USHORT nP, USHORT nL = 1 ) {\
-        SvPtrarr::Remove( nP, nL ); \
-    }\
-    void Push( const AE &aE ) {\
-        SvPtrarr::Insert( (const VoidPtr &)aE, SvPtrarr::Count() );\
-    }\
-    USHORT Count() const { return SvPtrarr::Count(); }\
-    AE operator[](USHORT nP) const {\
-        return (AE)SvPtrarr::operator[]( nP );\
-    }\
-    AE GetObject(USHORT nP) const {\
-        return (AE)SvPtrarr::GetObject( nP );\
-    }\
-    AE Pop(){\
-        AE pRet = 0;\
-        if( SvPtrarr::Count() ){\
-            pRet = GetObject( SvPtrarr::Count()-1 );\
-            SvPtrarr::Remove(Count()-1);\
-        }\
-        return pRet;\
-    }\
-    AE Top() const {\
-        AE pRet = 0;\
-        if( SvPtrarr::Count() )\
-            pRet = GetObject( SvPtrarr::Count()-1 ); \
-        return pRet;\
-    }\
-};
 
 #if defined (C40) || defined (C41) || defined (C42) || defined(C50) || defined(C52)
 #define C40_INSERT( c, p, n) Insert( (c const *) p, n )

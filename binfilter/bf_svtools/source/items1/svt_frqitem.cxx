@@ -34,13 +34,6 @@ TYPEINIT1( SfxFrequencyItem, SfxPoolItem );
 
 #define MAX_GOTO 32000
 
-#define DECL_SAVE_GOTO()                \
-    ULONG nSafetyMeasures = 0;
-
-#define SAVE_GOTO(tag)                  \
-    if(nSafetyMeasures < MAX_GOTO)      \
-    { nSafetyMeasures++; goto tag; }
-
 // -----------------------------------------------------------------------
 
 SfxFrequencyItem::SfxFrequencyItem( USHORT which, FrequencyMode eMode, FrequencyTimeMode eTMode,

@@ -71,27 +71,6 @@ public:
     ULONG GetId() const { return nId; }
 };
 
-//--------------------------------------------------------------------
-
-#define DECL_OBJHINT(Name, Type) \
-        class Name: public SfxSimpleHint \
-        { \
-            Type  aObj; \
-        \
-        public: \
-            TYPEINFO(); \
-            Name( USHORT nId, const Type& rObject ); \
-            ~Name(); \
-            const Type& GetObject() const { return aObj; } \
-        }
-
-#define IMPL_OBJHINT(Name, Type) \
-        TYPEINIT1(Name, SfxSimpleHint); \
-        Name::Name( USHORT nID, const Type& rObject ): \
-            SfxSimpleHint( nID ), aObj(rObject) \
-            { } \
-        Name::~Name() {}
-
 }
 
 #endif

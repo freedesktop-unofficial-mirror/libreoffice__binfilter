@@ -144,12 +144,6 @@ SvXMLEnumMapEntry pXML_NamedBorderWidths[] =
     DEF_DOUBLE_LINE##n##_IN, \
     DEF_DOUBLE_LINE##n##_DIST
 
-#define TDBORDER_ENTRY( n ) \
-    DEF_DOUBLE_LINE##n##_OUT, \
-    DEF_DOUBLE_LINE##n##_OUT, \
-    DEF_DOUBLE_LINE##n##_IN, \
-    DEF_DOUBLE_LINE##n##_DIST
-
 
 static sal_uInt16 const aSBorderWidths[] =
 {

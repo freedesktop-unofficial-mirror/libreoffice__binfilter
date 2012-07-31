@@ -120,12 +120,6 @@ pProps[nPos++] = com::sun::star::beans::Property(PROPERTY_##varname, PROPERTY_ID
     if (aggregate.is()) \
         _rAggregateProps = aggregate->getPropertySetInfo()->getProperties();    \
 
-//------------------------------------------------------------------------------
-#define BEGIN_PROPERTY_ARRAY_HELPER(count)  \
-    staruno::Sequence<starbeans::Property> aProps(count);   \
-    starbeans::Property* pProps = aProps.getArray();    \
-    sal_Int32 nPos = 0; \
-
 // ===
 //------------------------------------------------------------------------------
 #define DECL_PROP0(varname, type)   \
@@ -186,11 +180,6 @@ pProps[nPos++] = com::sun::star::beans::Property(PROPERTY_##varname, PROPERTY_ID
 //------------------------------------------------------------------------------
 #define END_AGGREGATION_PROPERTY_HELPER()   \
     DBG_ASSERT(nPos == _rProps.getLength(), "<...>::getInfohelper : forgot to adjust the count ?"); \
-
-//------------------------------------------------------------------------------
-#define END_PROPERTY_ARRAY_HELPER() \
-    DBG_ASSERT(nPos == aProps.getLength(), "<...>::getInfohelper : forgot to adjust the count ?");  \
-    return new ::cppu::OPropertyArrayHelper(aProps);
 
 //.........................................................................
 }

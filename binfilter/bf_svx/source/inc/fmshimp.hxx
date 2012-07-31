@@ -131,38 +131,6 @@ typedef FmXFormShell_Base_Disambiguation    FmXFormShell_BASE;
 typedef ::utl::ConfigItem                   FmXFormShell_CFGBASE;
 
 
-
-//------------------------------------------------------------------------------
-
-#define DECL_CURSOR_ACTION_THREAD(classname)            \
-                                                        \
-class classname : public FmCursorActionThread           \
-{                                                       \
-public:                                                 \
-    classname(const ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XResultSet>& _xDataSource,        \
-            const UniString& _rPath);                       \
-protected:                                              \
-    virtual void RunImpl();                             \
-};                                                      \
-
-
-//------------------------------------------------------------------------------
-
-#define IMPL_CURSOR_ACTION_THREAD(classname, caption, action)   \
-                                                                \
-classname::classname(const ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XResultSet>& _xDataSource,         \
-        const UniString& _rPath)                                    \
-    :FmCursorActionThread(_xDataSource, caption, _rPath)        \
-{                                                               \
-}                                                               \
-                                                                \
-void classname::RunImpl()                                       \
-{                                                               \
-    m_xDataSource->action;                                      \
-}                                                               \
-
-
-
 }//end of namespace binfilter
 #endif          // _SVX_FMSHIMP_HXX
 

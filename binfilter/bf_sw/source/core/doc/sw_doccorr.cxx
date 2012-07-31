@@ -42,17 +42,6 @@ namespace binfilter {
  * MACROS um ueber alle CrsrShells zu iterieren
  */
 #define PCURSH ((SwCrsrShell*)_pStartShell)
-#define FOREACHSHELL_START( pEShell ) \
-    {\
-        register ViewShell *_pStartShell = pEShell; \
-        do { \
-            if( _pStartShell->IsA( TYPE( SwCrsrShell )) ) \
-            {
-
-#define FOREACHSHELL_END( pEShell ) \
-            } \
-        } while((_pStartShell=(ViewShell*)_pStartShell->GetNext())!= pEShell ); \
-    }
 
 #define PCURCRSR (_pCurrCrsr)
 #define FOREACHPAM_START(pSttCrsr) \

@@ -70,17 +70,6 @@ public:
 #endif
 };
 
-#define SFX_IMPL_MODULE_LIBRARY( LibName )                                  \
-                                                                            \
-        extern "C" void _CDECLARE_ Init##LibName##Dll()                     \
-        {                                                                   \
-            LibName##DLL::Init();                                           \
-        }                                                                   \
-        extern "C" void _CDECLARE_ DeInit##LibName##Dll()                   \
-        {                                                                   \
-            LibName##DLL::Exit();                                           \
-        }
-
 }//end of namespace binfilter
 #endif
 

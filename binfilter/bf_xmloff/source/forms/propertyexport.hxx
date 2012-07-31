@@ -359,9 +359,6 @@ namespace xmloff
     #define DBG_CHECK_PROPERTY_NO_TYPE(name)    \
         dbg_implCheckProperty(name, NULL)
 
-    #define DBG_CHECK_PROPERTY_ASCII( name, type ) \
-        dbg_implCheckProperty( ::rtl::OUString::createFromAscii( name ), &::getCppuType(static_cast< type* >(NULL)))
-
     #define DBG_CHECK_PROPERTY_ASCII_NO_TYPE( name ) \
         dbg_implCheckProperty( ::rtl::OUString::createFromAscii( name ), NULL )
 #else

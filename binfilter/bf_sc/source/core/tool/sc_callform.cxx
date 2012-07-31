@@ -75,10 +75,6 @@ typedef void (CALLTYPE* FARPROC) ( void );
 #define ADVICE                  "Advice"
 #define UNADVICE                "Unadvice"
 
-#define LIBFUNCNAME( name ) \
-    (String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( name ) ))
-
-
 /*N*/ FuncData::FuncData(const String& rIName) :
 /*N*/   pModuleData     (NULL),
 /*N*/   aInternalName   (rIName),
