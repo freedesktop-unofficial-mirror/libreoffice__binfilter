@@ -76,6 +76,7 @@
 
 #include "pairs.hxx"
 #include "chaxis.hxx"
+#include "arrayhelper.hxx"
 
 
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
@@ -199,13 +200,16 @@ enum ChartStyleV0
 /*N*/
 /*N*/       long  nLineMaxY = 0; //#50082#
 /*N*/
-/*N*/       long* pHeightOfEntry = new long[nCnt*2];    // FG: Wirkliche Hoehe der Zeilen
-/*N*/       long* pWidthOfEntry  = new long[nCnt*2];    // FG: Wirkliche Breite der Zeilen
+/*N*/ 		long* pHeightOfEntry = ArrayHelper<long>::create_long_size(nCnt,long(2));    // FG: Wirkliche Hoehe der Zeilen
+/*N*/ 		long* pWidthOfEntry  = ArrayHelper<long>::create_long_size(nCnt,long(2));    // FG: Wirkliche Breite der Zeilen
+            if( !pHeightOfEntry || !pWidthOfEntry )
+            {
+                delete[] pHeightOfEntry;
+                delete[] pWidthOfEntry;
+                return 0;
+            }
 /*N*/       long nLines       = 0;                // Anzahl Zeilen
 /*N*/       long nActualColumn = 1; // FG: Zaehlt die Anzahl Spalten
-/*N*/
-/*N*/       long* pRegressNr  = new long [nCnt];
-/*N*/       memset (pRegressNr, 0, sizeof (long) * nCnt);
 /*N*/
 /*N*/       SfxItemSet aTextAttr(*pItemPool, nTextWhichPairs);
 /*N*/
@@ -266,7 +270,6 @@ enum ChartStyleV0
 /*?*/                   nMaxX  = Max (nMaxX,  pWidthOfEntry[nLines+nCnt]);
 /*?*/                   nMaxY  = Max (nMaxY, pHeightOfEntry[nLines+nCnt]);
 /*?*/
-/*?*/                   pRegressNr [nLines] = i;
 /*?*/                   nLines ++;
 /*N*/               }
 /*N*/           }
@@ -489,7 +492,6 @@ enum ChartStyleV0
 /*N*/                                                   TRUE, TRUE, pLegendAttr), 0);
 /*N*/       }
 /*N*/
-/*N*/       delete[] pRegressNr;
 /*N*/       delete[] pHeightOfEntry;
 /*N*/       delete[] pWidthOfEntry;
 /*N*/   }
@@ -1178,16 +1180,18 @@ enum ChartStyleV0
 /*N*/       switch ((ChartDataId)nInt16)
 /*N*/       {
 /*N*/           case CHDATAID_MEMCHART_PLUS :
-/*?*/               pChartData = new SchMemChart (CHDATAID_MEMCHART_PLUS);
-/*?*/               rIn >> *(SchMemChart*)pChartData;
-/*?*/               pChartData->IncreaseRefCount();
-/*?*/               break;
-/*?*/
 /*?*/           case CHDATAID_DYNCHART:
 /*N*/           case CHDATAID_MEMCHART:
-/*N*/               pChartData = new SchMemChart (CHDATAID_MEMCHART);
+                    if( CHDATAID_MEMCHART_PLUS==(ChartDataId)nInt16)
+/*?*/                   pChartData = new SchMemChart (CHDATAID_MEMCHART_PLUS);
+                    else
+/*N*/ 				    pChartData = new SchMemChart (CHDATAID_MEMCHART);
 /*N*/               rIn >> *(SchMemChart*)pChartData;
 /*N*/               pChartData->IncreaseRefCount();
+                    if( rIn.GetError() != 0 ) //read error
+                    {
+                        return;
+                    }
 /*N*/               break;
 /*N*/
 /*N*/           default :
@@ -1199,8 +1203,8 @@ enum ChartStyleV0
 /*N*/       if (nVersion >= 8) rIn >> fMinData;
 /*N*/       else if (pChartData)
 /*N*/       {
-/*?*/           long nColCnt = GetColCount();
-/*?*/           long nRowCnt = GetRowCount();
+/*?*/ 			short nColCnt = GetColCount();
+/*?*/ 			short nRowCnt = GetRowCount();
 /*?*/
 /*?*/           for (short nCol = 0; nCol < nColCnt; nCol++)
 /*?*/               for (short nRow = 0; nRow < nRowCnt; nRow++)
@@ -1325,16 +1329,26 @@ enum ChartStyleV0
 /*N*/
 /*N*/   if (nVersion >= 6)
 /*N*/   {
-/*N*/       rIn >> nInt16; nPieSegCount = (short)nInt16;
-/*N*/       pPieSegOfs = new long[nPieSegCount];
-/*N*/
-/*N*/       BOOL bNullify = (nVersion < 17) && eChartStyle == CHSTYLE_2D_PIE;
-/*N*/
-/*N*/       for( i = 0; i < nPieSegCount; i++ )
-/*N*/       {
-/*N*/           rIn >> nInt32;
-/*N*/           pPieSegOfs[ i ] = bNullify? 0: (long)nInt32;
-/*N*/       }
+            nInt16=0;
+/*N*/ 		rIn >> nInt16;
+            nPieSegCount = static_cast<short>(nInt16);
+            delete[] pPieSegOfs; pPieSegOfs=0;
+            if( nPieSegCount!=0 )
+            {
+                pPieSegOfs = ArrayHelper< long >::create_short_size( nPieSegCount );
+                if(!pPieSegOfs)
+                {
+                    nPieSegCount=0;
+                    rIn.SetError( ERRCODE_IO_GENERAL );
+                    return;
+                }
+/*N*/           BOOL bNullify = (nVersion < 17) && eChartStyle == CHSTYLE_2D_PIE;
+/*N*/           for( i = 0; i < nPieSegCount; i++ )
+/*N*/           {
+/*N*/               rIn >> nInt32;
+/*N*/               pPieSegOfs[ i ] = bNullify? 0: (long)nInt32;
+/*N*/           }
+            }
 /*N*/   }
 /*N*/
 /*N*/   rIn >> nInt16; nXAngle = (short)nInt16;
