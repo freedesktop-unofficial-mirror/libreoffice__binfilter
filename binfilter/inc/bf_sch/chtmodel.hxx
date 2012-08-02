@@ -73,7 +73,6 @@ class SvNumberFormatterIndexTable;
 class SdrObjGroup;
 class SdrRectObj;
 
-class SchModelData;
 class SchObjectId;
 class ChartAxis;
 class SchItemPool;
@@ -554,6 +553,8 @@ public:
     inline BOOL         GetUseRelativePositions()                       { return  bUseRelativePositionsForChartGroups; }
     void                SetUseRelativePositions( BOOL value );
 
+    static Point        calcRelativePosition( const Point& rStartPoint, const Size& rInitialSize, const Size& rNewSize );
+
     void                SetAdjustMarginsForLegend( BOOL value )         { bAdjustMarginsForLegend = value; }
     BOOL                GetAdjustMarginsForLegend()                     { return bAdjustMarginsForLegend; }
 
@@ -661,8 +662,6 @@ public:
     // friend declarations
     friend SvStream &   operator << ( SvStream & rOut, const ChartModel & rDoc );
     friend SvStream &   operator >> ( SvStream & rIn, ChartModel & rDoc );
-
-    friend class SchModelData;
 
 // protected:
     // remark: currently there are no classes that are derived from ChartModel
