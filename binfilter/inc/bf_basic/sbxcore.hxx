@@ -47,27 +47,12 @@ namespace rtl { class OUString; }
     virtual UINT16 GetVersion() const { return nVer;   }    \
     virtual UINT16 GetSbxId() const   { return nSbxId; }
 
-#define SBX_DECL_PERSIST_NODATA_()                          \
-    virtual UINT32 GetCreator() const;                      \
-    virtual UINT16 GetVersion() const;                      \
-    virtual UINT16 GetSbxId() const;
-
 // Diese Version des Makros definiert Load/StorePrivateData()-Methoden
 
 #define SBX_DECL_PERSIST( nCre, nSbxId, nVer )              \
     virtual BOOL LoadPrivateData( SvStream&, USHORT );      \
     virtual BOOL StorePrivateData( SvStream& ) const;       \
     SBX_DECL_PERSIST_NODATA( nCre, nSbxId, nVer )
-
-#define SBX_DECL_PERSIST_()                                 \
-    virtual BOOL LoadPrivateData( SvStream&, USHORT );      \
-    virtual BOOL StorePrivateData( SvStream& ) const;       \
-    SBX_DECL_PERSIST_NODATA_()
-
-#define SBX_IMPL_PERSIST( C, nCre, nSbxId, nVer )           \
-    UINT32 C::GetCreator() const { return nCre;   }         \
-    UINT16 C::GetVersion() const { return nVer;   }         \
-    UINT16 C::GetSbxId() const   { return nSbxId; }
 
 namespace binfilter {
 

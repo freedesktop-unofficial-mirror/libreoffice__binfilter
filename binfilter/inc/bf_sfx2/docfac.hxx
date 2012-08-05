@@ -147,35 +147,6 @@ private:
 
 //=========================================================================
 
-/*  SFX_DECL_OBJECTFACTORY
-
-    [Description]
-
-    This macro declares an SfxObjectFactory for subclasses of SfxObjectShell
-    which are derived too from SfxInPlaceObject and are linked to an executable
-    or linked to a permanently loaded library.
-    The macro must be used in the public-area of the declaration of the
-    SfxObjectShell subclass.
-*/
-
-#define SFX_DECL_OBJECTFACTORY(Class)                                       \
-private:                                                                    \
-    static SfxObjectFactory*    pObjectFactory;                             \
-protected:                                                                  \
-    virtual BOOL                Close();                                    \
-public:                                                                     \
-                                SO2_DECL_BASIC_CLASS(Class)                 \
-    virtual BOOL                DoClose();                                  \
-    static SfxObjectShell*      CreateObject(SfxObjectCreateMode eMode = SFX_CREATE_MODE_STANDARD); \
-    static void                 InitFactory();                              \
-    static SfxObjectFactory&    Factory() { return *(SfxObjectFactory*)ClassFactory(); } \
-    static void                 RegisterFactory( USHORT nPrio = USHRT_MAX );\
-    virtual BOOL                DoInitNew( SvStorage * );                   \
-    virtual void                ModifyChanged();                            \
-    virtual SfxObjectFactory&   GetFactory() const
-
-//-------------------------------------------------------------------------
-
 /*  SFX_DECL_OBJECTFACTORY_DLL
 
     [Description]
@@ -203,107 +174,8 @@ public:                                                                     \
     virtual void                ModifyChanged();                            \
     virtual SfxObjectFactory&   GetFactory() const
 
-//--------------------------------------------------------------------
-
-/*  SFX_DECL_SIMPLE_OBJECTFACTORY
-
-    [Description]
-
-    This macro declares an SfxObjectFactory for subclasses of SfxObjectShell
-    which are NOT derived from SfxInPlaceObject but are linked to an executable
-    or to permanently loaded dll.
-    The macro must be used in the public-area of the declaration of the
-    SfxObjectShell subclass.
-*/
-
-#define SFX_DECL_SIMPLE_OBJECTFACTORY(Class)                                \
-private:                                                                    \
-    static SfxObjectFactory*    pObjectFactory;                             \
-public:                                                                     \
-    static SfxObjectShell*      CreateObject(SfxObjectCreateMode eMode = SFX_CREATE_MODE_STANDARD); \
-    static void                 InitFactory();                              \
-    static SfxObjectFactory&    Factory();                                  \
-    static void                 RegisterFactory( USHORT nPrio = USHRT_MAX );\
-    virtual SfxObjectFactory&   GetFactory() const
-
-//-------------------------------------------------------------------------
-
-/*  SFX_DECL_SIMPLE_OBJECTFACTORY_DLL
-
-    [Description]
-
-    This macro declares an SfxObjectFactory for subclasses of SfxObjectShell
-    which are NOT derived from SfxInPlaceObject and are linked to a DLL that
-    is loaded on demand.
-    The macro must be used in the public-area of the declaration of the
-    SfxObjectShell subclass.
-*/
-
-#define SFX_DECL_SIMPLE_OBJECTFACTORY_DLL(Class )                   \
-private:                                                            \
-    static SfxObjectFactory*    pObjectFactory;                             \
-    static SfxObjectFactory **  GetFactoryAdress();                 \
-public:                                                             \
-    static SfxObjectShell*      CreateObject( SfxObjectCreateMode eMode = SFX_CREATE_MODE_STANDARD);  \
-    static void                 InitFactory();                      \
-    static SfxObjectFactory&    Factory();                          \
-    static void                 RegisterFactory( USHORT nPrio = USHRT_MAX ); \
-    virtual SfxObjectFactory&   GetFactory() const
-
 //=========================================================================
 
-/*  SFX_IMPL_OBJECTFACTORY
-
-    [Description]
-
-    This macro implements a SfxObjectFactory for subclasses of SfxObjectShell
-    which are derived too from SfxInPlaceObject an are linked to an executable.
-
-    It must be used plain in a C++ source file, perffered where ctor an dtor
-    of the SfxObjectShell subclass are implemented.
-*/
-
-#define SFX_IMPL_OBJECTFACTORY( Class, nFlags, ShortName, aGlobName ) \
-                                                                            \
-        SfxObjectFactory* Class::pObjectFactory = 0;                        \
-                                                                            \
-        SO2_IMPL_BASIC_CLASS1( Class, SfxObjectFactory, SfxInPlaceObject, aGlobName ) \
-                                                                            \
-        SfxObjectShell* Class::CreateObject(SfxObjectCreateMode eMode) \
-        { return new Class(eMode); }                                        \
-                                                                            \
-        void Class::RegisterFactory( USHORT nPrio )                         \
-        {                                                                   \
-            pObjectFactory = &Factory();                                     \
-            pObjectFactory->Construct(                                       \
-                nPrio,                                                      \
-                &Class::CreateObject, \
-                nFlags,                                          \
-                #ShortName );                                               \
-            pObjectFactory->RegisterInitFactory( &InitFactory   );           \
-            pObjectFactory->Register(); /* Ole Anmeldung */                 \
-        }                                                                   \
-                                                                            \
-        BOOL Class::DoInitNew( SvStorage *pStor )                   \
-        { return SfxObjectShell::DoInitNew(pStor); }                        \
-                                                                            \
-        BOOL Class::DoClose()                                       \
-        { return SfxInPlaceObject::DoClose(); }                             \
-                                                                            \
-        BOOL Class::Close()                                     \
-        {   SvObjectRef aRef(this);                                         \
-            SfxInPlaceObject::Close();                                      \
-            return SfxObjectShell::Close(); }                               \
-                                                                            \
-        void Class::ModifyChanged()                             \
-        { SfxObjectShell::ModifyChanged(); }                                \
-                                                                            \
-        SfxObjectFactory& Class::GetFactory() const             \
-        {   return *(SfxObjectFactory*)ClassFactory(); }                     \
-                                                                            \
-        void Class::InitFactory()
-
-//---------------------------------------------------------------------------
 /*  SFX_IMPL_MODULE_LIB
 
     [Beschreibung]
