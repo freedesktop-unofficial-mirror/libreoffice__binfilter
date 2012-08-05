@@ -512,18 +512,6 @@ inline void ScStringCell::SetString( const String& rString )
 }
 
 
-/*
-
-//      ScFormulaCell
-
-inline ScBaseCell* ScFormulaCell::Clone(ScDocument* pDoc) const
-{
-    return new ScFormulaCell(pDoc, *this);
-}
-*/
-
-
-
 //      ScNoteCell
 
 inline ScNoteCell::ScNoteCell() :

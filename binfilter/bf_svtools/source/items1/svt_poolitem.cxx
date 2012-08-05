@@ -56,9 +56,7 @@ ULONG nSfxFlag32Val[32] =
 
 TYPEINIT0(SfxPoolItem);
 TYPEINIT1(SfxVoidItem, SfxPoolItem);
-// @@@ TYPEINIT1(SfxInvalidItem, SfxPoolItem);
 TYPEINIT1(SfxSetItem, SfxPoolItem);
-// @@@ TYPEINIT1(SfxItemChangedHint, SfxHint);
 
 // ------------------------------------------------------------------------
 #if OSL_DEBUG_LEVEL > 1

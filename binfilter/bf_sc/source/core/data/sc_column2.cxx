@@ -565,10 +565,6 @@ namespace binfilter {
 /*N*/           SfxItemSet* pSet = new SfxItemSet( pEngine->GetEmptyItemSet() );
 /*N*/           pPattern->FillEditItemSet( pSet, pCondSet );
 /*N*/
-/*N*/ //            no longer needed, are setted with the text (is faster)
-/*N*/ //            pEngine->SetDefaults( pSet );
-/*N*/
-/*N*/
 /*N*/           Size aPaper = Size( 1000000, 1000000 );
 /*N*/           if ( eOrient==SVX_ORIENTATION_STACKED && !bAsianVertical )
 /*?*/               aPaper.Width() = 1;
@@ -1035,11 +1031,6 @@ namespace binfilter {
 /*N*/           pPattern = aIter.Next(nStart,nEnd);
 /*N*/   }
 /*N*/ }
-
-
-// =========================================================================================
-
-
 
 // =========================================================================================
 

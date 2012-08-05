@@ -162,12 +162,6 @@ XMLShapeImportHelper::XMLShapeImportHelper(
     // chain text attributes
     mpPropertySetMapper->ChainImportMapper(XMLTextImportHelper::CreateParaExtPropMapper(rImporter));
 
-/*
-    // chain form attributes
-    const UniReference< SvXMLImportPropertyMapper> xFormMapper( rImporter.GetFormImport()->getStylePropertyMapper().get() );
-    mpPropertySetMapper->ChainImportMapper(xFormMapper);
-*/
-
     // construct PresPagePropsMapper
     xMapper = new XMLPropertySetMapper((XMLPropertyMapEntry*)aXMLSDPresPageProps, mpSdPropHdlFactory);
     mpPresPagePropsMapper = new SvXMLImportPropertyMapper( xMapper, rImporter );
@@ -296,27 +290,6 @@ const SvXMLTokenMap& XMLShapeImportHelper::Get3DSceneShapeElemTokenMap()
 }
 
 //////////////////////////////////////////////////////////////////////////////
-/*
-static SvXMLTokenMapEntry aShapeAttrTokenMap[] =
-{
-    { XML_NAMESPACE_DRAW,           XML_NAME,               XML_TOK_SHAPE_NAME                          },
-    { XML_NAMESPACE_DRAW,           XML_STYLE_NAME,         XML_TOK_SHAPE_DRAWSTYLE_NAME_GRAPHICS       },
-    { XML_NAMESPACE_PRESENTATION,   XML_CLASS,              XML_TOK_SHAPE_PRESENTATION_CLASS            },
-    { XML_NAMESPACE_PRESENTATION,   XML_STYLE_NAME,         XML_TOK_SHAPE_DRAWSTYLE_NAME_PRESENTATION   },
-    { XML_NAMESPACE_SVG,            XML_TRANSFORM,          XML_TOK_SHAPE_TRANSFORM                     },
-    { XML_NAMESPACE_PRESENTATION,   XML_PLACEHOLDER,        XML_TOK_SHAPE_IS_PLACEHOLDER                },
-    { XML_NAMESPACE_PRESENTATION,   XML_USER_TRANSFORMED,   XML_TOK_SHAPE_IS_USER_TRANSFORMED           },
-    XML_TOKEN_MAP_END
-};
-
-const SvXMLTokenMap& XMLShapeImportHelper::GetShapeAttrTokenMap()
-{
-    if(!mpShapeAttrTokenMap)
-        mpShapeAttrTokenMap = new SvXMLTokenMap(aShapeAttrTokenMap);
-    return *mpShapeAttrTokenMap;
-}
-*/
-//////////////////////////////////////////////////////////////////////////////
 
 static SvXMLTokenMapEntry a3DObjectAttrTokenMap[] =
 {
@@ -398,43 +371,6 @@ const SvXMLTokenMap& XMLShapeImportHelper::Get3DLightAttrTokenMap()
     return *mp3DLightAttrTokenMap;
 }
 
-//////////////////////////////////////////////////////////////////////////////
-/*
-static SvXMLTokenMapEntry aPageShapeAttrTokenMap[] =
-{
-    { XML_NAMESPACE_SVG,    XML_X,                  XML_TOK_PAGESHAPE_X             },
-    { XML_NAMESPACE_SVG,    XML_Y,                  XML_TOK_PAGESHAPE_Y             },
-    { XML_NAMESPACE_SVG,    XML_WIDTH,              XML_TOK_PAGESHAPE_WIDTH         },
-    { XML_NAMESPACE_SVG,    XML_HEIGHT,             XML_TOK_PAGESHAPE_HEIGHT        },
-    XML_TOKEN_MAP_END
-};
-
-const SvXMLTokenMap& XMLShapeImportHelper::GetPageShapeAttrTokenMap()
-{
-    if(!mpPageShapeAttrTokenMap)
-        mpPageShapeAttrTokenMap = new SvXMLTokenMap(aPageShapeAttrTokenMap);
-    return *mpPageShapeAttrTokenMap;
-}
-
-//////////////////////////////////////////////////////////////////////////////
-
-static SvXMLTokenMapEntry aGraphicObjectShapeAttrTokenMap[] =
-{
-    { XML_NAMESPACE_SVG,    XML_X,                  XML_TOK_GOSHAPE_X                   },
-    { XML_NAMESPACE_SVG,    XML_Y,                  XML_TOK_GOSHAPE_Y                   },
-    { XML_NAMESPACE_SVG,    XML_WIDTH,              XML_TOK_GOSHAPE_WIDTH               },
-    { XML_NAMESPACE_SVG,    XML_HEIGHT,             XML_TOK_GOSHAPE_HEIGHT              },
-    { XML_NAMESPACE_XLINK,  XML_HREF,               XML_TOK_GOSHAPE_URL                 },
-    XML_TOKEN_MAP_END
-};
-
-const SvXMLTokenMap& XMLShapeImportHelper::GetGraphicObjectShapeAttrTokenMap()
-{
-    if(!mpGraphicObjectShapeAttrTokenMap)
-        mpGraphicObjectShapeAttrTokenMap = new SvXMLTokenMap(aGraphicObjectShapeAttrTokenMap);
-    return *mpGraphicObjectShapeAttrTokenMap;
-}
-*/
 //////////////////////////////////////////////////////////////////////////////
 
 SvXMLImportContext* XMLShapeImportHelper::Create3DSceneChildContext(

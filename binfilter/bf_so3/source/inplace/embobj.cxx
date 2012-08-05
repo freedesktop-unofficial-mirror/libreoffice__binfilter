@@ -166,15 +166,6 @@ UINT32 SvEmbeddedInfoObject::GetViewAspect() const
     return nViewAspect;
 }
 
-/********************** SvFilterList **************************************
-**************************************************************************/
-
-/************** class SvObjectDescriptor ********************************
-**************************************************************************/
-
-
-
-
 /*************************************************************************
 |*
 |*    SvEmbeddedObject::Factory()
@@ -840,9 +831,7 @@ void SvEmbeddedObject::DoDraw( OutputDevice * pDev, const Point & rViewPos,
             else
                 pMtf = NULL;
         }
-// #ifndef UNX
         if( pDev->IsClipRegion() && pDev->GetOutDevType() != OUTDEV_PRINTER )
-// #endif
         {
             aRegion = pDev->PixelToLogic( aRegion );
             pDev->SetClipRegion( aRegion );

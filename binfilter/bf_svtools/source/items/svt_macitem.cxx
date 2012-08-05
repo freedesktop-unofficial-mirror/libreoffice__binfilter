@@ -174,20 +174,6 @@ SfxItemPresentation SvxMacroItem::GetPresentation
     const ::IntlWrapper *
 )   const
 {
-/*!!!
-    SvxMacroTableDtor& rTbl = (SvxMacroTableDtor&)GetMacroTable();
-    SvxMacro* pMac = rTbl.First();
-
-    while ( pMac )
-    {
-        rText += pMac->GetLibName();
-        rText += cpDelim;
-        rText += pMac->GetMacName();
-        pMac = rTbl.Next();
-        if ( pMac )
-            rText += cpDelim;
-    }
-*/
     rText.Erase();
     return SFX_ITEM_PRESENTATION_NONE;
 }

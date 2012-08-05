@@ -100,15 +100,6 @@ rItem
     DBG_CHKTHIS( SfxFrequencyItem, 0 );
     DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
 
-/*  DateTime aThisRange( aEndDateTime - aStartDateTime );
-    DateTime aRange(((const SfxFrequencyItem&)rItem).aEndDateTime -
-                    ((const SfxFrequencyItem&)rItem).aStartDateTime );
-    if( aRange < aThisRange )
-        return -1;
-    else if( aRange == aThisRange )
-        return 0;
-    else
-*/
     return 1;
 }
 

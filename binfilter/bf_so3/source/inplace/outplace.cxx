@@ -90,8 +90,6 @@ public:
     virtual void SAL_CALL removeEventListener(const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XEventListener >& aListener ) throw (::com::sun::star::uno::RuntimeException);
 };
 
-//sal_Int64 SAL_CALL OLEWrapper_Impl::getSomething( const ::com::sun::star::uno::Sequence< sal_Int8 >& aIdentifier ) throw(::com::sun::star::uno::RuntimeException) ;
-
 sal_Int64 SAL_CALL OLEWrapper_Impl::getSomething( const ::com::sun::star::uno::Sequence< sal_Int8 >& aIdentifier ) throw(::com::sun::star::uno::RuntimeException)
 {
     SvGlobalName aName;
@@ -118,9 +116,6 @@ void SAL_CALL OLEWrapper_Impl::removeEventListener(const ::com::sun::star::uno::
 #endif
 
 //-------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------
-/*************************************************************************/
 BOOL Impl_OlePres::Read( SvStream & rStm )
 {
     ULONG nBeginPos = rStm.Tell();
@@ -321,8 +316,6 @@ Impl_OlePres * CreateCache_Impl( SotStorage * pStor )
 
 
 //=========================================================================
-//=========================================================================
-//=========================================================================
 struct SvOutPlace_Impl
 /*  [Beschreibung]
 
@@ -357,7 +350,6 @@ struct SvOutPlace_Impl
 //=========================================================================
 //============== SvOutPlaceObject ===========================================
 //=========================================================================
-//SO2_IMPL_BASIC_CLASS1_DLL( SvOutPlaceObject, SvFactory, SvInPlaceObject,
 SO2_IMPL_BASIC_CLASS1( SvOutPlaceObject, SvFactory, SvInPlaceObject,
               SvGlobalName( SO3_OUT_CLASSID ) )
 
@@ -639,9 +631,6 @@ SvInPlaceObjectRef SvOutPlaceObject::InsertObject
     if( !pInsertFct )
         return &xRet;
 
-    //uTemp=pInsertFct(&io);
-    //uTemp=OleUIInsertObject(&io);
-
     //if (OLEUI_OK==uTemp)
     {
         TENANTTYPE      tType;
@@ -689,9 +678,6 @@ SvInPlaceObjectRef SvOutPlaceObject::InsertObject
             if( tType == TENANTTYPE_EMBEDDEDFILE )
                 xRet->pImpl->pSO_Cont->Update();
 
-            //RECTL rcl;
-            //SETRECTL(rcl, 0, 0, szl.cx, szl.cy);
-            //xRet->pImpl->pSO_Cont->RectSet(&rcl, FALSE, TRUE);
             xRet->SetVisAreaSize( Size( szl.cx, szl.cy ) );
             WIN_BOOL fSetExtent;
             xRet->pImpl->pSO_Cont->GetInfo( xRet->pImpl->dwAspect, fSetExtent );
@@ -789,9 +775,6 @@ SvInPlaceObjectRef   SvOutPlaceObject::CreateFromData( const Reference<XTransfer
             {
                 xRet->pImpl->pSO_Cont->Update();
                 xRet->pImpl->pSO_Cont->Invalidate();
-                //RECTL rcl;
-                //SETRECTL(rcl, 0, 0, szl.cx, szl.cy);
-                //xRet->pImpl->pSO_Cont->RectSet(&rcl, FALSE, TRUE);
                 xRet->SetVisAreaSize( Size( szl.cx, szl.cy ) );
                 WIN_BOOL fSetExtent;
                 xRet->pImpl->pSO_Cont->GetInfo( xRet->pImpl->dwAspect, fSetExtent );
@@ -1127,8 +1110,6 @@ void SvOutPlaceObject::Draw
                 if ( nBufSize && nBufSize == GetMetaFileBitsEx( hMet, nBufSize, pBuf+22 ) )
                 {
                     SvMemoryStream aStream( pBuf, nBufSize+22, STREAM_READ );
-                    //SvFileStream aFile(String::CreateFromAscii("file:///d:/test.wmf"), STREAM_STD_READWRITE);
-                    //aStream >> aFile;
                     aStream.Seek(0);
                     GDIMetaFile aMtf;
                     if( ReadWindowMetafile( aStream, aMtf, NULL ) )
@@ -1136,14 +1117,6 @@ void SvOutPlaceObject::Draw
                         aMtf.WindStart();
                         MapMode aMode( MAP_100TH_MM );
                         Size aSize = OutputDevice::LogicToLogic( aOutRect.GetSize(), aMode, pDev->GetMapMode() );
-    //                      AllSettings aNew( pDev->GetSettings() );
-    //                      StyleSettings aSet ( aNew.GetStyleSettings() );
-    //                      aSet.SetAntialiasingMinPixelHeight( 5 );
-    //                      aNew.SetStyleSettings( aSet );
-    //                      pDev->SetSettings( aNew );
-
-                        //Point aPoint;
-                        //Size aSize( aOutRect.GetSize() );
                         aMtf.Play( pDev, Point(), aSize );
                         bPlayed = TRUE;
                     }
@@ -1388,23 +1361,12 @@ void SvOutPlaceObject::DrawObject
                 if ( nBufSize && nBufSize == GetMetaFileBitsEx( hMet, nBufSize, pBuf+22 ) )
                 {
                     SvMemoryStream aStream( pBuf, nBufSize+22, STREAM_READ );
-                    //SvFileStream aFile(String::CreateFromAscii("file:///d:/test.wmf"), STREAM_STD_READWRITE);
-                    //aStream >> aFile;
                     aStream.Seek(0);
                     GDIMetaFile aMtf;
                     if( ReadWindowMetafile( aStream, aMtf, NULL ) )
                     {
                         aMtf.WindStart();
                         MapMode aMode( MAP_100TH_MM );
-                        //Size aSize = OutputDevice::LogicToLogic( aOutRect.GetSize(), aMode, pDev->GetMapMode() );
-    //                      AllSettings aNew( pDev->GetSettings() );
-    //                      StyleSettings aSet ( aNew.GetStyleSettings() );
-    //                      aSet.SetAntialiasingMinPixelHeight( 5 );
-    //                      aNew.SetStyleSettings( aSet );
-    //                      pDev->SetSettings( aNew );
-
-                        //Point aPoint;
-                        //Size aSize( aOutRect.GetSize() );
                         Size aSize = OutputDevice::LogicToLogic( rSize, aMode, pDev->GetMapMode() );
                         aMtf.Play( pDev, Point(), aSize );
                         bPlayed = TRUE;

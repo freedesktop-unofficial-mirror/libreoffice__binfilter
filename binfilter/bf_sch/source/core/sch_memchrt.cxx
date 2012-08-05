@@ -89,12 +89,6 @@ namespace binfilter {
 
 
 #define MIN(a,b) ( ((a)<(b))? (a) : (b) )
-/*************************************************************************
-|*
-|* Konstruktor
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -1392,8 +1386,6 @@ using namespace ::com::sun::star;
                 if( STRING_NOTFOUND == nTrenner )
                     return false;
 
-/*N*/ //            DBG_ASSERT( STRING_NOTFOUND != nTrenner, "no valid selection" );
-/*N*/
 /*N*/           SchCellRangeAddress aCRA;
 /*N*/           ::binfilter::lcl_GetWriterTblBox( sBox.Copy( 0, nTrenner ), aCRA.maUpperLeft );
 /*N*/           ::binfilter::lcl_GetWriterTblBox( sBox.Copy( nTrenner+1 ), aCRA.maLowerRight );

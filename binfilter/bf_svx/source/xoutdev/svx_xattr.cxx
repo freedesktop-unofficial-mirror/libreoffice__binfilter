@@ -1054,10 +1054,6 @@ const XDash& XLineDashItem::GetValue() const
 
 const XPolygon& XLineStartItem::GetValue() const
 {
-    //if (!IsIndex())
-    //    return aXPolygon;
-    //else
-    //    return pTable->Get(GetIndex())->GetLineEnd();
     return aXPolygon;
 }
 
@@ -2053,9 +2049,6 @@ const XPolygon& XLineEndItem::GetValue() const
 
 //------------------------------------------------------------------------
 
-
-//------------------------------------------------------------------------
-
 /*N*/ USHORT XFillStyleItem::GetValueCount() const
 /*N*/ {
 /*N*/   return 5;
@@ -2376,9 +2369,6 @@ const XGradient& XFillGradientItem::GetValue() const
 /*N*/   return 1;
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-
 // -----------------------------------------------------------------------
 /*N*/ bool XFillGradientItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -2647,11 +2637,6 @@ const XGradient& XFillGradientItem::GetValue() const
 
 //------------------------------------------------------------------------
 
-
-//------------------------------------------------------------------------
-
-
-
 /*N*/ XFillFloatTransparenceItem* XFillFloatTransparenceItem::checkForUniqueItem( SdrModel* pModel ) const
 /*N*/ {
 /*N*/   // #85953# unique name only necessary when enabled
@@ -2835,16 +2820,8 @@ const XHatch& XFillHatchItem::GetValue() const
     return aHatch;
 }
 
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
 // -----------------------------------------------------------------------
+
 /*N*/ bool XFillHatchItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/

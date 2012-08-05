@@ -188,22 +188,6 @@ bool SfxDateTimeItem::QueryValue( com::sun::star::uno::Any& rVal,
     return true;
 }
 
-// -----------------------------------------------------------------------
-// -----------------------------------------------------------------------
-// -----------------------------------------------------------------------
-/*
-TYPEINIT1(SfxColumnDateTimeItem, SfxDateTimeItem);
-
-SfxPoolItem* SfxColumnDateTimeItem::Clone( SfxItemPool* ) const
-{
-    return new SfxColumnDateTimeItem( *this );
-}
-
-SfxItemPresentation SfxColumnDateTimeItem::GetPresentation( SfxItemPresentation, SfxMapUnit, SfxMapUnit, XubString&, const ::IntlWrapper * )    const
-{
-    return SFX_ITEM_PRESENTATION_NAMELESS;
-}
-*/
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

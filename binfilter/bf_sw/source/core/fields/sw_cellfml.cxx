@@ -472,20 +472,6 @@ const USHORT cMAXSTACKSIZE = 50;
 
 /*N*/ const SwFrm* lcl_GetBoxFrm( const SwTableBox& rBox )
 /*N*/ {
-/*
-
-    // oder besser ueber die Box den Frame suchen
-
-    SwClientIter aIter( *pBox->GetFrmFmt() );
-    ULONG nMinPos = ULONG_MAX;
-    const SwFrm* pFnd = 0;
-    for( SwFrm* pF = (SwFrm*)aIter.First( TYPE( SwCellFrm )); pF;
-            pF = (SwFrm*)aIter.Next() )
-    {
-        if( pF->Frm().Y() <
-    }
-*/
-/*N*/
 /*N*/   SwNodeIndex aIdx( *rBox.GetSttNd() );
 /*N*/   SwCntntNode* pCNd = aIdx.GetNodes().GoNext( &aIdx );
 /*N*/   OSL_ENSURE( pCNd, "Box hat keinen TextNode" );

@@ -279,27 +279,8 @@ void lcl_LoadRange( SvStream& rStream, ScRange** ppRange );
 /*N*/           aPattern.GetItemSet().Put( ScProtectionAttr( FALSE ) );
 /*N*/           ApplyPatternArea( nCol1, nRow1, nCol2, nRow2, aPattern );
 /*N*/       }
-/*N*/
-/*      if( !--nRecalcLvl )
-            SetDrawPageSize();
-*/
 /*N*/   }
 /*N*/ }
-
-
-
-
-//  pTable = Clipboard
-
-
-
-
-
-
-//  Markierung von diesem Dokument
-
-
-
 
 /*N*/ void ScTable::StartAllListeners()
 /*N*/ {
@@ -313,11 +294,6 @@ void lcl_LoadRange( SvStream& rStream, ScRange** ppRange );
 /*N*/   for (USHORT i=0; i<=MAXCOL; i++)
 /*N*/         aCol[i].StartNameListeners( bOnlyRelNames );
 /*N*/ }
-
-
-
-
-
 
 /*N*/ void ScTable::CopyToTable(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
 /*N*/                           USHORT nFlags, BOOL bMarked, ScTable* pDestTab,
@@ -358,12 +334,6 @@ void lcl_LoadRange( SvStream& rStream, ScRange** ppRange );
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-
-
-
-
-
 
 /*N*/ void ScTable::MarkScenarioIn( ScMarkData& rDestMark, USHORT nNeededBits ) const
 /*N*/ {

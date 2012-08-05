@@ -164,39 +164,6 @@ static void ImplPostLoadCheckStyleSheetPool( SfxStyleSheetPool* pStyleSheetPool,
                     delete pNewItem;
                 }
             }
-/* sample code for fixing bullet problems. Didn't need it yet
-            if( SFX_ITEM_SET == rSet.GetItemState( EE_PARA_NUMBULLET, sal_False, &pItem ) )
-            {
-                SvxNumRule* pRule = ((SvxNumBulletItem*)rSet.GetItem( EE_PARA_NUMBULLET ))->GetNumRule();
-
-                const USHORT nLevelCount = pRule->GetLevelCount();
-                USHORT nLevel;
-                BOOL bNeedsFix = FALSE;
-                for( nLevel = 0; !bNeedsFix && (nLevel < nLevelCount); nLevel++ )
-                {
-                    const SvxNumberFormat& rLevel = pRule->GetLevel(nLevel);
-                    bNeedsFix = (rLevel.GetNumberingType() == ::com::sun::star::style::NumberingType::CHAR_SPECIAL) &&
-                                (rLevel.GetBulletChar() == 0 );
-                }
-
-                if( bNeedsFix )
-                {
-                    SvxNumRule aNewRule( pRule->GetFeatureFlags(), nLevelCount, FALSE, pRule->GetNumRuleType() );
-
-                    for( nLevel = 0; !bNeedsFix && (nLevel < nLevelCount); nLevel++ )
-                    {
-                        SvxNumberFormat aLevel(pRule->GetLevel(nLevel)) ;
-                        if( (aLevel.GetNumberingType() == ::com::sun::star::style::NumberingType::CHAR_SPECIAL) && (aLevel.GetBulletChar() == 0 ) )
-                            aLevel.SetNumberingType( ::com::sun::star::style::NumberingType::NUMBER_NONE );
-
-                        aNewRule.SetLevel(nLevel, aLevel);
-                    }
-
-                    rSet.Put( SvxNumBulletItem( aNewRule, EE_PARA_NUMBULLET ) );
-
-                }
-            }
-*/
             pStyleSheet = pStyleSheetPool->Next();
         }
     }

@@ -445,47 +445,6 @@ void SwExcelParser::Rk()
         }
     }
 
-/*
-// ------------------------------------------------------------------ 0x85
-void SwExcelParser::Boundsheet()
-    {
-    BYTE nOpt0, nOpt1;
-    UINT32 nStrPos;
-    String aName;
-
-    if( eDateiTyp == Biff5W )
-        {
-        *pIn >> nStrPos;
-        *pIn >> nOpt0 >> nOpt1;
-        nBytesLeft -= 6;
-
-        if( nOpt0 == 0x00 ) // nur Namen von Worksheets speichern
-            {
-            ReadExcString( LenByte, aName );
-            aName.Convert( eQuellChar, eZielChar );
-            //aTabNameBuff << aName;
-//          aExcDok.NewTab( aName, nStrPos );           ####################################
-            }
-        }
-    else
-        {
-        ReadExcString( LenByte, aName );
-
-        aName.Convert( eQuellChar, eZielChar );
-        //aTabNameBuff << aName;
-//      aExcDok.Set( aName, nTab );                     ####################################
-        nTab++;
-        }
-
-//  if( nOpt0 == 0x00 ) // nur Namen von Worksheets speichern
-//      {
-//      aDataPool.InsertEntry( aAnsiName, EET_Table, aAnsiName,
-//          aTabNameBuff.GetLastIndex(), 0, 0xFFFF, 0, 0xFFFF );
-        // zunaechst gesamte Tabelle selektieren, da Groesse noch nicht bekannt
-//      }
-    }
-*/
-
 // ------------------------------------------------------------------ 0x92
 void SwExcelParser::Palette()
     {
@@ -1095,14 +1054,6 @@ String &SwExcelParser::ReadExcString( StringInfoLen eLen, String &aString )
 //---------------------------------------------- SwExcelParser::ResetBof -
 void SwExcelParser::ResetBof()
     {// setzt alle Einstellungen fuer neuen Tabellenbeginn zurueck
-//      pFontBuffer->Reset();
-//      pXF_Buffer->Reset();
-//      pColorBuffer->Reset();
-//      aNameBuff.Reset();
-//      aExtNameBuff.Reset();
-//      aExtSheetBuff.Reset();
-//      aColRowBuff.NewTab( nTab );
-//      aFltTab.Reset( nTab );
     }
 #endif
 
@@ -1473,7 +1424,6 @@ void SwExcelParser::Bundleheader()
     aName.Convert( eQuellChar, eZielChar );
     aTabNameBuff << aName;
 
-//  aExcDok.Set( aName, nTab );                 ####################################
     nTab++;
     }
 

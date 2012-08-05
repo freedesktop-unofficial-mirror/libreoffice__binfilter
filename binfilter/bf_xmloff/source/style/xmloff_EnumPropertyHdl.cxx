@@ -18,27 +18,11 @@
  */
 
 #include <tools/debug.hxx>
-
 #include <EnumPropertyHdl.hxx>
-
 #include "xmluconv.hxx"
-
 #include <comphelper/extract.hxx>
-
 #include "rtl/ustring.hxx"
-
 #include <rtl/ustrbuf.hxx>
-
-/*
-
-#include <bf_svtools/bf_solar.h>
-
-#ifndef _INC_LIMITS
-#include <limits.h>
-#endif
-
-
-*/
 
 namespace binfilter {
 

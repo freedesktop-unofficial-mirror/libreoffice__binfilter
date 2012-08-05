@@ -105,43 +105,6 @@ static SwUserFieldType* In_SwUserFieldType( SwSwgReader& rPar )
     return p;
 }
 
-/* MS: Diese Felder gibt es nicht mehr
-
-static SwRegFieldType* In_SwRegFieldType( SwSwgReader& rPar )
-{
-    BYTE nCount;
-    long nEditTime;
-    rPar.r.long4();
-    rPar.r >> nCount;
-    aType.aTitle = rPar.GetText();
-    rPar.r >> nEditTime;
-    SwRegFieldType aType;
-    aType.aEditTime.SetTime( nEditTime );
-    for( BYTE i = 0; ( i < nCount ) && rPar.r.good(); i++ )
-    {
-        aType.aInfo[ i ].aAuthor = rPar.GetText();
-        ULONG nDate;
-        long  nTime;
-        rPar.r >> nDate >> nTime;
-        aType.aInfo[ i ].aDateTime.SetDate( nDate );
-        aType.aInfo[ i ].aDateTime.SetTime( nTime );
-    }
-    rPar.r.long3();
-    return (SwRegFieldType*) rPar.pDoc->InsertFldType( aType );
-}
-
-
-static SwVarRegFieldType* In_SwVarRegFieldType( SwSwgReader& rPar )
-{
-    USHORT nType;
-    rPar.r >> nType;
-    SwVarRegFieldType aType( rPar.GetText(), nType );
-    aType.SetValue( rPar.GetText() );
-    return (SwVarRegFieldType*) rPar.pDoc->InsertFldType( aType );
-}
-
-End Of Comment MS: */
-
 static SwDDEFieldType* In_SwDDEFieldType( SwSwgReader& rPar )
 {
     USHORT nType;
@@ -347,24 +310,6 @@ static SwField* In_SwFixTimeField( SwSwgReader& rPar, SwDateTimeFieldType* pType
     return pFld;
 }
 
-/* MS: RegFields werden nicht mehr gebraucht
-
-static SwField* In_SwRegField( SwSwgReader& rPar, SwRegFieldType* pType )
-{
-    pType = In_SwRegFieldType( rPar );
-    if( !pType ) return NULL;
-    USHORT nType;
-    rPar.r >> nType;
-    return new SwRegField( pType, nType );
-}
-
-static SwField* In_SwVarRegField( SwSwgReader& rPar, SwVarRegFieldType* pType )
-{
-    pType = In_SwVarRegFieldType( rPar );
-    return new SwVarRegField( pType );
-}
-*/
-
 static SwField* In_SwDDEField( SwSwgReader& rPar, SwDDEFieldType* pType )
 {
     pType = In_SwDDEFieldType( rPar );
@@ -444,10 +389,6 @@ static SwField* In_SwGetExpField( SwSwgReader& rPar, SwGetExpFieldType* pType, U
     if( GSE_STRING & nSubType )
         nNewFldFmt = 0;
 
-    // Falls sich das Feld in einem Shared-Format befindet,
-    // mus es nach dem Lesen ge-updated werden
-//  if( rPar.nStatus & SWGSTAT_SHAREDFMT )
-//      rPar.nStatus |= SWGSTAT_UPDATEEXPR;
     return p;
 }
 
@@ -482,7 +423,6 @@ static SwField* In_SwSetExpField( SwSwgReader& rPar, SwSetExpFieldType* pType, U
     }
 
     aFrml = pFld->GetExpStr();
-//  pFld->SetValue( strtod( (const sal_Char*)aFrml, &dummy ) );
     // TODO: unicode: is this correct?
     pFld->SetValue( aFrml.ToDouble() );
 
@@ -501,11 +441,6 @@ static SwField* In_SwSetExpField( SwSwgReader& rPar, SwSetExpFieldType* pType, U
     if( GSE_STRING & nSubType )
         nNewFldFmt = 0; // Warum auch immer
 
-    // neue Felder: Subtyp bereits im Feldtyp!
-    // Falls sich das Feld in einem Shared-Format befindet,
-    // mus es nach dem Lesen ge-updated werden
-//  if( rPar.nStatus & SWGSTAT_SHAREDFMT )
-//      rPar.nStatus |= SWGSTAT_UPDATEEXPR;
     return pFld;
 }
 
@@ -646,16 +581,6 @@ SwField* SwSwgReader::InField()
         case RES_FIXTIMEFLD:
             pFld = In_SwFixTimeField( *this, (SwDateTimeFieldType*) pType );
             break;
-        /*
-            MS: gibst nicht mehr
-
-        case RES_REGFLD:
-            pFld = In_SwRegField( *this, NULL );
-            break;
-        case RES_VARREGFLD:
-            pFld = In_SwVarRegField( *this, NULL );
-            break;
-        */
         case RES_DDEFLD:
             pFld = In_SwDDEField( *this, NULL );
             break;
@@ -740,14 +665,6 @@ SwFieldType* SwSwgReader::InFieldType()
             p = In_SwDBFieldType( *this ); break;
         case RES_USERFLD:
             p = In_SwUserFieldType( *this ); break;
-        /*
-            MS: Gibts nicht mehr
-
-        case RES_REGFLD:
-            p = In_SwRegFieldType( *this ); break;
-        case RES_VARREGFLD:
-            p = In_SwVarRegFieldType( *this ); break;
-        */
         case RES_DDEFLD:
             p = In_SwDDEFieldType( *this ); break;
         case RES_SETEXPFLD:

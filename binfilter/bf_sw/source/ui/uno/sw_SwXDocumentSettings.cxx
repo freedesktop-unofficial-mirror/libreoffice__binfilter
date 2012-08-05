@@ -126,31 +126,6 @@ MasterPropertySetInfo * lcl_createSettingsInfo()
         { RTL_CONSTASCII_STRINGPARAM("PrinterIndependentLayout"),   HANDLE_PRINTER_INDEPENDENT_LAYOUT,      CPPUTYPE_INT16,             0,   0},
         { RTL_CONSTASCII_STRINGPARAM("IsLabelDocument"),            HANDLE_IS_LABEL_DOC,                    CPPUTYPE_BOOLEAN,           0,   0},
         { RTL_CONSTASCII_STRINGPARAM("AddFrameOffsets"),            HANDLE_IS_ADD_FLY_OFFSET,               CPPUTYPE_BOOLEAN,           0,   0},
-/*
- * As OS said, we don't have a view when we need to set this, so I have to
- * find another solution before adding them to this property set - MTG
-        { RTL_CONSTASCII_STRINGPARAM("IsGridVisible"),              HANDLE_IS_GRID_VISIBLE,                 CPPUTYPE_BOOLEAN,           0,   0},
-        { RTL_CONSTASCII_STRINGPARAM("IsSnapToGrid"),               HANDLE_IS_SNAP_TO_GRID,                 CPPUTYPE_BOOLEAN,           0,   0},
-        { RTL_CONSTASCII_STRINGPARAM("IsSynchroniseAxes"),          HANDLE_IS_SYNCHRONISE_AXES,             CPPUTYPE_BOOLEAN,           0,   0},
-        { RTL_CONSTASCII_STRINGPARAM("HorizontalGridResolution"),   HANDLE_HORIZONTAL_GRID_RESOLUTION,      CPPUTYPE_INT32,             0,   0},
-        { RTL_CONSTASCII_STRINGPARAM("HorizontalGridSubdivision"),  HANDLE_HORIZONTAL_GRID_SUBDIVISION,     CPPUTYPE_INT16,             0,   0},
-        { RTL_CONSTASCII_STRINGPARAM("VerticalGridResolution"),     HANDLE_VERTICAL_GRID_RESOLUTION,        CPPUTYPE_INT32,             0,   0},
-        { RTL_CONSTASCII_STRINGPARAM("VerticalGridSubdivision"),    HANDLE_VERTICAL_GRID_SUBDIVISION,       CPPUTYPE_INT16,             0,   0},
-
-        { RTL_CONSTASCII_STRINGPARAM("ShowParagraphEnd"),           HANDLE_SHOW_PARAGRAPH_END,              CPPUTYPE_BOOLEAN,           0,   0},
-        { RTL_CONSTASCII_STRINGPARAM("ShowOptionalHyphens"),        HANDLE_SHOW_OPTIONAL_HYPHENS,           CPPUTYPE_BOOLEAN,           0,   0},
-        { RTL_CONSTASCII_STRINGPARAM("ShowSpaces"),                 HANDLE_SHOW_SPACES,                     CPPUTYPE_BOOLEAN,           0,   0},
-        { RTL_CONSTASCII_STRINGPARAM("ShowTabs"),                   HANDLE_SHOW_TABS,                       CPPUTYPE_BOOLEAN,           0,   0},
-        { RTL_CONSTASCII_STRINGPARAM("ShowBreaks"),                 HANDLE_SHOW_BREAKS,                     CPPUTYPE_BOOLEAN,           0,   0},
-        { RTL_CONSTASCII_STRINGPARAM("ShowHiddenText"),             HANDLE_SHOW_HIDDEN_TEXT,                CPPUTYPE_BOOLEAN,           0,   0},
-        { RTL_CONSTASCII_STRINGPARAM("ShowHiddenParagraphs"),       HANDLE_SHOW_HIDDEN_PARAGRAPHS,          CPPUTYPE_BOOLEAN,           0,   0},
-
-        { RTL_CONSTASCII_STRINGPARAM("ShowTextLimitGuide"),         HANDLE_SHOW_TEXT_LIMIT_GUIDE,           CPPUTYPE_BOOLEAN,           0,   0},
-        { RTL_CONSTASCII_STRINGPARAM("ShowTableLimitGuide"),        HANDLE_SHOW_TABLE_LIMIT_GUIDE,          CPPUTYPE_BOOLEAN,           0,   0},
-        { RTL_CONSTASCII_STRINGPARAM("ShowSectionLimitGuide"),      HANDLE_SHOW_SECTION_LIMIT_GUIDE,        CPPUTYPE_BOOLEAN,           0,   0},
-        { RTL_CONSTASCII_STRINGPARAM("ShowGuidesWhileMoving"),      HANDLE_SHOW_GUIDES_WHILE_MOVING,        CPPUTYPE_BOOLEAN,           0,   0},
-        { RTL_CONSTASCII_STRINGPARAM("ShowLargeHandles"),           HANDLE_SHOW_LARGE_HANDLES,              CPPUTYPE_BOOLEAN,           0,   0},
-*/
         { NULL, 0, 0, CPPUTYPE_UNKNOWN, 0, 0 }
     };
     return new MasterPropertySetInfo ( aWriterSettingsInfoMap );

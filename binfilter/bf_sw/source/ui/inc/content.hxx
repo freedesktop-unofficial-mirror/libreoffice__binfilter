@@ -92,33 +92,6 @@ class SwRegionContent : public SwContent
                         nRegionLevel(nLevel){}
     BYTE    GetRegionLevel() const {return nRegionLevel;}
 };
-//----------------------------------------------------------------------------
-
-
-
-
-//----------------------------------------------------------------------------
-
-
-
-//----------------------------------------------------------------------------
-
-
-
-//----------------------------------------------------------------------------
-/*
-    class ContentType enthaelt Informationen zu einer Inhaltsform
-    Das MemberArray wird nur gefuellt, wenn der Inhalt mit GetMember
-    angefordert wird. Es wird nach Invalidate() nur dann neu geladen,
-    wenn der Inhalt erneut ausgelesen werden soll.
-*/
-//----------------------------------------------------------------------------
-//----------------------------------------------------------------------------
-
-
-
-
-
 
 } //namespace binfilter
 #endif

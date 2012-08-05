@@ -364,9 +364,6 @@ extern AsynchronLink* pPendingCloser;
 
 //--------------------------------------------------------------------
 
-
-//--------------------------------------------------------------------
-
 Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 {
     if( !pImp->pBasicLibContainer )

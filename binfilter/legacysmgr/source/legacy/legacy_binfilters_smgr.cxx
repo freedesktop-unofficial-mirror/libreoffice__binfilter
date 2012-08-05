@@ -547,8 +547,6 @@ public:
         Sequence< Any > const & rArguments,
         Reference< XComponentContext > const & xContext )
         throw (Exception, RuntimeException);
-//      virtual Sequence< OUString > SAL_CALL getAvailableServiceNames()
-//          throw (RuntimeException);
 
     // XMultiServiceFactory
     virtual Sequence< OUString > SAL_CALL getAvailableServiceNames() throw(::com::sun::star::uno::RuntimeException);
@@ -948,13 +946,6 @@ Sequence< OUString > OServiceManager::getAvailableServiceNames( HashSet_OWString
     HashMultimap_OWString_Interface::iterator aSIt = m_ServiceMap.begin();
     while( aSIt != m_ServiceMap.end() )
         aNameSet.insert( (*aSIt++).first );
-
-    /* do not return the implementation names
-    HashMap_OWString_Interface      m_ImplementationNameMap;
-    HashMap_OWString_Interface::iterator aIt = m_ImplementationNameMap.begin();
-    while( aIt != m_ImplementationNameMap.end() )
-        aNameSet.insert( (*aIt++).first );
-    */
 
     Sequence< OUString > aNames( aNameSet.size() );
     OUString * pArray = aNames.getArray();
@@ -1444,8 +1435,6 @@ void ORegistryServiceManager::dispose()
  * Return the root key of the registry. The Default registry service is ordered
  * if no registry is set.
  */
-//Reference<XServiceProvider > create_DefaultRegistry_ServiceProvider();
-
 Reference<XRegistryKey > ORegistryServiceManager::getRootKey()
 {
     if( !m_xRootKey.is() )
@@ -1772,8 +1761,6 @@ public:
         Sequence< Any > const & rArguments,
         Reference< XComponentContext > const & xContext )
         throw (Exception, RuntimeException);
-//      virtual Sequence< OUString > SAL_CALL getAvailableServiceNames()
-//          throw (RuntimeException);
 
     // XMultiServiceFactory
     virtual Sequence< OUString > SAL_CALL getAvailableServiceNames()

@@ -230,15 +230,6 @@ namespace binfilter {
 /*N*/   return GetThis(rValue, rErr);
 /*N*/ }
 
-/*  ist inline:
-BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
-{
-    ++nRow;
-    return GetThis(rValue, rErr);
-}
-*/
-
-//------------------------------------------------------------------------
 //------------------------------------------------------------------------
 
 /*N*/  ScQueryValueIterator::ScQueryValueIterator(ScDocument* pDocument, USHORT nTable, const ScQueryParam& rParam) :
@@ -827,12 +818,6 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/   if ( !bFound )
 /*N*/       bMore = FALSE;
 /*N*/ }
-
-//-------------------------------------------------------------------------------
-
-
-//-------------------------------------------------------------------------------
-
 
 //-------------------------------------------------------------------------------
 

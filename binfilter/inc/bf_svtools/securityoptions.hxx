@@ -112,16 +112,6 @@ class  SvtSecurityOptions: public Options
 
         typedef ::com::sun::star::uno::Sequence< ::rtl::OUString > Certificate;
 
-        /*
-        // MT: Doesn't work for sequence...
-        struct Certificate
-        {
-            ::rtl::OUString SubjectName;
-            ::rtl::OUString SerialNumber;
-            ::rtl::OUString RawData;
-        };
-        */
-
     //-------------------------------------------------------------------------------------------------------------
     //  public methods
     //-------------------------------------------------------------------------------------------------------------

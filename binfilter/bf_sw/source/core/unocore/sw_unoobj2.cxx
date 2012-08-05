@@ -1262,21 +1262,7 @@ OUString SwXTextRange::getString(void) throw( uno::RuntimeException )
         const SwPosition& rPoint = pBkm->GetPos();
         const SwPosition* pMark = pBkm->GetOtherPos();
         SwPaM aCrsr(*pMark, rPoint);
-/*      if( rPoint.nNode.GetIndex() ==
-            pMark->nNode.GetIndex() )
-        {
-            SwTxtNode* pTxtNd = aCrsr.GetNode()->GetTxtNode();
-            if( pTxtNd )
-            {
-                sal_uInt16 nStt = aCrsr.Start()->nContent.GetIndex();
-                sRet = pTxtNd->GetExpandTxt( nStt,
-                        aCrsr.End()->nContent.GetIndex() - nStt );
-            }
-        }
-        else
-*/      {
-            SwXTextCursor::getTextFromPam(aCrsr, sRet);
-        }
+        SwXTextCursor::getTextFromPam(aCrsr, sRet);
     }
     return sRet;
 }

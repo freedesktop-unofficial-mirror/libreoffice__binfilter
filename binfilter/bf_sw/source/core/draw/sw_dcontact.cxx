@@ -670,8 +670,6 @@ void SwDrawContact::DisconnectFromLayout( bool _bMoveMasterToInvisibleLayer )
         // Instead of removing 'master' object from drawing page, move
         // the 'master' drawing object into the corresponding invisible layer.
         {
-            //((SwFrmFmt*)pRegisteredIn)->GetDoc()->GetDrawModel()->GetPage(0)->
-            //                            RemoveObject( GetMaster()->GetOrdNum() );
             SwDoc* pWriterDoc = ((SwFrmFmt*)pRegisteredIn)->GetDoc();
             if ( pWriterDoc->IsVisibleLayerId( GetMaster()->GetLayer() ) )
             {

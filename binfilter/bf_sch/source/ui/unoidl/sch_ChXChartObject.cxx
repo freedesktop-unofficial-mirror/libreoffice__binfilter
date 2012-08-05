@@ -776,13 +776,6 @@ void SAL_CALL ChXChartObject::setPropertyValues (
                 // note: this fall-through is intended
 
             default:
-/*              if (    aModifications.Count() == 0
-                    &&  mpModel->GetItemPool().IsWhich (nWID)
-                    &&  ! ((nWID >= OWN_ATTR_VALUE_START) && (nWID <= OWN_ATTR_VALUE_END)))
-                {
-                    aModifications.Put (mpModel->GetItemPool().GetDefaultItem (nWID));
-                }
-*/
                 //  First look if we are looking at a special character property.
                 if ( ! SvxUnoTextRangeBase::SetPropertyValueHelper (aModifications, pProperty,
                         *pValue, aModifications))

@@ -532,7 +532,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       while( GetFollow() && GetFollow()->GetFollow() &&
 /*N*/              nNewOfst >= GetFollow()->GetFollow()->GetOfst() )
 /*N*/       {
-///*?*/             DBG_LOOP;
 /*?*/           JoinFrm();
 /*N*/       }
 /*N*/   }

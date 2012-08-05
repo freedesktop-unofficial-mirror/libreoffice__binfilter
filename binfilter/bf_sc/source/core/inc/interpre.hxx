@@ -244,10 +244,6 @@ StackVar GetStackType();
 // peek StackType of Parameter, Parameter 1 == TOS, 2 == TOS-1, ...
 StackVar GetStackType( BYTE nParam );
 BYTE GetByte() { return cPar; }
-/*
-short GetShort();
-double GetLong();
-*/
 // generiert aus DoubleRef positionsabhaengige SingleRef
 BOOL DoubleRefToPosSingleRef( const ScRange& rRange, ScAddress& rAdr );
 double GetDouble();

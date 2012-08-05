@@ -86,10 +86,6 @@ namespace binfilter {
 #define        CHOBJID_DIAGRAM_Y_GRID_HELP_GROUP 53
 #define        CHOBJID_DIAGRAM_Z_GRID_HELP_GROUP 54
 #define        CHOBJID_DIAGRAM_SPECIAL_GROUP     55
-/*#define        CHOBJID_3D_PIE_BOTTOM             57
-#define        CHOBJID_3D_PIE_SIDE               58
-#define        CHOBJID_3D_PIE_TOP                59
-*/
 #define CHOBJID_DIAGRAM_STOCKLINE                60
 #define CHOBJID_DIAGRAM_STOCKRECT                61
 #define CHOBJID_DIAGRAM_STOCKLINE_GROUP          62

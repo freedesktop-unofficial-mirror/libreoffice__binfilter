@@ -110,8 +110,6 @@ Dieses Item beschreibt eine Liste von TabStops.
 
 class SvxTabStopItem : public SfxPoolItem, private SvxTabStopArr
 {
-//friend class SvxTabStopObject_Impl;
-
 public:
     TYPEINFO();
 

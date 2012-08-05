@@ -455,17 +455,6 @@ uno::Any SvxItemPropertySet::getPropertyValue( const SfxItemPropertyMap* pMap ) 
     // diesen zurueck
 
     SdrItemPool* pItemPool = SdrObject::GetGlobalDrawObjectItemPool();
-/*
-    if(!pItemPool)
-    {
-        // ItemPool generieren
-        ((SvxItemPropertySet*)this)->pItemPool = new SdrItemPool;
-        // Der Outliner hat keinen eigenen Pool, deshalb den der EditEngine
-        SfxItemPool* pOutlPool=EditEngine::CreatePool();
-        // OutlinerPool als SecondaryPool des SdrPool
-        pItemPool->SetSecondaryPool(pOutlPool);
-    }
-*/
     const SfxMapUnit eMapUnit = pItemPool ? pItemPool->GetMetric((USHORT)pMap->nWID) : SFX_MAPUNIT_100TH_MM;
     BYTE nMemberId = pMap->nMemberId & (~SFX_METRIC_ITEM);
     if( eMapUnit == SFX_MAPUNIT_100TH_MM )

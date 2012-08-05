@@ -137,39 +137,16 @@ namespace binfilter {
 /*N*/               case CHSTYLE_2D_AREA:
 /*N*/               case CHSTYLE_2D_STACKEDAREA:
 /*N*/               case CHSTYLE_2D_PERCENTAREA:
-/*              case CHSTYLE_2D_PIE:
-                case CHSTYLE_3D_STRIPE:
-                case CHSTYLE_3D_COLUMN:
-                case CHSTYLE_3D_FLATCOLUMN:
-                 case CHSTYLE_3D_STACKEDFLATCOLUMN:
-                case CHSTYLE_3D_PERCENTFLATCOLUMN:
-                case CHSTYLE_3D_AREA:
-                case CHSTYLE_3D_STACKEDAREA:
-                case CHSTYLE_3D_PERCENTAREA:
-                case CHSTYLE_3D_SURFACE:
-                case CHSTYLE_3D_PIE:
-*/              case CHSTYLE_2D_XY:
-/*N*/ //                case CHSTYLE_3D_XYZ:
 /*N*/               case CHSTYLE_2D_LINESYMBOLS:
 /*N*/               case CHSTYLE_2D_STACKEDLINESYM:
 /*N*/               case CHSTYLE_2D_PERCENTLINESYM:
 /*N*/               case CHSTYLE_2D_XYSYMBOLS:
 /*N*/               case CHSTYLE_3D_XYZSYMBOLS:
-/*N*/ //                case CHSTYLE_2D_DONUT1:
-/*N*/ //                case CHSTYLE_2D_DONUT2:
 /*N*/               case CHSTYLE_3D_BAR:
 /*N*/               case CHSTYLE_3D_FLATBAR:
 /*N*/               case CHSTYLE_3D_STACKEDFLATBAR:
 /*N*/               case CHSTYLE_3D_PERCENTFLATBAR:
-/*              case CHSTYLE_2D_PIE_SEGOF1:
-                case CHSTYLE_2D_PIE_SEGOFALL:
-                case CHSTYLE_2D_NET:
-                case CHSTYLE_2D_NET_SYMBOLS:
-                case CHSTYLE_2D_NET_STACK:
-                case CHSTYLE_2D_NET_SYMBOLS_STACK:
-                case CHSTYLE_2D_NET_PERCENT:
-                case CHSTYLE_2D_NET_SYMBOLS_PERCENT:
-*/              case CHSTYLE_2D_CUBIC_SPLINE:
+                    case CHSTYLE_2D_CUBIC_SPLINE:
 /*N*/               case CHSTYLE_2D_CUBIC_SPLINE_SYMBOL:
 /*N*/               case CHSTYLE_2D_LINE_STACKEDCOLUMN:
 /*N*/               case CHSTYLE_2D_LINE_COLUMN:

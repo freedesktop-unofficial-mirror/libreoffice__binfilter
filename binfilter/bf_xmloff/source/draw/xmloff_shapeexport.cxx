@@ -99,11 +99,6 @@ XMLShapeExport::XMLShapeExport(SvXMLExport& rExp,
         xPropertySetMapper->ChainExportMapper( xExtMapper );
     }
 
-/*
-    // chain text attributes
-    xPropertySetMapper->ChainExportMapper(XMLTextParagraphExport::CreateParaExtPropMapper(rExp));
-*/
-
     rExport.GetAutoStylePool()->AddFamily(
         XML_STYLE_FAMILY_SD_GRAPHICS_ID,
         OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_SD_GRAPHICS_NAME)),
@@ -156,7 +151,6 @@ void XMLShapeExport::collectShapeAutoStyles(const uno::Reference< drawing::XShap
     ImpCalcShapeType(xShape, aShapeInfo.meShapeType);
 
     const bool bObjSupportsText =
-//      aShapeInfo.meShapeType != XmlShapeTypeDrawControlShape &&
         aShapeInfo.meShapeType != XmlShapeTypeDrawChartShape &&
         aShapeInfo.meShapeType != XmlShapeTypePresChartShape &&
         aShapeInfo.meShapeType != XmlShapeTypeDrawOLE2Shape &&
@@ -898,25 +892,6 @@ void XMLShapeExport::ImpCalcShapeType(const uno::Reference< drawing::XShape >& x
                                 // general OLE2 Object
                             }
                         }
-/*                      uno::Reference <lang::XServiceInfo> xObjectInfo;
-
-                        if(aAny >>= xObjectInfo)
-                        {
-                            if(xObjectInfo->supportsService(OUString(RTL_CONSTASCII_USTRINGPARAM
-                                ("com.sun.star.chart.ChartDocument"))))
-                            {
-                                eShapeType = XmlShapeTypeDrawChartShape;
-                            }
-                            else if(xObjectInfo->supportsService(OUString(RTL_CONSTASCII_USTRINGPARAM
-                                ("com.sun.star.sheet.SpreadsheetDocument"))))
-                            {
-                                eShapeType = XmlShapeTypeDrawTableShape;
-                            }
-                            else
-                            {
-                                // general OLE2 Object
-                            }
-                        }*/
                     }
                 }
                 else if(aType.EqualsAscii("Page", 21, 4)) { eShapeType = XmlShapeTypeDrawPageShape; }

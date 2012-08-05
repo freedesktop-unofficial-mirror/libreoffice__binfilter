@@ -138,11 +138,7 @@ public:
                ::com::sun::star::uno::RuntimeException );
 
     //  XMultiPropertyStates
-/*    virtual ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyState > SAL_CALL getPropertyStates  (
-                const ::com::sun::star::uno::Sequence< ::rtl::OUString >& aPropertyName )
-        throw ( ::com::sun::star::beans::UnknownPropertyException,
-                ::com::sun::star::uno::RuntimeException);
-*/  virtual void SAL_CALL setAllPropertiesToDefault (void)
+    virtual void SAL_CALL setAllPropertiesToDefault (void)
         throw ( ::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL setPropertiesToDefault    (
                 const ::com::sun::star::uno::Sequence< ::rtl::OUString >& aPropertyNames )

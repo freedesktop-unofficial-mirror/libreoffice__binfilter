@@ -18,28 +18,17 @@
  */
 
 #include <tools/debug.hxx>
-
 #include <com/sun/star/presentation/AnimationSpeed.hpp>
-
 #include <list>
-
-
 #include <comphelper/extract.hxx>
 
-
 #include "xmlimp.hxx"
-
 #include "xmlnmspe.hxx"
-
 #include "xmluconv.hxx"
-/*
-*/
-
 #include "nmspmap.hxx"
-
 #include "anim.hxx"
-
 #include "animimp.hxx"
+
 namespace binfilter {
 
 using namespace ::std;

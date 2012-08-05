@@ -1168,9 +1168,6 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*N*/
 /*N*/
 /*N*/   LanguageType eLang = LANGUAGE_SYSTEM; //System::GetLanguage();
-/*              ((const SvxLanguageItem&)GetAttrPool().
-                    GetDefaultItem( RES_CHRATR_LANGUAGE )).GetLanguage();
-*/
 /*N*/   Reference< XMultiServiceFactory > xMSF = ::legacy_binfilters::getLegacyProcessServiceFactory();
 /*N*/   pNumberFormatter = new SvNumberFormatter( xMSF, eLang );
 /*N*/   pNumberFormatter->SetEvalDateFormat( NF_EVALDATEFORMAT_FORMAT_INTL );

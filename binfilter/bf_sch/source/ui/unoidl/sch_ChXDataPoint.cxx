@@ -604,27 +604,6 @@ beans::PropertyState SAL_CALL ChXDataPoint::getPropertyState( const ::rtl::OUStr
     return beans::PropertyState_DIRECT_VALUE;
 }
 
-/*
-uno::Sequence< beans::PropertyState > SAL_CALL ChXDataPoint::getPropertyStates(
-        const uno::Sequence< ::rtl::OUString >& aPropertyName )
-        throw( beans::UnknownPropertyException,
-               uno::RuntimeException )
-{
-    SolarMutexGuard aGuard;
-
-    const sal_Int32 nCount = aPropertyName.getLength();
-    const ::rtl::OUString* pNames = aPropertyName.getConstArray();
-
-    uno::Sequence< beans::PropertyState > aRet( nCount );
-    beans::PropertyState* pState = aRet.getArray();
-
-    for( sal_Int32 nIdx = 0; nIdx < nCount; nIdx++ )
-        pState[ nIdx ] = getPropertyState( pNames[ nIdx ] );
-
-    return aRet;
-}
-*/
-
 uno::Sequence< beans::PropertyState > SAL_CALL
     ChXDataPoint::getPropertyStates (
         const uno::Sequence< ::rtl::OUString > & aPropertyName)
@@ -715,7 +694,6 @@ uno::Sequence< beans::PropertyState > SAL_CALL
             }
             else
                 pStateArray[nIndex] = beans::PropertyState_DEFAULT_VALUE;
-//          pStateArray[nIndex] = beans::PropertyState_DIRECT_VALUE;
         }
     }
     else

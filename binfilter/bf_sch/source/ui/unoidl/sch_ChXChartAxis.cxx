@@ -796,33 +796,6 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
     mpModel->ChangeAttr (aAttributes, mnWhichId);
 }
 
-
-
-
-/*
-Sequence<PropertyState > SAL_CALL ChXChartAxis::getPropertyStates(
-        const Sequence<OUString > & aPropertyNames)
-        throw( UnknownPropertyException,
-               RuntimeException )
-{
-    SolarMutexGuard aGuard;
-
-    const sal_Int32 nCount = aPropertyNames.getLength();
-    const ::rtl::OUString * pName = aPropertyNames.getConstArray();
-    Sequence<PropertyState > aStates (nCount);
-    PropertyState * pState = aStates.getArray();
-
-    if (mpModel == NULL)
-        return aStates;
-
-    for (sal_Int32 nIdx = 0; nIdx < nCount; nIdx++)
-        pState[nIdx] = getPropertyState (pName[nIdx]);
-
-    return aStates;
-}
-*/
-
-
 //=====  protected methods  =======================================================================
 
 SfxItemSet  *   ChXChartAxis::CreateItemSet (void)
