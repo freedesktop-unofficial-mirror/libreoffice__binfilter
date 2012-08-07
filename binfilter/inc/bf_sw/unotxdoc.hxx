@@ -111,10 +111,6 @@ class SwXDocumentPropertyHelper;
 typedef UnoActionContext* UnoActionContextPtr;
 SV_DECL_PTRARR(ActionContextArr, UnoActionContextPtr, 4, 4)
 
-/******************************************************************************
- *
- ******************************************************************************/
-
 typedef cppu::WeakImplHelper27
 <
     ::com::sun::star::text::XTextDocument,

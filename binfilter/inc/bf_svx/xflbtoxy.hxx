@@ -23,12 +23,6 @@
 #include <bf_svtools/intitem.hxx>
 namespace binfilter {
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 class XFillBmpTileOffsetXItem : public SfxUInt16Item
 {
 public:
@@ -40,12 +34,6 @@ public:
     virtual SfxPoolItem*    Create( SvStream& rIn, USHORT nVer ) const;
 
 };
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 class XFillBmpTileOffsetYItem : public SfxUInt16Item
 {

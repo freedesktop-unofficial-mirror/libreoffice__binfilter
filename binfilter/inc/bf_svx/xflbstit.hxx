@@ -25,12 +25,6 @@
 #include <bf_svtools/eitem.hxx>
 namespace binfilter {
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 class XFillBmpStretchItem : public SfxBoolItem
 {
 public:

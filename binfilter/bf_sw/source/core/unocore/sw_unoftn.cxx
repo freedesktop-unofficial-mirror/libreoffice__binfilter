@@ -52,10 +52,6 @@ using namespace ::com::sun::star::beans;
 
 using rtl::OUString;
 
-/******************************************************************
- *
- ******************************************************************/
-
 const uno::Sequence< sal_Int8 > & SwXFootnote::getUnoTunnelId()
 {
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();

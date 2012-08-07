@@ -70,9 +70,6 @@ using namespace ::com::sun::star::beans;
 
 using rtl::OUString;
 
-/******************************************************************
- *
- ******************************************************************/
 TYPEINIT1(SwXTextSection, SwClient);
 struct SwTextSectionProperties_Impl
 {

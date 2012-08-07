@@ -23,12 +23,6 @@
 #include <bf_svtools/metitem.hxx>
 namespace binfilter {
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 class XFillBmpSizeXItem : public SfxMetricItem
 {
 public:
@@ -44,12 +38,6 @@ public:
     // Prozentwerte ( sind negativ ) auf; das muessen
     // wir hier beruecksichtigen
 };
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 class XFillBmpSizeYItem : public SfxMetricItem
 {

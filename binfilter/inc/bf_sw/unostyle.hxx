@@ -44,10 +44,6 @@ class SwDocShell;
 class SwXStyle;
 class SwStyleProperties_Impl;
 class SwStartNode;
-/******************************************************************************
- *
- ******************************************************************************/
-
 
 class SwXStyleFamilies :  public cppu::WeakImplHelper4
 <

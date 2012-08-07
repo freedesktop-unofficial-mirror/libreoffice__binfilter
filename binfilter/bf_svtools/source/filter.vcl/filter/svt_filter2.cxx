@@ -35,12 +35,6 @@ namespace binfilter
 
 BYTE* ImplSearchEntry( BYTE* , BYTE* , ULONG , ULONG  );
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 GraphicDescriptor::GraphicDescriptor( SvStream& rInStream, const String* pPath) :
     pFileStm    ( NULL )
 {
@@ -59,24 +53,10 @@ GraphicDescriptor::GraphicDescriptor( SvStream& rInStream, const String* pPath) 
         bDataReady = TRUE;
 }
 
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 GraphicDescriptor::~GraphicDescriptor()
 {
     delete pFileStm;
 }
-
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 BOOL GraphicDescriptor::Detect( BOOL bExtendedInfo )
 {
@@ -138,12 +118,6 @@ BOOL GraphicDescriptor::Detect( BOOL bExtendedInfo )
     return bRet;
 }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 SvStream& GraphicDescriptor::GetSearchStream() const
 {
     DBG_ASSERT( bDataReady, "Was laeuft hier falsch???" );
@@ -155,13 +129,6 @@ SvStream& GraphicDescriptor::GetSearchStream() const
     else
         return *pFileStm;
 }
-
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 void GraphicDescriptor::ImpConstruct()
 {
@@ -177,13 +144,6 @@ void GraphicDescriptor::ImpConstruct()
     bBaseStm = FALSE;
     pMemStm = NULL;
 }
-
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 BOOL GraphicDescriptor::ImpDetectBMP( SvStream& rStm, BOOL bExtendedInfo )
 {
@@ -260,13 +220,6 @@ BOOL GraphicDescriptor::ImpDetectBMP( SvStream& rStm, BOOL bExtendedInfo )
     return bRet;
 }
 
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 BOOL GraphicDescriptor::ImpDetectGIF( SvStream& rStm, BOOL bExtendedInfo )
 {
     UINT32  n32;
@@ -307,13 +260,6 @@ BOOL GraphicDescriptor::ImpDetectGIF( SvStream& rStm, BOOL bExtendedInfo )
 
     return bRet;
 }
-
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 BOOL GraphicDescriptor::ImpDetectJPG( SvStream& rStm,  BOOL bExtendedInfo )
 {
@@ -437,13 +383,6 @@ BOOL GraphicDescriptor::ImpDetectJPG( SvStream& rStm,  BOOL bExtendedInfo )
     return bRet;
 }
 
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 BOOL GraphicDescriptor::ImpDetectPCD( SvStream& rStm, BOOL )
 {
     BOOL    bRet = FALSE;
@@ -481,13 +420,6 @@ BOOL GraphicDescriptor::ImpDetectPCD( SvStream& rStm, BOOL )
 
     return bRet;
 }
-
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 BOOL GraphicDescriptor::ImpDetectPCX( SvStream& rStm, BOOL bExtendedInfo )
 {
@@ -569,13 +501,6 @@ BOOL GraphicDescriptor::ImpDetectPCX( SvStream& rStm, BOOL bExtendedInfo )
 
     return bRet;
 }
-
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 BOOL GraphicDescriptor::ImpDetectPNG( SvStream& rStm, BOOL bExtendedInfo )
 {
@@ -669,13 +594,6 @@ BOOL GraphicDescriptor::ImpDetectPNG( SvStream& rStm, BOOL bExtendedInfo )
 
     return bRet;
 }
-
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 BOOL GraphicDescriptor::ImpDetectTIF( SvStream& rStm, BOOL bExtendedInfo )
 {
@@ -808,13 +726,6 @@ BOOL GraphicDescriptor::ImpDetectTIF( SvStream& rStm, BOOL bExtendedInfo )
     return bRet;
 }
 
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 BOOL GraphicDescriptor::ImpDetectXBM( SvStream&, BOOL )
 {
     BOOL bRet = aPathExt.CompareToAscii( "xbm", 3 ) == COMPARE_EQUAL;
@@ -824,13 +735,6 @@ BOOL GraphicDescriptor::ImpDetectXBM( SvStream&, BOOL )
     return bRet;
 }
 
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 BOOL GraphicDescriptor::ImpDetectXPM( SvStream&, BOOL )
 {
     BOOL bRet = aPathExt.CompareToAscii( "xpm", 3 ) == COMPARE_EQUAL;
@@ -839,12 +743,6 @@ BOOL GraphicDescriptor::ImpDetectXPM( SvStream&, BOOL )
 
     return bRet;
 }
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 BOOL GraphicDescriptor::ImpDetectPBM( SvStream& rStm, BOOL )
 {
@@ -870,12 +768,6 @@ BOOL GraphicDescriptor::ImpDetectPBM( SvStream& rStm, BOOL )
     return bRet;
 }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 BOOL GraphicDescriptor::ImpDetectPGM( SvStream& rStm, BOOL )
 {
     BOOL bRet = FALSE;
@@ -896,12 +788,6 @@ BOOL GraphicDescriptor::ImpDetectPGM( SvStream& rStm, BOOL )
 
     return bRet;
 }
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 BOOL GraphicDescriptor::ImpDetectPPM( SvStream& rStm, BOOL )
 {
@@ -924,12 +810,6 @@ BOOL GraphicDescriptor::ImpDetectPPM( SvStream& rStm, BOOL )
     return bRet;
 }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 BOOL GraphicDescriptor::ImpDetectRAS( SvStream& rStm, BOOL )
 {
     UINT32 nMagicNumber;
@@ -945,12 +825,6 @@ BOOL GraphicDescriptor::ImpDetectRAS( SvStream& rStm, BOOL )
         return FALSE;
 }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 BOOL GraphicDescriptor::ImpDetectTGA( SvStream&, BOOL )
 {
     BOOL bRet = aPathExt.CompareToAscii( "tga", 3 ) == COMPARE_EQUAL;
@@ -959,12 +833,6 @@ BOOL GraphicDescriptor::ImpDetectTGA( SvStream&, BOOL )
 
     return bRet;
 }
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 BOOL GraphicDescriptor::ImpDetectPSD( SvStream& rStm, BOOL bExtendedInfo )
 {
@@ -1018,12 +886,6 @@ BOOL GraphicDescriptor::ImpDetectPSD( SvStream& rStm, BOOL bExtendedInfo )
     return bRet;
 }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 BOOL GraphicDescriptor::ImpDetectEPS( SvStream& rStm, BOOL )
 {
     // es wird die EPS mit Vorschaubild Variante und die Extensionuebereinstimmung
@@ -1049,12 +911,6 @@ BOOL GraphicDescriptor::ImpDetectEPS( SvStream& rStm, BOOL )
         return FALSE;
 }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 BOOL GraphicDescriptor::ImpDetectDXF( SvStream&, BOOL )
 {
     BOOL bRet = aPathExt.CompareToAscii( "dxf", 3 ) == COMPARE_EQUAL;
@@ -1064,12 +920,6 @@ BOOL GraphicDescriptor::ImpDetectDXF( SvStream&, BOOL )
     return bRet;
 }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 BOOL GraphicDescriptor::ImpDetectMET( SvStream&, BOOL )
 {
     BOOL bRet = aPathExt.CompareToAscii( "met", 3 ) == COMPARE_EQUAL;
@@ -1078,13 +928,6 @@ BOOL GraphicDescriptor::ImpDetectMET( SvStream&, BOOL )
 
     return bRet;
 }
-
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 BOOL GraphicDescriptor::ImpDetectPCT( SvStream& rStm, BOOL )
 {
@@ -1112,13 +955,6 @@ BOOL GraphicDescriptor::ImpDetectPCT( SvStream& rStm, BOOL )
     return bRet;
 }
 
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 BOOL GraphicDescriptor::ImpDetectSGF( SvStream& rStm, BOOL )
 {
     BOOL bRet = FALSE;
@@ -1142,13 +978,6 @@ BOOL GraphicDescriptor::ImpDetectSGF( SvStream& rStm, BOOL )
     return bRet;
 }
 
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 BOOL GraphicDescriptor::ImpDetectSGV( SvStream&, BOOL )
 {
     BOOL bRet = aPathExt.CompareToAscii( "sgv", 3 ) == COMPARE_EQUAL;
@@ -1157,13 +986,6 @@ BOOL GraphicDescriptor::ImpDetectSGV( SvStream&, BOOL )
 
     return bRet;
 }
-
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 BOOL GraphicDescriptor::ImpDetectSVM( SvStream& rStm, BOOL bExtendedInfo )
 {
@@ -1238,13 +1060,6 @@ BOOL GraphicDescriptor::ImpDetectSVM( SvStream& rStm, BOOL bExtendedInfo )
     return bRet;
 }
 
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 BOOL GraphicDescriptor::ImpDetectWMF( SvStream&, BOOL )
 {
     BOOL bRet = aPathExt.CompareToAscii( "wmf",3 ) == COMPARE_EQUAL;
@@ -1254,12 +1069,6 @@ BOOL GraphicDescriptor::ImpDetectWMF( SvStream&, BOOL )
     return bRet;
 }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 BOOL GraphicDescriptor::ImpDetectEMF( SvStream&, BOOL )
 {
     BOOL bRet = aPathExt.CompareToAscii( "emf", 3 ) == COMPARE_EQUAL;
@@ -1268,12 +1077,6 @@ BOOL GraphicDescriptor::ImpDetectEMF( SvStream&, BOOL )
 
     return bRet;
 }
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 String GraphicDescriptor::GetImportFormatShortName( sal_uInt16 nFormat )
 {

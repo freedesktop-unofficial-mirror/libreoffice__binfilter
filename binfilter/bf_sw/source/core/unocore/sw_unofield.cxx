@@ -1000,9 +1000,7 @@ OUString SwXFieldMaster::LocalizeFormula(
     }
     return rFormula;
 }
-/******************************************************************
- *
- ******************************************************************/
+
 struct SwFieldProperties_Impl
 {
     String      sPar1;
@@ -2122,9 +2120,7 @@ const SwField*  SwXTextField::GetField() const
         return  pFmtFld->GetFld();
     return 0;
 }
-/******************************************************************
- *
- ******************************************************************/
+
 /******************************************************************
  * SwXTextFieldMasters
  ******************************************************************/
@@ -2352,10 +2348,6 @@ sal_Bool SwXTextFieldMasters::hasElements(void) throw( uno::RuntimeException )
         throw uno::RuntimeException();
     return sal_True;
 }
-
-/******************************************************************
- *
- ******************************************************************/
 
 OUString SwXTextFieldTypes::getImplementationName(void) throw( RuntimeException )
 {

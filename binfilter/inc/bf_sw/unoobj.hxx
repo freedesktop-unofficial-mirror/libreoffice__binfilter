@@ -169,9 +169,6 @@ class UnoActionRemoveContext
         ~UnoActionRemoveContext();
 };
 
-/******************************************************************************
- *
- ******************************************************************************/
 typedef ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextRange > * XTextRangeRefPtr;
 SV_DECL_PTRARR(XTextRangeArr, XTextRangeRefPtr, 4, 4)
 

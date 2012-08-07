@@ -33,9 +33,6 @@ namespace binfilter {
 
 struct SfxItemPropertyMap;
 class SfxItemSet;
-/******************************************************************************
- *
- ******************************************************************************/
 
 class SwXTextDocument;
 class SwSearchProperties_Impl;

@@ -97,9 +97,7 @@ sal_Bool lcl_AnyToBool(uno::Any rVal) throw(IllegalArgumentException)
         throw IllegalArgumentException();
     return bRet;
 }
-/******************************************************************************
- *
- ******************************************************************************/
+
 SwTOXMark* lcl_GetMark(SwTOXType* pType, const SwTOXMark* pOwnMark)
 {
     SwClientIter aIter(*pType);

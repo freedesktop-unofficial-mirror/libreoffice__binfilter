@@ -37,9 +37,7 @@ namespace binfilter {
 class SdrMarkList;
 class SdrView;
 class SwDoc;
-/******************************************************************************
- *
- ******************************************************************************/
+
 class SwFmDrawPage : public SvxFmDrawPage
 {
     SdrPageView*        pPageView;

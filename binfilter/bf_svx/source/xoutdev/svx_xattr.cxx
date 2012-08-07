@@ -3006,22 +3006,10 @@ const XHatch& XFillHatchItem::GetValue() const
 /*N*/   return new XFormTextStyleItem(rIn);
 /*N*/ }
 
-/*************************************************************************
-|*
-|*
-|*
-\*************************************************************************/
-
 /*N*/ USHORT XFormTextStyleItem::GetValueCount() const
 /*N*/ {
 /*N*/   return 5;
 /*N*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\*************************************************************************/
 
 // #FontWork#
 /*N*/ bool XFormTextStyleItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
@@ -3029,12 +3017,6 @@ const XHatch& XFillHatchItem::GetValue() const
 /*N*/   rVal <<= (sal_Int32)GetValue();
 /*N*/   return true;
 /*N*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\*************************************************************************/
 
 // #FontWork#
 /*N*/ bool XFormTextStyleItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
@@ -3095,22 +3077,10 @@ const XHatch& XFillHatchItem::GetValue() const
 /*N*/   return new XFormTextAdjustItem(rIn);
 /*N*/ }
 
-/*************************************************************************
-|*
-|*
-|*
-\*************************************************************************/
-
 /*N*/ USHORT XFormTextAdjustItem::GetValueCount() const
 /*N*/ {
 /*N*/   return 4;
 /*N*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\*************************************************************************/
 
 // #FontWork#
 /*N*/ bool XFormTextAdjustItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
@@ -3118,12 +3088,6 @@ const XHatch& XFillHatchItem::GetValue() const
 /*N*/   rVal <<= (sal_Int32)GetValue();
 /*N*/   return true;
 /*N*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\*************************************************************************/
 
 // #FontWork#
 /*N*/ bool XFormTextAdjustItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
@@ -3383,23 +3347,10 @@ const XHatch& XFillHatchItem::GetValue() const
 /*N*/   return new XFormTextShadowItem(rIn);
 /*N*/ }
 
-
-/*************************************************************************
-|*
-|*
-|*
-\*************************************************************************/
-
 /*N*/ USHORT XFormTextShadowItem::GetValueCount() const
 /*N*/ {
 /*N*/   return 3;
 /*N*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\*************************************************************************/
 
 // #FontWork#
 /*N*/ bool XFormTextShadowItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
@@ -3407,12 +3358,6 @@ const XHatch& XFillHatchItem::GetValue() const
 /*N*/   rVal <<= (sal_Int32)GetValue();
 /*N*/   return true;
 /*N*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\*************************************************************************/
 
 // #FontWork#
 /*N*/ bool XFormTextShadowItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
@@ -3621,23 +3566,10 @@ const XHatch& XFillHatchItem::GetValue() const
 /*N*/   return new XFormTextStdFormItem(rIn);
 /*N*/ }
 
-
-/*************************************************************************
-|*
-|*
-|*
-\*************************************************************************/
-
 /*N*/ USHORT XFormTextStdFormItem::GetValueCount() const
 /*N*/ {
 /*N*/   return 3;
 /*N*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\*************************************************************************/
 
 // #FontWork#
 /*N*/ bool XFormTextStdFormItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
@@ -3645,12 +3577,6 @@ const XHatch& XFillHatchItem::GetValue() const
 /*N*/   rVal <<= (sal_Int32)GetValue();
 /*N*/   return true;
 /*N*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\*************************************************************************/
 
 // #FontWork#
 /*N*/ bool XFormTextStdFormItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )

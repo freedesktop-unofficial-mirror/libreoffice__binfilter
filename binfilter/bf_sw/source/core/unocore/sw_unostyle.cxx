@@ -116,9 +116,7 @@ using namespace ::com::sun::star::container;
 using ::com::sun::star::frame::XModel;
 
 using rtl::OUString;
-/******************************************************************************
- *
- ******************************************************************************/
+
 //convert FN_... to RES_ in header and footer itemset
 sal_uInt16 lcl_ConvertFNToRES(sal_uInt16 nFNId)
 {
@@ -951,9 +949,7 @@ SwXStyle*   SwXStyleFamily::_FindStyle(const String& rStyleName)const
     }
     return 0;
 }
-/******************************************************************
- *
- ******************************************************************/
+
 class SwStyleProperties_Impl
 {
     const SfxItemPropertyMap*   _pMap;
@@ -1064,10 +1060,6 @@ void SwStyleProperties_Impl::GetProperty( const OUString &rPropertyName, const R
 {
     rAny = rxPropertySet->getPropertyValue( rPropertyName );
 }
-
-/******************************************************************
- *
- ******************************************************************/
 
 const Sequence< sal_Int8 > & SwXStyle::getUnoTunnelId()
 {

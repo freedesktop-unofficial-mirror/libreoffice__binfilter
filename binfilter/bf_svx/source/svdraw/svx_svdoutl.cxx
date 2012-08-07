@@ -46,12 +46,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 /*N*/ void SdrOutliner::SetTextObj( const SdrTextObj* pObj )
 /*N*/ {
 /*N*/   if( pObj && pObj != pTextObj )
@@ -79,21 +73,11 @@ namespace binfilter {
 /*N*/   pTextObj = pObj;
 /*N*/ }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 /*N*/ void SdrOutliner::SetTextObjNoInit( const SdrTextObj* pObj )
 /*N*/ {
 /*N*/   pTextObj = pObj;
 /*N*/ }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 /*N*/ XubString SdrOutliner::CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
 /*N*/                                      Color*& rpTxtColor, Color*& rpFldColor)
 /*N*/ {

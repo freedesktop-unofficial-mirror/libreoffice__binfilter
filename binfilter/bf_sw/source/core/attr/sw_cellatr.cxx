@@ -41,11 +41,6 @@ namespace binfilter {
 
 //TYPEINIT1( SwFmt, SwClient ); //rtti fuer SwFmt
 
-/*************************************************************************
-|*
-*************************************************************************/
-
-
 /*N*/ SwTblBoxNumFormat::SwTblBoxNumFormat( UINT32 nFormat, BOOL bFlag )
 /*N*/   : SfxUInt32Item( RES_BOXATR_FORMAT, nFormat ), bAuto( bFlag )
 /*N*/ {
@@ -64,13 +59,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   return new SwTblBoxNumFormat( GetValue(), bAuto );
 /*N*/ }
-
-
-/*************************************************************************
-|*
-*************************************************************************/
-
-
 
 /*N*/ SwTblBoxFormula::SwTblBoxFormula( const String& rFormula )
 /*N*/   : SfxPoolItem( RES_BOXATR_FORMULA ),

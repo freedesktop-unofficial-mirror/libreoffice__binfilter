@@ -35,10 +35,7 @@ namespace com{namespace sun {namespace star {namespace text
     class XFootnote;
 }}}}
 namespace binfilter {
-/***************************************************
- ***************************************************
- *
- ***************************************************/
+
 class SwDoc;
 class SwFrmFmt;
 class SwXFrame;
@@ -73,9 +70,6 @@ class SwUnoCollection
     SwDoc*          GetDoc() const {return pDoc;}
 };
 
-/******************************************************************************
- *
- ******************************************************************************/
 #define SW_SERVICE_TYPE_TEXTTABLE                       0   //
 #define SW_SERVICE_TYPE_TEXTFRAME                       1   //
 #define SW_SERVICE_TYPE_GRAPHIC                         2

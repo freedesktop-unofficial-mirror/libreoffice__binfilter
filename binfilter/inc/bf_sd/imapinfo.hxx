@@ -27,13 +27,6 @@
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 class SdIMapInfo : public SdrObjUserData, public SfxListener
 {
 

@@ -81,13 +81,6 @@ extern "C" { static void SAL_CALL thisModule() {} }
 /*?*/ {
 /*?*/ }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-
 /*?*/ void SchDLL::LibInit()
 /*?*/ {
 /*?*/   // Das Anlegen des ResMgr ist nur fuer die obige Filter-Registierung
@@ -98,13 +91,6 @@ extern "C" { static void SAL_CALL thisModule() {} }
 /*?*/   SCH_MOD() = (SchModule *) new SchModuleDummy(NULL, TRUE, &SchChartDocShell::Factory() );
 /*?*/ }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-
 /*?*/ void SchDLL::LibExit()
 /*?*/ {
 /*?*/   FreeLibSch();
@@ -112,13 +98,6 @@ extern "C" { static void SAL_CALL thisModule() {} }
 /*?*/   // destroy the dummy-module with Object-Factory-Pointer
 /*?*/   DELETEZ( SCH_MOD() );
 /*?*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 
 /*N*/ void SchDLL::Update( SvInPlaceObjectRef aIPObj, SchMemChart* pData, OutputDevice* pOut )
 /*N*/ {
@@ -132,13 +111,6 @@ extern "C" { static void SAL_CALL thisModule() {} }
 /*N*/   }
 /*N*/ }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-
 /*N*/ SchMemChart* SchDLL::GetChartData (SvInPlaceObjectRef aIPObj)
 /*N*/ {
 /*N*/   SchMemChart* (__LOADONCALLAPI*fp)(SvInPlaceObjectRef);
@@ -149,12 +121,6 @@ extern "C" { static void SAL_CALL thisModule() {} }
 /*N*/              ? fp (aIPObj)
 /*N*/              : 0;
 /*N*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 /*N*/ SchMemChart* SchDLL::NewMemChart (short nCols, short nRows)
 /*N*/ {

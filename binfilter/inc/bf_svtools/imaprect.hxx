@@ -31,12 +31,6 @@ class Fraction;
 namespace binfilter
 {
 
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
-
 class  IMapRectangleObject : public IMapObject
 {
     Rectangle           aRect;

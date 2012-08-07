@@ -42,12 +42,6 @@ class SwFmtCol;
 class SwDocShell;
 class SwNumRule;
 
-
-/******************************************************************************
- *
- ******************************************************************************/
-
-
 class SwXFootnoteProperties : public cppu::WeakAggImplHelper2
 <
     ::com::sun::star::beans::XPropertySet,

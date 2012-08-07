@@ -116,12 +116,6 @@ void IMapObject::Read( SvStream& rIStm, const String& rBaseURL )
     delete pCompat;
 }
 
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
-
 BOOL IMapObject::IsEqual( const IMapObject& rEqObj )
 {
     return ( ( aURL == rEqObj.aURL ) &&
@@ -131,11 +125,6 @@ BOOL IMapObject::IsEqual( const IMapObject& rEqObj )
              ( aName == rEqObj.aName ) &&
              ( bActive == rEqObj.bActive ) );
 }
-
-
-/******************************************************************************/
-/******************************************************************************/
-/******************************************************************************/
 
 IMapRectangleObject::IMapRectangleObject( const Rectangle& rRect,
                                           const String& rURL,
@@ -149,13 +138,6 @@ IMapRectangleObject::IMapRectangleObject( const Rectangle& rRect,
 {
     ImpConstruct( rRect, bPixelCoords );
 }
-
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
 
 void IMapRectangleObject::ImpConstruct( const Rectangle& rRect, BOOL bPixel )
 {
@@ -213,13 +195,6 @@ BOOL IMapRectangleObject::IsHit( const Point& rPoint ) const
     return aRect.IsInside( rPoint );
 }
 
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
-
 Rectangle IMapRectangleObject::GetRectangle( BOOL bPixelCoords ) const
 {
     Rectangle   aNewRect;
@@ -231,13 +206,6 @@ Rectangle IMapRectangleObject::GetRectangle( BOOL bPixelCoords ) const
 
     return aNewRect;
 }
-
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
 
 void IMapRectangleObject::Scale( const Fraction& rFracX, const Fraction& rFracY )
 {
@@ -253,22 +221,10 @@ void IMapRectangleObject::Scale( const Fraction& rFracX, const Fraction& rFracY 
     aRect = Rectangle( aTL, aBR );
 }
 
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
-
 BOOL IMapRectangleObject::IsEqual( const IMapRectangleObject& rEqObj )
 {
     return ( IMapObject::IsEqual( rEqObj ) && ( aRect == rEqObj.aRect ) );
 }
-
-
-/******************************************************************************/
-/******************************************************************************/
-/******************************************************************************/
 
 IMapCircleObject::IMapCircleObject( const Point& rCenter, ULONG nCircleRadius,
                                     const String& rURL,
@@ -282,13 +238,6 @@ IMapCircleObject::IMapCircleObject( const Point& rCenter, ULONG nCircleRadius,
 {
     ImpConstruct( rCenter, nCircleRadius, bPixelCoords );
 }
-
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
 
 void IMapCircleObject::ImpConstruct( const Point& rCenter, ULONG nRad, BOOL bPixel )
 {
@@ -371,13 +320,6 @@ BOOL IMapCircleObject::IsHit( const Point& rPoint ) const
     return bRet;
 }
 
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
-
 Point IMapCircleObject::GetCenter( BOOL bPixelCoords ) const
 {
     Point aNewPoint;
@@ -389,13 +331,6 @@ Point IMapCircleObject::GetCenter( BOOL bPixelCoords ) const
 
     return aNewPoint;
 }
-
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
 
 ULONG IMapCircleObject::GetRadius( BOOL bPixelCoords ) const
 {
@@ -409,13 +344,6 @@ ULONG IMapCircleObject::GetRadius( BOOL bPixelCoords ) const
     return nNewRadius;
 }
 
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
-
 Rectangle IMapCircleObject::GetBoundRect() const
 {
     long nWidth = nRadius << 1;
@@ -423,13 +351,6 @@ Rectangle IMapCircleObject::GetBoundRect() const
     return Rectangle( Point(  aCenter.X() - nRadius, aCenter.Y() - nRadius ),
                       Size( nWidth, nWidth ) );
 }
-
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
 
 void IMapCircleObject::Scale( const Fraction& rFracX, const Fraction& rFracY )
 {
@@ -446,13 +367,6 @@ void IMapCircleObject::Scale( const Fraction& rFracX, const Fraction& rFracY )
     nRadius = ( nRadius * aAverage.GetNumerator() ) / aAverage.GetDenominator();
 }
 
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
-
 BOOL IMapCircleObject::IsEqual( const IMapCircleObject& rEqObj )
 {
     return ( IMapObject::IsEqual( rEqObj ) &&
@@ -460,10 +374,6 @@ BOOL IMapCircleObject::IsEqual( const IMapCircleObject& rEqObj )
              ( nRadius == rEqObj.nRadius ) );
 }
 
-
-/******************************************************************************/
-/******************************************************************************/
-/******************************************************************************/
 IMapPolygonObject::IMapPolygonObject( const Polygon& rPoly,
                                       const String& rURL,
                                       const String& rAltText,
@@ -477,13 +387,6 @@ IMapPolygonObject::IMapPolygonObject( const Polygon& rPoly,
 {
     ImpConstruct( rPoly, bPixelCoords );
 }
-
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
 
 void IMapPolygonObject::ImpConstruct( const Polygon& rPoly, BOOL bPixel )
 {
@@ -550,13 +453,6 @@ BOOL IMapPolygonObject::IsHit( const Point& rPoint ) const
     return aPoly.IsInside( rPoint );
 }
 
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
-
 Polygon IMapPolygonObject::GetPolygon( BOOL bPixelCoords ) const
 {
     Polygon aNewPoly;
@@ -568,13 +464,6 @@ Polygon IMapPolygonObject::GetPolygon( BOOL bPixelCoords ) const
 
     return aNewPoly;
 }
-
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
 
 void IMapPolygonObject::Scale( const Fraction& rFracX, const Fraction& rFracY )
 {
@@ -607,13 +496,6 @@ void IMapPolygonObject::Scale( const Fraction& rFracX, const Fraction& rFracY )
     }
 }
 
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
-
 BOOL IMapPolygonObject::IsEqual( const IMapPolygonObject& rEqObj )
 {
     BOOL bRet = FALSE;
@@ -643,11 +525,6 @@ BOOL IMapPolygonObject::IsEqual( const IMapPolygonObject& rEqObj )
 
     return bRet;
 }
-
-
-/******************************************************************************/
-/******************************************************************************/
-/******************************************************************************/
 
 /******************************************************************************
 |*
@@ -865,12 +742,6 @@ void ImageMap::InsertIMapObject( const IMapObject& rIMapObject )
         break;
     }
 }
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
 
 void ImageMap::Scale( const Fraction& rFracX, const Fraction& rFracY )
 {

@@ -23,12 +23,6 @@
 #include <bf_svtools/eitem.hxx>
 namespace binfilter {
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 class XFillBmpPosItem : public SfxEnumItem
 {
 public:

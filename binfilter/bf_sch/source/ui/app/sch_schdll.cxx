@@ -81,13 +81,6 @@ namespace binfilter {
 /*N*/   (*ppShlPtr) = NULL;
 /*N*/ }
 
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 /*N*/ extern_c void __LOADONCALLAPI SchUpdate( SvInPlaceObjectRef aIPObj,
 /*N*/                                        SchMemChart* pData, OutputDevice* /*pOut*/ )
 /*N*/ {
@@ -125,12 +118,6 @@ namespace binfilter {
 /*N*/   aIPObj->SendViewChanged();
 /*N*/ }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
 /*N*/ extern_c SchMemChart* __LOADONCALLAPI SchGetChartData (SvInPlaceObjectRef aIPObj)
 /*N*/ {
 /*N*/   SchChartDocShellRef aSchChartDocShellRef = &aIPObj;
@@ -153,12 +140,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else return 0;
 /*N*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 /*N*/ extern_c SchMemChart* __LOADONCALLAPI SchNewMemChartXY (short nCols, short nRows)
 /*N*/ {
