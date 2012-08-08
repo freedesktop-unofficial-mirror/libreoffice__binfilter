@@ -24,7 +24,7 @@
 #include <com/sun/star/uno/Any.hxx>
 #include <com/sun/star/uno/Sequence.hxx>
 
-#include <tools/list.hxx>
+#include <bf_tools/list.hxx>
 #include <tools/stream.hxx>
 
 namespace binfilter

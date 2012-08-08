@@ -27,7 +27,7 @@
  ************************************************************************/
 
 #include <tools/debug.hxx>
-#include <tools/list.hxx>
+#include <bf_tools/list.hxx>
 #include <vcl/svapp.hxx>
 #include <vcl/settings.hxx>
 #include <unotools/charclass.hxx>

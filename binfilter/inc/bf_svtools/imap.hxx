@@ -24,7 +24,7 @@
 
 
 #include <bf_tools/string.hxx>
-#include <tools/list.hxx>
+#include <bf_tools/list.hxx>
 #include <tools/stream.hxx>
 
 class Point;

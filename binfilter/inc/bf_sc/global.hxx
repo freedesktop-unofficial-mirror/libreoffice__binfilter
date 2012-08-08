@@ -24,7 +24,7 @@
 #include <bf_tools/string.hxx>
 
 #include <i18npool/lang.h>
-#include <tools/list.hxx>
+#include <bf_tools/list.hxx>
 #include <tools/stream.hxx>
 #include <osl/endian.h>
 namespace com { namespace sun { namespace star { namespace lang {

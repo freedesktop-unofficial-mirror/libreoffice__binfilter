@@ -36,7 +36,7 @@
 
 #include <bf_svtools/whiter.hxx>
 
-#include <tools/list.hxx>
+#include <bf_tools/list.hxx>
 
 #include "scene3d.hxx"
 

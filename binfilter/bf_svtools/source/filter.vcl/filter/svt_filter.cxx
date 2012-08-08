@@ -24,7 +24,7 @@
 #include <comphelper/processfactory.hxx>
 #include <ucbhelper/content.hxx>
 #include <cppuhelper/implbase1.hxx>
-#include <tools/list.hxx>
+#include <bf_tools/list.hxx>
 #include <tools/urlobj.hxx>
 #include <vcl/salctype.hxx>
 #include <vcl/pngread.hxx>

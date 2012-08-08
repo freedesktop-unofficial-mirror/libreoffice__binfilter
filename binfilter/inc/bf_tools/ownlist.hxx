@@ -20,7 +20,7 @@
 #ifndef _TOOLS_OWNLIST_HXX
 #define _TOOLS_OWNLIST_HXX
 
-#include <tools/list.hxx>
+#include <bf_tools/list.hxx>
 
 namespace binfilter {
 /*************************************************************************

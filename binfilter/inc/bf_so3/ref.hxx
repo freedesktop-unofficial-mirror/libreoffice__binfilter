@@ -19,7 +19,7 @@
 #ifndef _BF_REF_HXX
 #define _BF_REF_HXX
 
-#include <tools/list.hxx>
+#include <bf_tools/list.hxx>
 #include <vector>
 
  /************************** S v R e f L i s t ****************************/

@@ -31,7 +31,7 @@
 #include <sot/object.hxx>
 #include <boost/shared_ptr.hpp>
 #include <tools/debug.hxx>
-#include <tools/list.hxx>
+#include <bf_tools/list.hxx>
 #include <vcl/graph.hxx>
 #include <vcl/virdev.hxx>
 #include <tools/poly.hxx>
