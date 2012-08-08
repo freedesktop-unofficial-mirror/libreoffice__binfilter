@@ -779,6 +779,17 @@ void Container::ImpInsert( void* p, CBlock* pBlock, sal_uInt16 nIndex )
 |*
 *************************************************************************/
 
+void Container::Insert( void* p )
+{
+    ImpInsert( p, pCurBlock, nCurIndex );
+}
+
+/*************************************************************************
+|*
+|*    Container::Insert()
+|*
+*************************************************************************/
+
 void Container::Insert( void* p, sal_uIntPtr nIndex )
 {
     if ( nCount <= nIndex )
@@ -875,6 +886,21 @@ void* Container::ImpRemove( CBlock* pBlock, sal_uInt16 nIndex )
 
     // Und den Pointer zurueckgeben, der entfernt wurde
     return pOld;
+}
+
+/*************************************************************************
+|*
+|*    Container::Remove()
+|*
+*************************************************************************/
+
+void* Container::Remove()
+{
+    // Wenn kein Item vorhanden ist, NULL zurueckgeben
+    if ( !nCount )
+        return NULL;
+    else
+        return ImpRemove( pCurBlock, nCurIndex );
 }
 
 /*************************************************************************
