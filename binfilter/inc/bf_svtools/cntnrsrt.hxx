@@ -21,7 +21,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#include <tools/contnr.hxx>
+#include <bf_tools/contnr.hxx>
 
 namespace binfilter {
 

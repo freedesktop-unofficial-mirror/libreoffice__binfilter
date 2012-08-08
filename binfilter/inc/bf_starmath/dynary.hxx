@@ -21,7 +21,7 @@
 #define _DYNARY_HXX
 
 #include <tools/solar.h>
-#include <tools/contnr.hxx>
+#include <bf_tools/contnr.hxx>
 
 // ------------
 // - DynArray -
@@ -29,7 +29,7 @@
 
 #define DYNARRAY_ENTRY_NOTFOUND     CONTAINER_ENTRY_NOTFOUND
 
-class DynArray : private Container
+class DynArray : private binfilter::Container
 {
 public:
                 using Container::SetSize;

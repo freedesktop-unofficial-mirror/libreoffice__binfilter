@@ -28,7 +28,7 @@ class SvStream;
 namespace binfilter {
 class SdrObject;
 }//end of namespace binfilter
-#include <tools/contnr.hxx>
+#include <bf_tools/contnr.hxx>
 #include <tools/gen.hxx>
 namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////

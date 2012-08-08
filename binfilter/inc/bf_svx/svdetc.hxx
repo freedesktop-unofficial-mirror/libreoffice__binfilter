@@ -24,7 +24,7 @@
 
 #include <bf_tools/string.hxx>
 
-#include <tools/contnr.hxx>
+#include <bf_tools/contnr.hxx>
 
 #include <vcl/outdev.hxx>
 

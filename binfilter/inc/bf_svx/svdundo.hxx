@@ -22,7 +22,7 @@
 
 #include <bf_svtools/bf_solar.h>
 #include <bf_svtools/undo.hxx>
-#include <tools/contnr.hxx>
+#include <bf_tools/contnr.hxx>
 #include <tools/gen.hxx>
 #include <bf_svx/svdtypes.hxx> // fuer enum RepeatFuncts
 #include <tools/debug.hxx>

@@ -26,7 +26,7 @@
 
 #include <vcl/pointr.hxx>
 
-#include <tools/contnr.hxx>
+#include <bf_tools/contnr.hxx>
 
 #include <bf_svx/svdoedge.hxx>
 

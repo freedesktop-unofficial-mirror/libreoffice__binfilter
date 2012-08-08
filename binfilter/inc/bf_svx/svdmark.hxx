@@ -22,7 +22,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#include <tools/contnr.hxx>
+#include <bf_tools/contnr.hxx>
 
 #include <bf_tools/string.hxx>
 class Rectangle;

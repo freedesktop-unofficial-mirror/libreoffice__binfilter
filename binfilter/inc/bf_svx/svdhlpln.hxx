@@ -25,7 +25,7 @@
 #include <tools/gen.hxx>
 
 
-#include <tools/contnr.hxx>
+#include <bf_tools/contnr.hxx>
 class OutputDevice;
 namespace binfilter {
 
