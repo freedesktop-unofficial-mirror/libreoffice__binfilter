@@ -19,8 +19,6 @@
 #ifndef _SVX_WRITINGMODEITEM_HXX
 #define _SVX_WRITINGMODEITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <com/sun/star/text/WritingMode.hpp>
 
 #include <bf_svtools/intitem.hxx>

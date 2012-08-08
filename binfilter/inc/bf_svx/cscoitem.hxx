@@ -19,8 +19,6 @@
 #ifndef _SVX_CSCOITEM_HXX
 #define _SVX_CSCOITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <bf_tools/string.hxx>
 #include <bf_svx/colritem.hxx>
 namespace binfilter {

@@ -17,9 +17,6 @@
  *   the License at http://www.apache.org/licenses/LICENSE-2.0 .
  */
 
-//_________________________________________________________________________________________________________________
-//  includes
-//_________________________________________________________________________________________________________________
 #include <bf_svtools/cmdoptions.hxx>
 #include <unotools/configmgr.hxx>
 #include <unotools/configitem.hxx>
@@ -46,10 +43,6 @@ using namespace ::com::sun::star::beans ;
 
 namespace binfilter
 {
-
-//_________________________________________________________________________________________________________________
-//  const
-//_________________________________________________________________________________________________________________
 
 #define ROOTNODE_CMDOPTIONS                             OUString(RTL_CONSTASCII_USTRINGPARAM("Office.Commands/Execute"  ))
 #define PATHDELIMITER                                   OUString(RTL_CONSTASCII_USTRINGPARAM("/"                        ))
@@ -222,10 +215,6 @@ class SvtCommandOptions_Impl : public ConfigItem
         SvtCmdOptions  m_aDisabledCommands;
         SvtFrameVector m_lFrames;
 };
-
-//_________________________________________________________________________________________________________________
-//  definitions
-//_________________________________________________________________________________________________________________
 
 //*****************************************************************************************************************
 //  constructor

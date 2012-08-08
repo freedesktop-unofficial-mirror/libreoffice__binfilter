@@ -21,8 +21,6 @@
 
 #include <bf_svtools/bf_solar.h>
 
-// include ---------------------------------------------------------------
-
 #include <vcl/field.hxx>
 namespace binfilter {
 

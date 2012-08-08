@@ -19,8 +19,6 @@
 #ifndef _SVX_ULSPITEM_HXX
 #define _SVX_ULSPITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/poolitem.hxx>
 #include <bf_svx/svxids.hrc>
 

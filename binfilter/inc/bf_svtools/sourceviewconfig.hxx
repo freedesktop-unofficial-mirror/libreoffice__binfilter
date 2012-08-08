@@ -19,7 +19,6 @@
 #ifndef _SVTOOLS_SOURCEVIEWCONFIG_HXX
 #define _SVTOOLS_SOURCEVIEWCONFIG_HXX
 
-// include ---------------------------------------------------------------
 #include <bf_svtools/brdcst.hxx>
 #include <bf_svtools/lstner.hxx>
 #include <osl/mutex.hxx>

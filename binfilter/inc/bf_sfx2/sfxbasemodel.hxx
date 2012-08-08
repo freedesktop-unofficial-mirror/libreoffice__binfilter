@@ -20,9 +20,6 @@
 #ifndef _SFX_SFXBASEMODEL_HXX_
 #define _SFX_SFXBASEMODEL_HXX_
 
-//________________________________________________________________________________________________________
-//  include of other projects
-//________________________________________________________________________________________________________
 #include <com/sun/star/lang/XTypeProvider.hpp>
 #include <com/sun/star/container/XChild.hpp>
 #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
@@ -41,16 +38,10 @@
 #include <tools/link.hxx>
 #include <com/sun/star/document/XViewDataSupplier.hpp>
 
-//________________________________________________________________________________________________________
-//  include of my own project
-//________________________________________________________________________________________________________
 #include <bf_svtools/lstner.hxx>
 #include <tools/debug.hxx> //for strip
 
 namespace binfilter {
-//________________________________________________________________________________________________________
-//  defines
-//________________________________________________________________________________________________________
 
 // Some defines to write better code :-)
 #define XCHILD                  ::com::sun::star::container::XChild

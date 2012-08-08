@@ -19,8 +19,6 @@
 #ifndef _SVX_POSTATTR_HXX
 #define _SVX_POSTATTR_HXX
 
-// include ---------------------------------------------------------------
-
 namespace binfilter {
 
 // class SvxPostItAuthorItem ---------------------------------------------

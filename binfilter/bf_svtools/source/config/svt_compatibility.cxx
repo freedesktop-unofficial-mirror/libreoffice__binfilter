@@ -17,9 +17,6 @@
  *   the License at http://www.apache.org/licenses/LICENSE-2.0 .
  */
 
-//_________________________________________________________________________________________________________________
-//  includes
-//_________________________________________________________________________________________________________________
 #include <bf_svtools/compatibility.hxx>
 #include <unotools/configmgr.hxx>
 #include <unotools/configitem.hxx>
@@ -47,10 +44,6 @@ using namespace ::com::sun::star::beans;
 
 namespace binfilter
 {
-
-//_________________________________________________________________________________________________________________
-//  const
-//_________________________________________________________________________________________________________________
 
 #define ROOTNODE_OPTIONS        OUString( RTL_CONSTASCII_USTRINGPARAM( "Office.Compatibility/" ) )
 #define PATHDELIMITER           OUString( RTL_CONSTASCII_USTRINGPARAM( "/" ) )
@@ -335,10 +328,6 @@ class SvtCompatibilityOptions_Impl : public ConfigItem
         SvtCompatibility        m_aOptions;
         SvtCompatibilityEntry   m_aDefOptions;
 };
-
-//_________________________________________________________________________________________________________________
-//  definitions
-//_________________________________________________________________________________________________________________
 
 //*****************************************************************************************************************
 //  constructor

@@ -19,8 +19,6 @@
 #ifndef _SVX_BOLNITEM_HXX
 #define _SVX_BOLNITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/poolitem.hxx>
 namespace binfilter {
 

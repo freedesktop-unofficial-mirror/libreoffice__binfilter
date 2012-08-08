@@ -19,8 +19,6 @@
 #ifndef _SVX_ALGITEM_HXX
 #define _SVX_ALGITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <bf_svx/svxids.hrc>
 
 #include <bf_svtools/poolitem.hxx>

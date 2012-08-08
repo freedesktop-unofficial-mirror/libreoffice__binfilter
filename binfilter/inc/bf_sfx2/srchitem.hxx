@@ -19,7 +19,6 @@
 #ifndef _SFX_SRCHITEM_HXX
 #define _SFX_SRCHITEM_HXX
 
-// include ---------------------------------------------------------------
 #include <com/sun/star/util/XSearchDescriptor.hpp>
 #include <com/sun/star/util/SearchOptions.hpp>
 #include <com/sun/star/util/SearchFlags.hpp>

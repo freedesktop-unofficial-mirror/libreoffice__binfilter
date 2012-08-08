@@ -27,8 +27,6 @@
 #ifndef _SFXSIDS_HRC
 #define _SFXSIDS_HRC
 
-// include ---------------------------------------------------------------
-
 #ifndef _SOLAR_HRC
 #include <bf_svtools/solar.hrc>
 #endif

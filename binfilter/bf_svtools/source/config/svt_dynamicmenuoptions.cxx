@@ -17,10 +17,6 @@
  *   the License at http://www.apache.org/licenses/LICENSE-2.0 .
  */
 
-//_________________________________________________________________________________________________________________
-//  includes
-//_________________________________________________________________________________________________________________
-
 #include <bf_svtools/dynamicmenuoptions.hxx>
 #include <bf_svtools/moduleoptions.hxx>
 #include <unotools/configmgr.hxx>
@@ -50,10 +46,6 @@ using namespace ::com::sun::star::beans ;
 
 namespace binfilter
 {
-
-//_________________________________________________________________________________________________________________
-//  const
-//_________________________________________________________________________________________________________________
 
 #define ROOTNODE_MENUS                                  OUString(RTL_CONSTASCII_USTRINGPARAM("Office.Common/Menus/"     ))
 #define PATHDELIMITER                                   OUString(RTL_CONSTASCII_USTRINGPARAM("/"                        ))
@@ -366,10 +358,6 @@ class SvtDynamicMenuOptions_Impl : public ConfigItem
         SvtDynMenu  m_aWizardMenu           ;
         SvtDynMenu  m_aHelpBookmarksMenu    ;
 };
-
-//_________________________________________________________________________________________________________________
-//  definitions
-//_________________________________________________________________________________________________________________
 
 //*****************************************************************************************************************
 //  constructor

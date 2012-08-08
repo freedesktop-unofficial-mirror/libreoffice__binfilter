@@ -30,8 +30,6 @@
 
 #include <bf_svtools/bf_solar.h>
 
-// include ---------------------------------------------------------------
-
 #include <bf_svx/xpoly.hxx>
 #include <bf_svx/xdash.hxx>
 #include <bf_svx/xhatch.hxx>

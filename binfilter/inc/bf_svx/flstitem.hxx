@@ -19,8 +19,6 @@
 #ifndef _SVX_FLSTITEM_HXX
 #define _SVX_FLSTITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/poolitem.hxx>
 #ifndef   ITEMID_FONTLIST
 #define   ITEMID_FONTLIST 0

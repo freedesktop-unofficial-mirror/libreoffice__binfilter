@@ -19,8 +19,6 @@
 #ifndef _SVX_COLRITEM_HXX
 #define _SVX_COLRITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/poolitem.hxx>
 #include <bf_svx/svxids.hrc>
 #include <tools/color.hxx>

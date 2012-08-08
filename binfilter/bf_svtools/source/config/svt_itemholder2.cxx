@@ -19,9 +19,6 @@
 
 #include "itemholder2.hxx"
 
-//-----------------------------------------------
-// includes
-
 #include <comphelper/processfactory.hxx>
 
 #include <com/sun/star/lang/XComponent.hpp>
@@ -51,8 +48,6 @@ namespace css = ::com::sun::star;
 namespace binfilter
 {
 
-//-----------------------------------------------
-// declarations
 
 //-----------------------------------------------
 ItemHolder2::ItemHolder2()

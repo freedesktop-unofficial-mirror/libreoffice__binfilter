@@ -21,8 +21,6 @@
 
 #include <bf_svtools/bf_solar.h>
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/poolitem.hxx>
 #include <bf_svx/svxids.hrc>
 #include <vcl/wall.hxx>

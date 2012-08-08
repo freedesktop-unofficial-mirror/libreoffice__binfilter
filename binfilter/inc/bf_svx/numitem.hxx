@@ -21,8 +21,6 @@
 
 #include <bf_svtools/bf_solar.h>
 
-// include ---------------------------------------------------------------
-
 #include <tools/link.hxx>
 #include <bf_tools/string.hxx>
 #include <bf_svtools/poolitem.hxx>

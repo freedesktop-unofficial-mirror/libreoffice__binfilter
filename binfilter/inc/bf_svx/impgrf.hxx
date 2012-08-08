@@ -19,8 +19,6 @@
 #ifndef _SVX_IMPGRF_HXX
 #define _SVX_IMPGRF_HXX
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/filter.hxx>
 
 namespace binfilter {

@@ -17,9 +17,6 @@
  *   the License at http://www.apache.org/licenses/LICENSE-2.0 .
  */
 
-//_________________________________________________________________________________________________________________
-//  includes
-//_________________________________________________________________________________________________________________
 #include <bf_svtools/startoptions.hxx>
 #include <unotools/configmgr.hxx>
 #include <unotools/configitem.hxx>
@@ -40,10 +37,6 @@ using namespace ::com::sun::star::uno   ;
 
 namespace binfilter
 {
-
-//_________________________________________________________________________________________________________________
-//  const
-//_________________________________________________________________________________________________________________
 
 #define DEFAULT_SHOWINTRO               sal_True
 #define DEFAULT_CONNECTIONURL           OUString()
@@ -146,10 +139,6 @@ class SvtStartOptions_Impl : public ConfigItem
         sal_Bool    m_bShowIntro        ;   /// cache "ShowIntro" of Start section
         OUString    m_sConnectionURL    ;   /// cache "Connection" of Start section
 };
-
-//_________________________________________________________________________________________________________________
-//  definitions
-//_________________________________________________________________________________________________________________
 
 //*****************************************************************************************************************
 //  constructor

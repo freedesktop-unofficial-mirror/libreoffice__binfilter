@@ -19,8 +19,6 @@
 #ifndef _SVX_BRKITEM_HXX
 #define _SVX_BRKITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/eitem.hxx>
 #include <bf_svx/svxenum.hxx>
 #include <bf_svx/svxids.hrc>

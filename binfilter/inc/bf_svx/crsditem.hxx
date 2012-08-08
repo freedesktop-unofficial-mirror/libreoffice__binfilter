@@ -19,8 +19,6 @@
 #ifndef _SVX_CRSDITEM_HXX
 #define _SVX_CRSDITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <vcl/vclenum.hxx>
 #include <bf_svtools/eitem.hxx>
 #include <bf_svx/svxids.hrc>

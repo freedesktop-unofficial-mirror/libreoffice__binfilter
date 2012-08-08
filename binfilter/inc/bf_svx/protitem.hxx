@@ -21,8 +21,6 @@
 
 #include <bf_svtools/bf_solar.h>
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/poolitem.hxx>
 
 namespace rtl

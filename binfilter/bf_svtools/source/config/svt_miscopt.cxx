@@ -58,10 +58,6 @@ using namespace ::com::sun::star;
 namespace binfilter
 {
 
-//_________________________________________________________________________________________________________________
-//  const
-//_________________________________________________________________________________________________________________
-
 #define ASCII_STR(s)                        OUString( RTL_CONSTASCII_USTRINGPARAM(s) )
 #define ROOTNODE_MISC                       ASCII_STR("Office.Common/Misc")
 #define DEFAULT_PLUGINSENABLED              sal_True;
@@ -226,10 +222,6 @@ class SvtMiscOptions_Impl : public ConfigItem
     protected:
         void ImplSetSymbolsStyle( bool bValue, sal_Int16 nSet, const ::rtl::OUString &rName );
 };
-
-//_________________________________________________________________________________________________________________
-//  definitions
-//_________________________________________________________________________________________________________________
 
 static sal_Int16 implSymbolsStyleFromVCL( ULONG nStyle )
 {

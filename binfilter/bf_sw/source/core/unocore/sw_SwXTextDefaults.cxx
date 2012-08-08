@@ -49,7 +49,6 @@ using namespace ::com::sun::star::lang;
 
 using rtl::OUString;
 
-// declarations
 void lcl_setPageDesc(SwDoc*, const uno::Any&, SfxItemSet& ); // from unoobj.cxx
 
 #define C2U(cChar) OUString::createFromAscii(cChar)

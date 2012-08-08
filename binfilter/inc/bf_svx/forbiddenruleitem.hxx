@@ -19,8 +19,6 @@
 #ifndef _SVX_FORBIDDENRULEITEM_HXX
 #define _SVX_FORBIDDENRULEITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/eitem.hxx>
 #include <bf_svx/svxids.hrc>
 namespace binfilter {

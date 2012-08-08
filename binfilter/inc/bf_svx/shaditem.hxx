@@ -19,8 +19,6 @@
 #ifndef _SVX_SHADITEM_HXX
 #define _SVX_SHADITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <tools/color.hxx>
 #include <bf_svtools/eitem.hxx>
 #include <bf_svx/svxenum.hxx>

@@ -19,8 +19,6 @@
 #ifndef _SVX_CLIPFMTITEM_HXX
 #define _SVX_CLIPFMTITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/poolitem.hxx>
 namespace binfilter {
 

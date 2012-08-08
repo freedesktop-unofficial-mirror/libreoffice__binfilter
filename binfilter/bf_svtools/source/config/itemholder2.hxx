@@ -20,9 +20,6 @@
 #ifndef INCLUDED_SVTOOLS_ITEMHOLDER2_HXX_
 #define INCLUDED_SVTOOLS_ITEMHOLDER2_HXX_
 
-//-----------------------------------------------
-// includes
-
 #include "itemholderbase.hxx"
 
 #include <cppuhelper/implbase1.hxx>
@@ -41,8 +38,6 @@
 namespace binfilter
 {
 
-//-----------------------------------------------
-// definitions
 
 class ItemHolder2 : private ItemHolderMutexBase
                   , public  ::cppu::WeakImplHelper1< css::lang::XEventListener >

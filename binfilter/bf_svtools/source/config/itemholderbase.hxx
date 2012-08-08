@@ -20,9 +20,6 @@
 #ifndef INCLUDED_SVTOOLS_ITEMHOLDERBASE_HXX_
 #define INCLUDED_SVTOOLS_ITEMHOLDERBASE_HXX_
 
-//-----------------------------------------------
-// includes
-
 #include <vector>
 
 #include <osl/mutex.hxx>
@@ -32,8 +29,6 @@ namespace binfilter
 
 class Options;
 
-//-----------------------------------------------
-// definitions
 
 struct ItemHolderMutexBase
 {

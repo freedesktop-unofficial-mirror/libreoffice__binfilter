@@ -17,10 +17,6 @@
  *   the License at http://www.apache.org/licenses/LICENSE-2.0 .
  */
 
-//_________________________________________________________________________________________________________________
-//  includes
-//_________________________________________________________________________________________________________________
-
 #include <bf_svtools/extendedsecurityoptions.hxx>
 #include <unotools/configmgr.hxx>
 #include <unotools/configitem.hxx>
@@ -46,10 +42,6 @@ using namespace ::com::sun::star::uno   ;
 
 namespace binfilter
 {
-
-//_________________________________________________________________________________________________________________
-//  const
-//_________________________________________________________________________________________________________________
 
 #define ROOTNODE_SECURITY               OUString(RTL_CONSTASCII_USTRINGPARAM("Office.Security"))
 #define SECURE_EXTENSIONS_SET           OUString(RTL_CONSTASCII_USTRINGPARAM("SecureExtensions"))
@@ -178,10 +170,6 @@ class SvtExtendedSecurityOptions_Impl : public ConfigItem
         sal_Bool                                        m_bROOpenHyperlinkMode;
         ExtensionHashMap                                m_aExtensionHashMap;
 };
-
-//_________________________________________________________________________________________________________________
-//  definitions
-//_________________________________________________________________________________________________________________
 
 //*****************************************************************************************************************
 //  constructor

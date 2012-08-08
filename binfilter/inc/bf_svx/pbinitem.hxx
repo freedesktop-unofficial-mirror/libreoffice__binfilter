@@ -19,8 +19,6 @@
 #ifndef _SVX_PBINITEM_HXX
 #define _SVX_PBINITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/intitem.hxx>
 #include <bf_svx/svxids.hrc>
 namespace binfilter {

@@ -18,7 +18,6 @@
 #ifndef _SVX_FMRESIDS_HRC
 #define _SVX_FMRESIDS_HRC
 
-// include     -----------------------------------------------------------
 #include <bf_svtools/solar.hrc>
 
 // Dialog-Id's -----------------------------------------------------------

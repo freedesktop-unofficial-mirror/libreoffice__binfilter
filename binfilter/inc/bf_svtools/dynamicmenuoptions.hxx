@@ -66,10 +66,6 @@ enum EDynamicMenuType
 
 class SvtDynamicMenuOptions_Impl;
 
-//_________________________________________________________________________________________________________________
-//  declarations
-//_________________________________________________________________________________________________________________
-
 /*-************************************************************************************************************//**
     @short          collect informations about dynamic menus
     @descr          Make it possible to configure dynamic menu structures of menus like "new" or "wizard".

@@ -19,8 +19,6 @@
 #ifndef _SVT_HELPID_HRC
 #define _SVT_HELPID_HRC
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/solar.hrc>
 
 // Help-Ids --------------------------------------------------------------

@@ -17,8 +17,6 @@
  *   the License at http://www.apache.org/licenses/LICENSE-2.0 .
  */
 
-// include ---------------------------------------------------------------
-
 #include <bf_tools/string.hxx>
 #include <bf_svtools/svarray.hxx>
 

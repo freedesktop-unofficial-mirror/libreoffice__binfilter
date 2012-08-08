@@ -18,8 +18,6 @@
 #ifndef _SVX_SVXIDS_HRC
 #define _SVX_SVXIDS_HRC
 
-// include ------------------------------------------------------------------
-
 //#ifndef SVX_LIGHT
 #include <bf_svtools/memberid.hrc>
 //#endif

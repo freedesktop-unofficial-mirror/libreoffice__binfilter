@@ -18,8 +18,6 @@
 #ifndef _SVX_HELPID_HRC
 #define _SVX_HELPID_HRC
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/solar.hrc>
 
 // Help-Ids --------------------------------------------------------------

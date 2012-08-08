@@ -19,8 +19,6 @@
 #ifndef _SVX_FWDTITEM_HXX
 #define _SVX_FWDTITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/poolitem.hxx>
 #ifndef   ITEMID_FONTWIDTH
 #define   ITEMID_FONTWIDTH 0

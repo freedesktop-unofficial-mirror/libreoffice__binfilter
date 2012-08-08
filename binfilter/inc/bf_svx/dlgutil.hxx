@@ -19,7 +19,6 @@
 #ifndef _SVX_DLGUTIL_HXX
 #define _SVX_DLGUTIL_HXX
 
-// include ---------------------------------------------------------------
 #include <vcl/field.hxx>
 #include <bf_svtools/intitem.hxx>
 namespace binfilter {

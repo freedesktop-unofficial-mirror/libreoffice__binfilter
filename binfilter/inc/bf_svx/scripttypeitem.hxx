@@ -19,8 +19,6 @@
 #ifndef _SVX_SCRIPTTYPEITEM_HXX
 #define _SVX_SCRIPTTYPEITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/intitem.hxx>
 #include <bf_svx/svxids.hrc>
 #include <bf_svtools/languageoptions.hxx>

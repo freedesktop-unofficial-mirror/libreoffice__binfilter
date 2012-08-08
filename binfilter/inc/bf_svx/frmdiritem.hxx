@@ -19,8 +19,6 @@
 #ifndef _SVX_FRMDIRITEM_HXX
 #define _SVX_FRMDIRITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/intitem.hxx>
 #include <bf_svx/frmdir.hxx>
 #include <bf_svx/svxids.hrc>

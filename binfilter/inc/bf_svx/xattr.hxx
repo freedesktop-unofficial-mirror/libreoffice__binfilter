@@ -20,8 +20,6 @@
 #define _XATTR_HXX
 namespace binfilter {
 
-// include ---------------------------------------------------------------
-
 class XColorTable;
 
 }//end of namespace binfilter

@@ -19,8 +19,6 @@
 #ifndef _SVX_LANGITEM_HXX
 #define _SVX_LANGITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/eitem.hxx>
 #include <i18npool/lang.h>
 #include <bf_svx/svxids.hrc>

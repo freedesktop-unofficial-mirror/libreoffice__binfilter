@@ -19,8 +19,6 @@
 #ifndef _OFF_APP_HXX
 #define _OFF_APP_HXX
 
-// include ---------------------------------------------------------------
-
 #include <bf_sfx2/app.hxx>
 
 class ResMgr;

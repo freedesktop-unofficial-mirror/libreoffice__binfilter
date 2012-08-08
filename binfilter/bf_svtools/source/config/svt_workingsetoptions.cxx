@@ -17,10 +17,6 @@
  *   the License at http://www.apache.org/licenses/LICENSE-2.0 .
  */
 
-//_________________________________________________________________________________________________________________
-//  includes
-//_________________________________________________________________________________________________________________
-
 #include <bf_svtools/workingsetoptions.hxx>
 #include <unotools/configmgr.hxx>
 #include <unotools/configitem.hxx>
@@ -40,10 +36,6 @@ using namespace ::com::sun::star::uno   ;
 
 namespace binfilter
 {
-
-//_________________________________________________________________________________________________________________
-//  const
-//_________________________________________________________________________________________________________________
 
 #define ROOTNODE_WORKINGSET             OUString(RTL_CONSTASCII_USTRINGPARAM("Office.Common/WorkingSet"))
 #define DEFAULT_WINDOWLIST              Sequence< OUString >()
@@ -137,10 +129,6 @@ class SvtWorkingSetOptions_Impl : public ConfigItem
 
         Sequence< OUString >    m_seqWindowList     ;
 };
-
-//_________________________________________________________________________________________________________________
-//  definitions
-//_________________________________________________________________________________________________________________
 
 //*****************************************************************************************************************
 //  constructor

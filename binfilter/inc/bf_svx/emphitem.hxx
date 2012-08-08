@@ -19,8 +19,6 @@
 #ifndef _SVX_EMPHITEM_HXX
 #define _SVX_EMPTITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <vcl/vclenum.hxx>
 #include <bf_svtools/intitem.hxx>
 #include <bf_svx/svxids.hrc>

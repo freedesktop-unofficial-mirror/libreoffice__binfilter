@@ -21,8 +21,6 @@
 
 #include <bf_svtools/bf_solar.h>
 
-// include ---------------------------------------------------------------
-
 #include <tools/gen.hxx>
 #include <bf_svtools/poolitem.hxx>
 namespace binfilter {

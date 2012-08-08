@@ -17,9 +17,6 @@
  *   the License at http://www.apache.org/licenses/LICENSE-2.0 .
  */
 
-//_________________________________________________________________________________________________________________
-//  includes
-//_________________________________________________________________________________________________________________
 #include <bf_svtools/localisationoptions.hxx>
 #include <unotools/configmgr.hxx>
 #include <unotools/configitem.hxx>
@@ -41,10 +38,6 @@ using namespace ::com::sun::star::uno   ;
 
 namespace binfilter
 {
-
-//_________________________________________________________________________________________________________________
-//  const
-//_________________________________________________________________________________________________________________
 
 #define ROOTNODE_LOCALISATION           OUString(RTL_CONSTASCII_USTRINGPARAM("Office.Common/View/Localisation"))
 #define DEFAULT_AUTOMNEMONIC            sal_False
@@ -142,10 +135,6 @@ class SvtLocalisationOptions_Impl : public ConfigItem
         sal_Bool    m_bAutoMnemonic     ;
         sal_Int32   m_nDialogScale      ;
 };
-
-//_________________________________________________________________________________________________________________
-//  definitions
-//_________________________________________________________________________________________________________________
 
 //*****************************************************************************************************************
 //  constructor

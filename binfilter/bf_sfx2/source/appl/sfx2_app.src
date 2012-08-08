@@ -17,8 +17,6 @@
  */
 #define NO_LOCALIZE_EXPORT
 
- // include ------------------------------------------------------------------
-
 #include "sfx.hrc"
 #include "app.hrc"
 #include "helpid.hrc"

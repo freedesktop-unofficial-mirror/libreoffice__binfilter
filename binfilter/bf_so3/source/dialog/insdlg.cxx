@@ -19,8 +19,6 @@
 
 #define _INSDLG_CXX
 
-// include ---------------------------------------------------------------
-
 #include <stdio.h>
 #include "insdlg.hxx"
 

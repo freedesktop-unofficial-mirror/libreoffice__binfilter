@@ -21,8 +21,6 @@
 
 #include <bf_svtools/bf_solar.h>
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/eitem.hxx>
 #include <bf_svx/svxenum.hxx>
 

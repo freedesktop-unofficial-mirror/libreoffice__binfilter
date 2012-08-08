@@ -19,8 +19,6 @@
 #ifndef _SVX_CHARRELIEFITEM_HXX
 #define _SVX_CHARRELIEFITEM_HXX
 
-// include ---------------------------------------------------------------
-
 #include <bf_svtools/eitem.hxx>
 #include <vcl/fntstyle.hxx>
 #include <bf_svx/svxids.hrc>
