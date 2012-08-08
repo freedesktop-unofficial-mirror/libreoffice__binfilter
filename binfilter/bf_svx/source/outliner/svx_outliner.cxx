@@ -52,6 +52,7 @@
 #include "lrspitem.hxx"
 
 #include <bf_svtools/undo.hxx>
+#include <tools/list.hxx>
 
 namespace binfilter {
 

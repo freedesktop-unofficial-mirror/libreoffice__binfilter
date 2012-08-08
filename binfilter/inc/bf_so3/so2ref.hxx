@@ -21,6 +21,7 @@
 #define _SO2REF_HXX
 
 #include <sot/sotref.hxx>
+#include <bf_so3/ref.hxx>
 
 namespace binfilter
 {

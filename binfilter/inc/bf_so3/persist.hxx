@@ -280,8 +280,32 @@ public:
 };
 
 SV_IMPL_REF(SvInfoObject)
-SV_DECL_IMPL_PERSIST_LIST(SvInfoObject,SvInfoObject*)
 
+// Damit die Liste, anders benannt wird
+typedef SvPersistBase SuperSvPersistBase;
+SV_DECL_REF_LIST_VISIBILITY(SuperSvPersistBase,SuperSvPersistBase*,SO3_DLLPUBLIC)
+SV_IMPL_REF_LIST(SuperSvPersistBase,SuperSvPersistBase*)
+
+class SO3_DLLPUBLIC SvPersistBaseMemberList : public SuperSvPersistBaseMemberList
+{
+public:
+    SvPersistBaseMemberList();
+
+    void   WriteObjects( SvPersistStream &, sal_Bool bOnlyStreamedObj = sal_False ) const;
+    SO3_DLLPUBLIC friend SvPersistStream& operator << (SvPersistStream &, const SvPersistBaseMemberList &);
+    SO3_DLLPUBLIC friend SvPersistStream& operator >> (SvPersistStream &, SvPersistBaseMemberList &);
+};
+
+/*************************************************************************/
+#define SV_DECL_PERSIST_LIST(ClassName,EntryName)\
+class ClassName##MemberList : public SvPersistBaseMemberList\
+{\
+public:\
+    PRV_SV_DECL_MEMBER_LIST(ClassName,EntryName)\
+};
+
+SV_DECL_PERSIST_LIST(SvInfoObject,SvInfoObject*)
+PRV_SV_IMPL_MEMBER_LIST(SvInfoObject,SvInfoObject*,SvPersistBaseMemberList)
 }
 
 #endif // _PERSIST_HXX

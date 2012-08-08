@@ -22,6 +22,7 @@
 
 
 #include <bf_svtools/style.hxx>
+#include <tools/list.hxx>
 namespace binfilter {
 
 class SdStyleSheet;

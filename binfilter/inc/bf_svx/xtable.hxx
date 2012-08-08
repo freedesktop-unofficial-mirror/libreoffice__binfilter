@@ -39,6 +39,7 @@
 #include <bf_svx/xlnasit.hxx>
 
 #include <tools/color.hxx>
+#include <tools/list.hxx>
 
 #include <bf_tools/string.hxx>
 

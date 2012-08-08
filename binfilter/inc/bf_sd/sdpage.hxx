@@ -33,6 +33,7 @@
 #ifndef _PRESENTATION
 #include <bf_sd/pres.hxx>
 #endif
+#include <tools/list.hxx>
 namespace binfilter {
 
 class SfxStyleSheet;

@@ -29,6 +29,7 @@
 #include <sot/storinfo.hxx>
 #include <bf_svtools/pathoptions.hxx>
 #include <tools/debug.hxx>
+#include <tools/list.hxx>
 
 #include <sbmod.hxx>
 

@@ -29,6 +29,8 @@
 #include <sot/storinfo.hxx>
 #include <sot/formats.hxx>
 
+#include <rtl/strbuf.hxx>
+
 #include <tools/debug.hxx>
 #include <bf_tools/string.hxx>
 
@@ -1246,6 +1248,109 @@ void SvPersist::CleanUp( BOOL bRecurse)
         }
     }
 }
+
+SvPersistBaseMemberList::SvPersistBaseMemberList(){}
+
+#define PERSIST_LIST_VER        (sal_uInt8)0
+#define PERSIST_LIST_DBGUTIL    (sal_uInt8)0x80
+
+/************************************************************************
+|*    SvPersistBaseMemberList::WriteOnlyStreamedObjects()
+*************************************************************************/
+void SvPersistBaseMemberList::WriteObjects( SvPersistStream & rStm,
+                                            sal_Bool bOnlyStreamed ) const
+{
+#ifdef STOR_NO_OPTIMIZE
+    rStm << (sal_uInt8)(PERSIST_LIST_VER | PERSIST_LIST_DBGUTIL);
+    sal_uInt32 nObjPos = rStm.WriteDummyLen();
+#else
+    sal_uInt8 bTmp = PERSIST_LIST_VER;
+    rStm << bTmp;
+#endif
+    sal_uInt32 nCountMember = Count();
+    sal_uIntPtr  nCountPos = rStm.Tell();
+    sal_uInt32 nWriteCount = 0;
+    rStm << nCountMember;
+    //bloss die Liste nicht veraendern,
+    //wegen Seiteneffekten beim Save
+    for( sal_uIntPtr n = 0; n < nCountMember; n++ )
+    {
+        SvPersistBase * pObj = GetObject( n );
+        if( !bOnlyStreamed || rStm.IsStreamed( pObj ) )
+        { // Objekt soll geschrieben werden
+            rStm << GetObject( n );
+            nWriteCount++;
+        }
+    }
+    if( nWriteCount != nCountMember )
+    {
+        // nicht alle Objekte geschrieben, Count anpassen
+        sal_uIntPtr nPos = rStm.Tell();
+        rStm.Seek( nCountPos );
+        rStm << nWriteCount;
+        rStm.Seek( nPos );
+    }
+#ifdef STOR_NO_OPTIMIZE
+    rStm.WriteLen( nObjPos );
+#endif
+}
+
+/************************************************************************
+|*    operator << ()
+*************************************************************************/
+SvPersistStream& operator << ( SvPersistStream & rStm,
+                               const SvPersistBaseMemberList & rLst )
+{
+    rLst.WriteObjects( rStm );
+    return rStm;
+}
+
+/************************************************************************
+|*    operator >> ()
+*************************************************************************/
+SvPersistStream& operator >> ( SvPersistStream & rStm,
+                               SvPersistBaseMemberList & rLst )
+{
+    sal_uInt8 nVer;
+    rStm >> nVer;
+
+    if( (nVer & ~PERSIST_LIST_DBGUTIL) != PERSIST_LIST_VER )
+    {
+        rStm.SetError( SVSTREAM_GENERALERROR );
+        OSL_FAIL( "persist list, false version" );
+    }
+
+    sal_uInt32 nObjLen(0), nObjPos(0);
+    if( nVer & PERSIST_LIST_DBGUTIL )
+        nObjLen = rStm.ReadLen( &nObjPos );
+
+    sal_uInt32 nCount;
+    rStm >> nCount;
+    for( sal_uIntPtr n = 0; n < nCount && rStm.GetError() == SVSTREAM_OK; n++ )
+    {
+        SvPersistBase * pObj;
+        rStm >> pObj;
+        if( pObj )
+            rLst.Append( pObj );
+    }
+#ifdef DBG_UTIL
+            if( nObjLen + nObjPos != rStm.Tell() )
+            {
+                rtl::OStringBuffer aStr(
+                    RTL_CONSTASCII_STRINGPARAM("false list len: read = "));
+                aStr.append(static_cast<sal_Int64>(rStm.Tell() - nObjPos));
+                aStr.append(RTL_CONSTASCII_STRINGPARAM(", should = "));
+                aStr.append(static_cast<sal_Int64>(nObjLen));
+                OSL_FAIL(aStr.getStr());
+            }
+#else
+            (void)nObjLen;
+#endif
+    return rStm;
+}
+
+
+
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -27,6 +27,7 @@
 #include "sdpage.hxx"
 #include "drawdoc.hxx"
 
+#include <tools/list.hxx>
 // #90477#
 #include <tools/tenccvt.hxx>
 namespace binfilter {

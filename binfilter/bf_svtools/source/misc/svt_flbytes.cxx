@@ -27,6 +27,8 @@
 #undef _SVSTDARR_ULONGS
 #endif
 
+#include <bf_so3/ref.hxx>
+
 //============================================================================
 namespace binfilter
 {
@@ -37,7 +39,8 @@ inline ULONG MyMin( long a, long b )
 }
 
 //============================================================================
-SV_DECL_IMPL_REF_LIST( SvLockBytes, SvLockBytes* )
+SV_DECL_REF_LIST(SvLockBytes,SvLockBytes*)
+SV_IMPL_REF_LIST(SvLockBytes,SvLockBytes*)
 
 //============================================================================
 //
