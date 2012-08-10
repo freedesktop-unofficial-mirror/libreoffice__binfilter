@@ -394,65 +394,6 @@ UniString& UniString::InsertAscii( const char* pAsciiStr, xub_StrLen nIndex )
 
 // -----------------------------------------------------------------------
 
-UniString& UniString::ReplaceAscii( xub_StrLen nIndex, xub_StrLen nCount,
-                                    const sal_Char* pAsciiStr, xub_StrLen nStrLen )
-{
-    DBG_CHKTHIS( UniString, DbgCheckUniString );
-    DBG_ASSERT( pAsciiStr, "UniString::ReplaceAscii() - pAsciiStr is NULL" );
-
-    // Wenn Index groessergleich Laenge ist, dann ist es ein Append
-    if ( nIndex >= mpData->mnLen )
-    {
-        AppendAscii( pAsciiStr, nStrLen );
-        return *this;
-    }
-
-    // Ist es eine Zuweisung
-    if ( (nIndex == 0) && (nCount >= mpData->mnLen) )
-    {
-        AssignAscii( pAsciiStr, nStrLen );
-        return *this;
-    }
-
-    // Reicht ein Erase
-    if ( nStrLen == STRING_LEN )
-        nStrLen = ImplStringLen( pAsciiStr );
-    if ( !nStrLen )
-        return Erase( nIndex, nCount );
-
-    // nCount darf nicht ueber das Stringende hinnausgehen
-    if ( nCount > mpData->mnLen - nIndex )
-        nCount = static_cast< xub_StrLen >(mpData->mnLen-nIndex);
-
-    // Reicht eine zeichenweise Zuweisung
-    if ( nCount == nStrLen )
-    {
-        ImplCopyData();
-        ImplCopyAsciiStr( mpData->maStr+nIndex, pAsciiStr, nStrLen );
-        return *this;
-    }
-
-    // Ueberlauf abfangen
-    sal_Int32 n = ImplGetCopyLen( mpData->mnLen-nCount, nStrLen );
-
-    // Neue Daten anlegen
-    STRINGDATA* pNewData = ImplAllocData( mpData->mnLen-nCount+n );
-
-    // String kopieren
-    memcpy( pNewData->maStr, mpData->maStr, nIndex*sizeof( STRCODE ) );
-    ImplCopyAsciiStr( pNewData->maStr+nIndex, pAsciiStr, n );
-    memcpy( pNewData->maStr+nIndex+n, mpData->maStr+nIndex+nCount,
-            (mpData->mnLen-nIndex-nCount+1)*sizeof( STRCODE ) );
-
-    // Alte Daten loeschen und Neue zuweisen
-    STRING_RELEASE((STRING_TYPE *)mpData);
-    mpData = pNewData;
-
-    return *this;
-}
-
-// -----------------------------------------------------------------------
-
 StringCompare UniString::CompareToAscii( const sal_Char* pAsciiStr,
                                          xub_StrLen nLen ) const
 {
@@ -607,24 +548,6 @@ xub_StrLen UniString::SearchAndReplaceAscii( const sal_Char* pAsciiStr, const Un
         Replace( nSPos, ImplStringLen( pAsciiStr ), rRepStr );
 
     return nSPos;
-}
-
-// -----------------------------------------------------------------------
-
-void UniString::SearchAndReplaceAllAscii( const sal_Char* pAsciiStr, const UniString& rRepStr )
-{
-    DBG_CHKTHIS( UniString, DbgCheckUniString );
-    DBG_ASSERT( ImplDbgCheckAsciiStr( pAsciiStr, STRING_LEN ),
-                "UniString::SearchAndReplaceAllAscii() - pAsciiStr include characters > 127" );
-
-    xub_StrLen nCharLen = ImplStringLen( pAsciiStr );
-    xub_StrLen nSPos = SearchAscii( pAsciiStr, 0 );
-    while ( nSPos != STRING_NOTFOUND )
-    {
-        Replace( nSPos, nCharLen, rRepStr );
-        nSPos = nSPos + rRepStr.Len();
-        nSPos = SearchAscii( pAsciiStr, nSPos );
-    }
 }
 
 }

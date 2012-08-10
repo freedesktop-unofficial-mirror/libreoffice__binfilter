@@ -380,8 +380,6 @@ public:
     UniString&          Insert( sal_Unicode c, xub_StrLen nIndex = STRING_LEN );
     UniString&          InsertAscii( const sal_Char* pAsciiStr, xub_StrLen nIndex = STRING_LEN );
     UniString&          Replace( xub_StrLen nIndex, xub_StrLen nLen, const UniString& rStr );
-    UniString&          ReplaceAscii( xub_StrLen nIndex, xub_StrLen nLen,
-                                      const sal_Char* pAsciiStr, xub_StrLen nStrLen = STRING_LEN );
     UniString&          Erase( xub_StrLen nIndex = 0, xub_StrLen nCount = STRING_LEN );
     UniString           Copy( xub_StrLen nIndex = 0, xub_StrLen nCount = STRING_LEN ) const;
 
@@ -390,7 +388,6 @@ public:
 
     UniString&          EraseLeadingChars( sal_Unicode c = ' ' );
     UniString&          EraseTrailingChars( sal_Unicode c = ' ' );
-    UniString&          Reverse();
 
     UniString&          ConvertLineEnd( LineEnd eLineEnd );
     UniString&          ConvertLineEnd()
@@ -410,7 +407,6 @@ public:
     sal_Bool                Equals( const UniString& rStr ) const;
     sal_Bool                EqualsAscii( const sal_Char* pAsciiStr ) const;
     sal_Bool                EqualsIgnoreCaseAscii( const UniString& rStr ) const;
-    sal_Bool                EqualsIgnoreCaseAscii( const sal_Unicode* pCharStr ) const;
     sal_Bool                EqualsIgnoreCaseAscii( const sal_Char* pAsciiStr ) const;
     sal_Bool                Equals( const UniString& rStr,
                                 xub_StrLen nIndex, xub_StrLen nLen ) const;
@@ -422,8 +418,6 @@ public:
     }
     sal_Bool                EqualsAscii( const sal_Char* pAsciiStr,
                                      xub_StrLen nIndex, xub_StrLen nLen ) const;
-    sal_Bool                EqualsIgnoreCaseAscii( const UniString& rStr,
-                                               xub_StrLen nIndex, xub_StrLen nLen ) const;
     sal_Bool                EqualsIgnoreCaseAscii( const sal_Char* pAsciiStr,
                                                xub_StrLen nIndex, xub_StrLen nLen ) const;
 
@@ -434,7 +428,6 @@ public:
     xub_StrLen          Search( const sal_Unicode* pCharStr, xub_StrLen nIndex = 0 ) const;
     xub_StrLen          SearchAscii( const sal_Char* pAsciiStr, xub_StrLen nIndex = 0 ) const;
     xub_StrLen          SearchBackward( sal_Unicode c, xub_StrLen nIndex = STRING_LEN ) const;
-    xub_StrLen          SearchChar( const sal_Unicode* pChars, xub_StrLen nIndex = 0 ) const;
 
     xub_StrLen          SearchAndReplace( sal_Unicode c, sal_Unicode cRep,
                                           xub_StrLen nIndex = 0 );
@@ -443,20 +436,12 @@ public:
     xub_StrLen          SearchAndReplaceAscii( const sal_Char* pAsciiStr, const UniString& rRepStr,
                                                xub_StrLen nIndex = 0 );
     void                SearchAndReplaceAll( sal_Unicode c, sal_Unicode cRep );
-    void                SearchAndReplaceAll( const UniString& rStr, const UniString& rRepStr );
-    void                SearchAndReplaceAllAscii( const sal_Char* pAsciiStr, const UniString& rRepStr );
 
     xub_StrLen          GetTokenCount( sal_Unicode cTok = ';' ) const;
     void                SetToken( xub_StrLen nToken, sal_Unicode cTok, const UniString& rStr,
                                   xub_StrLen nIndex = 0 );
     UniString           GetToken( xub_StrLen nToken, sal_Unicode cTok, xub_StrLen& rIndex ) const;
     UniString           GetToken( xub_StrLen nToken, sal_Unicode cTok = ';' ) const;
-
-    xub_StrLen          GetQuotedTokenCount( const UniString& rQuotedPairs, sal_Unicode cTok = ';' ) const;
-    UniString           GetQuotedToken( xub_StrLen nToken, const UniString& rQuotedPairs,
-                                        sal_Unicode cTok,  xub_StrLen& rIndex ) const;
-    UniString           GetQuotedToken( xub_StrLen nToken, const UniString& rQuotedPairs,
-                                        sal_Unicode cTok = ';' ) const;
 
     const sal_Unicode*  GetBuffer() const { return mpData->maStr; }
     sal_Unicode*        GetBufferAccess();
@@ -494,13 +479,6 @@ inline UniString UniString::GetToken( xub_StrLen nToken, sal_Unicode cTok ) cons
 {
     xub_StrLen nTempPos = 0;
     return GetToken( nToken, cTok, nTempPos );
-}
-
-inline UniString UniString::GetQuotedToken( xub_StrLen nToken, const UniString& rQuotedPairs,
-                                            sal_Unicode cTok ) const
-{
-    xub_StrLen nTempPos = 0;
-    return GetQuotedToken( nToken, rQuotedPairs, cTok, nTempPos );
 }
 
 }
