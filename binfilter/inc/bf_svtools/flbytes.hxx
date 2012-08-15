@@ -74,12 +74,6 @@ public:
     virtual ErrCode SetSize(ULONG nSize)
     { return m_xAsyncLockBytes->SetSize(nSize); }
 
-    virtual ErrCode LockRegion(ULONG nPos, ULONG nCount, LockType eType)
-    { return m_xAsyncLockBytes->LockRegion(nPos, nCount, eType); }
-
-    virtual ErrCode UnlockRegion(ULONG nPos, ULONG nCount, LockType eType)
-    { return m_xAsyncLockBytes->UnlockRegion(nPos, nCount, eType); }
-
     virtual ErrCode Stat(SvLockBytesStat * pStat, SvLockBytesStatFlag eFlag)
         const
     { return m_xAsyncLockBytes->Stat(pStat, eFlag); }
