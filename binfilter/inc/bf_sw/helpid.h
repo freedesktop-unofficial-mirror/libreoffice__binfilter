@@ -265,7 +265,7 @@
 #define HID_FOOTNOTE_OPTIONS        (HID_BASE + 447)
 #define HID_ENDNOTE_OPTIONS         (HID_BASE + 448)
 #define HID_REDLINE_OPT             (HID_BASE + 449)
-#define HID_LINENUMBERING           (HID_BASE + 450)
+
 #define HID_REDLINE_ACCEPT          (HID_BASE + 451)
 #define HID_EDIT_FLD_DB             (HID_BASE + 452)
 #define HID_EDIT_FLD_DOKINF         (HID_BASE + 453)
