@@ -68,7 +68,8 @@ ScChangeViewSettings& ScChangeViewSettings::operator=( const ScChangeViewSetting
 /*N*/
 /*N*/   if(rString.Len()>0)
 /*N*/   {
-/*N*/       utl::SearchParam aSearchParam( rString,
+            ::rtl::OUString search(rString);
+/*N*/       utl::SearchParam aSearchParam( search,
 /*N*/           utl::SearchParam::SRCH_REGEXP,FALSE,FALSE,FALSE );
 /*N*/
 /*N*/       pCommentSearcher = new utl::TextSearch( aSearchParam, *ScGlobal::pCharClass );

@@ -218,7 +218,8 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if ( !pSearchParam )
 /*N*/   {
-/*N*/       pSearchParam = new ::utl::SearchParam( *pStr, utl::SearchParam::SRCH_REGEXP,
+            ::rtl::OUString search_string(*pStr);
+/*N*/       pSearchParam = new ::utl::SearchParam( search_string, utl::SearchParam::SRCH_REGEXP,
 /*N*/           bCaseSens, FALSE, FALSE );
 /*N*/       pSearchText = new ::utl::TextSearch( *pSearchParam, *ScGlobal::pCharClass );
 /*N*/   }

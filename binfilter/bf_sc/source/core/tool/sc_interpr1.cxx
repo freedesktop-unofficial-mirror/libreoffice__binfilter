@@ -5151,6 +5151,7 @@ void ScInterpreter::ScSearch()
             fAnz = 1.0;
         String sStr = GetString();
         String SearchStr = GetString();
+        ::rtl::OUString search_string(SearchStr);
         xub_StrLen nPos = (xub_StrLen) fAnz - 1;
         xub_StrLen nEndPos = sStr.Len();
         if( nPos >= nEndPos )
@@ -5160,7 +5161,7 @@ void ScInterpreter::ScSearch()
             ::utl::SearchParam::SearchType eSearchType =
                 (MayBeRegExp( SearchStr, pDok ) ?
                 ::utl::SearchParam::SRCH_REGEXP : ::utl::SearchParam::SRCH_NORMAL);
-            ::utl::SearchParam sPar(SearchStr, eSearchType, FALSE, FALSE, FALSE);
+            ::utl::SearchParam sPar(search_string, eSearchType, FALSE, FALSE, FALSE);
             ::utl::TextSearch sT( sPar, *ScGlobal::pCharClass );
             int nBool = sT.SearchFrwrd(sStr, &nPos, &nEndPos);
             if (!nBool)
