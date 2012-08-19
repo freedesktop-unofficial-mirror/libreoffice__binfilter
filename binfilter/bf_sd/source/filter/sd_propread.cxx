@@ -40,38 +40,6 @@ PropItem& PropItem::operator=( PropItem& rPropItem )
     return *this;
 }
 
-//  -----------------------------------------------------------------------
-
-struct Dict
-{
-    sal_uInt32  mnId;
-    String      aString;
-
-            Dict( sal_uInt32 nId, String rString ) { mnId = nId; aString = rString; };
-};
-
-//  -----------------------------------------------------------------------
-
-Dictionary::~Dictionary()
-{
-    for ( void* pPtr = First(); pPtr; pPtr = Next() )
-        delete (Dict*)pPtr;
-}
-
-//  -----------------------------------------------------------------------
-
-Dictionary& Dictionary::operator=( Dictionary& rDictionary )
-{
-    if ( this != &rDictionary )
-    {
-        void* pPtr; for ( pPtr = First(); pPtr; pPtr = Next() )
-            delete (Dict*)pPtr;
-
-        for ( pPtr = rDictionary.First(); pPtr; pPtr = rDictionary.Next() )
-            Insert( new Dict( ((Dict*)pPtr)->mnId, ((Dict*)pPtr)->aString ), LIST_APPEND );
-    }
-    return *this;
-}
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

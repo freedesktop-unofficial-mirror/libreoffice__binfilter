@@ -35,7 +35,6 @@ class   SwView;
 class   SwRect;
 class   SwDrawBase;
 class   ViewShell;
-class   SdrViewUserMarker;
 class   SdrObject;
 class   SwShadowCursor;
 class   DataChangedEvent;
@@ -93,7 +92,6 @@ friend void     PageNumNotify(  ViewShell* pVwSh,
 
     SwApplyTemplate     *pApplyTempl;
 
-    SdrViewUserMarker   *pUserMarker;
     SdrObject           *pUserMarkerObj;
 
     SwView         &rView;

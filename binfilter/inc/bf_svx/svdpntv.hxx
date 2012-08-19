@@ -53,7 +53,6 @@ class SdrGrafObj;
 class SdrPage;
 class SdrPageViewWinRec;
 class SdrView;
-class SdrViewUserMarker;
 class ExtOutputDevice;
 class SdrNamedSubRecord;
 class SdrIOHeader;
@@ -196,7 +195,6 @@ class SdrPaintView: public SfxListener, public SfxRepeatTarget, public SfxBroadc
 {
     friend class                SdrPageView;
     friend class                FrameAnimator;
-    friend class                SdrViewUserMarker;
     friend class                SdrGrafObj;
 
 protected:
@@ -219,8 +217,6 @@ protected:
     SfxItemSet                  aDefaultAttr;
     Timer                       aComeBackTimer;
     Timer                       aAfterPaintTimer;
-    AutoTimer                   aUserMarkerAnimator;
-    Container                   aUserMarkers;
 
     SdrAnimationMode            eAnimationMode;
 
@@ -247,16 +243,7 @@ protected:
     Color                       maGridColor;
 
 private:
-    DECL_LINK(ImpComeBackHdl,Timer*);
-    DECL_LINK(ImpAfterPaintHdl,Timer*);
-    DECL_LINK(ImpUserMarkerAnimatorHdl,AutoTimer*);
-
     void ImpClearVars();
-    void ImpInsertUserMarker(SdrViewUserMarker* pMarker);
-    void ImpRemoveUserMarker(SdrViewUserMarker* pMarker);
-    void ImpCheckMarkerAnimator();
-    USHORT ImpGetUserMarkerCount() const { return (USHORT)aUserMarkers.Count(); }
-    SdrViewUserMarker* ImpGetUserMarker(USHORT nNum) const { return (SdrViewUserMarker*)aUserMarkers.GetObject(nNum); }
 
 protected:
     virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);

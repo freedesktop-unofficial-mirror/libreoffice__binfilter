@@ -87,7 +87,6 @@ SLOFILES=\
          $(SLO)$/svx_svdundo.obj         \
          $(SLO)$/svx_svdview.obj         \
          $(SLO)$/svx_svdviter.obj        \
-         $(SLO)$/svx_svdvmark.obj        \
          $(SLO)$/svx_svdxcgv.obj
 
 .IF "$(OS)$(CPU)"=="LINUXI"

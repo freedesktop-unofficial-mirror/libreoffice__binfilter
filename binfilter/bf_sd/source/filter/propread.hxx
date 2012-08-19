@@ -105,18 +105,6 @@ class PropItem : public SvMemoryStream
         PropItem&       operator=( PropItem& rPropItem );
 };
 
-// ------------------------------------------------------------------------
-
-class Dictionary : protected List
-{
-    friend class Section;
-
-    public :
-                    Dictionary(){};
-                    ~Dictionary();
-        Dictionary& operator=( Dictionary& rDictionary );
-};
-
 } //namespace binfilter
 #endif
 

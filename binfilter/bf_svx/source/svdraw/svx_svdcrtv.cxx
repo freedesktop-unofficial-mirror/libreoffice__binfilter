@@ -19,7 +19,6 @@
 
 #include "svdcrtv.hxx"
 #include "svdio.hxx"
-#include "svdvmark.hxx"
 
 
 namespace binfilter {

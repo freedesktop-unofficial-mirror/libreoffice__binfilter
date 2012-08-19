@@ -34,7 +34,6 @@
 #include "swtypes.hxx"
 namespace binfilter {
 
-#define C2S(cChar) UniString::CreateFromAscii(cChar)
 /*--------------------------------------------------------------------
     Beschreibung:   globale Pointer
  --------------------------------------------------------------------*/

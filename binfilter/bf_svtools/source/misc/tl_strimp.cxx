@@ -531,50 +531,6 @@ xub_StrLen STRING::Search( STRCODE c, xub_StrLen nIndex ) const
 
 // -----------------------------------------------------------------------
 
-xub_StrLen STRING::Search( const STRCODE* pCharStr, xub_StrLen nIndex ) const
-{
-    DBG_CHKTHIS( STRING, DBGCHECKSTRING );
-
-    sal_Int32 nLen = mpData->mnLen;
-    xub_StrLen nStrLen  = ImplStringLen( pCharStr );
-
-    // Falls die Laenge des uebergebenen Strings 0 ist oder der Index
-    // hinter dem String liegt, dann wurde der String nicht gefunden
-    if ( !nStrLen || (nIndex >= nLen) )
-        return STRING_NOTFOUND;
-
-    const STRCODE* pStr = mpData->maStr;
-    pStr += nIndex;
-
-    if ( nStrLen == 1 )
-    {
-        STRCODE cSearch = *pCharStr;
-        while ( nIndex < nLen )
-        {
-            if ( *pStr == cSearch )
-                return nIndex;
-            ++pStr,
-            ++nIndex;
-        }
-    }
-    else
-    {
-        // Nur innerhalb des Strings suchen
-        while ( nLen - nIndex >= nStrLen )
-        {
-            // Stimmt der String ueberein
-            if ( ImplStringCompareWithoutZero( pStr, pCharStr, nStrLen ) == 0 )
-                return nIndex;
-            ++pStr,
-            ++nIndex;
-        }
-    }
-
-    return STRING_NOTFOUND;
-}
-
-// -----------------------------------------------------------------------
-
 xub_StrLen STRING::GetTokenCount( STRCODE cTok ) const
 {
     DBG_CHKTHIS( STRING, DBGCHECKSTRING );

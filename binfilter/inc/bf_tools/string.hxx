@@ -425,7 +425,6 @@ public:
 
     xub_StrLen          Search( sal_Unicode c, xub_StrLen nIndex = 0 ) const;
     xub_StrLen          Search( const UniString& rStr, xub_StrLen nIndex = 0 ) const;
-    xub_StrLen          Search( const sal_Unicode* pCharStr, xub_StrLen nIndex = 0 ) const;
     xub_StrLen          SearchAscii( const sal_Char* pAsciiStr, xub_StrLen nIndex = 0 ) const;
     xub_StrLen          SearchBackward( sal_Unicode c, xub_StrLen nIndex = STRING_LEN ) const;
 

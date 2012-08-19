@@ -49,7 +49,6 @@ class SdrObject;
 
 class Outliner;
 class SotDataObject;
-class SdrViewUserMarker;
 class SwFrmFmt;
 struct SwSortOptions;
 class SdrMarkList;
@@ -158,8 +157,6 @@ struct SwGetCurColNumPara
 
 class SwFEShell : public SwEditShell
 {
-    SdrViewUserMarker *pChainFrom,
-                      *pChainTo;
     BOOL bCheckForOLEInCaption;
 
 public:

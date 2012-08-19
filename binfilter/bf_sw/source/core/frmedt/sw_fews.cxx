@@ -22,8 +22,6 @@
 #pragma hdrstop
 #endif
 
-#include <bf_svx/svdvmark.hxx>
-
 #include <horiornt.hxx>
 
 #include <fesh.hxx>
@@ -45,8 +43,6 @@ namespace binfilter {
 
 /*N*/ SwFEShell::~SwFEShell()
 /*N*/ {
-/*N*/   delete pChainFrom;
-/*N*/   delete pChainTo;
 /*N*/ }
 
 }

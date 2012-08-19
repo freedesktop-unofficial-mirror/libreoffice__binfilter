@@ -22,7 +22,6 @@
 
 #include "svdpagv.hxx"
 #include "svdpage.hxx"
-#include "svdvmark.hxx"
 #include "svdio.hxx"
 #include "svdview.hxx"
 #include "svdograf.hxx"
@@ -121,13 +120,6 @@ IMPL_LINK(FrameAnimator,Hdl,AutoTimer*,EMPTYARG) { return 0; } // DBG_BF_ASSERT
 /*N*/
 /*N*/   nGraphicManagerDrawMode = GRFMGR_DRAW_STANDARD;
 /*N*/
-/*N*/   aComeBackTimer.SetTimeout(1);
-/*N*/   aComeBackTimer.SetTimeoutHdl(LINK(this,SdrPaintView,ImpComeBackHdl));
-/*N*/   aAfterPaintTimer.SetTimeout(1);
-/*N*/   aAfterPaintTimer.SetTimeoutHdl(LINK(this,SdrPaintView,ImpAfterPaintHdl));
-/*N*/   aUserMarkerAnimator.SetTimeout(50);
-/*N*/   aUserMarkerAnimator.SetTimeoutHdl(LINK(this,SdrPaintView,ImpUserMarkerAnimatorHdl));
-/*N*/
 /*N*/   String aNam;    // System::GetUserName() just return an empty string
 /*N*/
 /*N*/   if (pMod)
@@ -143,8 +135,7 @@ IMPL_LINK(FrameAnimator,Hdl,AutoTimer*,EMPTYARG) { return 0; } // DBG_BF_ASSERT
 /*N*/   aPagV(1024,16,16),
 /*N*/   aPagHide(1024,16,16),
 /*N*/   aAni(*(SdrView*)this),
-/*N*/   aDefaultAttr(pModel1->GetItemPool()),
-/*N*/   aUserMarkers(1024,16,16)
+/*N*/   aDefaultAttr(pModel1->GetItemPool())
 /*N*/ {
 /*N*/   DBG_CTOR(SdrPaintView,NULL);
 /*N*/   pMod=pModel1;
@@ -164,14 +155,7 @@ IMPL_LINK(FrameAnimator,Hdl,AutoTimer*,EMPTYARG) { return 0; } // DBG_BF_ASSERT
 /*N*/   EndListening( maColorConfig );
 /*N*/
 /*N*/   ClearAll();
-/*N*/   if (pXOut!=NULL) {
-/*N*/       delete pXOut;
-/*N*/   }
-/*N*/   USHORT nAnz=ImpGetUserMarkerCount();
-/*N*/   for (USHORT nNum=0; nNum<nAnz; nNum++) {
-/*?*/       SdrViewUserMarker* pUM=ImpGetUserMarker(nNum);
-/*?*/       pUM->pView=NULL; // Weil's mich gleich nichtmehr gibt.
-/*N*/   }
+/*N*/   delete pXOut;
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -215,21 +199,6 @@ IMPL_LINK(FrameAnimator,Hdl,AutoTimer*,EMPTYARG) { return 0; } // DBG_BF_ASSERT
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ IMPL_LINK_INLINE_START(SdrPaintView,ImpComeBackHdl,Timer*,EMPTYARG)
-/*N*/ {
-/*N*/   if (bSomeObjChgdFlag) {
-/*N*/       bSomeObjChgdFlag=FALSE;
-/*N*/       ModelHasChanged();
-/*N*/   }
-/*N*/   return 0;
-/*N*/ }
-
-/*N*/ IMPL_LINK_INLINE_END(SdrPaintView,ImpComeBackHdl,Timer*,pTimer)
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-IMPL_LINK(SdrPaintView,ImpAfterPaintHdl,Timer*,EMPTYARG) { return 0; } // DBG_BF_ASSERT
-
 /*N*/ void SdrPaintView::ModelHasChanged()
 /*N*/ {
 /*N*/   // Auch alle PageViews benachrichtigen
@@ -253,36 +222,6 @@ IMPL_LINK(SdrPaintView,ImpAfterPaintHdl,Timer*,EMPTYARG) { return 0; } // DBG_BF
 /*?*/       SdrPageView* pPV=GetPageHidePvNum(nv);
 /*?*/       pPV->ModelHasChanged();
 /*N*/   }
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-IMPL_LINK_INLINE_START(SdrPaintView,ImpUserMarkerAnimatorHdl,AutoTimer*,EMPTYARG) { return 0; } // DBG_BF_ASSERT
-
-/*N*/ IMPL_LINK_INLINE_END(SdrPaintView,ImpUserMarkerAnimatorHdl,AutoTimer*,pTimer)
-
-/*N*/ void SdrPaintView::ImpInsertUserMarker(SdrViewUserMarker* pMarker)
-/*N*/ {
-/*N*/   aUserMarkers.Insert(pMarker);
-/*N*/   ImpCheckMarkerAnimator();
-/*N*/ }
-/*N*/
-/*N*/ void SdrPaintView::ImpRemoveUserMarker(SdrViewUserMarker* pMarker)
-/*N*/ {
-/*N*/   aUserMarkers.Remove(pMarker);
-/*N*/   ImpCheckMarkerAnimator();
-/*N*/ }
-/*N*/
-/*N*/ void SdrPaintView::ImpCheckMarkerAnimator()
-/*N*/ {
-/*N*/   BOOL bNeed=FALSE;
-/*N*/   USHORT nAnz=ImpGetUserMarkerCount();
-/*N*/   for (USHORT nNum=0; nNum<nAnz && !bNeed; nNum++) {
-/*N*/       SdrViewUserMarker* pUM=ImpGetUserMarker(nNum);
-/*N*/       bNeed=pUM->IsAnimate();
-/*N*/   }
-/*N*/   if (bNeed) aUserMarkerAnimator.Start();
-/*N*/   else aUserMarkerAnimator.Stop();
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
