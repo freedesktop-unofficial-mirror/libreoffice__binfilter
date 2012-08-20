@@ -116,7 +116,6 @@ SfxApplication* SfxApplication::pApp = NULL;
 /*N*/
 /*N*/   pAppData_Impl = new SfxAppData_Impl( this );
 /*N*/     pAppData_Impl->m_xImeStatusWindow->init();
-/*N*/     pApp->PreInit();
 /*N*/
 /*N*/     pCfgMgr = new SfxConfigManager;
 /*N*/ }

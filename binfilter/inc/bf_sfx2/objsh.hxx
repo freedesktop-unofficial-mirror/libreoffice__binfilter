@@ -274,7 +274,6 @@ public:
     // Misc
     sal_Bool                    IsPreview() const;
     SfxObjectCreateMode         GetCreateMode() const { return eCreateMode; }
-    virtual void                MemoryError();
     SfxProgress*                GetProgress() const;
 
     // Naming Interface

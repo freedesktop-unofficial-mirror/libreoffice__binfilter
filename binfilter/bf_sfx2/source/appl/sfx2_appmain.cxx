@@ -167,11 +167,6 @@ SV_DECL_PTRARR(SfxInitLinkList, LinkPtr, 4, 4)
 
 //---------------------------------------------------------------------------
 
-/*N*/ void SfxApplication::PreInit( )
-/*N*/ {
-/*N*/ }
-
-
 void SfxApplication::Main( )
 {
 }

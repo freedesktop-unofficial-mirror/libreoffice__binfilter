@@ -571,13 +571,6 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-void SfxObjectShell::MemoryError()
-{
-    DBG_BF_ASSERT(0, "STRIP");  // VIRTUAL
-}
-
-//--------------------------------------------------------------------
-
 /*N*/ SfxProgress* SfxObjectShell::GetProgress() const
 /*N*/ {
 /*N*/   return pImp->pProgress;

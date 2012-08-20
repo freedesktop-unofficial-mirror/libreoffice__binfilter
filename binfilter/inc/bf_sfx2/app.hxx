@@ -216,7 +216,6 @@ public:
 
     virtual void                Main( );
 
-    void                        PreInit( );
     static SfxApplication*      GetOrCreate();
     void                        Quit();
     void                        InitLabelResMgr( const char* );
