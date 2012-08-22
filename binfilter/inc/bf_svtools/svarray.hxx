@@ -166,139 +166,7 @@ SV_DECL_VARARR_GEN(nm, AE, IS, GS, AE &, )
 #define SV_DECL_VARARR_VISIBILITY(nm, AE, IS, GS, vis ) \
 SV_DECL_VARARR_GEN(nm, AE, IS, GS, AE &, vis )
 
-#define SV_IMPL_VARARR_GEN( nm, AE, AERef )\
-nm::nm( USHORT nInit, BYTE )\
-    : pData (0),\
-      nFree (nInit),\
-      nA    (0)\
-{\
-    if( nInit )\
-    {\
-        pData = (AE*)(rtl_allocateMemory(sizeof(AE) * nInit));\
-        DBG_ASSERT( pData, "CTOR, allocate");\
-    }\
-}\
-\
-void nm::_resize (size_t n)\
-{\
-    USHORT nL = ((n < USHRT_MAX) ? USHORT(n) : USHRT_MAX);\
-    AE* pE = (AE*)(rtl_reallocateMemory (pData, sizeof(AE) * nL));\
-    if ((pE != 0) || (nL == 0))\
-    {\
-        pData = pE;\
-        nFree = nL - nA;\
-    }\
-}\
-\
-
 #define SV_IMPL_VARARR( nm, AE ) \
-SV_IMPL_VARARR_GEN( nm, AE, AE & )
-
-#define _SV_DECL_OBJARR(nm, AE, IS, GS)\
-typedef BOOL (*FnForEach_##nm)( const AE&, void* );\
-class nm\
-{\
-protected:\
-    AE    *pData;\
-    USHORT nFree;\
-    USHORT nA;\
-\
-    void _resize(size_t n);\
-    void _destroy();\
-\
-public:\
-    nm( USHORT= IS, BYTE= GS );\
-    ~nm() { _destroy(); }\
-\
-    AE& operator[](USHORT nP) const { return *(pData+nP); }\
-\
-    void Insert( const nm *pI, USHORT nP,\
-                USHORT nS = 0, USHORT nE = USHRT_MAX )\
-    {\
-        if( USHRT_MAX == nE ) \
-            nE = pI->nA; \
-        if( nS < nE ) \
-            Insert( (const AE*)pI->pData+nS, (USHORT)nE-nS, nP );\
-    } \
-    AE& GetObject(USHORT nP) const { return (*this)[nP]; } \
-\
-    void Insert( const AE &aE, USHORT nP )\
-    {\
-        if (nFree < 1)\
-            _resize (nA + ((nA > 1) ? nA : 1));\
-        if( pData && nP < nA )\
-            memmove( pData+nP+1, pData+nP, (nA-nP) * sizeof( AE ));\
-        AE* pTmp = pData+nP;\
-        new( (DummyType*) pTmp ) AE( (AE&)aE );\
-        ++nA; --nFree;\
-    }\
-\
-    void Insert( const AE *pE, USHORT nL, USHORT nP )\
-    {\
-        if (nFree < nL)\
-            _resize (nA + ((nA > nL) ? nA : nL));\
-        if( pData && nP < nA )\
-            memmove( pData+nP+nL, pData+nP, (nA-nP) * sizeof( AE ));\
-        if( pE )\
-        {\
-            AE* pTmp = pData+nP;\
-            for( USHORT n = 0; n < nL; n++, pTmp++, pE++)\
-            {\
-                new( (DummyType*) pTmp ) AE( (AE&)*pE );\
-            }\
-        }\
-        nA = nA + nL; nFree = nFree - nL;\
-    }\
-\
-    void Remove( USHORT nP, USHORT nL = 1 )\
-    {\
-        if( !nL )\
-            return;\
-        AE* pTmp=pData+nP;\
-        USHORT nCtr = nP;\
-        for(USHORT n=0; n < nL; n++,pTmp++,nCtr++)\
-        {\
-            if( nCtr < nA )\
-                pTmp->~AE();\
-        }\
-        if( pData && nP+1 < nA )\
-            memmove( pData+nP, pData+nP+nL, (nA-nP-nL) * sizeof( AE ));\
-        nA = nA - nL; nFree = nFree + nL;\
-        if (nFree > nA) \
-            _resize (nA);\
-    }\
-\
-    USHORT Count() const { return nA; }\
-    const AE* GetData() const { return (const AE*)pData; }\
-\
-    void ForEach( CONCAT( FnForEach_, nm ) fnForEach, void* pArgs = 0 )\
-    {\
-        _ForEach( 0, nA, fnForEach, pArgs );\
-    }\
-    void ForEach( USHORT nS, USHORT nE, \
-                    CONCAT( FnForEach_, nm ) fnForEach, void* pArgs = 0 )\
-    {\
-        _ForEach( nS, nE, fnForEach, pArgs );\
-    }\
-\
-    void _ForEach( USHORT nStt, USHORT nE, \
-            CONCAT( FnForEach_, nm ) fnCall, void* pArgs = 0 )\
-    {\
-        if( nStt >= nE || nE > nA )\
-            return;\
-        for( ; nStt < nE && (*fnCall)( *(pData+nStt), pArgs ); nStt++)\
-            ;\
-    }\
-\
-
-#define SV_DECL_OBJARR(nm, AE, IS, GS)\
-_SV_DECL_OBJARR(nm, AE, IS, GS)\
-private:\
-nm( const nm& );\
-nm& operator=( const nm& );\
-};
-
-#define SV_IMPL_OBJARR( nm, AE )\
 nm::nm( USHORT nInit, BYTE )\
     : pData (0),\
       nFree (nInit),\
@@ -308,20 +176,6 @@ nm::nm( USHORT nInit, BYTE )\
     {\
         pData = (AE*)(rtl_allocateMemory(sizeof(AE) * nInit));\
         DBG_ASSERT( pData, "CTOR, allocate");\
-    }\
-}\
-\
-void nm::_destroy()\
-{\
-    if(pData)\
-    {\
-        AE* pTmp=pData;\
-        for(USHORT n=0; n < nA; n++,pTmp++ )\
-        {\
-            pTmp->~AE();\
-        }\
-        rtl_freeMemory(pData);\
-        pData = 0;\
     }\
 }\
 \
@@ -335,52 +189,53 @@ void nm::_resize (size_t n)\
         nFree = nL - nA;\
     }\
 }\
+\
 
-#define SV_DECL_PTRARR_GEN(nm, AE, IS, GS, Base, AERef, VPRef, vis )\
+#define SV_DECL_PTRARR_GEN(nm, AE, IS, GS, AERef, VPRef, vis )\
 typedef BOOL (*FnForEach_##nm)( const AERef, void* );\
-class vis nm: public Base \
+class vis nm: public SvPtrarr \
 {\
 public:\
     nm( USHORT nIni=IS, BYTE nG=GS )\
-        : Base(nIni,nG) {}\
+        : SvPtrarr(nIni,nG) {}\
     void Insert( const nm *pI, USHORT nP, \
             USHORT nS = 0, USHORT nE = USHRT_MAX ) {\
-        Base::Insert((const Base*)pI, nP, nS, nE);\
+        SvPtrarr::Insert((const SvPtrarr*)pI, nP, nS, nE);\
     }\
     void Insert( const AERef aE, USHORT nP ) {\
-        Base::Insert( (const VPRef )aE, nP );\
+        SvPtrarr::Insert( (const VPRef )aE, nP );\
     }\
     void Insert( const AE *pE, USHORT nL, USHORT nP ) {\
-        Base::Insert( (const VoidPtr*)pE, nL, nP );\
+        SvPtrarr::Insert( (const VoidPtr*)pE, nL, nP );\
     }\
     void Replace( const AERef aE, USHORT nP ) {\
-        Base::Replace( (const VPRef)aE, nP );\
+        SvPtrarr::Replace( (const VPRef)aE, nP );\
     }\
     void Replace( const AE *pE, USHORT nL, USHORT nP ) {\
-        Base::Replace( (const VoidPtr*)pE, nL, nP );\
+        SvPtrarr::Replace( (const VoidPtr*)pE, nL, nP );\
     }\
     void Remove( USHORT nP, USHORT nL = 1) {\
-        Base::Remove(nP,nL);\
+        SvPtrarr::Remove(nP,nL);\
     }\
     const AE* GetData() const {\
-        return (const AE*)Base::GetData();\
+        return (const AE*)SvPtrarr::GetData();\
     }\
     void ForEach( CONCAT( FnForEach_, nm ) fnForEach, void* pArgs = 0 )\
     {\
-        _ForEach( 0, nA, (FnForEach_##Base)fnForEach, pArgs );\
+        _ForEach( 0, nA, (FnForEach_SvPtrarr)fnForEach, pArgs );\
     }\
     void ForEach( USHORT nS, USHORT nE, \
                     CONCAT( FnForEach_, nm ) fnForEach, void* pArgs = 0 )\
     {\
-        _ForEach( nS, nE, (FnForEach_##Base)fnForEach, pArgs );\
+        _ForEach( nS, nE, (FnForEach_SvPtrarr)fnForEach, pArgs );\
     }\
     AE operator[]( USHORT nP )const  { \
-        return (AE)Base::operator[](nP); }\
+        return (AE)SvPtrarr::operator[](nP); }\
     AE GetObject(USHORT nP) const { \
-        return (AE)Base::GetObject(nP); }\
+        return (AE)SvPtrarr::GetObject(nP); }\
     \
     USHORT GetPos( const AERef aE ) const { \
-        return Base::GetPos((const VPRef)aE);\
+        return SvPtrarr::GetPos((const VPRef)aE);\
     }\
     void DeleteAndDestroy( USHORT nP, USHORT nL=1 );\
 private:\
@@ -389,57 +244,57 @@ private:\
 };
 
 #define SV_DECL_PTRARR(nm, AE, IS, GS )\
-SV_DECL_PTRARR_GEN(nm, AE, IS, GS, SvPtrarr, AE &, VoidPtr &, )
+SV_DECL_PTRARR_GEN(nm, AE, IS, GS, AE &, VoidPtr &, )
 
 #define SV_DECL_PTRARR_VISIBILITY(nm, AE, IS, GS, vis )\
-SV_DECL_PTRARR_GEN(nm, AE, IS, GS, SvPtrarr, AE &, VoidPtr &, vis )
+SV_DECL_PTRARR_GEN(nm, AE, IS, GS, AE &, VoidPtr &, vis )
 
-#define SV_DECL_PTRARR_DEL_GEN(nm, AE, IS, GS, Base, AERef, VPRef, vis )\
+#define SV_DECL_PTRARR_DEL_GEN(nm, AE, IS, GS, AERef, VPRef, vis )\
 typedef BOOL (*FnForEach_##nm)( const AERef, void* );\
-class vis nm: public Base \
+class vis nm: public SvPtrarr \
 {\
 public:\
     nm( USHORT nIni=IS, BYTE nG=GS )\
-        : Base(nIni,nG) {}\
+        : SvPtrarr(nIni,nG) {}\
     ~nm() { DeleteAndDestroy( 0, Count() ); }\
     void Insert( const nm *pI, USHORT nP, \
             USHORT nS = 0, USHORT nE = USHRT_MAX ) {\
-        Base::Insert((const Base*)pI, nP, nS, nE);\
+        SvPtrarr::Insert((const SvPtrarr*)pI, nP, nS, nE);\
     }\
     void Insert( const AERef aE, USHORT nP ) {\
-        Base::Insert((const VPRef)aE, nP );\
+        SvPtrarr::Insert((const VPRef)aE, nP );\
     }\
     void Insert( const AE *pE, USHORT nL, USHORT nP ) {\
-        Base::Insert( (const VoidPtr *)pE, nL, nP );\
+        SvPtrarr::Insert( (const VoidPtr *)pE, nL, nP );\
     }\
     void Replace( const AERef aE, USHORT nP ) {\
-        Base::Replace( (const VPRef)aE, nP );\
+        SvPtrarr::Replace( (const VPRef)aE, nP );\
     }\
     void Replace( const AE *pE, USHORT nL, USHORT nP ) {\
-        Base::Replace( (const VoidPtr*)pE, nL, nP );\
+        SvPtrarr::Replace( (const VoidPtr*)pE, nL, nP );\
     }\
     void Remove( USHORT nP, USHORT nL = 1) {\
-        Base::Remove(nP,nL);\
+        SvPtrarr::Remove(nP,nL);\
     }\
     const AE* GetData() const {\
-        return (const AE*)Base::GetData();\
+        return (const AE*)SvPtrarr::GetData();\
     }\
     void ForEach( CONCAT( FnForEach_, nm ) fnForEach, void* pArgs = 0 )\
     {\
-        _ForEach( 0, nA, (FnForEach_##Base)fnForEach, pArgs );\
+        _ForEach( 0, nA, (FnForEach_SvPtrarr)fnForEach, pArgs );\
     }\
     void ForEach( USHORT nS, USHORT nE, \
                     CONCAT( FnForEach_, nm ) fnForEach, void* pArgs = 0 )\
     {\
-        _ForEach( nS, nE, (FnForEach_##Base)fnForEach, pArgs );\
+        _ForEach( nS, nE, (FnForEach_SvPtrarr)fnForEach, pArgs );\
     }\
     AE operator[]( USHORT nP )const  { \
-        return (AE)Base::operator[](nP); }\
+        return (AE)SvPtrarr::operator[](nP); }\
     AE GetObject( USHORT nP )const  { \
-        return (AE)Base::GetObject(nP); }\
+        return (AE)SvPtrarr::GetObject(nP); }\
     \
     USHORT GetPos( const AERef aE ) const { \
-        return Base::GetPos((const VPRef)aE);\
+        return SvPtrarr::GetPos((const VPRef)aE);\
     } \
     void DeleteAndDestroy( USHORT nP, USHORT nL=1 );\
 private:\
@@ -448,24 +303,21 @@ private:\
 };
 
 #define SV_DECL_PTRARR_DEL(nm, AE, IS, GS )\
-SV_DECL_PTRARR_DEL_GEN(nm, AE, IS, GS, SvPtrarr, AE &, VoidPtr &, )
+SV_DECL_PTRARR_DEL_GEN(nm, AE, IS, GS, AE &, VoidPtr &, )
 
 #define SV_DECL_PTRARR_DEL_VISIBILITY(nm, AE, IS, GS, vis )\
-SV_DECL_PTRARR_DEL_GEN(nm, AE, IS, GS, SvPtrarr, AE &, VoidPtr &, vis)
+SV_DECL_PTRARR_DEL_GEN(nm, AE, IS, GS, AE &, VoidPtr &, vis)
 
-#define SV_IMPL_PTRARR_GEN(nm, AE, Base)\
+#define SV_IMPL_PTRARR(nm, AE )\
 void nm::DeleteAndDestroy( USHORT nP, USHORT nL )\
 { \
     if( nL ) {\
         DBG_ASSERT( nP < nA && nP + nL <= nA,"Del");\
         for( USHORT n=nP; n < nP + nL; n++ ) \
             delete *((AE*)pData+n); \
-        Base::Remove( nP, nL ); \
+        SvPtrarr::Remove( nP, nL ); \
     } \
 }
-
-#define SV_IMPL_PTRARR(nm, AE )\
-SV_IMPL_PTRARR_GEN(nm, AE, SvPtrarr )
 
 typedef void* VoidPtr;
 _SV_DECL_VARARR_GEN( SvPtrarr, VoidPtr, 0, 1, VoidPtr &, )
@@ -542,103 +394,6 @@ public:\
     const AE* GetData() const { return (const AE*)pData; }\
 \
 /* Das Ende stehe im DECL-Makro !!! */
-
-#define _SV_SEEK_PTR(nm,AE)\
-BOOL nm::Seek_Entry( const AE aE, USHORT* pP ) const\
-{\
-    register USHORT nO  = nm##_SAR::Count(),\
-            nM, \
-            nU = 0;\
-    if( nO > 0 )\
-    {\
-        nO--;\
-        register long rCmp = (long)aE;\
-        while( nU <= nO )\
-        {\
-            nM = nU + ( nO - nU ) / 2;\
-            if( (long)*(pData + nM) == rCmp )\
-            {\
-                if( pP ) *pP = nM;\
-                return TRUE;\
-            }\
-            else if( (long)*(pData+ nM) < (long)aE  )\
-                nU = nM + 1;\
-            else if( nM == 0 )\
-            {\
-                if( pP ) *pP = nU;\
-                return FALSE;\
-            }\
-            else\
-                nO = nM - 1;\
-        }\
-    }\
-    if( pP ) *pP = nU;\
-    return FALSE;\
-}
-
-#define _SV_SEEK_PTR_TO_OBJECT( nm,AE )\
-BOOL nm::Seek_Entry( const AE aE, USHORT* pP ) const\
-{\
-    register USHORT nO  = nm##_SAR::Count(),\
-            nM, \
-            nU = 0;\
-    if( nO > 0 )\
-    {\
-        nO--;\
-        while( nU <= nO )\
-        {\
-            nM = nU + ( nO - nU ) / 2;\
-            if( *(*((AE*)pData + nM)) == *(aE) )\
-            {\
-                if( pP ) *pP = nM;\
-                return TRUE;\
-            }\
-            else if( *(*((AE*)pData + nM)) < *(aE) )\
-                nU = nM + 1;\
-            else if( nM == 0 )\
-            {\
-                if( pP ) *pP = nU;\
-                return FALSE;\
-            }\
-            else\
-                nO = nM - 1;\
-        }\
-    }\
-    if( pP ) *pP = nU;\
-    return FALSE;\
-}
-
-#define _SV_SEEK_OBJECT( nm,AE )\
-BOOL nm::Seek_Entry( const AE & aE, USHORT* pP ) const\
-{\
-    register USHORT nO  = nm##_SAR::Count(),\
-            nM, \
-            nU = 0;\
-    if( nO > 0 )\
-    {\
-        nO--;\
-        while( nU <= nO )\
-        {\
-            nM = nU + ( nO - nU ) / 2;\
-            if( *(pData + nM) == aE )\
-            {\
-                if( pP ) *pP = nM;\
-                return TRUE;\
-            }\
-            else if( *(pData + nM) < aE )\
-                nU = nM + 1;\
-            else if( nM == 0 )\
-            {\
-                if( pP ) *pP = nU;\
-                return FALSE;\
-            }\
-            else\
-                nO = nM - 1;\
-        }\
-    }\
-    if( pP ) *pP = nU;\
-    return FALSE;\
-}
 
 #define _SV_IMPL_SORTAR_ALG(nm, AE)
 
@@ -727,7 +482,39 @@ _SV_IMPL_SORTAR_ALG( nm,AE )\
             SvPtrarr::Remove( nP, nL ); \
         } \
     } \
-_SV_SEEK_PTR( nm, AE )
+    BOOL nm::Seek_Entry( const AE aE, USHORT* pP ) const\
+    {\
+        register USHORT nO  = nm##_SAR::Count(),\
+                nM, \
+                nU = 0;\
+        if( nO > 0 )\
+        {\
+            nO--;\
+            register long rCmp = (long)aE;\
+            while( nU <= nO )\
+            {\
+                nM = nU + ( nO - nU ) / 2;\
+                if( (long)*(pData + nM) == rCmp )\
+                {\
+                    if( pP ) *pP = nM;\
+                    return TRUE;\
+                }\
+                else if( (long)*(pData+ nM) < (long)aE  )\
+                    nU = nM + 1;\
+                else if( nM == 0 )\
+                {\
+                    if( pP ) *pP = nU;\
+                    return FALSE;\
+                }\
+                else\
+                    nO = nM - 1;\
+            }\
+        }\
+        if( pP ) *pP = nU;\
+        return FALSE;\
+    }
+
+
 
 #define SV_IMPL_OP_PTRARR_SORT( nm,AE )\
 _SV_IMPL_SORTAR_ALG( nm,AE )\
@@ -739,12 +526,70 @@ _SV_IMPL_SORTAR_ALG( nm,AE )\
             SvPtrarr::Remove( nP, nL ); \
         } \
     } \
-_SV_SEEK_PTR_TO_OBJECT( nm,AE )
+    BOOL nm::Seek_Entry( const AE aE, USHORT* pP ) const\
+    {\
+        register USHORT nO  = nm##_SAR::Count(),\
+                nM, \
+                nU = 0;\
+        if( nO > 0 )\
+        {\
+            nO--;\
+            while( nU <= nO )\
+            {\
+                nM = nU + ( nO - nU ) / 2;\
+                if( *(*((AE*)pData + nM)) == *(aE) )\
+                {\
+                    if( pP ) *pP = nM;\
+                    return TRUE;\
+                }\
+                else if( *(*((AE*)pData + nM)) < *(aE) )\
+                    nU = nM + 1;\
+                else if( nM == 0 )\
+                {\
+                    if( pP ) *pP = nU;\
+                    return FALSE;\
+                }\
+                else\
+                    nO = nM - 1;\
+            }\
+        }\
+        if( pP ) *pP = nU;\
+        return FALSE;\
+    }
 
 #define SV_IMPL_VARARR_SORT( nm,AE )\
 SV_IMPL_VARARR(nm##_SAR, AE)\
 _SV_IMPL_SORTAR_ALG( nm,AE )\
-_SV_SEEK_OBJECT( nm,AE )
+BOOL nm::Seek_Entry( const AE & aE, USHORT* pP ) const\
+{\
+    register USHORT nO  = nm##_SAR::Count(),\
+            nM, \
+            nU = 0;\
+    if( nO > 0 )\
+    {\
+        nO--;\
+        while( nU <= nO )\
+        {\
+            nM = nU + ( nO - nU ) / 2;\
+            if( *(pData + nM) == aE )\
+            {\
+                if( pP ) *pP = nM;\
+                return TRUE;\
+            }\
+            else if( *(pData + nM) < aE )\
+                nU = nM + 1;\
+            else if( nM == 0 )\
+            {\
+                if( pP ) *pP = nU;\
+                return FALSE;\
+            }\
+            else\
+                nO = nM - 1;\
+        }\
+    }\
+    if( pP ) *pP = nU;\
+    return FALSE;\
+}
 
 #if defined (C40) || defined (C41) || defined (C42) || defined(C50) || defined(C52)
 #define C40_INSERT( c, p, n) Insert( (c const *) p, n )

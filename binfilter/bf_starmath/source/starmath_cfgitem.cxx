@@ -43,7 +43,117 @@ static const char* aRootName = "Office.Math";
 #define SYMBOL_LIST         "SymbolList"
 #define FONT_FORMAT_LIST    "FontFormatList"
 
-/*N*/ SV_IMPL_OBJARR( SmFntFmtListEntryArr, SmFntFmtListEntry );
+SmFntFmtListEntryArr::SmFntFmtListEntryArr( USHORT nInit, BYTE )
+    : pData (0),
+      nFree (nInit),
+      nA    (0)
+{
+    if( nInit )
+    {
+        pData = (SmFntFmtListEntry*)(rtl_allocateMemory(sizeof(SmFntFmtListEntry) * nInit));
+        DBG_ASSERT( pData, "CTOR, allocate");
+    }
+}
+
+void SmFntFmtListEntryArr::_destroy()
+{
+    if(pData)
+    {
+        SmFntFmtListEntry* pTmp=pData;
+        for(USHORT n=0; n < nA; n++,pTmp++ )
+        {
+            pTmp->~SmFntFmtListEntry();
+        }
+        rtl_freeMemory(pData);
+        pData = 0;
+    }
+}
+
+void SmFntFmtListEntryArr::_resize (size_t n)
+{
+    USHORT nL = ((n < USHRT_MAX) ? USHORT(n) : USHRT_MAX);
+    SmFntFmtListEntry* pE = (SmFntFmtListEntry*)(rtl_reallocateMemory (pData, sizeof(SmFntFmtListEntry) * nL));
+    if ((pE != 0) || (nL == 0))
+    {
+        pData = pE;
+        nFree = nL - nA;
+    }
+}
+
+void SmFntFmtListEntryArr::Insert( const SmFntFmtListEntryArr *pI, USHORT nP,
+            USHORT nS, USHORT nE )
+{
+    if( USHRT_MAX == nE )
+        nE = pI->nA;
+    if( nS < nE )
+        Insert( (const SmFntFmtListEntry*)pI->pData+nS, (USHORT)nE-nS, nP );
+}
+
+void SmFntFmtListEntryArr::Insert( const SmFntFmtListEntry &aE, USHORT nP )
+{
+    if (nFree < 1)
+        _resize (nA + ((nA > 1) ? nA : 1));
+    if( pData && nP < nA )
+        memmove( pData+nP+1, pData+nP, (nA-nP) * sizeof( SmFntFmtListEntry ));
+    SmFntFmtListEntry* pTmp = pData+nP;
+    new( (DummyType*) pTmp ) SmFntFmtListEntry( (SmFntFmtListEntry&)aE );
+    ++nA; --nFree;
+}
+
+void SmFntFmtListEntryArr::Insert( const SmFntFmtListEntry *pE, USHORT nL, USHORT nP )
+{
+    if (nFree < nL)
+        _resize (nA + ((nA > nL) ? nA : nL));
+    if( pData && nP < nA )
+        memmove( pData+nP+nL, pData+nP, (nA-nP) * sizeof( SmFntFmtListEntry ));
+    if( pE )
+    {
+        SmFntFmtListEntry* pTmp = pData+nP;
+        for( USHORT n = 0; n < nL; n++, pTmp++, pE++)
+        {
+            new( (DummyType*) pTmp ) SmFntFmtListEntry( (SmFntFmtListEntry&)*pE );
+        }
+    }
+    nA = nA + nL; nFree = nFree - nL;
+}
+
+void SmFntFmtListEntryArr::Remove( USHORT nP, USHORT nL )
+{
+    if( !nL )
+        return;
+    SmFntFmtListEntry* pTmp=pData+nP;
+    USHORT nCtr = nP;
+    for(USHORT n=0; n < nL; n++,pTmp++,nCtr++)
+    {
+        if( nCtr < nA )
+            pTmp->~SmFntFmtListEntry();
+    }
+    if( pData && nP+1 < nA )
+        memmove( pData+nP, pData+nP+nL, (nA-nP-nL) * sizeof( SmFntFmtListEntry ));
+    nA = nA - nL; nFree = nFree + nL;
+    if (nFree > nA)
+        _resize (nA);
+}
+
+void SmFntFmtListEntryArr::ForEach( FnForEach_SmFntFmtListEntryArr fnForEach, void* pArgs )
+{
+    _ForEach( 0, nA, fnForEach, pArgs );
+}
+
+void SmFntFmtListEntryArr::ForEach( USHORT nS, USHORT nE,
+                FnForEach_SmFntFmtListEntryArr fnForEach, void* pArgs )
+{
+    _ForEach( nS, nE, fnForEach, pArgs );
+}
+
+void SmFntFmtListEntryArr::_ForEach( USHORT nStt, USHORT nE,
+        FnForEach_SmFntFmtListEntryArr fnCall, void* pArgs )
+{
+    if( nStt >= nE || nE > nA )
+        return;
+    for( ; nStt < nE && (*fnCall)( *(pData+nStt), pArgs ); nStt++)
+        ;
+}
 
 /////////////////////////////////////////////////////////////////
 
