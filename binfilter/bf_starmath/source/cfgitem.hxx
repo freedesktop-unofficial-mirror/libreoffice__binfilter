@@ -152,19 +152,10 @@ public:
 
     SmFntFmtListEntry& operator[](USHORT nP) const { return *(pData+nP); }
 
-    void Insert( const SmFntFmtListEntryArr *pI, USHORT nP,
-                USHORT nS = 0, USHORT nE = USHRT_MAX );
     SmFntFmtListEntry& GetObject(USHORT nP) const { return (*this)[nP]; }
     void Insert( const SmFntFmtListEntry &aE, USHORT nP );
-    void Insert( const SmFntFmtListEntry *pE, USHORT nL, USHORT nP );
-    void Remove( USHORT nP, USHORT nL = 1 );
     USHORT Count() const { return nA; }
     const SmFntFmtListEntry* GetData() const { return (const SmFntFmtListEntry*)pData; }
-    void ForEach( FnForEach_SmFntFmtListEntryArr fnForEach, void* pArgs = 0 );
-    void ForEach( USHORT nS, USHORT nE,
-                    FnForEach_SmFntFmtListEntryArr fnForEach, void* pArgs = 0 );
-    void _ForEach( USHORT nStt, USHORT nE,
-            FnForEach_SmFntFmtListEntryArr fnCall, void* pArgs = 0 );
 private:
     SmFntFmtListEntryArr( const SmFntFmtListEntryArr& );
     SmFntFmtListEntryArr& operator=( const SmFntFmtListEntryArr& );

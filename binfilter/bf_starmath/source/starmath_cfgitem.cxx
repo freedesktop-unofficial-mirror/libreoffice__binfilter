@@ -80,15 +80,6 @@ void SmFntFmtListEntryArr::_resize (size_t n)
     }
 }
 
-void SmFntFmtListEntryArr::Insert( const SmFntFmtListEntryArr *pI, USHORT nP,
-            USHORT nS, USHORT nE )
-{
-    if( USHRT_MAX == nE )
-        nE = pI->nA;
-    if( nS < nE )
-        Insert( (const SmFntFmtListEntry*)pI->pData+nS, (USHORT)nE-nS, nP );
-}
-
 void SmFntFmtListEntryArr::Insert( const SmFntFmtListEntry &aE, USHORT nP )
 {
     if (nFree < 1)
@@ -98,61 +89,6 @@ void SmFntFmtListEntryArr::Insert( const SmFntFmtListEntry &aE, USHORT nP )
     SmFntFmtListEntry* pTmp = pData+nP;
     new( (DummyType*) pTmp ) SmFntFmtListEntry( (SmFntFmtListEntry&)aE );
     ++nA; --nFree;
-}
-
-void SmFntFmtListEntryArr::Insert( const SmFntFmtListEntry *pE, USHORT nL, USHORT nP )
-{
-    if (nFree < nL)
-        _resize (nA + ((nA > nL) ? nA : nL));
-    if( pData && nP < nA )
-        memmove( pData+nP+nL, pData+nP, (nA-nP) * sizeof( SmFntFmtListEntry ));
-    if( pE )
-    {
-        SmFntFmtListEntry* pTmp = pData+nP;
-        for( USHORT n = 0; n < nL; n++, pTmp++, pE++)
-        {
-            new( (DummyType*) pTmp ) SmFntFmtListEntry( (SmFntFmtListEntry&)*pE );
-        }
-    }
-    nA = nA + nL; nFree = nFree - nL;
-}
-
-void SmFntFmtListEntryArr::Remove( USHORT nP, USHORT nL )
-{
-    if( !nL )
-        return;
-    SmFntFmtListEntry* pTmp=pData+nP;
-    USHORT nCtr = nP;
-    for(USHORT n=0; n < nL; n++,pTmp++,nCtr++)
-    {
-        if( nCtr < nA )
-            pTmp->~SmFntFmtListEntry();
-    }
-    if( pData && nP+1 < nA )
-        memmove( pData+nP, pData+nP+nL, (nA-nP-nL) * sizeof( SmFntFmtListEntry ));
-    nA = nA - nL; nFree = nFree + nL;
-    if (nFree > nA)
-        _resize (nA);
-}
-
-void SmFntFmtListEntryArr::ForEach( FnForEach_SmFntFmtListEntryArr fnForEach, void* pArgs )
-{
-    _ForEach( 0, nA, fnForEach, pArgs );
-}
-
-void SmFntFmtListEntryArr::ForEach( USHORT nS, USHORT nE,
-                FnForEach_SmFntFmtListEntryArr fnForEach, void* pArgs )
-{
-    _ForEach( nS, nE, fnForEach, pArgs );
-}
-
-void SmFntFmtListEntryArr::_ForEach( USHORT nStt, USHORT nE,
-        FnForEach_SmFntFmtListEntryArr fnCall, void* pArgs )
-{
-    if( nStt >= nE || nE > nA )
-        return;
-    for( ; nStt < nE && (*fnCall)( *(pData+nStt), pArgs ); nStt++)
-        ;
 }
 
 /////////////////////////////////////////////////////////////////
