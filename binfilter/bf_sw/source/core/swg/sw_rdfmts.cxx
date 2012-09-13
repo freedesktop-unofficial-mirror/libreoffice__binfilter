@@ -191,7 +191,7 @@ SwFmt* SwSwgReader::InFormat( SwFmt* pFmt, USHORT* pParentId )
     BYTE nHelpFid = (BYTE) nHelpFileId;
     USHORT nHelpId = USHRT_MAX;
     BYTE cFlags;
-    USHORT nFmtId;
+    USHORT nFmtId(IDX_NO_VALUE);
     if( cFmtKind == SWG_FLYFMT ) nFlyLevel++;
     nFmtLvl++;
 
