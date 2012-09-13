@@ -412,7 +412,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "nn93723", "ScDocShell::Load" );
 /*N*/
-/*N*/   ScRefreshTimerProtector( aDocument.GetRefreshTimerControlAddress() );
+/*N*/   ScRefreshTimerProtector aProt( aDocument.GetRefreshTimerControlAddress() );
 /*N*/
 /*N*/   DBG_ASSERT( pStor, "Load without storage?" );
 /*N*/   BOOL bXML = ( pStor->GetVersion() >= SOFFICE_FILEFORMAT_60 );
@@ -486,7 +486,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/   BOOL bRet = FALSE;              // FALSE heisst Benutzerabbruch !!
 /*N*/                                   // bei Fehler: Fehler am Stream setzen!!
 /*N*/
-/*N*/   ScRefreshTimerProtector( aDocument.GetRefreshTimerControlAddress() );
+/*N*/   ScRefreshTimerProtector aProt( aDocument.GetRefreshTimerControlAddress() );
 /*N*/
 /*N*/   // ob nach dem Import optimale Spaltenbreiten gesetzt werden sollen
 /*N*/   BOOL bSetColWidths = FALSE;

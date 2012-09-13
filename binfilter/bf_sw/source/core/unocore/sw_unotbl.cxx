@@ -2813,7 +2813,7 @@ void SwXTextTable::setPropertyValue(const OUString& rPropertyName,
                 break;
                 case FN_UNO_TABLE_COLUMN_SEPARATORS:
                 {
-                    UnoActionContext(pFmt->GetDoc());
+                    UnoActionContext aContext(pFmt->GetDoc());
                     lcl_SetTblSeparators(aValue, sal_False);
                 }
                 break;
