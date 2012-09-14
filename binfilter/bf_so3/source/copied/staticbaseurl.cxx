@@ -25,6 +25,7 @@
 #include "com/sun/star/uno/Any.hxx"
 #include "com/sun/star/uno/Exception.hpp"
 #include "com/sun/star/uno/Reference.hxx"
+#include "comphelper/processfactory.hxx"
 #include "rtl/instance.hxx"
 #include "rtl/textenc.h"
 #include "rtl/ustring.h"
@@ -47,7 +48,8 @@ com::sun::star::uno::Any GetCasePreservedURL(INetURLObject const & aObj) {
             ucbhelper::Content aCnt(
                 aObj.GetMainURL(INetURLObject::NO_DECODE),
                 com::sun::star::uno::Reference<
-                com::sun::star::ucb::XCommandEnvironment >());
+                com::sun::star::ucb::XCommandEnvironment >(),
+                comphelper::getProcessComponentContext());
             return aCnt.executeCommand(
                 rtl::OUString(
                     RTL_CONSTASCII_USTRINGPARAM("getCasePreservingURL")),

@@ -27,13 +27,9 @@
 
 #include <com/sun/star/beans/PropertyValue.hpp>
 
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-
+#include <com/sun/star/ucb/UniversalContentBroker.hpp>
 #include <com/sun/star/ucb/XContent.hpp>
-#include <com/sun/star/ucb/XContentIdentifier.hpp>
-#include <com/sun/star/ucb/XContentIdentifierFactory.hpp>
-#include <com/sun/star/ucb/XContentProvider.hpp>
-#include <com/sun/star/ucb/XContentProviderManager.hpp>
+#include <com/sun/star/ucb/XUniversalContentBroker.hpp>
 
 #include <comphelper/processfactory.hxx>
 
@@ -51,16 +47,6 @@ using namespace com::sun::star::sdbc;
 namespace binfilter {
 
 typedef com::sun::star::lang::XMultiServiceFactory factory_type;
-typedef com::sun::star::uno::XInterface            interface_type;
-
-
-/*
- * S2U.
- */
-inline rtl::OUString S2U (const sal_Char *ascii)
-{
-    return rtl::OUString::createFromAscii (ascii);
-}
 
 /*========================================================================
  *
@@ -83,33 +69,9 @@ SvBindingTransport_Impl::getProcessServiceFactory (void)
 com::sun::star::uno::Reference<XContent>
 SvBindingTransport_Impl::createContent (const rtl::OUString &rUrl)
 {
-    com::sun::star::uno::Reference<factory_type>
-        xFactory (getProcessServiceFactory(), com::sun::star::uno::UNO_QUERY);
-    if (!xFactory.is())
-        return com::sun::star::uno::Reference<XContent>();
-
-    com::sun::star::uno::Reference<interface_type>
-        xBroker (xFactory->createInstance (
-            S2U ("com.sun.star.ucb.UniversalContentBroker")));
-    if (!xBroker.is())
-        return com::sun::star::uno::Reference<XContent>();
-
-    com::sun::star::uno::Reference<XContentProvider>
-        xProvider (xBroker, com::sun::star::uno::UNO_QUERY);
-    if (!xProvider.is())
-        return com::sun::star::uno::Reference<XContent>();
-
-    com::sun::star::uno::Reference<XContentIdentifierFactory>
-        xIdentProv (xProvider, com::sun::star::uno::UNO_QUERY);
-    if (!xIdentProv.is())
-        return com::sun::star::uno::Reference<XContent>();
-
-    com::sun::star::uno::Reference<XContentIdentifier>
-        xIdent (xIdentProv->createContentIdentifier (rUrl));
-    if (!xIdent.is())
-        return com::sun::star::uno::Reference<XContent>();
-
-    return xProvider->queryContent (xIdent);
+    com::sun::star::uno::Reference<XUniversalContentBroker>
+        xBroker (UniversalContentBroker::create(comphelper::getProcessComponentContext()));
+    return xBroker->queryContent (xBroker->createContentIdentifier (rUrl));
 }
 
 /*

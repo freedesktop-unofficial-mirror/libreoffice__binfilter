@@ -435,7 +435,7 @@ sal_False           Das Objekt konnte nicht geladen werden
     {
         try
         {
-            ::ucbhelper::Content aContent( pMedium->GetName(), ::com::sun::star::uno::Reference < XCommandEnvironment >() );
+            ::ucbhelper::Content aContent( pMedium->GetName(), ::com::sun::star::uno::Reference < XCommandEnvironment >(), comphelper::getProcessComponentContext() );
             ::com::sun::star::uno::Reference < XPropertySetInfo > xProps = aContent.getProperties();
             if ( xProps.is() )
             {
@@ -769,7 +769,7 @@ sal_Bool SfxObjectShell::SaveTo_Impl
 
         try
         {
-            ::ucbhelper::Content aContent( rMedium.GetName(), ::com::sun::star::uno::Reference < XCommandEnvironment >() );
+            ::ucbhelper::Content aContent( rMedium.GetName(), ::com::sun::star::uno::Reference < XCommandEnvironment >(), comphelper::getProcessComponentContext() );
             ::com::sun::star::uno::Reference < XPropertySetInfo > xProps = aContent.getProperties();
             if ( xProps.is() )
             {

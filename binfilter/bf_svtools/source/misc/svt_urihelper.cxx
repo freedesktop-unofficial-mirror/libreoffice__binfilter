@@ -51,7 +51,6 @@
 #include "sal/types.h"
 #include <tools/debug.hxx>
 #include <tools/inetmime.hxx>
-#include <ucbhelper/contentbroker.hxx>
 #include <unotools/charclass.hxx>
 #include "rtl/instance.hxx"
 

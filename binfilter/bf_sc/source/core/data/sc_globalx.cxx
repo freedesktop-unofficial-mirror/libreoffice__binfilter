@@ -21,8 +21,8 @@
 #include "callform.hxx"
 #include "global.hxx"
 
+#include <comphelper/processfactory.hxx>
 #include <tools/urlobj.hxx>
-#include <ucbhelper/contentbroker.hxx>
 #include <ucbhelper/content.hxx>
 #include <unotools/localfilehelper.hxx>
 
@@ -71,7 +71,7 @@ namespace binfilter {
 /*N*/               try
 /*N*/               {
 /*N*/                   ::ucbhelper::Content aCnt( aObj.GetMainURL(INetURLObject::NO_DECODE),
-/*N*/                       Reference< XCommandEnvironment > () );
+/*N*/                       Reference< XCommandEnvironment > (), comphelper::getProcessComponentContext() );
 /*N*/                   Reference< sdbc::XResultSet > xResultSet;
 /*N*/                   Sequence< ::rtl::OUString > aProps;
 /*N*/                   try

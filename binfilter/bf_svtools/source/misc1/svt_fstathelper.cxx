@@ -17,6 +17,7 @@
  *   the License at http://www.apache.org/licenses/LICENSE-2.0 .
  */
 
+#include <comphelper/processfactory.hxx>
 #include <tools/date.hxx>
 #include <tools/time.hxx>
 #include <bf_tools/string.hxx>
@@ -41,7 +42,8 @@ sal_Bool GetModifiedDateTimeOfFile( const UniString& rURL,
     try
     {
         ::ucbhelper::Content aTestContent( rURL,
-                                uno::Reference< XCommandEnvironment > ());
+                                uno::Reference< XCommandEnvironment > (),
+                                comphelper::getProcessComponentContext());
         uno::Any aAny = aTestContent.getPropertyValue(
             OUString( RTL_CONSTASCII_USTRINGPARAM( "DateModified" )) );
         if( aAny.hasValue() )
@@ -68,7 +70,8 @@ sal_Bool IsDocument( const UniString& rURL )
     try
     {
         ::ucbhelper::Content aTestContent( rURL,
-                                uno::Reference< XCommandEnvironment > ());
+                                uno::Reference< XCommandEnvironment > (),
+                                comphelper::getProcessComponentContext());
         bExist = aTestContent.isDocument();
     }
     catch(...)

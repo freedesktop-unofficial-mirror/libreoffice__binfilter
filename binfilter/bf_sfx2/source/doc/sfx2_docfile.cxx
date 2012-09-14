@@ -84,7 +84,6 @@ using namespace ::com::sun::star::io;
 #include <bf_svtools/pathoptions.hxx>
 #include <bf_svtools/asynclink.hxx>
 #include <bf_svtools/inettype.hxx>
-#include <ucbhelper/contentbroker.hxx>
 #include <ucbhelper/commandenvironment.hxx>
 #include <unotools/localfilehelper.hxx>
 #include <unotools/ucbstreamhelper.hxx>
@@ -448,7 +447,7 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*N*/       {
 /*N*/           try
 /*N*/           {
-/*?*/               pImp->aContent = ::ucbhelper::Content( xContent, xEnv );
+/*?*/               pImp->aContent = ::ucbhelper::Content( xContent, xEnv, comphelper::getProcessComponentContext() );
 /*N*/           }
 /*N*/           catch ( Exception& )
 /*N*/           {
@@ -462,7 +461,7 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*N*/           else if ( aLogicName.Len() )
 /*N*/               aURL = GetURLObject().GetMainURL( INetURLObject::NO_DECODE );
 /*N*/           if ( !aURL.isEmpty() )
-/*N*/               ::ucbhelper::Content::create( aURL, xEnv, pImp->aContent );
+/*N*/               ::ucbhelper::Content::create( aURL, xEnv, comphelper::getProcessComponentContext(), pImp->aContent );
 /*N*/       }
 /*N*/     }
 /*N*/
@@ -945,7 +944,7 @@ void SAL_CALL SfxMediumHandler_Impl::handle(
 /*N*/
 /*N*/               INetURLObject aSource( pImp->pTempFile->GetURL() );
 /*N*/               ::ucbhelper::Content aTempCont;
-/*N*/               if( ::ucbhelper::Content::create( aSource.GetMainURL( INetURLObject::NO_DECODE ), xEnv, aTempCont ) )
+/*N*/               if( ::ucbhelper::Content::create( aSource.GetMainURL( INetURLObject::NO_DECODE ), xEnv, comphelper::getProcessComponentContext(), aTempCont ) )
 /*N*/               {
 /*N*/                   try
 /*N*/                   {
