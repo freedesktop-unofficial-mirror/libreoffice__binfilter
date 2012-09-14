@@ -566,8 +566,14 @@ ErrCode UcbTransportLockBytes::ReadAt (
     if (pRead)
         *pRead = ULONG(nSize);
 
-    sal_uInt32 nRead = SAL_MAX(m_nRead, nPos + nSize);
-    (const_cast< UcbTransportLockBytes* >(this))->m_nRead = nRead;
+    if(m_nRead > nPos + nSize)
+    {
+        (const_cast< UcbTransportLockBytes* >(this))->m_nRead = m_nRead;
+    }
+    else
+    {
+        (const_cast< UcbTransportLockBytes* >(this))->m_nRead = nPos + nSize;
+    }
 
     return ERRCODE_NONE;
 }
