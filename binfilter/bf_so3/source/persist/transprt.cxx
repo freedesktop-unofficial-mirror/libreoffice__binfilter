@@ -534,7 +534,10 @@ ErrCode UcbTransportLockBytes::ReadAt (
     Sequence<sal_Int8> aData;
     sal_Int32          nSize;
 
-    nCount = SAL_MIN(nCount, 0x7FFFFFFF);
+    if(nCount > 0x7FFFFFFF)
+    {
+        nCount = 0x7FFFFFFF;
+    }
     try
     {
         while (!m_bTerminated)
