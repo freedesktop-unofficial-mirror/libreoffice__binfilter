@@ -48,42 +48,11 @@ ScXMLExportDDELinks::~ScXMLExportDDELinks()
 {
 }
 
-sal_Bool ScXMLExportDDELinks::CellsEqual(const sal_Bool bPrevEmpty, const sal_Bool bPrevString, const String& sPrevValue, const double& fPrevValue,
-                     const sal_Bool bEmpty, const sal_Bool bString, const String& sValue, const double& fValue)
+void ScXMLExportDDELinks::WriteCell(const sal_Int32 nRepeat)
 {
-    if (bEmpty == bPrevEmpty)
-        if (bEmpty)
-            return sal_True;
-        else if (bString == bPrevString)
-            if (bString)
-                return (sPrevValue == sValue);
-            else
-                return (fPrevValue == fValue);
-        else
-            return sal_False;
-    else
-        return sal_False;
-}
-
-void ScXMLExportDDELinks::WriteCell(const sal_Bool bEmpty, const sal_Bool bString, const String& sValue, const double& fValue, const sal_Int32 nRepeat)
-{
-    ::rtl::OUStringBuffer sBuffer;
-    if (!bEmpty)
-    {
-        if (bString)
-        {
-            rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_VALUE_TYPE, XML_STRING);
-            rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_STRING_VALUE, ::rtl::OUString(sValue));
-        }
-        else
-        {
-            rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_VALUE_TYPE, XML_FLOAT);
-            rExport.GetMM100UnitConverter().convertDouble(sBuffer, fValue);
-            rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_VALUE, sBuffer.makeStringAndClear());
-        }
-    }
     if (nRepeat > 1)
     {
+        ::rtl::OUStringBuffer sBuffer;
         rExport.GetMM100UnitConverter().convertNumber(sBuffer, nRepeat);
         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_NUMBER_COLUMNS_REPEATED, sBuffer.makeStringAndClear());
     }
@@ -111,38 +80,18 @@ void ScXMLExportDDELinks::WriteTable(const sal_Int32 nPos)
         {
             SvXMLElementExport aElemCol(rExport, XML_NAMESPACE_TABLE, XML_TABLE_COLUMN, sal_True, sal_True);
         }
-        sal_Bool bPrevString(sal_True);
-        sal_Bool bPrevEmpty(sal_True);
-        double fPrevValue;
-        String sPrevValue;
         sal_Int32 nRepeatColsCount(1);
         for(sal_Int32 nRow = 0; nRow < nRowCount; nRow++)
         {
             SvXMLElementExport aElemRow(rExport, XML_NAMESPACE_TABLE, XML_TABLE_ROW, sal_True, sal_True);
             for(sal_Int32 nColumn = 0; nColumn < nColCount; nColumn++)
             {
-                if (nColumn == 0)
-                    bPrevEmpty = TRUE;
-                else
+                if (nColumn != 0)
                 {
-                    double fValue;
-                    String sValue;
-                    sal_Bool bString(sal_True);
-                    sal_Bool bEmpty = TRUE;
-                    if (CellsEqual(bPrevEmpty, bPrevString, sPrevValue, fPrevValue,
-                                bEmpty, bString, sValue, fValue))
-                        nRepeatColsCount++;
-                    else
-                    {
-                        WriteCell(bPrevEmpty, bPrevString, sPrevValue, fPrevValue, nRepeatColsCount);
-                        nRepeatColsCount = 1;
-                        bPrevEmpty = bEmpty;
-                        fPrevValue = fValue;
-                        sPrevValue = sValue;
-                    }
+                    nRepeatColsCount++;
                 }
             }
-            WriteCell(bPrevEmpty, bPrevString, sPrevValue, fPrevValue, nRepeatColsCount);
+            WriteCell(nRepeatColsCount);
             nRepeatColsCount = 1;
         }
     }
