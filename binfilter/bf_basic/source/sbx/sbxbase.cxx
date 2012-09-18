@@ -17,7 +17,7 @@
  *   the License at http://www.apache.org/licenses/LICENSE-2.0 .
  */
 
-#include <rtl/oustringostreaminserter.hxx>
+#include <rtl/ustring.hxx>
 #include <sal/log.hxx>
 #include <tools/stream.hxx>
 

@@ -28,8 +28,8 @@
 #include "osl/file.hxx"
 #include "osl/process.h"
 #include "rtl/bootstrap.hxx"
-#include "rtl/oustringostreaminserter.hxx"
 #include "rtl/ustrbuf.hxx"
+#include "rtl/ustring.hxx"
 #include "rtl/unload.h"
 #include "sal/log.hxx"
 
