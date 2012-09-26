@@ -28,6 +28,10 @@
 #undef SHARED
 #endif
 
+#if defined( EXPLICIT )
+#undef EXPLICIT
+#endif
+
 namespace binfilter {
 
 // Der Tokenizer ist stand-alone, d.h. er kann von ueberallher verwendet
