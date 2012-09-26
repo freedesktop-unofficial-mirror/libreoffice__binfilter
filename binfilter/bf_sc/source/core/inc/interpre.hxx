@@ -49,22 +49,6 @@ class ScFormulaCell;
                                         // Maximum ca. 85 wird bei Invertierung
                                         // von 128 x 128 benoetigt!
 
-
-#ifndef MSC
-    #include <setjmp.h>
-#else
-    extern "C"
-    {
-    #define _JBLEN  9  /* bp, di, si, sp, ret addr, ds */
-    typedef  int  jmp_buf[_JBLEN];
-    #define _JMP_BUF_DEFINED
-    #define setjmp  _setjmp
-    int  __cdecl _setjmp(jmp_buf);
-    void __cdecl longjmp(jmp_buf, int);
-    };
-#endif
-
-
 struct ScCompare
 {
     double  nVal[2];

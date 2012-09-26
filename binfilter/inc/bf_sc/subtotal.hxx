@@ -24,19 +24,7 @@
 
 #include "global.hxx"
 
-#ifndef MSC
-    #include <setjmp.h>
-#else
-    extern "C"
-    {
-    #define _JBLEN  9  /* bp, di, si, sp, ret addr, ds */
-    typedef  int  jmp_buf[_JBLEN];
-    #define _JMP_BUF_DEFINED
-    #define setjmp  _setjmp
-    int  __cdecl _setjmp(jmp_buf);
-    void __cdecl longjmp(jmp_buf, int);
-    };
-#endif
+#include <setjmp.h>
 
 namespace binfilter {
 
