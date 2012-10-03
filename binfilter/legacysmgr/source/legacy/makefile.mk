@@ -23,7 +23,6 @@ TARGET = legacy_binfilters
 USE_DEFFILE = TRUE
 NO_BSYMBOLIC = TRUE
 ENABLE_EXCEPTIONS = TRUE
-# COMP1TYPELIST = $(TARGET)
 
 # --- Settings -----------------------------------------------------
 
