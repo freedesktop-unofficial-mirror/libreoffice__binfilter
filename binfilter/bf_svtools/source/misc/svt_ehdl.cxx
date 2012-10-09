@@ -37,8 +37,8 @@ namespace binfilter
 static USHORT aWndFunc(
     Window *pWin,            // Parent des Dialoges
     USHORT nFlags,
-    const ::String &rErr,      // Fehlertext
-    const ::String &rAction)   // Actiontext
+    const OUString &rErr,      // Fehlertext
+    const OUString &rAction)   // Actiontext
 
 /*  [Beschreibung]
 
@@ -171,7 +171,7 @@ SfxErrorHandler::~SfxErrorHandler()
 //-------------------------------------------------------------------------
 
 BOOL SfxErrorHandler::CreateString(
-    const ErrorInfo *pErr, ::String &rStr, USHORT& nFlags) const
+    const ErrorInfo *pErr, OUString &rStr, USHORT& nFlags) const
 
 /*  [Beschreibung]
 
@@ -188,13 +188,12 @@ BOOL SfxErrorHandler::CreateString(
     {
         if(GetMessageString(nErrCode, rStr, nFlags))
         {
-            for (xub_StrLen i = 0; i < rStr.Len();)
+            for (xub_StrLen i = 0; i < rStr.getLength();)
             {
-                i = rStr.SearchAndReplace(String::CreateFromAscii( "$(ARG1)" ),
-                                          pMsgInfo->GetMessageArg(), i);
-                if (i == STRING_NOTFOUND)
+                if( rStr.indexOf(OUString("$(ARG1)"), i) == -1 )
                     break;
-                i = i + pMsgInfo->GetMessageArg().Len();
+                rStr = rStr.replaceAll("$(ARG1)", pMsgInfo->GetMessageArg(), i);
+                i = i + pMsgInfo->GetMessageArg().getLength();
             }
             return TRUE;
         }
@@ -203,32 +202,32 @@ BOOL SfxErrorHandler::CreateString(
     {
         StringErrorInfo *pStringInfo=PTR_CAST(StringErrorInfo,pErr);
         if(pStringInfo)
-            for (xub_StrLen i = 0; i < rStr.Len();)
+            for (xub_StrLen i = 0; i < rStr.getLength();)
             {
-                i = rStr.SearchAndReplace(String::CreateFromAscii( "$(ARG1)" ),
-                                          pStringInfo->GetErrorString(), i);
-                if (i == STRING_NOTFOUND)
+                if( rStr.indexOf("$(ARG1)", i) == -1 )
                     break;
-                i = i + pStringInfo->GetErrorString().Len();
+                rStr = rStr.replaceAll(rtl::OUString("$(ARG1)"),
+                                          pStringInfo->GetErrorString(), i);
+                i = i + pStringInfo->GetErrorString().getLength();
             }
         else
         {
             TwoStringErrorInfo * pTwoStringInfo = PTR_CAST(TwoStringErrorInfo,
                                                            pErr);
             if (pTwoStringInfo)
-                for (USHORT i = 0; i < rStr.Len();)
+                for (USHORT i = 0; i < rStr.getLength();)
                 {
-                    USHORT nArg1Pos = rStr.Search(String::CreateFromAscii( "$(ARG1)" ), i);
-                    USHORT nArg2Pos = rStr.Search(String::CreateFromAscii( "$(ARG2)" ), i);
+                    USHORT nArg1Pos = rStr.indexOf(String::CreateFromAscii( "$(ARG1)" ), i);
+                    USHORT nArg2Pos = rStr.indexOf(String::CreateFromAscii( "$(ARG2)" ), i);
                     if (nArg1Pos < nArg2Pos)
                     {
-                        rStr.Replace(nArg1Pos, 7, pTwoStringInfo->GetArg1());
-                        i = nArg1Pos + pTwoStringInfo->GetArg1().Len();
+                        rStr = rStr.replaceAt(nArg1Pos, 7, pTwoStringInfo->GetArg1());
+                        i = nArg1Pos + pTwoStringInfo->GetArg1().getLength();
                     }
                     else if (nArg2Pos < nArg1Pos)
                     {
-                        rStr.Replace(nArg2Pos, 7, pTwoStringInfo->GetArg2());
-                        i = nArg2Pos + pTwoStringInfo->GetArg2().Len();
+                        rStr = rStr.replaceAt(nArg2Pos, 7, pTwoStringInfo->GetArg2());
+                        i = nArg2Pos + pTwoStringInfo->GetArg2().getLength();
                     }
                     else break;
                 }
@@ -311,7 +310,7 @@ BOOL SfxErrorHandler::GetClassString(ULONG lClassId, String &rStr) const
 //-------------------------------------------------------------------------
 
 BOOL SfxErrorHandler::GetMessageString(
-    ULONG lErrId, ::String &rStr, USHORT &nFlags) const
+    ULONG lErrId, OUString &rStr, USHORT &nFlags) const
 
 /*  [Beschreibung]
 
@@ -341,7 +340,7 @@ BOOL SfxErrorHandler::GetMessageString(
 //-------------------------------------------------------------------------
 
 BOOL SfxErrorHandler::GetErrorString(
-    ULONG lErrId, ::String &rStr, USHORT &nFlags) const
+    ULONG lErrId, OUString &rStr, USHORT &nFlags) const
 
 /*  [Beschreibung]
     Erzeugt den Fehlerstring fuer den eigentlichen Fehler ohne
@@ -365,8 +364,7 @@ BOOL SfxErrorHandler::GetErrorString(
             USHORT nResFlags = aErrorString.GetFlags();
             if ( nResFlags )
                 nFlags = nResFlags;
-            rStr.SearchAndReplace(
-                String::CreateFromAscii("$(ERROR)"), aErrorString.GetString());
+            rStr = rStr.replaceAll(rtl::OUString("$(ERROR)"), aErrorString.GetString());
             bRet = TRUE;
         }
         else
@@ -380,7 +378,7 @@ BOOL SfxErrorHandler::GetErrorString(
                        aErrStr);
         if(aErrStr.Len())
             aErrStr+=String::CreateFromAscii( ".\n" );
-        rStr.SearchAndReplace(String::CreateFromAscii( "$(CLASS)" ),aErrStr);
+        rStr = rStr.replaceAll(rtl::OUString("$(CLASS)"),aErrStr);
     }
 
     delete pResId;
@@ -401,7 +399,7 @@ SfxErrorContext::SfxErrorContext(
 
 //-------------------------------------------------------------------------
 
-BOOL SfxErrorContext::GetString(ULONG nErrId, ::String &rStr)
+BOOL SfxErrorContext::GetString(ULONG nErrId, OUString &rStr)
 
 /*  [Beschreibung]
 
@@ -426,7 +424,7 @@ BOOL SfxErrorContext::GetString(ULONG nErrId, ::String &rStr)
         if ( aTestEr )
         {
             rStr = rtl::OUString(( (ResString)aTestEr ).GetString());
-            rStr.SearchAndReplace( String::CreateFromAscii( "$(ARG1)" ), aArg1 );
+            rStr = rStr.replaceAll(rtl::OUString("$(ARG1)"), aArg1 );
             bRet = true;
         }
         else
@@ -440,7 +438,7 @@ BOOL SfxErrorContext::GetString(ULONG nErrId, ::String &rStr)
             USHORT nId = ( nErrId & ERRCODE_WARNING_MASK ) ? ERRCTX_WARNING : ERRCTX_ERROR;
             ResId aSfxResId( RID_ERRCTX, *pMgr );
             ErrorResource_Impl aEr( aSfxResId, nId );
-            rStr.SearchAndReplace( String::CreateFromAscii( "$(ERR)" ), ( (ResString)aEr ).GetString() );
+            rStr = rStr.replaceAll( rtl::OUString("$(ERR)"), ( (ResString)aEr ).GetString() );
         }
     }
 

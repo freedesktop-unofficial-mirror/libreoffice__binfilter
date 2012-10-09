@@ -40,7 +40,7 @@ public:
     SfxErrorContext(
             USHORT nCtxIdP, const String &aArg1, Window *pWin=0,
             USHORT nResIdP=USHRT_MAX, ResMgr *pMgrP=0);
-    virtual BOOL GetString(ULONG nErrId, ::String &rStr);
+    virtual BOOL GetString(ULONG nErrId, rtl::OUString &rStr);
 
 private:
     USHORT nCtxId;
@@ -56,8 +56,8 @@ public:
     ~SfxErrorHandler();
 
 protected:
-    virtual BOOL     GetErrorString(ULONG lErrId, ::String &, USHORT&) const;
-    virtual BOOL     GetMessageString(ULONG lErrId, ::String &, USHORT&) const;
+    virtual BOOL     GetErrorString(ULONG lErrId, rtl::OUString &, USHORT&) const;
+    virtual BOOL     GetMessageString(ULONG lErrId, rtl::OUString &, USHORT&) const;
 
 private:
 
@@ -69,7 +69,7 @@ private:
 
     BOOL             GetClassString(ULONG lErrId, String &) const;
     virtual BOOL     CreateString(
-                         const ErrorInfo *, ::String &, USHORT &) const;
+                         const ErrorInfo *, rtl::OUString &, USHORT &) const;
 };
 
 
