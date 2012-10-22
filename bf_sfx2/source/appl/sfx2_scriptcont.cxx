@@ -17,9 +17,11 @@
  *   the License at http://www.apache.org/licenses/LICENSE-2.0 .
  */
 
+#include <com/sun/star/xml/sax/Writer.hpp>
 #include <com/sun/star/xml/sax/XParser.hpp>
 
 #include <com/sun/star/io/XActiveDataSource.hpp>
+#include <comphelper/processfactory.hxx>
 
 #include <bf_sfx2/sfxuno.hxx>
 
@@ -172,23 +174,16 @@ void SfxScriptLibraryContainer::setLibraryPassword(
 /*?*/   throw(Exception)
 /*?*/ {
         // Create sax writer
-        Reference< XExtendedDocumentHandler > xHandler(
-            mxMSF->createInstance(
-                OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Writer") ) ), UNO_QUERY );
-        if( !xHandler.is() )
-        {
-            OSL_FAIL( "### couldn't create sax-writer component\n" );
-            return;
-        }
+        Reference< XWriter > xWriter(
+            Writer::create( comphelper::getComponentContext( mxMSF ) ) );
 
-        Reference< XActiveDataSource > xSource( xHandler, UNO_QUERY );
-        xSource->setOutputStream( xOutput );
+        xWriter->setOutputStream( xOutput );
 
         xmlscript::ModuleDescriptor aMod;
         aMod.aName = aElementName;
         aMod.aLanguage = maScriptLanguage;
         aElement >>= aMod.aCode;
-        xmlscript::exportScriptModule( xHandler, aMod );
+        xmlscript::exportScriptModule( xWriter, aMod );
 /*?*/ }
 
 

@@ -28,10 +28,12 @@
 #include <bf_svtools/ehdl.hxx>
 #include "bf_basic/basmgr.hxx"
 
+#include <com/sun/star/xml/sax/Writer.hpp>
 #include <com/sun/star/xml/sax/XParser.hpp>
 #include <com/sun/star/io/XActiveDataSource.hpp>
 #include <com/sun/star/beans/XPropertySet.hpp>
 #include <com/sun/star/uno/DeploymentException.hpp>
+#include <comphelper/processfactory.hxx>
 
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
 
@@ -840,14 +842,8 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
     const ::xmlscript::LibDescriptor& rLib, SotStorageRef xStorage )
 {
     // Create sax writer
-    Reference< XExtendedDocumentHandler > xHandler(
-        mxMSF->createInstance(
-            OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Writer") ) ), UNO_QUERY );
-    if( !xHandler.is() )
-    {
-        OSL_FAIL( "### couldn't create sax-writer component\n" );
-        return;
-    }
+    Reference< XWriter > xWriter(
+        Writer::create( comphelper::getComponentContext( mxMSF ) ) );
 
     sal_Bool bLink = pLib->mbLink;
     sal_Bool bStorage = xStorage.Is() && !bLink;
@@ -905,10 +901,9 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
         return;
     }
 
-    Reference< XActiveDataSource > xSource( xHandler, UNO_QUERY );
-    xSource->setOutputStream( xOut );
+    xWriter->setOutputStream( xOut );
 
-    xmlscript::exportLibrary( xHandler, rLib );
+    xmlscript::exportLibrary( xWriter, rLib );
 
     if( xInfoStream.Is() )
         xInfoStream->Commit();
@@ -1157,14 +1152,8 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*N*/
 /*N*/   // Write library container info
 /*N*/   // Create sax writer
-/*N*/   Reference< XExtendedDocumentHandler > xHandler(
-/*N*/       mxMSF->createInstance(
-/*N*/           OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Writer") ) ), UNO_QUERY );
-/*N*/   if( !xHandler.is() )
-/*N*/   {
-/*N*/       OSL_FAIL( "### couldn't create sax-writer component\n" );
-/*N*/       return;
-/*N*/   }
+        Reference< XWriter > xWriter(
+            Writer::create( comphelper::getComponentContext( mxMSF ) ) );
 /*N*/
 /*N*/   // Write info file
 /*N*/   Reference< XOutputStream > xOut;
@@ -1222,10 +1211,9 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*N*/       return;
 /*N*/   }
 /*N*/
-/*N*/   Reference< XActiveDataSource > xSource( xHandler, UNO_QUERY );
-/*N*/   xSource->setOutputStream( xOut );
+/*N*/   xWriter->setOutputStream( xOut );
 /*N*/
-/*N*/   xmlscript::exportLibraryContainer( xHandler, pLibArray );
+/*N*/   xmlscript::exportLibraryContainer( xWriter, pLibArray );
 /*N*/   if( xInfoStream.Is() )
 /*?*/       xInfoStream->Commit();
 /*N*/   if( xLibrariesStor.Is() )
