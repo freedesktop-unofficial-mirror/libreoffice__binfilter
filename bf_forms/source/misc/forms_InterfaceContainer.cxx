@@ -21,6 +21,7 @@
 
 #include <comphelper/eventattachermgr.hxx>
 #include <comphelper/enumhelper.hxx>
+#include <comphelper/processfactory.hxx>
 #include <comphelper/property.hxx>
 #include <comphelper/container.hxx>
 
@@ -87,7 +88,7 @@ OInterfaceContainer::OInterfaceContainer(
         ,m_aElementType(_rElementType)
         ,m_xServiceFactory(_rxFactory)
 {
-    m_xEventAttacher = ::comphelper::createEventAttacherManager(m_xServiceFactory);
+    m_xEventAttacher = ::comphelper::createEventAttacherManager(comphelper::getComponentContext(m_xServiceFactory));
 }
 
 //------------------------------------------------------------------------------
@@ -432,7 +433,7 @@ void SAL_CALL OInterfaceContainer::read( const Reference< XObjectInputStream >& 
         readEvents(_rxInStream);
     }
     else
-        m_xEventAttacher = ::comphelper::createEventAttacherManager( m_xServiceFactory );
+        m_xEventAttacher = ::comphelper::createEventAttacherManager( comphelper::getComponentContext(m_xServiceFactory) );
 }
 
 // XContainer
