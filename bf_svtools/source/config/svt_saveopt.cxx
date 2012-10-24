@@ -301,7 +301,7 @@ SvtSaveOptions_Impl::SvtSaveOptions_Impl()
     try
     {
     css::uno::Reference< css::uno::XInterface > xCFG = ::comphelper::ConfigurationHelper::openConfig(
-        ::comphelper::getProcessServiceFactory(),
+        ::comphelper::getProcessComponentContext(),
         ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "org.openoffice.Office.Recovery" )),
         ::comphelper::ConfigurationHelper::E_READONLY);
 
@@ -463,7 +463,7 @@ void SvtSaveOptions_Impl::Commit()
     PutProperties( aNames, aValues );
 
     css::uno::Reference< css::uno::XInterface > xCFG = ::comphelper::ConfigurationHelper::openConfig(
-        ::comphelper::getProcessServiceFactory(),
+        ::comphelper::getProcessComponentContext(),
         ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "org.openoffice.Office.Recovery" )),
         ::comphelper::ConfigurationHelper::E_STANDARD);
 
