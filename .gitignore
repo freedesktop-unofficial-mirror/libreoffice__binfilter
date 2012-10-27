@@ -36,6 +36,7 @@
 .stgit-edit.txt
 
 # Build directories:
+/callcatcher
 /unxlng??
 /unxlng??.pro
 /unxlng???
