@@ -28,6 +28,7 @@
 #include <unotools/calendarwrapper.hxx>
 #include <unotools/collatorwrapper.hxx>
 #include <com/sun/star/i18n/CollatorOptions.hpp>
+#include <comphelper/processfactory.hxx>
 #include <unotools/transliterationwrapper.hxx>
 #include <com/sun/star/i18n/TransliterationModules.hpp>
 #include <unotools/nativenumberwrapper.hxx>
@@ -226,7 +227,7 @@ public:
                                         if ( !bValid )
                                         {
                                             if ( !pPtr )
-                                                pPtr = new CalendarWrapper( xSMgr );
+                                                pPtr = new CalendarWrapper( comphelper::getComponentContext( xSMgr ) );
                                             pPtr->loadDefaultCalendar( aLocale );
                                             bValid = true;
                                         }

@@ -124,7 +124,6 @@
 #include <breakit.hxx>
 #include <checkit.hxx>
 
-#include <swcalwrp.hxx>
 #include <SwStyleNameMapper.hxx>
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
@@ -403,7 +402,6 @@ SvPtrarr *pGlobalOLEExcludeList = 0;
 SwBreakIt* pBreakIt = 0;
 SwCheckIt* pCheckIt = 0;
 CharClass* pAppCharClass = 0;
-SwCalendarWrapper* pCalendarWrapper = 0;
 CollatorWrapper* pCollator = 0, *pCaseCollator = 0;
 ::utl::TransliterationWrapper* pTransWrp = 0;
 
@@ -698,7 +696,6 @@ public:
 /*N*/           ::com::sun::star::lang::XMultiServiceFactory > xMSF =
 /*N*/                                   ::legacy_binfilters::getLegacyProcessServiceFactory();
 /*N*/   pAppCharClass = new CharClass( xMSF, rLcl );
-/*N*/   pCalendarWrapper = new SwCalendarWrapper( xMSF );
 /*N*/
 /*N*/   _FrmInit();
 /*N*/   _TextInit();
@@ -726,7 +723,6 @@ public:
 /*N*/   delete pBreakIt;
 /*M*/   delete pCheckIt;
 /*N*/   delete pAppCharClass;
-/*N*/   delete pCalendarWrapper;
 /*N*/   delete pCollator;
 /*N*/   delete pCaseCollator;
 /*N*/

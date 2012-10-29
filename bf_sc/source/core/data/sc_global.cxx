@@ -396,7 +396,7 @@ void global_InitAppOptions();
 /*N*/     pSysLocale = new SvtSysLocale;
 /*N*/     pCharClass = pSysLocale->GetCharClassPtr();
 /*N*/     pLocaleData = pSysLocale->GetLocaleDataPtr();
-/*N*/   pCalendar = new CalendarWrapper( ::legacy_binfilters::getLegacyProcessServiceFactory() );
+/*N*/   pCalendar = new CalendarWrapper( comphelper::getComponentContext( ::legacy_binfilters::getLegacyProcessServiceFactory() ) );
 /*N*/   pCalendar->loadDefaultCalendar( *pLocale );
 /*N*/   pCollator = new CollatorWrapper( ::legacy_binfilters::getLegacyProcessServiceFactory() );
 /*N*/   pCollator->loadDefaultCollator( *pLocale, SC_COLLATOR_IGNORES );
