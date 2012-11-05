@@ -80,7 +80,7 @@
 #include <bf_svx/forbiddenruleitem.hxx>
 #include <bf_svx/paravertalignitem.hxx>
 #include <bf_svx/pgrditem.hxx>
-
+#include <comphelper/processfactory.hxx>
 
 #include <fmthbsh.hxx>
 #include <fmtanchr.hxx>
@@ -695,7 +695,7 @@ public:
 /*N*/   ::com::sun::star::uno::Reference<
 /*N*/           ::com::sun::star::lang::XMultiServiceFactory > xMSF =
 /*N*/                                   ::legacy_binfilters::getLegacyProcessServiceFactory();
-/*N*/   pAppCharClass = new CharClass( xMSF, rLcl );
+/*N*/   pAppCharClass = new CharClass( comphelper::getComponentContext(xMSF), rLcl );
 /*N*/
 /*N*/   _FrmInit();
 /*N*/   _TextInit();

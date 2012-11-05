@@ -65,6 +65,7 @@
 #include <dbmgr.hxx>
 #include <docfld.hxx>
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
+#include <comphelper/processfactory.hxx>
 
 namespace binfilter {
 // tippt sich schneller
@@ -266,7 +267,7 @@ static int
 /*N*/       ::com::sun::star::lang::Locale aLocale( SvxCreateLocale( eLang ));
 /*N*/       ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xMSF(
 /*N*/                             ::legacy_binfilters::getLegacyProcessServiceFactory() );
-/*N*/       pCharClass = new CharClass( xMSF, aLocale );
+/*N*/       pCharClass = new CharClass( comphelper::getComponentContext(xMSF), aLocale );
 /*N*/       pLclData = new LocaleDataWrapper( xMSF, aLocale );
 /*N*/   }
 /*N*/

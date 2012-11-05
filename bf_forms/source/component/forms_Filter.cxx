@@ -39,6 +39,7 @@
 
 #include <connectivity/dbtools.hxx>
 #include <connectivity/dbconversion.hxx>
+#include <comphelper/processfactory.hxx>
 #include <comphelper/property.hxx>
 #include <comphelper/numbers.hxx>
 #include <toolkit/helper/vclunohelper.hxx>
@@ -85,7 +86,7 @@ namespace frm
     OFilterControl::OFilterControl( const Reference< XMultiServiceFactory >& _rxORB )
         :m_aTextListeners( *this )
         ,m_xORB( _rxORB )
-        ,m_aParser( _rxORB )
+        ,m_aParser( comphelper::getComponentContext(_rxORB) )
         ,m_nControlClass( FormComponentType::TEXTFIELD )
         ,m_bFilterList( sal_False )
         ,m_bMultiLine( sal_False )

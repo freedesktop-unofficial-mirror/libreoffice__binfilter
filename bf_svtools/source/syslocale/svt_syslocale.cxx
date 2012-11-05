@@ -65,7 +65,7 @@ SvtSysLocale_Impl::SvtSysLocale_Impl()
     pLocaleData = new LocaleDataWrapper(
         ::comphelper::getProcessServiceFactory(), rLocale );
     pCharClass = new CharClass(
-        ::comphelper::getProcessServiceFactory(), rLocale );
+        ::comphelper::getProcessComponentContext(), rLocale );
     aSysLocaleOptions.AddListener( *this );
 }
 
