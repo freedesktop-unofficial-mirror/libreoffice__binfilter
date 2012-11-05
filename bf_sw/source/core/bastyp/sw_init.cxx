@@ -839,7 +839,7 @@ public:
 /*N*/           ::com::sun::star::lang::XMultiServiceFactory > xMSF =
 /*N*/                                   ::legacy_binfilters::getLegacyProcessServiceFactory();
 /*N*/
-/*N*/       pTransWrp = new ::utl::TransliterationWrapper( xMSF,
+/*N*/       pTransWrp = new ::utl::TransliterationWrapper( comphelper::getComponentContext( xMSF ),
 /*N*/               ::com::sun::star::i18n::TransliterationModules_IGNORE_CASE |
 /*N*/               ::com::sun::star::i18n::TransliterationModules_IGNORE_KANA |
 /*N*/               ::com::sun::star::i18n::TransliterationModules_IGNORE_WIDTH );

@@ -403,10 +403,10 @@ void global_InitAppOptions();
 /*N*/   pCaseCollator = new CollatorWrapper( ::legacy_binfilters::getLegacyProcessServiceFactory() );
 /*N*/   pCaseCollator->loadDefaultCollator( *pLocale, 0 );
 /*N*/     pTransliteration = new ::utl::TransliterationWrapper(
-/*N*/         ::legacy_binfilters::getLegacyProcessServiceFactory(), SC_TRANSLITERATION_IGNORECASE );
+/*N*/         comphelper::getComponentContext( ::legacy_binfilters::getLegacyProcessServiceFactory() ), SC_TRANSLITERATION_IGNORECASE );
 /*N*/     pTransliteration->loadModuleIfNeeded( eOfficeLanguage );
 /*N*/     pCaseTransliteration = new ::utl::TransliterationWrapper(
-/*N*/         ::legacy_binfilters::getLegacyProcessServiceFactory(), SC_TRANSLITERATION_CASESENSE );
+/*N*/         comphelper::getComponentContext( ::legacy_binfilters::getLegacyProcessServiceFactory() ), SC_TRANSLITERATION_CASESENSE );
 /*N*/     pCaseTransliteration->loadModuleIfNeeded( eOfficeLanguage );
 /*N*/     pScIntlWrapper = new IntlWrapper( ::legacy_binfilters::getLegacyProcessServiceFactory(), *pLocale );
 /*N*/

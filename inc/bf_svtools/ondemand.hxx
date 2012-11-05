@@ -34,6 +34,7 @@
 #include <unotools/nativenumberwrapper.hxx>
 #include <com/sun/star/uno/Reference.hxx>
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+#include <comphelper/processfactory.hxx>
 
 namespace binfilter
 {
@@ -306,7 +307,7 @@ public:
                                         if ( !bValid )
                                         {
                                             if ( !pPtr )
-                                                pPtr = new ::utl::TransliterationWrapper( xSMgr, nType );
+                                                pPtr = new ::utl::TransliterationWrapper( comphelper::getComponentContext(xSMgr), nType );
                                             pPtr->loadModuleIfNeeded( eLanguage );
                                             bValid = true;
                                         }
@@ -316,7 +317,7 @@ public:
     const   ::utl::TransliterationWrapper*  getForModule( const String& rModule, LanguageType eLang ) const
                                     {
                                         if ( !pPtr )
-                                            pPtr = new ::utl::TransliterationWrapper( xSMgr, nType );
+                                            pPtr = new ::utl::TransliterationWrapper( comphelper::getComponentContext(xSMgr), nType );
                                         pPtr->loadModuleByImplName( rModule, eLang );
                                         bValid = false; // reforce settings change in get()
                                         return pPtr;
